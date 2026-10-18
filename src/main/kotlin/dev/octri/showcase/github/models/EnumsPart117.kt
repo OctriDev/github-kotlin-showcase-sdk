@@ -3,30 +3,36 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Allowed values that can be passed to the exclude param.
- */
-class MigrationsStartForAuthenticatedUserExcludeItemEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is MigrationsStartForAuthenticatedUserExcludeItemEnum && value == other.value
+/** Allowed values that can be passed to the exclude param. */
+class MigrationsStartForAuthenticatedUserExcludeItemEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is MigrationsStartForAuthenticatedUserExcludeItemEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val REPOSITORIES = MigrationsStartForAuthenticatedUserExcludeItemEnum("repositories")
+        @JvmField
+        val REPOSITORIES = MigrationsStartForAuthenticatedUserExcludeItemEnum("repositories")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = MigrationsStartForAuthenticatedUserExcludeItemEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = MigrationsStartForAuthenticatedUserExcludeItemEnum(value)
     }
 }
 
-class PackagesListPackagesForAuthenticatedUserParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PackagesListPackagesForAuthenticatedUserParameterEnum && value == other.value
+class PackagesListPackagesForAuthenticatedUserParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PackagesListPackagesForAuthenticatedUserParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -38,33 +44,49 @@ class PackagesListPackagesForAuthenticatedUserParameterEnum private constructor(
         @JvmField val NUGET = PackagesListPackagesForAuthenticatedUserParameterEnum("nuget")
         @JvmField val CONTAINER = PackagesListPackagesForAuthenticatedUserParameterEnum("container")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PackagesListPackagesForAuthenticatedUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = PackagesListPackagesForAuthenticatedUserParameterEnum(value)
     }
 }
 
-class PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c && value == other.value
+class PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val ACTIVE = PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c("active")
-        @JvmField val DELETED = PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c("deleted")
+        @JvmField
+        val ACTIVE =
+            PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c("active")
+        @JvmField
+        val DELETED =
+            PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c("deleted")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c(value)
     }
 }
 
-class ReposListForAuthenticatedUserParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposListForAuthenticatedUserParameterEnum && value == other.value
+class ReposListForAuthenticatedUserParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposListForAuthenticatedUserParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -73,16 +95,21 @@ class ReposListForAuthenticatedUserParameterEnum private constructor(
         @JvmField val PUBLIC = ReposListForAuthenticatedUserParameterEnum("public")
         @JvmField val PRIVATE = ReposListForAuthenticatedUserParameterEnum("private")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposListForAuthenticatedUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposListForAuthenticatedUserParameterEnum(value)
     }
 }
 
-class ReposListForAuthenticatedUserParameterEnum8dd6d868 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposListForAuthenticatedUserParameterEnum8dd6d868 && value == other.value
+class ReposListForAuthenticatedUserParameterEnum8dd6d868
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposListForAuthenticatedUserParameterEnum8dd6d868 && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -93,16 +120,21 @@ class ReposListForAuthenticatedUserParameterEnum8dd6d868 private constructor(
         @JvmField val PRIVATE = ReposListForAuthenticatedUserParameterEnum8dd6d868("private")
         @JvmField val MEMBER = ReposListForAuthenticatedUserParameterEnum8dd6d868("member")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposListForAuthenticatedUserParameterEnum8dd6d868(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposListForAuthenticatedUserParameterEnum8dd6d868(value)
     }
 }
 
-class ReposListForAuthenticatedUserParameterEnuma184120a private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposListForAuthenticatedUserParameterEnuma184120a && value == other.value
+class ReposListForAuthenticatedUserParameterEnuma184120a
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposListForAuthenticatedUserParameterEnuma184120a && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -112,16 +144,21 @@ class ReposListForAuthenticatedUserParameterEnuma184120a private constructor(
         @JvmField val PUSHED = ReposListForAuthenticatedUserParameterEnuma184120a("pushed")
         @JvmField val FULL_NAME = ReposListForAuthenticatedUserParameterEnuma184120a("full_name")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposListForAuthenticatedUserParameterEnuma184120a(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposListForAuthenticatedUserParameterEnuma184120a(value)
     }
 }
 
-class ReposListForAuthenticatedUserParameterEnuma1a095b2 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposListForAuthenticatedUserParameterEnuma1a095b2 && value == other.value
+class ReposListForAuthenticatedUserParameterEnuma1a095b2
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposListForAuthenticatedUserParameterEnuma1a095b2 && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -129,19 +166,26 @@ class ReposListForAuthenticatedUserParameterEnuma1a095b2 private constructor(
         @JvmField val ASC = ReposListForAuthenticatedUserParameterEnuma1a095b2("asc")
         @JvmField val DESC = ReposListForAuthenticatedUserParameterEnuma1a095b2("desc")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposListForAuthenticatedUserParameterEnuma1a095b2(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposListForAuthenticatedUserParameterEnuma1a095b2(value)
     }
 }
 
 /**
- * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
+ * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
+ * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit
+ * message.
  */
-class ReposCreateForAuthenticatedUserMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateForAuthenticatedUserMergeCommitMessageEnum && value == other.value
+class ReposCreateForAuthenticatedUserMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateForAuthenticatedUserMergeCommitMessageEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -150,80 +194,113 @@ class ReposCreateForAuthenticatedUserMergeCommitMessageEnum private constructor(
         @JvmField val PR_TITLE = ReposCreateForAuthenticatedUserMergeCommitMessageEnum("PR_TITLE")
         @JvmField val BLANK = ReposCreateForAuthenticatedUserMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateForAuthenticatedUserMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposCreateForAuthenticatedUserMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * Required when using `merge_commit_message`. The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
+ * Required when using `merge_commit_message`. The default value for a merge commit title. -
+ * `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic
+ * title for a merge message (e.g., Merge pull request #123 from branch-name).
  */
-class ReposCreateForAuthenticatedUserMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateForAuthenticatedUserMergeCommitTitleEnum && value == other.value
+class ReposCreateForAuthenticatedUserMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateForAuthenticatedUserMergeCommitTitleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PR_TITLE = ReposCreateForAuthenticatedUserMergeCommitTitleEnum("PR_TITLE")
-        @JvmField val MERGE_MESSAGE = ReposCreateForAuthenticatedUserMergeCommitTitleEnum("MERGE_MESSAGE")
+        @JvmField
+        val MERGE_MESSAGE = ReposCreateForAuthenticatedUserMergeCommitTitleEnum("MERGE_MESSAGE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateForAuthenticatedUserMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposCreateForAuthenticatedUserMergeCommitTitleEnum(value)
     }
 }
 
 /**
- * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+ * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's
+ * body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a
+ * blank commit message.
  */
-class ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum && value == other.value
+class ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PR_BODY = ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum("PR_BODY")
-        @JvmField val COMMIT_MESSAGES = ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum("COMMIT_MESSAGES")
+        @JvmField
+        val PR_BODY = ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum("PR_BODY")
+        @JvmField
+        val COMMIT_MESSAGES =
+            ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum("COMMIT_MESSAGES")
         @JvmField val BLANK = ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * Required when using `squash_merge_commit_message`. The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+ * Required when using `squash_merge_commit_message`. The default value for a squash merge commit
+ * title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to
+ * the commit's title (if only one commit) or the pull request's title (when more than one commit).
  */
-class ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum && value == other.value
+class ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PR_TITLE = ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum("PR_TITLE")
-        @JvmField val COMMIT_OR_PR_TITLE = ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
+        @JvmField
+        val PR_TITLE = ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum("PR_TITLE")
+        @JvmField
+        val COMMIT_OR_PR_TITLE =
+            ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum(value)
     }
 }
 
-/**
- * The layout of the view.
- */
-class ProjectsCreateViewForUserLayoutEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsCreateViewForUserLayoutEnum && value == other.value
+/** The layout of the view. */
+class ProjectsCreateViewForUserLayoutEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsCreateViewForUserLayoutEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -232,19 +309,26 @@ class ProjectsCreateViewForUserLayoutEnum private constructor(
         @JvmField val BOARD = ProjectsCreateViewForUserLayoutEnum("board")
         @JvmField val ROADMAP = ProjectsCreateViewForUserLayoutEnum("roadmap")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsCreateViewForUserLayoutEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsCreateViewForUserLayoutEnum(value)
     }
 }
 
 /**
- * The base role that determines default permissions for the space. - `no_access`: No default access (default) - `reader`: Makes the space publicly readable Note: User spaces do not support writer or admin base roles.
+ * The base role that determines default permissions for the space. - `no_access`: No default access
+ * (default) - `reader`: Makes the space publicly readable Note: User spaces do not support writer
+ * or admin base roles.
  */
-class CopilotSpacesCreateForUserBaseRoleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesCreateForUserBaseRoleEnum && value == other.value
+class CopilotSpacesCreateForUserBaseRoleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesCreateForUserBaseRoleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -252,44 +336,70 @@ class CopilotSpacesCreateForUserBaseRoleEnum private constructor(
         @JvmField val READER = CopilotSpacesCreateForUserBaseRoleEnum("reader")
         @JvmField val NO_ACCESS = CopilotSpacesCreateForUserBaseRoleEnum("no_access")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesCreateForUserBaseRoleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CopilotSpacesCreateForUserBaseRoleEnum(value)
     }
 }
 
-/**
- * The type of resource.
- */
-class CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum && value == other.value
+/** The type of resource. */
+class CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val REPOSITORY = CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("repository")
-        @JvmField val GITHUB_FILE = CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("github_file")
-        @JvmField val FREE_TEXT = CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("free_text")
-        @JvmField val GITHUB_ISSUE = CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("github_issue")
-        @JvmField val GITHUB_PULL_REQUEST = CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("github_pull_request")
-        @JvmField val MEDIA_CONTENT = CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("media_content")
-        @JvmField val UPLOADED_TEXT_FILE = CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("uploaded_text_file")
+        @JvmField
+        val REPOSITORY =
+            CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("repository")
+        @JvmField
+        val GITHUB_FILE =
+            CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("github_file")
+        @JvmField
+        val FREE_TEXT =
+            CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("free_text")
+        @JvmField
+        val GITHUB_ISSUE =
+            CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("github_issue")
+        @JvmField
+        val GITHUB_PULL_REQUEST =
+            CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("github_pull_request")
+        @JvmField
+        val MEDIA_CONTENT =
+            CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("media_content")
+        @JvmField
+        val UPLOADED_TEXT_FILE =
+            CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum("uploaded_text_file")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum(value)
     }
 }
 
 /**
- * The base role that determines default permissions for the space. Changing this field requires admin permissions. - `no_access`: No default access (default) - `reader`: Makes the space publicly readable Note: User spaces do not support writer or admin base roles.
+ * The base role that determines default permissions for the space. Changing this field requires
+ * admin permissions. - `no_access`: No default access (default) - `reader`: Makes the space
+ * publicly readable Note: User spaces do not support writer or admin base roles.
  */
-class CopilotSpacesUpdateForUserBaseRoleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesUpdateForUserBaseRoleEnum && value == other.value
+class CopilotSpacesUpdateForUserBaseRoleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesUpdateForUserBaseRoleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -297,44 +407,66 @@ class CopilotSpacesUpdateForUserBaseRoleEnum private constructor(
         @JvmField val READER = CopilotSpacesUpdateForUserBaseRoleEnum("reader")
         @JvmField val NO_ACCESS = CopilotSpacesUpdateForUserBaseRoleEnum("no_access")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesUpdateForUserBaseRoleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CopilotSpacesUpdateForUserBaseRoleEnum(value)
     }
 }
 
-/**
- * The type of resource.
- */
-class CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum && value == other.value
+/** The type of resource. */
+class CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val REPOSITORY = CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("repository")
-        @JvmField val GITHUB_FILE = CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("github_file")
-        @JvmField val FREE_TEXT = CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("free_text")
-        @JvmField val GITHUB_ISSUE = CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("github_issue")
-        @JvmField val GITHUB_PULL_REQUEST = CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("github_pull_request")
-        @JvmField val MEDIA_CONTENT = CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("media_content")
-        @JvmField val UPLOADED_TEXT_FILE = CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("uploaded_text_file")
+        @JvmField
+        val REPOSITORY =
+            CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("repository")
+        @JvmField
+        val GITHUB_FILE =
+            CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("github_file")
+        @JvmField
+        val FREE_TEXT =
+            CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("free_text")
+        @JvmField
+        val GITHUB_ISSUE =
+            CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("github_issue")
+        @JvmField
+        val GITHUB_PULL_REQUEST =
+            CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("github_pull_request")
+        @JvmField
+        val MEDIA_CONTENT =
+            CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("media_content")
+        @JvmField
+        val UPLOADED_TEXT_FILE =
+            CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum("uploaded_text_file")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum(value)
     }
 }
 
-/**
- * The type of actor (must be `User` for user-owned spaces; `Team` will be rejected).
- */
-class CopilotSpacesAddCollaboratorForUserActorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesAddCollaboratorForUserActorTypeEnum && value == other.value
+/** The type of actor (must be `User` for user-owned spaces; `Team` will be rejected). */
+class CopilotSpacesAddCollaboratorForUserActorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesAddCollaboratorForUserActorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -342,19 +474,22 @@ class CopilotSpacesAddCollaboratorForUserActorTypeEnum private constructor(
         @JvmField val USER = CopilotSpacesAddCollaboratorForUserActorTypeEnum("User")
         @JvmField val TEAM = CopilotSpacesAddCollaboratorForUserActorTypeEnum("Team")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesAddCollaboratorForUserActorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CopilotSpacesAddCollaboratorForUserActorTypeEnum(value)
     }
 }
 
-/**
- * The role to grant to the collaborator.
- */
-class CopilotSpacesAddCollaboratorForUserRoleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesAddCollaboratorForUserRoleEnum && value == other.value
+/** The role to grant to the collaborator. */
+class CopilotSpacesAddCollaboratorForUserRoleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesAddCollaboratorForUserRoleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -363,16 +498,21 @@ class CopilotSpacesAddCollaboratorForUserRoleEnum private constructor(
         @JvmField val WRITER = CopilotSpacesAddCollaboratorForUserRoleEnum("writer")
         @JvmField val ADMIN = CopilotSpacesAddCollaboratorForUserRoleEnum("admin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesAddCollaboratorForUserRoleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CopilotSpacesAddCollaboratorForUserRoleEnum(value)
     }
 }
 
-class CopilotSpacesRemoveCollaboratorForUserParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesRemoveCollaboratorForUserParameterEnum && value == other.value
+class CopilotSpacesRemoveCollaboratorForUserParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesRemoveCollaboratorForUserParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -380,16 +520,21 @@ class CopilotSpacesRemoveCollaboratorForUserParameterEnum private constructor(
         @JvmField val USER = CopilotSpacesRemoveCollaboratorForUserParameterEnum("User")
         @JvmField val TEAM = CopilotSpacesRemoveCollaboratorForUserParameterEnum("Team")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesRemoveCollaboratorForUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CopilotSpacesRemoveCollaboratorForUserParameterEnum(value)
     }
 }
 
-class CopilotSpacesUpdateCollaboratorForUserParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesUpdateCollaboratorForUserParameterEnum && value == other.value
+class CopilotSpacesUpdateCollaboratorForUserParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesUpdateCollaboratorForUserParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -397,19 +542,22 @@ class CopilotSpacesUpdateCollaboratorForUserParameterEnum private constructor(
         @JvmField val USER = CopilotSpacesUpdateCollaboratorForUserParameterEnum("User")
         @JvmField val TEAM = CopilotSpacesUpdateCollaboratorForUserParameterEnum("Team")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesUpdateCollaboratorForUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CopilotSpacesUpdateCollaboratorForUserParameterEnum(value)
     }
 }
 
-/**
- * The new role to grant to the collaborator. Use `no_access` to remove the collaborator.
- */
-class CopilotSpacesUpdateCollaboratorForUserRoleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesUpdateCollaboratorForUserRoleEnum && value == other.value
+/** The new role to grant to the collaborator. Use `no_access` to remove the collaborator. */
+class CopilotSpacesUpdateCollaboratorForUserRoleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesUpdateCollaboratorForUserRoleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -419,39 +567,51 @@ class CopilotSpacesUpdateCollaboratorForUserRoleEnum private constructor(
         @JvmField val ADMIN = CopilotSpacesUpdateCollaboratorForUserRoleEnum("admin")
         @JvmField val NO_ACCESS = CopilotSpacesUpdateCollaboratorForUserRoleEnum("no_access")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesUpdateCollaboratorForUserRoleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CopilotSpacesUpdateCollaboratorForUserRoleEnum(value)
     }
 }
 
-/**
- * The type of resource to create.
- */
-class CopilotSpacesCreateResourceForUserResourceTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CopilotSpacesCreateResourceForUserResourceTypeEnum && value == other.value
+/** The type of resource to create. */
+class CopilotSpacesCreateResourceForUserResourceTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CopilotSpacesCreateResourceForUserResourceTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val REPOSITORY = CopilotSpacesCreateResourceForUserResourceTypeEnum("repository")
-        @JvmField val GITHUB_FILE = CopilotSpacesCreateResourceForUserResourceTypeEnum("github_file")
+        @JvmField
+        val GITHUB_FILE = CopilotSpacesCreateResourceForUserResourceTypeEnum("github_file")
         @JvmField val FREE_TEXT = CopilotSpacesCreateResourceForUserResourceTypeEnum("free_text")
-        @JvmField val GITHUB_ISSUE = CopilotSpacesCreateResourceForUserResourceTypeEnum("github_issue")
-        @JvmField val GITHUB_PULL_REQUEST = CopilotSpacesCreateResourceForUserResourceTypeEnum("github_pull_request")
+        @JvmField
+        val GITHUB_ISSUE = CopilotSpacesCreateResourceForUserResourceTypeEnum("github_issue")
+        @JvmField
+        val GITHUB_PULL_REQUEST =
+            CopilotSpacesCreateResourceForUserResourceTypeEnum("github_pull_request")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CopilotSpacesCreateResourceForUserResourceTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CopilotSpacesCreateResourceForUserResourceTypeEnum(value)
     }
 }
 
-class UsersGetContextForUserParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is UsersGetContextForUserParameterEnum && value == other.value
+class UsersGetContextForUserParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is UsersGetContextForUserParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -461,16 +621,21 @@ class UsersGetContextForUserParameterEnum private constructor(
         @JvmField val ISSUE = UsersGetContextForUserParameterEnum("issue")
         @JvmField val PULL_REQUEST = UsersGetContextForUserParameterEnum("pull_request")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = UsersGetContextForUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = UsersGetContextForUserParameterEnum(value)
     }
 }
 
-class PackagesListPackagesForUserParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PackagesListPackagesForUserParameterEnum && value == other.value
+class PackagesListPackagesForUserParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PackagesListPackagesForUserParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -482,19 +647,22 @@ class PackagesListPackagesForUserParameterEnum private constructor(
         @JvmField val NUGET = PackagesListPackagesForUserParameterEnum("nuget")
         @JvmField val CONTAINER = PackagesListPackagesForUserParameterEnum("container")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PackagesListPackagesForUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = PackagesListPackagesForUserParameterEnum(value)
     }
 }
 
-/**
- * The field's data type.
- */
-class ProjectsAddFieldForUserVariant0DataTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsAddFieldForUserVariant0DataTypeEnum && value == other.value
+/** The field's data type. */
+class ProjectsAddFieldForUserVariant0DataTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsAddFieldForUserVariant0DataTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -503,57 +671,66 @@ class ProjectsAddFieldForUserVariant0DataTypeEnum private constructor(
         @JvmField val NUMBER = ProjectsAddFieldForUserVariant0DataTypeEnum("number")
         @JvmField val DATE = ProjectsAddFieldForUserVariant0DataTypeEnum("date")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsAddFieldForUserVariant0DataTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsAddFieldForUserVariant0DataTypeEnum(value)
     }
 }
 
-/**
- * The field's data type.
- */
-class ProjectsAddFieldForUserVariant1DataTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsAddFieldForUserVariant1DataTypeEnum && value == other.value
+/** The field's data type. */
+class ProjectsAddFieldForUserVariant1DataTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsAddFieldForUserVariant1DataTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val SINGLE_SELECT = ProjectsAddFieldForUserVariant1DataTypeEnum("single_select")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsAddFieldForUserVariant1DataTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsAddFieldForUserVariant1DataTypeEnum(value)
     }
 }
 
-/**
- * The field's data type.
- */
-class ProjectsAddFieldForUserVariant2DataTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsAddFieldForUserVariant2DataTypeEnum && value == other.value
+/** The field's data type. */
+class ProjectsAddFieldForUserVariant2DataTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsAddFieldForUserVariant2DataTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val ITERATION = ProjectsAddFieldForUserVariant2DataTypeEnum("iteration")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsAddFieldForUserVariant2DataTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsAddFieldForUserVariant2DataTypeEnum(value)
     }
 }
 
-/**
- * The type of item to add to the project. Must be either Issue or PullRequest.
- */
-class ProjectsAddItemForUserTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsAddItemForUserTypeEnum && value == other.value
+/** The type of item to add to the project. Must be either Issue or PullRequest. */
+class ProjectsAddItemForUserTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsAddItemForUserTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -561,16 +738,21 @@ class ProjectsAddItemForUserTypeEnum private constructor(
         @JvmField val ISSUE = ProjectsAddItemForUserTypeEnum("Issue")
         @JvmField val PULLREQUEST = ProjectsAddItemForUserTypeEnum("PullRequest")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsAddItemForUserTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsAddItemForUserTypeEnum(value)
     }
 }
 
-class ReposListForUserParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposListForUserParameterEnum && value == other.value
+class ReposListForUserParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposListForUserParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -579,7 +761,10 @@ class ReposListForUserParameterEnum private constructor(
         @JvmField val OWNER = ReposListForUserParameterEnum("owner")
         @JvmField val MEMBER = ReposListForUserParameterEnum("member")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposListForUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposListForUserParameterEnum(value)
     }
 }

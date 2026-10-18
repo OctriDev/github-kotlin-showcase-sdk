@@ -11,45 +11,108 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ReposAcceptInvitationForAuthenticatedUserOperation {
     /**
-     * Accepts a repository invitation for the authenticated user. Use `invitation_id` to identify the invitation to accept. A 204 response confirms acceptance without returning a response body.
+     * Accepts a repository invitation for the authenticated user. Use `invitation_id` to identify
+     * the invitation to accept. A 204 response confirms acceptance without returning a response
+     * body.
      *
      * @param invitationId The unique identifier of the invitation.
      */
-    fun reposAcceptInvitationForAuthenticatedUser(clientConfig: ClientConfig, invitationId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PATCH", "/user/repository_invitations/${SdkClient.encodePathSegment(invitationId)}", config = clientConfig, operationId = "reposAcceptInvitationForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java)))
+    fun reposAcceptInvitationForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PATCH",
+                "/user/repository_invitations/${SdkClient.encodePathSegment(invitationId)}",
+                config = clientConfig,
+                operationId = "reposAcceptInvitationForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "409" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ReposDeclineInvitationForAuthenticatedUserOperation {
     /**
-     * Declines a repository invitation for the authenticated user. Use `invitation_id` to identify the invitation to decline. A 204 response confirms the invitation was declined without returning a response body.
+     * Declines a repository invitation for the authenticated user. Use `invitation_id` to identify
+     * the invitation to decline. A 204 response confirms the invitation was declined without
+     * returning a response body.
      *
      * @param invitationId The unique identifier of the invitation.
      */
-    fun reposDeclineInvitationForAuthenticatedUser(clientConfig: ClientConfig, invitationId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/repository_invitations/${SdkClient.encodePathSegment(invitationId)}", config = clientConfig, operationId = "reposDeclineInvitationForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java)))
+    fun reposDeclineInvitationForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/user/repository_invitations/${SdkClient.encodePathSegment(invitationId)}",
+                config = clientConfig,
+                operationId = "reposDeclineInvitationForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "409" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ReposListForUserOperation {
     /**
-     * Lists public repositories for the specified GitHub user. Filter by repository `type` and sort by `sort` and `direction`; use `page` and `per_page` to paginate the results.
+     * Lists public repositories for the specified GitHub user. Filter by repository `type` and sort
+     * by `sort` and `direction`; use `page` and `per_page` to paginate the results.
      *
      * Lists public repositories for the specified user.
      *
      * @param username The handle for the GitHub user account.
      * @param type Limit results to repositories of the specified type.
      * @param sort The property to sort the results by.
-     * @param direction The order to sort by. Default: `asc` when using `full_name`,
-     *   otherwise `desc`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param direction The order to sort by. Default: `asc` when using `full_name`, otherwise
+     *   `desc`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListForUser(clientConfig: ClientConfig, request: Repos.ReposListForUserRequest, options: RequestOptions? = null): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(request.username)}/repos", config = clientConfig, query = mapOf("type" to SdkClient.queryValue(request.type, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
-    SdkClient.queryValue(request.direction, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reposListForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListForUser(
+        clientConfig: ClientConfig,
+        request: Repos.ReposListForUserRequest,
+        options: RequestOptions? = null,
+    ): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(request.username)}/repos",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "type" to SdkClient.queryValue(request.type, "form", true),
+                            "sort" to SdkClient.queryValue(request.sort, "form", true),
+                            "direction" to SdkClient.queryValue(request.direction, "form", true),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "reposListForUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

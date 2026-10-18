@@ -30,201 +30,440 @@ import dev.octri.showcase.github.ViewTraffic
 
 internal object ReposGetCodeFrequencyStatsOperation {
     /**
-     * Returns a weekly aggregate of the number of additions and deletions pushed to a repository. > \[!NOTE\] > This endpoint can only be used for repositories with fewer than 10,000 commits. If the repository contains 10,000 or more commits, a 422 status code will be returned.
+     * Returns a weekly aggregate of the number of additions and deletions pushed to a repository. >
+     * \[!NOTE\] > This endpoint can only be used for repositories with fewer than 10,000 commits.
+     * If the repository contains 10,000 or more commits, a 422 status code will be returned.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetCodeFrequencyStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CodeFrequencyStat> {
-        return SdkClient.request<List<CodeFrequencyStat>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/code_frequency", config = clientConfig, operationId = "reposGetCodeFrequencyStats", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetCodeFrequencyStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<CodeFrequencyStat> {
+        return SdkClient.request<List<CodeFrequencyStat>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/code_frequency",
+                    config = clientConfig,
+                    operationId = "reposGetCodeFrequencyStats",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetCommitActivityStatsOperation {
     /**
-     * Returns the last year of commit activity grouped by week. The `days` array is a group of commits per day, starting on `Sunday`.
+     * Returns the last year of commit activity grouped by week. The `days` array is a group of
+     * commits per day, starting on `Sunday`.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetCommitActivityStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CommitActivity> {
-        return SdkClient.request<List<CommitActivity>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/commit_activity", config = clientConfig, operationId = "reposGetCommitActivityStats", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetCommitActivityStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<CommitActivity> {
+        return SdkClient.request<List<CommitActivity>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/commit_activity",
+                    config = clientConfig,
+                    operationId = "reposGetCommitActivityStats",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetContributorsStatsOperation {
     /**
-     * Returns the `total` number of commits authored by the contributor. In addition, the response includes a Weekly Hash (`weeks` array) with the following information: * `w` - Start of the week, given as a Unix timestamp. * `a` - Number of additions * `d` - Number of deletions * `c` - Number of commits > \[!NOTE\] > This endpoint will return `0` values for all addition and deletion counts in repositories with 10,000 or more commits.
+     * Returns the `total` number of commits authored by the contributor. In addition, the response
+     * includes a Weekly Hash (`weeks` array) with the following information: * `w` - Start of the
+     * week, given as a Unix timestamp. * `a` - Number of additions * `d` - Number of deletions *
+     * `c` - Number of commits > \[!NOTE\] > This endpoint will return `0` values for all addition
+     * and deletion counts in repositories with 10,000 or more commits.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetContributorsStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<ContributorActivity> {
-        return SdkClient.request<List<ContributorActivity>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/contributors", config = clientConfig, operationId = "reposGetContributorsStats", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetContributorsStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<ContributorActivity> {
+        return SdkClient.request<List<ContributorActivity>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/contributors",
+                    config = clientConfig,
+                    operationId = "reposGetContributorsStats",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetParticipationStatsOperation {
     /**
-     * Returns the total commit counts for the `owner` and total commit counts in `all`. `all` is everyone combined, including the `owner` in the last 52 weeks. If you'd like to get the commit counts for non-owners, you can subtract `owner` from `all`. The array order is oldest week (index 0) to most recent week. The most recent week is seven days ago at UTC midnight to today at UTC midnight.
+     * Returns the total commit counts for the `owner` and total commit counts in `all`. `all` is
+     * everyone combined, including the `owner` in the last 52 weeks. If you'd like to get the
+     * commit counts for non-owners, you can subtract `owner` from `all`. The array order is oldest
+     * week (index 0) to most recent week. The most recent week is seven days ago at UTC midnight to
+     * today at UTC midnight.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetParticipationStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ParticipationStats {
-        return SdkClient.request<ParticipationStats>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/participation", config = clientConfig, operationId = "reposGetParticipationStats", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetParticipationStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ParticipationStats {
+        return SdkClient.request<ParticipationStats>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/participation",
+                    config = clientConfig,
+                    operationId = "reposGetParticipationStats",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetPunchCardStatsOperation {
     /**
-     * Each array contains the day number, hour number, and number of commits: * `0-6`: Sunday - Saturday * `0-23`: Hour of day * Number of commits For example, `[2, 14, 25]` indicates that there were 25 total commits, during the 2:00pm hour on Tuesdays. All times are based on the time zone of individual commits.
+     * Each array contains the day number, hour number, and number of commits: * `0-6`: Sunday -
+     * Saturday * `0-23`: Hour of day * Number of commits For example, `[2, 14, 25]` indicates that
+     * there were 25 total commits, during the 2:00pm hour on Tuesdays. All times are based on the
+     * time zone of individual commits.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetPunchCardStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CodeFrequencyStat> {
-        return SdkClient.request<List<CodeFrequencyStat>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/punch_card", config = clientConfig, operationId = "reposGetPunchCardStats", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetPunchCardStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<CodeFrequencyStat> {
+        return SdkClient.request<List<CodeFrequencyStat>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stats/punch_card",
+                    config = clientConfig,
+                    operationId = "reposGetPunchCardStats",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateCommitStatusOperation {
     /**
-     * Creates a commit status for a specific commit in a repository. You need push access to the repository, and `state` must be one of the supported values; each `sha` and `context` pair is limited to 1,000 statuses.
+     * Creates a commit status for a specific commit in a repository. You need push access to the
+     * repository, and `state` must be one of the supported values; each `sha` and `context` pair is
+     * limited to 1,000 statuses.
      *
-     * Users with push access in a repository can create commit statuses for a given SHA. Note: there is a limit of 1000 statuses per `sha` and `context` within a repository. Attempts to create more than 1000 statuses will result in a validation error.
+     * Users with push access in a repository can create commit statuses for a given SHA. Note:
+     * there is a limit of 1000 statuses per `sha` and `context` within a repository. Attempts to
+     * create more than 1000 statuses will result in a validation error.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param state The state of the status.
-     * @param targetUrl The target URL to associate with this status. This URL will
-     *   be linked from the GitHub UI to allow users to easily see the source of the
-     *   status. For example, if your continuous integration system is posting build
-     *   status, you would want to provide the deep link for the build output for this
-     *   specific SHA: `ci.example.com
+     * @param targetUrl The target URL to associate with this status. This URL will be linked from
+     *   the GitHub UI to allow users to easily see the source of the status. For example, if your
+     *   continuous integration system is posting build status, you would want to provide the deep
+     *   link for the build output for this specific SHA: `ci.example.com
      * @param description A short description of the status.
-     * @param context A string label to differentiate this status from the status of
-     *   other systems. This field is case-insensitive.
+     * @param context A string label to differentiate this status from the status of other systems.
+     *   This field is case-insensitive.
      */
-    fun reposCreateCommitStatus(clientConfig: ClientConfig, request: Repos.ReposCreateCommitStatusRequest, options: RequestOptions? = null): Status {
-        return SdkClient.request<Status>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/statuses/${SdkClient.encodePathSegment(request.sha)}", config = clientConfig, body = SdkClient.bodyMap("state" to (request.state), "target_url" to
-    (request.targetUrl ?: SdkClient.SdkOptional.Omitted), "description" to
-    (request.description ?: SdkClient.SdkOptional.Omitted), "context" to (SdkClient.omitIfNull(request.context))), operationId = "reposCreateCommitStatus", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCreateCommitStatus(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateCommitStatusRequest,
+        options: RequestOptions? = null,
+    ): Status {
+        return SdkClient.request<Status>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/statuses/${SdkClient.encodePathSegment(request.sha)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "state" to (request.state),
+                            "target_url" to (request.targetUrl ?: SdkClient.SdkOptional.Omitted),
+                            "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
+                            "context" to (SdkClient.omitIfNull(request.context)),
+                        ),
+                    operationId = "reposCreateCommitStatus",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListTagsOperation {
     /**
-     * Lists the tags for a repository. Use `page` and `per_page` to paginate the results, with up to 100 tags per page.
+     * Lists the tags for a repository. Use `page` and `per_page` to paginate the results, with up
+     * to 100 tags per page.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListTags(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Tag> {
-        return SdkClient.request<List<Tag>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/tags", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListTags", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListTags(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Tag> {
+        return SdkClient.request<List<Tag>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/tags",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListTags",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDownloadTarballArchiveOperation {
     /**
-     * Returns a redirect to a tar archive for a repository. Use `ref` to select a branch, tag, or commit; if you omit it, the repository's default branch is used. Follow the redirect or use its `Location` header to make a second GET request; download links for private repositories expire after five minutes.
+     * Returns a redirect to a tar archive for a repository. Use `ref` to select a branch, tag, or
+     * commit; if you omit it, the repository's default branch is used. Follow the redirect or use
+     * its `Location` header to make a second GET request; download links for private repositories
+     * expire after five minutes.
      *
-     * Gets a redirect URL to download a tar archive for a repository. If you omit `:ref`, the repository’s default branch (usually `main`) will be used. Please make sure your HTTP framework is configured to follow redirects or you will need to use the `Location` header to make a second `GET` request. > \[!NOTE\] > For private repositories, these links are temporary and expire after five minutes.
+     * Gets a redirect URL to download a tar archive for a repository. If you omit `:ref`, the
+     * repository’s default branch (usually `main`) will be used. Please make sure your HTTP
+     * framework is configured to follow redirects or you will need to use the `Location` header to
+     * make a second `GET` request. > \[!NOTE\] > For private repositories, these links are
+     * temporary and expire after five minutes.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposDownloadTarballArchive(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): Any {
-        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/tarball/${SdkClient.encodePathSegment(ref)}", config = clientConfig, operationId = "reposDownloadTarballArchive", decoder = SdkClient.ResponseDecoder.EMPTY, options = options)).data
+    fun reposDownloadTarballArchive(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): Any {
+        return SdkClient.request<Any>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/tarball/${SdkClient.encodePathSegment(ref)}",
+                    config = clientConfig,
+                    operationId = "reposDownloadTarballArchive",
+                    decoder = SdkClient.ResponseDecoder.EMPTY,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListTeamsOperation {
     /**
-     * Lists the teams that have access to the specified repository and that are also visible to the authenticated user. For a public repository, a team is listed only if that team added the public repository explicitly. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to use this endpoint with a public repository, and `repo` scope to use this endpoint with a private repository.
+     * Lists the teams that have access to the specified repository and that are also visible to the
+     * authenticated user. For a public repository, a team is listed only if that team added the
+     * public repository explicitly. OAuth app tokens and personal access tokens (classic) need the
+     * `public_repo` or `repo` scope to use this endpoint with a public repository, and `repo` scope
+     * to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListTeams(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Team> {
-        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/teams", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListTeams", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposListTeams(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Team> {
+        return SdkClient.request<List<Team>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/teams",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListTeams",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetAllTopicsOperation {
     /**
-     * Retrieves the topic names associated with a repository. Use `page` and `per_page` to paginate the results.
+     * Retrieves the topic names associated with a repository. Use `page` and `per_page` to paginate
+     * the results.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposGetAllTopics(clientConfig: ClientConfig, owner: String, repo: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Topic {
-        return SdkClient.request<Topic>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/topics", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "reposGetAllTopics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetAllTopics(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Topic {
+        return SdkClient.request<Topic>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/topics",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "reposGetAllTopics",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposReplaceAllTopicsOperation {
     /**
-     * Replaces all topics associated with a repository. Supply `names` with the complete topic list; send an empty array to clear all topics, and note that topic names are saved as lowercase.
+     * Replaces all topics associated with a repository. Supply `names` with the complete topic
+     * list; send an empty array to clear all topics, and note that topic names are saved as
+     * lowercase.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param names An array of topics to add to the repository. Pass one or more
-     *   topics to _replace_ the set of existing topics. Send an empty array (`[]`) to
-     *   clear all topics from the repository. **Note:** Topic `names` will be saved as
-     *   lowercase.
+     * @param names An array of topics to add to the repository. Pass one or more topics to
+     *   _replace_ the set of existing topics. Send an empty array (`[]`) to clear all topics from
+     *   the repository. **Note:** Topic `names` will be saved as lowercase.
      */
-    fun reposReplaceAllTopics(clientConfig: ClientConfig, owner: String, repo: String, names: List<String>, options: RequestOptions? = null): Topic {
-        return SdkClient.request<Topic>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/topics", config = clientConfig, body = SdkClient.bodyMap("names" to (names)), operationId = "reposReplaceAllTopics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
+    fun reposReplaceAllTopics(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        names: List<String>,
+        options: RequestOptions? = null,
+    ): Topic {
+        return SdkClient.request<Topic>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/topics",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("names" to (names)),
+                    operationId = "reposReplaceAllTopics",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationErrorSimple::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetClonesOperation {
     /**
-     * Get the total number of clones and breakdown per day or week for the last 14 days. Timestamps are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
+     * Get the total number of clones and breakdown per day or week for the last 14 days. Timestamps
+     * are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param per The time frame to display results for.
      */
-    fun reposGetClones(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): CloneTraffic {
-        return SdkClient.request<CloneTraffic>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/clones", config = clientConfig, query = mapOf("per" to SdkClient.queryValue(per, "form", true)), operationId = "reposGetClones", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
+    fun reposGetClones(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): CloneTraffic {
+        return SdkClient.request<CloneTraffic>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/clones",
+                    config = clientConfig,
+                    query = mapOf("per" to SdkClient.queryValue(per, "form", true)),
+                    operationId = "reposGetClones",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
@@ -232,213 +471,433 @@ internal object ReposGetTopPathsOperation {
     /**
      * Get the top 10 popular contents over the last 14 days.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetTopPaths(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<ContentTraffic> {
-        return SdkClient.request<List<ContentTraffic>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/popular/paths", config = clientConfig, operationId = "reposGetTopPaths", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
+    fun reposGetTopPaths(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<ContentTraffic> {
+        return SdkClient.request<List<ContentTraffic>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/popular/paths",
+                    config = clientConfig,
+                    operationId = "reposGetTopPaths",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetTopReferrersOperation {
     /**
-     * Retrieves the top 10 referral sources for a repository over the last 14 days. Use this endpoint to review which sources drive visits to the repository.
+     * Retrieves the top 10 referral sources for a repository over the last 14 days. Use this
+     * endpoint to review which sources drive visits to the repository.
      *
      * Get the top 10 referrers over the last 14 days.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetTopReferrers(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<ReferrerTraffic> {
-        return SdkClient.request<List<ReferrerTraffic>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/popular/referrers", config = clientConfig, operationId = "reposGetTopReferrers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
+    fun reposGetTopReferrers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<ReferrerTraffic> {
+        return SdkClient.request<List<ReferrerTraffic>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/popular/referrers",
+                    config = clientConfig,
+                    operationId = "reposGetTopReferrers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetViewsOperation {
     /**
-     * Get the total number of views and breakdown per day or week for the last 14 days. Timestamps are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
+     * Get the total number of views and breakdown per day or week for the last 14 days. Timestamps
+     * are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param per The time frame to display results for.
      */
-    fun reposGetViews(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): ViewTraffic {
-        return SdkClient.request<ViewTraffic>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/views", config = clientConfig, query = mapOf("per" to SdkClient.queryValue(per, "form", true)), operationId = "reposGetViews", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
+    fun reposGetViews(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): ViewTraffic {
+        return SdkClient.request<ViewTraffic>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/views",
+                    config = clientConfig,
+                    query = mapOf("per" to SdkClient.queryValue(per, "form", true)),
+                    operationId = "reposGetViews",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposTransferOperation {
     /**
-     * A transfer request will need to be accepted by the new owner when transferring a personal repository to another user. The response will contain the original `owner`, and the transfer will continue asynchronously. For more details on the requirements to transfer personal and organization-owned repositories, see about repository transfers.
+     * A transfer request will need to be accepted by the new owner when transferring a personal
+     * repository to another user. The response will contain the original `owner`, and the transfer
+     * will continue asynchronously. For more details on the requirements to transfer personal and
+     * organization-owned repositories, see about repository transfers.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param newOwner The username or organization name the repository will be
-     *   transferred to.
+     * @param newOwner The username or organization name the repository will be transferred to.
      * @param newName The new name to be given to the repository.
-     * @param teamIds ID of the team or teams to add to the repository. Teams can
-     *   only be added to organization-owned repositories.
+     * @param teamIds ID of the team or teams to add to the repository. Teams can only be added to
+     *   organization-owned repositories.
      */
-    fun reposTransfer(clientConfig: ClientConfig, owner: String, repo: String, newOwner: String, newName: String? = null, teamIds: List<Long>? = null, options: RequestOptions? = null): MinimalRepository {
-        return SdkClient.request<MinimalRepository>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/transfer", config = clientConfig, body = SdkClient.bodyMap("new_owner" to (newOwner), "new_name" to (SdkClient.omitIfNull(newName)), "team_ids" to (SdkClient.omitIfNull(teamIds))), operationId = "reposTransfer", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposTransfer(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        newOwner: String,
+        newName: String? = null,
+        teamIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): MinimalRepository {
+        return SdkClient.request<MinimalRepository>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/transfer",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "new_owner" to (newOwner),
+                            "new_name" to (SdkClient.omitIfNull(newName)),
+                            "team_ids" to (SdkClient.omitIfNull(teamIds)),
+                        ),
+                    operationId = "reposTransfer",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCheckVulnerabilityAlertsOperation {
     /**
-     * Shows whether dependency alerts are enabled or disabled for a repository. The authenticated user must have admin read access to the repository. For more information, see "About security alerts for vulnerable dependencies".
+     * Shows whether dependency alerts are enabled or disabled for a repository. The authenticated
+     * user must have admin read access to the repository. For more information, see "About security
+     * alerts for vulnerable dependencies".
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposCheckVulnerabilityAlerts(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/vulnerability-alerts", config = clientConfig, operationId = "reposCheckVulnerabilityAlerts", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposCheckVulnerabilityAlerts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/vulnerability-alerts",
+                config = clientConfig,
+                operationId = "reposCheckVulnerabilityAlerts",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposEnableVulnerabilityAlertsOperation {
     /**
-     * Enables dependency alerts and the dependency graph for a repository. The authenticated user must have admin access to the repository. For more information, see "About security alerts for vulnerable dependencies".
+     * Enables dependency alerts and the dependency graph for a repository. The authenticated user
+     * must have admin access to the repository. For more information, see "About security alerts
+     * for vulnerable dependencies".
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposEnableVulnerabilityAlerts(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/vulnerability-alerts", config = clientConfig, operationId = "reposEnableVulnerabilityAlerts", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposEnableVulnerabilityAlerts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/vulnerability-alerts",
+                config = clientConfig,
+                operationId = "reposEnableVulnerabilityAlerts",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposDisableVulnerabilityAlertsOperation {
     /**
-     * Disables dependency alerts and the dependency graph for a repository. The authenticated user must have admin access to the repository. For more information, see "About security alerts for vulnerable dependencies".
+     * Disables dependency alerts and the dependency graph for a repository. The authenticated user
+     * must have admin access to the repository. For more information, see "About security alerts
+     * for vulnerable dependencies".
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposDisableVulnerabilityAlerts(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/vulnerability-alerts", config = clientConfig, operationId = "reposDisableVulnerabilityAlerts", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposDisableVulnerabilityAlerts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/vulnerability-alerts",
+                config = clientConfig,
+                operationId = "reposDisableVulnerabilityAlerts",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposDownloadZipballArchiveOperation {
     /**
-     * Downloads a ZIP archive of a repository at the specified revision. Use `ref` to select a branch, tag, or commit; if omitted, the repository’s default branch is used. Follow the redirect or use its `Location` header to make a second GET request; download links for private repositories expire after five minutes.
+     * Downloads a ZIP archive of a repository at the specified revision. Use `ref` to select a
+     * branch, tag, or commit; if omitted, the repository’s default branch is used. Follow the
+     * redirect or use its `Location` header to make a second GET request; download links for
+     * private repositories expire after five minutes.
      *
-     * Gets a redirect URL to download a zip archive for a repository. If you omit `:ref`, the repository’s default branch (usually `main`) will be used. Please make sure your HTTP framework is configured to follow redirects or you will need to use the `Location` header to make a second `GET` request. > \[!NOTE\] > For private repositories, these links are temporary and expire after five minutes. If the repository is empty, you will receive a 404 when you follow the redirect.
+     * Gets a redirect URL to download a zip archive for a repository. If you omit `:ref`, the
+     * repository’s default branch (usually `main`) will be used. Please make sure your HTTP
+     * framework is configured to follow redirects or you will need to use the `Location` header to
+     * make a second `GET` request. > \[!NOTE\] > For private repositories, these links are
+     * temporary and expire after five minutes. If the repository is empty, you will receive a 404
+     * when you follow the redirect.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposDownloadZipballArchive(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): Any {
-        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/zipball/${SdkClient.encodePathSegment(ref)}", config = clientConfig, operationId = "reposDownloadZipballArchive", decoder = SdkClient.ResponseDecoder.EMPTY, options = options)).data
+    fun reposDownloadZipballArchive(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): Any {
+        return SdkClient.request<Any>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/zipball/${SdkClient.encodePathSegment(ref)}",
+                    config = clientConfig,
+                    operationId = "reposDownloadZipballArchive",
+                    decoder = SdkClient.ResponseDecoder.EMPTY,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateUsingTemplateOperation {
     /**
-     * Creates a new repository using a repository template. Use the `template_owner` and `template_repo` route parameters to specify the repository to use as the template. If the repository is not public, the authenticated user must own or be a member of an organization that owns the repository. To check if a repository is available to use as a template, get the repository's information using the Get a repository endpoint and check that the `is_template` key is `true`. OAuth app…
+     * Creates a new repository using a repository template. Use the `template_owner` and
+     * `template_repo` route parameters to specify the repository to use as the template. If the
+     * repository is not public, the authenticated user must own or be a member of an organization
+     * that owns the repository. To check if a repository is available to use as a template, get the
+     * repository's information using the Get a repository endpoint and check that the `is_template`
+     * key is `true`. OAuth app…
      *
-     * @param templateOwner The account owner of the template repository. The name is
-     *   not case sensitive.
-     * @param templateRepo The name of the template repository without the `.git`
-     *   extension. The name is not case sensitive.
+     * @param templateOwner The account owner of the template repository. The name is not case
+     *   sensitive.
+     * @param templateRepo The name of the template repository without the `.git` extension. The
+     *   name is not case sensitive.
      * @param name The name of the new repository.
-     * @param owner The organization or person who will own the new repository. To
-     *   create a new repository in an organization, the authenticated user must be a
-     *   member of the specified organization.
+     * @param owner The organization or person who will own the new repository. To create a new
+     *   repository in an organization, the authenticated user must be a member of the specified
+     *   organization.
      * @param description A short description of the new repository.
-     * @param includeAllBranches Set to `true` to include the directory structure and
-     *   files from all branches in the template repository, and not just the default
-     *   branch. Default: `false`.
-     * @param private Either `true` to create a new private repository or `false` to
-     *   create a new public one.
+     * @param includeAllBranches Set to `true` to include the directory structure and files from all
+     *   branches in the template repository, and not just the default branch. Default: `false`.
+     * @param private Either `true` to create a new private repository or `false` to create a new
+     *   public one.
      */
-    fun reposCreateUsingTemplate(clientConfig: ClientConfig, request: Repos.ReposCreateUsingTemplateRequest, options: RequestOptions? = null): FullRepository {
-        return SdkClient.request<FullRepository>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.templateOwner)}/${SdkClient.encodePathSegment(request.templateRepo)}/generate", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "owner" to (SdkClient.omitIfNull(request.owner)), "description" to (SdkClient.omitIfNull(request.description)), "include_all_branches" to
-    (SdkClient.omitIfNull(request.includeAllBranches)), "private" to (SdkClient.omitIfNull(request.private))), operationId = "reposCreateUsingTemplate", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCreateUsingTemplate(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateUsingTemplateRequest,
+        options: RequestOptions? = null,
+    ): FullRepository {
+        return SdkClient.request<FullRepository>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.templateOwner)}/${SdkClient.encodePathSegment(request.templateRepo)}/generate",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (request.name),
+                            "owner" to (SdkClient.omitIfNull(request.owner)),
+                            "description" to (SdkClient.omitIfNull(request.description)),
+                            "include_all_branches" to
+                                (SdkClient.omitIfNull(request.includeAllBranches)),
+                            "private" to (SdkClient.omitIfNull(request.private)),
+                        ),
+                    operationId = "reposCreateUsingTemplate",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListPublicOperation {
     /**
-     * Lists all public repositories in the order that they were created. Note: - For GitHub Enterprise Server, this endpoint will only list repositories available to all users on the enterprise. - Pagination is powered exclusively by the `since` parameter. Use the Link header to get the URL for the next page of repositories.
+     * Lists all public repositories in the order that they were created. Note: - For GitHub
+     * Enterprise Server, this endpoint will only list repositories available to all users on the
+     * enterprise. - Pagination is powered exclusively by the `since` parameter. Use the Link header
+     * to get the URL for the next page of repositories.
      *
-     * @param since A repository ID. Only return repositories with an ID greater than
-     *   this ID.
+     * @param since A repository ID. Only return repositories with an ID greater than this ID.
      */
-    fun reposListPublic(clientConfig: ClientConfig, since: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/repositories", config = clientConfig, query = mapOf("since" to SdkClient.queryValue(since, "form", true)), operationId = "reposListPublic", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposListPublic(
+        clientConfig: ClientConfig,
+        since: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repositories",
+                    config = clientConfig,
+                    query = mapOf("since" to SdkClient.queryValue(since, "form", true)),
+                    operationId = "reposListPublic",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListForAuthenticatedUserOperation {
     /**
-     * Lists repositories that the authenticated user has explicit permission (`:read`, `:write`, or `:admin`) to access. The authenticated user has explicit permission to access repositories they own, repositories where they are a collaborator, and repositories that they can access through an organization membership.
+     * Lists repositories that the authenticated user has explicit permission (`:read`, `:write`, or
+     * `:admin`) to access. The authenticated user has explicit permission to access repositories
+     * they own, repositories where they are a collaborator, and repositories that they can access
+     * through an organization membership.
      *
      * @param visibility Limit results to repositories with the specified visibility.
-     * @param affiliation Comma-separated list of values. Can include: * `owner`:
-     *   Repositories that are owned by the authenticated user. * `collaborator`:
-     *   Repositories that the user has been added to as a collaborator. *
-     *   `organization_member`: Repositories that the user has access to through being
-     *   a member of an organization. This includes every repository on every team that
-     *   the user is on.
-     * @param type Limit results to repositories of the specified type. Will cause a
-     *   `422` error if used in the same request as **visibility** or **affiliation**.
+     * @param affiliation Comma-separated list of values. Can include: * `owner`: Repositories that
+     *   are owned by the authenticated user. * `collaborator`: Repositories that the user has been
+     *   added to as a collaborator. * `organization_member`: Repositories that the user has access
+     *   to through being a member of an organization. This includes every repository on every team
+     *   that the user is on.
+     * @param type Limit results to repositories of the specified type. Will cause a `422` error if
+     *   used in the same request as **visibility** or **affiliation**.
      * @param sort The property to sort the results by.
-     * @param direction The order to sort by. Default: `asc` when using `full_name`,
-     *   otherwise `desc`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param since Only show repositories updated after the given time. This is a
-     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param before Only show repositories updated before the given time. This is a
-     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param direction The order to sort by. Default: `asc` when using `full_name`, otherwise
+     *   `desc`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param since Only show repositories updated after the given time. This is a timestamp in ISO
+     *   8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param before Only show repositories updated before the given time. This is a timestamp in
+     *   ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
      */
-    fun reposListForAuthenticatedUser(clientConfig: ClientConfig, request: Repos.ReposListForAuthenticatedUserRequest, options: RequestOptions? = null): List<Repository> {
+    fun reposListForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        request: Repos.ReposListForAuthenticatedUserRequest,
+        options: RequestOptions? = null,
+    ): List<Repository> {
         validateReposListForAuthenticatedUserRequest(request)
 
-        return SdkClient.request<List<Repository>>(SdkClient.RequestSpec("GET", "/user/repos", config = clientConfig, query = mapOf("visibility" to
-    SdkClient.queryValue(request.visibility, "form", true), "affiliation" to
-    SdkClient.queryValue(request.affiliation, "form", true), "type" to SdkClient.queryValue(request.type, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
-    SdkClient.queryValue(request.direction, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "since" to
-    SdkClient.queryValue(request.since, "form", true, "date-time"), "before" to
-    SdkClient.queryValue(request.before, "form", true, "date-time")), operationId = "reposListForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+        return SdkClient.request<List<Repository>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/repos",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "visibility" to SdkClient.queryValue(request.visibility, "form", true),
+                            "affiliation" to
+                                SdkClient.queryValue(request.affiliation, "form", true),
+                            "type" to SdkClient.queryValue(request.type, "form", true),
+                            "sort" to SdkClient.queryValue(request.sort, "form", true),
+                            "direction" to SdkClient.queryValue(request.direction, "form", true),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "since" to
+                                SdkClient.queryValue(request.since, "form", true, "date-time"),
+                            "before" to
+                                SdkClient.queryValue(request.before, "form", true, "date-time"),
+                        ),
+                    operationId = "reposListForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateReposListForAuthenticatedUserRequest(request: Repos.ReposListForAuthenticatedUserRequest) {
+    private fun validateReposListForAuthenticatedUserRequest(
+        request: Repos.ReposListForAuthenticatedUserRequest
+    ) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-}
+        }
 
         if (request.before != null) {
             Validation.validateDateTime("before", request.before)
-}
+        }
     }
 }
 
 internal object ReposCreateForAuthenticatedUserOperation {
     /**
-     * Creates a new repository for the authenticated user. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a private repository.
+     * Creates a new repository for the authenticated user. OAuth app tokens and personal access
+     * tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and
+     * `repo` scope to create a private repository.
      *
      * @param name The name of the repository.
      * @param description A short description of the repository.
@@ -448,108 +907,143 @@ internal object ReposCreateForAuthenticatedUserOperation {
      * @param hasProjects Whether projects are enabled.
      * @param hasWiki Whether the wiki is enabled.
      * @param hasDiscussions Whether discussions are enabled.
-     * @param teamId The id of the team that will be granted access to this
-     *   repository. This is only valid when creating a repository in an organization.
+     * @param teamId The id of the team that will be granted access to this repository. This is only
+     *   valid when creating a repository in an organization.
      * @param autoInit Whether the repository is initialized with a minimal README.
-     * @param gitignoreTemplate The desired language or platform to apply to the
-     *   .gitignore.
-     * @param licenseTemplate The license keyword of the open source license for this
-     *   repository.
+     * @param gitignoreTemplate The desired language or platform to apply to the .gitignore.
+     * @param licenseTemplate The license keyword of the open source license for this repository.
      * @param allowSquashMerge Whether to allow squash merges for pull requests.
      * @param allowMergeCommit Whether to allow merge commits for pull requests.
      * @param allowRebaseMerge Whether to allow rebase merges for pull requests.
      * @param allowAutoMerge Whether to allow Auto-merge to be used on pull requests.
-     * @param deleteBranchOnMerge Whether to delete head branches when pull requests
-     *   are merged
-     * @param squashMergeCommitTitle Required when using
-     *   `squash_merge_commit_message`. The default value for a squash merge commit
-     *   title: - `PR_TITLE` - default to the pull request's title. -
-     *   `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or
-     *   the pull request's title (when more than one commit).
-     * @param squashMergeCommitMessage The default value for a squash merge commit
-     *   message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES`
-     *   - default to the branch's commit messages. - `BLANK` - default to a blank
-     *   commit message.
-     * @param mergeCommitTitle Required when using `merge_commit_message`. The
-     *   default value for a merge commit title. - `PR_TITLE` - default to the pull
-     *   request's title. - `MERGE_MESSAGE` - default to the classic title for a merge
-     *   message (e.g., Merge pull request #123 from branch-name).
-     * @param mergeCommitMessage The default value for a merge commit message. -
-     *   `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the
-     *   pull request's body. - `BLANK` - default to a blank commit message.
+     * @param deleteBranchOnMerge Whether to delete head branches when pull requests are merged
+     * @param squashMergeCommitTitle Required when using `squash_merge_commit_message`. The default
+     *   value for a squash merge commit title: - `PR_TITLE` - default to the pull request's
+     *   title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the
+     *   pull request's title (when more than one commit).
+     * @param squashMergeCommitMessage The default value for a squash merge commit message: -
+     *   `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES`
+     *     - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+     *
+     * @param mergeCommitTitle Required when using `merge_commit_message`. The default value for a
+     *   merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` -
+     *   default to the classic title for a merge message (e.g., Merge pull request #123 from
+     *   branch-name).
+     * @param mergeCommitMessage The default value for a merge commit message. - `PR_TITLE` -
+     *   default to the pull request's title. - `PR_BODY` - default to the pull request's body. -
+     *   `BLANK` - default to a blank commit message.
      * @param hasDownloads Whether downloads are enabled.
-     * @param isTemplate Whether this repository acts as a template that can be used
-     *   to generate new repositories.
+     * @param isTemplate Whether this repository acts as a template that can be used to generate new
+     *   repositories.
      */
-    fun reposCreateForAuthenticatedUser(clientConfig: ClientConfig, request: Repos.ReposCreateForAuthenticatedUserRequest, options: RequestOptions? = null): FullRepository {
-        return SdkClient.request<FullRepository>(SdkClient.RequestSpec("POST", "/user/repos", config = clientConfig, body = buildReposCreateForAuthenticatedUserBody(request), operationId = "reposCreateForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposCreateForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateForAuthenticatedUserRequest,
+        options: RequestOptions? = null,
+    ): FullRepository {
+        return SdkClient.request<FullRepository>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/user/repos",
+                    config = clientConfig,
+                    body = buildReposCreateForAuthenticatedUserBody(request),
+                    operationId = "reposCreateForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
+    private fun buildReposCreateForAuthenticatedUserBody(
+        request: Repos.ReposCreateForAuthenticatedUserRequest
+    ): Map<String, Any?> = buildMap {
+        putAll(buildReposCreateForAuthenticatedUserBodyPart1(request))
+        putAll(buildReposCreateForAuthenticatedUserBodyPart2(request))
+    }
 
-
-
-    private fun buildReposCreateForAuthenticatedUserBody(request: Repos.ReposCreateForAuthenticatedUserRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildReposCreateForAuthenticatedUserBodyPart1(request))
-            putAll(buildReposCreateForAuthenticatedUserBodyPart2(request))
-        }
-
-    private fun buildReposCreateForAuthenticatedUserBodyPart1(request: Repos.ReposCreateForAuthenticatedUserRequest): Map<String, Any?> =
+    private fun buildReposCreateForAuthenticatedUserBodyPart1(
+        request: Repos.ReposCreateForAuthenticatedUserRequest
+    ): Map<String, Any?> =
         SdkClient.bodyMap(
             "name" to (request.name),
             "description" to (SdkClient.omitIfNull(request.description)),
             "homepage" to (SdkClient.omitIfNull(request.homepage)),
             "private" to (SdkClient.omitIfNull(request.private)),
             "has_issues" to (SdkClient.omitIfNull(request.hasIssues)),
-            "has_projects" to
-    (SdkClient.omitIfNull(request.hasProjects)),
+            "has_projects" to (SdkClient.omitIfNull(request.hasProjects)),
             "has_wiki" to (SdkClient.omitIfNull(request.hasWiki)),
-            "has_discussions" to
-    (SdkClient.omitIfNull(request.hasDiscussions)),
+            "has_discussions" to (SdkClient.omitIfNull(request.hasDiscussions)),
             "team_id" to (SdkClient.omitIfNull(request.teamId)),
             "auto_init" to (SdkClient.omitIfNull(request.autoInit)),
-            "gitignore_template" to
-    (SdkClient.omitIfNull(request.gitignoreTemplate)),
-            "license_template" to
-    (SdkClient.omitIfNull(request.licenseTemplate)),
+            "gitignore_template" to (SdkClient.omitIfNull(request.gitignoreTemplate)),
+            "license_template" to (SdkClient.omitIfNull(request.licenseTemplate)),
         )
 
-    private fun buildReposCreateForAuthenticatedUserBodyPart2(request: Repos.ReposCreateForAuthenticatedUserRequest): Map<String, Any?> =
+    private fun buildReposCreateForAuthenticatedUserBodyPart2(
+        request: Repos.ReposCreateForAuthenticatedUserRequest
+    ): Map<String, Any?> =
         SdkClient.bodyMap(
-            "allow_squash_merge" to
-    (SdkClient.omitIfNull(request.allowSquashMerge)),
-            "allow_merge_commit" to
-    (SdkClient.omitIfNull(request.allowMergeCommit)),
-            "allow_rebase_merge" to
-    (SdkClient.omitIfNull(request.allowRebaseMerge)),
-            "allow_auto_merge" to
-    (SdkClient.omitIfNull(request.allowAutoMerge)),
-            "delete_branch_on_merge" to
-    (SdkClient.omitIfNull(request.deleteBranchOnMerge)),
-            "squash_merge_commit_title" to
-    (SdkClient.omitIfNull(request.squashMergeCommitTitle)),
+            "allow_squash_merge" to (SdkClient.omitIfNull(request.allowSquashMerge)),
+            "allow_merge_commit" to (SdkClient.omitIfNull(request.allowMergeCommit)),
+            "allow_rebase_merge" to (SdkClient.omitIfNull(request.allowRebaseMerge)),
+            "allow_auto_merge" to (SdkClient.omitIfNull(request.allowAutoMerge)),
+            "delete_branch_on_merge" to (SdkClient.omitIfNull(request.deleteBranchOnMerge)),
+            "squash_merge_commit_title" to (SdkClient.omitIfNull(request.squashMergeCommitTitle)),
             "squash_merge_commit_message" to
-    (SdkClient.omitIfNull(request.squashMergeCommitMessage)),
-            "merge_commit_title" to
-    (SdkClient.omitIfNull(request.mergeCommitTitle)),
-            "merge_commit_message" to
-    (SdkClient.omitIfNull(request.mergeCommitMessage)),
-            "has_downloads" to
-    (SdkClient.omitIfNull(request.hasDownloads)),
+                (SdkClient.omitIfNull(request.squashMergeCommitMessage)),
+            "merge_commit_title" to (SdkClient.omitIfNull(request.mergeCommitTitle)),
+            "merge_commit_message" to (SdkClient.omitIfNull(request.mergeCommitMessage)),
+            "has_downloads" to (SdkClient.omitIfNull(request.hasDownloads)),
             "is_template" to (SdkClient.omitIfNull(request.isTemplate)),
         )
 }
 
 internal object ReposListInvitationsForAuthenticatedUserOperation {
     /**
-     * When authenticating as a user, this endpoint will list all currently open repository invitations for that user.
+     * When authenticating as a user, this endpoint will list all currently open repository
+     * invitations for that user.
      *
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListInvitationsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<RepositoryInvitation> {
-        return SdkClient.request<List<RepositoryInvitation>>(SdkClient.RequestSpec("GET", "/user/repository_invitations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListInvitationsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun reposListInvitationsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<RepositoryInvitation> {
+        return SdkClient.request<List<RepositoryInvitation>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/repository_invitations",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListInvitationsForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

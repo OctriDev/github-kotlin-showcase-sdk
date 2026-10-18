@@ -3,44 +3,36 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `WebhookIssueRelatesToRemoved` API schema.
- */
+/** Typed representation of the `WebhookIssueRelatesToRemoved` API schema. */
 data class WebhookIssueRelatesToRemoved(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookIssueRelatesToRemovedActionEnum,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser,
-    /**
-     * The ID of the issue the relationship was removed from.
-     */
+    /** The ID of the issue the relationship was removed from. */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_id") val issueId: Double? = null,
-    /**
-     * Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
-     */
+    /** Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. */
     val issue: Issue? = null,
-    /**
-     * The ID of the related issue. Only present when both issues belong to the same repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("related_issue_id") val relatedIssueId: Double? = null,
-    /**
-     * Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
-     */
+    /** The ID of the related issue. Only present when both issues belong to the same repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("related_issue_id")
+    val relatedIssueId: Double? = null,
+    /** Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. */
     @com.fasterxml.jackson.annotation.JsonProperty("related_issue") val relatedIssue: Issue? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
-    val installation: SimpleInstallation? = null
+    val installation: SimpleInstallation? = null,
 )

@@ -5,204 +5,177 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Required object value serialized in the `scanned_repositories[]` wire field.
- */
+/** Required object value serialized in the `scanned_repositories[]` wire field. */
 data class CodeScanningVariantAnalysisScannedRepositoriesItem(
-    /**
-     * Repository Identifier
-     */
+    /** Repository Identifier */
     val repository: CodeScanningVariantAnalysisRepository,
+    /** The new status of the CodeQL variant analysis repository task. */
+    @com.fasterxml.jackson.annotation.JsonProperty("analysis_status")
+    val analysisStatus: CodeScanningVariantAnalysisStatus,
     /**
-     * The new status of the CodeQL variant analysis repository task.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("analysis_status") val analysisStatus: CodeScanningVariantAnalysisStatus,
-    /**
-     * The number of results in the case of a successful analysis. This is only available for successful analyses.
+     * The number of results in the case of a successful analysis. This is only available for
+     * successful analyses.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("result_count") val resultCount: Long? = null,
+    /** The size of the artifact. This is only available for successful analyses. */
+    @com.fasterxml.jackson.annotation.JsonProperty("artifact_size_in_bytes")
+    val artifactSizeInBytes: Long? = null,
     /**
-     * The size of the artifact. This is only available for successful analyses.
+     * The reason of the failure of this repo task. This is only available if the repository task
+     * has failed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("artifact_size_in_bytes") val artifactSizeInBytes: Long? = null,
-    /**
-     * The reason of the failure of this repo task. This is only available if the repository task has failed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("failure_message") val failureMessage: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("failure_message")
+    val failureMessage: String? = null,
 )
 
-/**
- * Required object value serialized in the `not_found_repos` wire field.
- */
+/** Required object value serialized in the `not_found_repos` wire field. */
 data class CodeScanningVariantAnalysisSkippedRepositoriesNotFoundRepos(
-    /**
-     * The total number of repositories that were skipped for this reason.
-     */
+    /** The total number of repositories that were skipped for this reason. */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_count") val repositoryCount: Long,
     /**
-     * A list of full repository names that were skipped. This list may not include all repositories that were skipped.
+     * A list of full repository names that were skipped. This list may not include all repositories
+     * that were skipped.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_full_names") val repositoryFullNames: List<String>
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_full_names")
+    val repositoryFullNames: List<String>,
 )
 
 /**
- * Information about repositories that were skipped from processing. This information is only available to the user that initiated the variant analysis.
+ * Information about repositories that were skipped from processing. This information is only
+ * available to the user that initiated the variant analysis.
  */
 data class CodeScanningVariantAnalysisSkippedRepositories(
-    /**
-     * Required object value serialized in the `access_mismatch_repos` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("access_mismatch_repos") val accessMismatchRepos: CodeScanningVariantAnalysisSkippedRepoGroup,
-    /**
-     * Required object value serialized in the `not_found_repos` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("not_found_repos") val notFoundRepos: CodeScanningVariantAnalysisSkippedRepositoriesNotFoundRepos,
-    /**
-     * Required object value serialized in the `no_codeql_db_repos` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("no_codeql_db_repos") val noCodeqlDbRepos: CodeScanningVariantAnalysisSkippedRepoGroup,
-    /**
-     * Required object value serialized in the `over_limit_repos` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("over_limit_repos") val overLimitRepos: CodeScanningVariantAnalysisSkippedRepoGroup
+    /** Required object value serialized in the `access_mismatch_repos` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("access_mismatch_repos")
+    val accessMismatchRepos: CodeScanningVariantAnalysisSkippedRepoGroup,
+    /** Required object value serialized in the `not_found_repos` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("not_found_repos")
+    val notFoundRepos: CodeScanningVariantAnalysisSkippedRepositoriesNotFoundRepos,
+    /** Required object value serialized in the `no_codeql_db_repos` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("no_codeql_db_repos")
+    val noCodeqlDbRepos: CodeScanningVariantAnalysisSkippedRepoGroup,
+    /** Required object value serialized in the `over_limit_repos` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("over_limit_repos")
+    val overLimitRepos: CodeScanningVariantAnalysisSkippedRepoGroup,
 )
 
-/**
- * A run of a CodeQL query against one or more repositories.
- */
+/** A run of a CodeQL query against one or more repositories. */
 data class CodeScanningVariantAnalysis(
-    /**
-     * The ID of the variant analysis.
-     */
+    /** The ID of the variant analysis. */
     val id: Long,
-    /**
-     * A GitHub repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("controller_repo") val controllerRepo: SimpleRepository,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("controller_repo")
+    val controllerRepo: SimpleRepository,
+    /** A GitHub user. */
     val actor: SimpleUser,
-    /**
-     * The language targeted by the CodeQL query
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("query_language") val queryLanguage: CodeScanningVariantAnalysisLanguage,
-    /**
-     * The download url for the query pack.
-     */
+    /** The language targeted by the CodeQL query */
+    @com.fasterxml.jackson.annotation.JsonProperty("query_language")
+    val queryLanguage: CodeScanningVariantAnalysisLanguage,
+    /** The download url for the query pack. */
     @com.fasterxml.jackson.annotation.JsonProperty("query_pack_url") val queryPackUrl: String,
-    /**
-     * Required enumerated value serialized in the `status` wire field.
-     */
+    /** Required enumerated value serialized in the `status` wire field. */
     val status: CodeScanningVariantAnalysisStatusEnum,
     /**
-     * The date and time at which the variant analysis was created, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.
+     * The date and time at which the variant analysis was created, in ISO 8601 format':'
+     * YYYY-MM-DDTHH:MM:SSZ.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
+    val createdAt: OffsetDateTime? = null,
     /**
-     * The date and time at which the variant analysis was last updated, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.
+     * The date and time at which the variant analysis was last updated, in ISO 8601 format':'
+     * YYYY-MM-DDTHH:MM:SSZ.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: OffsetDateTime? = null,
     /**
-     * The date and time at which the variant analysis was completed, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ. Will be null if the variant analysis has not yet completed or this information is not available.
+     * The date and time at which the variant analysis was completed, in ISO 8601 format':'
+     * YYYY-MM-DDTHH:MM:SSZ. Will be null if the variant analysis has not yet completed or this
+     * information is not available.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at") val completedAt: OffsetDateTime? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at")
+    val completedAt: OffsetDateTime? = null,
     /**
-     * The GitHub Actions workflow run used to execute this variant analysis. This is only available if the workflow run has started.
+     * The GitHub Actions workflow run used to execute this variant analysis. This is only available
+     * if the workflow run has started.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("actions_workflow_run_id") val actionsWorkflowRunId: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("actions_workflow_run_id")
+    val actionsWorkflowRunId: Long? = null,
     /**
-     * The reason for a failure of the variant analysis. This is only available if the variant analysis has failed.
+     * The reason for a failure of the variant analysis. This is only available if the variant
+     * analysis has failed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("failure_reason") val failureReason: CodeScanningVariantAnalysisFailureReasonEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("failure_reason")
+    val failureReason: CodeScanningVariantAnalysisFailureReasonEnum? = null,
+    /** Optional array value serialized in the `scanned_repositories` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("scanned_repositories")
+    val scannedRepositories: List<CodeScanningVariantAnalysisScannedRepositoriesItem>? = null,
     /**
-     * Optional array value serialized in the `scanned_repositories` wire field.
+     * Information about repositories that were skipped from processing. This information is only
+     * available to the user that initiated the variant analysis.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("scanned_repositories") val scannedRepositories: List<CodeScanningVariantAnalysisScannedRepositoriesItem>? = null,
-    /**
-     * Information about repositories that were skipped from processing. This information is only available to the user that initiated the variant analysis.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("skipped_repositories") val skippedRepositories: CodeScanningVariantAnalysisSkippedRepositories? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("skipped_repositories")
+    val skippedRepositories: CodeScanningVariantAnalysisSkippedRepositories? = null,
 )
 
-/**
- * Repository Identifier
- */
+/** Repository Identifier */
 data class CodeScanningVariantAnalysisRepository(
-    /**
-     * A unique identifier of the repository.
-     */
+    /** A unique identifier of the repository. */
     val id: Long,
-    /**
-     * The name of the repository.
-     */
+    /** The name of the repository. */
     val name: String,
-    /**
-     * The full, globally unique, name of the repository.
-     */
+    /** The full, globally unique, name of the repository. */
     @com.fasterxml.jackson.annotation.JsonProperty("full_name") val fullName: String,
-    /**
-     * Whether the repository is private.
-     */
+    /** Whether the repository is private. */
     @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean,
-    /**
-     * Required `integer` value serialized in the `stargazers_count` wire field.
-     */
+    /** Required `integer` value serialized in the `stargazers_count` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("stargazers_count") val stargazersCount: Long,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true)
+    val updatedAt: OffsetDateTime?,
 )
 
-/**
- * Typed representation of the `CodeScanningVariantAnalysisRepoTask` API schema.
- */
+/** Typed representation of the `CodeScanningVariantAnalysisRepoTask` API schema. */
 data class CodeScanningVariantAnalysisRepoTask(
-    /**
-     * A GitHub repository.
-     */
+    /** A GitHub repository. */
     val repository: SimpleRepository,
+    /** The new status of the CodeQL variant analysis repository task. */
+    @com.fasterxml.jackson.annotation.JsonProperty("analysis_status")
+    val analysisStatus: CodeScanningVariantAnalysisStatus,
+    /** The size of the artifact. This is only available for successful analyses. */
+    @com.fasterxml.jackson.annotation.JsonProperty("artifact_size_in_bytes")
+    val artifactSizeInBytes: Long? = null,
     /**
-     * The new status of the CodeQL variant analysis repository task.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("analysis_status") val analysisStatus: CodeScanningVariantAnalysisStatus,
-    /**
-     * The size of the artifact. This is only available for successful analyses.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("artifact_size_in_bytes") val artifactSizeInBytes: Long? = null,
-    /**
-     * The number of results in the case of a successful analysis. This is only available for successful analyses.
+     * The number of results in the case of a successful analysis. This is only available for
+     * successful analyses.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("result_count") val resultCount: Long? = null,
     /**
-     * The reason of the failure of this repo task. This is only available if the repository task has failed.
+     * The reason of the failure of this repo task. This is only available if the repository task
+     * has failed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("failure_message") val failureMessage: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("failure_message")
+    val failureMessage: String? = null,
     /**
-     * The SHA of the commit the CodeQL database was built against. This is only available for successful analyses.
+     * The SHA of the commit the CodeQL database was built against. This is only available for
+     * successful analyses.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("database_commit_sha") val databaseCommitSha: String? = null,
-    /**
-     * The source location prefix to use. This is only available for successful analyses.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("source_location_prefix") val sourceLocationPrefix: String? = null,
-    /**
-     * The URL of the artifact. This is only available for successful analyses.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("artifact_url") val artifactUrl: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("database_commit_sha")
+    val databaseCommitSha: String? = null,
+    /** The source location prefix to use. This is only available for successful analyses. */
+    @com.fasterxml.jackson.annotation.JsonProperty("source_location_prefix")
+    val sourceLocationPrefix: String? = null,
+    /** The URL of the artifact. This is only available for successful analyses. */
+    @com.fasterxml.jackson.annotation.JsonProperty("artifact_url") val artifactUrl: String? = null,
 )
 
-/**
- * Typed representation of the `CodeScanningVariantAnalysisSkippedRepoGroup` API schema.
- */
+/** Typed representation of the `CodeScanningVariantAnalysisSkippedRepoGroup` API schema. */
 data class CodeScanningVariantAnalysisSkippedRepoGroup(
-    /**
-     * The total number of repositories that were skipped for this reason.
-     */
+    /** The total number of repositories that were skipped for this reason. */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_count") val repositoryCount: Long,
     /**
-     * A list of repositories that were skipped. This list may not include all repositories that were skipped. This is only available when the repository was found and the user has access to it.
+     * A list of repositories that were skipped. This list may not include all repositories that
+     * were skipped. This is only available when the repository was found and the user has access to
+     * it.
      */
-    val repositories: List<CodeScanningVariantAnalysisRepository>
+    val repositories: List<CodeScanningVariantAnalysisRepository>,
 )

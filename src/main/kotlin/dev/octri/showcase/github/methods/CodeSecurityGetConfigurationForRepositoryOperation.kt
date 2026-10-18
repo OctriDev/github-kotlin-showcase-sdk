@@ -11,14 +11,33 @@ import dev.octri.showcase.github.SdkClient
 
 internal object CodeSecurityGetConfigurationForRepositoryOperation {
     /**
-     * Get the code security configuration that manages a repository's code security settings. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Get the code security configuration that manages a repository's code security settings. The
+     * authenticated user must be an administrator or security manager for the organization to use
+     * this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
+     * use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun codeSecurityGetConfigurationForRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CodeSecurityConfigurationForRepository {
-        return SdkClient.request<CodeSecurityConfigurationForRepository>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/code-security-configuration", config = clientConfig, operationId = "codeSecurityGetConfigurationForRepository", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun codeSecurityGetConfigurationForRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CodeSecurityConfigurationForRepository {
+        return SdkClient.request<CodeSecurityConfigurationForRepository>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/code-security-configuration",
+                    config = clientConfig,
+                    operationId = "codeSecurityGetConfigurationForRepository",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

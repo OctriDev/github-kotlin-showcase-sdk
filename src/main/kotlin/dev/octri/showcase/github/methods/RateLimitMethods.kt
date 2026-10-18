@@ -11,18 +11,29 @@ import dev.octri.showcase.github.SdkClient
 
 object RateLimitMethods {
 
-
     /**
-     * > !NOTE] > Accessing this endpoint does not count against your REST API rate limit. Rate limit status reflects the applicable limits for the requester and resource category, not the hostname used for the request. Requests authenticated as a user share the user's rate limit across credentials. Requests without authentication use the requesting IP address. API requests routed through either an API hostname or a web hostname can count against the same applicable limit. Some…
+     * > !NOTE] > Accessing this endpoint does not count against your REST API rate limit. Rate
+     * > limit status reflects the applicable limits for the requester and resource category, not
+     * > the hostname used for the request. Requests authenticated as a user share the user's rate
+     * > limit across credentials. Requests without authentication use the requesting IP address.
+     * > API requests routed through either an API hostname or a web hostname can count against the
+     * > same applicable limit. Some…
      */
-    fun rateLimitGet(clientConfig: ClientConfig, options: RequestOptions? = null): RateLimitOverview {
-        return SdkClient.request<RateLimitOverview>(SdkClient.RequestSpec("GET", "/rate_limit", config = clientConfig, operationId = "rateLimitGet", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun rateLimitGet(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): RateLimitOverview {
+        return SdkClient.request<RateLimitOverview>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/rate_limit",
+                    config = clientConfig,
+                    operationId = "rateLimitGet",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

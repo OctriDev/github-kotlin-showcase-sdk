@@ -5,140 +5,87 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * The configuration for GitHub Pages for a repository.
- */
+/** The configuration for GitHub Pages for a repository. */
 data class Page(
-    /**
-     * The API address for accessing this Page resource.
-     */
+    /** The API address for accessing this Page resource. */
     val url: String,
-    /**
-     * The status of the most recent build of the Page.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("status", required = true) val status: PageStatusEnum?,
-    /**
-     * The Pages site's custom domain
-     */
+    /** The status of the most recent build of the Page. */
+    @com.fasterxml.jackson.annotation.JsonProperty("status", required = true)
+    val status: PageStatusEnum?,
+    /** The Pages site's custom domain */
     @com.fasterxml.jackson.annotation.JsonProperty("cname", required = true) val cname: String?,
-    /**
-     * Whether the Page has a custom 404 page.
-     */
+    /** Whether the Page has a custom 404 page. */
     @com.fasterxml.jackson.annotation.JsonProperty("custom_404") val custom404: Boolean,
     /**
-     * Whether the GitHub Pages site is publicly visible. If set to `true`, the site is accessible to anyone on the internet. If set to `false`, the site will only be accessible to users who have at least `read` access to the repository that published the site.
+     * Whether the GitHub Pages site is publicly visible. If set to `true`, the site is accessible
+     * to anyone on the internet. If set to `false`, the site will only be accessible to users who
+     * have at least `read` access to the repository that published the site.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("public") val `public`: Boolean,
-    /**
-     * The state if the domain is verified
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("protected_domain_state") val protectedDomainState: PageProtectedDomainStateEnum? = null,
-    /**
-     * The timestamp when a pending domain becomes unverified.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pending_domain_unverified_at") val pendingDomainUnverifiedAt: OffsetDateTime? = null,
-    /**
-     * The web address the Page can be accessed from.
-     */
+    /** The state if the domain is verified */
+    @com.fasterxml.jackson.annotation.JsonProperty("protected_domain_state")
+    val protectedDomainState: PageProtectedDomainStateEnum? = null,
+    /** The timestamp when a pending domain becomes unverified. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pending_domain_unverified_at")
+    val pendingDomainUnverifiedAt: OffsetDateTime? = null,
+    /** The web address the Page can be accessed from. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /**
-     * The process in which the Page will be built.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("build_type") val buildType: PageBuildTypeEnum? = null,
-    /**
-     * Optional object value serialized in the `source` wire field.
-     */
+    /** The process in which the Page will be built. */
+    @com.fasterxml.jackson.annotation.JsonProperty("build_type")
+    val buildType: PageBuildTypeEnum? = null,
+    /** Optional object value serialized in the `source` wire field. */
     val source: PagesSourceHash? = null,
-    /**
-     * Optional object value serialized in the `https_certificate` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("https_certificate") val httpsCertificate: PagesHttpsCertificate? = null,
-    /**
-     * Whether https is enabled on the domain
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("https_enforced") val httpsEnforced: Boolean? = null
+    /** Optional object value serialized in the `https_certificate` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("https_certificate")
+    val httpsCertificate: PagesHttpsCertificate? = null,
+    /** Whether https is enabled on the domain */
+    @com.fasterxml.jackson.annotation.JsonProperty("https_enforced")
+    val httpsEnforced: Boolean? = null,
 )
 
-/**
- * Required object value serialized in the `error` wire field.
- */
+/** Required object value serialized in the `error` wire field. */
 data class PageBuildError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("message", required = true) val message: String?
 )
 
-/**
- * Page Build
- */
+/** Page Build */
 data class PageBuild(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `status` wire field.
-     */
+    /** Required `string` value serialized in the `status` wire field. */
     val status: String,
-    /**
-     * Required object value serialized in the `error` wire field.
-     */
+    /** Required object value serialized in the `error` wire field. */
     val error: PageBuildError,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pusher", required = true) val pusher: NullableSimpleUser?,
-    /**
-     * Required `string` value serialized in the `commit` wire field.
-     */
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pusher", required = true)
+    val pusher: NullableSimpleUser?,
+    /** Required `string` value serialized in the `commit` wire field. */
     val commit: String,
-    /**
-     * Required `integer` value serialized in the `duration` wire field.
-     */
+    /** Required `integer` value serialized in the `duration` wire field. */
     val duration: Long,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
 )
 
-/**
- * Page Build Status
- */
+/** Page Build Status */
 data class PageBuildStatus(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `status` wire field.
-     */
-    val status: String
+    /** Required `string` value serialized in the `status` wire field. */
+    val status: String,
 )
 
-/**
- * The GitHub Pages deployment status.
- */
+/** The GitHub Pages deployment status. */
 data class PageDeployment(
-    /**
-     * The ID of the GitHub Pages deployment. This is the Git SHA of the deployed commit.
-     */
+    /** The ID of the GitHub Pages deployment. This is the Git SHA of the deployed commit. */
     val id: Any,
-    /**
-     * The URI to monitor GitHub Pages deployment status.
-     */
+    /** The URI to monitor GitHub Pages deployment status. */
     @com.fasterxml.jackson.annotation.JsonProperty("status_url") val statusUrl: String,
-    /**
-     * The URI to the deployed GitHub Pages.
-     */
+    /** The URI to the deployed GitHub Pages. */
     @com.fasterxml.jackson.annotation.JsonProperty("page_url") val pageUrl: String,
-    /**
-     * The URI to the deployed GitHub Pages preview.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("preview_url") val previewUrl: String? = null
+    /** The URI to the deployed GitHub Pages preview. */
+    @com.fasterxml.jackson.annotation.JsonProperty("preview_url") val previewUrl: String? = null,
 )

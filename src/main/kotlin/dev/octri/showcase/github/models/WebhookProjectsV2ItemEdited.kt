@@ -3,32 +3,31 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `WebhookProjectsV2ItemEdited` API schema.
- */
+/** Typed representation of the `WebhookProjectsV2ItemEdited` API schema. */
 data class WebhookProjectsV2ItemEdited(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookProjectsV2ItemEditedActionEnum,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks,
-    /**
-     * An item belonging to a project
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("projects_v2_item") val projectsV2Item: ProjectsV2Item,
-    /**
-     * A GitHub user.
-     */
+    /** An item belonging to a project */
+    @com.fasterxml.jackson.annotation.JsonProperty("projects_v2_item")
+    val projectsV2Item: ProjectsV2Item,
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * The changes made to the item may involve modifications in the item's fields and draft issue body. It includes altered values for text, number, date, single select, and iteration fields, along with the GraphQL node ID of the changed field.
+     * The changes made to the item may involve modifications in the item's fields and draft issue
+     * body. It includes altered values for text, number, date, single select, and iteration fields,
+     * along with the GraphQL node ID of the changed field.
      */
     val changes: WebhookProjectsV2ItemEditedChanges? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
-    val installation: SimpleInstallation? = null
+    val installation: SimpleInstallation? = null,
 )

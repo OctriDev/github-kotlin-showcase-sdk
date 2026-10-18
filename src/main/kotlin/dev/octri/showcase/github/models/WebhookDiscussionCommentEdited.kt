@@ -3,64 +3,51 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Required object value serialized in the `body` wire field.
- */
+/** Required object value serialized in the `body` wire field. */
 data class WebhookDiscussionCommentEditedChangesBody(
-    /**
-     * Required `string` value serialized in the `from` wire field.
-     */
+    /** Required `string` value serialized in the `from` wire field. */
     val from: String
 )
 
-/**
- * Required object value serialized in the `changes` wire field.
- */
+/** Required object value serialized in the `changes` wire field. */
 data class WebhookDiscussionCommentEditedChanges(
-    /**
-     * Required object value serialized in the `body` wire field.
-     */
+    /** Required object value serialized in the `body` wire field. */
     val body: WebhookDiscussionCommentEditedChangesBody
 )
 
-/**
- * Typed representation of the `WebhookDiscussionCommentEdited` API schema.
- */
+/** Typed representation of the `WebhookDiscussionCommentEdited` API schema. */
 data class WebhookDiscussionCommentEdited(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookDiscussionCommentEditedActionEnum,
-    /**
-     * Required object value serialized in the `changes` wire field.
-     */
+    /** Required object value serialized in the `changes` wire field. */
     val changes: WebhookDiscussionCommentEditedChanges,
-    /**
-     * Required object value serialized in the `comment` wire field.
-     */
+    /** Required object value serialized in the `comment` wire field. */
     val comment: WebhooksComment,
-    /**
-     * A Discussion in a repository.
-     */
+    /** A Discussion in a repository. */
     val discussion: Discussion,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
+     * is configured on an enterprise account or an organization that's part of an enterprise
+     * account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null
+    val organization: OrganizationSimpleWebhooks? = null,
 )

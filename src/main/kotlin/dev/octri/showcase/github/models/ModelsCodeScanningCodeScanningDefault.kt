@@ -5,84 +5,64 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Configuration for code scanning default setup.
- */
+/** Configuration for code scanning default setup. */
 data class CodeScanningDefaultSetup(
-    /**
-     * Code scanning default setup has been configured or not.
-     */
+    /** Code scanning default setup has been configured or not. */
     val state: CodeScanningDefaultSetupStateEnum? = null,
-    /**
-     * Languages to be analyzed.
-     */
+    /** Languages to be analyzed. */
     val languages: List<CodeScanningDefaultSetupLanguagesItemEnum>? = null,
-    /**
-     * Runner type to be used.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_type") val runnerType: CodeScanningDefaultSetupRunnerTypeEnum? = null,
-    /**
-     * Runner label to be used if the runner type is labeled.
-     */
+    /** Runner type to be used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_type")
+    val runnerType: CodeScanningDefaultSetupRunnerTypeEnum? = null,
+    /** Runner label to be used if the runner type is labeled. */
     @com.fasterxml.jackson.annotation.JsonProperty("runner_label") val runnerLabel: String? = null,
+    /** CodeQL query suite to be used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("query_suite")
+    val querySuite: CodeScanningDefaultSetupQuerySuiteEnum? = null,
     /**
-     * CodeQL query suite to be used.
+     * Threat model to be used for code scanning analysis. Use `remote` to analyze only network
+     * sources and `remote_and_local` to include local sources like filesystem access, command-line
+     * arguments, database reads, environment variable and standard input.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("query_suite") val querySuite: CodeScanningDefaultSetupQuerySuiteEnum? = null,
-    /**
-     * Threat model to be used for code scanning analysis. Use `remote` to analyze only network sources and `remote_and_local` to include local sources like filesystem access, command-line arguments, database reads, environment variable and standard input.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("threat_model") val threatModel: CodeScanningDefaultSetupThreatModelEnum? = null,
-    /**
-     * Timestamp of latest configuration update.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
-    /**
-     * The frequency of the periodic analysis.
-     */
-    val schedule: CodeScanningDefaultSetupScheduleEnum? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("threat_model")
+    val threatModel: CodeScanningDefaultSetupThreatModelEnum? = null,
+    /** Timestamp of latest configuration update. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: OffsetDateTime? = null,
+    /** The frequency of the periodic analysis. */
+    val schedule: CodeScanningDefaultSetupScheduleEnum? = null,
 )
 
-/**
- * Configuration for code scanning default setup.
- */
+/** Configuration for code scanning default setup. */
 data class CodeScanningDefaultSetupUpdate(
-    /**
-     * The desired state of code scanning default setup.
-     */
+    /** The desired state of code scanning default setup. */
     val state: CodeScanningDefaultSetupUpdateStateEnum? = null,
-    /**
-     * Runner type to be used.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_type") val runnerType: CodeScanningDefaultSetupUpdateRunnerTypeEnum? = null,
-    /**
-     * Runner label to be used if the runner type is labeled.
-     */
+    /** Runner type to be used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_type")
+    val runnerType: CodeScanningDefaultSetupUpdateRunnerTypeEnum? = null,
+    /** Runner label to be used if the runner type is labeled. */
     @com.fasterxml.jackson.annotation.JsonProperty("runner_label") val runnerLabel: String? = null,
+    /** CodeQL query suite to be used. */
+    @com.fasterxml.jackson.annotation.JsonProperty("query_suite")
+    val querySuite: CodeScanningDefaultSetupUpdateQuerySuiteEnum? = null,
     /**
-     * CodeQL query suite to be used.
+     * Threat model to be used for code scanning analysis. Use `remote` to analyze only network
+     * sources and `remote_and_local` to include local sources like filesystem access, command-line
+     * arguments, database reads, environment variable and standard input.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("query_suite") val querySuite: CodeScanningDefaultSetupUpdateQuerySuiteEnum? = null,
-    /**
-     * Threat model to be used for code scanning analysis. Use `remote` to analyze only network sources and `remote_and_local` to include local sources like filesystem access, command-line arguments, database reads, environment variable and standard input.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("threat_model") val threatModel: CodeScanningDefaultSetupUpdateThreatModelEnum? = null,
-    /**
-     * CodeQL languages to be analyzed.
-     */
-    val languages: List<CodeScanningDefaultSetupUpdateLanguagesItemEnum>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("threat_model")
+    val threatModel: CodeScanningDefaultSetupUpdateThreatModelEnum? = null,
+    /** CodeQL languages to be analyzed. */
+    val languages: List<CodeScanningDefaultSetupUpdateLanguagesItemEnum>? = null,
 )
 
 /**
- * You can use `run_url` to track the status of the run. This includes a property status and conclusion. You should not rely on this always being an actions workflow run object.
+ * You can use `run_url` to track the status of the run. This includes a property status and
+ * conclusion. You should not rely on this always being an actions workflow run object.
  */
 data class CodeScanningDefaultSetupUpdateResponse(
-    /**
-     * ID of the corresponding run.
-     */
+    /** ID of the corresponding run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_id") val runId: Long? = null,
-    /**
-     * URL of the corresponding run.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("run_url") val runUrl: String? = null
+    /** URL of the corresponding run. */
+    @com.fasterxml.jackson.annotation.JsonProperty("run_url") val runUrl: String? = null,
 )

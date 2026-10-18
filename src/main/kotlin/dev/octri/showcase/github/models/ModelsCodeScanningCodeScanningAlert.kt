@@ -3,82 +3,57 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `CodeScanningAlert` API schema.
- */
+/** Typed representation of the `CodeScanningAlert` API schema. */
 data class CodeScanningAlert(
-    /**
-     * The security alert number.
-     */
+    /** The security alert number. */
     val number: AlertNumber,
-    /**
-     * The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: AlertCreatedAt,
-    /**
-     * The REST API URL of the alert resource.
-     */
+    /** The REST API URL of the alert resource. */
     val url: AlertUrl,
-    /**
-     * The GitHub URL of the alert resource.
-     */
+    /** The GitHub URL of the alert resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: AlertHtmlUrl,
-    /**
-     * The REST API URL for fetching the list of instances for an alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("instances_url") val instancesUrl: AlertInstancesUrl,
-    /**
-     * State of a code scanning alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("state", required = true) val state: CodeScanningAlertState?,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_by", required = true) val dismissedBy: NullableSimpleUser?,
-    /**
-     * The time that the alert was dismissed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_at", required = true) val dismissedAt: AlertDismissedAt?,
-    /**
-     * **Required when the state is dismissed.** The reason for dismissing or closing the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_reason", required = true) val dismissedReason: CodeScanningAlertDismissedReason?,
-    /**
-     * Required object value serialized in the `rule` wire field.
-     */
+    /** The REST API URL for fetching the list of instances for an alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("instances_url")
+    val instancesUrl: AlertInstancesUrl,
+    /** State of a code scanning alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("state", required = true)
+    val state: CodeScanningAlertState?,
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_by", required = true)
+    val dismissedBy: NullableSimpleUser?,
+    /** The time that the alert was dismissed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_at", required = true)
+    val dismissedAt: AlertDismissedAt?,
+    /** **Required when the state is dismissed.** The reason for dismissing or closing the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_reason", required = true)
+    val dismissedReason: CodeScanningAlertDismissedReason?,
+    /** Required object value serialized in the `rule` wire field. */
     val rule: CodeScanningAlertRule,
-    /**
-     * Required object value serialized in the `tool` wire field.
-     */
+    /** Required object value serialized in the `tool` wire field. */
     val tool: CodeScanningAnalysisTool,
+    /** Required object value serialized in the `most_recent_instance` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("most_recent_instance")
+    val mostRecentInstance: CodeScanningAlertInstance,
+    /** The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: AlertUpdatedAt? = null,
     /**
-     * Required object value serialized in the `most_recent_instance` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("most_recent_instance") val mostRecentInstance: CodeScanningAlertInstance,
-    /**
-     * The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: AlertUpdatedAt? = null,
-    /**
-     * The time that the alert was no longer detected and was considered fixed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * The time that the alert was no longer detected and was considered fixed in ISO 8601 format:
+     * `YYYY-MM-DDTHH:MM:SSZ`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("fixed_at") val fixedAt: AlertFixedAt? = null,
-    /**
-     * The dismissal comment associated with the dismissal of the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_comment") val dismissedComment: CodeScanningAlertDismissedComment? = null,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissal_approved_by") val dismissalApprovedBy: NullableSimpleUser? = null,
-    /**
-     * Optional array value serialized in the `assignees` wire field.
-     */
+    /** The dismissal comment associated with the dismissal of the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_comment")
+    val dismissedComment: CodeScanningAlertDismissedComment? = null,
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissal_approved_by")
+    val dismissalApprovedBy: NullableSimpleUser? = null,
+    /** Optional array value serialized in the `assignees` wire field. */
     val assignees: List<SimpleUser>? = null,
-    /**
-     * Pull requests linked to this alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("linked_pull_requests") val linkedPullRequests: List<PullRequestSimple>? = null
+    /** Pull requests linked to this alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("linked_pull_requests")
+    val linkedPullRequests: List<PullRequestSimple>? = null,
 )
 
 typealias CodeScanningAlertAssignees = List<String>
@@ -89,302 +64,214 @@ typealias CodeScanningAlertDismissedComment = String
 
 typealias CodeScanningAlertEnvironment = String
 
-/**
- * Optional object value serialized in the `message` wire field.
- */
+/** Optional object value serialized in the `message` wire field. */
 data class CodeScanningAlertInstanceMessage(
-    /**
-     * Optional `string` value serialized in the `text` wire field.
-     */
+    /** Optional `string` value serialized in the `text` wire field. */
     val text: String? = null,
     /**
-     * The message text as GitHub-flavored Markdown, with placeholder links for related locations replaced by links to the relevant code. Only populated when related locations are available for the alert instance.
+     * The message text as GitHub-flavored Markdown, with placeholder links for related locations
+     * replaced by links to the relevant code. Only populated when related locations are available
+     * for the alert instance.
      */
-    val markdown: String? = null
+    val markdown: String? = null,
 )
 
-/**
- * Typed representation of the `CodeScanningAlertInstance` API schema.
- */
+/** Typed representation of the `CodeScanningAlertInstance` API schema. */
 data class CodeScanningAlertInstance(
     /**
-     * The Git reference, formatted as `refs/pull/<number>/merge`, `refs/pull/<number>/head`, `refs/heads/<branch name>` or simply `<branch name>`.
+     * The Git reference, formatted as `refs/pull/<number>/merge`, `refs/pull/<number>/head`,
+     * `refs/heads/<branch name>` or simply `<branch name>`.
      */
     val ref: CodeScanningRef? = null,
     /**
-     * Identifies the configuration under which the analysis was executed. For example, in GitHub Actions this includes the workflow filename and job name.
+     * Identifies the configuration under which the analysis was executed. For example, in GitHub
+     * Actions this includes the workflow filename and job name.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("analysis_key") val analysisKey: CodeScanningAnalysisAnalysisKey? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("analysis_key")
+    val analysisKey: CodeScanningAnalysisAnalysisKey? = null,
     /**
-     * Identifies the variable values associated with the environment in which the analysis that generated this alert instance was performed, such as the language that was analyzed.
+     * Identifies the variable values associated with the environment in which the analysis that
+     * generated this alert instance was performed, such as the language that was analyzed.
      */
     val environment: CodeScanningAlertEnvironment? = null,
     /**
-     * Identifies the configuration under which the analysis was executed. Used to distinguish between multiple analyses for the same tool and commit, but performed on different languages or different parts of the code.
+     * Identifies the configuration under which the analysis was executed. Used to distinguish
+     * between multiple analyses for the same tool and commit, but performed on different languages
+     * or different parts of the code.
      */
     val category: CodeScanningAnalysisCategory? = null,
-    /**
-     * State of a code scanning alert.
-     */
+    /** State of a code scanning alert. */
     val state: CodeScanningAlertState? = null,
-    /**
-     * Optional `string` value serialized in the `commit_sha` wire field.
-     */
+    /** Optional `string` value serialized in the `commit_sha` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_sha") val commitSha: String? = null,
-    /**
-     * Optional object value serialized in the `message` wire field.
-     */
+    /** Optional object value serialized in the `message` wire field. */
     val message: CodeScanningAlertInstanceMessage? = null,
-    /**
-     * Describe a region within a file for the alert.
-     */
+    /** Describe a region within a file for the alert. */
     val location: CodeScanningAlertLocation? = null,
-    /**
-     * Optional `string` value serialized in the `html_url` wire field.
-     */
+    /** Optional `string` value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
     /**
-     * Classifications that have been applied to the file that triggered the alert. For example identifying it as documentation, or a generated file.
+     * Classifications that have been applied to the file that triggered the alert. For example
+     * identifying it as documentation, or a generated file.
      */
-    val classifications: List<CodeScanningAlertClassification?>? = null
+    val classifications: List<CodeScanningAlertClassification?>? = null,
 )
 
-/**
- * Optional object value serialized in the `message` wire field.
- */
+/** Optional object value serialized in the `message` wire field. */
 data class CodeScanningAlertInstanceListMessage(
-    /**
-     * Optional `string` value serialized in the `text` wire field.
-     */
+    /** Optional `string` value serialized in the `text` wire field. */
     val text: String? = null
 )
 
-/**
- * Typed representation of the `CodeScanningAlertInstanceList` API schema.
- */
+/** Typed representation of the `CodeScanningAlertInstanceList` API schema. */
 data class CodeScanningAlertInstanceList(
     /**
-     * The Git reference, formatted as `refs/pull/<number>/merge`, `refs/pull/<number>/head`, `refs/heads/<branch name>` or simply `<branch name>`.
+     * The Git reference, formatted as `refs/pull/<number>/merge`, `refs/pull/<number>/head`,
+     * `refs/heads/<branch name>` or simply `<branch name>`.
      */
     val ref: CodeScanningRef? = null,
     /**
-     * Identifies the configuration under which the analysis was executed. For example, in GitHub Actions this includes the workflow filename and job name.
+     * Identifies the configuration under which the analysis was executed. For example, in GitHub
+     * Actions this includes the workflow filename and job name.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("analysis_key") val analysisKey: CodeScanningAnalysisAnalysisKey? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("analysis_key")
+    val analysisKey: CodeScanningAnalysisAnalysisKey? = null,
     /**
-     * Identifies the variable values associated with the environment in which the analysis that generated this alert instance was performed, such as the language that was analyzed.
+     * Identifies the variable values associated with the environment in which the analysis that
+     * generated this alert instance was performed, such as the language that was analyzed.
      */
     val environment: CodeScanningAlertEnvironment? = null,
     /**
-     * Identifies the configuration under which the analysis was executed. Used to distinguish between multiple analyses for the same tool and commit, but performed on different languages or different parts of the code.
+     * Identifies the configuration under which the analysis was executed. Used to distinguish
+     * between multiple analyses for the same tool and commit, but performed on different languages
+     * or different parts of the code.
      */
     val category: CodeScanningAnalysisCategory? = null,
-    /**
-     * State of a code scanning alert instance.
-     */
+    /** State of a code scanning alert instance. */
     val state: CodeScanningAlertInstanceState? = null,
-    /**
-     * Optional `string` value serialized in the `commit_sha` wire field.
-     */
+    /** Optional `string` value serialized in the `commit_sha` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_sha") val commitSha: String? = null,
-    /**
-     * Optional object value serialized in the `message` wire field.
-     */
+    /** Optional object value serialized in the `message` wire field. */
     val message: CodeScanningAlertInstanceListMessage? = null,
-    /**
-     * Describe a region within a file for the alert.
-     */
+    /** Describe a region within a file for the alert. */
     val location: CodeScanningAlertLocation? = null,
-    /**
-     * Optional `string` value serialized in the `html_url` wire field.
-     */
+    /** Optional `string` value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
     /**
-     * Classifications that have been applied to the file that triggered the alert. For example identifying it as documentation, or a generated file.
+     * Classifications that have been applied to the file that triggered the alert. For example
+     * identifying it as documentation, or a generated file.
      */
-    val classifications: List<CodeScanningAlertClassification?>? = null
+    val classifications: List<CodeScanningAlertClassification?>? = null,
 )
 
-/**
- * Typed representation of the `CodeScanningAlertItems` API schema.
- */
+/** Typed representation of the `CodeScanningAlertItems` API schema. */
 data class CodeScanningAlertItems(
-    /**
-     * The security alert number.
-     */
+    /** The security alert number. */
     val number: AlertNumber,
-    /**
-     * The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: AlertCreatedAt,
-    /**
-     * The REST API URL of the alert resource.
-     */
+    /** The REST API URL of the alert resource. */
     val url: AlertUrl,
-    /**
-     * The GitHub URL of the alert resource.
-     */
+    /** The GitHub URL of the alert resource. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: AlertHtmlUrl,
-    /**
-     * The REST API URL for fetching the list of instances for an alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("instances_url") val instancesUrl: AlertInstancesUrl,
-    /**
-     * State of a code scanning alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("state", required = true) val state: CodeScanningAlertState?,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_by", required = true) val dismissedBy: NullableSimpleUser?,
-    /**
-     * The time that the alert was dismissed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_at", required = true) val dismissedAt: AlertDismissedAt?,
-    /**
-     * **Required when the state is dismissed.** The reason for dismissing or closing the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_reason", required = true) val dismissedReason: CodeScanningAlertDismissedReason?,
-    /**
-     * Required object value serialized in the `rule` wire field.
-     */
+    /** The REST API URL for fetching the list of instances for an alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("instances_url")
+    val instancesUrl: AlertInstancesUrl,
+    /** State of a code scanning alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("state", required = true)
+    val state: CodeScanningAlertState?,
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_by", required = true)
+    val dismissedBy: NullableSimpleUser?,
+    /** The time that the alert was dismissed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_at", required = true)
+    val dismissedAt: AlertDismissedAt?,
+    /** **Required when the state is dismissed.** The reason for dismissing or closing the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_reason", required = true)
+    val dismissedReason: CodeScanningAlertDismissedReason?,
+    /** Required object value serialized in the `rule` wire field. */
     val rule: CodeScanningAlertRuleSummary,
-    /**
-     * Required object value serialized in the `tool` wire field.
-     */
+    /** Required object value serialized in the `tool` wire field. */
     val tool: CodeScanningAnalysisTool,
+    /** Required object value serialized in the `most_recent_instance` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("most_recent_instance")
+    val mostRecentInstance: CodeScanningAlertInstance,
+    /** The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: AlertUpdatedAt? = null,
     /**
-     * Required object value serialized in the `most_recent_instance` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("most_recent_instance") val mostRecentInstance: CodeScanningAlertInstance,
-    /**
-     * The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: AlertUpdatedAt? = null,
-    /**
-     * The time that the alert was no longer detected and was considered fixed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * The time that the alert was no longer detected and was considered fixed in ISO 8601 format:
+     * `YYYY-MM-DDTHH:MM:SSZ`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("fixed_at") val fixedAt: AlertFixedAt? = null,
-    /**
-     * The dismissal comment associated with the dismissal of the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_comment") val dismissedComment: CodeScanningAlertDismissedComment? = null,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissal_approved_by") val dismissalApprovedBy: NullableSimpleUser? = null,
-    /**
-     * Optional array value serialized in the `assignees` wire field.
-     */
-    val assignees: List<SimpleUser>? = null
+    /** The dismissal comment associated with the dismissal of the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_comment")
+    val dismissedComment: CodeScanningAlertDismissedComment? = null,
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissal_approved_by")
+    val dismissalApprovedBy: NullableSimpleUser? = null,
+    /** Optional array value serialized in the `assignees` wire field. */
+    val assignees: List<SimpleUser>? = null,
 )
 
-/**
- * Describe a region within a file for the alert.
- */
+/** Describe a region within a file for the alert. */
 data class CodeScanningAlertLocation(
-    /**
-     * Optional `string` value serialized in the `path` wire field.
-     */
+    /** Optional `string` value serialized in the `path` wire field. */
     val path: String? = null,
-    /**
-     * Optional `integer` value serialized in the `start_line` wire field.
-     */
+    /** Optional `integer` value serialized in the `start_line` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `end_line` wire field.
-     */
+    /** Optional `integer` value serialized in the `end_line` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("end_line") val endLine: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `start_column` wire field.
-     */
+    /** Optional `integer` value serialized in the `start_column` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_column") val startColumn: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `end_column` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("end_column") val endColumn: Long? = null
+    /** Optional `integer` value serialized in the `end_column` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("end_column") val endColumn: Long? = null,
 )
 
-/**
- * Typed representation of the `CodeScanningAlertRule` API schema.
- */
+/** Typed representation of the `CodeScanningAlertRule` API schema. */
 data class CodeScanningAlertRule(
-    /**
-     * A unique identifier for the rule used to detect the alert.
-     */
+    /** A unique identifier for the rule used to detect the alert. */
     val id: String? = null,
-    /**
-     * The name of the rule used to detect the alert.
-     */
+    /** The name of the rule used to detect the alert. */
     val name: String? = null,
-    /**
-     * The severity of the alert.
-     */
+    /** The severity of the alert. */
     val severity: CodeScanningAlertRuleSeverityEnum? = null,
-    /**
-     * The security severity of the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_severity_level") val securitySeverityLevel: CodeScanningAlertRuleSecuritySeverityLevelEnum? = null,
-    /**
-     * A short description of the rule used to detect the alert.
-     */
+    /** The security severity of the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_severity_level")
+    val securitySeverityLevel: CodeScanningAlertRuleSecuritySeverityLevelEnum? = null,
+    /** A short description of the rule used to detect the alert. */
     val description: String? = null,
-    /**
-     * A description of the rule used to detect the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("full_description") val fullDescription: String? = null,
-    /**
-     * A set of tags applicable for the rule.
-     */
+    /** A description of the rule used to detect the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("full_description")
+    val fullDescription: String? = null,
+    /** A set of tags applicable for the rule. */
     val tags: List<String>? = null,
-    /**
-     * Detailed documentation for the rule as GitHub Flavored Markdown.
-     */
+    /** Detailed documentation for the rule as GitHub Flavored Markdown. */
     val help: String? = null,
-    /**
-     * A link to the documentation for the rule used to detect the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("help_uri") val helpUri: String? = null
+    /** A link to the documentation for the rule used to detect the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("help_uri") val helpUri: String? = null,
 )
 
-/**
- * Typed representation of the `CodeScanningAlertRuleSummary` API schema.
- */
+/** Typed representation of the `CodeScanningAlertRuleSummary` API schema. */
 data class CodeScanningAlertRuleSummary(
-    /**
-     * A unique identifier for the rule used to detect the alert.
-     */
+    /** A unique identifier for the rule used to detect the alert. */
     val id: String? = null,
-    /**
-     * The name of the rule used to detect the alert.
-     */
+    /** The name of the rule used to detect the alert. */
     val name: String? = null,
-    /**
-     * The severity of the alert.
-     */
+    /** The severity of the alert. */
     val severity: CodeScanningAlertRuleSummarySeverityEnum? = null,
-    /**
-     * The security severity of the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_severity_level") val securitySeverityLevel: CodeScanningAlertRuleSummarySecuritySeverityLevelEnum? = null,
-    /**
-     * A short description of the rule used to detect the alert.
-     */
+    /** The security severity of the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_severity_level")
+    val securitySeverityLevel: CodeScanningAlertRuleSummarySecuritySeverityLevelEnum? = null,
+    /** A short description of the rule used to detect the alert. */
     val description: String? = null,
-    /**
-     * A description of the rule used to detect the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("full_description") val fullDescription: String? = null,
-    /**
-     * A set of tags applicable for the rule.
-     */
+    /** A description of the rule used to detect the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("full_description")
+    val fullDescription: String? = null,
+    /** A set of tags applicable for the rule. */
     val tags: List<String>? = null,
-    /**
-     * Detailed documentation for the rule as GitHub Flavored Markdown.
-     */
+    /** Detailed documentation for the rule as GitHub Flavored Markdown. */
     val help: String? = null,
-    /**
-     * A link to the documentation for the rule used to detect the alert.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("help_uri") val helpUri: String? = null
+    /** A link to the documentation for the rule used to detect the alert. */
+    @com.fasterxml.jackson.annotation.JsonProperty("help_uri") val helpUri: String? = null,
 )

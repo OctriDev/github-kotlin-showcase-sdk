@@ -5,248 +5,146 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * File Commit
- */
+/** File Commit */
 data class FileCommit(
-    /**
-     * Required object value serialized in the `content` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("content", required = true) val content: FileCommitContent?,
-    /**
-     * Required object value serialized in the `commit` wire field.
-     */
-    val commit: FileCommitCommit
+    /** Required object value serialized in the `content` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("content", required = true)
+    val content: FileCommitContent?,
+    /** Required object value serialized in the `commit` wire field. */
+    val commit: FileCommitCommit,
 )
 
 typealias Language = Map<String, Long>
 
-/**
- * Results of a successful merge upstream request
- */
+/** Results of a successful merge upstream request */
 data class MergedUpstream(
-    /**
-     * Optional `string` value serialized in the `message` wire field.
-     */
+    /** Optional `string` value serialized in the `message` wire field. */
     val message: String? = null,
-    /**
-     * Optional enumerated value serialized in the `merge_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_type") val mergeType: MergedUpstreamMergeTypeEnum? = null,
-    /**
-     * Optional `string` value serialized in the `base_branch` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("base_branch") val baseBranch: String? = null
+    /** Optional enumerated value serialized in the `merge_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_type")
+    val mergeType: MergedUpstreamMergeTypeEnum? = null,
+    /** Optional `string` value serialized in the `base_branch` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("base_branch") val baseBranch: String? = null,
 )
 
-/**
- * Typed representation of the `ParticipationStats` API schema.
- */
+/** Typed representation of the `ParticipationStats` API schema. */
 data class ParticipationStats(
-    /**
-     * Required array value serialized in the `all` wire field.
-     */
+    /** Required array value serialized in the `all` wire field. */
     val all: List<Long>,
-    /**
-     * Required array value serialized in the `owner` wire field.
-     */
-    val owner: List<Long>
+    /** Required array value serialized in the `owner` wire field. */
+    val owner: List<Long>,
 )
 
 typealias PreventSelfReview = Boolean
 
-/**
- * Referrer Traffic
- */
+/** Referrer Traffic */
 data class ReferrerTraffic(
-    /**
-     * Required `string` value serialized in the `referrer` wire field.
-     */
+    /** Required `string` value serialized in the `referrer` wire field. */
     val referrer: String,
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Long,
-    /**
-     * Required `integer` value serialized in the `uniques` wire field.
-     */
-    val uniques: Long
+    /** Required `integer` value serialized in the `uniques` wire field. */
+    val uniques: Long,
 )
 
-/**
- * Required object value serialized in the `commit` wire field.
- */
+/** Required object value serialized in the `commit` wire field. */
 data class ShortBranchCommit(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
-)
-
-/**
- * Short Branch
- */
-data class ShortBranch(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
-    val name: String,
-    /**
-     * Required object value serialized in the `commit` wire field.
-     */
-    val commit: ShortBranchCommit,
-    /**
-     * Required `boolean` value serialized in the `protected` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("protected") val `protected`: Boolean,
-    /**
-     * Branch Protection
-     */
-    val protection: BranchProtection? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `protection_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("protection_url") val protectionUrl: String? = null
-)
-
-/**
- * Typed representation of the `SimpleCommitStatus` API schema.
- */
-data class SimpleCommitStatus(
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
-    val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `state` wire field.
-     */
-    val state: String,
-    /**
-     * Required `string` value serialized in the `context` wire field.
-     */
-    val context: String,
-    /**
-     * Required `uri`-formatted value serialized in the `target_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("target_url", required = true) val targetUrl: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `avatar_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url", required = true) val avatarUrl: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Optional `boolean` value serialized in the `required` wire field.
-     */
-    val required: Boolean? = null
 )
 
-/**
- * Required object value serialized in the `commit` wire field.
- */
-data class TagCommit(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
-    val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
-)
-
-/**
- * Tag
- */
-data class Tag(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+/** Short Branch */
+data class ShortBranch(
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `commit` wire field.
-     */
-    val commit: TagCommit,
-    /**
-     * Required `uri`-formatted value serialized in the `zipball_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("zipball_url") val zipballUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `tarball_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("tarball_url") val tarballUrl: String,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String
+    /** Required object value serialized in the `commit` wire field. */
+    val commit: ShortBranchCommit,
+    /** Required `boolean` value serialized in the `protected` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("protected") val `protected`: Boolean,
+    /** Branch Protection */
+    val protection: BranchProtection? = null,
+    /** Optional `uri`-formatted value serialized in the `protection_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("protection_url")
+    val protectionUrl: String? = null,
 )
 
-/**
- * A topic aggregates entities that are related to a subject.
- */
+/** Typed representation of the `SimpleCommitStatus` API schema. */
+data class SimpleCommitStatus(
+    /** Required `string` value serialized in the `description` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** Required `integer` value serialized in the `id` wire field. */
+    val id: Long,
+    /** Required `string` value serialized in the `node_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+    /** Required `string` value serialized in the `state` wire field. */
+    val state: String,
+    /** Required `string` value serialized in the `context` wire field. */
+    val context: String,
+    /** Required `uri`-formatted value serialized in the `target_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("target_url", required = true)
+    val targetUrl: String?,
+    /** Required `uri`-formatted value serialized in the `avatar_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url", required = true)
+    val avatarUrl: String?,
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /** Optional `boolean` value serialized in the `required` wire field. */
+    val required: Boolean? = null,
+)
+
+/** Required object value serialized in the `commit` wire field. */
+data class TagCommit(
+    /** Required `string` value serialized in the `sha` wire field. */
+    val sha: String,
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
+)
+
+/** Tag */
+data class Tag(
+    /** Required `string` value serialized in the `name` wire field. */
+    val name: String,
+    /** Required object value serialized in the `commit` wire field. */
+    val commit: TagCommit,
+    /** Required `uri`-formatted value serialized in the `zipball_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("zipball_url") val zipballUrl: String,
+    /** Required `uri`-formatted value serialized in the `tarball_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("tarball_url") val tarballUrl: String,
+    /** Required `string` value serialized in the `node_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+)
+
+/** A topic aggregates entities that are related to a subject. */
 data class Topic(
-    /**
-     * Required array value serialized in the `names` wire field.
-     */
+    /** Required array value serialized in the `names` wire field. */
     val names: List<String>
 )
 
-/**
- * Typed representation of the `Traffic` API schema.
- */
+/** Typed representation of the `Traffic` API schema. */
 data class Traffic(
-    /**
-     * Required `date-time`-formatted value serialized in the `timestamp` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `timestamp` wire field. */
     val timestamp: OffsetDateTime,
-    /**
-     * Required `integer` value serialized in the `uniques` wire field.
-     */
+    /** Required `integer` value serialized in the `uniques` wire field. */
     val uniques: Long,
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
-    val count: Long
+    /** Required `integer` value serialized in the `count` wire field. */
+    val count: Long,
 )
 
-/**
- * View Traffic
- */
+/** View Traffic */
 data class ViewTraffic(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Long,
-    /**
-     * Required `integer` value serialized in the `uniques` wire field.
-     */
+    /** Required `integer` value serialized in the `uniques` wire field. */
     val uniques: Long,
-    /**
-     * Required array value serialized in the `views` wire field.
-     */
-    val views: List<Traffic>
+    /** Required array value serialized in the `views` wire field. */
+    val views: List<Traffic>,
 )
 
 typealias WaitTimer = Long

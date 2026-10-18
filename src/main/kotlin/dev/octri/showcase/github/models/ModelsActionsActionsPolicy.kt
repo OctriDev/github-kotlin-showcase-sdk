@@ -5,319 +5,370 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Optional object value serialized in the `self` wire field.
- */
+/** Optional object value serialized in the `self` wire field. */
 data class ActionsPolicyLinksSelf(
-    /**
-     * The URL of the policy
-     */
+    /** The URL of the policy */
     val href: String? = null
 )
 
-/**
- * Optional object value serialized in the `html` wire field.
- */
+/** Optional object value serialized in the `html` wire field. */
 data class ActionsPolicyLinksHtml(
-    /**
-     * The html URL of the policy
-     */
+    /** The html URL of the policy */
     val href: String? = null
 )
 
-/**
- * Optional object value serialized in the `_links` wire field.
- */
+/** Optional object value serialized in the `_links` wire field. */
 data class ActionsPolicyLinks(
-    /**
-     * Optional object value serialized in the `self` wire field.
-     */
+    /** Optional object value serialized in the `self` wire field. */
     val self: ActionsPolicyLinksSelf? = null,
-    /**
-     * Optional object value serialized in the `html` wire field.
-     */
-    val html: ActionsPolicyLinksHtml? = null
+    /** Optional object value serialized in the `html` wire field. */
+    val html: ActionsPolicyLinksHtml? = null,
 )
 
-/**
- * An Actions policy defines rules for workflow execution protection.
- */
+/** An Actions policy defines rules for workflow execution protection. */
 data class ActionsPolicy(
-    /**
-     * The ID of the policy
-     */
+    /** The ID of the policy */
     val id: Long,
-    /**
-     * The name of the policy
-     */
+    /** The name of the policy */
     val name: String,
-    /**
-     * The target of the policy
-     */
+    /** The target of the policy */
     val target: ActionsPolicyTargetEnum,
-    /**
-     * The type of the source of the policy
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("source_type") val sourceType: ActionsPolicySourceTypeEnum,
-    /**
-     * The name of the source
-     */
+    /** The type of the source of the policy */
+    @com.fasterxml.jackson.annotation.JsonProperty("source_type")
+    val sourceType: ActionsPolicySourceTypeEnum,
+    /** The name of the source */
     val source: String,
     /**
-     * The enforcement level of the ruleset. `evaluate` allows admins to test rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate` is only available with GitHub Enterprise).
+     * The enforcement level of the ruleset. `evaluate` allows admins to test rules before enforcing
+     * them. Admins can view insights on the Rule Insights page (`evaluate` is only available with
+     * GitHub Enterprise).
      */
     val enforcement: RepositoryRuleEnforcement,
     /**
-     * When workflow path targeting is available, detailed responses represent an omitted stored workflow condition as `workflow_path` with `include` set to `["~ALL"]` and `exclude` set to `[]`. When workflow path targeting is unavailable, an omitted stored condition remains omitted.
+     * When workflow path targeting is available, detailed responses represent an omitted stored
+     * workflow condition as `workflow_path` with `include` set to `["~ALL"]` and `exclude` set to
+     * `[]`. When workflow path targeting is unavailable, an omitted stored condition remains
+     * omitted.
      */
     val conditions: ActionsPolicyConditions? = null,
-    /**
-     * An array of rules within the policy
-     */
+    /** An array of rules within the policy */
     val rules: List<ActionsRule>? = null,
-    /**
-     * Optional `string` value serialized in the `node_id` wire field.
-     */
+    /** Optional `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /**
-     * Optional object value serialized in the `_links` wire field.
-     */
+    /** Optional object value serialized in the `_links` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ActionsPolicyLinks? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `created_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null
+    /** Optional `date-time`-formatted value serialized in the `created_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
+    val createdAt: OffsetDateTime? = null,
+    /** Optional `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: OffsetDateTime? = null,
 )
 
 /**
- * When workflow path targeting is available, detailed responses represent an omitted stored workflow condition as `workflow_path` with `include` set to `["~ALL"]` and `exclude` set to `[]`. When workflow path targeting is unavailable, an omitted stored condition remains omitted.
+ * When workflow path targeting is available, detailed responses represent an omitted stored
+ * workflow condition as `workflow_path` with `include` set to `["~ALL"]` and `exclude` set to `[]`.
+ * When workflow path targeting is unavailable, an omitted stored condition remains omitted.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = ActionsPolicyConditions.Deserializer::class)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = ActionsPolicyConditions.Deserializer::class
+)
 sealed interface ActionsPolicyConditions {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<ActionsPolicyConditions>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<ActionsPolicyConditions>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): ActionsPolicyConditions {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out ActionsPolicyConditions>> = listOf(ActionsPolicyRepoConditions::class.java, ActionsPolicyOrgConditions::class.java, ActionsPolicyEnterpriseConditions::class.java)
-            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
+            val objectTypes: List<Class<out ActionsPolicyConditions>> =
+                listOf(
+                    ActionsPolicyRepoConditions::class.java,
+                    ActionsPolicyOrgConditions::class.java,
+                    ActionsPolicyEnterpriseConditions::class.java,
+                )
+            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let {
+                return it
+            }
             return when {
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, ActionsPolicyConditions::class.java, "no ActionsPolicyConditions branch accepts this payload")
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        ActionsPolicyConditions::class.java,
+                        "no ActionsPolicyConditions branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyEnterpriseConditionsVariant0(
-    /**
-     * Required object value serialized in the `organization_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_name") val organizationName: EnterpriseRulesetConditionsOrganizationNameTargetOrganizationName,
-    /**
-     * Required object value serialized in the `repository_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `organization_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_name")
+    val organizationName: EnterpriseRulesetConditionsOrganizationNameTargetOrganizationName,
+    /** Required object value serialized in the `repository_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_name")
+    val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyEnterpriseConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyEnterpriseConditionsVariant1(
-    /**
-     * Required object value serialized in the `organization_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_name") val organizationName: EnterpriseRulesetConditionsOrganizationNameTargetOrganizationName,
-    /**
-     * Required object value serialized in the `repository_property` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_property") val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `organization_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_name")
+    val organizationName: EnterpriseRulesetConditionsOrganizationNameTargetOrganizationName,
+    /** Required object value serialized in the `repository_property` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_property")
+    val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyEnterpriseConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyEnterpriseConditionsVariant2(
-    /**
-     * Required object value serialized in the `organization_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: EnterpriseRulesetConditionsOrganizationIdTargetOrganizationId,
-    /**
-     * Required object value serialized in the `repository_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `organization_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_id")
+    val organizationId: EnterpriseRulesetConditionsOrganizationIdTargetOrganizationId,
+    /** Required object value serialized in the `repository_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_name")
+    val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyEnterpriseConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyEnterpriseConditionsVariant3(
-    /**
-     * Required object value serialized in the `organization_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: EnterpriseRulesetConditionsOrganizationIdTargetOrganizationId,
-    /**
-     * Required object value serialized in the `repository_property` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_property") val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `organization_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_id")
+    val organizationId: EnterpriseRulesetConditionsOrganizationIdTargetOrganizationId,
+    /** Required object value serialized in the `repository_property` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_property")
+    val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyEnterpriseConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyEnterpriseConditionsVariant4(
-    /**
-     * Required object value serialized in the `organization_property` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_property") val organizationProperty: EnterpriseRulesetConditionsOrganizationPropertyTargetOrganizaXfd8187e868,
-    /**
-     * Required object value serialized in the `repository_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `organization_property` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_property")
+    val organizationProperty:
+        EnterpriseRulesetConditionsOrganizationPropertyTargetOrganizaXfd8187e868,
+    /** Required object value serialized in the `repository_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_name")
+    val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyEnterpriseConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyEnterpriseConditionsVariant5(
-    /**
-     * Required object value serialized in the `organization_property` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_property") val organizationProperty: EnterpriseRulesetConditionsOrganizationPropertyTargetOrganizaXfd8187e868,
-    /**
-     * Required object value serialized in the `repository_property` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_property") val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `organization_property` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_property")
+    val organizationProperty:
+        EnterpriseRulesetConditionsOrganizationPropertyTargetOrganizaXfd8187e868,
+    /** Required object value serialized in the `repository_property` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_property")
+    val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyEnterpriseConditions
 
 /**
- * Conditions for an enterprise Actions policy. The conditions object supports one organization target (`organization_name`, `organization_id`, or `organization_property`) combined with one repository target (`repository_name` or `repository_property`), and may also contain `workflow_path`.
+ * Conditions for an enterprise Actions policy. The conditions object supports one organization
+ * target (`organization_name`, `organization_id`, or `organization_property`) combined with one
+ * repository target (`repository_name` or `repository_property`), and may also contain
+ * `workflow_path`.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = ActionsPolicyEnterpriseConditions.Deserializer::class)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = ActionsPolicyEnterpriseConditions.Deserializer::class
+)
 sealed interface ActionsPolicyEnterpriseConditions : ActionsPolicyConditions {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<ActionsPolicyEnterpriseConditions>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<ActionsPolicyEnterpriseConditions>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): ActionsPolicyEnterpriseConditions {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out ActionsPolicyEnterpriseConditions>> = listOf(ActionsPolicyEnterpriseConditionsVariant0::class.java, ActionsPolicyEnterpriseConditionsVariant1::class.java, ActionsPolicyEnterpriseConditionsVariant2::class.java, ActionsPolicyEnterpriseConditionsVariant3::class.java, ActionsPolicyEnterpriseConditionsVariant4::class.java, ActionsPolicyEnterpriseConditionsVariant5::class.java)
-            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
+            val objectTypes: List<Class<out ActionsPolicyEnterpriseConditions>> =
+                listOf(
+                    ActionsPolicyEnterpriseConditionsVariant0::class.java,
+                    ActionsPolicyEnterpriseConditionsVariant1::class.java,
+                    ActionsPolicyEnterpriseConditionsVariant2::class.java,
+                    ActionsPolicyEnterpriseConditionsVariant3::class.java,
+                    ActionsPolicyEnterpriseConditionsVariant4::class.java,
+                    ActionsPolicyEnterpriseConditionsVariant5::class.java,
+                )
+            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let {
+                return it
+            }
             return when {
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, ActionsPolicyEnterpriseConditions::class.java, "no ActionsPolicyEnterpriseConditions branch accepts this payload")
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        ActionsPolicyEnterpriseConditions::class.java,
+                        "no ActionsPolicyEnterpriseConditions branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyOrgConditionsVariant0(
-    /**
-     * Required object value serialized in the `repository_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `repository_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_name")
+    val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyOrgConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyOrgConditionsVariant1(
-    /**
-     * Required object value serialized in the `repository_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: RepositoryRulesetConditionsRepositoryIdTargetRepositoryId,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `repository_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
+    val repositoryId: RepositoryRulesetConditionsRepositoryIdTargetRepositoryId,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyOrgConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyOrgConditionsVariant2(
-    /**
-     * Required object value serialized in the `repository_property` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_property") val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Required object value serialized in the `repository_property` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_property")
+    val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null,
 ) : ActionsPolicyOrgConditions
 
 /**
- * Conditions for an organization Actions policy. The conditions object should contain one of `repository_name`, `repository_id`, or `repository_property`, and may also contain `workflow_path`.
+ * Conditions for an organization Actions policy. The conditions object should contain one of
+ * `repository_name`, `repository_id`, or `repository_property`, and may also contain
+ * `workflow_path`.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ActionsPolicyOrgConditionsVariant0::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ActionsPolicyOrgConditionsVariant1::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = ActionsPolicyOrgConditionsVariant2::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ActionsPolicyOrgConditionsVariant0::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ActionsPolicyOrgConditionsVariant1::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = ActionsPolicyOrgConditionsVariant2::class
+    ),
 )
 sealed interface ActionsPolicyOrgConditions : ActionsPolicyConditions
 
-/**
- * Optional object value serialized in the `workflow_path` wire field.
- */
+/** Optional object value serialized in the `workflow_path` wire field. */
 data class ActionsPolicyRepoConditionsVariant1WorkflowPath(
     /**
-     * Array of workflow file paths or glob patterns to include. An empty array includes all workflows not matched by an excluded pattern. Use `~ALL` by itself to include all workflows. `~ALL` cannot be combined with other included patterns.
+     * Array of workflow file paths or glob patterns to include. An empty array includes all
+     * workflows not matched by an excluded pattern. Use `~ALL` by itself to include all workflows.
+     * `~ALL` cannot be combined with other included patterns.
      */
     val include: List<String>,
     /**
-     * Array of workflow file paths or glob patterns to exclude. The condition will not pass if any of these patterns match. `~ALL` is not allowed in this array.
+     * Array of workflow file paths or glob patterns to exclude. The condition will not pass if any
+     * of these patterns match. `~ALL` is not allowed in this array.
      */
-    val exclude: List<String>
+    val exclude: List<String>,
 )
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class ActionsPolicyRepoConditionsVariant1(
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyRepoConditionsVariant1WorkflowPath
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyRepoConditionsVariant1WorkflowPath
 ) : ActionsPolicyRepoConditions
 
 /**
- * Conditions for a repository Actions policy. The object may be empty to preserve or use the default workflow targeting, or contain only `workflow_path`.
+ * Conditions for a repository Actions policy. The object may be empty to preserve or use the
+ * default workflow targeting, or contain only `workflow_path`.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = ActionsPolicyRepoConditions.Deserializer::class)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = ActionsPolicyRepoConditions.Deserializer::class
+)
 sealed interface ActionsPolicyRepoConditions : ActionsPolicyConditions {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<ActionsPolicyRepoConditions>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<ActionsPolicyRepoConditions>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): ActionsPolicyRepoConditions {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out ActionsPolicyRepoConditions>> = listOf(ActionsPolicyRepoConditionsVariant1::class.java)
+            val objectTypes: List<Class<out ActionsPolicyRepoConditions>> =
+                listOf(ActionsPolicyRepoConditionsVariant1::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -326,37 +377,61 @@ sealed interface ActionsPolicyRepoConditions : ActionsPolicyConditions {
                 }
             }
             return when {
-                node.isObject -> ObjectMapActionsPolicyRepoConditions(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<Map<String, Any>>() {}))
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, ActionsPolicyRepoConditions::class.java, "no ActionsPolicyRepoConditions branch accepts this payload")
+                node.isObject ->
+                    ObjectMapActionsPolicyRepoConditions(
+                        mapper.convertValue(
+                            node,
+                            object :
+                                com.fasterxml.jackson.core.type.TypeReference<
+                                    Map<String, Any>
+                                >() {},
+                        )
+                    )
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        ActionsPolicyRepoConditions::class.java,
+                        "no ActionsPolicyRepoConditions branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class ObjectMapActionsPolicyRepoConditions(@get:com.fasterxml.jackson.annotation.JsonValue val value: Map<String, Any>) : ActionsPolicyRepoConditions
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class ObjectMapActionsPolicyRepoConditions(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: Map<String, Any>
+) : ActionsPolicyRepoConditions
 
-/**
- * Optional object value serialized in the `workflow_path` wire field.
- */
+/** Optional object value serialized in the `workflow_path` wire field. */
 data class ActionsPolicyWorkflowPathConditionWorkflowPath(
     /**
-     * Array of workflow file paths or glob patterns to include. An empty array includes all workflows not matched by an excluded pattern. Use `~ALL` by itself to include all workflows. `~ALL` cannot be combined with other included patterns.
+     * Array of workflow file paths or glob patterns to include. An empty array includes all
+     * workflows not matched by an excluded pattern. Use `~ALL` by itself to include all workflows.
+     * `~ALL` cannot be combined with other included patterns.
      */
     val include: List<String>,
     /**
-     * Array of workflow file paths or glob patterns to exclude. The condition will not pass if any of these patterns match. `~ALL` is not allowed in this array.
+     * Array of workflow file paths or glob patterns to exclude. The condition will not pass if any
+     * of these patterns match. `~ALL` is not allowed in this array.
      */
-    val exclude: List<String>
+    val exclude: List<String>,
 )
 
 /**
- * Parameters for an Actions policy workflow path condition. Omitting `workflow_path` when creating a policy targets all workflows without storing an explicit condition. Omitting it when updating a policy preserves the existing workflow targeting. For new or changed workflow conditions, the API requires at least one included or excluded pattern. This is validated server-side rather than by this schema, which can also describe existing stored conditions.
+ * Parameters for an Actions policy workflow path condition. Omitting `workflow_path` when creating
+ * a policy targets all workflows without storing an explicit condition. Omitting it when updating a
+ * policy preserves the existing workflow targeting. For new or changed workflow conditions, the API
+ * requires at least one included or excluded pattern. This is validated server-side rather than by
+ * this schema, which can also describe existing stored conditions.
  */
 data class ActionsPolicyWorkflowPathCondition(
-    /**
-     * Optional object value serialized in the `workflow_path` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path") val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
+    /** Optional object value serialized in the `workflow_path` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_path")
+    val workflowPath: ActionsPolicyWorkflowPathConditionWorkflowPath? = null
 )

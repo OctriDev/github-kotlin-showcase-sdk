@@ -8,7 +8,8 @@ package dev.octri.showcase.github.models
  */
 data class WebhookSecretScanningAlertLocationCreatedFormEncoded(
     /**
-     * A URL-encoded string of the secret_scanning_alert_location.created JSON payload. The decoded payload is a JSON object.
+     * A URL-encoded string of the secret_scanning_alert_location.created JSON payload. The decoded
+     * payload is a JSON object.
      */
     val payload: String
 )

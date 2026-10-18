@@ -3,124 +3,88 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `RepositoryAdvisoryUpdate` API schema.
- */
+/** Typed representation of the `RepositoryAdvisoryUpdate` API schema. */
 data class RepositoryAdvisoryUpdate(
-    /**
-     * A short summary of the advisory.
-     */
+    /** A short summary of the advisory. */
     val summary: String? = null,
-    /**
-     * A detailed description of what the advisory impacts.
-     */
+    /** A detailed description of what the advisory impacts. */
     val description: String? = null,
-    /**
-     * The Common Vulnerabilities and Exposures (CVE) ID.
-     */
+    /** The Common Vulnerabilities and Exposures (CVE) ID. */
     @com.fasterxml.jackson.annotation.JsonProperty("cve_id") val cveId: String? = null,
-    /**
-     * A product affected by the vulnerability detailed in a repository security advisory.
-     */
+    /** A product affected by the vulnerability detailed in a repository security advisory. */
     val vulnerabilities: List<RepositoryAdvisoryUpdateVulnerabilitiesItem>? = null,
-    /**
-     * A list of Common Weakness Enumeration (CWE) IDs.
-     */
+    /** A list of Common Weakness Enumeration (CWE) IDs. */
     @com.fasterxml.jackson.annotation.JsonProperty("cwe_ids") val cweIds: List<String>? = null,
-    /**
-     * A list of users receiving credit for their participation in the security advisory.
-     */
+    /** A list of users receiving credit for their participation in the security advisory. */
     val credits: List<RepositoryAdvisoryUpdateCreditsItem>? = null,
     /**
-     * The severity of the advisory. You must choose between setting this field or `cvss_vector_string`.
+     * The severity of the advisory. You must choose between setting this field or
+     * `cvss_vector_string`.
      */
     val severity: RepositoryAdvisoryUpdateSeverityEnum? = null,
     /**
-     * The CVSS vector that calculates the severity of the advisory. You must choose between setting this field or `severity`.
+     * The CVSS vector that calculates the severity of the advisory. You must choose between setting
+     * this field or `severity`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("cvss_vector_string") val cvssVectorString: String? = null,
-    /**
-     * The state of the advisory.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cvss_vector_string")
+    val cvssVectorString: String? = null,
+    /** The state of the advisory. */
     val state: RepositoryAdvisoryUpdateStateEnum? = null,
-    /**
-     * A list of usernames who have been granted write access to the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("collaborating_users") val collaboratingUsers: List<String>? = null,
-    /**
-     * A list of team slugs which have been granted write access to the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("collaborating_teams") val collaboratingTeams: List<String>? = null
+    /** A list of usernames who have been granted write access to the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("collaborating_users")
+    val collaboratingUsers: List<String>? = null,
+    /** A list of team slugs which have been granted write access to the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("collaborating_teams")
+    val collaboratingTeams: List<String>? = null,
 )
 
-/**
- * The name of the package affected by the vulnerability.
- */
+/** The name of the package affected by the vulnerability. */
 data class RepositoryAdvisoryVulnerabilityPackage(
-    /**
-     * The package's language or package management ecosystem.
-     */
+    /** The package's language or package management ecosystem. */
     val ecosystem: SecurityAdvisoryEcosystems,
-    /**
-     * The unique package name within its ecosystem.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?
+    /** The unique package name within its ecosystem. */
+    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?,
 )
 
-/**
- * A product affected by the vulnerability detailed in a repository security advisory.
- */
+/** A product affected by the vulnerability detailed in a repository security advisory. */
 data class RepositoryAdvisoryVulnerability(
-    /**
-     * The name of the package affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("package", required = true) val `package`: RepositoryAdvisoryVulnerabilityPackage?,
-    /**
-     * The range of the package versions affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range", required = true) val vulnerableVersionRange: String?,
-    /**
-     * The package version(s) that resolve the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("patched_versions", required = true) val patchedVersions: String?,
-    /**
-     * The functions in the package that are affected.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions", required = true) val vulnerableFunctions: List<String>?
+    /** The name of the package affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("package", required = true)
+    val `package`: RepositoryAdvisoryVulnerabilityPackage?,
+    /** The range of the package versions affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range", required = true)
+    val vulnerableVersionRange: String?,
+    /** The package version(s) that resolve the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("patched_versions", required = true)
+    val patchedVersions: String?,
+    /** The functions in the package that are affected. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions", required = true)
+    val vulnerableFunctions: List<String>?,
 )
 
-/**
- * The name of the package affected by the vulnerability.
- */
+/** The name of the package affected by the vulnerability. */
 data class VulnerabilityPackage(
-    /**
-     * The package's language or package management ecosystem.
-     */
+    /** The package's language or package management ecosystem. */
     val ecosystem: SecurityAdvisoryEcosystems,
-    /**
-     * The unique package name within its ecosystem.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?
+    /** The unique package name within its ecosystem. */
+    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?,
 )
 
 /**
- * A vulnerability describing the product and its affected versions within a GitHub Security Advisory.
+ * A vulnerability describing the product and its affected versions within a GitHub Security
+ * Advisory.
  */
 data class Vulnerability(
-    /**
-     * The name of the package affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("package", required = true) val `package`: VulnerabilityPackage?,
-    /**
-     * The range of the package versions affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range", required = true) val vulnerableVersionRange: String?,
-    /**
-     * The package version that resolves the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("first_patched_version", required = true) val firstPatchedVersion: String?,
-    /**
-     * The functions in the package that are affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions", required = true) val vulnerableFunctions: List<String>?
+    /** The name of the package affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("package", required = true)
+    val `package`: VulnerabilityPackage?,
+    /** The range of the package versions affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range", required = true)
+    val vulnerableVersionRange: String?,
+    /** The package version that resolves the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("first_patched_version", required = true)
+    val firstPatchedVersion: String?,
+    /** The functions in the package that are affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions", required = true)
+    val vulnerableFunctions: List<String>?,
 )

@@ -18,382 +18,695 @@ import java.time.OffsetDateTime
 
 object Gists {
 
-
     /**
-     * Lists the authenticated user's gists or if called anonymously, this endpoint returns all public gists:
+     * Lists the authenticated user's gists or if called anonymously, this endpoint returns all
+     * public gists:
      *
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun gistsList(clientConfig: ClientConfig, since: OffsetDateTime? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<BaseGist> {
+    fun gistsList(
+        clientConfig: ClientConfig,
+        since: OffsetDateTime? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<BaseGist> {
         if (since != null) {
             Validation.validateDateTime("since", since)
-}
+        }
 
-        return SdkClient.request<List<BaseGist>>(SdkClient.RequestSpec("GET", "/gists", config = clientConfig, query = mapOf("since" to
-    SdkClient.queryValue(since, "form", true, "date-time"), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "gistsList", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
+        return SdkClient.request<List<BaseGist>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "since" to SdkClient.queryValue(since, "form", true, "date-time"),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "gistsList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Creates a new gist containing one or more files. Supply file names and their `content` in `files`; `public` defaults to false when omitted. Avoid names that match Gist’s automatic `gistfile` numbering pattern.
+     * Creates a new gist containing one or more files. Supply file names and their `content` in
+     * `files`; `public` defaults to false when omitted. Avoid names that match Gist’s automatic
+     * `gistfile` numbering pattern.
      *
-     * Allows you to add a new gist with one or more files. > \[!NOTE\] > Don't name your files "gistfile" with a numerical suffix. This is the format of the automatic naming scheme that Gist uses internally.
+     * Allows you to add a new gist with one or more files. > \[!NOTE\] > Don't name your files
+     * "gistfile" with a numerical suffix. This is the format of the automatic naming scheme that
+     * Gist uses internally.
      *
      * @param files Names and content for the files that make up the gist
      * @param description Description of the gist
      */
-    fun gistsCreate(clientConfig: ClientConfig, files: Map<String, Map<String, Any>>, description: String? = null, public: Any? = null, options: RequestOptions? = null): GistSimple {
-        return SdkClient.request<GistSimple>(SdkClient.RequestSpec("POST", "/gists", config = clientConfig, body = SdkClient.bodyMap("files" to (files), "description" to (SdkClient.omitIfNull(description)), "public" to (SdkClient.omitIfNull(public))), operationId = "gistsCreate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gistsCreate(
+        clientConfig: ClientConfig,
+        files: Map<String, Map<String, Any>>,
+        description: String? = null,
+        public: Any? = null,
+        options: RequestOptions? = null,
+    ): GistSimple {
+        return SdkClient.request<GistSimple>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/gists",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "files" to (files),
+                            "description" to (SdkClient.omitIfNull(description)),
+                            "public" to (SdkClient.omitIfNull(public)),
+                        ),
+                    operationId = "gistsCreate",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * List public gists sorted by most recently updated to least recently updated. Note: With pagination, you can fetch up to 3000 gists. For example, you can fetch 100 pages with 30 gists per page or 30 pages with 100 gists per page.
+     * List public gists sorted by most recently updated to least recently updated. Note: With
+     * pagination, you can fetch up to 3000 gists. For example, you can fetch 100 pages with 30
+     * gists per page or 30 pages with 100 gists per page.
      *
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun gistsListPublic(clientConfig: ClientConfig, since: OffsetDateTime? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<BaseGist> {
+    fun gistsListPublic(
+        clientConfig: ClientConfig,
+        since: OffsetDateTime? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<BaseGist> {
         if (since != null) {
             Validation.validateDateTime("since", since)
-}
+        }
 
-        return SdkClient.request<List<BaseGist>>(SdkClient.RequestSpec("GET", "/gists/public", config = clientConfig, query = mapOf("since" to
-    SdkClient.queryValue(since, "form", true, "date-time"), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "gistsListPublic", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+        return SdkClient.request<List<BaseGist>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists/public",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "since" to SdkClient.queryValue(since, "form", true, "date-time"),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "gistsListPublic",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists gists starred by the authenticated user. Use `since` to filter by the last-updated timestamp and `page` with `per_page` to paginate the results.
+     * Lists gists starred by the authenticated user. Use `since` to filter by the last-updated
+     * timestamp and `page` with `per_page` to paginate the results.
      *
      * List the authenticated user's starred gists:
      *
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun gistsListStarred(clientConfig: ClientConfig, since: OffsetDateTime? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<BaseGist> {
+    fun gistsListStarred(
+        clientConfig: ClientConfig,
+        since: OffsetDateTime? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<BaseGist> {
         if (since != null) {
             Validation.validateDateTime("since", since)
-}
+        }
 
-        return SdkClient.request<List<BaseGist>>(SdkClient.RequestSpec("GET", "/gists/starred", config = clientConfig, query = mapOf("since" to
-    SdkClient.queryValue(since, "form", true, "date-time"), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "gistsListStarred", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+        return SdkClient.request<List<BaseGist>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists/starred",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "since" to SdkClient.queryValue(since, "form", true, "date-time"),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "gistsListStarred",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a specified gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+     * Gets a specified gist. This endpoint supports the following custom media types. For more
+     * information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
+     * markdown. This is the default if you do not pass any specific media type.
      *
      * @param gistId The unique identifier of the gist.
      */
-    fun gistsGet(clientConfig: ClientConfig, gistId: String, options: RequestOptions? = null): GistSimple {
-        return SdkClient.request<GistSimple>(SdkClient.RequestSpec("GET", "/gists/${SdkClient.encodePathSegment(gistId)}", config = clientConfig, operationId = "gistsGet", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to ForbiddenGist::class.java, "404" to BasicError::class.java))).data
+    fun gistsGet(
+        clientConfig: ClientConfig,
+        gistId: String,
+        options: RequestOptions? = null,
+    ): GistSimple {
+        return SdkClient.request<GistSimple>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}",
+                    config = clientConfig,
+                    operationId = "gistsGet",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to ForbiddenGist::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Allows you to update a gist's description and to update, delete, or rename gist files. Files from the previous version of the gist that aren't explicitly changed during an edit are unchanged. At least one of `description` or `files` is required. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+     * Allows you to update a gist's description and to update, delete, or rename gist files. Files
+     * from the previous version of the gist that aren't explicitly changed during an edit are
+     * unchanged. At least one of `description` or `files` is required. This endpoint supports the
+     * following custom media types. For more information, see "Media types." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you
+     * do not pass any specific media type.
      *
      * @param gistId The unique identifier of the gist.
      * @param description The description of the gist.
-     * @param files The gist files to be updated, renamed, or deleted. Each `key`
-     *   must match the current filename (including extension) of the targeted gist
-     *   file. For example: `hello.py`. To delete a file, set the whole file to null.
-     *   For example: `hello.py : null`. The file will also be deleted if the specified
-     *   object does not contain at least one of `content` or `filename`.
+     * @param files The gist files to be updated, renamed, or deleted. Each `key` must match the
+     *   current filename (including extension) of the targeted gist file. For example: `hello.py`.
+     *   To delete a file, set the whole file to null. For example: `hello.py : null`. The file will
+     *   also be deleted if the specified object does not contain at least one of `content` or
+     *   `filename`.
      */
-    fun gistsUpdate(clientConfig: ClientConfig, gistId: String, description: String? = null, files: Map<String, Map<String, Any>>? = null, options: RequestOptions? = null): GistSimple {
-        return SdkClient.request<GistSimple>(SdkClient.RequestSpec("PATCH", "/gists/${SdkClient.encodePathSegment(gistId)}", config = clientConfig, body = SdkClient.bodyMap("description" to (SdkClient.omitIfNull(description)), "files" to (SdkClient.omitIfNull(files))), operationId = "gistsUpdate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gistsUpdate(
+        clientConfig: ClientConfig,
+        gistId: String,
+        description: String? = null,
+        files: Map<String, Map<String, Any>>? = null,
+        options: RequestOptions? = null,
+    ): GistSimple {
+        return SdkClient.request<GistSimple>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "description" to (SdkClient.omitIfNull(description)),
+                            "files" to (SdkClient.omitIfNull(files)),
+                        ),
+                    operationId = "gistsUpdate",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a specific gist. Use `gist_id` to identify the gist you want to remove; the operation returns no response body when deletion completes.
+     * Deletes a specific gist. Use `gist_id` to identify the gist you want to remove; the operation
+     * returns no response body when deletion completes.
      *
      * @param gistId The unique identifier of the gist.
      */
-    fun gistsDelete(clientConfig: ClientConfig, gistId: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/gists/${SdkClient.encodePathSegment(gistId)}", config = clientConfig, operationId = "gistsDelete", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun gistsDelete(
+        clientConfig: ClientConfig,
+        gistId: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/gists/${SdkClient.encodePathSegment(gistId)}",
+                config = clientConfig,
+                operationId = "gistsDelete",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists the comments on a gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+     * Lists the comments on a gist. This endpoint supports the following custom media types. For
+     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
+     * markdown. This is the default if you do not pass any specific media type.
      *
      * @param gistId The unique identifier of the gist.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun gistsListComments(clientConfig: ClientConfig, gistId: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<GistComment> {
-        return SdkClient.request<List<GistComment>>(SdkClient.RequestSpec("GET", "/gists/${SdkClient.encodePathSegment(gistId)}/comments", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "gistsListComments", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun gistsListComments(
+        clientConfig: ClientConfig,
+        gistId: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<GistComment> {
+        return SdkClient.request<List<GistComment>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}/comments",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "gistsListComments",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Creates a comment on a gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+     * Creates a comment on a gist. This endpoint supports the following custom media types. For
+     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
+     * markdown. This is the default if you do not pass any specific media type.
      *
      * @param gistId The unique identifier of the gist.
      * @param body The comment text.
      */
-    fun gistsCreateComment(clientConfig: ClientConfig, gistId: String, body: String, options: RequestOptions? = null): GistComment {
+    fun gistsCreateComment(
+        clientConfig: ClientConfig,
+        gistId: String,
+        body: String,
+        options: RequestOptions? = null,
+    ): GistComment {
         Validation.validateLength("body", body, Validation.LengthOpts(max = 65535))
 
-        return SdkClient.request<GistComment>(SdkClient.RequestSpec("POST", "/gists/${SdkClient.encodePathSegment(gistId)}/comments", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "gistsCreateComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+        return SdkClient.request<GistComment>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}/comments",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("body" to (body)),
+                    operationId = "gistsCreateComment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a comment on a gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+     * Gets a comment on a gist. This endpoint supports the following custom media types. For more
+     * information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
+     * markdown. This is the default if you do not pass any specific media type.
      *
      * @param gistId The unique identifier of the gist.
      * @param commentId The unique identifier of the comment.
      */
-    fun gistsGetComment(clientConfig: ClientConfig, gistId: String, commentId: Long, options: RequestOptions? = null): GistComment {
-        return SdkClient.request<GistComment>(SdkClient.RequestSpec("GET", "/gists/${SdkClient.encodePathSegment(gistId)}/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, operationId = "gistsGetComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to ForbiddenGist::class.java, "404" to BasicError::class.java))).data
+    fun gistsGetComment(
+        clientConfig: ClientConfig,
+        gistId: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): GistComment {
+        return SdkClient.request<GistComment>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}/comments/${SdkClient.encodePathSegment(commentId)}",
+                    config = clientConfig,
+                    operationId = "gistsGetComment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to ForbiddenGist::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Updates a comment on a gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+     * Updates a comment on a gist. This endpoint supports the following custom media types. For
+     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
+     * markdown. This is the default if you do not pass any specific media type.
      *
      * @param gistId The unique identifier of the gist.
      * @param commentId The unique identifier of the comment.
      * @param body The comment text.
      */
-    fun gistsUpdateComment(clientConfig: ClientConfig, gistId: String, commentId: Long, body: String, options: RequestOptions? = null): GistComment {
+    fun gistsUpdateComment(
+        clientConfig: ClientConfig,
+        gistId: String,
+        commentId: Long,
+        body: String,
+        options: RequestOptions? = null,
+    ): GistComment {
         Validation.validateLength("body", body, Validation.LengthOpts(max = 65535))
 
-        return SdkClient.request<GistComment>(SdkClient.RequestSpec("PATCH", "/gists/${SdkClient.encodePathSegment(gistId)}/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "gistsUpdateComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+        return SdkClient.request<GistComment>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}/comments/${SdkClient.encodePathSegment(commentId)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("body" to (body)),
+                    operationId = "gistsUpdateComment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Removes a specific comment from a gist. Use `gist_id` and `comment_id` to identify the gist-comment pair; the operation returns no content when the comment is deleted.
+     * Removes a specific comment from a gist. Use `gist_id` and `comment_id` to identify the
+     * gist-comment pair; the operation returns no content when the comment is deleted.
      *
      * @param gistId The unique identifier of the gist.
      * @param commentId The unique identifier of the comment.
      */
-    fun gistsDeleteComment(clientConfig: ClientConfig, gistId: String, commentId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/gists/${SdkClient.encodePathSegment(gistId)}/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, operationId = "gistsDeleteComment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun gistsDeleteComment(
+        clientConfig: ClientConfig,
+        gistId: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/gists/${SdkClient.encodePathSegment(gistId)}/comments/${SdkClient.encodePathSegment(commentId)}",
+                config = clientConfig,
+                operationId = "gistsDeleteComment",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists commits in a gist, including each commit's version, author, timestamp, and change counts. Use `page` and `per_page` to paginate the results.
+     * Lists commits in a gist, including each commit's version, author, timestamp, and change
+     * counts. Use `page` and `per_page` to paginate the results.
      *
      * @param gistId The unique identifier of the gist.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun gistsListCommits(clientConfig: ClientConfig, gistId: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<GistCommit> {
-        return SdkClient.request<List<GistCommit>>(SdkClient.RequestSpec("GET", "/gists/${SdkClient.encodePathSegment(gistId)}/commits", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "gistsListCommits", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun gistsListCommits(
+        clientConfig: ClientConfig,
+        gistId: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<GistCommit> {
+        return SdkClient.request<List<GistCommit>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}/commits",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "gistsListCommits",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists forks of a gist, returning the forked gist objects. Use `page` and `per_page` to paginate the results.
+     * Lists forks of a gist, returning the forked gist objects. Use `page` and `per_page` to
+     * paginate the results.
      *
      * @param gistId The unique identifier of the gist.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun gistsListForks(clientConfig: ClientConfig, gistId: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<GistSimple> {
-        return SdkClient.request<List<GistSimple>>(SdkClient.RequestSpec("GET", "/gists/${SdkClient.encodePathSegment(gistId)}/forks", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "gistsListForks", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun gistsListForks(
+        clientConfig: ClientConfig,
+        gistId: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<GistSimple> {
+        return SdkClient.request<List<GistSimple>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}/forks",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "gistsListForks",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Creates a fork of a gist for the authenticated user. Supply the gist identifier to select the gist to fork; the response contains the created fork.
-     *
-     * @param gistId The unique identifier of the gist.
-     */
-    fun gistsFork(clientConfig: ClientConfig, gistId: String, options: RequestOptions? = null): BaseGist {
-        return SdkClient.request<BaseGist>(SdkClient.RequestSpec("POST", "/gists/${SdkClient.encodePathSegment(gistId)}/forks", config = clientConfig, operationId = "gistsFork", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
-    }
-
-
-
-
-
-
-
-    /**
-     * Checks whether the authenticated user has starred a gist. Use `gist_id` to identify the gist; a 204 response indicates that it is starred.
-     *
-     * @param gistId The unique identifier of the gist.
-     */
-    fun gistsCheckIsStarred(clientConfig: ClientConfig, gistId: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/gists/${SdkClient.encodePathSegment(gistId)}/star", config = clientConfig, operationId = "gistsCheckIsStarred", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
-    }
-
-
-
-
-
-
-
-    /**
-     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "HTTP method."
-     *
-     * @param gistId The unique identifier of the gist.
-     */
-    fun gistsStar(clientConfig: ClientConfig, gistId: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/gists/${SdkClient.encodePathSegment(gistId)}/star", config = clientConfig, operationId = "gistsStar", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
-    }
-
-
-
-
-
-
-
-    /**
-     * Removes the authenticated user's star from a gist. Supply `gist_id` to identify the gist whose star you want to remove; the operation returns no content.
-     *
-     * @param gistId The unique identifier of the gist.
-     */
-    fun gistsUnstar(clientConfig: ClientConfig, gistId: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/gists/${SdkClient.encodePathSegment(gistId)}/star", config = clientConfig, operationId = "gistsUnstar", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
-    }
-
-
-
-
-
-
-
-    /**
-     * Retrieves a specified revision of a gist. Supply `gist_id` and `sha` to identify the gist and revision; the `application/vnd.github.raw+json` media type returns the raw Markdown and is the default when you do not specify a media type.
-     *
-     * Gets a specified gist revision. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+     * Creates a fork of a gist for the authenticated user. Supply the gist identifier to select the
+     * gist to fork; the response contains the created fork.
      *
      * @param gistId The unique identifier of the gist.
      */
-    fun gistsGetRevision(clientConfig: ClientConfig, gistId: String, sha: String, options: RequestOptions? = null): GistSimple {
-        return SdkClient.request<GistSimple>(SdkClient.RequestSpec("GET", "/gists/${SdkClient.encodePathSegment(gistId)}/${SdkClient.encodePathSegment(sha)}", config = clientConfig, operationId = "gistsGetRevision", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gistsFork(
+        clientConfig: ClientConfig,
+        gistId: String,
+        options: RequestOptions? = null,
+    ): BaseGist {
+        return SdkClient.request<BaseGist>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}/forks",
+                    config = clientConfig,
+                    operationId = "gistsFork",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
+    /**
+     * Checks whether the authenticated user has starred a gist. Use `gist_id` to identify the gist;
+     * a 204 response indicates that it is starred.
+     *
+     * @param gistId The unique identifier of the gist.
+     */
+    fun gistsCheckIsStarred(
+        clientConfig: ClientConfig,
+        gistId: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/gists/${SdkClient.encodePathSegment(gistId)}/star",
+                config = clientConfig,
+                operationId = "gistsCheckIsStarred",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
+    }
 
     /**
-     * Lists public gists for the specified user. Use `since` to filter by last-updated time, and use `page` and `per_page` to paginate the results. `per_page` accepts up to 100 results per page.
+     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For
+     * more information, see "HTTP method."
+     *
+     * @param gistId The unique identifier of the gist.
+     */
+    fun gistsStar(
+        clientConfig: ClientConfig,
+        gistId: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/gists/${SdkClient.encodePathSegment(gistId)}/star",
+                config = clientConfig,
+                operationId = "gistsStar",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
+    }
+
+    /**
+     * Removes the authenticated user's star from a gist. Supply `gist_id` to identify the gist
+     * whose star you want to remove; the operation returns no content.
+     *
+     * @param gistId The unique identifier of the gist.
+     */
+    fun gistsUnstar(
+        clientConfig: ClientConfig,
+        gistId: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/gists/${SdkClient.encodePathSegment(gistId)}/star",
+                config = clientConfig,
+                operationId = "gistsUnstar",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
+    }
+
+    /**
+     * Retrieves a specified revision of a gist. Supply `gist_id` and `sha` to identify the gist and
+     * revision; the `application/vnd.github.raw+json` media type returns the raw Markdown and is
+     * the default when you do not specify a media type.
+     *
+     * Gets a specified gist revision. This endpoint supports the following custom media types. For
+     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
+     * markdown. This is the default if you do not pass any specific media type.
+     *
+     * @param gistId The unique identifier of the gist.
+     */
+    fun gistsGetRevision(
+        clientConfig: ClientConfig,
+        gistId: String,
+        sha: String,
+        options: RequestOptions? = null,
+    ): GistSimple {
+        return SdkClient.request<GistSimple>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gists/${SdkClient.encodePathSegment(gistId)}/${SdkClient.encodePathSegment(sha)}",
+                    config = clientConfig,
+                    operationId = "gistsGetRevision",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
+    }
+
+    /**
+     * Lists public gists for the specified user. Use `since` to filter by last-updated time, and
+     * use `page` and `per_page` to paginate the results. `per_page` accepts up to 100 results per
+     * page.
      *
      * Lists public gists for the specified user:
      *
      * @param username The handle for the GitHub user account.
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun gistsListForUser(clientConfig: ClientConfig, username: String, since: OffsetDateTime? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<BaseGist> {
+    fun gistsListForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        since: OffsetDateTime? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<BaseGist> {
         if (since != null) {
             Validation.validateDateTime("since", since)
-}
+        }
 
-        return SdkClient.request<List<BaseGist>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/gists", config = clientConfig, query = mapOf("since" to
-    SdkClient.queryValue(since, "form", true, "date-time"), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "gistsListForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+        return SdkClient.request<List<BaseGist>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(username)}/gists",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "since" to SdkClient.queryValue(since, "form", true, "date-time"),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "gistsListForUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

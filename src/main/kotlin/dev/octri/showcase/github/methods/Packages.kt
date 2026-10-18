@@ -6,12 +6,12 @@ package dev.octri.showcase.github.methods
 import dev.octri.showcase.github.BasicError
 import dev.octri.showcase.github.ClientConfig
 import dev.octri.showcase.github.Package
+import dev.octri.showcase.github.PackageVersion
 import dev.octri.showcase.github.PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c
 import dev.octri.showcase.github.PackagesGetAllPackageVersionsForPackageOwnedByOrgParameterEnum
 import dev.octri.showcase.github.PackagesListPackagesForAuthenticatedUserParameterEnum
 import dev.octri.showcase.github.PackagesListPackagesForOrganizationParameterEnum
 import dev.octri.showcase.github.PackagesListPackagesForUserParameterEnum
-import dev.octri.showcase.github.PackageVersion
 import dev.octri.showcase.github.RequestOptions
 import dev.octri.showcase.github.SchemaSchemaEnum5f6fac39
 import dev.octri.showcase.github.SchemaSchemaEnumf67de18d
@@ -19,121 +19,202 @@ import dev.octri.showcase.github.SdkClient
 
 object Packages {
 
-
     /**
-     * Lists all packages that are in a specific organization, are readable by the requesting user, and that encountered a conflict during a Docker migration. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint.
+     * Lists all packages that are in a specific organization, are readable by the requesting user,
+     * and that encountered a conflict during a Docker migration. OAuth app tokens and personal
+     * access tokens (classic) need the `read:packages` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun packagesListDockerMigrationConflictingPackagesForOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<Package> {
-        return SdkClient.request<List<Package>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/docker/conflicts", config = clientConfig, operationId = "packagesListDockerMigrationConflictingPackagesForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun packagesListDockerMigrationConflictingPackagesForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): List<Package> {
+        return SdkClient.request<List<Package>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/docker/conflicts",
+                    config = clientConfig,
+                    operationId = "packagesListDockerMigrationConflictingPackagesForOrganization",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists packages in an organization readable by the user. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Lists packages in an organization readable by the user. OAuth app tokens and personal access
+     * tokens (classic) need the `read:packages` scope to use this endpoint. For more information,
+     * see "About permissions for GitHub Packages."
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
-     * @param visibility The selected visibility of the packages. This parameter is
-     *   optional and only filters an existing result set. The `internal` visibility is
-     *   only supported for GitHub Packages registries that allow for granular
-     *   permissions. For other ecosystems `internal` is synonymous with `private`. For
-     *   the list of GitHub Packages registries that support granular permissions, see
-     *   "About permissions for GitHub Packages."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param visibility The selected visibility of the packages. This parameter is optional and
+     *   only filters an existing result set. The `internal` visibility is only supported for GitHub
+     *   Packages registries that allow for granular permissions. For other ecosystems `internal` is
+     *   synonymous with `private`. For the list of GitHub Packages registries that support granular
+     *   permissions, see "About permissions for GitHub Packages."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun packagesListPackagesForOrganization(clientConfig: ClientConfig, org: String, packageType: PackagesListPackagesForOrganizationParameterEnum, visibility: SchemaSchemaEnumf67de18d? = null, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): List<Package> {
-        return SdkClient.request<List<Package>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/packages", config = clientConfig, query = mapOf("package_type" to
-    SdkClient.queryValue(packageType, "form", true), "visibility" to
-    SdkClient.queryValue(visibility, "form", true), "page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "packagesListPackagesForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun packagesListPackagesForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        packageType: PackagesListPackagesForOrganizationParameterEnum,
+        visibility: SchemaSchemaEnumf67de18d? = null,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Package> {
+        return SdkClient.request<List<Package>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/packages",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "package_type" to SdkClient.queryValue(packageType, "form", true),
+                            "visibility" to SdkClient.queryValue(visibility, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "packagesListPackagesForOrganization",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a specific package in an organization. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Gets a specific package in an organization. OAuth app tokens and personal access tokens
+     * (classic) need the `read:packages` scope to use this endpoint. For more information, see
+     * "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param org The organization name. The name is not case sensitive.
      */
-    fun packagesGetPackageForOrganization(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, org: String, options: RequestOptions? = null): Package {
-        return SdkClient.request<Package>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}", config = clientConfig, operationId = "packagesGetPackageForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun packagesGetPackageForOrganization(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        org: String,
+        options: RequestOptions? = null,
+    ): Package {
+        return SdkClient.request<Package>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}",
+                    config = clientConfig,
+                    operationId = "packagesGetPackageForOrganization",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes an entire package in an organization. You cannot delete a public package if any version of the package has more than 5,000 downloads. In this scenario, contact GitHub support for further assistance. The authenticated user must have admin permissions in the organization to use this endpoint. If the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must also have admin permissions to the package. For the…
+     * Deletes an entire package in an organization. You cannot delete a public package if any
+     * version of the package has more than 5,000 downloads. In this scenario, contact GitHub
+     * support for further assistance. The authenticated user must have admin permissions in the
+     * organization to use this endpoint. If the `package_type` belongs to a GitHub Packages
+     * registry that supports granular permissions, the authenticated user must also have admin
+     * permissions to the package. For the…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param org The organization name. The name is not case sensitive.
      */
-    fun packagesDeletePackageForOrg(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, org: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}", config = clientConfig, operationId = "packagesDeletePackageForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesDeletePackageForOrg(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        org: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}",
+                config = clientConfig,
+                operationId = "packagesDeletePackageForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Restores an entire package in an organization. You can restore a deleted package under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace…
+     * Restores an entire package in an organization. You can restore a deleted package under the
+     * following conditions: - The package was deleted within the last 30 days. - The same package
+     * namespace and version is still available and not reused for a new package. If the same
+     * package namespace is not available, you will not be able to restore your package. In this
+     * scenario, to restore the deleted package, you must delete the new package that uses the
+     * deleted package's namespace…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param org The organization name. The name is not case sensitive.
      * @param token package token
      */
-    fun packagesRestorePackageForOrg(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, org: String, token: String? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore", config = clientConfig, query = mapOf("token" to SdkClient.queryValue(token, "form", true)), operationId = "packagesRestorePackageForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesRestorePackageForOrg(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        org: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore",
+                config = clientConfig,
+                query = mapOf("token" to SdkClient.queryValue(token, "form", true)),
+                operationId = "packagesRestorePackageForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
 
     /** Parameters for [packagesGetAllPackageVersionsForPackageOwnedByOrg]. */
     data class PackagesGetAllPackageVersionsForPackageOwnedByOrgRequest(
@@ -142,511 +223,880 @@ object Packages {
         val org: String,
         val page: Long? = null,
         val perPage: Long? = null,
-        val state: PackagesGetAllPackageVersionsForPackageOwnedByOrgParameterEnum? = null
+        val state: PackagesGetAllPackageVersionsForPackageOwnedByOrgParameterEnum? = null,
     )
 
     /**
-     * Lists package versions for a package owned by an organization. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Lists package versions for a package owned by an organization. OAuth app tokens and personal
+     * access tokens (classic) need the `read:packages` scope to use this endpoint. For more
+     * information, see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param org The organization name. The name is not case sensitive.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      * @param state The state of the package, either active or deleted.
      */
-    fun packagesGetAllPackageVersionsForPackageOwnedByOrg(clientConfig: ClientConfig, request: PackagesGetAllPackageVersionsForPackageOwnedByOrgRequest, options: RequestOptions? = null): List<PackageVersion> {
-        return SdkClient.request<List<PackageVersion>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/packages/${SdkClient.encodePathSegment(request.packageType)}/${SdkClient.encodePathSegment(request.packageName)}/versions", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(request.page, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "state" to SdkClient.queryValue(request.state, "form", true)), operationId = "packagesGetAllPackageVersionsForPackageOwnedByOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun packagesGetAllPackageVersionsForPackageOwnedByOrg(
+        clientConfig: ClientConfig,
+        request: PackagesGetAllPackageVersionsForPackageOwnedByOrgRequest,
+        options: RequestOptions? = null,
+    ): List<PackageVersion> {
+        return SdkClient.request<List<PackageVersion>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/packages/${SdkClient.encodePathSegment(request.packageType)}/${SdkClient.encodePathSegment(request.packageName)}/versions",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "state" to SdkClient.queryValue(request.state, "form", true),
+                        ),
+                    operationId = "packagesGetAllPackageVersionsForPackageOwnedByOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a specific package version in an organization. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Gets a specific package version in an organization. OAuth app tokens and personal access
+     * tokens (classic) need the `read:packages` scope to use this endpoint. For more information,
+     * see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param org The organization name. The name is not case sensitive.
      * @param packageVersionId Unique identifier of the package version.
      */
-    fun packagesGetPackageVersionForOrganization(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, org: String, packageVersionId: Long, options: RequestOptions? = null): PackageVersion {
-        return SdkClient.request<PackageVersion>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}", config = clientConfig, operationId = "packagesGetPackageVersionForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun packagesGetPackageVersionForOrganization(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        org: String,
+        packageVersionId: Long,
+        options: RequestOptions? = null,
+    ): PackageVersion {
+        return SdkClient.request<PackageVersion>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}",
+                    config = clientConfig,
+                    operationId = "packagesGetPackageVersionForOrganization",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a specific package version in an organization. If the package is public and the package version has more than 5,000 downloads, you cannot delete the package version. In this scenario, contact GitHub support for further assistance. The authenticated user must have admin permissions in the organization to use this endpoint. If the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must also have admin…
+     * Deletes a specific package version in an organization. If the package is public and the
+     * package version has more than 5,000 downloads, you cannot delete the package version. In this
+     * scenario, contact GitHub support for further assistance. The authenticated user must have
+     * admin permissions in the organization to use this endpoint. If the `package_type` belongs to
+     * a GitHub Packages registry that supports granular permissions, the authenticated user must
+     * also have admin…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param org The organization name. The name is not case sensitive.
      * @param packageVersionId Unique identifier of the package version.
      */
-    fun packagesDeletePackageVersionForOrg(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, org: String, packageVersionId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}", config = clientConfig, operationId = "packagesDeletePackageVersionForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesDeletePackageVersionForOrg(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        org: String,
+        packageVersionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}",
+                config = clientConfig,
+                operationId = "packagesDeletePackageVersionForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Restores a specific package version in an organization. You can restore a deleted package under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's…
+     * Restores a specific package version in an organization. You can restore a deleted package
+     * under the following conditions: - The package was deleted within the last 30 days. - The same
+     * package namespace and version is still available and not reused for a new package. If the
+     * same package namespace is not available, you will not be able to restore your package. In
+     * this scenario, to restore the deleted package, you must delete the new package that uses the
+     * deleted package's…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param org The organization name. The name is not case sensitive.
      * @param packageVersionId Unique identifier of the package version.
      */
-    fun packagesRestorePackageVersionForOrg(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, org: String, packageVersionId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}/restore", config = clientConfig, operationId = "packagesRestorePackageVersionForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesRestorePackageVersionForOrg(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        org: String,
+        packageVersionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}/restore",
+                config = clientConfig,
+                operationId = "packagesRestorePackageVersionForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists all packages that are owned by the authenticated user within the user's namespace, and that encountered a conflict during a Docker migration. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint.
+     * Lists all packages that are owned by the authenticated user within the user's namespace, and
+     * that encountered a conflict during a Docker migration. OAuth app tokens and personal access
+     * tokens (classic) need the `read:packages` scope to use this endpoint.
      */
-    fun packagesListDockerMigrationConflictingPackagesForAuthenticatedUser(clientConfig: ClientConfig, options: RequestOptions? = null): List<Package> {
-        return SdkClient.request<List<Package>>(SdkClient.RequestSpec("GET", "/user/docker/conflicts", config = clientConfig, operationId = "packagesListDockerMigrationConflictingPackagesForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun packagesListDockerMigrationConflictingPackagesForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): List<Package> {
+        return SdkClient.request<List<Package>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/docker/conflicts",
+                    config = clientConfig,
+                    operationId =
+                        "packagesListDockerMigrationConflictingPackagesForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists packages owned by the authenticated user within the user's namespace. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Lists packages owned by the authenticated user within the user's namespace. OAuth app tokens
+     * and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For
+     * more information, see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
-     * @param visibility The selected visibility of the packages. This parameter is
-     *   optional and only filters an existing result set. The `internal` visibility is
-     *   only supported for GitHub Packages registries that allow for granular
-     *   permissions. For other ecosystems `internal` is synonymous with `private`. For
-     *   the list of GitHub Packages registries that support granular permissions, see
-     *   "About permissions for GitHub Packages."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param visibility The selected visibility of the packages. This parameter is optional and
+     *   only filters an existing result set. The `internal` visibility is only supported for GitHub
+     *   Packages registries that allow for granular permissions. For other ecosystems `internal` is
+     *   synonymous with `private`. For the list of GitHub Packages registries that support granular
+     *   permissions, see "About permissions for GitHub Packages."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun packagesListPackagesForAuthenticatedUser(clientConfig: ClientConfig, packageType: PackagesListPackagesForAuthenticatedUserParameterEnum, visibility: SchemaSchemaEnumf67de18d? = null, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): List<Package> {
-        return SdkClient.request<List<Package>>(SdkClient.RequestSpec("GET", "/user/packages", config = clientConfig, query = mapOf("package_type" to
-    SdkClient.queryValue(packageType, "form", true), "visibility" to
-    SdkClient.queryValue(visibility, "form", true), "page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "packagesListPackagesForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun packagesListPackagesForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: PackagesListPackagesForAuthenticatedUserParameterEnum,
+        visibility: SchemaSchemaEnumf67de18d? = null,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Package> {
+        return SdkClient.request<List<Package>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/packages",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "package_type" to SdkClient.queryValue(packageType, "form", true),
+                            "visibility" to SdkClient.queryValue(visibility, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "packagesListPackagesForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a specific package for a package owned by the authenticated user. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Gets a specific package for a package owned by the authenticated user. OAuth app tokens and
+     * personal access tokens (classic) need the `read:packages` scope to use this endpoint. For
+     * more information, see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      */
-    fun packagesGetPackageForAuthenticatedUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, options: RequestOptions? = null): Package {
-        return SdkClient.request<Package>(SdkClient.RequestSpec("GET", "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}", config = clientConfig, operationId = "packagesGetPackageForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun packagesGetPackageForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        options: RequestOptions? = null,
+    ): Package {
+        return SdkClient.request<Package>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}",
+                    config = clientConfig,
+                    operationId = "packagesGetPackageForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a package owned by the authenticated user. You cannot delete a public package if any version of the package has more than 5,000 downloads. In this scenario, contact GitHub support for further assistance. OAuth app tokens and personal access tokens (classic) need the `read:packages` and `delete:packages` scopes to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Deletes a package owned by the authenticated user. You cannot delete a public package if any
+     * version of the package has more than 5,000 downloads. In this scenario, contact GitHub
+     * support for further assistance. OAuth app tokens and personal access tokens (classic) need
+     * the `read:packages` and `delete:packages` scopes to use this endpoint. For more information,
+     * see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      */
-    fun packagesDeletePackageForAuthenticatedUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}", config = clientConfig, operationId = "packagesDeletePackageForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesDeletePackageForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}",
+                config = clientConfig,
+                operationId = "packagesDeletePackageForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Restores a package owned by the authenticated user. You can restore a deleted package under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's…
+     * Restores a package owned by the authenticated user. You can restore a deleted package under
+     * the following conditions: - The package was deleted within the last 30 days. - The same
+     * package namespace and version is still available and not reused for a new package. If the
+     * same package namespace is not available, you will not be able to restore your package. In
+     * this scenario, to restore the deleted package, you must delete the new package that uses the
+     * deleted package's…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param token package token
      */
-    fun packagesRestorePackageForAuthenticatedUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, token: String? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore", config = clientConfig, query = mapOf("token" to SdkClient.queryValue(token, "form", true)), operationId = "packagesRestorePackageForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesRestorePackageForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore",
+                config = clientConfig,
+                query = mapOf("token" to SdkClient.queryValue(token, "form", true)),
+                operationId = "packagesRestorePackageForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists package versions for a package owned by the authenticated user. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Lists package versions for a package owned by the authenticated user. OAuth app tokens and
+     * personal access tokens (classic) need the `read:packages` scope to use this endpoint. For
+     * more information, see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      * @param state The state of the package, either active or deleted.
      */
-    fun packagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, page: Long? = null, perPage: Long? = null, state: PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c? = null, options: RequestOptions? = null): List<PackageVersion> {
-        return SdkClient.request<List<PackageVersion>>(SdkClient.RequestSpec("GET", "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "state" to SdkClient.queryValue(state, "form", true)), operationId = "packagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun packagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        state: PackagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUsX76df3e077c? = null,
+        options: RequestOptions? = null,
+    ): List<PackageVersion> {
+        return SdkClient.request<List<PackageVersion>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "state" to SdkClient.queryValue(state, "form", true),
+                        ),
+                    operationId = "packagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a specific package version for a package owned by the authenticated user. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Gets a specific package version for a package owned by the authenticated user. OAuth app
+     * tokens and personal access tokens (classic) need the `read:packages` scope to use this
+     * endpoint. For more information, see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param packageVersionId Unique identifier of the package version.
      */
-    fun packagesGetPackageVersionForAuthenticatedUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, packageVersionId: Long, options: RequestOptions? = null): PackageVersion {
-        return SdkClient.request<PackageVersion>(SdkClient.RequestSpec("GET", "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}", config = clientConfig, operationId = "packagesGetPackageVersionForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun packagesGetPackageVersionForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        packageVersionId: Long,
+        options: RequestOptions? = null,
+    ): PackageVersion {
+        return SdkClient.request<PackageVersion>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}",
+                    config = clientConfig,
+                    operationId = "packagesGetPackageVersionForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a specific package version for a package owned by the authenticated user. If the package is public and the package version has more than 5,000 downloads, you cannot delete the package version. In this scenario, contact GitHub support for further assistance. The authenticated user must have admin permissions in the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:packages` and `delete:packages` scopes to use this…
+     * Deletes a specific package version for a package owned by the authenticated user. If the
+     * package is public and the package version has more than 5,000 downloads, you cannot delete
+     * the package version. In this scenario, contact GitHub support for further assistance. The
+     * authenticated user must have admin permissions in the organization to use this endpoint.
+     * OAuth app tokens and personal access tokens (classic) need the `read:packages` and
+     * `delete:packages` scopes to use this…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param packageVersionId Unique identifier of the package version.
      */
-    fun packagesDeletePackageVersionForAuthenticatedUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, packageVersionId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}", config = clientConfig, operationId = "packagesDeletePackageVersionForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesDeletePackageVersionForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        packageVersionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}",
+                config = clientConfig,
+                operationId = "packagesDeletePackageVersionForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Restores a package version owned by the authenticated user. You can restore a deleted package version under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted…
+     * Restores a package version owned by the authenticated user. You can restore a deleted package
+     * version under the following conditions: - The package was deleted within the last 30 days. -
+     * The same package namespace and version is still available and not reused for a new package.
+     * If the same package namespace is not available, you will not be able to restore your package.
+     * In this scenario, to restore the deleted package, you must delete the new package that uses
+     * the deleted…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param packageVersionId Unique identifier of the package version.
      */
-    fun packagesRestorePackageVersionForAuthenticatedUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, packageVersionId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}/restore", config = clientConfig, operationId = "packagesRestorePackageVersionForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesRestorePackageVersionForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        packageVersionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}/restore",
+                config = clientConfig,
+                operationId = "packagesRestorePackageVersionForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists all packages that are in a specific user's namespace, that the requesting user has access to, and that encountered a conflict during Docker migration. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint.
+     * Lists all packages that are in a specific user's namespace, that the requesting user has
+     * access to, and that encountered a conflict during Docker migration. OAuth app tokens and
+     * personal access tokens (classic) need the `read:packages` scope to use this endpoint.
      *
      * @param username The handle for the GitHub user account.
      */
-    fun packagesListDockerMigrationConflictingPackagesForUser(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): List<Package> {
-        return SdkClient.request<List<Package>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/docker/conflicts", config = clientConfig, operationId = "packagesListDockerMigrationConflictingPackagesForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun packagesListDockerMigrationConflictingPackagesForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): List<Package> {
+        return SdkClient.request<List<Package>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(username)}/docker/conflicts",
+                    config = clientConfig,
+                    operationId = "packagesListDockerMigrationConflictingPackagesForUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Lists all packages in a user's namespace for which the requesting user has access. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Lists all packages in a user's namespace for which the requesting user has access. OAuth app
+     * tokens and personal access tokens (classic) need the `read:packages` scope to use this
+     * endpoint. For more information, see "About permissions for GitHub Packages."
      *
      * @param username The handle for the GitHub user account.
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
-     * @param visibility The selected visibility of the packages. This parameter is
-     *   optional and only filters an existing result set. The `internal` visibility is
-     *   only supported for GitHub Packages registries that allow for granular
-     *   permissions. For other ecosystems `internal` is synonymous with `private`. For
-     *   the list of GitHub Packages registries that support granular permissions, see
-     *   "About permissions for GitHub Packages."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param visibility The selected visibility of the packages. This parameter is optional and
+     *   only filters an existing result set. The `internal` visibility is only supported for GitHub
+     *   Packages registries that allow for granular permissions. For other ecosystems `internal` is
+     *   synonymous with `private`. For the list of GitHub Packages registries that support granular
+     *   permissions, see "About permissions for GitHub Packages."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun packagesListPackagesForUser(clientConfig: ClientConfig, username: String, packageType: PackagesListPackagesForUserParameterEnum, visibility: SchemaSchemaEnumf67de18d? = null, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): List<Package> {
-        return SdkClient.request<List<Package>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/packages", config = clientConfig, query = mapOf("package_type" to
-    SdkClient.queryValue(packageType, "form", true), "visibility" to
-    SdkClient.queryValue(visibility, "form", true), "page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "packagesListPackagesForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun packagesListPackagesForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        packageType: PackagesListPackagesForUserParameterEnum,
+        visibility: SchemaSchemaEnumf67de18d? = null,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Package> {
+        return SdkClient.request<List<Package>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(username)}/packages",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "package_type" to SdkClient.queryValue(packageType, "form", true),
+                            "visibility" to SdkClient.queryValue(visibility, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "packagesListPackagesForUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a specific package metadata for a public package owned by a user. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Gets a specific package metadata for a public package owned by a user. OAuth app tokens and
+     * personal access tokens (classic) need the `read:packages` scope to use this endpoint. For
+     * more information, see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param username The handle for the GitHub user account.
      */
-    fun packagesGetPackageForUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, username: String, options: RequestOptions? = null): Package {
-        return SdkClient.request<Package>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}", config = clientConfig, operationId = "packagesGetPackageForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun packagesGetPackageForUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Package {
+        return SdkClient.request<Package>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}",
+                    config = clientConfig,
+                    operationId = "packagesGetPackageForUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes an entire package for a user. You cannot delete a public package if any version of the package has more than 5,000 downloads. In this scenario, contact GitHub support for further assistance. If the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must have admin permissions to the package. For the list of these registries, see "About permissions for GitHub Packages." OAuth app tokens and personal access…
+     * Deletes an entire package for a user. You cannot delete a public package if any version of
+     * the package has more than 5,000 downloads. In this scenario, contact GitHub support for
+     * further assistance. If the `package_type` belongs to a GitHub Packages registry that supports
+     * granular permissions, the authenticated user must have admin permissions to the package. For
+     * the list of these registries, see "About permissions for GitHub Packages." OAuth app tokens
+     * and personal access…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param username The handle for the GitHub user account.
      */
-    fun packagesDeletePackageForUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}", config = clientConfig, operationId = "packagesDeletePackageForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesDeletePackageForUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}",
+                config = clientConfig,
+                operationId = "packagesDeletePackageForUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Restores an entire package for a user. You can restore a deleted package under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace first. If…
+     * Restores an entire package for a user. You can restore a deleted package under the following
+     * conditions: - The package was deleted within the last 30 days. - The same package namespace
+     * and version is still available and not reused for a new package. If the same package
+     * namespace is not available, you will not be able to restore your package. In this scenario,
+     * to restore the deleted package, you must delete the new package that uses the deleted
+     * package's namespace first. If…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param username The handle for the GitHub user account.
      * @param token package token
      */
-    fun packagesRestorePackageForUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, username: String, token: String? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore", config = clientConfig, query = mapOf("token" to SdkClient.queryValue(token, "form", true)), operationId = "packagesRestorePackageForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesRestorePackageForUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        username: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore",
+                config = clientConfig,
+                query = mapOf("token" to SdkClient.queryValue(token, "form", true)),
+                operationId = "packagesRestorePackageForUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists package versions for a public package owned by a specified user. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Lists package versions for a public package owned by a specified user. OAuth app tokens and
+     * personal access tokens (classic) need the `read:packages` scope to use this endpoint. For
+     * more information, see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param username The handle for the GitHub user account.
      */
-    fun packagesGetAllPackageVersionsForPackageOwnedByUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, username: String, options: RequestOptions? = null): List<PackageVersion> {
-        return SdkClient.request<List<PackageVersion>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions", config = clientConfig, operationId = "packagesGetAllPackageVersionsForPackageOwnedByUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun packagesGetAllPackageVersionsForPackageOwnedByUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): List<PackageVersion> {
+        return SdkClient.request<List<PackageVersion>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions",
+                    config = clientConfig,
+                    operationId = "packagesGetAllPackageVersionsForPackageOwnedByUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a specific package version for a public package owned by a specified user. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see "About permissions for GitHub Packages."
+     * Gets a specific package version for a public package owned by a specified user. OAuth app
+     * tokens and personal access tokens (classic) need the `read:packages` scope to use this
+     * endpoint. For more information, see "About permissions for GitHub Packages."
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param packageVersionId Unique identifier of the package version.
      * @param username The handle for the GitHub user account.
      */
-    fun packagesGetPackageVersionForUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, packageVersionId: Long, username: String, options: RequestOptions? = null): PackageVersion {
-        return SdkClient.request<PackageVersion>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}", config = clientConfig, operationId = "packagesGetPackageVersionForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun packagesGetPackageVersionForUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        packageVersionId: Long,
+        username: String,
+        options: RequestOptions? = null,
+    ): PackageVersion {
+        return SdkClient.request<PackageVersion>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}",
+                    config = clientConfig,
+                    operationId = "packagesGetPackageVersionForUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a specific package version for a user. If the package is public and the package version has more than 5,000 downloads, you cannot delete the package version. In this scenario, contact GitHub support for further assistance. If the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must have admin permissions to the package. For the list of these registries, see "About permissions for GitHub Packages." OAuth…
+     * Deletes a specific package version for a user. If the package is public and the package
+     * version has more than 5,000 downloads, you cannot delete the package version. In this
+     * scenario, contact GitHub support for further assistance. If the `package_type` belongs to a
+     * GitHub Packages registry that supports granular permissions, the authenticated user must have
+     * admin permissions to the package. For the list of these registries, see "About permissions
+     * for GitHub Packages." OAuth…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param username The handle for the GitHub user account.
      * @param packageVersionId Unique identifier of the package version.
      */
-    fun packagesDeletePackageVersionForUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, username: String, packageVersionId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}", config = clientConfig, operationId = "packagesDeletePackageVersionForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesDeletePackageVersionForUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        username: String,
+        packageVersionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}",
+                config = clientConfig,
+                operationId = "packagesDeletePackageVersionForUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Restores a specific package version for a user. You can restore a deleted package under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace…
+     * Restores a specific package version for a user. You can restore a deleted package under the
+     * following conditions: - The package was deleted within the last 30 days. - The same package
+     * namespace and version is still available and not reused for a new package. If the same
+     * package namespace is not available, you will not be able to restore your package. In this
+     * scenario, to restore the deleted package, you must delete the new package that uses the
+     * deleted package's namespace…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param username The handle for the GitHub user account.
      * @param packageVersionId Unique identifier of the package version.
      */
-    fun packagesRestorePackageVersionForUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, username: String, packageVersionId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}/restore", config = clientConfig, operationId = "packagesRestorePackageVersionForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun packagesRestorePackageVersionForUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        username: String,
+        packageVersionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/versions/${SdkClient.encodePathSegment(packageVersionId)}/restore",
+                config = clientConfig,
+                operationId = "packagesRestorePackageVersionForUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
-
 }
