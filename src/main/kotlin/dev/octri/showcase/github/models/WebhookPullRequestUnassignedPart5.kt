@@ -5,162 +5,246 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required object value serialized in the `pull_request` wire field. */
+/**
+ * Required object value serialized in the `pull_request` wire field.
+ */
 class WebhookPullRequestUnassignedPullRequest(
-    /** Required object value serialized in the `_links` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("_links")
-    val links: WebhookPullRequestUnassignedPullRequestLinks,
-    /** Required enumerated value serialized in the `active_lock_reason` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("active_lock_reason", required = true)
-    val activeLockReason: WebhookPullRequestUnassignedPullRequestActiveLockReasonEnum?,
-    /** Required object value serialized in the `assignee` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("assignee", required = true)
-    val assignee: WebhookPullRequestUnassignedPullRequestAssignee?,
-    /** Required array value serialized in the `assignees` wire field. */
+    /**
+     * Required object value serialized in the `_links` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: WebhookPullRequestUnassignedPullRequestLinks,
+    /**
+     * Required enumerated value serialized in the `active_lock_reason` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("active_lock_reason", required = true) val activeLockReason: WebhookPullRequestUnassignedPullRequestActiveLockReasonEnum?,
+    /**
+     * Required object value serialized in the `assignee` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("assignee", required = true) val assignee: WebhookPullRequestUnassignedPullRequestAssignee?,
+    /**
+     * Required array value serialized in the `assignees` wire field.
+     */
     val assignees: List<WebhookPullRequestUnassignedPullRequestAssigneesItem?>,
-    /** How the author is associated with the repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
-    val authorAssociation: WebhookPullRequestUnassignedPullRequestAuthorAssociationEnum,
-    /** The status of auto merging a pull request. */
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_merge", required = true)
-    val autoMerge: WebhookPullRequestUnassignedPullRequestAutoMerge?,
-    /** Required object value serialized in the `base` wire field. */
+    /**
+     * How the author is associated with the repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: WebhookPullRequestUnassignedPullRequestAuthorAssociationEnum,
+    /**
+     * The status of auto merging a pull request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_merge", required = true) val autoMerge: WebhookPullRequestUnassignedPullRequestAutoMerge?,
+    /**
+     * Required object value serialized in the `base` wire field.
+     */
     val base: WebhookPullRequestUnassignedPullRequestBase,
-    /** Required `string` value serialized in the `body` wire field. */
+    /**
+     * Required `string` value serialized in the `body` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("body", required = true) val body: String?,
-    /** Required `date-time`-formatted value serialized in the `closed_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true)
-    val closedAt: OffsetDateTime?,
-    /** Required `uri`-formatted value serialized in the `comments_url` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `closed_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true) val closedAt: OffsetDateTime?,
+    /**
+     * Required `uri`-formatted value serialized in the `comments_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
-    /** Required `uri`-formatted value serialized in the `commits_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `commits_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `uri`-formatted value serialized in the `diff_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `diff_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("diff_url") val diffUrl: String,
-    /** Indicates whether or not the pull request is a draft. */
+    /**
+     * Indicates whether or not the pull request is a draft.
+     */
     val draft: Boolean,
-    /** Required object value serialized in the `head` wire field. */
+    /**
+     * Required object value serialized in the `head` wire field.
+     */
     val head: WebhookPullRequestUnassignedPullRequestHead,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `uri`-formatted value serialized in the `issue_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `issue_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_url") val issueUrl: String,
-    /** Required array value serialized in the `labels` wire field. */
+    /**
+     * Required array value serialized in the `labels` wire field.
+     */
     val labels: List<WebhookPullRequestUnassignedPullRequestLabelsItem>,
-    /** Required `boolean` value serialized in the `locked` wire field. */
+    /**
+     * Required `boolean` value serialized in the `locked` wire field.
+     */
     val locked: Boolean,
-    /** Required `string` value serialized in the `merge_commit_sha` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_sha", required = true)
-    val mergeCommitSha: String?,
-    /** Required `date-time`-formatted value serialized in the `merged_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true)
-    val mergedAt: OffsetDateTime?,
-    /** A collection of related issues and pull requests. */
-    @com.fasterxml.jackson.annotation.JsonProperty("milestone", required = true)
-    val milestone: WebhookPullRequestUnassignedPullRequestMilestone?,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `merge_commit_sha` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_sha", required = true) val mergeCommitSha: String?,
+    /**
+     * Required `date-time`-formatted value serialized in the `merged_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true) val mergedAt: OffsetDateTime?,
+    /**
+     * A collection of related issues and pull requests.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("milestone", required = true) val milestone: WebhookPullRequestUnassignedPullRequestMilestone?,
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Number uniquely identifying the pull request within its repository. */
+    /**
+     * Number uniquely identifying the pull request within its repository.
+     */
     val number: Long,
-    /** Required `uri`-formatted value serialized in the `patch_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `patch_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("patch_url") val patchUrl: String,
-    /** Required array value serialized in the `requested_reviewers` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_reviewers")
-    val requestedReviewers: List<WebhookPullRequestUnassignedPullRequestRequestedReviewersItem?>,
-    /** Required array value serialized in the `requested_teams` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_teams")
-    val requestedTeams: List<WebhookPullRequestUnassignedPullRequestRequestedTeamsItem>,
+    /**
+     * Required array value serialized in the `requested_reviewers` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_reviewers") val requestedReviewers: List<WebhookPullRequestUnassignedPullRequestRequestedReviewersItem?>,
+    /**
+     * Required array value serialized in the `requested_teams` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_teams") val requestedTeams: List<WebhookPullRequestUnassignedPullRequestRequestedTeamsItem>,
     /**
      * Required `uri-template`-formatted value serialized in the `review_comment_url` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comment_url")
-    val reviewCommentUrl: String,
-    /** Required `uri`-formatted value serialized in the `review_comments_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comments_url")
-    val reviewCommentsUrl: String,
-    /** State of this Pull Request. Either `open` or `closed`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comment_url") val reviewCommentUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `review_comments_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comments_url") val reviewCommentsUrl: String,
+    /**
+     * State of this Pull Request. Either `open` or `closed`.
+     */
     val state: WebhookPullRequestUnassignedPullRequestStateEnum,
-    /** Required `uri`-formatted value serialized in the `statuses_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `statuses_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String,
-    /** The title of the pull request. */
+    /**
+     * The title of the pull request.
+     */
     val title: String,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required object value serialized in the `user` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
-    val user: WebhookPullRequestUnassignedPullRequestUser?,
-    /** Optional `integer` value serialized in the `additions` wire field. */
+    /**
+     * Required object value serialized in the `user` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: WebhookPullRequestUnassignedPullRequestUser?,
+    /**
+     * Optional `integer` value serialized in the `additions` wire field.
+     */
     val additions: Long? = null,
-    /** Optional `integer` value serialized in the `changed_files` wire field. */
+    /**
+     * Optional `integer` value serialized in the `changed_files` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("changed_files") val changedFiles: Long? = null,
-    /** Optional `integer` value serialized in the `comments` wire field. */
+    /**
+     * Optional `integer` value serialized in the `comments` wire field.
+     */
     val comments: Long? = null,
-    /** Optional `integer` value serialized in the `commits` wire field. */
+    /**
+     * Optional `integer` value serialized in the `commits` wire field.
+     */
     val commits: Long? = null,
-    /** Optional `integer` value serialized in the `deletions` wire field. */
+    /**
+     * Optional `integer` value serialized in the `deletions` wire field.
+     */
     val deletions: Long? = null,
-    /** Indicates whether maintainers can modify the pull request. */
-    @com.fasterxml.jackson.annotation.JsonProperty("maintainer_can_modify")
-    val maintainerCanModify: Boolean? = null,
-    /** Optional `boolean` value serialized in the `mergeable` wire field. */
+    /**
+     * Indicates whether maintainers can modify the pull request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("maintainer_can_modify") val maintainerCanModify: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `mergeable` wire field.
+     */
     val mergeable: Boolean? = null,
-    /** Optional `string` value serialized in the `mergeable_state` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("mergeable_state")
-    val mergeableState: String? = null,
-    /** Optional `boolean` value serialized in the `merged` wire field. */
+    /**
+     * Optional `string` value serialized in the `mergeable_state` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("mergeable_state") val mergeableState: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `merged` wire field.
+     */
     val merged: Boolean? = null,
-    /** Optional object value serialized in the `merged_by` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("merged_by")
-    val mergedBy: WebhookPullRequestUnassignedPullRequestMergedBy? = null,
-    /** Optional `boolean` value serialized in the `rebaseable` wire field. */
+    /**
+     * Optional object value serialized in the `merged_by` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("merged_by") val mergedBy: WebhookPullRequestUnassignedPullRequestMergedBy? = null,
+    /**
+     * Optional `boolean` value serialized in the `rebaseable` wire field.
+     */
     val rebaseable: Boolean? = null,
-    /** Optional `integer` value serialized in the `review_comments` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comments")
-    val reviewComments: Long? = null,
-    /** The stack information associated with a pull request. */
-    val stack: PullRequestStack? = null,
+    /**
+     * Optional `integer` value serialized in the `review_comments` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comments") val reviewComments: Long? = null,
+    /**
+     * The stack information associated with a pull request.
+     */
+    val stack: PullRequestStack? = null
 )
 
-/** Typed representation of the `WebhookPullRequestUnassigned` API schema. */
+/**
+ * Typed representation of the `WebhookPullRequestUnassigned` API schema.
+ */
 data class WebhookPullRequestUnassigned(
-    /** Required enumerated value serialized in the `action` wire field. */
-    val action: WebhookPullRequestUnassignedActionEnum,
-    /** The pull request number. */
-    val number: WebhooksNumber,
-    /** Required object value serialized in the `pull_request` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request")
-    val pullRequest: WebhookPullRequestUnassignedPullRequest,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * Required enumerated value serialized in the `action` wire field.
+     */
+    val action: WebhookPullRequestUnassignedActionEnum,
+    /**
+     * The pull request number.
+     */
+    val number: WebhooksNumber,
+    /**
+     * Required object value serialized in the `pull_request` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request") val pullRequest: WebhookPullRequestUnassignedPullRequest,
+    /**
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val sender: SimpleUser,
-    /** Optional object value serialized in the `assignee` wire field. */
+    /**
+     * Optional object value serialized in the `assignee` wire field.
+     */
     val assignee: WebhooksUserMannequin? = null,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null,
+    val organization: OrganizationSimpleWebhooks? = null
 )

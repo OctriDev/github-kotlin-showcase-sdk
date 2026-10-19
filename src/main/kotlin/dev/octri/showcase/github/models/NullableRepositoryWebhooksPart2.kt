@@ -6,165 +6,218 @@ package dev.octri.showcase.github.models
 import java.time.OffsetDateTime
 
 /**
- * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
- * property when the event occurs from activity in a repository.
+ * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
  *
  * @property id Unique identifier of the repository
- * @property nodeId Required `string` value serialized in the `node_id` wire field.
+ * @property nodeId Required `string` value serialized in the `node_id` wire
+ *   field.
  * @property name The name of the repository.
- * @property fullName Required `string` value serialized in the `full_name` wire field.
+ * @property fullName Required `string` value serialized in the `full_name` wire
+ *   field.
  * @property license License Simple
  * @property forks Required `integer` value serialized in the `forks` wire field.
  * @property owner A GitHub user.
  * @property `private` Whether the repository is private or public.
- * @property htmlUrl Required `uri`-formatted value serialized in the `html_url` wire field.
- * @property description Required `string` value serialized in the `description` wire field.
+ * @property htmlUrl Required `uri`-formatted value serialized in the `html_url`
+ *   wire field.
+ * @property description Required `string` value serialized in the `description`
+ *   wire field.
  * @property fork Required `boolean` value serialized in the `fork` wire field.
- * @property url Required `uri`-formatted value serialized in the `url` wire field.
- * @property archiveUrl Required `string` value serialized in the `archive_url` wire field.
- * @property assigneesUrl Required `string` value serialized in the `assignees_url` wire field.
- * @property blobsUrl Required `string` value serialized in the `blobs_url` wire field.
- * @property branchesUrl Required `string` value serialized in the `branches_url` wire field.
- * @property collaboratorsUrl Required `string` value serialized in the `collaborators_url` wire
+ * @property url Required `uri`-formatted value serialized in the `url` wire
  *   field.
- * @property commentsUrl Required `string` value serialized in the `comments_url` wire field.
- * @property commitsUrl Required `string` value serialized in the `commits_url` wire field.
- * @property compareUrl Required `string` value serialized in the `compare_url` wire field.
- * @property contentsUrl Required `string` value serialized in the `contents_url` wire field.
- * @property contributorsUrl Required `uri`-formatted value serialized in the `contributors_url`
+ * @property archiveUrl Required `string` value serialized in the `archive_url`
  *   wire field.
- * @property deploymentsUrl Required `uri`-formatted value serialized in the `deployments_url` wire
+ * @property assigneesUrl Required `string` value serialized in the
+ *   `assignees_url` wire field.
+ * @property blobsUrl Required `string` value serialized in the `blobs_url` wire
  *   field.
- * @property downloadsUrl Required `uri`-formatted value serialized in the `downloads_url` wire
- *   field.
- * @property eventsUrl Required `uri`-formatted value serialized in the `events_url` wire field.
- * @property forksUrl Required `uri`-formatted value serialized in the `forks_url` wire field.
- * @property gitCommitsUrl Required `string` value serialized in the `git_commits_url` wire field.
- * @property gitRefsUrl Required `string` value serialized in the `git_refs_url` wire field.
- * @property gitTagsUrl Required `string` value serialized in the `git_tags_url` wire field.
- * @property gitUrl Required `string` value serialized in the `git_url` wire field.
- * @property issueCommentUrl Required `string` value serialized in the `issue_comment_url` wire
- *   field.
- * @property issueEventsUrl Required `string` value serialized in the `issue_events_url` wire field.
- * @property issuesUrl Required `string` value serialized in the `issues_url` wire field.
- * @property keysUrl Required `string` value serialized in the `keys_url` wire field.
- * @property labelsUrl Required `string` value serialized in the `labels_url` wire field.
- * @property languagesUrl Required `uri`-formatted value serialized in the `languages_url` wire
- *   field.
- * @property mergesUrl Required `uri`-formatted value serialized in the `merges_url` wire field.
- * @property milestonesUrl Required `string` value serialized in the `milestones_url` wire field.
- * @property notificationsUrl Required `string` value serialized in the `notifications_url` wire
- *   field.
- * @property pullsUrl Required `string` value serialized in the `pulls_url` wire field.
- * @property releasesUrl Required `string` value serialized in the `releases_url` wire field.
- * @property sshUrl Required `string` value serialized in the `ssh_url` wire field.
- * @property stargazersUrl Required `uri`-formatted value serialized in the `stargazers_url` wire
- *   field.
- * @property statusesUrl Required `string` value serialized in the `statuses_url` wire field.
- * @property subscribersUrl Required `uri`-formatted value serialized in the `subscribers_url` wire
- *   field.
- * @property subscriptionUrl Required `uri`-formatted value serialized in the `subscription_url`
+ * @property branchesUrl Required `string` value serialized in the `branches_url`
  *   wire field.
- * @property tagsUrl Required `uri`-formatted value serialized in the `tags_url` wire field.
- * @property teamsUrl Required `uri`-formatted value serialized in the `teams_url` wire field.
- * @property treesUrl Required `string` value serialized in the `trees_url` wire field.
- * @property cloneUrl Required `string` value serialized in the `clone_url` wire field.
- * @property mirrorUrl Required `uri`-formatted value serialized in the `mirror_url` wire field.
- * @property hooksUrl Required `uri`-formatted value serialized in the `hooks_url` wire field.
- * @property svnUrl Required `uri`-formatted value serialized in the `svn_url` wire field.
- * @property homepage Required `uri`-formatted value serialized in the `homepage` wire field.
- * @property language Required `string` value serialized in the `language` wire field.
- * @property forksCount Required `integer` value serialized in the `forks_count` wire field.
- * @property stargazersCount Required `integer` value serialized in the `stargazers_count` wire
+ * @property collaboratorsUrl Required `string` value serialized in the
+ *   `collaborators_url` wire field.
+ * @property commentsUrl Required `string` value serialized in the `comments_url`
+ *   wire field.
+ * @property commitsUrl Required `string` value serialized in the `commits_url`
+ *   wire field.
+ * @property compareUrl Required `string` value serialized in the `compare_url`
+ *   wire field.
+ * @property contentsUrl Required `string` value serialized in the `contents_url`
+ *   wire field.
+ * @property contributorsUrl Required `uri`-formatted value serialized in the
+ *   `contributors_url` wire field.
+ * @property deploymentsUrl Required `uri`-formatted value serialized in the
+ *   `deployments_url` wire field.
+ * @property downloadsUrl Required `uri`-formatted value serialized in the
+ *   `downloads_url` wire field.
+ * @property eventsUrl Required `uri`-formatted value serialized in the
+ *   `events_url` wire field.
+ * @property forksUrl Required `uri`-formatted value serialized in the
+ *   `forks_url` wire field.
+ * @property gitCommitsUrl Required `string` value serialized in the
+ *   `git_commits_url` wire field.
+ * @property gitRefsUrl Required `string` value serialized in the `git_refs_url`
+ *   wire field.
+ * @property gitTagsUrl Required `string` value serialized in the `git_tags_url`
+ *   wire field.
+ * @property gitUrl Required `string` value serialized in the `git_url` wire
  *   field.
- * @property watchersCount Required `integer` value serialized in the `watchers_count` wire field.
- * @property size The size of the repository, in kilobytes. Size is calculated hourly. When a
- *   repository is initially created, the size is 0.
+ * @property issueCommentUrl Required `string` value serialized in the
+ *   `issue_comment_url` wire field.
+ * @property issueEventsUrl Required `string` value serialized in the
+ *   `issue_events_url` wire field.
+ * @property issuesUrl Required `string` value serialized in the `issues_url`
+ *   wire field.
+ * @property keysUrl Required `string` value serialized in the `keys_url` wire
+ *   field.
+ * @property labelsUrl Required `string` value serialized in the `labels_url`
+ *   wire field.
+ * @property languagesUrl Required `uri`-formatted value serialized in the
+ *   `languages_url` wire field.
+ * @property mergesUrl Required `uri`-formatted value serialized in the
+ *   `merges_url` wire field.
+ * @property milestonesUrl Required `string` value serialized in the
+ *   `milestones_url` wire field.
+ * @property notificationsUrl Required `string` value serialized in the
+ *   `notifications_url` wire field.
+ * @property pullsUrl Required `string` value serialized in the `pulls_url` wire
+ *   field.
+ * @property releasesUrl Required `string` value serialized in the `releases_url`
+ *   wire field.
+ * @property sshUrl Required `string` value serialized in the `ssh_url` wire
+ *   field.
+ * @property stargazersUrl Required `uri`-formatted value serialized in the
+ *   `stargazers_url` wire field.
+ * @property statusesUrl Required `string` value serialized in the `statuses_url`
+ *   wire field.
+ * @property subscribersUrl Required `uri`-formatted value serialized in the
+ *   `subscribers_url` wire field.
+ * @property subscriptionUrl Required `uri`-formatted value serialized in the
+ *   `subscription_url` wire field.
+ * @property tagsUrl Required `uri`-formatted value serialized in the `tags_url`
+ *   wire field.
+ * @property teamsUrl Required `uri`-formatted value serialized in the
+ *   `teams_url` wire field.
+ * @property treesUrl Required `string` value serialized in the `trees_url` wire
+ *   field.
+ * @property cloneUrl Required `string` value serialized in the `clone_url` wire
+ *   field.
+ * @property mirrorUrl Required `uri`-formatted value serialized in the
+ *   `mirror_url` wire field.
+ * @property hooksUrl Required `uri`-formatted value serialized in the
+ *   `hooks_url` wire field.
+ * @property svnUrl Required `uri`-formatted value serialized in the `svn_url`
+ *   wire field.
+ * @property homepage Required `uri`-formatted value serialized in the `homepage`
+ *   wire field.
+ * @property language Required `string` value serialized in the `language` wire
+ *   field.
+ * @property forksCount Required `integer` value serialized in the `forks_count`
+ *   wire field.
+ * @property stargazersCount Required `integer` value serialized in the
+ *   `stargazers_count` wire field.
+ * @property watchersCount Required `integer` value serialized in the
+ *   `watchers_count` wire field.
+ * @property size The size of the repository, in kilobytes. Size is calculated
+ *   hourly. When a repository is initially created, the size is 0.
  * @property defaultBranch The default branch of the repository.
- * @property openIssuesCount Required `integer` value serialized in the `open_issues_count` wire
- *   field.
+ * @property openIssuesCount Required `integer` value serialized in the
+ *   `open_issues_count` wire field.
  * @property hasIssues Whether issues are enabled.
  * @property hasProjects Whether projects are enabled.
  * @property hasWiki Whether the wiki is enabled.
- * @property hasPages Required `boolean` value serialized in the `has_pages` wire field.
+ * @property hasPages Required `boolean` value serialized in the `has_pages` wire
+ *   field.
  * @property hasDownloads Whether downloads are enabled.
  * @property archived Whether the repository is archived.
  * @property disabled Returns whether or not this repository disabled.
- * @property pushedAt Required `date-time`-formatted value serialized in the `pushed_at` wire field.
- * @property createdAt Required `date-time`-formatted value serialized in the `created_at` wire
+ * @property pushedAt Required `date-time`-formatted value serialized in the
+ *   `pushed_at` wire field.
+ * @property createdAt Required `date-time`-formatted value serialized in the
+ *   `created_at` wire field.
+ * @property updatedAt Required `date-time`-formatted value serialized in the
+ *   `updated_at` wire field.
+ * @property openIssues Required `integer` value serialized in the `open_issues`
+ *   wire field.
+ * @property watchers Required `integer` value serialized in the `watchers` wire
  *   field.
- * @property updatedAt Required `date-time`-formatted value serialized in the `updated_at` wire
- *   field.
- * @property openIssues Required `integer` value serialized in the `open_issues` wire field.
- * @property watchers Required `integer` value serialized in the `watchers` wire field.
  * @property organization A GitHub user.
- * @property permissions Optional object value serialized in the `permissions` wire field.
- * @property isTemplate Whether this repository acts as a template that can be used to generate new
- *   repositories.
+ * @property permissions Optional object value serialized in the `permissions`
+ *   wire field.
+ * @property isTemplate Whether this repository acts as a template that can be
+ *   used to generate new repositories.
  * @property topics Optional array value serialized in the `topics` wire field.
- * @property customProperties The custom properties that were defined for the repository. The keys
- *   are the custom property names, and the values are the corresponding custom property values.
+ * @property customProperties The custom properties that were defined for the
+ *   repository. The keys are the custom property names, and the values are the
+ *   corresponding custom property values.
  * @property hasDiscussions Whether discussions are enabled.
  * @property hasPullRequests Whether pull requests are enabled.
- * @property pullRequestCreationPolicy The policy controlling who can create pull requests: all or
- *   collaborators_only.
+ * @property pullRequestCreationPolicy The policy controlling who can create pull
+ *   requests: all or collaborators_only.
  * @property visibility The repository visibility: public, private, or internal.
  * @property allowRebaseMerge Whether to allow rebase merges for pull requests.
- * @property templateRepository Optional object value serialized in the `template_repository` wire
- *   field.
- * @property tempCloneToken Optional `string` value serialized in the `temp_clone_token` wire field.
+ * @property templateRepository Optional object value serialized in the
+ *   `template_repository` wire field.
+ * @property tempCloneToken Optional `string` value serialized in the
+ *   `temp_clone_token` wire field.
  * @property allowSquashMerge Whether to allow squash merges for pull requests.
- * @property allowAutoMerge Whether to allow Auto-merge to be used on pull requests.
- * @property deleteBranchOnMerge Whether to delete head branches when pull requests are merged
- * @property allowUpdateBranch Whether or not a pull request head branch that is behind its base
- *   branch can always be updated even if it is not required to be up to date before merging.
- * @property useSquashPrTitleAsDefault Whether a squash merge commit can use the pull request title
- *   as default. **This property is closing down. Please use `squash_merge_commit_title` instead.
- * @property squashMergeCommitTitle The default value for a squash merge commit title: -
- *   `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the
- *   commit's title (if only one commit) or the pull request's title (when more than one commit).
- * @property squashMergeCommitMessage The default value for a squash merge commit message: -
- *   `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES`
- *     - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
- *
- * @property mergeCommitTitle The default value for a merge commit title. - `PR_TITLE` - default to
- *   the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message
- *   (e.g., Merge pull request #123 from branch-name).
- * @property mergeCommitMessage The default value for a merge commit message. - `PR_TITLE` - default
- *   to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` -
- *   default to a blank commit message.
+ * @property allowAutoMerge Whether to allow Auto-merge to be used on pull
+ *   requests.
+ * @property deleteBranchOnMerge Whether to delete head branches when pull
+ *   requests are merged
+ * @property allowUpdateBranch Whether or not a pull request head branch that is
+ *   behind its base branch can always be updated even if it is not required to be
+ *   up to date before merging.
+ * @property useSquashPrTitleAsDefault Whether a squash merge commit can use the
+ *   pull request title as default. **This property is closing down. Please use
+ *   `squash_merge_commit_title` instead.
+ * @property squashMergeCommitTitle The default value for a squash merge commit
+ *   title: - `PR_TITLE` - default to the pull request's title. -
+ *   `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or
+ *   the pull request's title (when more than one commit).
+ * @property squashMergeCommitMessage The default value for a squash merge commit
+ *   message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES`
+ *   - default to the branch's commit messages. - `BLANK` - default to a blank
+ *   commit message.
+ * @property mergeCommitTitle The default value for a merge commit title. -
+ *   `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default
+ *   to the classic title for a merge message (e.g., Merge pull request #123 from
+ *   branch-name).
+ * @property mergeCommitMessage The default value for a merge commit message. -
+ *   `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the
+ *   pull request's body. - `BLANK` - default to a blank commit message.
  * @property allowMergeCommit Whether to allow merge commits for pull requests.
  * @property allowForking Whether to allow forking this repo
- * @property webCommitSignoffRequired Whether to require contributors to sign off on web-based
- *   commits
- * @property subscribersCount Optional `integer` value serialized in the `subscribers_count` wire
- *   field.
- * @property networkCount Optional `integer` value serialized in the `network_count` wire field.
- * @property masterBranch Optional `string` value serialized in the `master_branch` wire field.
- * @property starredAt Optional `string` value serialized in the `starred_at` wire field.
- * @property anonymousAccessEnabled Whether anonymous git access is enabled for this repository
+ * @property webCommitSignoffRequired Whether to require contributors to sign off
+ *   on web-based commits
+ * @property subscribersCount Optional `integer` value serialized in the
+ *   `subscribers_count` wire field.
+ * @property networkCount Optional `integer` value serialized in the
+ *   `network_count` wire field.
+ * @property masterBranch Optional `string` value serialized in the
+ *   `master_branch` wire field.
+ * @property starredAt Optional `string` value serialized in the `starred_at`
+ *   wire field.
+ * @property anonymousAccessEnabled Whether anonymous git access is enabled for
+ *   this repository
  */
 class NullableRepositoryWebhooks(
     val id: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
     val name: String,
     @com.fasterxml.jackson.annotation.JsonProperty("full_name") val fullName: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("license", required = true)
-    val license: NullableLicenseSimple?,
+    @com.fasterxml.jackson.annotation.JsonProperty("license", required = true) val license: NullableLicenseSimple?,
     val forks: Long,
     val owner: SimpleUser,
     @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
     val fork: Boolean,
     val url: String,
     @com.fasterxml.jackson.annotation.JsonProperty("archive_url") val archiveUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("assignees_url") val assigneesUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("blobs_url") val blobsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("branches_url") val branchesUrl: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url")
-    val collaboratorsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url") val collaboratorsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("compare_url") val compareUrl: String,
@@ -186,8 +239,7 @@ class NullableRepositoryWebhooks(
     @com.fasterxml.jackson.annotation.JsonProperty("languages_url") val languagesUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("merges_url") val mergesUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("milestones_url") val milestonesUrl: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("notifications_url")
-    val notificationsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("notifications_url") val notificationsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("pulls_url") val pullsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("releases_url") val releasesUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("ssh_url") val sshUrl: String,
@@ -199,14 +251,11 @@ class NullableRepositoryWebhooks(
     @com.fasterxml.jackson.annotation.JsonProperty("teams_url") val teamsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("trees_url") val treesUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("clone_url") val cloneUrl: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("mirror_url", required = true)
-    val mirrorUrl: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("mirror_url", required = true) val mirrorUrl: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("svn_url") val svnUrl: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("homepage", required = true)
-    val homepage: String?,
-    @com.fasterxml.jackson.annotation.JsonProperty("language", required = true)
-    val language: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("homepage", required = true) val homepage: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("language", required = true) val language: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("forks_count") val forksCount: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("stargazers_count") val stargazersCount: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("watchers_count") val watchersCount: Long,
@@ -220,63 +269,38 @@ class NullableRepositoryWebhooks(
     @com.fasterxml.jackson.annotation.JsonProperty("has_downloads") val hasDownloads: Boolean,
     val archived: Boolean,
     val disabled: Boolean,
-    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at", required = true)
-    val pushedAt: OffsetDateTime?,
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true)
-    val createdAt: OffsetDateTime?,
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true)
-    val updatedAt: OffsetDateTime?,
+    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at", required = true) val pushedAt: OffsetDateTime?,
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
     @com.fasterxml.jackson.annotation.JsonProperty("open_issues") val openIssues: Long,
     val watchers: Long,
     val organization: NullableSimpleUser? = null,
     val permissions: NullableRepositoryWebhooksPermissions? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("is_template") val isTemplate: Boolean? = null,
     val topics: List<String>? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_properties")
-    val customProperties: Map<String, Any>? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("has_discussions")
-    val hasDiscussions: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("has_pull_requests")
-    val hasPullRequests: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_creation_policy")
-    val pullRequestCreationPolicy: NullableRepositoryWebhooksPullRequestCreationPolicyEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_properties") val customProperties: Map<String, Any>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_discussions") val hasDiscussions: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_creation_policy") val pullRequestCreationPolicy: NullableRepositoryWebhooksPullRequestCreationPolicyEnum? = null,
     val visibility: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_rebase_merge")
-    val allowRebaseMerge: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("template_repository")
-    val templateRepository: NullableRepositoryWebhooksTemplateRepository? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("temp_clone_token")
-    val tempCloneToken: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_squash_merge")
-    val allowSquashMerge: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_auto_merge")
-    val allowAutoMerge: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("delete_branch_on_merge")
-    val deleteBranchOnMerge: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_update_branch")
-    val allowUpdateBranch: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("use_squash_pr_title_as_default")
-    val useSquashPrTitleAsDefault: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_title")
-    val squashMergeCommitTitle: NullableRepositoryWebhooksSquashMergeCommitTitleEnum? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_message")
-    val squashMergeCommitMessage: NullableRepositoryWebhooksSquashMergeCommitMessageEnum? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_title")
-    val mergeCommitTitle: NullableRepositoryWebhooksMergeCommitTitleEnum? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_message")
-    val mergeCommitMessage: NullableRepositoryWebhooksMergeCommitMessageEnum? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_merge_commit")
-    val allowMergeCommit: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_forking")
-    val allowForking: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("web_commit_signoff_required")
-    val webCommitSignoffRequired: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("subscribers_count")
-    val subscribersCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_rebase_merge") val allowRebaseMerge: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("template_repository") val templateRepository: NullableRepositoryWebhooksTemplateRepository? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("temp_clone_token") val tempCloneToken: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_squash_merge") val allowSquashMerge: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_auto_merge") val allowAutoMerge: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_update_branch") val allowUpdateBranch: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("use_squash_pr_title_as_default") val useSquashPrTitleAsDefault: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_title") val squashMergeCommitTitle: NullableRepositoryWebhooksSquashMergeCommitTitleEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_message") val squashMergeCommitMessage: NullableRepositoryWebhooksSquashMergeCommitMessageEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_title") val mergeCommitTitle: NullableRepositoryWebhooksMergeCommitTitleEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_message") val mergeCommitMessage: NullableRepositoryWebhooksMergeCommitMessageEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_merge_commit") val allowMergeCommit: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_forking") val allowForking: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("web_commit_signoff_required") val webCommitSignoffRequired: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("subscribers_count") val subscribersCount: Long? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("network_count") val networkCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("master_branch")
-    val masterBranch: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("master_branch") val masterBranch: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("starred_at") val starredAt: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("anonymous_access_enabled")
-    val anonymousAccessEnabled: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("anonymous_access_enabled") val anonymousAccessEnabled: Boolean? = null
 )

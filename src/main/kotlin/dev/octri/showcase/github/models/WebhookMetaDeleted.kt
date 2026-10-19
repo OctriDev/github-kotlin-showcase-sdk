@@ -3,76 +3,100 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `config` wire field. */
+/**
+ * Required object value serialized in the `config` wire field.
+ */
 data class WebhookMetaDeletedHookConfig(
-    /** Required enumerated value serialized in the `content_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_type")
-    val contentType: WebhookMetaDeletedHookConfigContentTypeEnum,
-    /** Required `string` value serialized in the `insecure_ssl` wire field. */
+    /**
+     * Required enumerated value serialized in the `content_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("content_type") val contentType: WebhookMetaDeletedHookConfigContentTypeEnum,
+    /**
+     * Required `string` value serialized in the `insecure_ssl` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("insecure_ssl") val insecureSsl: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Optional `string` value serialized in the `secret` wire field. */
-    val secret: String? = null,
+    /**
+     * Optional `string` value serialized in the `secret` wire field.
+     */
+    val secret: String? = null
 )
 
 /**
- * The deleted webhook. This will contain different keys based on the type of webhook it is:
- * repository, organization, business, app, or GitHub Marketplace.
+ * The deleted webhook. This will contain different keys based on the type of webhook it is: repository, organization, business, app, or GitHub Marketplace.
  */
 data class WebhookMetaDeletedHook(
-    /** Required `boolean` value serialized in the `active` wire field. */
+    /**
+     * Required `boolean` value serialized in the `active` wire field.
+     */
     val active: Boolean,
-    /** Required object value serialized in the `config` wire field. */
+    /**
+     * Required object value serialized in the `config` wire field.
+     */
     val config: WebhookMetaDeletedHookConfig,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /** Required array value serialized in the `events` wire field. */
+    /**
+     * Required array value serialized in the `events` wire field.
+     */
     val events: List<WebhookMetaDeletedHookEventsItemEnum>,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Required `string` value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String,
+    /**
+     * Required `string` value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String
 )
 
-/** Typed representation of the `WebhookMetaDeleted` API schema. */
+/**
+ * Typed representation of the `WebhookMetaDeleted` API schema.
+ */
 data class WebhookMetaDeleted(
-    /** Required enumerated value serialized in the `action` wire field. */
+    /**
+     * Required enumerated value serialized in the `action` wire field.
+     */
     val action: WebhookMetaDeletedActionEnum,
     /**
-     * The deleted webhook. This will contain different keys based on the type of webhook it is:
-     * repository, organization, business, app, or GitHub Marketplace.
+     * The deleted webhook. This will contain different keys based on the type of webhook it is: repository, organization, business, app, or GitHub Marketplace.
      */
     val hook: WebhookMetaDeletedHook,
-    /** The id of the modified webhook. */
+    /**
+     * The id of the modified webhook.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("hook_id") val hookId: Long,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: NullableRepositoryWebhooks? = null,
-    /** A GitHub user. */
-    val sender: SimpleUser? = null,
+    /**
+     * A GitHub user.
+     */
+    val sender: SimpleUser? = null
 )

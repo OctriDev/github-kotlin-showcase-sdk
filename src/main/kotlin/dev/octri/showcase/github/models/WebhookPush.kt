@@ -5,205 +5,358 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookPushCommitsItemAuthor(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookPushCommitsItemCommitter(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Required object value serialized in the `commits[]` wire field. */
+/**
+ * Required object value serialized in the `commits[]` wire field.
+ */
 data class WebhookPushCommitsItem(
-    /** Metaproperties for Git author/committer information. */
+    /**
+     * Metaproperties for Git author/committer information.
+     */
     val author: WebhookPushCommitsItemAuthor,
-    /** Metaproperties for Git author/committer information. */
+    /**
+     * Metaproperties for Git author/committer information.
+     */
     val committer: WebhookPushCommitsItemCommitter,
-    /** Whether this commit is distinct from any that have been pushed before. */
+    /**
+     * Whether this commit is distinct from any that have been pushed before.
+     */
     val distinct: Boolean,
-    /** Required `string` value serialized in the `id` wire field. */
+    /**
+     * Required `string` value serialized in the `id` wire field.
+     */
     val id: String,
-    /** The commit message. */
+    /**
+     * The commit message.
+     */
     val message: String,
-    /** The ISO 8601 timestamp of the commit. */
+    /**
+     * The ISO 8601 timestamp of the commit.
+     */
     val timestamp: OffsetDateTime,
-    /** Required `string` value serialized in the `tree_id` wire field. */
+    /**
+     * Required `string` value serialized in the `tree_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tree_id") val treeId: String,
-    /** URL that points to the commit API resource. */
+    /**
+     * URL that points to the commit API resource.
+     */
     val url: String,
     /**
-     * An array of files added in the commit. A maximum of 3000 changed files will be reported per
-     * commit.
+     * An array of files added in the commit. A maximum of 3000 changed files will be reported per commit.
      */
     val added: List<String>? = null,
     /**
-     * An array of files modified by the commit. A maximum of 3000 changed files will be reported
-     * per commit.
+     * An array of files modified by the commit. A maximum of 3000 changed files will be reported per commit.
      */
     val modified: List<String>? = null,
     /**
-     * An array of files removed in the commit. A maximum of 3000 changed files will be reported per
-     * commit.
+     * An array of files removed in the commit. A maximum of 3000 changed files will be reported per commit.
      */
-    val removed: List<String>? = null,
+    val removed: List<String>? = null
 )
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookPushHeadCommitAuthor(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookPushHeadCommitCommitter(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Required object value serialized in the `head_commit` wire field. */
+/**
+ * Required object value serialized in the `head_commit` wire field.
+ */
 data class WebhookPushHeadCommit(
-    /** Metaproperties for Git author/committer information. */
+    /**
+     * Metaproperties for Git author/committer information.
+     */
     val author: WebhookPushHeadCommitAuthor,
-    /** Metaproperties for Git author/committer information. */
+    /**
+     * Metaproperties for Git author/committer information.
+     */
     val committer: WebhookPushHeadCommitCommitter,
-    /** Whether this commit is distinct from any that have been pushed before. */
+    /**
+     * Whether this commit is distinct from any that have been pushed before.
+     */
     val distinct: Boolean,
-    /** Required `string` value serialized in the `id` wire field. */
+    /**
+     * Required `string` value serialized in the `id` wire field.
+     */
     val id: String,
-    /** The commit message. */
+    /**
+     * The commit message.
+     */
     val message: String,
-    /** The ISO 8601 timestamp of the commit. */
+    /**
+     * The ISO 8601 timestamp of the commit.
+     */
     val timestamp: OffsetDateTime,
-    /** Required `string` value serialized in the `tree_id` wire field. */
+    /**
+     * Required `string` value serialized in the `tree_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tree_id") val treeId: String,
-    /** URL that points to the commit API resource. */
+    /**
+     * URL that points to the commit API resource.
+     */
     val url: String,
-    /** An array of files added in the commit. */
+    /**
+     * An array of files added in the commit.
+     */
     val added: List<String>? = null,
-    /** An array of files modified by the commit. */
+    /**
+     * An array of files modified by the commit.
+     */
     val modified: List<String>? = null,
-    /** An array of files removed in the commit. */
-    val removed: List<String>? = null,
+    /**
+     * An array of files removed in the commit.
+     */
+    val removed: List<String>? = null
 )
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookPushPusher(
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Optional `email`-formatted value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Required object value serialized in the `license` wire field. */
+/**
+ * Required object value serialized in the `license` wire field.
+ */
 data class WebhookPushRepositoryLicense(
-    /** Required `string` value serialized in the `key` wire field. */
+    /**
+     * Required `string` value serialized in the `key` wire field.
+     */
     val key: String,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `spdx_id` wire field. */
+    /**
+     * Required `string` value serialized in the `spdx_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("spdx_id") val spdxId: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("url", required = true) val url: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("url", required = true) val url: String?
 )
 
-/** Required object value serialized in the `owner` wire field. */
+/**
+ * Required object value serialized in the `owner` wire field.
+ */
 data class WebhookPushRepositoryOwner(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: WebhookPushRepositoryOwnerTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** Optional object value serialized in the `permissions` wire field. */
+/**
+ * Optional object value serialized in the `permissions` wire field.
+ */
 data class WebhookPushRepositoryPermissions(
-    /** Required `boolean` value serialized in the `admin` wire field. */
+    /**
+     * Required `boolean` value serialized in the `admin` wire field.
+     */
     val admin: Boolean,
-    /** Required `boolean` value serialized in the `pull` wire field. */
+    /**
+     * Required `boolean` value serialized in the `pull` wire field.
+     */
     val pull: Boolean,
-    /** Required `boolean` value serialized in the `push` wire field. */
+    /**
+     * Required `boolean` value serialized in the `push` wire field.
+     */
     val push: Boolean,
-    /** Optional `boolean` value serialized in the `maintain` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `maintain` wire field.
+     */
     val maintain: Boolean? = null,
-    /** Optional `boolean` value serialized in the `triage` wire field. */
-    val triage: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `triage` wire field.
+     */
+    val triage: Boolean? = null
 )

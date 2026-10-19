@@ -3,101 +3,192 @@
 
 package dev.octri.showcase.github.models
 
-/** A GitHub repository. */
+/**
+ * A GitHub repository.
+ */
 class SimpleRepository(
-    /** A unique identifier of the repository. */
+    /**
+     * A unique identifier of the repository.
+     */
     val id: Long,
-    /** The GraphQL identifier of the repository. */
+    /**
+     * The GraphQL identifier of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** The name of the repository. */
+    /**
+     * The name of the repository.
+     */
     val name: String,
-    /** The full, globally unique, name of the repository. */
+    /**
+     * The full, globally unique, name of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("full_name") val fullName: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val owner: SimpleUser,
-    /** Whether the repository is private. */
+    /**
+     * Whether the repository is private.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean,
-    /** The URL to view the repository on GitHub.com. */
+    /**
+     * The URL to view the repository on GitHub.com.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** The repository description. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Whether the repository is a fork. */
+    /**
+     * The repository description.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Whether the repository is a fork.
+     */
     val fork: Boolean,
-    /** The URL to get more information about the repository from the GitHub API. */
+    /**
+     * The URL to get more information about the repository from the GitHub API.
+     */
     val url: String,
-    /** A template for the API URL to download the repository as an archive. */
+    /**
+     * A template for the API URL to download the repository as an archive.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("archive_url") val archiveUrl: String,
-    /** A template for the API URL to list the available assignees for issues in the repository. */
+    /**
+     * A template for the API URL to list the available assignees for issues in the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("assignees_url") val assigneesUrl: String,
-    /** A template for the API URL to create or retrieve a raw Git blob in the repository. */
+    /**
+     * A template for the API URL to create or retrieve a raw Git blob in the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("blobs_url") val blobsUrl: String,
-    /** A template for the API URL to get information about branches in the repository. */
+    /**
+     * A template for the API URL to get information about branches in the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("branches_url") val branchesUrl: String,
-    /** A template for the API URL to get information about collaborators of the repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url")
-    val collaboratorsUrl: String,
-    /** A template for the API URL to get information about comments on the repository. */
+    /**
+     * A template for the API URL to get information about collaborators of the repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url") val collaboratorsUrl: String,
+    /**
+     * A template for the API URL to get information about comments on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
-    /** A template for the API URL to get information about commits on the repository. */
+    /**
+     * A template for the API URL to get information about commits on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String,
-    /** A template for the API URL to compare two commits or refs. */
+    /**
+     * A template for the API URL to compare two commits or refs.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("compare_url") val compareUrl: String,
-    /** A template for the API URL to get the contents of the repository. */
+    /**
+     * A template for the API URL to get the contents of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("contents_url") val contentsUrl: String,
-    /** A template for the API URL to list the contributors to the repository. */
+    /**
+     * A template for the API URL to list the contributors to the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("contributors_url") val contributorsUrl: String,
-    /** The API URL to list the deployments of the repository. */
+    /**
+     * The API URL to list the deployments of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("deployments_url") val deploymentsUrl: String,
-    /** The API URL to list the downloads on the repository. */
+    /**
+     * The API URL to list the downloads on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("downloads_url") val downloadsUrl: String,
-    /** The API URL to list the events of the repository. */
+    /**
+     * The API URL to list the events of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String,
-    /** The API URL to list the forks of the repository. */
+    /**
+     * The API URL to list the forks of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("forks_url") val forksUrl: String,
-    /** A template for the API URL to get information about Git commits of the repository. */
+    /**
+     * A template for the API URL to get information about Git commits of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_commits_url") val gitCommitsUrl: String,
-    /** A template for the API URL to get information about Git refs of the repository. */
+    /**
+     * A template for the API URL to get information about Git refs of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_refs_url") val gitRefsUrl: String,
-    /** A template for the API URL to get information about Git tags of the repository. */
+    /**
+     * A template for the API URL to get information about Git tags of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_tags_url") val gitTagsUrl: String,
-    /** A template for the API URL to get information about issue comments on the repository. */
+    /**
+     * A template for the API URL to get information about issue comments on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_comment_url") val issueCommentUrl: String,
-    /** A template for the API URL to get information about issue events on the repository. */
+    /**
+     * A template for the API URL to get information about issue events on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_events_url") val issueEventsUrl: String,
-    /** A template for the API URL to get information about issues on the repository. */
+    /**
+     * A template for the API URL to get information about issues on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issues_url") val issuesUrl: String,
-    /** A template for the API URL to get information about deploy keys on the repository. */
+    /**
+     * A template for the API URL to get information about deploy keys on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("keys_url") val keysUrl: String,
-    /** A template for the API URL to get information about labels of the repository. */
+    /**
+     * A template for the API URL to get information about labels of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("labels_url") val labelsUrl: String,
-    /** The API URL to get information about the languages of the repository. */
+    /**
+     * The API URL to get information about the languages of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("languages_url") val languagesUrl: String,
-    /** The API URL to merge branches in the repository. */
+    /**
+     * The API URL to merge branches in the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("merges_url") val mergesUrl: String,
-    /** A template for the API URL to get information about milestones of the repository. */
+    /**
+     * A template for the API URL to get information about milestones of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("milestones_url") val milestonesUrl: String,
-    /** A template for the API URL to get information about notifications on the repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("notifications_url")
-    val notificationsUrl: String,
-    /** A template for the API URL to get information about pull requests on the repository. */
+    /**
+     * A template for the API URL to get information about notifications on the repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("notifications_url") val notificationsUrl: String,
+    /**
+     * A template for the API URL to get information about pull requests on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("pulls_url") val pullsUrl: String,
-    /** A template for the API URL to get information about releases on the repository. */
+    /**
+     * A template for the API URL to get information about releases on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("releases_url") val releasesUrl: String,
-    /** The API URL to list the stargazers on the repository. */
+    /**
+     * The API URL to list the stargazers on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("stargazers_url") val stargazersUrl: String,
-    /** A template for the API URL to get information about statuses of a commit. */
+    /**
+     * A template for the API URL to get information about statuses of a commit.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String,
-    /** The API URL to list the subscribers on the repository. */
+    /**
+     * The API URL to list the subscribers on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("subscribers_url") val subscribersUrl: String,
-    /** The API URL to subscribe to notifications for this repository. */
+    /**
+     * The API URL to subscribe to notifications for this repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("subscription_url") val subscriptionUrl: String,
-    /** The API URL to get information about tags on the repository. */
+    /**
+     * The API URL to get information about tags on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tags_url") val tagsUrl: String,
-    /** The API URL to list the teams on the repository. */
+    /**
+     * The API URL to list the teams on the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("teams_url") val teamsUrl: String,
-    /** A template for the API URL to create or retrieve a raw Git tree of the repository. */
+    /**
+     * A template for the API URL to create or retrieve a raw Git tree of the repository.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("trees_url") val treesUrl: String,
-    /** The API URL to list the hooks on the repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String,
+    /**
+     * The API URL to list the hooks on the repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String
 )

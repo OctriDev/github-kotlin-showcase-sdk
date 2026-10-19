@@ -4,6 +4,7 @@
 package dev.octri.showcase.github.methods
 
 import com.fasterxml.jackson.annotation.JsonProperty as JacksonJsonProperty
+
 import dev.octri.showcase.github.AppPermissions
 import dev.octri.showcase.github.AppsListAccountsForPlanParameterEnum
 import dev.octri.showcase.github.AppsListAccountsForPlanStubbedParameterEnum
@@ -42,637 +43,1013 @@ import dev.octri.showcase.github.WebhookConfigUrl
 import java.time.OffsetDateTime
 
 object Apps {
-    /** The set of permissions for the GitHub app */
-    data class IntegrationPermissions(
-        /** Optional `string` value serialized in the `issues` wire field. */
-        val issues: String? = null,
-        /** Optional `string` value serialized in the `checks` wire field. */
-        val checks: String? = null,
-        /** Optional `string` value serialized in the `metadata` wire field. */
-        val metadata: String? = null,
-        /** Optional `string` value serialized in the `contents` wire field. */
-        val contents: String? = null,
-        /** Optional `string` value serialized in the `deployments` wire field. */
-        val deployments: String? = null,
-    ) {
-        @field:com.fasterxml.jackson.annotation.JsonAnySetter
-        @get:com.fasterxml.jackson.annotation.JsonAnyGetter
-        val additionalProperties: MutableMap<String, Any?> = linkedMapOf()
-    }
+/**
+ * The set of permissions for the GitHub app
+ */
+data class IntegrationPermissions(
+    /**
+     * Optional `string` value serialized in the `issues` wire field.
+     */
+    val issues: String? = null,
+    /**
+     * Optional `string` value serialized in the `checks` wire field.
+     */
+    val checks: String? = null,
+    /**
+     * Optional `string` value serialized in the `metadata` wire field.
+     */
+    val metadata: String? = null,
+    /**
+     * Optional `string` value serialized in the `contents` wire field.
+     */
+    val contents: String? = null,
+    /**
+     * Optional `string` value serialized in the `deployments` wire field.
+     */
+    val deployments: String? = null
+) {
+    @field:com.fasterxml.jackson.annotation.JsonAnySetter
+    @get:com.fasterxml.jackson.annotation.JsonAnyGetter
+    val additionalProperties: MutableMap<String, Any?> = linkedMapOf()
+}
 
-    data class AppsCreateFromManifestResponse(
-        /** Unique identifier of the GitHub app */
-        val id: Long,
-        /** Required `string` value serialized in the `node_id` wire field. */
-        @JacksonJsonProperty("node_id") val nodeId: String,
-        @JacksonJsonProperty("client_id") val clientId: String,
-        /** Required API value serialized in the `owner` wire field. */
-        val owner: IntegrationOwner,
-        /** The name of the GitHub app */
-        val name: String,
-        /** Required `string` value serialized in the `description` wire field. */
-        @JacksonJsonProperty("description", required = true) val description: String?,
-        /** Required `uri`-formatted value serialized in the `external_url` wire field. */
-        @JacksonJsonProperty("external_url") val externalUrl: String,
-        /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-        @JacksonJsonProperty("html_url") val htmlUrl: String,
-        /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-        @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-        /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-        @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-        /** The set of permissions for the GitHub app */
-        val permissions: IntegrationPermissions,
-        /**
-         * The list of events for the GitHub app. Note that the `installation_target`,
-         * `security_advisory`, and `meta` events are not included because they are global events
-         * and not specific to an installation.
-         */
-        val events: List<String>,
-        @JacksonJsonProperty("client_secret") val clientSecret: String,
-        @JacksonJsonProperty("webhook_secret", required = true) val webhookSecret: String?,
-        val pem: String,
-        /** The slug name of the GitHub app */
-        val slug: String? = null,
-        /**
-         * The number of installations associated with the GitHub app. Only returned when the
-         * integration is requesting details about itself.
-         */
-        @JacksonJsonProperty("installations_count") val installationsCount: Long? = null,
-    ) {
-        @field:com.fasterxml.jackson.annotation.JsonAnySetter
-        @get:com.fasterxml.jackson.annotation.JsonAnyGetter
-        val additionalProperties: MutableMap<String, Any?> = linkedMapOf()
-    }
+data class AppsCreateFromManifestResponse(
+    /**
+     * Unique identifier of the GitHub app
+     */
+    val id: Long,
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
+    @JacksonJsonProperty("node_id") val nodeId: String,
+    @JacksonJsonProperty("client_id") val clientId: String,
+    /**
+     * Required API value serialized in the `owner` wire field.
+     */
+    val owner: IntegrationOwner,
+    /**
+     * The name of the GitHub app
+     */
+    val name: String,
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @JacksonJsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `external_url` wire field.
+     */
+    @JacksonJsonProperty("external_url") val externalUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @JacksonJsonProperty("html_url") val htmlUrl: String,
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * The set of permissions for the GitHub app
+     */
+    val permissions: IntegrationPermissions,
+    /**
+     * The list of events for the GitHub app. Note that the `installation_target`, `security_advisory`, and `meta` events are not included because they are global events and not specific to an installation.
+     */
+    val events: List<String>,
+    @JacksonJsonProperty("client_secret") val clientSecret: String,
+    @JacksonJsonProperty("webhook_secret", required = true) val webhookSecret: String?,
+    val pem: String,
+    /**
+     * The slug name of the GitHub app
+     */
+    val slug: String? = null,
+    /**
+     * The number of installations associated with the GitHub app. Only returned when the integration is requesting details about itself.
+     */
+    @JacksonJsonProperty("installations_count") val installationsCount: Long? = null
+) {
+    @field:com.fasterxml.jackson.annotation.JsonAnySetter
+    @get:com.fasterxml.jackson.annotation.JsonAnyGetter
+    val additionalProperties: MutableMap<String, Any?> = linkedMapOf()
+}
 
-    /** Optional object value serialized in the `permissions` wire field. */
-    data class AppsListReposAccessibleToInstallationResponseRepositoriesItemPermissions(
-        /** Required `boolean` value serialized in the `admin` wire field. */
-        val admin: Boolean,
-        /** Required `boolean` value serialized in the `pull` wire field. */
-        val pull: Boolean,
-        /** Required `boolean` value serialized in the `push` wire field. */
-        val push: Boolean,
-        /** Optional `boolean` value serialized in the `triage` wire field. */
-        val triage: Boolean? = null,
-        /** Optional `boolean` value serialized in the `maintain` wire field. */
-        val maintain: Boolean? = null,
-    )
+/**
+ * Optional object value serialized in the `permissions` wire field.
+ */
+data class AppsListReposAccessibleToInstallationResponseRepositoriesItemPermissions(
+    /**
+     * Required `boolean` value serialized in the `admin` wire field.
+     */
+    val admin: Boolean,
+    /**
+     * Required `boolean` value serialized in the `pull` wire field.
+     */
+    val pull: Boolean,
+    /**
+     * Required `boolean` value serialized in the `push` wire field.
+     */
+    val push: Boolean,
+    /**
+     * Optional `boolean` value serialized in the `triage` wire field.
+     */
+    val triage: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `maintain` wire field.
+     */
+    val maintain: Boolean? = null
+)
 
-    /** The status of the code search index for this repository */
-    data class AppsListReposAccessibleToInstallationResponseRepositoriesItemXbc571f6d86(
-        /** Optional `boolean` value serialized in the `lexical_search_ok` wire field. */
-        @JacksonJsonProperty("lexical_search_ok") val lexicalSearchOk: Boolean? = null,
-        /** Optional `string` value serialized in the `lexical_commit_sha` wire field. */
-        @JacksonJsonProperty("lexical_commit_sha") val lexicalCommitSha: String? = null,
-    )
 
-    class AppsListReposAccessibleToInstallationResponseRepositoriesItem(
-        /** Unique identifier of the repository */
-        val id: Long,
-        /** Required `string` value serialized in the `node_id` wire field. */
-        @JacksonJsonProperty("node_id") val nodeId: String,
-        /** The name of the repository. */
-        val name: String,
-        /** Required `string` value serialized in the `full_name` wire field. */
-        @JacksonJsonProperty("full_name") val fullName: String,
-        /** License Simple */
-        @JacksonJsonProperty("license", required = true) val license: NullableLicenseSimple?,
-        /** Required `integer` value serialized in the `forks` wire field. */
-        val forks: Long,
-        /** A GitHub user. */
-        val owner: SimpleUser,
-        /** Whether the repository is private or public. */
-        @JacksonJsonProperty("private") val `private`: Boolean,
-        /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-        @JacksonJsonProperty("html_url") val htmlUrl: String,
-        /** Required `string` value serialized in the `description` wire field. */
-        @JacksonJsonProperty("description", required = true) val description: String?,
-        /** Required `boolean` value serialized in the `fork` wire field. */
-        val fork: Boolean,
-        /** Required `uri`-formatted value serialized in the `url` wire field. */
-        val url: String,
-        /** Required `string` value serialized in the `archive_url` wire field. */
-        @JacksonJsonProperty("archive_url") val archiveUrl: String,
-        /** Required `string` value serialized in the `assignees_url` wire field. */
-        @JacksonJsonProperty("assignees_url") val assigneesUrl: String,
-        /** Required `string` value serialized in the `blobs_url` wire field. */
-        @JacksonJsonProperty("blobs_url") val blobsUrl: String,
-        /** Required `string` value serialized in the `branches_url` wire field. */
-        @JacksonJsonProperty("branches_url") val branchesUrl: String,
-        /** Required `string` value serialized in the `collaborators_url` wire field. */
-        @JacksonJsonProperty("collaborators_url") val collaboratorsUrl: String,
-        /** Required `string` value serialized in the `comments_url` wire field. */
-        @JacksonJsonProperty("comments_url") val commentsUrl: String,
-        /** Required `string` value serialized in the `commits_url` wire field. */
-        @JacksonJsonProperty("commits_url") val commitsUrl: String,
-        /** Required `string` value serialized in the `compare_url` wire field. */
-        @JacksonJsonProperty("compare_url") val compareUrl: String,
-        /** Required `string` value serialized in the `contents_url` wire field. */
-        @JacksonJsonProperty("contents_url") val contentsUrl: String,
-        /** Required `uri`-formatted value serialized in the `contributors_url` wire field. */
-        @JacksonJsonProperty("contributors_url") val contributorsUrl: String,
-        /** Required `uri`-formatted value serialized in the `deployments_url` wire field. */
-        @JacksonJsonProperty("deployments_url") val deploymentsUrl: String,
-        /** Required `uri`-formatted value serialized in the `downloads_url` wire field. */
-        @JacksonJsonProperty("downloads_url") val downloadsUrl: String,
-        /** Required `uri`-formatted value serialized in the `events_url` wire field. */
-        @JacksonJsonProperty("events_url") val eventsUrl: String,
-        /** Required `uri`-formatted value serialized in the `forks_url` wire field. */
-        @JacksonJsonProperty("forks_url") val forksUrl: String,
-        /** Required `string` value serialized in the `git_commits_url` wire field. */
-        @JacksonJsonProperty("git_commits_url") val gitCommitsUrl: String,
-        /** Required `string` value serialized in the `git_refs_url` wire field. */
-        @JacksonJsonProperty("git_refs_url") val gitRefsUrl: String,
-        /** Required `string` value serialized in the `git_tags_url` wire field. */
-        @JacksonJsonProperty("git_tags_url") val gitTagsUrl: String,
-        /** Required `string` value serialized in the `git_url` wire field. */
-        @JacksonJsonProperty("git_url") val gitUrl: String,
-        /** Required `string` value serialized in the `issue_comment_url` wire field. */
-        @JacksonJsonProperty("issue_comment_url") val issueCommentUrl: String,
-        /** Required `string` value serialized in the `issue_events_url` wire field. */
-        @JacksonJsonProperty("issue_events_url") val issueEventsUrl: String,
-        /** Required `string` value serialized in the `issues_url` wire field. */
-        @JacksonJsonProperty("issues_url") val issuesUrl: String,
-        /** Required `string` value serialized in the `keys_url` wire field. */
-        @JacksonJsonProperty("keys_url") val keysUrl: String,
-        /** Required `string` value serialized in the `labels_url` wire field. */
-        @JacksonJsonProperty("labels_url") val labelsUrl: String,
-        /** Required `uri`-formatted value serialized in the `languages_url` wire field. */
-        @JacksonJsonProperty("languages_url") val languagesUrl: String,
-        /** Required `uri`-formatted value serialized in the `merges_url` wire field. */
-        @JacksonJsonProperty("merges_url") val mergesUrl: String,
-        /** Required `string` value serialized in the `milestones_url` wire field. */
-        @JacksonJsonProperty("milestones_url") val milestonesUrl: String,
-        /** Required `string` value serialized in the `notifications_url` wire field. */
-        @JacksonJsonProperty("notifications_url") val notificationsUrl: String,
-        /** Required `string` value serialized in the `pulls_url` wire field. */
-        @JacksonJsonProperty("pulls_url") val pullsUrl: String,
-        /** Required `string` value serialized in the `releases_url` wire field. */
-        @JacksonJsonProperty("releases_url") val releasesUrl: String,
-        /** Required `string` value serialized in the `ssh_url` wire field. */
-        @JacksonJsonProperty("ssh_url") val sshUrl: String,
-        /** Required `uri`-formatted value serialized in the `stargazers_url` wire field. */
-        @JacksonJsonProperty("stargazers_url") val stargazersUrl: String,
-        /** Required `string` value serialized in the `statuses_url` wire field. */
-        @JacksonJsonProperty("statuses_url") val statusesUrl: String,
-        /** Required `uri`-formatted value serialized in the `subscribers_url` wire field. */
-        @JacksonJsonProperty("subscribers_url") val subscribersUrl: String,
-        /** Required `uri`-formatted value serialized in the `subscription_url` wire field. */
-        @JacksonJsonProperty("subscription_url") val subscriptionUrl: String,
-        /** Required `uri`-formatted value serialized in the `tags_url` wire field. */
-        @JacksonJsonProperty("tags_url") val tagsUrl: String,
-        /** Required `uri`-formatted value serialized in the `teams_url` wire field. */
-        @JacksonJsonProperty("teams_url") val teamsUrl: String,
-        /** Required `string` value serialized in the `trees_url` wire field. */
-        @JacksonJsonProperty("trees_url") val treesUrl: String,
-        /** Required `string` value serialized in the `clone_url` wire field. */
-        @JacksonJsonProperty("clone_url") val cloneUrl: String,
-        /** Required `uri`-formatted value serialized in the `mirror_url` wire field. */
-        @JacksonJsonProperty("mirror_url", required = true) val mirrorUrl: String?,
-        /** Required `uri`-formatted value serialized in the `hooks_url` wire field. */
-        @JacksonJsonProperty("hooks_url") val hooksUrl: String,
-        /** Required `uri`-formatted value serialized in the `svn_url` wire field. */
-        @JacksonJsonProperty("svn_url") val svnUrl: String,
-        /** Required `uri`-formatted value serialized in the `homepage` wire field. */
-        @JacksonJsonProperty("homepage", required = true) val homepage: String?,
-        /** Required `string` value serialized in the `language` wire field. */
-        @JacksonJsonProperty("language", required = true) val language: String?,
-        /** Required `integer` value serialized in the `forks_count` wire field. */
-        @JacksonJsonProperty("forks_count") val forksCount: Long,
-        /** Required `integer` value serialized in the `stargazers_count` wire field. */
-        @JacksonJsonProperty("stargazers_count") val stargazersCount: Long,
-        /** Required `integer` value serialized in the `watchers_count` wire field. */
-        @JacksonJsonProperty("watchers_count") val watchersCount: Long,
-        /**
-         * The size of the repository, in kilobytes. Size is calculated hourly. When a repository is
-         * initially created, the size is 0.
-         */
-        val size: Long,
-        /** The default branch of the repository. */
-        @JacksonJsonProperty("default_branch") val defaultBranch: String,
-        /** Required `integer` value serialized in the `open_issues_count` wire field. */
-        @JacksonJsonProperty("open_issues_count") val openIssuesCount: Long,
-        /** Whether issues are enabled. */
-        @JacksonJsonProperty("has_issues") val hasIssues: Boolean,
-        /** Whether projects are enabled. */
-        @JacksonJsonProperty("has_projects") val hasProjects: Boolean,
-        /** Whether the wiki is enabled. */
-        @JacksonJsonProperty("has_wiki") val hasWiki: Boolean,
-        /** Required `boolean` value serialized in the `has_pages` wire field. */
-        @JacksonJsonProperty("has_pages") val hasPages: Boolean,
-        /** Whether downloads are enabled. */
-        @JacksonJsonProperty("has_downloads") val hasDownloads: Boolean,
-        /** Whether the repository is archived. */
-        val archived: Boolean,
-        /** Returns whether or not this repository disabled. */
-        val disabled: Boolean,
-        /** Required `date-time`-formatted value serialized in the `pushed_at` wire field. */
-        @JacksonJsonProperty("pushed_at", required = true) val pushedAt: OffsetDateTime?,
-        /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-        @JacksonJsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
-        /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-        @JacksonJsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
-        /** Required `integer` value serialized in the `open_issues` wire field. */
-        @JacksonJsonProperty("open_issues") val openIssues: Long,
-        /** Required `integer` value serialized in the `watchers` wire field. */
-        val watchers: Long,
-        /** Optional object value serialized in the `permissions` wire field. */
-        val permissions: AppsListReposAccessibleToInstallationResponseRepositoriesItemPermissions? =
-            null,
-        /**
-         * Whether this repository acts as a template that can be used to generate new repositories.
-         */
-        @JacksonJsonProperty("is_template") val isTemplate: Boolean? = null,
-        /** Optional array value serialized in the `topics` wire field. */
-        val topics: List<String>? = null,
-        /** Whether discussions are enabled. */
-        @JacksonJsonProperty("has_discussions") val hasDiscussions: Boolean? = null,
-        /** Whether pull requests are enabled. */
-        @JacksonJsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
-        /** The policy controlling who can create pull requests: all or collaborators_only. */
-        @JacksonJsonProperty("pull_request_creation_policy")
-        val pullRequestCreationPolicy:
-            AppsListReposAccessibleToInstallationResponseRepositoriesItemX32674cb0d2? =
-            null,
-        /** The repository visibility: public, private, or internal. */
-        val visibility: String? = null,
-        /** Whether to allow rebase merges for pull requests. */
-        @JacksonJsonProperty("allow_rebase_merge") val allowRebaseMerge: Boolean? = null,
-        /** Optional `string` value serialized in the `temp_clone_token` wire field. */
-        @JacksonJsonProperty("temp_clone_token") val tempCloneToken: String? = null,
-        /** Whether to allow squash merges for pull requests. */
-        @JacksonJsonProperty("allow_squash_merge") val allowSquashMerge: Boolean? = null,
-        /** Whether to allow Auto-merge to be used on pull requests. */
-        @JacksonJsonProperty("allow_auto_merge") val allowAutoMerge: Boolean? = null,
-        /** Whether to delete head branches when pull requests are merged */
-        @JacksonJsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
-        /**
-         * Whether or not a pull request head branch that is behind its base branch can always be
-         * updated even if it is not required to be up to date before merging.
-         */
-        @JacksonJsonProperty("allow_update_branch") val allowUpdateBranch: Boolean? = null,
-        /**
-         * Whether a squash merge commit can use the pull request title as default. **This property
-         * is closing down. Please use `squash_merge_commit_title` instead.
-         */
-        @JacksonJsonProperty("use_squash_pr_title_as_default")
-        val useSquashPrTitleAsDefault: Boolean? = null,
-        /**
-         * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull
-         * request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one
-         * commit) or the pull request's title (when more than one commit).
-         */
-        @JacksonJsonProperty("squash_merge_commit_title")
-        val squashMergeCommitTitle:
-            AppsListReposAccessibleToInstallationResponseRepositoriesItemX5da49d60c3? =
-            null,
-        /**
-         * The default value for a squash merge commit message: - `PR_BODY` - default to the pull
-         * request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. -
-         * `BLANK` - default to a blank commit message.
-         */
-        @JacksonJsonProperty("squash_merge_commit_message")
-        val squashMergeCommitMessage:
-            AppsListReposAccessibleToInstallationResponseRepositoriesItemX90944b2340? =
-            null,
-        /**
-         * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's
-         * title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge
-         * pull request #123 from branch-name).
-         */
-        @JacksonJsonProperty("merge_commit_title")
-        val mergeCommitTitle:
-            AppsListReposAccessibleToInstallationResponseRepositoriesItemXaef3c51720? =
-            null,
-        /**
-         * The default value for a merge commit message. - `PR_TITLE` - default to the pull
-         * request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to
-         * a blank commit message.
-         */
-        @JacksonJsonProperty("merge_commit_message")
-        val mergeCommitMessage:
-            AppsListReposAccessibleToInstallationResponseRepositoriesItemXd682ae93a3? =
-            null,
-        /** Whether to allow merge commits for pull requests. */
-        @JacksonJsonProperty("allow_merge_commit") val allowMergeCommit: Boolean? = null,
-        /** Whether to allow forking this repo */
-        @JacksonJsonProperty("allow_forking") val allowForking: Boolean? = null,
-        /** Whether to require contributors to sign off on web-based commits */
-        @JacksonJsonProperty("web_commit_signoff_required")
-        val webCommitSignoffRequired: Boolean? = null,
-        /** Optional `string` value serialized in the `master_branch` wire field. */
-        @JacksonJsonProperty("master_branch") val masterBranch: String? = null,
-        /** Optional `string` value serialized in the `starred_at` wire field. */
-        @JacksonJsonProperty("starred_at") val starredAt: String? = null,
-        /** Whether anonymous git access is enabled for this repository */
-        @JacksonJsonProperty("anonymous_access_enabled")
-        val anonymousAccessEnabled: Boolean? = null,
-        /** The status of the code search index for this repository */
-        @JacksonJsonProperty("code_search_index_status")
-        val codeSearchIndexStatus:
-            AppsListReposAccessibleToInstallationResponseRepositoriesItemXbc571f6d86? =
-            null,
-        /**
-         * The custom properties that were defined for the repository. The keys are the custom
-         * property names, and the values are the corresponding custom property values. Present for
-         * org repos only.
-         */
-        @JacksonJsonProperty("custom_properties") val customProperties: Map<String, Any>? = null,
-    )
 
-    data class AppsListReposAccessibleToInstallationResponse(
-        @JacksonJsonProperty("total_count") val totalCount: Long,
-        val repositories: List<AppsListReposAccessibleToInstallationResponseRepositoriesItem>,
-        @JacksonJsonProperty("repository_selection") val repositorySelection: String? = null,
-    )
 
-    data class AppsListInstallationsForAuthenticatedUserResponse(
-        @JacksonJsonProperty("total_count") val totalCount: Long,
-        val installations: List<Installation>,
-    )
 
-    /** Optional object value serialized in the `permissions` wire field. */
-    data class AppsListInstallationReposForAuthenticatedUserResponseRepositoXfbc57dcb02(
-        /** Required `boolean` value serialized in the `admin` wire field. */
-        val admin: Boolean,
-        /** Required `boolean` value serialized in the `pull` wire field. */
-        val pull: Boolean,
-        /** Required `boolean` value serialized in the `push` wire field. */
-        val push: Boolean,
-        /** Optional `boolean` value serialized in the `triage` wire field. */
-        val triage: Boolean? = null,
-        /** Optional `boolean` value serialized in the `maintain` wire field. */
-        val maintain: Boolean? = null,
-    )
 
-    /** The status of the code search index for this repository */
-    data class AppsListInstallationReposForAuthenticatedUserResponseRepositoXace4d6c012(
-        /** Optional `boolean` value serialized in the `lexical_search_ok` wire field. */
-        @JacksonJsonProperty("lexical_search_ok") val lexicalSearchOk: Boolean? = null,
-        /** Optional `string` value serialized in the `lexical_commit_sha` wire field. */
-        @JacksonJsonProperty("lexical_commit_sha") val lexicalCommitSha: String? = null,
-    )
 
-    class AppsListInstallationReposForAuthenticatedUserResponseRepositoriesItem(
-        /** Unique identifier of the repository */
-        val id: Long,
-        /** Required `string` value serialized in the `node_id` wire field. */
-        @JacksonJsonProperty("node_id") val nodeId: String,
-        /** The name of the repository. */
-        val name: String,
-        /** Required `string` value serialized in the `full_name` wire field. */
-        @JacksonJsonProperty("full_name") val fullName: String,
-        /** License Simple */
-        @JacksonJsonProperty("license", required = true) val license: NullableLicenseSimple?,
-        /** Required `integer` value serialized in the `forks` wire field. */
-        val forks: Long,
-        /** A GitHub user. */
-        val owner: SimpleUser,
-        /** Whether the repository is private or public. */
-        @JacksonJsonProperty("private") val `private`: Boolean,
-        /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-        @JacksonJsonProperty("html_url") val htmlUrl: String,
-        /** Required `string` value serialized in the `description` wire field. */
-        @JacksonJsonProperty("description", required = true) val description: String?,
-        /** Required `boolean` value serialized in the `fork` wire field. */
-        val fork: Boolean,
-        /** Required `uri`-formatted value serialized in the `url` wire field. */
-        val url: String,
-        /** Required `string` value serialized in the `archive_url` wire field. */
-        @JacksonJsonProperty("archive_url") val archiveUrl: String,
-        /** Required `string` value serialized in the `assignees_url` wire field. */
-        @JacksonJsonProperty("assignees_url") val assigneesUrl: String,
-        /** Required `string` value serialized in the `blobs_url` wire field. */
-        @JacksonJsonProperty("blobs_url") val blobsUrl: String,
-        /** Required `string` value serialized in the `branches_url` wire field. */
-        @JacksonJsonProperty("branches_url") val branchesUrl: String,
-        /** Required `string` value serialized in the `collaborators_url` wire field. */
-        @JacksonJsonProperty("collaborators_url") val collaboratorsUrl: String,
-        /** Required `string` value serialized in the `comments_url` wire field. */
-        @JacksonJsonProperty("comments_url") val commentsUrl: String,
-        /** Required `string` value serialized in the `commits_url` wire field. */
-        @JacksonJsonProperty("commits_url") val commitsUrl: String,
-        /** Required `string` value serialized in the `compare_url` wire field. */
-        @JacksonJsonProperty("compare_url") val compareUrl: String,
-        /** Required `string` value serialized in the `contents_url` wire field. */
-        @JacksonJsonProperty("contents_url") val contentsUrl: String,
-        /** Required `uri`-formatted value serialized in the `contributors_url` wire field. */
-        @JacksonJsonProperty("contributors_url") val contributorsUrl: String,
-        /** Required `uri`-formatted value serialized in the `deployments_url` wire field. */
-        @JacksonJsonProperty("deployments_url") val deploymentsUrl: String,
-        /** Required `uri`-formatted value serialized in the `downloads_url` wire field. */
-        @JacksonJsonProperty("downloads_url") val downloadsUrl: String,
-        /** Required `uri`-formatted value serialized in the `events_url` wire field. */
-        @JacksonJsonProperty("events_url") val eventsUrl: String,
-        /** Required `uri`-formatted value serialized in the `forks_url` wire field. */
-        @JacksonJsonProperty("forks_url") val forksUrl: String,
-        /** Required `string` value serialized in the `git_commits_url` wire field. */
-        @JacksonJsonProperty("git_commits_url") val gitCommitsUrl: String,
-        /** Required `string` value serialized in the `git_refs_url` wire field. */
-        @JacksonJsonProperty("git_refs_url") val gitRefsUrl: String,
-        /** Required `string` value serialized in the `git_tags_url` wire field. */
-        @JacksonJsonProperty("git_tags_url") val gitTagsUrl: String,
-        /** Required `string` value serialized in the `git_url` wire field. */
-        @JacksonJsonProperty("git_url") val gitUrl: String,
-        /** Required `string` value serialized in the `issue_comment_url` wire field. */
-        @JacksonJsonProperty("issue_comment_url") val issueCommentUrl: String,
-        /** Required `string` value serialized in the `issue_events_url` wire field. */
-        @JacksonJsonProperty("issue_events_url") val issueEventsUrl: String,
-        /** Required `string` value serialized in the `issues_url` wire field. */
-        @JacksonJsonProperty("issues_url") val issuesUrl: String,
-        /** Required `string` value serialized in the `keys_url` wire field. */
-        @JacksonJsonProperty("keys_url") val keysUrl: String,
-        /** Required `string` value serialized in the `labels_url` wire field. */
-        @JacksonJsonProperty("labels_url") val labelsUrl: String,
-        /** Required `uri`-formatted value serialized in the `languages_url` wire field. */
-        @JacksonJsonProperty("languages_url") val languagesUrl: String,
-        /** Required `uri`-formatted value serialized in the `merges_url` wire field. */
-        @JacksonJsonProperty("merges_url") val mergesUrl: String,
-        /** Required `string` value serialized in the `milestones_url` wire field. */
-        @JacksonJsonProperty("milestones_url") val milestonesUrl: String,
-        /** Required `string` value serialized in the `notifications_url` wire field. */
-        @JacksonJsonProperty("notifications_url") val notificationsUrl: String,
-        /** Required `string` value serialized in the `pulls_url` wire field. */
-        @JacksonJsonProperty("pulls_url") val pullsUrl: String,
-        /** Required `string` value serialized in the `releases_url` wire field. */
-        @JacksonJsonProperty("releases_url") val releasesUrl: String,
-        /** Required `string` value serialized in the `ssh_url` wire field. */
-        @JacksonJsonProperty("ssh_url") val sshUrl: String,
-        /** Required `uri`-formatted value serialized in the `stargazers_url` wire field. */
-        @JacksonJsonProperty("stargazers_url") val stargazersUrl: String,
-        /** Required `string` value serialized in the `statuses_url` wire field. */
-        @JacksonJsonProperty("statuses_url") val statusesUrl: String,
-        /** Required `uri`-formatted value serialized in the `subscribers_url` wire field. */
-        @JacksonJsonProperty("subscribers_url") val subscribersUrl: String,
-        /** Required `uri`-formatted value serialized in the `subscription_url` wire field. */
-        @JacksonJsonProperty("subscription_url") val subscriptionUrl: String,
-        /** Required `uri`-formatted value serialized in the `tags_url` wire field. */
-        @JacksonJsonProperty("tags_url") val tagsUrl: String,
-        /** Required `uri`-formatted value serialized in the `teams_url` wire field. */
-        @JacksonJsonProperty("teams_url") val teamsUrl: String,
-        /** Required `string` value serialized in the `trees_url` wire field. */
-        @JacksonJsonProperty("trees_url") val treesUrl: String,
-        /** Required `string` value serialized in the `clone_url` wire field. */
-        @JacksonJsonProperty("clone_url") val cloneUrl: String,
-        /** Required `uri`-formatted value serialized in the `mirror_url` wire field. */
-        @JacksonJsonProperty("mirror_url", required = true) val mirrorUrl: String?,
-        /** Required `uri`-formatted value serialized in the `hooks_url` wire field. */
-        @JacksonJsonProperty("hooks_url") val hooksUrl: String,
-        /** Required `uri`-formatted value serialized in the `svn_url` wire field. */
-        @JacksonJsonProperty("svn_url") val svnUrl: String,
-        /** Required `uri`-formatted value serialized in the `homepage` wire field. */
-        @JacksonJsonProperty("homepage", required = true) val homepage: String?,
-        /** Required `string` value serialized in the `language` wire field. */
-        @JacksonJsonProperty("language", required = true) val language: String?,
-        /** Required `integer` value serialized in the `forks_count` wire field. */
-        @JacksonJsonProperty("forks_count") val forksCount: Long,
-        /** Required `integer` value serialized in the `stargazers_count` wire field. */
-        @JacksonJsonProperty("stargazers_count") val stargazersCount: Long,
-        /** Required `integer` value serialized in the `watchers_count` wire field. */
-        @JacksonJsonProperty("watchers_count") val watchersCount: Long,
-        /**
-         * The size of the repository, in kilobytes. Size is calculated hourly. When a repository is
-         * initially created, the size is 0.
-         */
-        val size: Long,
-        /** The default branch of the repository. */
-        @JacksonJsonProperty("default_branch") val defaultBranch: String,
-        /** Required `integer` value serialized in the `open_issues_count` wire field. */
-        @JacksonJsonProperty("open_issues_count") val openIssuesCount: Long,
-        /** Whether issues are enabled. */
-        @JacksonJsonProperty("has_issues") val hasIssues: Boolean,
-        /** Whether projects are enabled. */
-        @JacksonJsonProperty("has_projects") val hasProjects: Boolean,
-        /** Whether the wiki is enabled. */
-        @JacksonJsonProperty("has_wiki") val hasWiki: Boolean,
-        /** Required `boolean` value serialized in the `has_pages` wire field. */
-        @JacksonJsonProperty("has_pages") val hasPages: Boolean,
-        /** Whether downloads are enabled. */
-        @JacksonJsonProperty("has_downloads") val hasDownloads: Boolean,
-        /** Whether the repository is archived. */
-        val archived: Boolean,
-        /** Returns whether or not this repository disabled. */
-        val disabled: Boolean,
-        /** Required `date-time`-formatted value serialized in the `pushed_at` wire field. */
-        @JacksonJsonProperty("pushed_at", required = true) val pushedAt: OffsetDateTime?,
-        /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-        @JacksonJsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
-        /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-        @JacksonJsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
-        /** Required `integer` value serialized in the `open_issues` wire field. */
-        @JacksonJsonProperty("open_issues") val openIssues: Long,
-        /** Required `integer` value serialized in the `watchers` wire field. */
-        val watchers: Long,
-        /** Optional object value serialized in the `permissions` wire field. */
-        val permissions: AppsListInstallationReposForAuthenticatedUserResponseRepositoXfbc57dcb02? =
-            null,
-        /**
-         * Whether this repository acts as a template that can be used to generate new repositories.
-         */
-        @JacksonJsonProperty("is_template") val isTemplate: Boolean? = null,
-        /** Optional array value serialized in the `topics` wire field. */
-        val topics: List<String>? = null,
-        /** Whether discussions are enabled. */
-        @JacksonJsonProperty("has_discussions") val hasDiscussions: Boolean? = null,
-        /** Whether pull requests are enabled. */
-        @JacksonJsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
-        /** The policy controlling who can create pull requests: all or collaborators_only. */
-        @JacksonJsonProperty("pull_request_creation_policy")
-        val pullRequestCreationPolicy:
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312? =
-            null,
-        /** The repository visibility: public, private, or internal. */
-        val visibility: String? = null,
-        /** Whether to allow rebase merges for pull requests. */
-        @JacksonJsonProperty("allow_rebase_merge") val allowRebaseMerge: Boolean? = null,
-        /** Optional `string` value serialized in the `temp_clone_token` wire field. */
-        @JacksonJsonProperty("temp_clone_token") val tempCloneToken: String? = null,
-        /** Whether to allow squash merges for pull requests. */
-        @JacksonJsonProperty("allow_squash_merge") val allowSquashMerge: Boolean? = null,
-        /** Whether to allow Auto-merge to be used on pull requests. */
-        @JacksonJsonProperty("allow_auto_merge") val allowAutoMerge: Boolean? = null,
-        /** Whether to delete head branches when pull requests are merged */
-        @JacksonJsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
-        /**
-         * Whether or not a pull request head branch that is behind its base branch can always be
-         * updated even if it is not required to be up to date before merging.
-         */
-        @JacksonJsonProperty("allow_update_branch") val allowUpdateBranch: Boolean? = null,
-        /**
-         * Whether a squash merge commit can use the pull request title as default. **This property
-         * is closing down. Please use `squash_merge_commit_title` instead.
-         */
-        @JacksonJsonProperty("use_squash_pr_title_as_default")
-        val useSquashPrTitleAsDefault: Boolean? = null,
-        /**
-         * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull
-         * request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one
-         * commit) or the pull request's title (when more than one commit).
-         */
-        @JacksonJsonProperty("squash_merge_commit_title")
-        val squashMergeCommitTitle:
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321? =
-            null,
-        /**
-         * The default value for a squash merge commit message: - `PR_BODY` - default to the pull
-         * request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. -
-         * `BLANK` - default to a blank commit message.
-         */
-        @JacksonJsonProperty("squash_merge_commit_message")
-        val squashMergeCommitMessage:
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b? =
-            null,
-        /**
-         * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's
-         * title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge
-         * pull request #123 from branch-name).
-         */
-        @JacksonJsonProperty("merge_commit_title")
-        val mergeCommitTitle:
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d? =
-            null,
-        /**
-         * The default value for a merge commit message. - `PR_TITLE` - default to the pull
-         * request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to
-         * a blank commit message.
-         */
-        @JacksonJsonProperty("merge_commit_message")
-        val mergeCommitMessage:
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957? =
-            null,
-        /** Whether to allow merge commits for pull requests. */
-        @JacksonJsonProperty("allow_merge_commit") val allowMergeCommit: Boolean? = null,
-        /** Whether to allow forking this repo */
-        @JacksonJsonProperty("allow_forking") val allowForking: Boolean? = null,
-        /** Whether to require contributors to sign off on web-based commits */
-        @JacksonJsonProperty("web_commit_signoff_required")
-        val webCommitSignoffRequired: Boolean? = null,
-        /** Optional `string` value serialized in the `master_branch` wire field. */
-        @JacksonJsonProperty("master_branch") val masterBranch: String? = null,
-        /** Optional `string` value serialized in the `starred_at` wire field. */
-        @JacksonJsonProperty("starred_at") val starredAt: String? = null,
-        /** Whether anonymous git access is enabled for this repository */
-        @JacksonJsonProperty("anonymous_access_enabled")
-        val anonymousAccessEnabled: Boolean? = null,
-        /** The status of the code search index for this repository */
-        @JacksonJsonProperty("code_search_index_status")
-        val codeSearchIndexStatus:
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXace4d6c012? =
-            null,
-        /**
-         * The custom properties that were defined for the repository. The keys are the custom
-         * property names, and the values are the corresponding custom property values. Present for
-         * org repos only.
-         */
-        @JacksonJsonProperty("custom_properties") val customProperties: Map<String, Any>? = null,
-    )
 
-    data class AppsListInstallationReposForAuthenticatedUserResponse(
-        @JacksonJsonProperty("total_count") val totalCount: Long,
-        val repositories:
-            List<AppsListInstallationReposForAuthenticatedUserResponseRepositoriesItem>,
-        @JacksonJsonProperty("repository_selection") val repositorySelection: String? = null,
-    )
+
+
+
+/**
+ * The status of the code search index for this repository
+ */
+data class AppsListReposAccessibleToInstallationResponseRepositoriesItemXbc571f6d86(
+    /**
+     * Optional `boolean` value serialized in the `lexical_search_ok` wire field.
+     */
+    @JacksonJsonProperty("lexical_search_ok") val lexicalSearchOk: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `lexical_commit_sha` wire field.
+     */
+    @JacksonJsonProperty("lexical_commit_sha") val lexicalCommitSha: String? = null
+)
+
+class AppsListReposAccessibleToInstallationResponseRepositoriesItem(
+    /**
+     * Unique identifier of the repository
+     */
+    val id: Long,
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
+    @JacksonJsonProperty("node_id") val nodeId: String,
+    /**
+     * The name of the repository.
+     */
+    val name: String,
+    /**
+     * Required `string` value serialized in the `full_name` wire field.
+     */
+    @JacksonJsonProperty("full_name") val fullName: String,
+    /**
+     * License Simple
+     */
+    @JacksonJsonProperty("license", required = true) val license: NullableLicenseSimple?,
+    /**
+     * Required `integer` value serialized in the `forks` wire field.
+     */
+    val forks: Long,
+    /**
+     * A GitHub user.
+     */
+    val owner: SimpleUser,
+    /**
+     * Whether the repository is private or public.
+     */
+    @JacksonJsonProperty("private") val `private`: Boolean,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @JacksonJsonProperty("html_url") val htmlUrl: String,
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @JacksonJsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `boolean` value serialized in the `fork` wire field.
+     */
+    val fork: Boolean,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String,
+    /**
+     * Required `string` value serialized in the `archive_url` wire field.
+     */
+    @JacksonJsonProperty("archive_url") val archiveUrl: String,
+    /**
+     * Required `string` value serialized in the `assignees_url` wire field.
+     */
+    @JacksonJsonProperty("assignees_url") val assigneesUrl: String,
+    /**
+     * Required `string` value serialized in the `blobs_url` wire field.
+     */
+    @JacksonJsonProperty("blobs_url") val blobsUrl: String,
+    /**
+     * Required `string` value serialized in the `branches_url` wire field.
+     */
+    @JacksonJsonProperty("branches_url") val branchesUrl: String,
+    /**
+     * Required `string` value serialized in the `collaborators_url` wire field.
+     */
+    @JacksonJsonProperty("collaborators_url") val collaboratorsUrl: String,
+    /**
+     * Required `string` value serialized in the `comments_url` wire field.
+     */
+    @JacksonJsonProperty("comments_url") val commentsUrl: String,
+    /**
+     * Required `string` value serialized in the `commits_url` wire field.
+     */
+    @JacksonJsonProperty("commits_url") val commitsUrl: String,
+    /**
+     * Required `string` value serialized in the `compare_url` wire field.
+     */
+    @JacksonJsonProperty("compare_url") val compareUrl: String,
+    /**
+     * Required `string` value serialized in the `contents_url` wire field.
+     */
+    @JacksonJsonProperty("contents_url") val contentsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `contributors_url` wire field.
+     */
+    @JacksonJsonProperty("contributors_url") val contributorsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `deployments_url` wire field.
+     */
+    @JacksonJsonProperty("deployments_url") val deploymentsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `downloads_url` wire field.
+     */
+    @JacksonJsonProperty("downloads_url") val downloadsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `events_url` wire field.
+     */
+    @JacksonJsonProperty("events_url") val eventsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `forks_url` wire field.
+     */
+    @JacksonJsonProperty("forks_url") val forksUrl: String,
+    /**
+     * Required `string` value serialized in the `git_commits_url` wire field.
+     */
+    @JacksonJsonProperty("git_commits_url") val gitCommitsUrl: String,
+    /**
+     * Required `string` value serialized in the `git_refs_url` wire field.
+     */
+    @JacksonJsonProperty("git_refs_url") val gitRefsUrl: String,
+    /**
+     * Required `string` value serialized in the `git_tags_url` wire field.
+     */
+    @JacksonJsonProperty("git_tags_url") val gitTagsUrl: String,
+    /**
+     * Required `string` value serialized in the `git_url` wire field.
+     */
+    @JacksonJsonProperty("git_url") val gitUrl: String,
+    /**
+     * Required `string` value serialized in the `issue_comment_url` wire field.
+     */
+    @JacksonJsonProperty("issue_comment_url") val issueCommentUrl: String,
+    /**
+     * Required `string` value serialized in the `issue_events_url` wire field.
+     */
+    @JacksonJsonProperty("issue_events_url") val issueEventsUrl: String,
+    /**
+     * Required `string` value serialized in the `issues_url` wire field.
+     */
+    @JacksonJsonProperty("issues_url") val issuesUrl: String,
+    /**
+     * Required `string` value serialized in the `keys_url` wire field.
+     */
+    @JacksonJsonProperty("keys_url") val keysUrl: String,
+    /**
+     * Required `string` value serialized in the `labels_url` wire field.
+     */
+    @JacksonJsonProperty("labels_url") val labelsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `languages_url` wire field.
+     */
+    @JacksonJsonProperty("languages_url") val languagesUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `merges_url` wire field.
+     */
+    @JacksonJsonProperty("merges_url") val mergesUrl: String,
+    /**
+     * Required `string` value serialized in the `milestones_url` wire field.
+     */
+    @JacksonJsonProperty("milestones_url") val milestonesUrl: String,
+    /**
+     * Required `string` value serialized in the `notifications_url` wire field.
+     */
+    @JacksonJsonProperty("notifications_url") val notificationsUrl: String,
+    /**
+     * Required `string` value serialized in the `pulls_url` wire field.
+     */
+    @JacksonJsonProperty("pulls_url") val pullsUrl: String,
+    /**
+     * Required `string` value serialized in the `releases_url` wire field.
+     */
+    @JacksonJsonProperty("releases_url") val releasesUrl: String,
+    /**
+     * Required `string` value serialized in the `ssh_url` wire field.
+     */
+    @JacksonJsonProperty("ssh_url") val sshUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `stargazers_url` wire field.
+     */
+    @JacksonJsonProperty("stargazers_url") val stargazersUrl: String,
+    /**
+     * Required `string` value serialized in the `statuses_url` wire field.
+     */
+    @JacksonJsonProperty("statuses_url") val statusesUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `subscribers_url` wire field.
+     */
+    @JacksonJsonProperty("subscribers_url") val subscribersUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `subscription_url` wire field.
+     */
+    @JacksonJsonProperty("subscription_url") val subscriptionUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `tags_url` wire field.
+     */
+    @JacksonJsonProperty("tags_url") val tagsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `teams_url` wire field.
+     */
+    @JacksonJsonProperty("teams_url") val teamsUrl: String,
+    /**
+     * Required `string` value serialized in the `trees_url` wire field.
+     */
+    @JacksonJsonProperty("trees_url") val treesUrl: String,
+    /**
+     * Required `string` value serialized in the `clone_url` wire field.
+     */
+    @JacksonJsonProperty("clone_url") val cloneUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `mirror_url` wire field.
+     */
+    @JacksonJsonProperty("mirror_url", required = true) val mirrorUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `hooks_url` wire field.
+     */
+    @JacksonJsonProperty("hooks_url") val hooksUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `svn_url` wire field.
+     */
+    @JacksonJsonProperty("svn_url") val svnUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `homepage` wire field.
+     */
+    @JacksonJsonProperty("homepage", required = true) val homepage: String?,
+    /**
+     * Required `string` value serialized in the `language` wire field.
+     */
+    @JacksonJsonProperty("language", required = true) val language: String?,
+    /**
+     * Required `integer` value serialized in the `forks_count` wire field.
+     */
+    @JacksonJsonProperty("forks_count") val forksCount: Long,
+    /**
+     * Required `integer` value serialized in the `stargazers_count` wire field.
+     */
+    @JacksonJsonProperty("stargazers_count") val stargazersCount: Long,
+    /**
+     * Required `integer` value serialized in the `watchers_count` wire field.
+     */
+    @JacksonJsonProperty("watchers_count") val watchersCount: Long,
+    /**
+     * The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0.
+     */
+    val size: Long,
+    /**
+     * The default branch of the repository.
+     */
+    @JacksonJsonProperty("default_branch") val defaultBranch: String,
+    /**
+     * Required `integer` value serialized in the `open_issues_count` wire field.
+     */
+    @JacksonJsonProperty("open_issues_count") val openIssuesCount: Long,
+    /**
+     * Whether issues are enabled.
+     */
+    @JacksonJsonProperty("has_issues") val hasIssues: Boolean,
+    /**
+     * Whether projects are enabled.
+     */
+    @JacksonJsonProperty("has_projects") val hasProjects: Boolean,
+    /**
+     * Whether the wiki is enabled.
+     */
+    @JacksonJsonProperty("has_wiki") val hasWiki: Boolean,
+    /**
+     * Required `boolean` value serialized in the `has_pages` wire field.
+     */
+    @JacksonJsonProperty("has_pages") val hasPages: Boolean,
+    /**
+     * Whether downloads are enabled.
+     */
+    @JacksonJsonProperty("has_downloads") val hasDownloads: Boolean,
+    /**
+     * Whether the repository is archived.
+     */
+    val archived: Boolean,
+    /**
+     * Returns whether or not this repository disabled.
+     */
+    val disabled: Boolean,
+    /**
+     * Required `date-time`-formatted value serialized in the `pushed_at` wire field.
+     */
+    @JacksonJsonProperty("pushed_at", required = true) val pushedAt: OffsetDateTime?,
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @JacksonJsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @JacksonJsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
+    /**
+     * Required `integer` value serialized in the `open_issues` wire field.
+     */
+    @JacksonJsonProperty("open_issues") val openIssues: Long,
+    /**
+     * Required `integer` value serialized in the `watchers` wire field.
+     */
+    val watchers: Long,
+    /**
+     * Optional object value serialized in the `permissions` wire field.
+     */
+    val permissions: AppsListReposAccessibleToInstallationResponseRepositoriesItemPermissions? = null,
+    /**
+     * Whether this repository acts as a template that can be used to generate new repositories.
+     */
+    @JacksonJsonProperty("is_template") val isTemplate: Boolean? = null,
+    /**
+     * Optional array value serialized in the `topics` wire field.
+     */
+    val topics: List<String>? = null,
+    /**
+     * Whether discussions are enabled.
+     */
+    @JacksonJsonProperty("has_discussions") val hasDiscussions: Boolean? = null,
+    /**
+     * Whether pull requests are enabled.
+     */
+    @JacksonJsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
+    /**
+     * The policy controlling who can create pull requests: all or collaborators_only.
+     */
+    @JacksonJsonProperty("pull_request_creation_policy") val pullRequestCreationPolicy: AppsListReposAccessibleToInstallationResponseRepositoriesItemX32674cb0d2? = null,
+    /**
+     * The repository visibility: public, private, or internal.
+     */
+    val visibility: String? = null,
+    /**
+     * Whether to allow rebase merges for pull requests.
+     */
+    @JacksonJsonProperty("allow_rebase_merge") val allowRebaseMerge: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `temp_clone_token` wire field.
+     */
+    @JacksonJsonProperty("temp_clone_token") val tempCloneToken: String? = null,
+    /**
+     * Whether to allow squash merges for pull requests.
+     */
+    @JacksonJsonProperty("allow_squash_merge") val allowSquashMerge: Boolean? = null,
+    /**
+     * Whether to allow Auto-merge to be used on pull requests.
+     */
+    @JacksonJsonProperty("allow_auto_merge") val allowAutoMerge: Boolean? = null,
+    /**
+     * Whether to delete head branches when pull requests are merged
+     */
+    @JacksonJsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
+    /**
+     * Whether or not a pull request head branch that is behind its base branch can always be updated even if it is not required to be up to date before merging.
+     */
+    @JacksonJsonProperty("allow_update_branch") val allowUpdateBranch: Boolean? = null,
+    /**
+     * Whether a squash merge commit can use the pull request title as default. **This property is closing down. Please use `squash_merge_commit_title` instead.
+     */
+    @JacksonJsonProperty("use_squash_pr_title_as_default") val useSquashPrTitleAsDefault: Boolean? = null,
+    /**
+     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+     */
+    @JacksonJsonProperty("squash_merge_commit_title") val squashMergeCommitTitle: AppsListReposAccessibleToInstallationResponseRepositoriesItemX5da49d60c3? = null,
+    /**
+     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+     */
+    @JacksonJsonProperty("squash_merge_commit_message") val squashMergeCommitMessage: AppsListReposAccessibleToInstallationResponseRepositoriesItemX90944b2340? = null,
+    /**
+     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
+     */
+    @JacksonJsonProperty("merge_commit_title") val mergeCommitTitle: AppsListReposAccessibleToInstallationResponseRepositoriesItemXaef3c51720? = null,
+    /**
+     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
+     */
+    @JacksonJsonProperty("merge_commit_message") val mergeCommitMessage: AppsListReposAccessibleToInstallationResponseRepositoriesItemXd682ae93a3? = null,
+    /**
+     * Whether to allow merge commits for pull requests.
+     */
+    @JacksonJsonProperty("allow_merge_commit") val allowMergeCommit: Boolean? = null,
+    /**
+     * Whether to allow forking this repo
+     */
+    @JacksonJsonProperty("allow_forking") val allowForking: Boolean? = null,
+    /**
+     * Whether to require contributors to sign off on web-based commits
+     */
+    @JacksonJsonProperty("web_commit_signoff_required") val webCommitSignoffRequired: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `master_branch` wire field.
+     */
+    @JacksonJsonProperty("master_branch") val masterBranch: String? = null,
+    /**
+     * Optional `string` value serialized in the `starred_at` wire field.
+     */
+    @JacksonJsonProperty("starred_at") val starredAt: String? = null,
+    /**
+     * Whether anonymous git access is enabled for this repository
+     */
+    @JacksonJsonProperty("anonymous_access_enabled") val anonymousAccessEnabled: Boolean? = null,
+    /**
+     * The status of the code search index for this repository
+     */
+    @JacksonJsonProperty("code_search_index_status") val codeSearchIndexStatus: AppsListReposAccessibleToInstallationResponseRepositoriesItemXbc571f6d86? = null,
+    /**
+     * The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values. Present for org repos only.
+     */
+    @JacksonJsonProperty("custom_properties") val customProperties: Map<String, Any>? = null
+)
+
+data class AppsListReposAccessibleToInstallationResponse(
+    @JacksonJsonProperty("total_count") val totalCount: Long,
+    val repositories: List<AppsListReposAccessibleToInstallationResponseRepositoriesItem>,
+    @JacksonJsonProperty("repository_selection") val repositorySelection: String? = null
+)
+
+data class AppsListInstallationsForAuthenticatedUserResponse(
+    @JacksonJsonProperty("total_count") val totalCount: Long,
+    val installations: List<Installation>
+)
+
+/**
+ * Optional object value serialized in the `permissions` wire field.
+ */
+data class AppsListInstallationReposForAuthenticatedUserResponseRepositoXfbc57dcb02(
+    /**
+     * Required `boolean` value serialized in the `admin` wire field.
+     */
+    val admin: Boolean,
+    /**
+     * Required `boolean` value serialized in the `pull` wire field.
+     */
+    val pull: Boolean,
+    /**
+     * Required `boolean` value serialized in the `push` wire field.
+     */
+    val push: Boolean,
+    /**
+     * Optional `boolean` value serialized in the `triage` wire field.
+     */
+    val triage: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `maintain` wire field.
+     */
+    val maintain: Boolean? = null
+)
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * The status of the code search index for this repository
+ */
+data class AppsListInstallationReposForAuthenticatedUserResponseRepositoXace4d6c012(
+    /**
+     * Optional `boolean` value serialized in the `lexical_search_ok` wire field.
+     */
+    @JacksonJsonProperty("lexical_search_ok") val lexicalSearchOk: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `lexical_commit_sha` wire field.
+     */
+    @JacksonJsonProperty("lexical_commit_sha") val lexicalCommitSha: String? = null
+)
+
+class AppsListInstallationReposForAuthenticatedUserResponseRepositoriesItem(
+    /**
+     * Unique identifier of the repository
+     */
+    val id: Long,
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
+    @JacksonJsonProperty("node_id") val nodeId: String,
+    /**
+     * The name of the repository.
+     */
+    val name: String,
+    /**
+     * Required `string` value serialized in the `full_name` wire field.
+     */
+    @JacksonJsonProperty("full_name") val fullName: String,
+    /**
+     * License Simple
+     */
+    @JacksonJsonProperty("license", required = true) val license: NullableLicenseSimple?,
+    /**
+     * Required `integer` value serialized in the `forks` wire field.
+     */
+    val forks: Long,
+    /**
+     * A GitHub user.
+     */
+    val owner: SimpleUser,
+    /**
+     * Whether the repository is private or public.
+     */
+    @JacksonJsonProperty("private") val `private`: Boolean,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @JacksonJsonProperty("html_url") val htmlUrl: String,
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @JacksonJsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `boolean` value serialized in the `fork` wire field.
+     */
+    val fork: Boolean,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String,
+    /**
+     * Required `string` value serialized in the `archive_url` wire field.
+     */
+    @JacksonJsonProperty("archive_url") val archiveUrl: String,
+    /**
+     * Required `string` value serialized in the `assignees_url` wire field.
+     */
+    @JacksonJsonProperty("assignees_url") val assigneesUrl: String,
+    /**
+     * Required `string` value serialized in the `blobs_url` wire field.
+     */
+    @JacksonJsonProperty("blobs_url") val blobsUrl: String,
+    /**
+     * Required `string` value serialized in the `branches_url` wire field.
+     */
+    @JacksonJsonProperty("branches_url") val branchesUrl: String,
+    /**
+     * Required `string` value serialized in the `collaborators_url` wire field.
+     */
+    @JacksonJsonProperty("collaborators_url") val collaboratorsUrl: String,
+    /**
+     * Required `string` value serialized in the `comments_url` wire field.
+     */
+    @JacksonJsonProperty("comments_url") val commentsUrl: String,
+    /**
+     * Required `string` value serialized in the `commits_url` wire field.
+     */
+    @JacksonJsonProperty("commits_url") val commitsUrl: String,
+    /**
+     * Required `string` value serialized in the `compare_url` wire field.
+     */
+    @JacksonJsonProperty("compare_url") val compareUrl: String,
+    /**
+     * Required `string` value serialized in the `contents_url` wire field.
+     */
+    @JacksonJsonProperty("contents_url") val contentsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `contributors_url` wire field.
+     */
+    @JacksonJsonProperty("contributors_url") val contributorsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `deployments_url` wire field.
+     */
+    @JacksonJsonProperty("deployments_url") val deploymentsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `downloads_url` wire field.
+     */
+    @JacksonJsonProperty("downloads_url") val downloadsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `events_url` wire field.
+     */
+    @JacksonJsonProperty("events_url") val eventsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `forks_url` wire field.
+     */
+    @JacksonJsonProperty("forks_url") val forksUrl: String,
+    /**
+     * Required `string` value serialized in the `git_commits_url` wire field.
+     */
+    @JacksonJsonProperty("git_commits_url") val gitCommitsUrl: String,
+    /**
+     * Required `string` value serialized in the `git_refs_url` wire field.
+     */
+    @JacksonJsonProperty("git_refs_url") val gitRefsUrl: String,
+    /**
+     * Required `string` value serialized in the `git_tags_url` wire field.
+     */
+    @JacksonJsonProperty("git_tags_url") val gitTagsUrl: String,
+    /**
+     * Required `string` value serialized in the `git_url` wire field.
+     */
+    @JacksonJsonProperty("git_url") val gitUrl: String,
+    /**
+     * Required `string` value serialized in the `issue_comment_url` wire field.
+     */
+    @JacksonJsonProperty("issue_comment_url") val issueCommentUrl: String,
+    /**
+     * Required `string` value serialized in the `issue_events_url` wire field.
+     */
+    @JacksonJsonProperty("issue_events_url") val issueEventsUrl: String,
+    /**
+     * Required `string` value serialized in the `issues_url` wire field.
+     */
+    @JacksonJsonProperty("issues_url") val issuesUrl: String,
+    /**
+     * Required `string` value serialized in the `keys_url` wire field.
+     */
+    @JacksonJsonProperty("keys_url") val keysUrl: String,
+    /**
+     * Required `string` value serialized in the `labels_url` wire field.
+     */
+    @JacksonJsonProperty("labels_url") val labelsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `languages_url` wire field.
+     */
+    @JacksonJsonProperty("languages_url") val languagesUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `merges_url` wire field.
+     */
+    @JacksonJsonProperty("merges_url") val mergesUrl: String,
+    /**
+     * Required `string` value serialized in the `milestones_url` wire field.
+     */
+    @JacksonJsonProperty("milestones_url") val milestonesUrl: String,
+    /**
+     * Required `string` value serialized in the `notifications_url` wire field.
+     */
+    @JacksonJsonProperty("notifications_url") val notificationsUrl: String,
+    /**
+     * Required `string` value serialized in the `pulls_url` wire field.
+     */
+    @JacksonJsonProperty("pulls_url") val pullsUrl: String,
+    /**
+     * Required `string` value serialized in the `releases_url` wire field.
+     */
+    @JacksonJsonProperty("releases_url") val releasesUrl: String,
+    /**
+     * Required `string` value serialized in the `ssh_url` wire field.
+     */
+    @JacksonJsonProperty("ssh_url") val sshUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `stargazers_url` wire field.
+     */
+    @JacksonJsonProperty("stargazers_url") val stargazersUrl: String,
+    /**
+     * Required `string` value serialized in the `statuses_url` wire field.
+     */
+    @JacksonJsonProperty("statuses_url") val statusesUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `subscribers_url` wire field.
+     */
+    @JacksonJsonProperty("subscribers_url") val subscribersUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `subscription_url` wire field.
+     */
+    @JacksonJsonProperty("subscription_url") val subscriptionUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `tags_url` wire field.
+     */
+    @JacksonJsonProperty("tags_url") val tagsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `teams_url` wire field.
+     */
+    @JacksonJsonProperty("teams_url") val teamsUrl: String,
+    /**
+     * Required `string` value serialized in the `trees_url` wire field.
+     */
+    @JacksonJsonProperty("trees_url") val treesUrl: String,
+    /**
+     * Required `string` value serialized in the `clone_url` wire field.
+     */
+    @JacksonJsonProperty("clone_url") val cloneUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `mirror_url` wire field.
+     */
+    @JacksonJsonProperty("mirror_url", required = true) val mirrorUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `hooks_url` wire field.
+     */
+    @JacksonJsonProperty("hooks_url") val hooksUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `svn_url` wire field.
+     */
+    @JacksonJsonProperty("svn_url") val svnUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `homepage` wire field.
+     */
+    @JacksonJsonProperty("homepage", required = true) val homepage: String?,
+    /**
+     * Required `string` value serialized in the `language` wire field.
+     */
+    @JacksonJsonProperty("language", required = true) val language: String?,
+    /**
+     * Required `integer` value serialized in the `forks_count` wire field.
+     */
+    @JacksonJsonProperty("forks_count") val forksCount: Long,
+    /**
+     * Required `integer` value serialized in the `stargazers_count` wire field.
+     */
+    @JacksonJsonProperty("stargazers_count") val stargazersCount: Long,
+    /**
+     * Required `integer` value serialized in the `watchers_count` wire field.
+     */
+    @JacksonJsonProperty("watchers_count") val watchersCount: Long,
+    /**
+     * The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0.
+     */
+    val size: Long,
+    /**
+     * The default branch of the repository.
+     */
+    @JacksonJsonProperty("default_branch") val defaultBranch: String,
+    /**
+     * Required `integer` value serialized in the `open_issues_count` wire field.
+     */
+    @JacksonJsonProperty("open_issues_count") val openIssuesCount: Long,
+    /**
+     * Whether issues are enabled.
+     */
+    @JacksonJsonProperty("has_issues") val hasIssues: Boolean,
+    /**
+     * Whether projects are enabled.
+     */
+    @JacksonJsonProperty("has_projects") val hasProjects: Boolean,
+    /**
+     * Whether the wiki is enabled.
+     */
+    @JacksonJsonProperty("has_wiki") val hasWiki: Boolean,
+    /**
+     * Required `boolean` value serialized in the `has_pages` wire field.
+     */
+    @JacksonJsonProperty("has_pages") val hasPages: Boolean,
+    /**
+     * Whether downloads are enabled.
+     */
+    @JacksonJsonProperty("has_downloads") val hasDownloads: Boolean,
+    /**
+     * Whether the repository is archived.
+     */
+    val archived: Boolean,
+    /**
+     * Returns whether or not this repository disabled.
+     */
+    val disabled: Boolean,
+    /**
+     * Required `date-time`-formatted value serialized in the `pushed_at` wire field.
+     */
+    @JacksonJsonProperty("pushed_at", required = true) val pushedAt: OffsetDateTime?,
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @JacksonJsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @JacksonJsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
+    /**
+     * Required `integer` value serialized in the `open_issues` wire field.
+     */
+    @JacksonJsonProperty("open_issues") val openIssues: Long,
+    /**
+     * Required `integer` value serialized in the `watchers` wire field.
+     */
+    val watchers: Long,
+    /**
+     * Optional object value serialized in the `permissions` wire field.
+     */
+    val permissions: AppsListInstallationReposForAuthenticatedUserResponseRepositoXfbc57dcb02? = null,
+    /**
+     * Whether this repository acts as a template that can be used to generate new repositories.
+     */
+    @JacksonJsonProperty("is_template") val isTemplate: Boolean? = null,
+    /**
+     * Optional array value serialized in the `topics` wire field.
+     */
+    val topics: List<String>? = null,
+    /**
+     * Whether discussions are enabled.
+     */
+    @JacksonJsonProperty("has_discussions") val hasDiscussions: Boolean? = null,
+    /**
+     * Whether pull requests are enabled.
+     */
+    @JacksonJsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
+    /**
+     * The policy controlling who can create pull requests: all or collaborators_only.
+     */
+    @JacksonJsonProperty("pull_request_creation_policy") val pullRequestCreationPolicy: AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312? = null,
+    /**
+     * The repository visibility: public, private, or internal.
+     */
+    val visibility: String? = null,
+    /**
+     * Whether to allow rebase merges for pull requests.
+     */
+    @JacksonJsonProperty("allow_rebase_merge") val allowRebaseMerge: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `temp_clone_token` wire field.
+     */
+    @JacksonJsonProperty("temp_clone_token") val tempCloneToken: String? = null,
+    /**
+     * Whether to allow squash merges for pull requests.
+     */
+    @JacksonJsonProperty("allow_squash_merge") val allowSquashMerge: Boolean? = null,
+    /**
+     * Whether to allow Auto-merge to be used on pull requests.
+     */
+    @JacksonJsonProperty("allow_auto_merge") val allowAutoMerge: Boolean? = null,
+    /**
+     * Whether to delete head branches when pull requests are merged
+     */
+    @JacksonJsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
+    /**
+     * Whether or not a pull request head branch that is behind its base branch can always be updated even if it is not required to be up to date before merging.
+     */
+    @JacksonJsonProperty("allow_update_branch") val allowUpdateBranch: Boolean? = null,
+    /**
+     * Whether a squash merge commit can use the pull request title as default. **This property is closing down. Please use `squash_merge_commit_title` instead.
+     */
+    @JacksonJsonProperty("use_squash_pr_title_as_default") val useSquashPrTitleAsDefault: Boolean? = null,
+    /**
+     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+     */
+    @JacksonJsonProperty("squash_merge_commit_title") val squashMergeCommitTitle: AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321? = null,
+    /**
+     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+     */
+    @JacksonJsonProperty("squash_merge_commit_message") val squashMergeCommitMessage: AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b? = null,
+    /**
+     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
+     */
+    @JacksonJsonProperty("merge_commit_title") val mergeCommitTitle: AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d? = null,
+    /**
+     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
+     */
+    @JacksonJsonProperty("merge_commit_message") val mergeCommitMessage: AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957? = null,
+    /**
+     * Whether to allow merge commits for pull requests.
+     */
+    @JacksonJsonProperty("allow_merge_commit") val allowMergeCommit: Boolean? = null,
+    /**
+     * Whether to allow forking this repo
+     */
+    @JacksonJsonProperty("allow_forking") val allowForking: Boolean? = null,
+    /**
+     * Whether to require contributors to sign off on web-based commits
+     */
+    @JacksonJsonProperty("web_commit_signoff_required") val webCommitSignoffRequired: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `master_branch` wire field.
+     */
+    @JacksonJsonProperty("master_branch") val masterBranch: String? = null,
+    /**
+     * Optional `string` value serialized in the `starred_at` wire field.
+     */
+    @JacksonJsonProperty("starred_at") val starredAt: String? = null,
+    /**
+     * Whether anonymous git access is enabled for this repository
+     */
+    @JacksonJsonProperty("anonymous_access_enabled") val anonymousAccessEnabled: Boolean? = null,
+    /**
+     * The status of the code search index for this repository
+     */
+    @JacksonJsonProperty("code_search_index_status") val codeSearchIndexStatus: AppsListInstallationReposForAuthenticatedUserResponseRepositoXace4d6c012? = null,
+    /**
+     * The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values. Present for org repos only.
+     */
+    @JacksonJsonProperty("custom_properties") val customProperties: Map<String, Any>? = null
+)
+
+data class AppsListInstallationReposForAuthenticatedUserResponse(
+    @JacksonJsonProperty("total_count") val totalCount: Long,
+    val repositories: List<AppsListInstallationReposForAuthenticatedUserResponseRepositoriesItem>,
+    @JacksonJsonProperty("repository_selection") val repositorySelection: String? = null
+)
 
     /** Parameters for [appsScopeToken]. */
     data class AppsScopeTokenRequest(
@@ -682,38 +1059,22 @@ object Apps {
         val targetId: Long? = null,
         val repositories: List<String>? = null,
         val repositoryIds: List<Long>? = null,
-        val permissions: AppPermissions? = null,
+        val permissions: AppPermissions? = null
     )
 
     /**
-     * Returns the GitHub App associated with the authentication credentials used. To see how many
-     * app installations are associated with this GitHub App, see the `installations_count` in the
-     * response. For more details about your app's installations, see the "[List installations for
-     * the authenticated
-     * app](https://docs.github.com/rest/apps/apps#list-installations-for-the-authenticated-app)"
-     * endpoint. You must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Returns the GitHub App associated with the authentication credentials used. To see how many app installations are associated with this GitHub App, see the `installations_count` in the response. For more details about your app's installations, see the "[List installations for the authenticated app](https://docs.github.com/rest/apps/apps#list-installations-for-the-authenticated-app)" endpoint. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsGetAuthenticated(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): Integration =
+    fun appsGetAuthenticated(clientConfig: ClientConfig, options: RequestOptions? = null): Integration =
         dev.octri.showcase.github.methods.AppsGetAuthenticatedOperation.appsGetAuthenticated(
             clientConfig,
             options,
         )
 
     /**
-     * Creates a GitHub App from a manifest to complete the GitHub App Manifest flow. Use the
-     * temporary `code` to retrieve the app details and credentials, including its `id`, `pem`, and
-     * `webhook_secret`.
+     * Creates a GitHub App from a manifest to complete the GitHub App Manifest flow. Use the temporary `code` to retrieve the app details and credentials, including its `id`, `pem`, and `webhook_secret`.
      */
-    fun appsCreateFromManifest(
-        clientConfig: ClientConfig,
-        code: String,
-        options: RequestOptions? = null,
-    ): AppsCreateFromManifestResponse =
+    fun appsCreateFromManifest(clientConfig: ClientConfig, code: String, options: RequestOptions? = null): AppsCreateFromManifestResponse =
         dev.octri.showcase.github.methods.AppsCreateFromManifestOperation.appsCreateFromManifest(
             clientConfig,
             code,
@@ -721,76 +1082,43 @@ object Apps {
         )
 
     /**
-     * Returns the webhook configuration for a GitHub App. For more information about configuring a
-     * webhook for your app, see "Creating a GitHub App." You must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Returns the webhook configuration for a GitHub App. For more information about configuring a webhook for your app, see "Creating a GitHub App." You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsGetWebhookConfigForApp(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): WebhookConfig =
-        dev.octri.showcase.github.methods.AppsGetWebhookConfigForAppOperation
-            .appsGetWebhookConfigForApp(
-                clientConfig,
-                options,
-            )
+    fun appsGetWebhookConfigForApp(clientConfig: ClientConfig, options: RequestOptions? = null): WebhookConfig =
+        dev.octri.showcase.github.methods.AppsGetWebhookConfigForAppOperation.appsGetWebhookConfigForApp(
+            clientConfig,
+            options,
+        )
 
     /**
-     * Updates the webhook configuration for a GitHub App, including its payload URL and delivery
-     * settings. Supply `url` as a URI; `content_type` defaults to `form`, and `insecure_ssl`
-     * defaults to `0`. Authenticate with a GitHub App JWT to access this endpoint.
+     * Updates the webhook configuration for a GitHub App, including its payload URL and delivery settings. Supply `url` as a URI; `content_type` defaults to `form`, and `insecure_ssl` defaults to `0`. Authenticate with a GitHub App JWT to access this endpoint.
      */
-    fun appsUpdateWebhookConfigForApp(
-        clientConfig: ClientConfig,
-        url: WebhookConfigUrl? = null,
-        contentType: WebhookConfigContentType? = null,
-        secret: WebhookConfigSecret? = null,
-        insecureSsl: WebhookConfigInsecureSsl? = null,
-        options: RequestOptions? = null,
-    ): WebhookConfig =
-        dev.octri.showcase.github.methods.AppsUpdateWebhookConfigForAppOperation
-            .appsUpdateWebhookConfigForApp(
-                clientConfig,
-                url,
-                contentType,
-                secret,
-                insecureSsl,
-                options,
-            )
+    fun appsUpdateWebhookConfigForApp(clientConfig: ClientConfig, url: WebhookConfigUrl? = null, contentType: WebhookConfigContentType? = null, secret: WebhookConfigSecret? = null, insecureSsl: WebhookConfigInsecureSsl? = null, options: RequestOptions? = null): WebhookConfig =
+        dev.octri.showcase.github.methods.AppsUpdateWebhookConfigForAppOperation.appsUpdateWebhookConfigForApp(
+            clientConfig,
+            url,
+            contentType,
+            secret,
+            insecureSsl,
+            options,
+        )
 
     /**
-     * Returns a list of webhook deliveries for the webhook configured for a GitHub App. You must
-     * use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Returns a list of webhook deliveries for the webhook configured for a GitHub App. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsListWebhookDeliveries(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        cursor: String? = null,
-        status: SchemaSchemaEnume81e966c? = null,
-        options: RequestOptions? = null,
-    ): List<HookDeliveryItem> =
-        dev.octri.showcase.github.methods.AppsListWebhookDeliveriesOperation
-            .appsListWebhookDeliveries(
-                clientConfig,
-                perPage,
-                cursor,
-                status,
-                options,
-            )
+    fun appsListWebhookDeliveries(clientConfig: ClientConfig, perPage: Long? = null, cursor: String? = null, status: SchemaSchemaEnume81e966c? = null, options: RequestOptions? = null): List<HookDeliveryItem> =
+        dev.octri.showcase.github.methods.AppsListWebhookDeliveriesOperation.appsListWebhookDeliveries(
+            clientConfig,
+            perPage,
+            cursor,
+            status,
+            options,
+        )
 
     /**
-     * Retrieves a delivery for a webhook configured for a GitHub App. Use `delivery_id` to identify
-     * the delivery whose request, response, and delivery status you need to inspect. Authenticate
-     * with a GitHub App JWT to access this endpoint.
+     * Retrieves a delivery for a webhook configured for a GitHub App. Use `delivery_id` to identify the delivery whose request, response, and delivery status you need to inspect. Authenticate with a GitHub App JWT to access this endpoint.
      */
-    fun appsGetWebhookDelivery(
-        clientConfig: ClientConfig,
-        deliveryId: Long,
-        options: RequestOptions? = null,
-    ): HookDelivery =
+    fun appsGetWebhookDelivery(clientConfig: ClientConfig, deliveryId: Long, options: RequestOptions? = null): HookDelivery =
         dev.octri.showcase.github.methods.AppsGetWebhookDeliveryOperation.appsGetWebhookDelivery(
             clientConfig,
             deliveryId,
@@ -798,51 +1126,30 @@ object Apps {
         )
 
     /**
-     * Triggers a redelivery attempt for a delivery made by a webhook configured for a GitHub App.
-     * Supply `delivery_id` to identify the delivery to attempt again. Authenticate with a GitHub
-     * App JWT to access this endpoint.
+     * Triggers a redelivery attempt for a delivery made by a webhook configured for a GitHub App. Supply `delivery_id` to identify the delivery to attempt again. Authenticate with a GitHub App JWT to access this endpoint.
      */
-    fun appsRedeliverWebhookDelivery(
-        clientConfig: ClientConfig,
-        deliveryId: Long,
-        options: RequestOptions? = null,
-    ): Map<String, Any> =
-        dev.octri.showcase.github.methods.AppsRedeliverWebhookDeliveryOperation
-            .appsRedeliverWebhookDelivery(
-                clientConfig,
-                deliveryId,
-                options,
-            )
-
-    /** Lists all the pending installation requests for the authenticated GitHub App. */
-    fun appsListInstallationRequestsForAuthenticatedApp(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<IntegrationInstallationRequest> =
-        dev.octri.showcase.github.methods.AppsListInstallationRequestsForAuthenticatedAppOperation
-            .appsListInstallationRequestsForAuthenticatedApp(
-                clientConfig,
-                perPage,
-                page,
-                options,
-            )
+    fun appsRedeliverWebhookDelivery(clientConfig: ClientConfig, deliveryId: Long, options: RequestOptions? = null): Map<String, Any> =
+        dev.octri.showcase.github.methods.AppsRedeliverWebhookDeliveryOperation.appsRedeliverWebhookDelivery(
+            clientConfig,
+            deliveryId,
+            options,
+        )
 
     /**
-     * Lists installations for the authenticated GitHub App. Use `since` to filter for installations
-     * updated after a timestamp, and use `page` and `per_page` to paginate the results. Each
-     * installation includes its granted permissions; authenticate with a GitHub App JWT to access
-     * this endpoint.
+     * Lists all the pending installation requests for the authenticated GitHub App.
      */
-    fun appsListInstallations(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        since: OffsetDateTime? = null,
-        outdated: String? = null,
-        options: RequestOptions? = null,
-    ): List<Installation> =
+    fun appsListInstallationRequestsForAuthenticatedApp(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IntegrationInstallationRequest> =
+        dev.octri.showcase.github.methods.AppsListInstallationRequestsForAuthenticatedAppOperation.appsListInstallationRequestsForAuthenticatedApp(
+            clientConfig,
+            perPage,
+            page,
+            options,
+        )
+
+    /**
+     * Lists installations for the authenticated GitHub App. Use `since` to filter for installations updated after a timestamp, and use `page` and `per_page` to paginate the results. Each installation includes its granted permissions; authenticate with a GitHub App JWT to access this endpoint.
+     */
+    fun appsListInstallations(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, since: OffsetDateTime? = null, outdated: String? = null, options: RequestOptions? = null): List<Installation> =
         dev.octri.showcase.github.methods.AppsListInstallationsOperation.appsListInstallations(
             clientConfig,
             perPage,
@@ -853,16 +1160,9 @@ object Apps {
         )
 
     /**
-     * Enables an authenticated GitHub App to find an installation's information using the
-     * installation id. You must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Enables an authenticated GitHub App to find an installation's information using the installation id. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsGetInstallation(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        options: RequestOptions? = null,
-    ): Installation =
+    fun appsGetInstallation(clientConfig: ClientConfig, installationId: Long, options: RequestOptions? = null): Installation =
         dev.octri.showcase.github.methods.AppsGetInstallationOperation.appsGetInstallation(
             clientConfig,
             installationId,
@@ -870,19 +1170,9 @@ object Apps {
         )
 
     /**
-     * Uninstalls a GitHub App on a user, organization, or enterprise account. If you prefer to
-     * temporarily suspend an app's access to your account's resources, then we recommend the
-     * "[Suspend an app
-     * installation](https://docs.github.com/rest/apps/apps#suspend-an-app-installation)" endpoint.
-     * You must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Uninstalls a GitHub App on a user, organization, or enterprise account. If you prefer to temporarily suspend an app's access to your account's resources, then we recommend the "[Suspend an app installation](https://docs.github.com/rest/apps/apps#suspend-an-app-installation)" endpoint. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsDeleteInstallation(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun appsDeleteInstallation(clientConfig: ClientConfig, installationId: Long, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.AppsDeleteInstallationOperation.appsDeleteInstallation(
             clientConfig,
             installationId,
@@ -890,62 +1180,22 @@ object Apps {
         )
 
     /**
-     * Creates an installation access token that enables a GitHub App to make authenticated API
-     * requests for the app's installation on an organization or individual account. Installation
-     * tokens expire one hour from the time you create them. Using an expired token produces a
-     * status code of `401 - Unauthorized`, and requires creating a new installation token. By
-     * default the installation token has access to all repositories that the installation can
-     * access. > [!NOTE] > Starting April 27, 2026, GitHub began a staged rollout of a stateless
-     * format (`ghs_APPID_JWT`) to all newly minted GitHub App installation tokens, making them more
-     * performant and improving the reliability of our API surface. If your application expects or
-     * relies on installation tokens being exactly 40 characters long, it may not handle this new
-     * token format correctly. You can now validate your apps and workflows using a temporary
-     * request header that lets you enable the token format on demand. For more information about
-     * the temporary header, see
-     * [the GitHub blog](https://github.blog/changelog/2026-05-15-github-app-installation-tokens-per-request-override-header).
-     * Optionally, you can use the `repositories` or `repository_ids` body parameters to specify
-     * individual repositories that the installation access token can access. If you don't use
-     * `repositories` or `repository_ids` to grant access to specific repositories, the installation
-     * access token will have access to all repositories that the installation was granted access
-     * to. The installation access token cannot be granted access to repositories that the
-     * installation was not granted access to. Up to 500 repositories can be listed in this manner.
-     * Optionally, use the `permissions` body parameter to specify the permissions that the
-     * installation access token should have. If `permissions` is not specified, the installation
-     * access token will have all of the permissions that were granted to the app. The installation
-     * access token cannot be granted permissions that the app was not granted. You must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Creates an installation access token that enables a GitHub App to make authenticated API requests for the app's installation on an organization or individual account. Installation tokens expire one hour from the time you create them. Using an expired token produces a status code of `401 - Unauthorized`, and requires creating a new installation token. By default the installation token has access to all repositories that the installation can access. > [!NOTE] > Starting April 27, 2026, GitHub began a staged rollout of a stateless format (`ghs_APPID_JWT`) to all newly minted GitHub App installation tokens, making them more performant and improving the reliability of our API surface. If your application expects or relies on installation tokens being exactly 40 characters long, it may not handle this new token format correctly. You can now validate your apps and workflows using a temporary request header that lets you enable the token format on demand. For more information about the temporary header, see [the GitHub blog](https://github.blog/changelog/2026-05-15-github-app-installation-tokens-per-request-override-header). Optionally, you can use the `repositories` or `repository_ids` body parameters to specify individual repositories that the installation access token can access. If you don't use `repositories` or `repository_ids` to grant access to specific repositories, the installation access token will have access to all repositories that the installation was granted access to. The installation access token cannot be granted access to repositories that the installation was not granted access to. Up to 500 repositories can be listed in this manner. Optionally, use the `permissions` body parameter to specify the permissions that the installation access token should have. If `permissions` is not specified, the installation access token will have all of the permissions that were granted to the app. The installation access token cannot be granted permissions that the app was not granted. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsCreateInstallationAccessToken(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        repositories: List<String>? = null,
-        repositoryIds: List<Long>? = null,
-        permissions: AppPermissions? = null,
-        options: RequestOptions? = null,
-    ): InstallationToken =
-        dev.octri.showcase.github.methods.AppsCreateInstallationAccessTokenOperation
-            .appsCreateInstallationAccessToken(
-                clientConfig,
-                installationId,
-                repositories,
-                repositoryIds,
-                permissions,
-                options,
-            )
+    fun appsCreateInstallationAccessToken(clientConfig: ClientConfig, installationId: Long, repositories: List<String>? = null, repositoryIds: List<Long>? = null, permissions: AppPermissions? = null, options: RequestOptions? = null): InstallationToken =
+        dev.octri.showcase.github.methods.AppsCreateInstallationAccessTokenOperation.appsCreateInstallationAccessToken(
+            clientConfig,
+            installationId,
+            repositories,
+            repositoryIds,
+            permissions,
+            options,
+        )
 
     /**
-     * Suspends a GitHub App on a user, organization, or enterprise account, which blocks the app
-     * from accessing the account's resources. When a GitHub App is suspended, the app's access to
-     * the GitHub API or webhook events is blocked for that account. You must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Suspends a GitHub App on a user, organization, or enterprise account, which blocks the app from accessing the account's resources. When a GitHub App is suspended, the app's access to the GitHub API or webhook events is blocked for that account. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsSuspendInstallation(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun appsSuspendInstallation(clientConfig: ClientConfig, installationId: Long, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.AppsSuspendInstallationOperation.appsSuspendInstallation(
             clientConfig,
             installationId,
@@ -953,36 +1203,19 @@ object Apps {
         )
 
     /**
-     * Removes a GitHub App installation suspension. You must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Removes a GitHub App installation suspension. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsUnsuspendInstallation(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.AppsUnsuspendInstallationOperation
-            .appsUnsuspendInstallation(
-                clientConfig,
-                installationId,
-                options,
-            )
+    fun appsUnsuspendInstallation(clientConfig: ClientConfig, installationId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.AppsUnsuspendInstallationOperation.appsUnsuspendInstallation(
+            clientConfig,
+            installationId,
+            options,
+        )
 
     /**
-     * OAuth and GitHub application owners can revoke a grant for their application and a specific
-     * user. You must provide a valid OAuth `access_token` as an input parameter and the grant for
-     * the token's owner will be deleted. Deleting an application's grant will also delete all OAuth
-     * tokens associated with the application for the user. Once deleted, the application will have
-     * no access to the user's account and will no longer be listed on
-     * [the application authorizations settings screen within GitHub](https://github.com/settings/applications#authorized).
+     * OAuth and GitHub application owners can revoke a grant for their application and a specific user. You must provide a valid OAuth `access_token` as an input parameter and the grant for the token's owner will be deleted. Deleting an application's grant will also delete all OAuth tokens associated with the application for the user. Once deleted, the application will have no access to the user's account and will no longer be listed on [the application authorizations settings screen within GitHub](https://github.com/settings/applications#authorized).
      */
-    fun appsDeleteAuthorization(
-        clientConfig: ClientConfig,
-        clientId: String,
-        accessToken: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun appsDeleteAuthorization(clientConfig: ClientConfig, clientId: String, accessToken: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.AppsDeleteAuthorizationOperation.appsDeleteAuthorization(
             clientConfig,
             clientId,
@@ -991,17 +1224,9 @@ object Apps {
         )
 
     /**
-     * OAuth applications and GitHub applications with OAuth authorizations can use this API method
-     * for checking OAuth token validity without exceeding the normal rate limits for failed login
-     * attempts. Authentication works differently with this particular endpoint. Invalid tokens will
-     * return `404 NOT FOUND`.
+     * OAuth applications and GitHub applications with OAuth authorizations can use this API method for checking OAuth token validity without exceeding the normal rate limits for failed login attempts. Authentication works differently with this particular endpoint. Invalid tokens will return `404 NOT FOUND`.
      */
-    fun appsCheckToken(
-        clientConfig: ClientConfig,
-        clientId: String,
-        accessToken: String,
-        options: RequestOptions? = null,
-    ): Authorization =
+    fun appsCheckToken(clientConfig: ClientConfig, clientId: String, accessToken: String, options: RequestOptions? = null): Authorization =
         dev.octri.showcase.github.methods.AppsCheckTokenOperation.appsCheckToken(
             clientConfig,
             clientId,
@@ -1010,17 +1235,9 @@ object Apps {
         )
 
     /**
-     * OAuth applications and GitHub applications with OAuth authorizations can use this API method
-     * to reset a valid OAuth token without end-user involvement. Applications must save the "token"
-     * property in the response because changes take effect immediately. Invalid tokens will return
-     * `404 NOT FOUND`.
+     * OAuth applications and GitHub applications with OAuth authorizations can use this API method to reset a valid OAuth token without end-user involvement. Applications must save the "token" property in the response because changes take effect immediately. Invalid tokens will return `404 NOT FOUND`.
      */
-    fun appsResetToken(
-        clientConfig: ClientConfig,
-        clientId: String,
-        accessToken: String,
-        options: RequestOptions? = null,
-    ): Authorization =
+    fun appsResetToken(clientConfig: ClientConfig, clientId: String, accessToken: String, options: RequestOptions? = null): Authorization =
         dev.octri.showcase.github.methods.AppsResetTokenOperation.appsResetToken(
             clientConfig,
             clientId,
@@ -1029,15 +1246,9 @@ object Apps {
         )
 
     /**
-     * OAuth or GitHub application owners can revoke a single token for an OAuth application or a
-     * GitHub application with an OAuth authorization.
+     * OAuth or GitHub application owners can revoke a single token for an OAuth application or a GitHub application with an OAuth authorization.
      */
-    fun appsDeleteToken(
-        clientConfig: ClientConfig,
-        clientId: String,
-        accessToken: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun appsDeleteToken(clientConfig: ClientConfig, clientId: String, accessToken: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.AppsDeleteTokenOperation.appsDeleteToken(
             clientConfig,
             clientId,
@@ -1046,15 +1257,9 @@ object Apps {
         )
 
     /**
-     * Use a non-scoped user access token to create a repository-scoped and/or permission-scoped
-     * user access token. You can specify which repositories the token can access and which
-     * permissions are granted to the token. Invalid tokens will return `404 NOT FOUND`.
+     * Use a non-scoped user access token to create a repository-scoped and/or permission-scoped user access token. You can specify which repositories the token can access and which permissions are granted to the token. Invalid tokens will return `404 NOT FOUND`.
      */
-    fun appsScopeToken(
-        clientConfig: ClientConfig,
-        request: AppsScopeTokenRequest,
-        options: RequestOptions? = null,
-    ): Authorization =
+    fun appsScopeToken(clientConfig: ClientConfig, request: AppsScopeTokenRequest, options: RequestOptions? = null): Authorization =
         dev.octri.showcase.github.methods.AppsScopeTokenOperation.appsScopeToken(
             clientConfig,
             request,
@@ -1062,89 +1267,49 @@ object Apps {
         )
 
     /**
-     * Retrieves a GitHub App by its URL-friendly slug. Use the `app_slug` path parameter shown in
-     * the app's settings URL to identify the app.
+     * Retrieves a GitHub App by its URL-friendly slug. Use the `app_slug` path parameter shown in the app's settings URL to identify the app.
      */
-    fun appsGetBySlug(
-        clientConfig: ClientConfig,
-        appSlug: String,
-        options: RequestOptions? = null,
-    ): Integration =
+    fun appsGetBySlug(clientConfig: ClientConfig, appSlug: String, options: RequestOptions? = null): Integration =
         dev.octri.showcase.github.methods.AppsGetBySlugOperation.appsGetBySlug(
             clientConfig,
             appSlug,
             options,
         )
 
-    /** List repositories that an app installation can access. */
-    fun appsListReposAccessibleToInstallation(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): AppsListReposAccessibleToInstallationResponse =
-        dev.octri.showcase.github.methods.AppsListReposAccessibleToInstallationOperation
-            .appsListReposAccessibleToInstallation(
-                clientConfig,
-                perPage,
-                page,
-                options,
-            )
+    /**
+     * List repositories that an app installation can access.
+     */
+    fun appsListReposAccessibleToInstallation(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AppsListReposAccessibleToInstallationResponse =
+        dev.octri.showcase.github.methods.AppsListReposAccessibleToInstallationOperation.appsListReposAccessibleToInstallation(
+            clientConfig,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Revokes the installation token you're using to authenticate as an installation and access
-     * this endpoint. Once an installation token is revoked, the token is invalidated and cannot be
-     * used. Other endpoints that require the revoked installation token must have a new
-     * installation token to work. You can create a new token using the "[Create an installation
-     * access token for an
-     * app](https://docs.github.com/rest/apps/apps#create-an-installation-access-token-for-an-app)"
-     * endpoint.
+     * Revokes the installation token you're using to authenticate as an installation and access this endpoint. Once an installation token is revoked, the token is invalidated and cannot be used. Other endpoints that require the revoked installation token must have a new installation token to work. You can create a new token using the "[Create an installation access token for an app](https://docs.github.com/rest/apps/apps#create-an-installation-access-token-for-an-app)" endpoint.
      */
-    fun appsRevokeInstallationAccessToken(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.AppsRevokeInstallationAccessTokenOperation
-            .appsRevokeInstallationAccessToken(
-                clientConfig,
-                options,
-            )
+    fun appsRevokeInstallationAccessToken(clientConfig: ClientConfig, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.AppsRevokeInstallationAccessTokenOperation.appsRevokeInstallationAccessToken(
+            clientConfig,
+            options,
+        )
 
     /**
-     * Shows whether the user or organization account actively subscribes to a plan listed by the
-     * authenticated GitHub App. When someone submits a plan change that won't be processed until
-     * the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps
-     * must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint. OAuth apps must use
-     * [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication)
-     * with their client ID and client secret to access this endpoint.
+     * Shows whether the user or organization account actively subscribes to a plan listed by the authenticated GitHub App. When someone submits a plan change that won't be processed until the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint. OAuth apps must use [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication) with their client ID and client secret to access this endpoint.
      */
-    fun appsGetSubscriptionPlanForAccount(
-        clientConfig: ClientConfig,
-        accountId: Long,
-        options: RequestOptions? = null,
-    ): MarketplacePurchase =
-        dev.octri.showcase.github.methods.AppsGetSubscriptionPlanForAccountOperation
-            .appsGetSubscriptionPlanForAccount(
-                clientConfig,
-                accountId,
-                options,
-            )
+    fun appsGetSubscriptionPlanForAccount(clientConfig: ClientConfig, accountId: Long, options: RequestOptions? = null): MarketplacePurchase =
+        dev.octri.showcase.github.methods.AppsGetSubscriptionPlanForAccountOperation.appsGetSubscriptionPlanForAccount(
+            clientConfig,
+            accountId,
+            options,
+        )
 
     /**
-     * Lists all plans that are part of your GitHub Marketplace listing. GitHub Apps must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint. OAuth apps must use
-     * [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication)
-     * with their client ID and client secret to access this endpoint.
+     * Lists all plans that are part of your GitHub Marketplace listing. GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint. OAuth apps must use [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication) with their client ID and client secret to access this endpoint.
      */
-    fun appsListPlans(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MarketplaceListingPlan> =
+    fun appsListPlans(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MarketplaceListingPlan> =
         dev.octri.showcase.github.methods.AppsListPlansOperation.appsListPlans(
             clientConfig,
             perPage,
@@ -1153,25 +1318,9 @@ object Apps {
         )
 
     /**
-     * Returns user and organization accounts associated with the specified plan, including free
-     * plans. For per-seat pricing, you see the list of accounts that have purchased the plan,
-     * including the number of seats purchased. When someone submits a plan change that won't be
-     * processed until the end of their billing cycle, you will also see the upcoming pending
-     * change. GitHub Apps must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint. OAuth apps must use
-     * [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication)
-     * with their client ID and client secret to access this endpoint.
+     * Returns user and organization accounts associated with the specified plan, including free plans. For per-seat pricing, you see the list of accounts that have purchased the plan, including the number of seats purchased. When someone submits a plan change that won't be processed until the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint. OAuth apps must use [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication) with their client ID and client secret to access this endpoint.
      */
-    fun appsListAccountsForPlan(
-        clientConfig: ClientConfig,
-        planId: Long,
-        sort: SchemaSchemaEnum2e5fa964? = null,
-        direction: AppsListAccountsForPlanParameterEnum? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MarketplacePurchase> =
+    fun appsListAccountsForPlan(clientConfig: ClientConfig, planId: Long, sort: SchemaSchemaEnum2e5fa964? = null, direction: AppsListAccountsForPlanParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MarketplacePurchase> =
         dev.octri.showcase.github.methods.AppsListAccountsForPlanOperation.appsListAccountsForPlan(
             clientConfig,
             planId,
@@ -1183,40 +1332,19 @@ object Apps {
         )
 
     /**
-     * Shows whether the user or organization account actively subscribes to a plan listed by the
-     * authenticated GitHub App. When someone submits a plan change that won't be processed until
-     * the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps
-     * must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint. OAuth apps must use
-     * [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication)
-     * with their client ID and client secret to access this endpoint.
+     * Shows whether the user or organization account actively subscribes to a plan listed by the authenticated GitHub App. When someone submits a plan change that won't be processed until the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint. OAuth apps must use [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication) with their client ID and client secret to access this endpoint.
      */
-    fun appsGetSubscriptionPlanForAccountStubbed(
-        clientConfig: ClientConfig,
-        accountId: Long,
-        options: RequestOptions? = null,
-    ): MarketplacePurchase =
-        dev.octri.showcase.github.methods.AppsGetSubscriptionPlanForAccountStubbedOperation
-            .appsGetSubscriptionPlanForAccountStubbed(
-                clientConfig,
-                accountId,
-                options,
-            )
+    fun appsGetSubscriptionPlanForAccountStubbed(clientConfig: ClientConfig, accountId: Long, options: RequestOptions? = null): MarketplacePurchase =
+        dev.octri.showcase.github.methods.AppsGetSubscriptionPlanForAccountStubbedOperation.appsGetSubscriptionPlanForAccountStubbed(
+            clientConfig,
+            accountId,
+            options,
+        )
 
     /**
-     * Lists all plans that are part of your GitHub Marketplace listing. GitHub Apps must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint. OAuth apps must use
-     * [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication)
-     * with their client ID and client secret to access this endpoint.
+     * Lists all plans that are part of your GitHub Marketplace listing. GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint. OAuth apps must use [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication) with their client ID and client secret to access this endpoint.
      */
-    fun appsListPlansStubbed(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MarketplaceListingPlan> =
+    fun appsListPlansStubbed(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MarketplaceListingPlan> =
         dev.octri.showcase.github.methods.AppsListPlansStubbedOperation.appsListPlansStubbed(
             clientConfig,
             perPage,
@@ -1225,47 +1353,23 @@ object Apps {
         )
 
     /**
-     * Returns repository and organization accounts associated with the specified plan, including
-     * free plans. For per-seat pricing, you see the list of accounts that have purchased the plan,
-     * including the number of seats purchased. When someone submits a plan change that won't be
-     * processed until the end of their billing cycle, you will also see the upcoming pending
-     * change. GitHub Apps must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint. OAuth apps must use
-     * [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication)
-     * with their client ID and client secret to access this endpoint.
+     * Returns repository and organization accounts associated with the specified plan, including free plans. For per-seat pricing, you see the list of accounts that have purchased the plan, including the number of seats purchased. When someone submits a plan change that won't be processed until the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint. OAuth apps must use [basic authentication](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication) with their client ID and client secret to access this endpoint.
      */
-    fun appsListAccountsForPlanStubbed(
-        clientConfig: ClientConfig,
-        planId: Long,
-        sort: SchemaSchemaEnum2e5fa964? = null,
-        direction: AppsListAccountsForPlanStubbedParameterEnum? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MarketplacePurchase> =
-        dev.octri.showcase.github.methods.AppsListAccountsForPlanStubbedOperation
-            .appsListAccountsForPlanStubbed(
-                clientConfig,
-                planId,
-                sort,
-                direction,
-                perPage,
-                page,
-                options,
-            )
+    fun appsListAccountsForPlanStubbed(clientConfig: ClientConfig, planId: Long, sort: SchemaSchemaEnum2e5fa964? = null, direction: AppsListAccountsForPlanStubbedParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MarketplacePurchase> =
+        dev.octri.showcase.github.methods.AppsListAccountsForPlanStubbedOperation.appsListAccountsForPlanStubbed(
+            clientConfig,
+            planId,
+            sort,
+            direction,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Enables an authenticated GitHub App to find the organization's installation information. You
-     * must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Enables an authenticated GitHub App to find the organization's installation information. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsGetOrgInstallation(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): Installation =
+    fun appsGetOrgInstallation(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Installation =
         dev.octri.showcase.github.methods.AppsGetOrgInstallationOperation.appsGetOrgInstallation(
             clientConfig,
             org,
@@ -1273,18 +1377,9 @@ object Apps {
         )
 
     /**
-     * Enables an authenticated GitHub App to find the repository's installation information. The
-     * installation's account type will be either an organization or a user account, depending which
-     * account the repository belongs to. You must use a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Enables an authenticated GitHub App to find the repository's installation information. The installation's account type will be either an organization or a user account, depending which account the repository belongs to. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    fun appsGetRepoInstallation(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Installation =
+    fun appsGetRepoInstallation(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Installation =
         dev.octri.showcase.github.methods.AppsGetRepoInstallationOperation.appsGetRepoInstallation(
             clientConfig,
             owner,
@@ -1293,128 +1388,76 @@ object Apps {
         )
 
     /**
-     * Lists installations of your GitHub App that the authenticated user has explicit permission
-     * (`:read`, `:write`, or `:admin`) to access. The authenticated user has explicit permission to
-     * access repositories they own, repositories where they are a collaborator, and repositories
-     * that they can access through an organization membership. You can find the permissions for the
-     * installation under the `permissions` key.
+     * Lists installations of your GitHub App that the authenticated user has explicit permission (`:read`, `:write`, or `:admin`) to access. The authenticated user has explicit permission to access repositories they own, repositories where they are a collaborator, and repositories that they can access through an organization membership. You can find the permissions for the installation under the `permissions` key.
      */
-    fun appsListInstallationsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): AppsListInstallationsForAuthenticatedUserResponse =
-        dev.octri.showcase.github.methods.AppsListInstallationsForAuthenticatedUserOperation
-            .appsListInstallationsForAuthenticatedUser(
-                clientConfig,
-                perPage,
-                page,
-                options,
-            )
+    fun appsListInstallationsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AppsListInstallationsForAuthenticatedUserResponse =
+        dev.octri.showcase.github.methods.AppsListInstallationsForAuthenticatedUserOperation.appsListInstallationsForAuthenticatedUser(
+            clientConfig,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * List repositories that the authenticated user has explicit permission (`:read`, `:write`, or
-     * `:admin`) to access for an installation. The authenticated user has explicit permission to
-     * access repositories they own, repositories where they are a collaborator, and repositories
-     * that they can access through an organization membership. The access the user has to each
-     * repository is included in the hash under the `permissions` key.
+     * List repositories that the authenticated user has explicit permission (`:read`, `:write`, or `:admin`) to access for an installation. The authenticated user has explicit permission to access repositories they own, repositories where they are a collaborator, and repositories that they can access through an organization membership. The access the user has to each repository is included in the hash under the `permissions` key.
      */
-    fun appsListInstallationReposForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): AppsListInstallationReposForAuthenticatedUserResponse =
-        dev.octri.showcase.github.methods.AppsListInstallationReposForAuthenticatedUserOperation
-            .appsListInstallationReposForAuthenticatedUser(
-                clientConfig,
-                installationId,
-                perPage,
-                page,
-                options,
-            )
+    fun appsListInstallationReposForAuthenticatedUser(clientConfig: ClientConfig, installationId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AppsListInstallationReposForAuthenticatedUserResponse =
+        dev.octri.showcase.github.methods.AppsListInstallationReposForAuthenticatedUserOperation.appsListInstallationReposForAuthenticatedUser(
+            clientConfig,
+            installationId,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Add a single repository to an installation. The authenticated user must have admin access to
-     * the repository.
+     * Add a single repository to an installation. The authenticated user must have admin access to the repository.
      */
-    fun appsAddRepoToInstallationForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.AppsAddRepoToInstallationForAuthenticatedUserOperation
-            .appsAddRepoToInstallationForAuthenticatedUser(
-                clientConfig,
-                installationId,
-                repositoryId,
-                options,
-            )
+    fun appsAddRepoToInstallationForAuthenticatedUser(clientConfig: ClientConfig, installationId: Long, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.AppsAddRepoToInstallationForAuthenticatedUserOperation.appsAddRepoToInstallationForAuthenticatedUser(
+            clientConfig,
+            installationId,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Remove a single repository from an installation. The authenticated user must have admin
-     * access to the repository. The installation must have the `repository_selection` of
-     * `selected`. To use a PAT (classic) with this endpoint, the `repo` scope is required
+     * Remove a single repository from an installation. The authenticated user must have admin access to the repository. The installation must have the `repository_selection` of `selected`. To use a PAT (classic) with this endpoint, the `repo` scope is required
      */
-    fun appsRemoveRepoFromInstallationForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .AppsRemoveRepoFromInstallationForAuthenticatedUserOperation
-            .appsRemoveRepoFromInstallationForAuthenticatedUser(
-                clientConfig,
-                installationId,
-                repositoryId,
-                options,
-            )
-
-    /** Lists the active subscriptions for the authenticated user. */
-    fun appsListSubscriptionsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<UserMarketplacePurchase> =
-        dev.octri.showcase.github.methods.AppsListSubscriptionsForAuthenticatedUserOperation
-            .appsListSubscriptionsForAuthenticatedUser(
-                clientConfig,
-                perPage,
-                page,
-                options,
-            )
-
-    /** Lists the active subscriptions for the authenticated user. */
-    fun appsListSubscriptionsForAuthenticatedUserStubbed(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<UserMarketplacePurchase> =
-        dev.octri.showcase.github.methods.AppsListSubscriptionsForAuthenticatedUserStubbedOperation
-            .appsListSubscriptionsForAuthenticatedUserStubbed(
-                clientConfig,
-                perPage,
-                page,
-                options,
-            )
+    fun appsRemoveRepoFromInstallationForAuthenticatedUser(clientConfig: ClientConfig, installationId: Long, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.AppsRemoveRepoFromInstallationForAuthenticatedUserOperation.appsRemoveRepoFromInstallationForAuthenticatedUser(
+            clientConfig,
+            installationId,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Enables an authenticated GitHub App to find the user’s installation information. You must use
-     * a
-     * [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
-     * to access this endpoint.
+     * Lists the active subscriptions for the authenticated user.
      */
-    fun appsGetUserInstallation(
-        clientConfig: ClientConfig,
-        username: String,
-        options: RequestOptions? = null,
-    ): Installation =
+    fun appsListSubscriptionsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<UserMarketplacePurchase> =
+        dev.octri.showcase.github.methods.AppsListSubscriptionsForAuthenticatedUserOperation.appsListSubscriptionsForAuthenticatedUser(
+            clientConfig,
+            perPage,
+            page,
+            options,
+        )
+
+    /**
+     * Lists the active subscriptions for the authenticated user.
+     */
+    fun appsListSubscriptionsForAuthenticatedUserStubbed(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<UserMarketplacePurchase> =
+        dev.octri.showcase.github.methods.AppsListSubscriptionsForAuthenticatedUserStubbedOperation.appsListSubscriptionsForAuthenticatedUserStubbed(
+            clientConfig,
+            perPage,
+            page,
+            options,
+        )
+
+    /**
+     * Enables an authenticated GitHub App to find the user’s installation information. You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
+     */
+    fun appsGetUserInstallation(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Installation =
         dev.octri.showcase.github.methods.AppsGetUserInstallationOperation.appsGetUserInstallation(
             clientConfig,
             username,

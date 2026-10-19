@@ -3,95 +3,138 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `sender` wire field. */
+/**
+ * Required object value serialized in the `sender` wire field.
+ */
 data class WebhookMembershipRemovedSender(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: WebhookMembershipRemovedSenderTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** Typed representation of the `WebhookMembershipRemoved` API schema. */
+/**
+ * Typed representation of the `WebhookMembershipRemoved` API schema.
+ */
 data class WebhookMembershipRemoved(
-    /** Required enumerated value serialized in the `action` wire field. */
-    val action: WebhookMembershipRemovedActionEnum,
-    /** Required object value serialized in the `member` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("member", required = true)
-    val member: WebhooksUser?,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * Required enumerated value serialized in the `action` wire field.
+     */
+    val action: WebhookMembershipRemovedActionEnum,
+    /**
+     * Required object value serialized in the `member` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("member", required = true) val member: WebhooksUser?,
+    /**
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks,
-    /** The scope of the membership. Currently, can only be `team`. */
+    /**
+     * The scope of the membership. Currently, can only be `team`.
+     */
     val scope: WebhookMembershipRemovedScopeEnum,
-    /** Required object value serialized in the `sender` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("sender", required = true)
-    val sender: WebhookMembershipRemovedSender?,
-    /** Groups of organization members that gives permissions on specified repositories. */
+    /**
+     * Required object value serialized in the `sender` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sender", required = true) val sender: WebhookMembershipRemovedSender?,
+    /**
+     * Groups of organization members that gives permissions on specified repositories.
+     */
     val team: WebhooksTeam,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
-    val repository: RepositoryWebhooks? = null,
+    val repository: RepositoryWebhooks? = null
 )

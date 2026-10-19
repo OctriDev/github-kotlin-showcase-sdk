@@ -3,62 +3,43 @@
 
 package dev.octri.showcase.github
 
-typealias WebhookWorkflowRunRequestedWorkflowRunConclusionEnum =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunConclusionEnum
+typealias WebhookWorkflowRunRequestedWorkflowRunConclusionEnum = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunConclusionEnum
 
-typealias WebhookWorkflowRunRequestedWorkflowRunHeadCommit =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadCommit
+typealias WebhookWorkflowRunRequestedWorkflowRunHeadCommit = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadCommit
 
-typealias WebhookWorkflowRunRequestedWorkflowRunHeadCommitAuthor =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadCommitAuthor
+typealias WebhookWorkflowRunRequestedWorkflowRunHeadCommitAuthor = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadCommitAuthor
 
-typealias WebhookWorkflowRunRequestedWorkflowRunHeadCommitCommitter =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadCommitCommitter
+typealias WebhookWorkflowRunRequestedWorkflowRunHeadCommitCommitter = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadCommitCommitter
 
-typealias WebhookWorkflowRunRequestedWorkflowRunHeadRepository =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadRepository
+typealias WebhookWorkflowRunRequestedWorkflowRunHeadRepository = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadRepository
 
-typealias WebhookWorkflowRunRequestedWorkflowRunHeadRepositoryOwner =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadRepositoryOwner
+typealias WebhookWorkflowRunRequestedWorkflowRunHeadRepositoryOwner = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadRepositoryOwner
 
-typealias WebhookWorkflowRunRequestedWorkflowRunHeadRepositoryOwnerTypeEnum =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadRepositoryOwnerTypeEnum
+typealias WebhookWorkflowRunRequestedWorkflowRunHeadRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunHeadRepositoryOwnerTypeEnum
 
-typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItem =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItem
+typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItem = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItem
 
-typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemBase =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemBase
+typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemBase = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemBase
 
-typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemBaseRepo =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemBaseRepo
+typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemBaseRepo = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemBaseRepo
 
-typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemHead =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemHead
+typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemHead = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemHead
 
-typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemHeadRepo =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemHeadRepo
+typealias WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemHeadRepo = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunPullRequestsItemHeadRepo
 
-typealias WebhookWorkflowRunRequestedWorkflowRunReferencedWorkflowsItem =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunReferencedWorkflowsItem
+typealias WebhookWorkflowRunRequestedWorkflowRunReferencedWorkflowsItem = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunReferencedWorkflowsItem
 
-typealias WebhookWorkflowRunRequestedWorkflowRunRepository =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunRepository
+typealias WebhookWorkflowRunRequestedWorkflowRunRepository = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunRepository
 
-typealias WebhookWorkflowRunRequestedWorkflowRunRepositoryOwner =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunRepositoryOwner
+typealias WebhookWorkflowRunRequestedWorkflowRunRepositoryOwner = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunRepositoryOwner
 
-typealias WebhookWorkflowRunRequestedWorkflowRunRepositoryOwnerTypeEnum =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunRepositoryOwnerTypeEnum
+typealias WebhookWorkflowRunRequestedWorkflowRunRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunRepositoryOwnerTypeEnum
 
-typealias WebhookWorkflowRunRequestedWorkflowRunStatusEnum =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunStatusEnum
+typealias WebhookWorkflowRunRequestedWorkflowRunStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunStatusEnum
 
-typealias WebhookWorkflowRunRequestedWorkflowRunTriggeringActor =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunTriggeringActor
+typealias WebhookWorkflowRunRequestedWorkflowRunTriggeringActor = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunTriggeringActor
 
-typealias WebhookWorkflowRunRequestedWorkflowRunTriggeringActorTypeEnum =
-    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunTriggeringActorTypeEnum
+typealias WebhookWorkflowRunRequestedWorkflowRunTriggeringActorTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunTriggeringActorTypeEnum
 
 typealias Workflow = dev.octri.showcase.github.models.Workflow
 
@@ -72,23 +53,17 @@ typealias WorkflowRunUsage = dev.octri.showcase.github.models.WorkflowRunUsage
 
 typealias WorkflowRunUsageBillable = dev.octri.showcase.github.models.WorkflowRunUsageBillable
 
-typealias WorkflowRunUsageBillableMACOS =
-    dev.octri.showcase.github.models.WorkflowRunUsageBillableMACOS
+typealias WorkflowRunUsageBillableMACOS = dev.octri.showcase.github.models.WorkflowRunUsageBillableMACOS
 
-typealias WorkflowRunUsageBillableMACOSJobRunsItem =
-    dev.octri.showcase.github.models.WorkflowRunUsageBillableMACOSJobRunsItem
+typealias WorkflowRunUsageBillableMACOSJobRunsItem = dev.octri.showcase.github.models.WorkflowRunUsageBillableMACOSJobRunsItem
 
-typealias WorkflowRunUsageBillableUBUNTU =
-    dev.octri.showcase.github.models.WorkflowRunUsageBillableUBUNTU
+typealias WorkflowRunUsageBillableUBUNTU = dev.octri.showcase.github.models.WorkflowRunUsageBillableUBUNTU
 
-typealias WorkflowRunUsageBillableUBUNTUJobRunsItem =
-    dev.octri.showcase.github.models.WorkflowRunUsageBillableUBUNTUJobRunsItem
+typealias WorkflowRunUsageBillableUBUNTUJobRunsItem = dev.octri.showcase.github.models.WorkflowRunUsageBillableUBUNTUJobRunsItem
 
-typealias WorkflowRunUsageBillableWINDOWS =
-    dev.octri.showcase.github.models.WorkflowRunUsageBillableWINDOWS
+typealias WorkflowRunUsageBillableWINDOWS = dev.octri.showcase.github.models.WorkflowRunUsageBillableWINDOWS
 
-typealias WorkflowRunUsageBillableWINDOWSJobRunsItem =
-    dev.octri.showcase.github.models.WorkflowRunUsageBillableWINDOWSJobRunsItem
+typealias WorkflowRunUsageBillableWINDOWSJobRunsItem = dev.octri.showcase.github.models.WorkflowRunUsageBillableWINDOWSJobRunsItem
 
 typealias WorkflowStateEnum = dev.octri.showcase.github.models.WorkflowStateEnum
 
@@ -100,5 +75,4 @@ typealias WorkflowUsageBillableMACOS = dev.octri.showcase.github.models.Workflow
 
 typealias WorkflowUsageBillableUBUNTU = dev.octri.showcase.github.models.WorkflowUsageBillableUBUNTU
 
-typealias WorkflowUsageBillableWINDOWS =
-    dev.octri.showcase.github.models.WorkflowUsageBillableWINDOWS
+typealias WorkflowUsageBillableWINDOWS = dev.octri.showcase.github.models.WorkflowUsageBillableWINDOWS

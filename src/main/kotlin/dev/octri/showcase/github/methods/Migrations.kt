@@ -23,44 +23,26 @@ import dev.octri.showcase.github.ValidationError
 
 object Migrations {
 
+
     /**
-     * Lists the most recent migrations, including both exports (which can be started through the
-     * REST API) and imports (which cannot be started using the REST API). A list of `repositories`
-     * is only returned for export migrations.
+     * Lists the most recent migrations, including both exports (which can be started through the REST API) and imports (which cannot be started using the REST API). A list of `repositories` is only returned for export migrations.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      * @param exclude Exclude attributes from the API response to improve performance
      */
-    fun migrationsListForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        exclude: List<MigrationsListForOrgParameterItemEnum>? = null,
-        options: RequestOptions? = null,
-    ): List<Migration> {
-        return SdkClient.request<List<Migration>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/migrations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "exclude" to SdkClient.queryValue(exclude, "form", true),
-                        ),
-                    operationId = "migrationsListForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun migrationsListForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, exclude: List<MigrationsListForOrgParameterItemEnum>? = null, options: RequestOptions? = null): List<Migration> {
+        return SdkClient.request<List<Migration>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/migrations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "exclude" to SdkClient.queryValue(exclude, "form", true)), operationId = "migrationsListForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
 
     /** Parameters for [migrationsStartForOrg]. */
     data class MigrationsStartForOrgRequest(
@@ -73,259 +55,158 @@ object Migrations {
         val excludeReleases: Boolean? = null,
         val excludeOwnerProjects: Boolean? = null,
         val orgMetadataOnly: Boolean? = null,
-        val exclude: List<MigrationsStartForOrgExcludeItemEnum>? = null,
+        val exclude: List<MigrationsStartForOrgExcludeItemEnum>? = null
     )
 
     /**
-     * Starts an organization migration to generate a migration archive. Supply `repositories` to
-     * select the repositories to include; the other boolean options default to false when omitted.
-     * Set `org_metadata_only` to true and provide an empty `repositories` list to include only
-     * organization metadata; a 201 response returns the migration record.
+     * Starts an organization migration to generate a migration archive. Supply `repositories` to select the repositories to include; the other boolean options default to false when omitted. Set `org_metadata_only` to true and provide an empty `repositories` list to include only organization metadata; a 201 response returns the migration record.
      *
      * Initiates the generation of a migration archive.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param repositories A list of arrays indicating which repositories should be migrated.
-     * @param lockRepositories Indicates whether repositories should be locked (to prevent
-     *   manipulation) while migrating data.
-     * @param excludeMetadata Indicates whether metadata should be excluded and only git source
-     *   should be included for the migration.
-     * @param excludeGitData Indicates whether the repository git data should be excluded from the
-     *   migration.
-     * @param excludeAttachments Indicates whether attachments should be excluded from the migration
-     *   (to reduce migration archive file size).
-     * @param excludeReleases Indicates whether releases should be excluded from the migration (to
-     *   reduce migration archive file size).
-     * @param excludeOwnerProjects Indicates whether projects owned by the organization or users
-     *   should be excluded. from the migration.
-     * @param orgMetadataOnly Indicates whether this should only include organization metadata
-     *   (repositories array should be empty and will ignore other flags).
-     * @param exclude Exclude related items from being returned in the response in order to improve
-     *   performance of the request.
+     * @param repositories A list of arrays indicating which repositories should be
+     *   migrated.
+     * @param lockRepositories Indicates whether repositories should be locked (to
+     *   prevent manipulation) while migrating data.
+     * @param excludeMetadata Indicates whether metadata should be excluded and only
+     *   git source should be included for the migration.
+     * @param excludeGitData Indicates whether the repository git data should be
+     *   excluded from the migration.
+     * @param excludeAttachments Indicates whether attachments should be excluded
+     *   from the migration (to reduce migration archive file size).
+     * @param excludeReleases Indicates whether releases should be excluded from the
+     *   migration (to reduce migration archive file size).
+     * @param excludeOwnerProjects Indicates whether projects owned by the
+     *   organization or users should be excluded. from the migration.
+     * @param orgMetadataOnly Indicates whether this should only include organization
+     *   metadata (repositories array should be empty and will ignore other flags).
+     * @param exclude Exclude related items from being returned in the response in
+     *   order to improve performance of the request.
      */
-    fun migrationsStartForOrg(
-        clientConfig: ClientConfig,
-        request: MigrationsStartForOrgRequest,
-        options: RequestOptions? = null,
-    ): Migration {
-        return SdkClient.request<Migration>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/migrations",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "repositories" to (request.repositories),
-                            "lock_repositories" to (SdkClient.omitIfNull(request.lockRepositories)),
-                            "exclude_metadata" to (SdkClient.omitIfNull(request.excludeMetadata)),
-                            "exclude_git_data" to (SdkClient.omitIfNull(request.excludeGitData)),
-                            "exclude_attachments" to
-                                (SdkClient.omitIfNull(request.excludeAttachments)),
-                            "exclude_releases" to (SdkClient.omitIfNull(request.excludeReleases)),
-                            "exclude_owner_projects" to
-                                (SdkClient.omitIfNull(request.excludeOwnerProjects)),
-                            "org_metadata_only" to (SdkClient.omitIfNull(request.orgMetadataOnly)),
-                            "exclude" to (SdkClient.omitIfNull(request.exclude)),
-                        ),
-                    operationId = "migrationsStartForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun migrationsStartForOrg(clientConfig: ClientConfig, request: MigrationsStartForOrgRequest, options: RequestOptions? = null): Migration {
+        return SdkClient.request<Migration>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/migrations", config = clientConfig, body = SdkClient.bodyMap("repositories" to (request.repositories), "lock_repositories" to
+    (SdkClient.omitIfNull(request.lockRepositories)), "exclude_metadata" to
+    (SdkClient.omitIfNull(request.excludeMetadata)), "exclude_git_data" to
+    (SdkClient.omitIfNull(request.excludeGitData)), "exclude_attachments" to
+    (SdkClient.omitIfNull(request.excludeAttachments)), "exclude_releases" to
+    (SdkClient.omitIfNull(request.excludeReleases)), "exclude_owner_projects" to
+    (SdkClient.omitIfNull(request.excludeOwnerProjects)), "org_metadata_only" to
+    (SdkClient.omitIfNull(request.orgMetadataOnly)), "exclude" to (SdkClient.omitIfNull(request.exclude))), operationId = "migrationsStartForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Fetches the status of a migration. The `state` of a migration can be one of the following
-     * values: * `pending`, which means the migration hasn't started yet. * `exporting`, which means
-     * the migration is in progress. * `exported`, which means the migration finished
-     * successfully. * `failed`, which means the migration failed.
+     * Fetches the status of a migration. The `state` of a migration can be one of the following values: * `pending`, which means the migration hasn't started yet. * `exporting`, which means the migration is in progress. * `exported`, which means the migration finished successfully. * `failed`, which means the migration failed.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param migrationId The unique identifier of the migration.
      * @param exclude Exclude attributes from the API response to improve performance
      */
-    fun migrationsGetStatusForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        migrationId: Long,
-        exclude: List<MigrationsGetStatusForOrgParameterItemEnum>? = null,
-        options: RequestOptions? = null,
-    ): Migration {
-        return SdkClient.request<Migration>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}",
-                    config = clientConfig,
-                    query = mapOf("exclude" to SdkClient.queryValue(exclude, "form", true)),
-                    operationId = "migrationsGetStatusForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsGetStatusForOrg(clientConfig: ClientConfig, org: String, migrationId: Long, exclude: List<MigrationsGetStatusForOrgParameterItemEnum>? = null, options: RequestOptions? = null): Migration {
+        return SdkClient.request<Migration>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}", config = clientConfig, query = mapOf("exclude" to SdkClient.queryValue(exclude, "form", true)), operationId = "migrationsGetStatusForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Retrieves the download URL for an organization's migration archive. Identify the migration
-     * with `org` and `migration_id`; the response redirects to the archive URL.
+     * Retrieves the download URL for an organization's migration archive. Identify the migration with `org` and `migration_id`; the response redirects to the archive URL.
      *
      * Fetches the URL to a migration archive.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param migrationId The unique identifier of the migration.
      */
-    fun migrationsDownloadArchiveForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        migrationId: Long,
-        options: RequestOptions? = null,
-    ): Any {
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}/archive",
-                    config = clientConfig,
-                    operationId = "migrationsDownloadArchiveForOrg",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsDownloadArchiveForOrg(clientConfig: ClientConfig, org: String, migrationId: Long, options: RequestOptions? = null): Any {
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}/archive", config = clientConfig, operationId = "migrationsDownloadArchiveForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Deletes a previous migration archive. Migration archives are automatically deleted after
-     * seven days.
+     * Deletes a previous migration archive. Migration archives are automatically deleted after seven days.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param migrationId The unique identifier of the migration.
      */
-    fun migrationsDeleteArchiveForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        migrationId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}/archive",
-                config = clientConfig,
-                operationId = "migrationsDeleteArchiveForOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun migrationsDeleteArchiveForOrg(clientConfig: ClientConfig, org: String, migrationId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}/archive", config = clientConfig, operationId = "migrationsDeleteArchiveForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 
+
+
+
+
+
+
     /**
-     * Unlocks a repository that was locked for migration. You should unlock each migrated
-     * repository and delete them when the migration is complete and you no longer need the source
-     * data.
+     * Unlocks a repository that was locked for migration. You should unlock each migrated repository and delete them when the migration is complete and you no longer need the source data.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param migrationId The unique identifier of the migration.
      * @param repoName repo_name parameter
      */
-    fun migrationsUnlockRepoForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        migrationId: Long,
-        repoName: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}/repos/${SdkClient.encodePathSegment(repoName)}/lock",
-                config = clientConfig,
-                operationId = "migrationsUnlockRepoForOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun migrationsUnlockRepoForOrg(clientConfig: ClientConfig, org: String, migrationId: Long, repoName: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}/repos/${SdkClient.encodePathSegment(repoName)}/lock", config = clientConfig, operationId = "migrationsUnlockRepoForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
+
+
+
+
+
+
 
     /**
      * List all the repositories for this organization migration.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param migrationId The unique identifier of the migration.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun migrationsListReposForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        migrationId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}/repositories",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "migrationsListReposForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsListReposForOrg(clientConfig: ClientConfig, org: String, migrationId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/migrations/${SdkClient.encodePathSegment(migrationId)}/repositories", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "migrationsListReposForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * View the progress of an import. > !WARNING] > **Endpoint closing down notice:** Due to very
-     * low levels of usage and available alternatives, this endpoint is closing down and will no
-     * longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see
-     * the \[changelog. **Import status** This section includes details about the possible values of
-     * the `status` field of the Import Progress response. An import that does not have errors will
-     * progress through…
+     * View the progress of an import. > !WARNING] > **Endpoint closing down notice:** Due to very low levels of usage and available alternatives, this endpoint is closing down and will no longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see the \[changelog. **Import status** This section includes details about the possible values of the `status` field of the Import Progress response. An import that does not have errors will progress through…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun migrationsGetImportStatus(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Import {
-        return SdkClient.request<Import>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import",
-                    config = clientConfig,
-                    operationId = "migrationsGetImportStatus",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "503" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsGetImportStatus(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Import {
+        return SdkClient.request<Import>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import", config = clientConfig, operationId = "migrationsGetImportStatus", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "503" to BasicError::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [migrationsStartImport]. */
     data class MigrationsStartImportRequest(
@@ -335,60 +216,41 @@ object Migrations {
         val vcs: MigrationsStartImportVcsEnum? = null,
         val vcsUsername: String? = null,
         val vcsPassword: String? = null,
-        val tfvcProject: String? = null,
+        val tfvcProject: String? = null
     )
 
     /**
-     * Start a source import to a GitHub repository using GitHub Importer. Importing into a GitHub
-     * repository with GitHub Actions enabled is not supported and will return a status `422
-     * Unprocessable Entity` response. > !WARNING] > **Endpoint closing down notice:** Due to very
-     * low levels of usage and available alternatives, this endpoint is closing down and will no
-     * longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see
-     * the \[changelog.
+     * Start a source import to a GitHub repository using GitHub Importer. Importing into a GitHub repository with GitHub Actions enabled is not supported and will return a status `422 Unprocessable Entity` response. > !WARNING] > **Endpoint closing down notice:** Due to very low levels of usage and available alternatives, this endpoint is closing down and will no longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see the \[changelog.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param vcsUrl The URL of the originating repository.
-     * @param vcs The originating VCS type. Without this parameter, the import job will take
-     *   additional time to detect the VCS type before beginning the import. This detection step
-     *   will be reflected in the response.
-     * @param vcsUsername If authentication is required, the username to provide to `vcs_url`.
-     * @param vcsPassword If authentication is required, the password to provide to `vcs_url`.
-     * @param tfvcProject For a tfvc import, the name of the project that is being imported.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param vcs The originating VCS type. Without this parameter, the import job
+     *   will take additional time to detect the VCS type before beginning the import.
+     *   This detection step will be reflected in the response.
+     * @param vcsUsername If authentication is required, the username to provide to
+     *   `vcs_url`.
+     * @param vcsPassword If authentication is required, the password to provide to
+     *   `vcs_url`.
+     * @param tfvcProject For a tfvc import, the name of the project that is being
+     *   imported.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun migrationsStartImport(
-        clientConfig: ClientConfig,
-        request: MigrationsStartImportRequest,
-        options: RequestOptions? = null,
-    ): Import {
-        return SdkClient.request<Import>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/import",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "vcs_url" to (request.vcsUrl),
-                            "vcs" to (SdkClient.omitIfNull(request.vcs)),
-                            "vcs_username" to (SdkClient.omitIfNull(request.vcsUsername)),
-                            "vcs_password" to (SdkClient.omitIfNull(request.vcsPassword)),
-                            "tfvc_project" to (SdkClient.omitIfNull(request.tfvcProject)),
-                        ),
-                    operationId = "migrationsStartImport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "503" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun migrationsStartImport(clientConfig: ClientConfig, request: MigrationsStartImportRequest, options: RequestOptions? = null): Import {
+        return SdkClient.request<Import>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/import", config = clientConfig, body = SdkClient.bodyMap("vcs_url" to (request.vcsUrl), "vcs" to (SdkClient.omitIfNull(request.vcs)), "vcs_username" to
+    (SdkClient.omitIfNull(request.vcsUsername)), "vcs_password" to
+    (SdkClient.omitIfNull(request.vcsPassword)), "tfvc_project" to
+    (SdkClient.omitIfNull(request.tfvcProject))), operationId = "migrationsStartImport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to BasicError::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [migrationsUpdateImport]. */
     data class MigrationsUpdateImportRequest(
@@ -397,279 +259,164 @@ object Migrations {
         val vcsUsername: String? = null,
         val vcsPassword: String? = null,
         val vcs: MigrationsUpdateImportVcsEnum? = null,
-        val tfvcProject: String? = null,
+        val tfvcProject: String? = null
     )
 
     /**
-     * An import can be updated with credentials or a project choice by passing in the appropriate
-     * parameters in this API request. If no parameters are provided, the import will be restarted.
-     * Some servers (e.g. TFS servers) can have several projects at a single URL. In those cases the
-     * import progress will have the status `detection_found_multiple` and the Import Progress
-     * response will include a `project_choices` array. You can select the project to import by
-     * providing one of the…
+     * An import can be updated with credentials or a project choice by passing in the appropriate parameters in this API request. If no parameters are provided, the import will be restarted. Some servers (e.g. TFS servers) can have several projects at a single URL. In those cases the import progress will have the status `detection_found_multiple` and the Import Progress response will include a `project_choices` array. You can select the project to import by providing one of the…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param vcsUsername The username to provide to the originating repository.
      * @param vcsPassword The password to provide to the originating repository.
      * @param vcs The type of version control system you are migrating from.
-     * @param tfvcProject For a tfvc import, the name of the project that is being imported.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param tfvcProject For a tfvc import, the name of the project that is being
+     *   imported.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun migrationsUpdateImport(
-        clientConfig: ClientConfig,
-        request: MigrationsUpdateImportRequest,
-        options: RequestOptions? = null,
-    ): Import {
-        return SdkClient.request<Import>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/import",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "vcs_username" to (SdkClient.omitIfNull(request.vcsUsername)),
-                            "vcs_password" to (SdkClient.omitIfNull(request.vcsPassword)),
-                            "vcs" to (SdkClient.omitIfNull(request.vcs)),
-                            "tfvc_project" to (SdkClient.omitIfNull(request.tfvcProject)),
-                        ),
-                    operationId = "migrationsUpdateImport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("503" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsUpdateImport(clientConfig: ClientConfig, request: MigrationsUpdateImportRequest, options: RequestOptions? = null): Import {
+        return SdkClient.request<Import>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/import", config = clientConfig, body = SdkClient.bodyMap("vcs_username" to
+    (SdkClient.omitIfNull(request.vcsUsername)), "vcs_password" to
+    (SdkClient.omitIfNull(request.vcsPassword)), "vcs" to (SdkClient.omitIfNull(request.vcs)), "tfvc_project" to
+    (SdkClient.omitIfNull(request.tfvcProject))), operationId = "migrationsUpdateImport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("503" to BasicError::class.java))).data
     }
 
-    /**
-     * Stop an import for a repository. > !WARNING] > **Endpoint closing down notice:** Due to very
-     * low levels of usage and available alternatives, this endpoint is closing down and will no
-     * longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see
-     * the \[changelog.
-     *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
-     *   sensitive.
-     * @deprecated This operation is deprecated and may be removed in a future release.
-     */
-    fun migrationsCancelImport(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import",
-                config = clientConfig,
-                operationId = "migrationsCancelImport",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("503" to BasicError::class.java),
-            )
-        )
-    }
+
+
+
+
+
 
     /**
-     * Each type of source control system represents authors in a different way. For example, a Git
-     * commit author has a display name and an email address, but a Subversion commit author just
-     * has a username. The GitHub Importer will make the author information valid, but the author
-     * might not be correct. For example, it will change the bare Subversion username `hubot` into
-     * something like `hubot <hubot@12341234-abab-fefe-8787-fedcba987654>`. This endpoint and the
-     * Map a commit author…
+     * Stop an import for a repository. > !WARNING] > **Endpoint closing down notice:** Due to very low levels of usage and available alternatives, this endpoint is closing down and will no longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see the \[changelog.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
+     */
+    fun migrationsCancelImport(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import", config = clientConfig, operationId = "migrationsCancelImport", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("503" to BasicError::class.java)))
+    }
+
+
+
+
+
+
+
+    /**
+     * Each type of source control system represents authors in a different way. For example, a Git commit author has a display name and an email address, but a Subversion commit author just has a username. The GitHub Importer will make the author information valid, but the author might not be correct. For example, it will change the bare Subversion username `hubot` into something like `hubot <hubot@12341234-abab-fefe-8787-fedcba987654>`. This endpoint and the Map a commit author…
+     *
+     * @param owner The account owner of the repository. The name is not case
+     *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param since A user ID. Only return users with an ID greater than this ID.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun migrationsGetCommitAuthors(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        since: Long? = null,
-        options: RequestOptions? = null,
-    ): List<PorterAuthor> {
-        return SdkClient.request<List<PorterAuthor>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import/authors",
-                    config = clientConfig,
-                    query = mapOf("since" to SdkClient.queryValue(since, "form", true)),
-                    operationId = "migrationsGetCommitAuthors",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "503" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsGetCommitAuthors(clientConfig: ClientConfig, owner: String, repo: String, since: Long? = null, options: RequestOptions? = null): List<PorterAuthor> {
+        return SdkClient.request<List<PorterAuthor>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import/authors", config = clientConfig, query = mapOf("since" to SdkClient.queryValue(since, "form", true)), operationId = "migrationsGetCommitAuthors", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "503" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Updates the Git identity mapped to a commit author in an imported repository. Use `email` and
-     * `name` to change the author's identity before pushing new commits. This operation is closing
-     * down and will be removed on April 12, 2024.
+     * Updates the Git identity mapped to a commit author in an imported repository. Use `email` and `name` to change the author's identity before pushing new commits. This operation is closing down and will be removed on April 12, 2024.
      *
-     * Update an author's identity for the import. Your application can continue updating authors
-     * any time before you push new commits to the repository. > !WARNING] > **Endpoint closing down
-     * notice:** Due to very low levels of usage and available alternatives, this endpoint is
-     * closing down and will no longer be available from 00:00 UTC on April 12, 2024. For more
-     * details and alternatives, see the \[changelog.
+     * Update an author's identity for the import. Your application can continue updating authors any time before you push new commits to the repository. > !WARNING] > **Endpoint closing down notice:** Due to very low levels of usage and available alternatives, this endpoint is closing down and will no longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see the \[changelog.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param email The new Git author email.
      * @param name The new Git author name.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun migrationsMapCommitAuthor(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        authorId: Long,
-        email: String? = null,
-        name: String? = null,
-        options: RequestOptions? = null,
-    ): PorterAuthor {
-        return SdkClient.request<PorterAuthor>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import/authors/${SdkClient.encodePathSegment(authorId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "email" to (SdkClient.omitIfNull(email)),
-                            "name" to (SdkClient.omitIfNull(name)),
-                        ),
-                    operationId = "migrationsMapCommitAuthor",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "503" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun migrationsMapCommitAuthor(clientConfig: ClientConfig, owner: String, repo: String, authorId: Long, email: String? = null, name: String? = null, options: RequestOptions? = null): PorterAuthor {
+        return SdkClient.request<PorterAuthor>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import/authors/${SdkClient.encodePathSegment(authorId)}", config = clientConfig, body = SdkClient.bodyMap("email" to (SdkClient.omitIfNull(email)), "name" to (SdkClient.omitIfNull(name))), operationId = "migrationsMapCommitAuthor", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * List files larger than 100MB found during the import > !WARNING] > **Endpoint closing down
-     * notice:** Due to very low levels of usage and available alternatives, this endpoint is
-     * closing down and will no longer be available from 00:00 UTC on April 12, 2024. For more
-     * details and alternatives, see the \[changelog.
+     * List files larger than 100MB found during the import > !WARNING] > **Endpoint closing down notice:** Due to very low levels of usage and available alternatives, this endpoint is closing down and will no longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see the \[changelog.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun migrationsGetLargeFiles(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): List<PorterLargeFile> {
-        return SdkClient.request<List<PorterLargeFile>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import/large_files",
-                    config = clientConfig,
-                    operationId = "migrationsGetLargeFiles",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("503" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsGetLargeFiles(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<PorterLargeFile> {
+        return SdkClient.request<List<PorterLargeFile>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import/large_files", config = clientConfig, operationId = "migrationsGetLargeFiles", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("503" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * You can import repositories from Subversion, Mercurial, and TFS that include files larger
-     * than 100MB. This ability is powered by Git LFS. You can learn more about our LFS feature and
-     * working with large files on our help site. > !WARNING] > **Endpoint closing down notice:**
-     * Due to very low levels of usage and available alternatives, this endpoint is closing down and
-     * will no longer be available from 00:00 UTC on April 12, 2024. For more details and
-     * alternatives, see the…
+     * You can import repositories from Subversion, Mercurial, and TFS that include files larger than 100MB. This ability is powered by Git LFS. You can learn more about our LFS feature and working with large files on our help site. > !WARNING] > **Endpoint closing down notice:** Due to very low levels of usage and available alternatives, this endpoint is closing down and will no longer be available from 00:00 UTC on April 12, 2024. For more details and alternatives, see the…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param useLfs Whether to store large files during the import. `opt_in` means large files will
-     *   be stored using Git LFS. `opt_out` means large files will be removed during the import.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param useLfs Whether to store large files during the import. `opt_in` means
+     *   large files will be stored using Git LFS. `opt_out` means large files will be
+     *   removed during the import.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun migrationsSetLfsPreference(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        useLfs: MigrationsSetLfsPreferenceUseLfsEnum,
-        options: RequestOptions? = null,
-    ): Import {
-        return SdkClient.request<Import>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import/lfs",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("use_lfs" to (useLfs)),
-                    operationId = "migrationsSetLfsPreference",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "422" to ValidationError::class.java,
-                            "503" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun migrationsSetLfsPreference(clientConfig: ClientConfig, owner: String, repo: String, useLfs: MigrationsSetLfsPreferenceUseLfsEnum, options: RequestOptions? = null): Import {
+        return SdkClient.request<Import>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/import/lfs", config = clientConfig, body = SdkClient.bodyMap("use_lfs" to (useLfs)), operationId = "migrationsSetLfsPreference", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java, "503" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Lists migrations started by the authenticated user, including their state and repository
-     * details when available. Use `page` and `per_page` to paginate the results; `per_page`
-     * defaults to 30 and is capped at 100.
+     * Lists migrations started by the authenticated user, including their state and repository details when available. Use `page` and `per_page` to paginate the results; `per_page` defaults to 30 and is capped at 100.
      *
      * Lists all migrations a user has started.
      *
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun migrationsListForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Migration> {
-        return SdkClient.request<List<Migration>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/migrations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "migrationsListForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsListForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Migration> {
+        return SdkClient.request<List<Migration>>(SdkClient.RequestSpec("GET", "/user/migrations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "migrationsListForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [migrationsStartForAuthenticatedUser]. */
     data class MigrationsStartForAuthenticatedUserRequest(
@@ -681,234 +428,125 @@ object Migrations {
         val excludeReleases: Boolean? = null,
         val excludeOwnerProjects: Boolean? = null,
         val orgMetadataOnly: Boolean? = null,
-        val exclude: List<MigrationsStartForAuthenticatedUserExcludeItemEnum>? = null,
+        val exclude: List<MigrationsStartForAuthenticatedUserExcludeItemEnum>? = null
     )
 
     /**
-     * Starts a migration for the authenticated user using the specified repositories. Set
-     * `org_metadata_only` to true to include only organization metadata; in this mode,
-     * `repositories` must be empty and other flags are ignored. A 201 response returns the created
-     * migration record.
+     * Starts a migration for the authenticated user using the specified repositories. Set `org_metadata_only` to true to include only organization metadata; in this mode, `repositories` must be empty and other flags are ignored. A 201 response returns the created migration record.
      *
      * Initiates the generation of a user migration archive.
      *
-     * @param lockRepositories Lock the repositories being migrated at the start of the migration
-     * @param excludeMetadata Indicates whether metadata should be excluded and only git source
-     *   should be included for the migration.
-     * @param excludeGitData Indicates whether the repository git data should be excluded from the
-     *   migration.
+     * @param lockRepositories Lock the repositories being migrated at the start of
+     *   the migration
+     * @param excludeMetadata Indicates whether metadata should be excluded and only
+     *   git source should be included for the migration.
+     * @param excludeGitData Indicates whether the repository git data should be
+     *   excluded from the migration.
      * @param excludeAttachments Do not include attachments in the migration
      * @param excludeReleases Do not include releases in the migration
-     * @param excludeOwnerProjects Indicates whether projects owned by the organization or users
-     *   should be excluded.
-     * @param orgMetadataOnly Indicates whether this should only include organization metadata
-     *   (repositories array should be empty and will ignore other flags).
+     * @param excludeOwnerProjects Indicates whether projects owned by the
+     *   organization or users should be excluded.
+     * @param orgMetadataOnly Indicates whether this should only include organization
+     *   metadata (repositories array should be empty and will ignore other flags).
      * @param exclude Exclude attributes from the API response to improve performance
      */
-    fun migrationsStartForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        request: MigrationsStartForAuthenticatedUserRequest,
-        options: RequestOptions? = null,
-    ): Migration {
-        return SdkClient.request<Migration>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/user/migrations",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "repositories" to (request.repositories),
-                            "lock_repositories" to (SdkClient.omitIfNull(request.lockRepositories)),
-                            "exclude_metadata" to (SdkClient.omitIfNull(request.excludeMetadata)),
-                            "exclude_git_data" to (SdkClient.omitIfNull(request.excludeGitData)),
-                            "exclude_attachments" to
-                                (SdkClient.omitIfNull(request.excludeAttachments)),
-                            "exclude_releases" to (SdkClient.omitIfNull(request.excludeReleases)),
-                            "exclude_owner_projects" to
-                                (SdkClient.omitIfNull(request.excludeOwnerProjects)),
-                            "org_metadata_only" to (SdkClient.omitIfNull(request.orgMetadataOnly)),
-                            "exclude" to (SdkClient.omitIfNull(request.exclude)),
-                        ),
-                    operationId = "migrationsStartForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun migrationsStartForAuthenticatedUser(clientConfig: ClientConfig, request: MigrationsStartForAuthenticatedUserRequest, options: RequestOptions? = null): Migration {
+        return SdkClient.request<Migration>(SdkClient.RequestSpec("POST", "/user/migrations", config = clientConfig, body = SdkClient.bodyMap("repositories" to (request.repositories), "lock_repositories" to
+    (SdkClient.omitIfNull(request.lockRepositories)), "exclude_metadata" to
+    (SdkClient.omitIfNull(request.excludeMetadata)), "exclude_git_data" to
+    (SdkClient.omitIfNull(request.excludeGitData)), "exclude_attachments" to
+    (SdkClient.omitIfNull(request.excludeAttachments)), "exclude_releases" to
+    (SdkClient.omitIfNull(request.excludeReleases)), "exclude_owner_projects" to
+    (SdkClient.omitIfNull(request.excludeOwnerProjects)), "org_metadata_only" to
+    (SdkClient.omitIfNull(request.orgMetadataOnly)), "exclude" to (SdkClient.omitIfNull(request.exclude))), operationId = "migrationsStartForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Retrieves the status and details of a user migration. Use `migration_id` to identify the
-     * migration, and check `state` to see whether it is pending, exporting, exported, or failed.
-     * Once the migration is exported, download its archive using the user migration archive
-     * endpoint.
+     * Retrieves the status and details of a user migration. Use `migration_id` to identify the migration, and check `state` to see whether it is pending, exporting, exported, or failed. Once the migration is exported, download its archive using the user migration archive endpoint.
      *
-     * Fetches a single user migration. The response includes the `state` of the migration, which
-     * can be one of the following values: * `pending` - the migration hasn't started yet. *
-     * `exporting` - the migration is in progress. * `exported` - the migration finished
-     * successfully. * `failed` - the migration failed. Once the migration has been `exported` you
-     * can download the migration archive.
+     * Fetches a single user migration. The response includes the `state` of the migration, which can be one of the following values: * `pending` - the migration hasn't started yet. * `exporting` - the migration is in progress. * `exported` - the migration finished successfully. * `failed` - the migration failed. Once the migration has been `exported` you can download the migration archive.
      *
      * @param migrationId The unique identifier of the migration.
      */
-    fun migrationsGetStatusForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        migrationId: Long,
-        exclude: List<String>? = null,
-        options: RequestOptions? = null,
-    ): Migration {
-        return SdkClient.request<Migration>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/migrations/${SdkClient.encodePathSegment(migrationId)}",
-                    config = clientConfig,
-                    query = mapOf("exclude" to SdkClient.queryValue(exclude, "form", true)),
-                    operationId = "migrationsGetStatusForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun migrationsGetStatusForAuthenticatedUser(clientConfig: ClientConfig, migrationId: Long, exclude: List<String>? = null, options: RequestOptions? = null): Migration {
+        return SdkClient.request<Migration>(SdkClient.RequestSpec("GET", "/user/migrations/${SdkClient.encodePathSegment(migrationId)}", config = clientConfig, query = mapOf("exclude" to SdkClient.queryValue(exclude, "form", true)), operationId = "migrationsGetStatusForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Fetches the URL to download the migration archive as a `tar.gz` file. Depending on the
-     * resources your repository uses, the migration archive can contain JSON files with data for
-     * these objects: * attachments * bases * commit\_comments * issue\_comments * issue\_events *
-     * issues * milestones * organizations * projects * protected\_branches *
-     * pull\_request\_reviews * pull\_requests * releases * repositories * review\_comments *
-     * schema * users The archive will also contain an…
+     * Fetches the URL to download the migration archive as a `tar.gz` file. Depending on the resources your repository uses, the migration archive can contain JSON files with data for these objects: * attachments * bases * commit\_comments * issue\_comments * issue\_events * issues * milestones * organizations * projects * protected\_branches * pull\_request\_reviews * pull\_requests * releases * repositories * review\_comments * schema * users The archive will also contain an…
      *
      * @param migrationId The unique identifier of the migration.
      */
-    fun migrationsGetArchiveForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        migrationId: Long,
-        options: RequestOptions? = null,
-    ): Any {
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/migrations/${SdkClient.encodePathSegment(migrationId)}/archive",
-                    config = clientConfig,
-                    operationId = "migrationsGetArchiveForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsGetArchiveForAuthenticatedUser(clientConfig: ClientConfig, migrationId: Long, options: RequestOptions? = null): Any {
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/user/migrations/${SdkClient.encodePathSegment(migrationId)}/archive", config = clientConfig, operationId = "migrationsGetArchiveForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Deletes a previous migration archive. Downloadable migration archives are automatically
-     * deleted after seven days. Migration metadata, which is returned in the List user migrations
-     * and Get a user migration status endpoints, will continue to be available even after an
-     * archive is deleted.
+     * Deletes a previous migration archive. Downloadable migration archives are automatically deleted after seven days. Migration metadata, which is returned in the List user migrations and Get a user migration status endpoints, will continue to be available even after an archive is deleted.
      *
      * @param migrationId The unique identifier of the migration.
      */
-    fun migrationsDeleteArchiveForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        migrationId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/user/migrations/${SdkClient.encodePathSegment(migrationId)}/archive",
-                config = clientConfig,
-                operationId = "migrationsDeleteArchiveForAuthenticatedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun migrationsDeleteArchiveForAuthenticatedUser(clientConfig: ClientConfig, migrationId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/migrations/${SdkClient.encodePathSegment(migrationId)}/archive", config = clientConfig, operationId = "migrationsDeleteArchiveForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 
+
+
+
+
+
+
     /**
-     * Unlocks a repository. You can lock repositories when you start a user migration. Once the
-     * migration is complete you can unlock each repository to begin using it again or delete the
-     * repository if you no longer need the source data. Returns a status of `404 Not Found` if the
-     * repository is not locked.
+     * Unlocks a repository. You can lock repositories when you start a user migration. Once the migration is complete you can unlock each repository to begin using it again or delete the repository if you no longer need the source data. Returns a status of `404 Not Found` if the repository is not locked.
      *
      * @param migrationId The unique identifier of the migration.
      * @param repoName repo_name parameter
      */
-    fun migrationsUnlockRepoForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        migrationId: Long,
-        repoName: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/user/migrations/${SdkClient.encodePathSegment(migrationId)}/repos/${SdkClient.encodePathSegment(repoName)}/lock",
-                config = clientConfig,
-                operationId = "migrationsUnlockRepoForAuthenticatedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun migrationsUnlockRepoForAuthenticatedUser(clientConfig: ClientConfig, migrationId: Long, repoName: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/migrations/${SdkClient.encodePathSegment(migrationId)}/repos/${SdkClient.encodePathSegment(repoName)}/lock", config = clientConfig, operationId = "migrationsUnlockRepoForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
+
+
+
+
+
+
 
     /**
      * Lists all the repositories for this user migration.
      *
      * @param migrationId The unique identifier of the migration.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun migrationsListReposForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        migrationId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/migrations/${SdkClient.encodePathSegment(migrationId)}/repositories",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "migrationsListReposForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun migrationsListReposForAuthenticatedUser(clientConfig: ClientConfig, migrationId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/user/migrations/${SdkClient.encodePathSegment(migrationId)}/repositories", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "migrationsListReposForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
+
+
+
+
+
+
+
 }

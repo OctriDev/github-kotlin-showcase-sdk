@@ -3,13 +3,11 @@
 
 package dev.octri.showcase.github.models
 
-class ReposListForUserParameterEnumf2394501
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ReposListForUserParameterEnumf2394501 && value == other.value
-
+class ReposListForUserParameterEnumf2394501 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ReposListForUserParameterEnumf2394501 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -19,21 +17,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val PUSHED = ReposListForUserParameterEnumf2394501("pushed")
         @JvmField val FULL_NAME = ReposListForUserParameterEnumf2394501("full_name")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ReposListForUserParameterEnumf2394501(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ReposListForUserParameterEnumf2394501(value)
     }
 }
 
-class ReposListForUserParameterEnum098c291f
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ReposListForUserParameterEnum098c291f && value == other.value
-
+class ReposListForUserParameterEnum098c291f private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ReposListForUserParameterEnum098c291f && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -41,10 +34,7 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ASC = ReposListForUserParameterEnum098c291f("asc")
         @JvmField val DESC = ReposListForUserParameterEnum098c291f("desc")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ReposListForUserParameterEnum098c291f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ReposListForUserParameterEnum098c291f(value)
     }
 }

@@ -5,404 +5,604 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required object value serialized in the `owner` wire field. */
+/**
+ * Required object value serialized in the `owner` wire field.
+ */
 data class WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGithubAppOwner(
-    /** Required `integer` value serialized in the `id` wire field. */
-    val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
-    val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
-    val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
-    val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
-    val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
-    val type: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX97787023d7? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
-    val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
-)
-
-/** The set of permissions for the GitHub app */
-class WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX47fcff5bc2(
-    /** Optional enumerated value serialized in the `actions` wire field. */
-    val actions: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX65242833fd? = null,
-    /** Optional enumerated value serialized in the `administration` wire field. */
-    val administration: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX9742d52767? =
-        null,
-    /** Optional enumerated value serialized in the `checks` wire field. */
-    val checks: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX9ceaa0c5e9? = null,
-    /** Optional enumerated value serialized in the `content_references` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_references")
-    val contentReferences:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX484e23b286? =
-        null,
-    /** Optional enumerated value serialized in the `contents` wire field. */
-    val contents: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX2daa97637c? = null,
-    /** Optional enumerated value serialized in the `deployments` wire field. */
-    val deployments: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXf529bb1a2e? =
-        null,
-    /** Optional enumerated value serialized in the `discussions` wire field. */
-    val discussions: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX5c6ab8b432? =
-        null,
-    /** Optional enumerated value serialized in the `emails` wire field. */
-    val emails: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXd1b693c5d6? = null,
-    /** Optional enumerated value serialized in the `environments` wire field. */
-    val environments: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX9e2e40d4b5? =
-        null,
-    /** Optional enumerated value serialized in the `issues` wire field. */
-    val issues: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX137fc7635c? = null,
-    /** Optional enumerated value serialized in the `keys` wire field. */
-    val keys: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX913de5772f? = null,
-    /** Optional enumerated value serialized in the `members` wire field. */
-    val members: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX7f8a1c3871? = null,
-    /** Optional enumerated value serialized in the `metadata` wire field. */
-    val metadata: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX7861511f94? = null,
-    /** Optional enumerated value serialized in the `organization_administration` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_administration")
-    val organizationAdministration:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXa2feab6800? =
-        null,
-    /** Optional enumerated value serialized in the `organization_hooks` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_hooks")
-    val organizationHooks:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX615f484b90? =
-        null,
-    /** Optional enumerated value serialized in the `organization_packages` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_packages")
-    val organizationPackages:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX002ad642bd? =
-        null,
-    /** Optional enumerated value serialized in the `organization_plan` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_plan")
-    val organizationPlan:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXed111e3d88? =
-        null,
-    /** Optional enumerated value serialized in the `organization_projects` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_projects")
-    val organizationProjects:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX9d3b74b909? =
-        null,
-    /** Optional enumerated value serialized in the `organization_secrets` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_secrets")
-    val organizationSecrets:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXe49fc67c3b? =
-        null,
     /**
-     * Optional enumerated value serialized in the `organization_self_hosted_runners` wire field.
+     * Required `integer` value serialized in the `id` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_self_hosted_runners")
-    val organizationSelfHostedRunners:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX4995e3111e? =
-        null,
-    /** Optional enumerated value serialized in the `organization_user_blocking` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_user_blocking")
-    val organizationUserBlocking:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXa38ca95f01? =
-        null,
-    /** Optional enumerated value serialized in the `packages` wire field. */
-    val packages: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXeaa8b2c466? = null,
-    /** Optional enumerated value serialized in the `pages` wire field. */
-    val pages: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX76b9344dee? = null,
-    /** Optional enumerated value serialized in the `pull_requests` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
-    val pullRequests: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX208afda496? =
-        null,
-    /** Optional enumerated value serialized in the `repository_hooks` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_hooks")
-    val repositoryHooks: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX06afea9985? =
-        null,
-    /** Optional enumerated value serialized in the `repository_projects` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_projects")
-    val repositoryProjects:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXc19ce97657? =
-        null,
-    /** Optional enumerated value serialized in the `secret_scanning_alerts` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_alerts")
-    val secretScanningAlerts:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX8f67e616c2? =
-        null,
-    /** Optional enumerated value serialized in the `secrets` wire field. */
-    val secrets: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX2023ab7def? = null,
-    /** Optional enumerated value serialized in the `security_events` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_events")
-    val securityEvents: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX1714681b53? =
-        null,
-    /** Optional enumerated value serialized in the `security_scanning_alert` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_scanning_alert")
-    val securityScanningAlert:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXb1841638d6? =
-        null,
-    /** Optional enumerated value serialized in the `single_file` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("single_file")
-    val singleFile: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX06831806fd? =
-        null,
-    /** Optional enumerated value serialized in the `statuses` wire field. */
-    val statuses: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXc9f5d36aa5? = null,
-    /** Optional enumerated value serialized in the `vulnerability_alerts` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerability_alerts")
-    val vulnerabilityAlerts:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX38726c2320? =
-        null,
-    /** Optional enumerated value serialized in the `workflows` wire field. */
-    val workflows: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX56214cc97d? = null,
+    val id: Long,
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
+    val login: String,
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
+    val deleted: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
+    val email: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
+    val name: String? = null,
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
+    val type: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX97787023d7? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
 /**
- * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and
- * user accounts and granted access to specific repositories. They come with granular permissions
- * and built-in webhooks. GitHub apps are first class actors within GitHub.
+ * The set of permissions for the GitHub app
+ */
+class WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX47fcff5bc2(
+    /**
+     * Optional enumerated value serialized in the `actions` wire field.
+     */
+    val actions: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX65242833fd? = null,
+    /**
+     * Optional enumerated value serialized in the `administration` wire field.
+     */
+    val administration: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX9742d52767? = null,
+    /**
+     * Optional enumerated value serialized in the `checks` wire field.
+     */
+    val checks: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX9ceaa0c5e9? = null,
+    /**
+     * Optional enumerated value serialized in the `content_references` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("content_references") val contentReferences: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX484e23b286? = null,
+    /**
+     * Optional enumerated value serialized in the `contents` wire field.
+     */
+    val contents: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX2daa97637c? = null,
+    /**
+     * Optional enumerated value serialized in the `deployments` wire field.
+     */
+    val deployments: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXf529bb1a2e? = null,
+    /**
+     * Optional enumerated value serialized in the `discussions` wire field.
+     */
+    val discussions: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX5c6ab8b432? = null,
+    /**
+     * Optional enumerated value serialized in the `emails` wire field.
+     */
+    val emails: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXd1b693c5d6? = null,
+    /**
+     * Optional enumerated value serialized in the `environments` wire field.
+     */
+    val environments: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX9e2e40d4b5? = null,
+    /**
+     * Optional enumerated value serialized in the `issues` wire field.
+     */
+    val issues: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX137fc7635c? = null,
+    /**
+     * Optional enumerated value serialized in the `keys` wire field.
+     */
+    val keys: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX913de5772f? = null,
+    /**
+     * Optional enumerated value serialized in the `members` wire field.
+     */
+    val members: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX7f8a1c3871? = null,
+    /**
+     * Optional enumerated value serialized in the `metadata` wire field.
+     */
+    val metadata: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX7861511f94? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_administration` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_administration") val organizationAdministration: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXa2feab6800? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_hooks` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_hooks") val organizationHooks: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX615f484b90? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_packages` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_packages") val organizationPackages: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX002ad642bd? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_plan` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_plan") val organizationPlan: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXed111e3d88? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_projects` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_projects") val organizationProjects: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX9d3b74b909? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_secrets` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_secrets") val organizationSecrets: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXe49fc67c3b? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_self_hosted_runners` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_self_hosted_runners") val organizationSelfHostedRunners: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX4995e3111e? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_user_blocking` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_user_blocking") val organizationUserBlocking: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXa38ca95f01? = null,
+    /**
+     * Optional enumerated value serialized in the `packages` wire field.
+     */
+    val packages: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXeaa8b2c466? = null,
+    /**
+     * Optional enumerated value serialized in the `pages` wire field.
+     */
+    val pages: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX76b9344dee? = null,
+    /**
+     * Optional enumerated value serialized in the `pull_requests` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX208afda496? = null,
+    /**
+     * Optional enumerated value serialized in the `repository_hooks` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_hooks") val repositoryHooks: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX06afea9985? = null,
+    /**
+     * Optional enumerated value serialized in the `repository_projects` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_projects") val repositoryProjects: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXc19ce97657? = null,
+    /**
+     * Optional enumerated value serialized in the `secret_scanning_alerts` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_alerts") val secretScanningAlerts: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX8f67e616c2? = null,
+    /**
+     * Optional enumerated value serialized in the `secrets` wire field.
+     */
+    val secrets: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX2023ab7def? = null,
+    /**
+     * Optional enumerated value serialized in the `security_events` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_events") val securityEvents: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX1714681b53? = null,
+    /**
+     * Optional enumerated value serialized in the `security_scanning_alert` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_scanning_alert") val securityScanningAlert: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXb1841638d6? = null,
+    /**
+     * Optional enumerated value serialized in the `single_file` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("single_file") val singleFile: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX06831806fd? = null,
+    /**
+     * Optional enumerated value serialized in the `statuses` wire field.
+     */
+    val statuses: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitXc9f5d36aa5? = null,
+    /**
+     * Optional enumerated value serialized in the `vulnerability_alerts` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerability_alerts") val vulnerabilityAlerts: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX38726c2320? = null,
+    /**
+     * Optional enumerated value serialized in the `workflows` wire field.
+     */
+    val workflows: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX56214cc97d? = null
+)
+
+/**
+ * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
  */
 data class WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGithubApp(
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true)
-    val createdAt: OffsetDateTime?,
-    /** Required `string` value serialized in the `description` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `uri`-formatted value serialized in the `external_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_url", required = true)
-    val externalUrl: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `external_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("external_url", required = true) val externalUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the GitHub app */
+    /**
+     * Unique identifier of the GitHub app
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("id", required = true) val id: Long?,
-    /** The name of the GitHub app */
+    /**
+     * The name of the GitHub app
+     */
     val name: String,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required object value serialized in the `owner` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("owner", required = true)
-    val owner: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGithubAppOwner?,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true)
-    val updatedAt: OffsetDateTime?,
-    /** The list of events for the GitHub app */
-    val events: List<WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX8cb11b1fda>? =
-        null,
-    /** The set of permissions for the GitHub app */
-    val permissions: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX47fcff5bc2? =
-        null,
-    /** The slug name of the GitHub app */
-    val slug: String? = null,
+    /**
+     * Required object value serialized in the `owner` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("owner", required = true) val owner: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGithubAppOwner?,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
+    /**
+     * The list of events for the GitHub app
+     */
+    val events: List<WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX8cb11b1fda>? = null,
+    /**
+     * The set of permissions for the GitHub app
+     */
+    val permissions: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGitX47fcff5bc2? = null,
+    /**
+     * The slug name of the GitHub app
+     */
+    val slug: String? = null
 )
 
-/** The deployment status. */
+/**
+ * The deployment status.
+ */
 data class WebhookDeploymentStatusCreatedDeploymentStatus(
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /** Required object value serialized in the `creator` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("creator", required = true)
-    val creator: WebhookDeploymentStatusCreatedDeploymentStatusCreator?,
-    /** Required `uri`-formatted value serialized in the `deployment_url` wire field. */
+    /**
+     * Required object value serialized in the `creator` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("creator", required = true) val creator: WebhookDeploymentStatusCreatedDeploymentStatusCreator?,
+    /**
+     * Required `uri`-formatted value serialized in the `deployment_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("deployment_url") val deploymentUrl: String,
-    /** The optional human-readable description added to the status. */
+    /**
+     * The optional human-readable description added to the status.
+     */
     val description: String,
-    /** Required `string` value serialized in the `environment` wire field. */
+    /**
+     * Required `string` value serialized in the `environment` wire field.
+     */
     val environment: String,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `uri`-formatted value serialized in the `repository_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `repository_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_url") val repositoryUrl: String,
-    /** The new state. Can be `pending`, `success`, `failure`, or `error`. */
+    /**
+     * The new state. Can be `pending`, `success`, `failure`, or `error`.
+     */
     val state: String,
-    /** The optional link added to the status. */
+    /**
+     * The optional link added to the status.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("target_url") val targetUrl: String,
-    /** Required `string` value serialized in the `updated_at` wire field. */
+    /**
+     * Required `string` value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Optional `uri`-formatted value serialized in the `environment_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("environment_url")
-    val environmentUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `log_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `environment_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("environment_url") val environmentUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `log_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("log_url") val logUrl: String? = null,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app")
-    val performedViaGithubApp:
-        WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGithubApp? =
-        null,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app") val performedViaGithubApp: WebhookDeploymentStatusCreatedDeploymentStatusPerformedViaGithubApp? = null
 )
 
-/** Optional object value serialized in the `check_run` wire field. */
+/**
+ * Optional object value serialized in the `check_run` wire field.
+ */
 data class WebhookDeploymentStatusCreatedCheckRun(
-    /** Required `date-time`-formatted value serialized in the `completed_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at", required = true)
-    val completedAt: OffsetDateTime?,
     /**
-     * The result of the completed check run. This value will be `null` until the check run has
-     * completed.
+     * Required `date-time`-formatted value serialized in the `completed_at` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true)
-    val conclusion: WebhookDeploymentStatusCreatedCheckRunConclusionEnum?,
-    /** Required `uri`-formatted value serialized in the `details_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at", required = true) val completedAt: OffsetDateTime?,
+    /**
+     * The result of the completed check run. This value will be `null` until the check run has completed.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true) val conclusion: WebhookDeploymentStatusCreatedCheckRunConclusionEnum?,
+    /**
+     * Required `uri`-formatted value serialized in the `details_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("details_url") val detailsUrl: String,
-    /** Required `string` value serialized in the `external_id` wire field. */
+    /**
+     * Required `string` value serialized in the `external_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("external_id") val externalId: String,
-    /** The SHA of the commit that is being checked. */
+    /**
+     * The SHA of the commit that is being checked.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("head_sha") val headSha: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** The id of the check. */
+    /**
+     * The id of the check.
+     */
     val id: Long,
-    /** The name of the check run. */
+    /**
+     * The name of the check run.
+     */
     val name: String,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `date-time`-formatted value serialized in the `started_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `started_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("started_at") val startedAt: OffsetDateTime,
-    /** The current status of the check run. Can be `queued`, `in_progress`, or `completed`. */
+    /**
+     * The current status of the check run. Can be `queued`, `in_progress`, or `completed`.
+     */
     val status: WebhookDeploymentStatusCreatedCheckRunStatusEnum,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Required object value serialized in the `actor` wire field. */
+/**
+ * Required object value serialized in the `actor` wire field.
+ */
 data class WebhookDeploymentStatusCreatedWorkflowRunActor(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: WebhookDeploymentStatusCreatedWorkflowRunActorTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** Required object value serialized in the `repo` wire field. */
+/**
+ * Required object value serialized in the `repo` wire field.
+ */
 data class WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItemBaseRepo(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Required object value serialized in the `base` wire field. */
+/**
+ * Required object value serialized in the `base` wire field.
+ */
 data class WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItemBase(
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String,
-    /** Required object value serialized in the `repo` wire field. */
+    /**
+     * Required object value serialized in the `repo` wire field.
+     */
     val repo: WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItemBaseRepo,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String
 )
 
-/** Required object value serialized in the `repo` wire field. */
+/**
+ * Required object value serialized in the `repo` wire field.
+ */
 data class WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItemHeadRepo(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Required object value serialized in the `head` wire field. */
+/**
+ * Required object value serialized in the `head` wire field.
+ */
 data class WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItemHead(
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String,
-    /** Required object value serialized in the `repo` wire field. */
+    /**
+     * Required object value serialized in the `repo` wire field.
+     */
     val repo: WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItemHeadRepo,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String
 )
 
-/** Required object value serialized in the `pull_requests[]` wire field. */
+/**
+ * Required object value serialized in the `pull_requests[]` wire field.
+ */
 data class WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItem(
-    /** Required object value serialized in the `base` wire field. */
+    /**
+     * Required object value serialized in the `base` wire field.
+     */
     val base: WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItemBase,
-    /** Required object value serialized in the `head` wire field. */
+    /**
+     * Required object value serialized in the `head` wire field.
+     */
     val head: WebhookDeploymentStatusCreatedWorkflowRunPullRequestsItemHead,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `integer` value serialized in the `number` wire field. */
+    /**
+     * Required `integer` value serialized in the `number` wire field.
+     */
     val number: Long,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )

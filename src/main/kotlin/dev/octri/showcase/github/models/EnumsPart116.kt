@@ -3,14 +3,14 @@
 
 package dev.octri.showcase.github.models
 
-/** The state of the status. */
-class ReposCreateCommitStatusStateEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ReposCreateCommitStatusStateEnum && value == other.value
-
+/**
+ * The state of the status.
+ */
+class ReposCreateCommitStatusStateEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ReposCreateCommitStatusStateEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -20,42 +20,32 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val PENDING = ReposCreateCommitStatusStateEnum("pending")
         @JvmField val SUCCESS = ReposCreateCommitStatusStateEnum("success")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ReposCreateCommitStatusStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ReposCreateCommitStatusStateEnum(value)
     }
 }
 
-class SearchCodeParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchCodeParameterEnum && value == other.value
-
+class SearchCodeParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchCodeParameterEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val INDEXED = SearchCodeParameterEnum("indexed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SearchCodeParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchCodeParameterEnum(value)
     }
 }
 
-class SearchCodeParameterEnum73682240
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchCodeParameterEnum73682240 && value == other.value
-
+class SearchCodeParameterEnum73682240 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchCodeParameterEnum73682240 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -63,21 +53,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val DESC = SearchCodeParameterEnum73682240("desc")
         @JvmField val ASC = SearchCodeParameterEnum73682240("asc")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SearchCodeParameterEnum73682240(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchCodeParameterEnum73682240(value)
     }
 }
 
-class SearchCommitsParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchCommitsParameterEnum && value == other.value
-
+class SearchCommitsParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchCommitsParameterEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -85,21 +70,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val AUTHOR_DATE = SearchCommitsParameterEnum("author-date")
         @JvmField val COMMITTER_DATE = SearchCommitsParameterEnum("committer-date")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SearchCommitsParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchCommitsParameterEnum(value)
     }
 }
 
-class SearchIssuesAndPullRequestsParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchIssuesAndPullRequestsParameterEnum && value == other.value
-
+class SearchIssuesAndPullRequestsParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchIssuesAndPullRequestsParameterEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -109,83 +89,49 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val REACTIONS_PLUS_1 = SearchIssuesAndPullRequestsParameterEnum("reactions-+1")
         @JvmField val REACTIONS_MINUS_1 = SearchIssuesAndPullRequestsParameterEnum("reactions--1")
         @JvmField val REACTIONS_SMILE = SearchIssuesAndPullRequestsParameterEnum("reactions-smile")
-        @JvmField
-        val REACTIONS_THINKING_FACE =
-            SearchIssuesAndPullRequestsParameterEnum("reactions-thinking_face")
+        @JvmField val REACTIONS_THINKING_FACE = SearchIssuesAndPullRequestsParameterEnum("reactions-thinking_face")
         @JvmField val REACTIONS_HEART = SearchIssuesAndPullRequestsParameterEnum("reactions-heart")
         @JvmField val REACTIONS_TADA = SearchIssuesAndPullRequestsParameterEnum("reactions-tada")
         @JvmField val INTERACTIONS = SearchIssuesAndPullRequestsParameterEnum("interactions")
         @JvmField val CREATED = SearchIssuesAndPullRequestsParameterEnum("created")
         @JvmField val UPDATED = SearchIssuesAndPullRequestsParameterEnum("updated")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SearchIssuesAndPullRequestsParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchIssuesAndPullRequestsParameterEnum(value)
     }
 }
 
-class SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum &&
-            value == other.value
-
+class SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val NO_TEXT_TERMS =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("no_text_terms")
-        @JvmField
-        val QUOTED_TEXT =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("quoted_text")
-        @JvmField
-        val NON_ISSUE_TARGET =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("non_issue_target")
-        @JvmField
-        val OR_BOOLEAN_NOT_SUPPORTED =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum(
-                "or_boolean_not_supported"
-            )
-        @JvmField
-        val NO_ACCESSIBLE_REPOS =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("no_accessible_repos")
-        @JvmField
-        val SERVER_ERROR =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("server_error")
-        @JvmField
-        val ONLY_NON_SEMANTIC_FIELDS_REQUESTED =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum(
-                "only_non_semantic_fields_requested"
-            )
-        @JvmField
-        val SERVICE_UNAVAILABLE =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("service_unavailable")
+        @JvmField val NO_TEXT_TERMS = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("no_text_terms")
+        @JvmField val QUOTED_TEXT = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("quoted_text")
+        @JvmField val NON_ISSUE_TARGET = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("non_issue_target")
+        @JvmField val OR_BOOLEAN_NOT_SUPPORTED = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("or_boolean_not_supported")
+        @JvmField val NO_ACCESSIBLE_REPOS = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("no_accessible_repos")
+        @JvmField val SERVER_ERROR = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("server_error")
+        @JvmField val ONLY_NON_SEMANTIC_FIELDS_REQUESTED = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("only_non_semantic_fields_requested")
+        @JvmField val SERVICE_UNAVAILABLE = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum("service_unavailable")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum(value)
     }
 }
 
 /**
  * The type of search that was performed. Possible values are `lexical`, `semantic`, or `hybrid`.
  */
-class SearchIssuesAndPullRequestsResponseSearchTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchIssuesAndPullRequestsResponseSearchTypeEnum && value == other.value
-
+class SearchIssuesAndPullRequestsResponseSearchTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchIssuesAndPullRequestsResponseSearchTypeEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -194,21 +140,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val SEMANTIC = SearchIssuesAndPullRequestsResponseSearchTypeEnum("semantic")
         @JvmField val HYBRID = SearchIssuesAndPullRequestsResponseSearchTypeEnum("hybrid")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SearchIssuesAndPullRequestsResponseSearchTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchIssuesAndPullRequestsResponseSearchTypeEnum(value)
     }
 }
 
-class SearchLabelsParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchLabelsParameterEnum && value == other.value
-
+class SearchLabelsParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchLabelsParameterEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -216,21 +157,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val CREATED = SearchLabelsParameterEnum("created")
         @JvmField val UPDATED = SearchLabelsParameterEnum("updated")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SearchLabelsParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchLabelsParameterEnum(value)
     }
 }
 
-class SearchReposParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchReposParameterEnum && value == other.value
-
+class SearchReposParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchReposParameterEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -240,21 +176,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val HELP_WANTED_ISSUES = SearchReposParameterEnum("help-wanted-issues")
         @JvmField val UPDATED = SearchReposParameterEnum("updated")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SearchReposParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchReposParameterEnum(value)
     }
 }
 
-class SearchUsersParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SearchUsersParameterEnum && value == other.value
-
+class SearchUsersParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SearchUsersParameterEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -263,57 +194,39 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val REPOSITORIES = SearchUsersParameterEnum("repositories")
         @JvmField val JOINED = SearchUsersParameterEnum("joined")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SearchUsersParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SearchUsersParameterEnum(value)
     }
 }
 
 /**
- * The notification setting the team has chosen. Editing teams without specifying this parameter
- * leaves `notification_setting` intact. The options are: * `notifications_enabled` - team members
- * receive notifications when the team is @mentioned. * `notifications_disabled` - no one receives
- * notifications.
+ * The notification setting the team has chosen. Editing teams without specifying this parameter leaves `notification_setting` intact. The options are: * `notifications_enabled` - team members receive notifications when the team is @mentioned. * `notifications_disabled` - no one receives notifications.
  */
-class TeamsUpdateLegacyNotificationSettingEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is TeamsUpdateLegacyNotificationSettingEnum && value == other.value
-
+class TeamsUpdateLegacyNotificationSettingEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is TeamsUpdateLegacyNotificationSettingEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val NOTIFICATIONS_ENABLED =
-            TeamsUpdateLegacyNotificationSettingEnum("notifications_enabled")
-        @JvmField
-        val NOTIFICATIONS_DISABLED =
-            TeamsUpdateLegacyNotificationSettingEnum("notifications_disabled")
+        @JvmField val NOTIFICATIONS_ENABLED = TeamsUpdateLegacyNotificationSettingEnum("notifications_enabled")
+        @JvmField val NOTIFICATIONS_DISABLED = TeamsUpdateLegacyNotificationSettingEnum("notifications_disabled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = TeamsUpdateLegacyNotificationSettingEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = TeamsUpdateLegacyNotificationSettingEnum(value)
     }
 }
 
 /**
- * **Closing down notice**. The permission that new repositories will be added to the team with when
- * none is specified.
+ * **Closing down notice**. The permission that new repositories will be added to the team with when none is specified.
  */
-class TeamsUpdateLegacyPermissionEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is TeamsUpdateLegacyPermissionEnum && value == other.value
-
+class TeamsUpdateLegacyPermissionEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is TeamsUpdateLegacyPermissionEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -322,28 +235,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val PUSH = TeamsUpdateLegacyPermissionEnum("push")
         @JvmField val ADMIN = TeamsUpdateLegacyPermissionEnum("admin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = TeamsUpdateLegacyPermissionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = TeamsUpdateLegacyPermissionEnum(value)
     }
 }
 
 /**
- * The level of privacy this team should have. Editing teams without specifying this parameter
- * leaves `privacy` intact. The options are: **For a non-nested team:** * `secret` - only visible to
- * organization owners and members of this team. * `closed` - visible to all members of this
- * organization. **For a parent or child team:** * `closed` - visible to all members of this
- * organization.
+ * The level of privacy this team should have. Editing teams without specifying this parameter leaves `privacy` intact. The options are: **For a non-nested team:** * `secret` - only visible to organization owners and members of this team. * `closed` - visible to all members of this organization. **For a parent or child team:** * `closed` - visible to all members of this organization.
  */
-class TeamsUpdateLegacyPrivacyEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is TeamsUpdateLegacyPrivacyEnum && value == other.value
-
+class TeamsUpdateLegacyPrivacyEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is TeamsUpdateLegacyPrivacyEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -351,21 +255,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val SECRET = TeamsUpdateLegacyPrivacyEnum("secret")
         @JvmField val CLOSED = TeamsUpdateLegacyPrivacyEnum("closed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = TeamsUpdateLegacyPrivacyEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = TeamsUpdateLegacyPrivacyEnum(value)
     }
 }
 
-class TeamsListMembersLegacyParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is TeamsListMembersLegacyParameterEnum && value == other.value
-
+class TeamsListMembersLegacyParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is TeamsListMembersLegacyParameterEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -374,22 +273,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val MAINTAINER = TeamsListMembersLegacyParameterEnum("maintainer")
         @JvmField val ALL = TeamsListMembersLegacyParameterEnum("all")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = TeamsListMembersLegacyParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = TeamsListMembersLegacyParameterEnum(value)
     }
 }
 
-/** The role that this user should have in the team. */
-class TeamsAddOrUpdateMembershipForUserLegacyRoleEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is TeamsAddOrUpdateMembershipForUserLegacyRoleEnum && value == other.value
-
+/**
+ * The role that this user should have in the team.
+ */
+class TeamsAddOrUpdateMembershipForUserLegacyRoleEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is TeamsAddOrUpdateMembershipForUserLegacyRoleEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -397,26 +293,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val MEMBER = TeamsAddOrUpdateMembershipForUserLegacyRoleEnum("member")
         @JvmField val MAINTAINER = TeamsAddOrUpdateMembershipForUserLegacyRoleEnum("maintainer")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = TeamsAddOrUpdateMembershipForUserLegacyRoleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = TeamsAddOrUpdateMembershipForUserLegacyRoleEnum(value)
     }
 }
 
 /**
- * The permission to grant the team on this repository. If no permission is specified, the team's
- * `permission` attribute will be used to determine what permission to grant the team on this
- * repository.
+ * The permission to grant the team on this repository. If no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository.
  */
-class TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum && value == other.value
-
+class TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -425,280 +314,182 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val PUSH = TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum("push")
         @JvmField val ADMIN = TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum("admin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum(value)
     }
 }
 
 /**
- * The geographic area for this codespace. If not specified, the value is assigned by IP. This
- * property replaces `location`, which is closing down.
+ * The geographic area for this codespace. If not specified, the value is assigned by IP. This property replaces `location`, which is closing down.
  */
-class CodespacesCreateForAuthenticatedUserVariant0GeoEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodespacesCreateForAuthenticatedUserVariant0GeoEnum && value == other.value
-
+class CodespacesCreateForAuthenticatedUserVariant0GeoEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodespacesCreateForAuthenticatedUserVariant0GeoEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val EUROPEWEST = CodespacesCreateForAuthenticatedUserVariant0GeoEnum("EuropeWest")
-        @JvmField
-        val SOUTHEASTASIA = CodespacesCreateForAuthenticatedUserVariant0GeoEnum("SoutheastAsia")
+        @JvmField val SOUTHEASTASIA = CodespacesCreateForAuthenticatedUserVariant0GeoEnum("SoutheastAsia")
         @JvmField val USEAST = CodespacesCreateForAuthenticatedUserVariant0GeoEnum("UsEast")
         @JvmField val USWEST = CodespacesCreateForAuthenticatedUserVariant0GeoEnum("UsWest")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = CodespacesCreateForAuthenticatedUserVariant0GeoEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodespacesCreateForAuthenticatedUserVariant0GeoEnum(value)
     }
 }
 
 /**
- * The geographic area for this codespace. If not specified, the value is assigned by IP. This
- * property replaces `location`, which is closing down.
+ * The geographic area for this codespace. If not specified, the value is assigned by IP. This property replaces `location`, which is closing down.
  */
-class CodespacesCreateForAuthenticatedUserVariant1GeoEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodespacesCreateForAuthenticatedUserVariant1GeoEnum && value == other.value
-
+class CodespacesCreateForAuthenticatedUserVariant1GeoEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodespacesCreateForAuthenticatedUserVariant1GeoEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val EUROPEWEST = CodespacesCreateForAuthenticatedUserVariant1GeoEnum("EuropeWest")
-        @JvmField
-        val SOUTHEASTASIA = CodespacesCreateForAuthenticatedUserVariant1GeoEnum("SoutheastAsia")
+        @JvmField val SOUTHEASTASIA = CodespacesCreateForAuthenticatedUserVariant1GeoEnum("SoutheastAsia")
         @JvmField val USEAST = CodespacesCreateForAuthenticatedUserVariant1GeoEnum("UsEast")
         @JvmField val USWEST = CodespacesCreateForAuthenticatedUserVariant1GeoEnum("UsWest")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = CodespacesCreateForAuthenticatedUserVariant1GeoEnum(value)
-    }
-}
-
-/** Denotes whether an email is publicly visible. */
-class UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val PUBLIC = UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum("public")
-        @JvmField
-        val PRIVATE = UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum("private")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodespacesCreateForAuthenticatedUserVariant1GeoEnum(value)
     }
 }
 
 /**
- * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
- * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit
- * message.
+ * Denotes whether an email is publicly visible.
  */
-class AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957 &&
-            value == other.value
-
+class UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_BODY =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957("PR_BODY")
-        @JvmField
-        val PR_TITLE =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957("PR_TITLE")
-        @JvmField
-        val BLANK =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957("BLANK")
+        @JvmField val PUBLIC = UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum("public")
+        @JvmField val PRIVATE = UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum("private")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum(value)
     }
 }
 
 /**
- * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. -
- * `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123
- * from branch-name).
+ * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
  */
-class AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d &&
-            value == other.value
-
+class AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_TITLE =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d("PR_TITLE")
-        @JvmField
-        val MERGE_MESSAGE =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d(
-                "MERGE_MESSAGE"
-            )
+        @JvmField val PR_BODY = AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957("PR_BODY")
+        @JvmField val PR_TITLE = AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957("PR_TITLE")
+        @JvmField val BLANK = AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d(value)
-    }
-}
-
-/** The policy controlling who can create pull requests: all or collaborators_only. */
-class AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312 &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ALL = AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312("all")
-        @JvmField
-        val COLLABORATORS_ONLY =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312(
-                "collaborators_only"
-            )
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AppsListInstallationReposForAuthenticatedUserResponseRepositoX469589b957(value)
     }
 }
 
 /**
- * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's
- * body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a
- * blank commit message.
+ * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
  */
-class AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b &&
-            value == other.value
-
+class AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_BODY =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b("PR_BODY")
-        @JvmField
-        val COMMIT_MESSAGES =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b(
-                "COMMIT_MESSAGES"
-            )
-        @JvmField
-        val BLANK =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b("BLANK")
+        @JvmField val PR_TITLE = AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d("PR_TITLE")
+        @JvmField val MERGE_MESSAGE = AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d("MERGE_MESSAGE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AppsListInstallationReposForAuthenticatedUserResponseRepositoXdaba74410d(value)
     }
 }
 
 /**
- * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's
- * title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull
- * request's title (when more than one commit).
+ * The policy controlling who can create pull requests: all or collaborators_only.
  */
-class AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321 &&
-            value == other.value
-
+class AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_TITLE =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321("PR_TITLE")
-        @JvmField
-        val COMMIT_OR_PR_TITLE =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321(
-                "COMMIT_OR_PR_TITLE"
-            )
+        @JvmField val ALL = AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312("all")
+        @JvmField val COLLABORATORS_ONLY = AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312("collaborators_only")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AppsListInstallationReposForAuthenticatedUserResponseRepositoX7e0c94e312(value)
     }
 }
 
-class IssuesListForAuthenticatedUserParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IssuesListForAuthenticatedUserParameterEnum && value == other.value
-
+/**
+ * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+ */
+class AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b && value == other.value
     override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
 
+    companion object {
+
+        @JvmField val PR_BODY = AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b("PR_BODY")
+        @JvmField val COMMIT_MESSAGES = AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b("COMMIT_MESSAGES")
+        @JvmField val BLANK = AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b("BLANK")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AppsListInstallationReposForAuthenticatedUserResponseRepositoXa753cf626b(value)
+    }
+}
+
+/**
+ * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+ */
+class AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321 && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val PR_TITLE = AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321("PR_TITLE")
+        @JvmField val COMMIT_OR_PR_TITLE = AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321("COMMIT_OR_PR_TITLE")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AppsListInstallationReposForAuthenticatedUserResponseRepositoXdcd378c321(value)
+    }
+}
+
+class IssuesListForAuthenticatedUserParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IssuesListForAuthenticatedUserParameterEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
     override fun toString(): String = value
 
     companion object {
@@ -710,21 +501,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val REPOS = IssuesListForAuthenticatedUserParameterEnum("repos")
         @JvmField val ALL = IssuesListForAuthenticatedUserParameterEnum("all")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IssuesListForAuthenticatedUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IssuesListForAuthenticatedUserParameterEnum(value)
     }
 }
 
-class IssuesListForAuthenticatedUserParameterEnum5800f286
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IssuesListForAuthenticatedUserParameterEnum5800f286 && value == other.value
-
+class IssuesListForAuthenticatedUserParameterEnum5800f286 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IssuesListForAuthenticatedUserParameterEnum5800f286 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -733,21 +519,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val CLOSED = IssuesListForAuthenticatedUserParameterEnum5800f286("closed")
         @JvmField val ALL = IssuesListForAuthenticatedUserParameterEnum5800f286("all")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IssuesListForAuthenticatedUserParameterEnum5800f286(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IssuesListForAuthenticatedUserParameterEnum5800f286(value)
     }
 }
 
-class IssuesListForAuthenticatedUserParameterEnume3e0be62
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is IssuesListForAuthenticatedUserParameterEnume3e0be62 && value == other.value
-
+class IssuesListForAuthenticatedUserParameterEnume3e0be62 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is IssuesListForAuthenticatedUserParameterEnume3e0be62 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -756,21 +537,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val UPDATED = IssuesListForAuthenticatedUserParameterEnume3e0be62("updated")
         @JvmField val COMMENTS = IssuesListForAuthenticatedUserParameterEnume3e0be62("comments")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = IssuesListForAuthenticatedUserParameterEnume3e0be62(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = IssuesListForAuthenticatedUserParameterEnume3e0be62(value)
     }
 }
 
-class OrgsListMembershipsForAuthenticatedUserParameterEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is OrgsListMembershipsForAuthenticatedUserParameterEnum && value == other.value
-
+class OrgsListMembershipsForAuthenticatedUserParameterEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is OrgsListMembershipsForAuthenticatedUserParameterEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -778,32 +554,26 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ACTIVE = OrgsListMembershipsForAuthenticatedUserParameterEnum("active")
         @JvmField val PENDING = OrgsListMembershipsForAuthenticatedUserParameterEnum("pending")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = OrgsListMembershipsForAuthenticatedUserParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = OrgsListMembershipsForAuthenticatedUserParameterEnum(value)
     }
 }
 
-/** The state that the membership should be in. Only `"active"` will be accepted. */
-class OrgsUpdateMembershipForAuthenticatedUserStateEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is OrgsUpdateMembershipForAuthenticatedUserStateEnum && value == other.value
-
+/**
+ * The state that the membership should be in. Only `"active"` will be accepted.
+ */
+class OrgsUpdateMembershipForAuthenticatedUserStateEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is OrgsUpdateMembershipForAuthenticatedUserStateEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val ACTIVE = OrgsUpdateMembershipForAuthenticatedUserStateEnum("active")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = OrgsUpdateMembershipForAuthenticatedUserStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = OrgsUpdateMembershipForAuthenticatedUserStateEnum(value)
     }
 }

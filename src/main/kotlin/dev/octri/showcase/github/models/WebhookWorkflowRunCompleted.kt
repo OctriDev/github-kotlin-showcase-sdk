@@ -5,304 +5,552 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required object value serialized in the `actor` wire field. */
+/**
+ * Required object value serialized in the `actor` wire field.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunActor(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: WebhookWorkflowRunCompletedWorkflowRunActorTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunHeadCommitAuthor(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunHeadCommitCommitter(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Required object value serialized in the `head_commit` wire field. */
+/**
+ * Required object value serialized in the `head_commit` wire field.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunHeadCommit(
-    /** Metaproperties for Git author/committer information. */
+    /**
+     * Metaproperties for Git author/committer information.
+     */
     val author: WebhookWorkflowRunCompletedWorkflowRunHeadCommitAuthor,
-    /** Metaproperties for Git author/committer information. */
+    /**
+     * Metaproperties for Git author/committer information.
+     */
     val committer: WebhookWorkflowRunCompletedWorkflowRunHeadCommitCommitter,
-    /** Required `string` value serialized in the `id` wire field. */
+    /**
+     * Required `string` value serialized in the `id` wire field.
+     */
     val id: String,
-    /** Required `string` value serialized in the `message` wire field. */
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
     val message: String,
-    /** Required `string` value serialized in the `timestamp` wire field. */
+    /**
+     * Required `string` value serialized in the `timestamp` wire field.
+     */
     val timestamp: String,
-    /** Required `string` value serialized in the `tree_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tree_id") val treeId: String,
+    /**
+     * Required `string` value serialized in the `tree_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("tree_id") val treeId: String
 )
 
-/** Required object value serialized in the `owner` wire field. */
+/**
+ * Required object value serialized in the `owner` wire field.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwner(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwnerTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** Required object value serialized in the `head_repository` wire field. */
+/**
+ * Required object value serialized in the `head_repository` wire field.
+ */
 class WebhookWorkflowRunCompletedWorkflowRunHeadRepository(
-    /** Required `uri-template`-formatted value serialized in the `archive_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `archive_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("archive_url") val archiveUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `assignees_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `assignees_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("assignees_url") val assigneesUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `blobs_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `blobs_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("blobs_url") val blobsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `branches_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `branches_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("branches_url") val branchesUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `collaborators_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url")
-    val collaboratorsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `comments_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `collaborators_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url") val collaboratorsUrl: String,
+    /**
+     * Required `uri-template`-formatted value serialized in the `comments_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `commits_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `commits_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `compare_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `compare_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("compare_url") val compareUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `contents_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `contents_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("contents_url") val contentsUrl: String,
-    /** Required `uri`-formatted value serialized in the `contributors_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `contributors_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("contributors_url") val contributorsUrl: String,
-    /** Required `uri`-formatted value serialized in the `deployments_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `deployments_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("deployments_url") val deploymentsUrl: String,
-    /** Required `string` value serialized in the `description` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `uri`-formatted value serialized in the `downloads_url` wire field. */
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `downloads_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("downloads_url") val downloadsUrl: String,
-    /** Required `uri`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String,
-    /** Required `boolean` value serialized in the `fork` wire field. */
+    /**
+     * Required `boolean` value serialized in the `fork` wire field.
+     */
     val fork: Boolean,
-    /** Required `uri`-formatted value serialized in the `forks_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `forks_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("forks_url") val forksUrl: String,
-    /** Required `string` value serialized in the `full_name` wire field. */
+    /**
+     * Required `string` value serialized in the `full_name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("full_name") val fullName: String,
-    /** Required `uri-template`-formatted value serialized in the `git_commits_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `git_commits_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_commits_url") val gitCommitsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `git_refs_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `git_refs_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_refs_url") val gitRefsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `git_tags_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `git_tags_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_tags_url") val gitTagsUrl: String,
-    /** Required `uri`-formatted value serialized in the `hooks_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `hooks_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the repository */
+    /**
+     * Unique identifier of the repository
+     */
     val id: Long,
-    /** Required `uri-template`-formatted value serialized in the `issue_comment_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `issue_comment_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_comment_url") val issueCommentUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `issue_events_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `issue_events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_events_url") val issueEventsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `issues_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `issues_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issues_url") val issuesUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `keys_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `keys_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("keys_url") val keysUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `labels_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `labels_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("labels_url") val labelsUrl: String,
-    /** Required `uri`-formatted value serialized in the `languages_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `languages_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("languages_url") val languagesUrl: String,
-    /** Required `uri`-formatted value serialized in the `merges_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `merges_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("merges_url") val mergesUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `milestones_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `milestones_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("milestones_url") val milestonesUrl: String,
-    /** The name of the repository. */
+    /**
+     * The name of the repository.
+     */
     val name: String,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `uri-template`-formatted value serialized in the `notifications_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("notifications_url")
-    val notificationsUrl: String,
-    /** Required object value serialized in the `owner` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("owner", required = true)
-    val owner: WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwner?,
-    /** Whether the repository is private or public. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `notifications_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("notifications_url") val notificationsUrl: String,
+    /**
+     * Required object value serialized in the `owner` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("owner", required = true) val owner: WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwner?,
+    /**
+     * Whether the repository is private or public.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean,
-    /** Required `uri-template`-formatted value serialized in the `pulls_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `pulls_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("pulls_url") val pullsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `releases_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `releases_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("releases_url") val releasesUrl: String,
-    /** Required `uri`-formatted value serialized in the `stargazers_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `stargazers_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("stargazers_url") val stargazersUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `statuses_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `statuses_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String,
-    /** Required `uri`-formatted value serialized in the `subscribers_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `subscribers_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("subscribers_url") val subscribersUrl: String,
-    /** Required `uri`-formatted value serialized in the `subscription_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `subscription_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("subscription_url") val subscriptionUrl: String,
-    /** Required `uri`-formatted value serialized in the `tags_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `tags_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tags_url") val tagsUrl: String,
-    /** Required `uri`-formatted value serialized in the `teams_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `teams_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("teams_url") val teamsUrl: String,
-    /** Required `uri-template`-formatted value serialized in the `trees_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `trees_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("trees_url") val treesUrl: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Required object value serialized in the `repo` wire field. */
+/**
+ * Required object value serialized in the `repo` wire field.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBaseRepo(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Required object value serialized in the `base` wire field. */
+/**
+ * Required object value serialized in the `base` wire field.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBase(
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String,
-    /** Required object value serialized in the `repo` wire field. */
+    /**
+     * Required object value serialized in the `repo` wire field.
+     */
     val repo: WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBaseRepo,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String
 )
 
-/** Required object value serialized in the `repo` wire field. */
+/**
+ * Required object value serialized in the `repo` wire field.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHeadRepo(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Required object value serialized in the `head` wire field. */
+/**
+ * Required object value serialized in the `head` wire field.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHead(
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String,
-    /** Required object value serialized in the `repo` wire field. */
+    /**
+     * Required object value serialized in the `repo` wire field.
+     */
     val repo: WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHeadRepo,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String
 )
 
-/** Required object value serialized in the `pull_requests[]` wire field. */
+/**
+ * Required object value serialized in the `pull_requests[]` wire field.
+ */
 data class WebhookWorkflowRunCompletedWorkflowRunPullRequestsItem(
-    /** Required object value serialized in the `base` wire field. */
+    /**
+     * Required object value serialized in the `base` wire field.
+     */
     val base: WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBase,
-    /** Required object value serialized in the `head` wire field. */
+    /**
+     * Required object value serialized in the `head` wire field.
+     */
     val head: WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHead,
-    /** Required `number` value serialized in the `id` wire field. */
+    /**
+     * Required `number` value serialized in the `id` wire field.
+     */
     val id: Double,
-    /** Required `number` value serialized in the `number` wire field. */
+    /**
+     * Required `number` value serialized in the `number` wire field.
+     */
     val number: Double,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )

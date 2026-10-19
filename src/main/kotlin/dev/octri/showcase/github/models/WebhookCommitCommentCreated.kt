@@ -3,158 +3,238 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `user` wire field. */
+/**
+ * Required object value serialized in the `user` wire field.
+ */
 data class WebhookCommitCommentCreatedCommentUser(
-    /** Required `int64`-formatted value serialized in the `id` wire field. */
+    /**
+     * Required `int64`-formatted value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: WebhookCommitCommentCreatedCommentUserTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
-)
-
-/** Optional object value serialized in the `reactions` wire field. */
-data class WebhookCommitCommentCreatedCommentReactions(
-    /** Required `integer` value serialized in the `+1` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("+1") val plus1: Long,
-    /** Required `integer` value serialized in the `-1` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("-1") val minus1: Long,
-    /** Required `integer` value serialized in the `confused` wire field. */
-    val confused: Long,
-    /** Required `integer` value serialized in the `eyes` wire field. */
-    val eyes: Long,
-    /** Required `integer` value serialized in the `heart` wire field. */
-    val heart: Long,
-    /** Required `integer` value serialized in the `hooray` wire field. */
-    val hooray: Long,
-    /** Required `integer` value serialized in the `laugh` wire field. */
-    val laugh: Long,
-    /** Required `integer` value serialized in the `rocket` wire field. */
-    val rocket: Long,
-    /** Required `integer` value serialized in the `total_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
 /**
- * The \[commit
- * comment\](${externalDocsUpapp/api/description/components/schemas/webhooks/issue-comment-created.yamlrl}/rest/commits/comments#get-a-commit-comment)
- * resource.
+ * Optional object value serialized in the `reactions` wire field.
  */
-data class WebhookCommitCommentCreatedComment(
-    /** How the author is associated with the repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
-    val authorAssociation: WebhookCommitCommentCreatedCommentAuthorAssociationEnum,
-    /** The text of the comment. */
-    val body: String,
-    /** The SHA of the commit to which the comment applies. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id") val commitId: String,
-    /** Required `string` value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** The ID of the commit comment. */
-    val id: Long,
+data class WebhookCommitCommentCreatedCommentReactions(
     /**
-     * The line of the blob to which the comment applies. The last line of the range for a
-     * multi-line comment
+     * Required `integer` value serialized in the `+1` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("line", required = true) val line: Long?,
-    /** The node ID of the commit comment. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** The relative path of the file to which the comment applies. */
-    @com.fasterxml.jackson.annotation.JsonProperty("path", required = true) val path: String?,
-    /** The line index in the diff to which the comment applies. */
-    @com.fasterxml.jackson.annotation.JsonProperty("position", required = true) val position: Long?,
-    /** Required `string` value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
-    /** Required object value serialized in the `user` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
-    val user: WebhookCommitCommentCreatedCommentUser?,
-    /** Optional object value serialized in the `reactions` wire field. */
-    val reactions: WebhookCommitCommentCreatedCommentReactions? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("+1") val plus1: Long,
+    /**
+     * Required `integer` value serialized in the `-1` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("-1") val minus1: Long,
+    /**
+     * Required `integer` value serialized in the `confused` wire field.
+     */
+    val confused: Long,
+    /**
+     * Required `integer` value serialized in the `eyes` wire field.
+     */
+    val eyes: Long,
+    /**
+     * Required `integer` value serialized in the `heart` wire field.
+     */
+    val heart: Long,
+    /**
+     * Required `integer` value serialized in the `hooray` wire field.
+     */
+    val hooray: Long,
+    /**
+     * Required `integer` value serialized in the `laugh` wire field.
+     */
+    val laugh: Long,
+    /**
+     * Required `integer` value serialized in the `rocket` wire field.
+     */
+    val rocket: Long,
+    /**
+     * Required `integer` value serialized in the `total_count` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Typed representation of the `WebhookCommitCommentCreated` API schema. */
+/**
+ * The \[commit comment\](${externalDocsUpapp/api/description/components/schemas/webhooks/issue-comment-created.yamlrl}/rest/commits/comments#get-a-commit-comment) resource.
+ */
+data class WebhookCommitCommentCreatedComment(
+    /**
+     * How the author is associated with the repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: WebhookCommitCommentCreatedCommentAuthorAssociationEnum,
+    /**
+     * The text of the comment.
+     */
+    val body: String,
+    /**
+     * The SHA of the commit to which the comment applies.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id") val commitId: String,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
+    /**
+     * The ID of the commit comment.
+     */
+    val id: Long,
+    /**
+     * The line of the blob to which the comment applies. The last line of the range for a multi-line comment
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("line", required = true) val line: Long?,
+    /**
+     * The node ID of the commit comment.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+    /**
+     * The relative path of the file to which the comment applies.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("path", required = true) val path: String?,
+    /**
+     * The line index in the diff to which the comment applies.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("position", required = true) val position: Long?,
+    /**
+     * Required `string` value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String,
+    /**
+     * Required object value serialized in the `user` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: WebhookCommitCommentCreatedCommentUser?,
+    /**
+     * Optional object value serialized in the `reactions` wire field.
+     */
+    val reactions: WebhookCommitCommentCreatedCommentReactions? = null
+)
+
+/**
+ * Typed representation of the `WebhookCommitCommentCreated` API schema.
+ */
 data class WebhookCommitCommentCreated(
-    /** The action performed. Can be `created`. */
+    /**
+     * The action performed. Can be `created`.
+     */
     val action: WebhookCommitCommentCreatedActionEnum,
     /**
-     * The \[commit
-     * comment\](${externalDocsUpapp/api/description/components/schemas/webhooks/issue-comment-created.yamlrl}/rest/commits/comments#get-a-commit-comment)
-     * resource.
+     * The \[commit comment\](${externalDocsUpapp/api/description/components/schemas/webhooks/issue-comment-created.yamlrl}/rest/commits/comments#get-a-commit-comment) resource.
      */
     val comment: WebhookCommitCommentCreatedComment,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null,
+    val organization: OrganizationSimpleWebhooks? = null
 )

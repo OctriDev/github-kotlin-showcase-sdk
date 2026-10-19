@@ -3,25 +3,32 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `WebhookDiscussionUnanswered` API schema. */
+/**
+ * Typed representation of the `WebhookDiscussionUnanswered` API schema.
+ */
 data class WebhookDiscussionUnanswered(
-    /** Required enumerated value serialized in the `action` wire field. */
+    /**
+     * Required enumerated value serialized in the `action` wire field.
+     */
     val action: WebhookDiscussionUnansweredActionEnum,
-    /** A Discussion in a repository. */
+    /**
+     * A Discussion in a repository.
+     */
     val discussion: Discussion,
-    /** Required object value serialized in the `old_answer` wire field. */
+    /**
+     * Required object value serialized in the `old_answer` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("old_answer") val oldAnswer: WebhooksAnswer,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
-    /** A GitHub user. */
-    val sender: SimpleUser? = null,
+    /**
+     * A GitHub user.
+     */
+    val sender: SimpleUser? = null
 )

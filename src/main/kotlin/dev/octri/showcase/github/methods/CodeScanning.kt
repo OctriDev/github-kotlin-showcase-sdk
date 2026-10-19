@@ -66,7 +66,7 @@ object CodeScanning {
         val state: CodeScanningAlertStateQuery? = null,
         val sort: CodeScanningListAlertsForOrgParameterEnum? = null,
         val severity: CodeScanningAlertSeverity? = null,
-        val assignees: String? = null,
+        val assignees: String? = null
     )
 
     /** Parameters for [codeScanningListAlertsForRepo]. */
@@ -85,7 +85,7 @@ object CodeScanning {
         val sort: CodeScanningListAlertsForRepoParameterEnum? = null,
         val state: CodeScanningAlertStateQuery? = null,
         val severity: CodeScanningAlertSeverity? = null,
-        val assignees: String? = null,
+        val assignees: String? = null
     )
 
     /** Parameters for [codeScanningUpdateAlert]. */
@@ -97,7 +97,7 @@ object CodeScanning {
         val dismissedReason: SdkClient.SdkOptional<CodeScanningAlertDismissedReason?>? = null,
         val dismissedComment: SdkClient.SdkOptional<CodeScanningAlertDismissedComment?>? = null,
         val createRequest: CodeScanningAlertCreateRequest? = null,
-        val assignees: CodeScanningAlertAssignees? = null,
+        val assignees: CodeScanningAlertAssignees? = null
     )
 
     /** Parameters for [codeScanningListAlertInstances]. */
@@ -108,7 +108,7 @@ object CodeScanning {
         val page: Long? = null,
         val perPage: Long? = null,
         val ref: CodeScanningRef? = null,
-        val pr: Long? = null,
+        val pr: Long? = null
     )
 
     /** Parameters for [codeScanningListRecentAnalyses]. */
@@ -123,7 +123,7 @@ object CodeScanning {
         val ref: CodeScanningRef? = null,
         val sarifId: CodeScanningAnalysisSarifId? = null,
         val direction: SchemaSchemaEnum0df64690? = null,
-        val sort: CodeScanningListRecentAnalysesParameterEnum? = null,
+        val sort: CodeScanningListRecentAnalysesParameterEnum? = null
     )
 
     /** Parameters for [codeScanningCreateVariantAnalysis]. */
@@ -134,7 +134,7 @@ object CodeScanning {
         val queryPack: String,
         val repositories: List<String>? = null,
         val repositoryLists: List<String>? = null,
-        val repositoryOwners: List<String>? = null,
+        val repositoryOwners: List<String>? = null
     )
 
     /** Parameters for [codeScanningUpdateDefaultSetup]. */
@@ -146,7 +146,7 @@ object CodeScanning {
         val runnerLabel: SdkClient.SdkOptional<String?>? = null,
         val querySuite: CodeScanningDefaultSetupUpdateQuerySuiteEnum? = null,
         val threatModel: CodeScanningDefaultSetupUpdateThreatModelEnum? = null,
-        val languages: List<CodeScanningDefaultSetupUpdateLanguagesItemEnum>? = null,
+        val languages: List<CodeScanningDefaultSetupUpdateLanguagesItemEnum>? = null
     )
 
     /** Parameters for [codeScanningUploadSarif]. */
@@ -159,145 +159,77 @@ object CodeScanning {
         val checkoutUri: String? = null,
         val startedAt: OffsetDateTime? = null,
         val toolName: String? = null,
-        val validate: Boolean? = null,
+        val validate: Boolean? = null
     )
 
     /**
-     * Gets the AI Scan setting stored on an organization. The response reports the value stored on
-     * the organization. Organization respects enterprise policy. The authenticated user must be an
-     * owner or security manager for the organization to use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `admin:org`, `repo`, or `write:org` scope to use
-     * this endpoint. Organization owners can use `admin:org` or `repo`; security managers need
-     * `write:org`.
+     * Gets the AI Scan setting stored on an organization. The response reports the value stored on the organization. Organization respects enterprise policy. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org`, `repo`, or `write:org` scope to use this endpoint. Organization owners can use `admin:org` or `repo`; security managers need `write:org`.
      */
-    fun codeScanningGetAiScanEnablementForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): CodeScanningAiScanOrgSettings =
-        dev.octri.showcase.github.methods.CodeScanningGetAiScanEnablementForOrgOperation
-            .codeScanningGetAiScanEnablementForOrg(
-                clientConfig,
-                org,
-                options,
-            )
+    fun codeScanningGetAiScanEnablementForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CodeScanningAiScanOrgSettings =
+        dev.octri.showcase.github.methods.CodeScanningGetAiScanEnablementForOrgOperation.codeScanningGetAiScanEnablementForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Updates the AI Scan setting stored on an organization. The organization respects the
-     * enterprise policy, so enabling is rejected when the enterprise disallows AI Scan. OAuth app
-     * tokens and personal access tokens (classic) need the `admin:org`, `repo`, or `write:org`
-     * scope to use this endpoint. Organization owners can use `admin:org` or `repo`; security
-     * managers need `write:org`.
+     * Updates the AI Scan setting stored on an organization. The organization respects the enterprise policy, so enabling is rejected when the enterprise disallows AI Scan. OAuth app tokens and personal access tokens (classic) need the `admin:org`, `repo`, or `write:org` scope to use this endpoint. Organization owners can use `admin:org` or `repo`; security managers need `write:org`.
      */
-    fun codeScanningUpdateAiScanEnablementForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        prScan: CodeScanningAiScanOrgEnablementUpdatePrScanEnum? = null,
-        options: RequestOptions? = null,
-    ): CodeScanningAiScanOrgSettings =
-        dev.octri.showcase.github.methods.CodeScanningUpdateAiScanEnablementForOrgOperation
-            .codeScanningUpdateAiScanEnablementForOrg(
-                clientConfig,
-                org,
-                prScan,
-                options,
-            )
+    fun codeScanningUpdateAiScanEnablementForOrg(clientConfig: ClientConfig, org: String, prScan: CodeScanningAiScanOrgEnablementUpdatePrScanEnum? = null, options: RequestOptions? = null): CodeScanningAiScanOrgSettings =
+        dev.octri.showcase.github.methods.CodeScanningUpdateAiScanEnablementForOrgOperation.codeScanningUpdateAiScanEnablementForOrg(
+            clientConfig,
+            org,
+            prScan,
+            options,
+        )
 
     /**
-     * Lists code scanning alerts for the default branch for all eligible repositories in an
-     * organization. Eligible repositories are repositories that are owned by organizations that you
-     * own or for which you are a security manager. For more information, see "[Managing security
-     * managers in your
-     * organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)."
-     * The authenticated user must be an owner or security manager for the organization to use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` or
-     * `repo`s cope to use this endpoint with private or public repositories, or the `public_repo`
-     * scope to use this endpoint with only public repositories.
+     * Lists code scanning alerts for the default branch for all eligible repositories in an organization. Eligible repositories are repositories that are owned by organizations that you own or for which you are a security manager. For more information, see "[Managing security managers in your organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)." The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` or `repo`s cope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningListAlertsForOrg(
-        clientConfig: ClientConfig,
-        request: CodeScanningListAlertsForOrgRequest,
-        options: RequestOptions? = null,
-    ): List<CodeScanningOrganizationAlertItems> =
-        dev.octri.showcase.github.methods.CodeScanningListAlertsForOrgOperation
-            .codeScanningListAlertsForOrg(
-                clientConfig,
-                request,
-                options,
-            )
+    fun codeScanningListAlertsForOrg(clientConfig: ClientConfig, request: CodeScanningListAlertsForOrgRequest, options: RequestOptions? = null): List<CodeScanningOrganizationAlertItems> =
+        dev.octri.showcase.github.methods.CodeScanningListAlertsForOrgOperation.codeScanningListAlertsForOrg(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets whether AI Scan is enabled for a repository. OAuth app tokens and personal access tokens
-     * (classic) need the `security_events` scope to use this endpoint with private or public
-     * repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Gets whether AI Scan is enabled for a repository. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetAiScanEnablement(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): CodeScanningAiScanEnablement =
-        dev.octri.showcase.github.methods.CodeScanningGetAiScanEnablementOperation
-            .codeScanningGetAiScanEnablement(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun codeScanningGetAiScanEnablement(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CodeScanningAiScanEnablement =
+        dev.octri.showcase.github.methods.CodeScanningGetAiScanEnablementOperation.codeScanningGetAiScanEnablement(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Updates whether AI Scan is enabled for a repository. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint with private or public
-     * repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Updates whether AI Scan is enabled for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningUpdateAiScanEnablement(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        prScan: CodeScanningAiScanEnablementUpdatePrScanEnum? = null,
-        options: RequestOptions? = null,
-    ): CodeScanningAiScanEnablement =
-        dev.octri.showcase.github.methods.CodeScanningUpdateAiScanEnablementOperation
-            .codeScanningUpdateAiScanEnablement(
-                clientConfig,
-                owner,
-                repo,
-                prScan,
-                options,
-            )
+    fun codeScanningUpdateAiScanEnablement(clientConfig: ClientConfig, owner: String, repo: String, prScan: CodeScanningAiScanEnablementUpdatePrScanEnum? = null, options: RequestOptions? = null): CodeScanningAiScanEnablement =
+        dev.octri.showcase.github.methods.CodeScanningUpdateAiScanEnablementOperation.codeScanningUpdateAiScanEnablement(
+            clientConfig,
+            owner,
+            repo,
+            prScan,
+            options,
+        )
 
     /**
-     * Lists code scanning alerts. The response includes a `most_recent_instance` object. This
-     * provides details of the most recent instance of this alert for the default branch (or for the
-     * specified Git reference if you used `ref` in the request). OAuth app tokens and personal
-     * access tokens (classic) need the `security_events` scope to use this endpoint with private or
-     * public repositories, or the `public_repo` scope to use this endpoint with only public
-     * repositories.
+     * Lists code scanning alerts. The response includes a `most_recent_instance` object. This provides details of the most recent instance of this alert for the default branch (or for the specified Git reference if you used `ref` in the request). OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningListAlertsForRepo(
-        clientConfig: ClientConfig,
-        request: CodeScanningListAlertsForRepoRequest,
-        options: RequestOptions? = null,
-    ): List<CodeScanningAlertItems> =
-        dev.octri.showcase.github.methods.CodeScanningListAlertsForRepoOperation
-            .codeScanningListAlertsForRepo(
-                clientConfig,
-                request,
-                options,
-            )
+    fun codeScanningListAlertsForRepo(clientConfig: ClientConfig, request: CodeScanningListAlertsForRepoRequest, options: RequestOptions? = null): List<CodeScanningAlertItems> =
+        dev.octri.showcase.github.methods.CodeScanningListAlertsForRepoOperation.codeScanningListAlertsForRepo(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets a single code scanning alert. OAuth app tokens and personal access tokens (classic) need
-     * the `security_events` scope to use this endpoint with private or public repositories, or the
-     * `public_repo` scope to use this endpoint with only public repositories.
+     * Gets a single code scanning alert. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetAlert(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        alertNumber: AlertNumber,
-        options: RequestOptions? = null,
-    ): CodeScanningAlert =
+    fun codeScanningGetAlert(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, options: RequestOptions? = null): CodeScanningAlert =
         dev.octri.showcase.github.methods.CodeScanningGetAlertOperation.codeScanningGetAlert(
             clientConfig,
             owner,
@@ -307,15 +239,9 @@ object CodeScanning {
         )
 
     /**
-     * Updates the status of a single code scanning alert. OAuth app tokens and personal access
-     * tokens (classic) need the `security_events` scope to use this endpoint with private or public
-     * repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Updates the status of a single code scanning alert. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningUpdateAlert(
-        clientConfig: ClientConfig,
-        request: CodeScanningUpdateAlertRequest,
-        options: RequestOptions? = null,
-    ): CodeScanningAlert =
+    fun codeScanningUpdateAlert(clientConfig: ClientConfig, request: CodeScanningUpdateAlertRequest, options: RequestOptions? = null): CodeScanningAlert =
         dev.octri.showcase.github.methods.CodeScanningUpdateAlertOperation.codeScanningUpdateAlert(
             clientConfig,
             request,
@@ -323,18 +249,9 @@ object CodeScanning {
         )
 
     /**
-     * Gets the status and description of an autofix for a code scanning alert on the repository's
-     * default branch. OAuth app tokens and personal access tokens (classic) need the
-     * `security_events` scope to use this endpoint with private or public repositories, or the
-     * `public_repo` scope to use this endpoint with only public repositories.
+     * Gets the status and description of an autofix for a code scanning alert on the repository's default branch. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetAutofix(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        alertNumber: AlertNumber,
-        options: RequestOptions? = null,
-    ): CodeScanningAutofix =
+    fun codeScanningGetAutofix(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, options: RequestOptions? = null): CodeScanningAutofix =
         dev.octri.showcase.github.methods.CodeScanningGetAutofixOperation.codeScanningGetAutofix(
             clientConfig,
             owner,
@@ -344,122 +261,55 @@ object CodeScanning {
         )
 
     /**
-     * Creates an autofix for a code scanning alert using the repository's default branch. If an
-     * autofix already exists, the response returns it; if one is being generated, the response
-     * confirms the request was accepted. OAuth app tokens and personal access tokens (classic)
-     * require the `security_events` scope for public or private repositories, or the `public_repo`
-     * scope for public repositories only.
+     * Creates an autofix for a code scanning alert using the repository's default branch. If an autofix already exists, the response returns it; if one is being generated, the response confirms the request was accepted. OAuth app tokens and personal access tokens (classic) require the `security_events` scope for public or private repositories, or the `public_repo` scope for public repositories only.
      */
-    fun codeScanningCreateAutofix(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        alertNumber: AlertNumber,
-        options: RequestOptions? = null,
-    ): CodeScanningAutofix =
-        dev.octri.showcase.github.methods.CodeScanningCreateAutofixOperation
-            .codeScanningCreateAutofix(
-                clientConfig,
-                owner,
-                repo,
-                alertNumber,
-                options,
-            )
+    fun codeScanningCreateAutofix(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, options: RequestOptions? = null): CodeScanningAutofix =
+        dev.octri.showcase.github.methods.CodeScanningCreateAutofixOperation.codeScanningCreateAutofix(
+            clientConfig,
+            owner,
+            repo,
+            alertNumber,
+            options,
+        )
 
     /**
-     * Commits an autofix for a code scanning alert from the repository's default branch. If an
-     * autofix is committed as a result of this request, then this endpoint will return a 201
-     * Created response. OAuth app tokens and personal access tokens (classic) need the `repo` scope
-     * to use this endpoint with private or public repositories, or the `public_repo` scope to use
-     * this endpoint with only public repositories.
+     * Commits an autofix for a code scanning alert from the repository's default branch. If an autofix is committed as a result of this request, then this endpoint will return a 201 Created response. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningCommitAutofix(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        alertNumber: AlertNumber,
-        targetRef: String? = null,
-        message: String? = null,
-        options: RequestOptions? = null,
-    ): CodeScanningAutofixCommitsResponse =
-        dev.octri.showcase.github.methods.CodeScanningCommitAutofixOperation
-            .codeScanningCommitAutofix(
-                clientConfig,
-                owner,
-                repo,
-                alertNumber,
-                targetRef,
-                message,
-                options,
-            )
+    fun codeScanningCommitAutofix(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, targetRef: String? = null, message: String? = null, options: RequestOptions? = null): CodeScanningAutofixCommitsResponse =
+        dev.octri.showcase.github.methods.CodeScanningCommitAutofixOperation.codeScanningCommitAutofix(
+            clientConfig,
+            owner,
+            repo,
+            alertNumber,
+            targetRef,
+            message,
+            options,
+        )
 
     /**
-     * Lists all instances of the specified code scanning alert. OAuth app tokens and personal
-     * access tokens (classic) need the `security_events` scope to use this endpoint with private or
-     * public repositories, or the `public_repo` scope to use this endpoint with only public
-     * repositories.
+     * Lists all instances of the specified code scanning alert. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningListAlertInstances(
-        clientConfig: ClientConfig,
-        request: CodeScanningListAlertInstancesRequest,
-        options: RequestOptions? = null,
-    ): List<CodeScanningAlertInstanceList> =
-        dev.octri.showcase.github.methods.CodeScanningListAlertInstancesOperation
-            .codeScanningListAlertInstances(
-                clientConfig,
-                request,
-                options,
-            )
+    fun codeScanningListAlertInstances(clientConfig: ClientConfig, request: CodeScanningListAlertInstancesRequest, options: RequestOptions? = null): List<CodeScanningAlertInstanceList> =
+        dev.octri.showcase.github.methods.CodeScanningListAlertInstancesOperation.codeScanningListAlertInstances(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Lists the details of all code scanning analyses for a repository, starting with the most
-     * recent. The response is paginated and you can use the `page` and `per_page` parameters to
-     * list the analyses you're interested in. By default 30 analyses are listed per page. The
-     * `rules_count` field in the response give the number of rules that were run in the analysis.
-     * For very old analyses this data is not available, and `0` is returned in this
-     * field. > [!WARNING] > **Closing down notice:** The `tool_name` field is closing down and
-     * will, in future, not be included in the response for this endpoint. The example response
-     * reflects this change. The tool name can now be found inside the `tool` field. OAuth app
-     * tokens and personal access tokens (classic) need the `security_events` scope to use this
-     * endpoint with private or public repositories, or the `public_repo` scope to use this endpoint
-     * with only public repositories.
+     * Lists the details of all code scanning analyses for a repository, starting with the most recent. The response is paginated and you can use the `page` and `per_page` parameters to list the analyses you're interested in. By default 30 analyses are listed per page. The `rules_count` field in the response give the number of rules that were run in the analysis. For very old analyses this data is not available, and `0` is returned in this field. > [!WARNING] > **Closing down notice:** The `tool_name` field is closing down and will, in future, not be included in the response for this endpoint. The example response reflects this change. The tool name can now be found inside the `tool` field. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningListRecentAnalyses(
-        clientConfig: ClientConfig,
-        request: CodeScanningListRecentAnalysesRequest,
-        options: RequestOptions? = null,
-    ): List<CodeScanningAnalysis> =
-        dev.octri.showcase.github.methods.CodeScanningListRecentAnalysesOperation
-            .codeScanningListRecentAnalyses(
-                clientConfig,
-                request,
-                options,
-            )
+    fun codeScanningListRecentAnalyses(clientConfig: ClientConfig, request: CodeScanningListRecentAnalysesRequest, options: RequestOptions? = null): List<CodeScanningAnalysis> =
+        dev.octri.showcase.github.methods.CodeScanningListRecentAnalysesOperation.codeScanningListRecentAnalyses(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets a specified code scanning analysis for a repository. The default JSON response contains
-     * fields that describe the analysis. This includes the Git reference and commit SHA to which
-     * the analysis relates, the datetime of the analysis, the name of the code scanning tool, and
-     * the number of alerts. The `rules_count` field in the default response give the number of
-     * rules that were run in the analysis. For very old analyses this data is not available, and
-     * `0` is returned in this field. This endpoint supports the following custom media types. For
-     * more information, see "[Media
-     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
-     * **`application/sarif+json`**: Instead of returning a summary of the analysis, this endpoint
-     * returns a subset of the analysis data that was uploaded. The data is formatted as
-     * [SARIF version 2.1.0](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html).
-     * It also returns additional data such as the `github/alertNumber` and `github/alertUrl`
-     * properties. OAuth app tokens and personal access tokens (classic) need the `security_events`
-     * scope to use this endpoint with private or public repositories, or the `public_repo` scope to
-     * use this endpoint with only public repositories.
+     * Gets a specified code scanning analysis for a repository. The default JSON response contains fields that describe the analysis. This includes the Git reference and commit SHA to which the analysis relates, the datetime of the analysis, the name of the code scanning tool, and the number of alerts. The `rules_count` field in the default response give the number of rules that were run in the analysis. For very old analyses this data is not available, and `0` is returned in this field. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/sarif+json`**: Instead of returning a summary of the analysis, this endpoint returns a subset of the analysis data that was uploaded. The data is formatted as [SARIF version 2.1.0](https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/sarif-v2.1.0-cs01.html). It also returns additional data such as the `github/alertNumber` and `github/alertUrl` properties. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetAnalysis(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        analysisId: Long,
-        options: RequestOptions? = null,
-    ): CodeScanningAnalysis =
+    fun codeScanningGetAnalysis(clientConfig: ClientConfig, owner: String, repo: String, analysisId: Long, options: RequestOptions? = null): CodeScanningAnalysis =
         dev.octri.showcase.github.methods.CodeScanningGetAnalysisOperation.codeScanningGetAnalysis(
             clientConfig,
             owner,
@@ -469,269 +319,114 @@ object CodeScanning {
         )
 
     /**
-     * Deletes a specified code scanning analysis from a repository. You can delete one analysis at
-     * a time. To delete a series of analyses, start with the most recent analysis and work
-     * backwards. Conceptually, the process is similar to the undo function in a text editor. When
-     * you list the analyses for a repository, one or more will be identified as deletable in the
-     * response: ``` "deletable": true ``` An analysis is deletable when it's the most recent in a
-     * set of analyses. Typically, a repository will have multiple sets of analyses for each enabled
-     * code scanning tool, where a set is determined by a unique combination of analysis values: *
-     * `ref` * `tool` * `category` If you attempt to delete an analysis that is not the most recent
-     * in a set, you'll get a 400 response with the message: ``` Analysis specified is not
-     * deletable. ``` The response from a successful `DELETE` operation provides you with two
-     * alternative URLs for deleting the next analysis in the set: `next_analysis_url` and
-     * `confirm_delete_url`. Use the `next_analysis_url` URL if you want to avoid accidentally
-     * deleting the final analysis in a set. This is a useful option if you want to preserve at
-     * least one analysis for the specified tool in your repository. Use the `confirm_delete_url`
-     * URL if you are content to remove all analyses for a tool. When you delete the last analysis
-     * in a set, the value of `next_analysis_url` and `confirm_delete_url` in the 200 response is
-     * `null`. As an example of the deletion process, let's imagine that you added a workflow that
-     * configured a particular code scanning tool to analyze the code in a repository. This tool has
-     * added 15 analyses: 10 on the default branch, and another 5 on a topic branch. You therefore
-     * have two separate sets of analyses for this tool. You've now decided that you want to remove
-     * all of the analyses for the tool. To do this you must make 15 separate deletion requests. To
-     * start, you must find an analysis that's identified as deletable. Each set of analyses always
-     * has one that's identified as deletable. Having found the deletable analysis for one of the
-     * two sets, delete this analysis and then continue deleting the next analysis in the set until
-     * they're all deleted. Then repeat the process for the second set. The procedure therefore
-     * consists of a nested loop: **Outer loop**: * List the analyses for the repository, filtered
-     * by tool. * Parse this list to find a deletable analysis. If found: **Inner loop**: * Delete
-     * the identified analysis. * Parse the response for the value of `confirm_delete_url` and, if
-     * found, use this in the next iteration. The above process assumes that you want to remove all
-     * trace of the tool's analyses from the GitHub user interface, for the specified repository,
-     * and it therefore uses the `confirm_delete_url` value. Alternatively, you could use the
-     * `next_analysis_url` value, which would leave the last analysis in each set undeleted to avoid
-     * removing a tool's analysis entirely. OAuth app tokens and personal access tokens (classic)
-     * need the `repo` scope to use this endpoint with private or public repositories, or the
-     * `public_repo` scope to use this endpoint with only public repositories.
+     * Deletes a specified code scanning analysis from a repository. You can delete one analysis at a time. To delete a series of analyses, start with the most recent analysis and work backwards. Conceptually, the process is similar to the undo function in a text editor. When you list the analyses for a repository, one or more will be identified as deletable in the response: ``` "deletable": true ``` An analysis is deletable when it's the most recent in a set of analyses. Typically, a repository will have multiple sets of analyses for each enabled code scanning tool, where a set is determined by a unique combination of analysis values: * `ref` * `tool` * `category` If you attempt to delete an analysis that is not the most recent in a set, you'll get a 400 response with the message: ``` Analysis specified is not deletable. ``` The response from a successful `DELETE` operation provides you with two alternative URLs for deleting the next analysis in the set: `next_analysis_url` and `confirm_delete_url`. Use the `next_analysis_url` URL if you want to avoid accidentally deleting the final analysis in a set. This is a useful option if you want to preserve at least one analysis for the specified tool in your repository. Use the `confirm_delete_url` URL if you are content to remove all analyses for a tool. When you delete the last analysis in a set, the value of `next_analysis_url` and `confirm_delete_url` in the 200 response is `null`. As an example of the deletion process, let's imagine that you added a workflow that configured a particular code scanning tool to analyze the code in a repository. This tool has added 15 analyses: 10 on the default branch, and another 5 on a topic branch. You therefore have two separate sets of analyses for this tool. You've now decided that you want to remove all of the analyses for the tool. To do this you must make 15 separate deletion requests. To start, you must find an analysis that's identified as deletable. Each set of analyses always has one that's identified as deletable. Having found the deletable analysis for one of the two sets, delete this analysis and then continue deleting the next analysis in the set until they're all deleted. Then repeat the process for the second set. The procedure therefore consists of a nested loop: **Outer loop**: * List the analyses for the repository, filtered by tool. * Parse this list to find a deletable analysis. If found: **Inner loop**: * Delete the identified analysis. * Parse the response for the value of `confirm_delete_url` and, if found, use this in the next iteration. The above process assumes that you want to remove all trace of the tool's analyses from the GitHub user interface, for the specified repository, and it therefore uses the `confirm_delete_url` value. Alternatively, you could use the `next_analysis_url` value, which would leave the last analysis in each set undeleted to avoid removing a tool's analysis entirely. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningDeleteAnalysis(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        analysisId: Long,
-        confirmDelete: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): CodeScanningAnalysisDeletion =
-        dev.octri.showcase.github.methods.CodeScanningDeleteAnalysisOperation
-            .codeScanningDeleteAnalysis(
-                clientConfig,
-                owner,
-                repo,
-                analysisId,
-                confirmDelete,
-                options,
-            )
+    fun codeScanningDeleteAnalysis(clientConfig: ClientConfig, owner: String, repo: String, analysisId: Long, confirmDelete: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): CodeScanningAnalysisDeletion =
+        dev.octri.showcase.github.methods.CodeScanningDeleteAnalysisOperation.codeScanningDeleteAnalysis(
+            clientConfig,
+            owner,
+            repo,
+            analysisId,
+            confirmDelete,
+            options,
+        )
 
     /**
-     * Lists the CodeQL databases that are available in a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint with private or public
-     * repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Lists the CodeQL databases that are available in a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningListCodeqlDatabases(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): List<CodeScanningCodeqlDatabase> =
-        dev.octri.showcase.github.methods.CodeScanningListCodeqlDatabasesOperation
-            .codeScanningListCodeqlDatabases(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun codeScanningListCodeqlDatabases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CodeScanningCodeqlDatabase> =
+        dev.octri.showcase.github.methods.CodeScanningListCodeqlDatabasesOperation.codeScanningListCodeqlDatabases(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Gets a CodeQL database for a language in a repository. By default this endpoint returns JSON
-     * metadata about the CodeQL database. To download the CodeQL database binary content, set the
-     * `Accept` header of the request to
-     * [`application/zip`](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types),
-     * and make sure your HTTP client is configured to follow redirects or use the `Location` header
-     * to make a second request to get the redirect URL. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint with private or public repositories, or
-     * the `public_repo` scope to use this endpoint with only public repositories.
+     * Gets a CodeQL database for a language in a repository. By default this endpoint returns JSON metadata about the CodeQL database. To download the CodeQL database binary content, set the `Accept` header of the request to [`application/zip`](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types), and make sure your HTTP client is configured to follow redirects or use the `Location` header to make a second request to get the redirect URL. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetCodeqlDatabase(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        language: String,
-        options: RequestOptions? = null,
-    ): CodeScanningCodeqlDatabase =
-        dev.octri.showcase.github.methods.CodeScanningGetCodeqlDatabaseOperation
-            .codeScanningGetCodeqlDatabase(
-                clientConfig,
-                owner,
-                repo,
-                language,
-                options,
-            )
+    fun codeScanningGetCodeqlDatabase(clientConfig: ClientConfig, owner: String, repo: String, language: String, options: RequestOptions? = null): CodeScanningCodeqlDatabase =
+        dev.octri.showcase.github.methods.CodeScanningGetCodeqlDatabaseOperation.codeScanningGetCodeqlDatabase(
+            clientConfig,
+            owner,
+            repo,
+            language,
+            options,
+        )
 
     /**
-     * Deletes a CodeQL database for a language in a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint with private or public
-     * repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Deletes a CodeQL database for a language in a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningDeleteCodeqlDatabase(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        language: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.CodeScanningDeleteCodeqlDatabaseOperation
-            .codeScanningDeleteCodeqlDatabase(
-                clientConfig,
-                owner,
-                repo,
-                language,
-                options,
-            )
+    fun codeScanningDeleteCodeqlDatabase(clientConfig: ClientConfig, owner: String, repo: String, language: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.CodeScanningDeleteCodeqlDatabaseOperation.codeScanningDeleteCodeqlDatabase(
+            clientConfig,
+            owner,
+            repo,
+            language,
+            options,
+        )
 
     /**
-     * Creates a new CodeQL variant analysis, which will run a CodeQL query against one or more
-     * repositories. Get started by learning more about
-     * [running CodeQL queries at scale with Multi-Repository Variant Analysis](https://docs.github.com/code-security/codeql-for-vs-code/getting-started-with-codeql-for-vs-code/running-codeql-queries-at-scale-with-multi-repository-variant-analysis).
-     * Use the `owner` and `repo` parameters in the URL to specify the controller repository that
-     * will be used for running GitHub Actions workflows and storing the results of the CodeQL
-     * variant analysis. OAuth app tokens and personal access tokens (classic) need the `repo` scope
-     * to use this endpoint.
+     * Creates a new CodeQL variant analysis, which will run a CodeQL query against one or more repositories. Get started by learning more about [running CodeQL queries at scale with Multi-Repository Variant Analysis](https://docs.github.com/code-security/codeql-for-vs-code/getting-started-with-codeql-for-vs-code/running-codeql-queries-at-scale-with-multi-repository-variant-analysis). Use the `owner` and `repo` parameters in the URL to specify the controller repository that will be used for running GitHub Actions workflows and storing the results of the CodeQL variant analysis. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun codeScanningCreateVariantAnalysis(
-        clientConfig: ClientConfig,
-        request: CodeScanningCreateVariantAnalysisRequest,
-        options: RequestOptions? = null,
-    ): CodeScanningVariantAnalysis =
-        dev.octri.showcase.github.methods.CodeScanningCreateVariantAnalysisOperation
-            .codeScanningCreateVariantAnalysis(
-                clientConfig,
-                request,
-                options,
-            )
+    fun codeScanningCreateVariantAnalysis(clientConfig: ClientConfig, request: CodeScanningCreateVariantAnalysisRequest, options: RequestOptions? = null): CodeScanningVariantAnalysis =
+        dev.octri.showcase.github.methods.CodeScanningCreateVariantAnalysisOperation.codeScanningCreateVariantAnalysis(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets the summary of a CodeQL variant analysis. OAuth app tokens and personal access tokens
-     * (classic) need the `security_events` scope to use this endpoint with private or public
-     * repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Gets the summary of a CodeQL variant analysis. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetVariantAnalysis(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        codeqlVariantAnalysisId: Long,
-        options: RequestOptions? = null,
-    ): CodeScanningVariantAnalysis =
-        dev.octri.showcase.github.methods.CodeScanningGetVariantAnalysisOperation
-            .codeScanningGetVariantAnalysis(
-                clientConfig,
-                owner,
-                repo,
-                codeqlVariantAnalysisId,
-                options,
-            )
+    fun codeScanningGetVariantAnalysis(clientConfig: ClientConfig, owner: String, repo: String, codeqlVariantAnalysisId: Long, options: RequestOptions? = null): CodeScanningVariantAnalysis =
+        dev.octri.showcase.github.methods.CodeScanningGetVariantAnalysisOperation.codeScanningGetVariantAnalysis(
+            clientConfig,
+            owner,
+            repo,
+            codeqlVariantAnalysisId,
+            options,
+        )
 
     /**
-     * Gets the analysis status of a repository in a CodeQL variant analysis. OAuth app tokens and
-     * personal access tokens (classic) need the `security_events` scope to use this endpoint with
-     * private or public repositories, or the `public_repo` scope to use this endpoint with only
-     * public repositories.
+     * Gets the analysis status of a repository in a CodeQL variant analysis. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetVariantAnalysisRepoTask(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        codeqlVariantAnalysisId: Long,
-        repoOwner: String,
-        repoName: String,
-        options: RequestOptions? = null,
-    ): CodeScanningVariantAnalysisRepoTask =
-        dev.octri.showcase.github.methods.CodeScanningGetVariantAnalysisRepoTaskOperation
-            .codeScanningGetVariantAnalysisRepoTask(
-                clientConfig,
-                owner,
-                repo,
-                codeqlVariantAnalysisId,
-                repoOwner,
-                repoName,
-                options,
-            )
+    fun codeScanningGetVariantAnalysisRepoTask(clientConfig: ClientConfig, owner: String, repo: String, codeqlVariantAnalysisId: Long, repoOwner: String, repoName: String, options: RequestOptions? = null): CodeScanningVariantAnalysisRepoTask =
+        dev.octri.showcase.github.methods.CodeScanningGetVariantAnalysisRepoTaskOperation.codeScanningGetVariantAnalysisRepoTask(
+            clientConfig,
+            owner,
+            repo,
+            codeqlVariantAnalysisId,
+            repoOwner,
+            repoName,
+            options,
+        )
 
     /**
-     * Gets a code scanning default setup configuration. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint with private or public repositories, or
-     * the `public_repo` scope to use this endpoint with only public repositories.
+     * Gets a code scanning default setup configuration. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetDefaultSetup(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): CodeScanningDefaultSetup =
-        dev.octri.showcase.github.methods.CodeScanningGetDefaultSetupOperation
-            .codeScanningGetDefaultSetup(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun codeScanningGetDefaultSetup(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CodeScanningDefaultSetup =
+        dev.octri.showcase.github.methods.CodeScanningGetDefaultSetupOperation.codeScanningGetDefaultSetup(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Updates a code scanning default setup configuration. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint with private or public
-     * repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Updates a code scanning default setup configuration. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningUpdateDefaultSetup(
-        clientConfig: ClientConfig,
-        request: CodeScanningUpdateDefaultSetupRequest,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.CodeScanningUpdateDefaultSetupOperation
-            .codeScanningUpdateDefaultSetup(
-                clientConfig,
-                request,
-                options,
-            )
+    fun codeScanningUpdateDefaultSetup(clientConfig: ClientConfig, request: CodeScanningUpdateDefaultSetupRequest, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.CodeScanningUpdateDefaultSetupOperation.codeScanningUpdateDefaultSetup(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Uploads SARIF data containing the results of a code scanning analysis to make the results
-     * available in a repository. For troubleshooting information, see "[Troubleshooting SARIF
-     * uploads](https://docs.github.com/code-security/code-scanning/troubleshooting-sarif)." There
-     * are two places where you can upload code scanning results. - If you upload to a pull request,
-     * for example `--ref refs/pull/42/merge` or `--ref refs/pull/42/head`, then the results appear
-     * as alerts in a pull request check. For more information, see "Triaging code scanning alerts
-     * in pull requests." - If you upload to a branch, for example `--ref refs/heads/my-branch`,
-     * then the results appear in the **Security** tab for your repository. For more information,
-     * see "Managing code scanning alerts for your repository." You must compress the
-     * SARIF-formatted analysis data that you want to upload, using `gzip`, and then encode it as a
-     * Base64 format string. For example: ``` gzip -c analysis-data.sarif | base64 -w0 ``` SARIF
-     * upload supports a maximum number of entries per the following data objects, and an analysis
-     * will be rejected if any of these objects is above its maximum value. For some objects, there
-     * are additional values over which the entries will be ignored while keeping the most important
-     * entries whenever applicable. To get the most out of your analysis when it includes data above
-     * the supported limits, try to optimize the analysis configuration. For example, for the CodeQL
-     * tool, identify and remove the most noisy queries. For more information, see "[SARIF results
-     * exceed one or more
-     * limits](https://docs.github.com/code-security/code-scanning/troubleshooting-sarif/results-exceed-limit)."
-     * | **SARIF data** | **Maximum values** | **Additional limits** |
-     * |----------------------------------|:------------------:|----------------------------------------------------------------------------------|
-     * | Runs per file | 20 | | | Results per run | 25,000 | Only the top 5,000 results will be
-     * included, prioritized by severity. | | Rules per run | 25,000 | | | Tool extensions per run |
-     * 100 | | | Thread Flow Locations per result | 10,000 | Only the top 1,000 Thread Flow
-     * Locations will be included, using prioritization. | | Location per result | 1,000 | Only 100
-     * locations will be included. | | Tags per rule | 20 | Only 10 tags will be included. | The
-     * `202 Accepted` response includes an `id` value. You can use this ID to check the status of
-     * the upload by using it in the `/sarifs/{sarif_id}` endpoint. For more information, see "Get
-     * information about a SARIF upload." OAuth app tokens and personal access tokens (classic) need
-     * the `security_events` scope to use this endpoint with private or public repositories, or the
-     * `public_repo` scope to use this endpoint with only public repositories. This endpoint is
-     * limited to 1,000 requests per hour for each user or app installation calling it.
+     * Uploads SARIF data containing the results of a code scanning analysis to make the results available in a repository. For troubleshooting information, see "[Troubleshooting SARIF uploads](https://docs.github.com/code-security/code-scanning/troubleshooting-sarif)." There are two places where you can upload code scanning results. - If you upload to a pull request, for example `--ref refs/pull/42/merge` or `--ref refs/pull/42/head`, then the results appear as alerts in a pull request check. For more information, see "Triaging code scanning alerts in pull requests." - If you upload to a branch, for example `--ref refs/heads/my-branch`, then the results appear in the **Security** tab for your repository. For more information, see "Managing code scanning alerts for your repository." You must compress the SARIF-formatted analysis data that you want to upload, using `gzip`, and then encode it as a Base64 format string. For example: ``` gzip -c analysis-data.sarif | base64 -w0 ``` SARIF upload supports a maximum number of entries per the following data objects, and an analysis will be rejected if any of these objects is above its maximum value. For some objects, there are additional values over which the entries will be ignored while keeping the most important entries whenever applicable. To get the most out of your analysis when it includes data above the supported limits, try to optimize the analysis configuration. For example, for the CodeQL tool, identify and remove the most noisy queries. For more information, see "[SARIF results exceed one or more limits](https://docs.github.com/code-security/code-scanning/troubleshooting-sarif/results-exceed-limit)." | **SARIF data** | **Maximum values** | **Additional limits** | |----------------------------------|:------------------:|----------------------------------------------------------------------------------| | Runs per file | 20 | | | Results per run | 25,000 | Only the top 5,000 results will be included, prioritized by severity. | | Rules per run | 25,000 | | | Tool extensions per run | 100 | | | Thread Flow Locations per result | 10,000 | Only the top 1,000 Thread Flow Locations will be included, using prioritization. | | Location per result | 1,000 | Only 100 locations will be included. | | Tags per rule | 20 | Only 10 tags will be included. | The `202 Accepted` response includes an `id` value. You can use this ID to check the status of the upload by using it in the `/sarifs/{sarif_id}` endpoint. For more information, see "Get information about a SARIF upload." OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories. This endpoint is limited to 1,000 requests per hour for each user or app installation calling it.
      */
-    fun codeScanningUploadSarif(
-        clientConfig: ClientConfig,
-        request: CodeScanningUploadSarifRequest,
-        options: RequestOptions? = null,
-    ): CodeScanningSarifsReceipt =
+    fun codeScanningUploadSarif(clientConfig: ClientConfig, request: CodeScanningUploadSarifRequest, options: RequestOptions? = null): CodeScanningSarifsReceipt =
         dev.octri.showcase.github.methods.CodeScanningUploadSarifOperation.codeScanningUploadSarif(
             clientConfig,
             request,
@@ -739,19 +434,9 @@ object CodeScanning {
         )
 
     /**
-     * Gets information about a SARIF upload, including the status and the URL of the analysis that
-     * was uploaded so that you can retrieve details of the analysis. For more information, see "Get
-     * a code scanning analysis for a repository." OAuth app tokens and personal access tokens
-     * (classic) need the `security_events` scope to use this endpoint with private or public
-     * repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Gets information about a SARIF upload, including the status and the URL of the analysis that was uploaded so that you can retrieve details of the analysis. For more information, see "Get a code scanning analysis for a repository." OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
      */
-    fun codeScanningGetSarif(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        sarifId: String,
-        options: RequestOptions? = null,
-    ): CodeScanningSarifsStatus =
+    fun codeScanningGetSarif(clientConfig: ClientConfig, owner: String, repo: String, sarifId: String, options: RequestOptions? = null): CodeScanningSarifsStatus =
         dev.octri.showcase.github.methods.CodeScanningGetSarifOperation.codeScanningGetSarif(
             clientConfig,
             owner,

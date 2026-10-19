@@ -3,27 +3,44 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `ActionsRunnerJitconfig` API schema. */
+/**
+ * Typed representation of the `ActionsRunnerJitconfig` API schema.
+ */
 data class ActionsRunnerJitconfig(
-    /** A self hosted runner */
+    /**
+     * A self hosted runner
+     */
     val runner: Runner,
-    /** The base64 encoded runner configuration. */
-    @com.fasterxml.jackson.annotation.JsonProperty("encoded_jit_config")
-    val encodedJitConfig: String,
+    /**
+     * The base64 encoded runner configuration.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("encoded_jit_config") val encodedJitConfig: String
 )
 
-/** Typed representation of the `ActionsRunnerLabels` API schema. */
+/**
+ * Typed representation of the `ActionsRunnerLabels` API schema.
+ */
 data class ActionsRunnerLabels(
-    /** Required `integer` value serialized in the `total_count` wire field. */
+    /**
+     * Required `integer` value serialized in the `total_count` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    /** Required array value serialized in the `labels` wire field. */
-    val labels: List<RunnerLabel>,
+    /**
+     * Required array value serialized in the `labels` wire field.
+     */
+    val labels: List<RunnerLabel>
 )
 
-/** Typed representation of the `ActionsRunnerLabelsReadonly` API schema. */
+/**
+ * Typed representation of the `ActionsRunnerLabelsReadonly` API schema.
+ */
 data class ActionsRunnerLabelsReadonly(
-    /** Required `integer` value serialized in the `total_count` wire field. */
+    /**
+     * Required `integer` value serialized in the `total_count` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    /** Required array value serialized in the `labels` wire field. */
-    val labels: List<RunnerLabel>,
+    /**
+     * Required array value serialized in the `labels` wire field.
+     */
+    val labels: List<RunnerLabel>
 )

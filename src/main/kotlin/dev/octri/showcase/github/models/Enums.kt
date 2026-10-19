@@ -3,12 +3,11 @@
 
 package dev.octri.showcase.github.models
 
-class SchemaSchemaEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+class SchemaSchemaEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
     override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum && value == other.value
-
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -17,21 +16,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val LAST_ACCESSED_AT = SchemaSchemaEnum("last_accessed_at")
         @JvmField val SIZE_IN_BYTES = SchemaSchemaEnum("size_in_bytes")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum(value)
     }
 }
 
-class SchemaSchemaEnum6eadbb7f
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum6eadbb7f && value == other.value
-
+class SchemaSchemaEnum6eadbb7f private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum6eadbb7f && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -40,102 +34,75 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val CLASSIC_PAT = SchemaSchemaEnum6eadbb7f("classic_pat")
         @JvmField val FINE_GRAINED_PAT = SchemaSchemaEnum6eadbb7f("fine_grained_pat")
         @JvmField val OAUTH_APP = SchemaSchemaEnum6eadbb7f("oauth_app")
-        @JvmField
-        val GITHUB_APP_USER_TO_SERVER = SchemaSchemaEnum6eadbb7f("github_app_user_to_server")
+        @JvmField val GITHUB_APP_USER_TO_SERVER = SchemaSchemaEnum6eadbb7f("github_app_user_to_server")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum6eadbb7f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum6eadbb7f(value)
     }
 }
 
-class SchemaSchemaItemEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaItemEnum && value == other.value
-
+class SchemaSchemaItemEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaItemEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val LAST_RATE_LIMITED_TIMESTAMP = SchemaSchemaItemEnum("last_rate_limited_timestamp")
+        @JvmField val LAST_RATE_LIMITED_TIMESTAMP = SchemaSchemaItemEnum("last_rate_limited_timestamp")
         @JvmField val LAST_REQUEST_TIMESTAMP = SchemaSchemaItemEnum("last_request_timestamp")
-        @JvmField
-        val RATE_LIMITED_REQUEST_COUNT = SchemaSchemaItemEnum("rate_limited_request_count")
+        @JvmField val RATE_LIMITED_REQUEST_COUNT = SchemaSchemaItemEnum("rate_limited_request_count")
         @JvmField val HTTP_METHOD = SchemaSchemaItemEnum("http_method")
         @JvmField val API_ROUTE = SchemaSchemaItemEnum("api_route")
         @JvmField val TOTAL_REQUEST_COUNT = SchemaSchemaItemEnum("total_request_count")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaItemEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaItemEnum(value)
     }
 }
 
-class SchemaSchemaItemEnumc3fee875
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaItemEnumc3fee875 && value == other.value
-
+class SchemaSchemaItemEnumc3fee875 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaItemEnumc3fee875 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val LAST_RATE_LIMITED_TIMESTAMP =
-            SchemaSchemaItemEnumc3fee875("last_rate_limited_timestamp")
-        @JvmField
-        val LAST_REQUEST_TIMESTAMP = SchemaSchemaItemEnumc3fee875("last_request_timestamp")
-        @JvmField
-        val RATE_LIMITED_REQUEST_COUNT = SchemaSchemaItemEnumc3fee875("rate_limited_request_count")
+        @JvmField val LAST_RATE_LIMITED_TIMESTAMP = SchemaSchemaItemEnumc3fee875("last_rate_limited_timestamp")
+        @JvmField val LAST_REQUEST_TIMESTAMP = SchemaSchemaItemEnumc3fee875("last_request_timestamp")
+        @JvmField val RATE_LIMITED_REQUEST_COUNT = SchemaSchemaItemEnumc3fee875("rate_limited_request_count")
         @JvmField val SUBJECT_NAME = SchemaSchemaItemEnumc3fee875("subject_name")
         @JvmField val TOTAL_REQUEST_COUNT = SchemaSchemaItemEnumc3fee875("total_request_count")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaItemEnumc3fee875(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaItemEnumc3fee875(value)
     }
 }
 
-class SchemaSchemaVariant1ItemEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaVariant1ItemEnum && value == other.value
-
+class SchemaSchemaVariant1ItemEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaVariant1ItemEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PATCH = SchemaSchemaVariant1ItemEnum("patch")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaVariant1ItemEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaVariant1ItemEnum(value)
     }
 }
 
-class SchemaSchemaVariant1ItemEnum103427ca
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaVariant1ItemEnum103427ca && value == other.value
-
+class SchemaSchemaVariant1ItemEnum103427ca private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaVariant1ItemEnum103427ca && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -143,21 +110,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val PATCH = SchemaSchemaVariant1ItemEnum103427ca("patch")
         @JvmField val DEPLOYMENT = SchemaSchemaVariant1ItemEnum103427ca("deployment")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaVariant1ItemEnum103427ca(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaVariant1ItemEnum103427ca(value)
     }
 }
 
-class SchemaSchemaEnuma304fedd
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnuma304fedd && value == other.value
-
+class SchemaSchemaEnuma304fedd private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnuma304fedd && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -165,21 +127,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val DEVELOPMENT = SchemaSchemaEnuma304fedd("development")
         @JvmField val RUNTIME = SchemaSchemaEnuma304fedd("runtime")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnuma304fedd(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnuma304fedd(value)
     }
 }
 
-class SchemaSchemaEnumb6482dba
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumb6482dba && value == other.value
-
+class SchemaSchemaEnumb6482dba private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumb6482dba && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -188,21 +145,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val UPDATED = SchemaSchemaEnumb6482dba("updated")
         @JvmField val EPSS_PERCENTAGE = SchemaSchemaEnumb6482dba("epss_percentage")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumb6482dba(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumb6482dba(value)
     }
 }
 
-class SchemaSchemaEnum0df64690
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum0df64690 && value == other.value
-
+class SchemaSchemaEnum0df64690 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum0df64690 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -210,21 +162,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ASC = SchemaSchemaEnum0df64690("asc")
         @JvmField val DESC = SchemaSchemaEnum0df64690("desc")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum0df64690(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum0df64690(value)
     }
 }
 
-class SchemaSchemaEnum133f4a69
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum133f4a69 && value == other.value
-
+class SchemaSchemaEnum133f4a69 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum133f4a69 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -233,21 +180,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ACTIVE = SchemaSchemaEnum133f4a69("active")
         @JvmField val EVALUATE = SchemaSchemaEnum133f4a69("evaluate")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum133f4a69(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum133f4a69(value)
     }
 }
 
-class SchemaSchemaEnum8674e2c0
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum8674e2c0 && value == other.value
-
+class SchemaSchemaEnum8674e2c0 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum8674e2c0 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -255,21 +197,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val DESC = SchemaSchemaEnum8674e2c0("desc")
         @JvmField val ASC = SchemaSchemaEnum8674e2c0("asc")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum8674e2c0(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum8674e2c0(value)
     }
 }
 
-class SchemaSchemaEnumd185c506
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumd185c506 && value == other.value
-
+class SchemaSchemaEnumd185c506 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumd185c506 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -277,21 +214,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ENABLE_ALL = SchemaSchemaEnumd185c506("enable_all")
         @JvmField val DISABLE_ALL = SchemaSchemaEnumd185c506("disable_all")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumd185c506(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumd185c506(value)
     }
 }
 
-class SchemaSchemaEnum5f6fac39
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum5f6fac39 && value == other.value
-
+class SchemaSchemaEnum5f6fac39 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum5f6fac39 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -303,21 +235,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val NUGET = SchemaSchemaEnum5f6fac39("nuget")
         @JvmField val CONTAINER = SchemaSchemaEnum5f6fac39("container")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum5f6fac39(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum5f6fac39(value)
     }
 }
 
-class SchemaSchemaEnumf67de18d
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumf67de18d && value == other.value
-
+class SchemaSchemaEnumf67de18d private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumf67de18d && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -326,21 +253,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val PRIVATE = SchemaSchemaEnumf67de18d("private")
         @JvmField val INTERNAL = SchemaSchemaEnumf67de18d("internal")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumf67de18d(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumf67de18d(value)
     }
 }
 
-class SchemaSchemaEnumd984713f
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumd984713f && value == other.value
-
+class SchemaSchemaEnumd984713f private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumd984713f && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -348,42 +270,32 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val DAY = SchemaSchemaEnumd984713f("day")
         @JvmField val WEEK = SchemaSchemaEnumd984713f("week")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumd984713f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumd984713f(value)
     }
 }
 
-class SchemaSchemaEnum1220214b
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum1220214b && value == other.value
-
+class SchemaSchemaEnum1220214b private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum1220214b && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val CREATED_AT = SchemaSchemaEnum1220214b("created_at")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum1220214b(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum1220214b(value)
     }
 }
 
-class SchemaSchemaEnum11fb9123
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum11fb9123 && value == other.value
-
+class SchemaSchemaEnum11fb9123 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum11fb9123 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -393,21 +305,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val BYPASS = SchemaSchemaEnum11fb9123("bypass")
         @JvmField val ALL = SchemaSchemaEnum11fb9123("all")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum11fb9123(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum11fb9123(value)
     }
 }
 
-class SchemaSchemaEnumdfca6a72
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumdfca6a72 && value == other.value
-
+class SchemaSchemaEnumdfca6a72 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumdfca6a72 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -415,21 +322,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val SEMANTIC = SchemaSchemaEnumdfca6a72("semantic")
         @JvmField val HYBRID = SchemaSchemaEnumdfca6a72("hybrid")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumdfca6a72(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumdfca6a72(value)
     }
 }
 
-class SchemaSchemaEnumd4e3ed8d
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumd4e3ed8d && value == other.value
-
+class SchemaSchemaEnumd4e3ed8d private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumd4e3ed8d && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -437,21 +339,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val CREATED = SchemaSchemaEnumd4e3ed8d("created")
         @JvmField val UPDATED = SchemaSchemaEnumd4e3ed8d("updated")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumd4e3ed8d(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumd4e3ed8d(value)
     }
 }
 
-class SchemaSchemaEnum0374f8f2
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum0374f8f2 && value == other.value
-
+class SchemaSchemaEnum0374f8f2 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum0374f8f2 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -459,21 +356,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val OPEN = SchemaSchemaEnum0374f8f2("open")
         @JvmField val RESOLVED = SchemaSchemaEnum0374f8f2("resolved")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum0374f8f2(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum0374f8f2(value)
     }
 }
 
-class SchemaSchemaEnumd6199d03
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumd6199d03 && value == other.value
-
+class SchemaSchemaEnumd6199d03 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumd6199d03 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -481,21 +373,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ENABLED = SchemaSchemaEnumd6199d03("enabled")
         @JvmField val DISABLED = SchemaSchemaEnumd6199d03("disabled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumd6199d03(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumd6199d03(value)
     }
 }
 
-class SchemaSchemaEnum6c93bb3e
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum6c93bb3e && value == other.value
-
+class SchemaSchemaEnum6c93bb3e private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum6c93bb3e && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -504,21 +391,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val UPDATED = SchemaSchemaEnum6c93bb3e("updated")
         @JvmField val NAME = SchemaSchemaEnum6c93bb3e("name")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum6c93bb3e(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum6c93bb3e(value)
     }
 }
 
-class SchemaSchemaEnumc908804b
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumc908804b && value == other.value
-
+class SchemaSchemaEnumc908804b private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumc908804b && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -526,52 +408,38 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val PUBLISHED = SchemaSchemaEnumc908804b("published")
         @JvmField val UNPUBLISHED = SchemaSchemaEnumc908804b("unpublished")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumc908804b(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumc908804b(value)
     }
 }
 
-class SchemaSchemaEnume123ddd7
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnume123ddd7 && value == other.value
-
+class SchemaSchemaEnume123ddd7 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnume123ddd7 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val DEPENDENCY_GRAPH = SchemaSchemaEnume123ddd7("dependency_graph")
         @JvmField val DEPENDABOT_ALERTS = SchemaSchemaEnume123ddd7("dependabot_alerts")
-        @JvmField
-        val DEPENDABOT_SECURITY_UPDATES = SchemaSchemaEnume123ddd7("dependabot_security_updates")
+        @JvmField val DEPENDABOT_SECURITY_UPDATES = SchemaSchemaEnume123ddd7("dependabot_security_updates")
         @JvmField val ADVANCED_SECURITY = SchemaSchemaEnume123ddd7("advanced_security")
-        @JvmField
-        val CODE_SCANNING_DEFAULT_SETUP = SchemaSchemaEnume123ddd7("code_scanning_default_setup")
+        @JvmField val CODE_SCANNING_DEFAULT_SETUP = SchemaSchemaEnume123ddd7("code_scanning_default_setup")
         @JvmField val SECRET_SCANNING = SchemaSchemaEnume123ddd7("secret_scanning")
-        @JvmField
-        val SECRET_SCANNING_PUSH_PROTECTION =
-            SchemaSchemaEnume123ddd7("secret_scanning_push_protection")
+        @JvmField val SECRET_SCANNING_PUSH_PROTECTION = SchemaSchemaEnume123ddd7("secret_scanning_push_protection")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnume123ddd7(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnume123ddd7(value)
     }
 }
 
-class SchemaSchemaEnum2e5fa964
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum2e5fa964 && value == other.value
-
+class SchemaSchemaEnum2e5fa964 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum2e5fa964 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -579,21 +447,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val CREATED = SchemaSchemaEnum2e5fa964("created")
         @JvmField val UPDATED = SchemaSchemaEnum2e5fa964("updated")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum2e5fa964(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum2e5fa964(value)
     }
 }
 
-class SchemaSchemaEnum00c9f324
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum00c9f324 && value == other.value
-
+class SchemaSchemaEnum00c9f324 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum00c9f324 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -601,21 +464,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val CREATED = SchemaSchemaEnum00c9f324("created")
         @JvmField val UPDATED = SchemaSchemaEnum00c9f324("updated")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum00c9f324(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum00c9f324(value)
     }
 }
 
-class SchemaSchemaEnumb67a25cf
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnumb67a25cf && value == other.value
-
+class SchemaSchemaEnumb67a25cf private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnumb67a25cf && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -624,21 +482,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val IN_PROGRESS = SchemaSchemaEnumb67a25cf("in_progress")
         @JvmField val COMPLETED = SchemaSchemaEnumb67a25cf("completed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnumb67a25cf(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnumb67a25cf(value)
     }
 }
 
-class SchemaSchemaEnum7df6f108
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum7df6f108 && value == other.value
-
+class SchemaSchemaEnum7df6f108 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum7df6f108 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -647,21 +500,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val ENTERPRISE = SchemaSchemaEnum7df6f108("enterprise")
         @JvmField val ORGANIZATION = SchemaSchemaEnum7df6f108("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum7df6f108(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum7df6f108(value)
     }
 }
 
-class SchemaSchemaEnum1d870026
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum1d870026 && value == other.value
-
+class SchemaSchemaEnum1d870026 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum1d870026 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -671,21 +519,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val WEEK = SchemaSchemaEnum1d870026("week")
         @JvmField val MONTH = SchemaSchemaEnum1d870026("month")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum1d870026(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum1d870026(value)
     }
 }
 
-class SchemaSchemaEnume81e966c
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnume81e966c && value == other.value
-
+class SchemaSchemaEnume81e966c private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnume81e966c && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -693,21 +536,16 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val SUCCESS = SchemaSchemaEnume81e966c("success")
         @JvmField val FAILURE = SchemaSchemaEnume81e966c("failure")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnume81e966c(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnume81e966c(value)
     }
 }
 
-class SchemaSchemaEnum9f04b9bc
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is SchemaSchemaEnum9f04b9bc && value == other.value
-
+class SchemaSchemaEnum9f04b9bc private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is SchemaSchemaEnum9f04b9bc && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -727,22 +565,19 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val WAITING = SchemaSchemaEnum9f04b9bc("waiting")
         @JvmField val PENDING = SchemaSchemaEnum9f04b9bc("pending")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = SchemaSchemaEnum9f04b9bc(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = SchemaSchemaEnum9f04b9bc(value)
     }
 }
 
-/** The default workflow permissions granted to the GITHUB_TOKEN when running workflows. */
-class ActionsDefaultWorkflowPermissions
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is ActionsDefaultWorkflowPermissions && value == other.value
-
+/**
+ * The default workflow permissions granted to the GITHUB_TOKEN when running workflows.
+ */
+class ActionsDefaultWorkflowPermissions private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is ActionsDefaultWorkflowPermissions && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
@@ -750,10 +585,7 @@ private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: S
         @JvmField val READ = ActionsDefaultWorkflowPermissions("read")
         @JvmField val WRITE = ActionsDefaultWorkflowPermissions("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = ActionsDefaultWorkflowPermissions(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = ActionsDefaultWorkflowPermissions(value)
     }
 }

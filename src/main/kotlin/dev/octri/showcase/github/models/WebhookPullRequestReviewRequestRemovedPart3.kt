@@ -4,6 +4,7 @@
 package dev.octri.showcase.github.models
 
 import com.fasterxml.jackson.annotation.JsonProperty as JacksonJsonProperty
+
 import java.time.OffsetDateTime
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX7b5f9c17c9(
@@ -11,13 +12,17 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX7b5f9c1
     val pull: Boolean,
     val push: Boolean,
     val maintain: Boolean? = null,
-    val triage: Boolean? = null,
+    val triage: Boolean? = null
 )
 
-/** A git repository */
+/**
+ * A git repository
+ */
 class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepo(
     @JacksonJsonProperty("archive_url") val archiveUrl: String,
-    /** Whether the repository is archived. */
+    /**
+     * Whether the repository is archived.
+     */
     val archived: Boolean,
     @JacksonJsonProperty("assignees_url") val assigneesUrl: String,
     @JacksonJsonProperty("blobs_url") val blobsUrl: String,
@@ -30,7 +35,9 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepo(
     @JacksonJsonProperty("contents_url") val contentsUrl: String,
     @JacksonJsonProperty("contributors_url") val contributorsUrl: String,
     @JacksonJsonProperty("created_at") val createdAt: Any,
-    /** The default branch of the repository. */
+    /**
+     * The default branch of the repository.
+     */
     @JacksonJsonProperty("default_branch") val defaultBranch: String,
     @JacksonJsonProperty("deployments_url") val deploymentsUrl: String,
     @JacksonJsonProperty("description", required = true) val description: String?,
@@ -45,21 +52,33 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepo(
     @JacksonJsonProperty("git_refs_url") val gitRefsUrl: String,
     @JacksonJsonProperty("git_tags_url") val gitTagsUrl: String,
     @JacksonJsonProperty("git_url") val gitUrl: String,
-    /** Whether downloads are enabled. */
+    /**
+     * Whether downloads are enabled.
+     */
     @JacksonJsonProperty("has_downloads") val hasDownloads: Boolean,
-    /** Whether issues are enabled. */
+    /**
+     * Whether issues are enabled.
+     */
     @JacksonJsonProperty("has_issues") val hasIssues: Boolean,
     @JacksonJsonProperty("has_pages") val hasPages: Boolean,
-    /** Whether projects are enabled. */
+    /**
+     * Whether projects are enabled.
+     */
     @JacksonJsonProperty("has_projects") val hasProjects: Boolean,
-    /** Whether the wiki is enabled. */
+    /**
+     * Whether the wiki is enabled.
+     */
     @JacksonJsonProperty("has_wiki") val hasWiki: Boolean,
-    /** Whether discussions are enabled. */
+    /**
+     * Whether discussions are enabled.
+     */
     @JacksonJsonProperty("has_discussions") val hasDiscussions: Boolean,
     @JacksonJsonProperty("homepage", required = true) val homepage: String?,
     @JacksonJsonProperty("hooks_url") val hooksUrl: String,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the repository */
+    /**
+     * Unique identifier of the repository
+     */
     val id: Long,
     @JacksonJsonProperty("issue_comment_url") val issueCommentUrl: String,
     @JacksonJsonProperty("issue_events_url") val issueEventsUrl: String,
@@ -68,20 +87,22 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepo(
     @JacksonJsonProperty("labels_url") val labelsUrl: String,
     @JacksonJsonProperty("language", required = true) val language: String?,
     @JacksonJsonProperty("languages_url") val languagesUrl: String,
-    @JacksonJsonProperty("license", required = true)
-    val license: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepoLicense?,
+    @JacksonJsonProperty("license", required = true) val license: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepoLicense?,
     @JacksonJsonProperty("merges_url") val mergesUrl: String,
     @JacksonJsonProperty("milestones_url") val milestonesUrl: String,
     @JacksonJsonProperty("mirror_url", required = true) val mirrorUrl: String?,
-    /** The name of the repository. */
+    /**
+     * The name of the repository.
+     */
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
     @JacksonJsonProperty("notifications_url") val notificationsUrl: String,
     @JacksonJsonProperty("open_issues") val openIssues: Long,
     @JacksonJsonProperty("open_issues_count") val openIssuesCount: Long,
-    @JacksonJsonProperty("owner", required = true)
-    val owner: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepoOwner?,
-    /** Whether the repository is private or public. */
+    @JacksonJsonProperty("owner", required = true) val owner: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepoOwner?,
+    /**
+     * Whether the repository is private or public.
+     */
     @JacksonJsonProperty("private") val `private`: Boolean,
     @JacksonJsonProperty("pulls_url") val pullsUrl: String,
     @JacksonJsonProperty("pushed_at", required = true) val pushedAt: Any?,
@@ -103,81 +124,74 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepo(
     val visibility: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX35f14f061f,
     val watchers: Long,
     @JacksonJsonProperty("watchers_count") val watchersCount: Long,
-    /** Whether to allow auto-merge for pull requests. */
+    /**
+     * Whether to allow auto-merge for pull requests.
+     */
     @JacksonJsonProperty("allow_auto_merge") val allowAutoMerge: Boolean? = null,
-    /** Whether to allow private forks */
+    /**
+     * Whether to allow private forks
+     */
     @JacksonJsonProperty("allow_forking") val allowForking: Boolean? = null,
-    /** Whether to allow merge commits for pull requests. */
+    /**
+     * Whether to allow merge commits for pull requests.
+     */
     @JacksonJsonProperty("allow_merge_commit") val allowMergeCommit: Boolean? = null,
-    /** Whether to allow rebase merges for pull requests. */
+    /**
+     * Whether to allow rebase merges for pull requests.
+     */
     @JacksonJsonProperty("allow_rebase_merge") val allowRebaseMerge: Boolean? = null,
-    /** Whether to allow squash merges for pull requests. */
+    /**
+     * Whether to allow squash merges for pull requests.
+     */
     @JacksonJsonProperty("allow_squash_merge") val allowSquashMerge: Boolean? = null,
     @JacksonJsonProperty("allow_update_branch") val allowUpdateBranch: Boolean? = null,
-    /** Whether to delete head branches when pull requests are merged */
+    /**
+     * Whether to delete head branches when pull requests are merged
+     */
     @JacksonJsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
-    /** Returns whether or not this repository is disabled. */
+    /**
+     * Returns whether or not this repository is disabled.
+     */
     val disabled: Boolean? = null,
-    /** Whether pull requests are enabled. */
+    /**
+     * Whether pull requests are enabled.
+     */
     @JacksonJsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
-    /** The policy controlling who can create pull requests: all or collaborators_only. */
-    @JacksonJsonProperty("pull_request_creation_policy")
-    val pullRequestCreationPolicy:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseXd526f9bb6f? =
-        null,
+    /**
+     * The policy controlling who can create pull requests: all or collaborators_only.
+     */
+    @JacksonJsonProperty("pull_request_creation_policy") val pullRequestCreationPolicy: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseXd526f9bb6f? = null,
     @JacksonJsonProperty("is_template") val isTemplate: Boolean? = null,
     @JacksonJsonProperty("master_branch") val masterBranch: String? = null,
     /**
-     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
-     * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank
-     * commit message.
+     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
      */
-    @JacksonJsonProperty("merge_commit_message")
-    val mergeCommitMessage:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseXe0bd497065? =
-        null,
+    @JacksonJsonProperty("merge_commit_message") val mergeCommitMessage: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseXe0bd497065? = null,
     /**
-     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's
-     * title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull
-     * request #123 from branch-name).
+     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
      */
-    @JacksonJsonProperty("merge_commit_title")
-    val mergeCommitTitle:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX929cd084c9? =
-        null,
+    @JacksonJsonProperty("merge_commit_title") val mergeCommitTitle: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX929cd084c9? = null,
     val organization: String? = null,
-    val permissions: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX7b5f9c17c9? =
-        null,
+    val permissions: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX7b5f9c17c9? = null,
     @JacksonJsonProperty("public") val `public`: Boolean? = null,
     @JacksonJsonProperty("role_name") val roleName: String? = null,
     /**
-     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull
-     * request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` -
-     * default to a blank commit message.
+     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
      */
-    @JacksonJsonProperty("squash_merge_commit_message")
-    val squashMergeCommitMessage:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseXe1670a2725? =
-        null,
+    @JacksonJsonProperty("squash_merge_commit_message") val squashMergeCommitMessage: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseXe1670a2725? = null,
     /**
-     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull
-     * request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit)
-     * or the pull request's title (when more than one commit).
+     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
      */
-    @JacksonJsonProperty("squash_merge_commit_title")
-    val squashMergeCommitTitle:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX830f15a306? =
-        null,
+    @JacksonJsonProperty("squash_merge_commit_title") val squashMergeCommitTitle: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX830f15a306? = null,
     val stargazers: Long? = null,
     /**
-     * Whether a squash merge commit can use the pull request title as default. **This property is
-     * closing down. Please use `squash_merge_commit_title` instead.
+     * Whether a squash merge commit can use the pull request title as default. **This property is closing down. Please use `squash_merge_commit_title` instead.
      */
-    @JacksonJsonProperty("use_squash_pr_title_as_default")
-    val useSquashPrTitleAsDefault: Boolean? = null,
-    /** Whether to require contributors to sign off on web-based commits */
-    @JacksonJsonProperty("web_commit_signoff_required")
-    val webCommitSignoffRequired: Boolean? = null,
+    @JacksonJsonProperty("use_squash_pr_title_as_default") val useSquashPrTitleAsDefault: Boolean? = null,
+    /**
+     * Whether to require contributors to sign off on web-based commits
+     */
+    @JacksonJsonProperty("web_commit_signoff_required") val webCommitSignoffRequired: Boolean? = null
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseUser(
@@ -202,17 +216,18 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseUser(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseX0e04541fb6? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestBase(
     val label: String,
     val ref: String,
-    /** A git repository */
+    /**
+     * A git repository
+     */
     val repo: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseRepo,
     val sha: String,
-    @JacksonJsonProperty("user", required = true)
-    val user: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseUser?,
+    @JacksonJsonProperty("user", required = true) val user: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBaseUser?
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepoLicense(
@@ -220,7 +235,7 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepoLice
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
     @JacksonJsonProperty("spdx_id") val spdxId: String,
-    @JacksonJsonProperty("url", required = true) val url: String?,
+    @JacksonJsonProperty("url", required = true) val url: String?
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepoOwner(
@@ -245,7 +260,7 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepoOwne
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadXef84d403a5? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX1ceb0eec6e(
@@ -253,13 +268,17 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX1ceb0ee
     val pull: Boolean,
     val push: Boolean,
     val maintain: Boolean? = null,
-    val triage: Boolean? = null,
+    val triage: Boolean? = null
 )
 
-/** A git repository */
+/**
+ * A git repository
+ */
 class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepo(
     @JacksonJsonProperty("archive_url") val archiveUrl: String,
-    /** Whether the repository is archived. */
+    /**
+     * Whether the repository is archived.
+     */
     val archived: Boolean,
     @JacksonJsonProperty("assignees_url") val assigneesUrl: String,
     @JacksonJsonProperty("blobs_url") val blobsUrl: String,
@@ -272,7 +291,9 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepo(
     @JacksonJsonProperty("contents_url") val contentsUrl: String,
     @JacksonJsonProperty("contributors_url") val contributorsUrl: String,
     @JacksonJsonProperty("created_at") val createdAt: Any,
-    /** The default branch of the repository. */
+    /**
+     * The default branch of the repository.
+     */
     @JacksonJsonProperty("default_branch") val defaultBranch: String,
     @JacksonJsonProperty("deployments_url") val deploymentsUrl: String,
     @JacksonJsonProperty("description", required = true) val description: String?,
@@ -287,21 +308,33 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepo(
     @JacksonJsonProperty("git_refs_url") val gitRefsUrl: String,
     @JacksonJsonProperty("git_tags_url") val gitTagsUrl: String,
     @JacksonJsonProperty("git_url") val gitUrl: String,
-    /** Whether downloads are enabled. */
+    /**
+     * Whether downloads are enabled.
+     */
     @JacksonJsonProperty("has_downloads") val hasDownloads: Boolean,
-    /** Whether issues are enabled. */
+    /**
+     * Whether issues are enabled.
+     */
     @JacksonJsonProperty("has_issues") val hasIssues: Boolean,
     @JacksonJsonProperty("has_pages") val hasPages: Boolean,
-    /** Whether projects are enabled. */
+    /**
+     * Whether projects are enabled.
+     */
     @JacksonJsonProperty("has_projects") val hasProjects: Boolean,
-    /** Whether the wiki is enabled. */
+    /**
+     * Whether the wiki is enabled.
+     */
     @JacksonJsonProperty("has_wiki") val hasWiki: Boolean,
-    /** Whether discussions are enabled. */
+    /**
+     * Whether discussions are enabled.
+     */
     @JacksonJsonProperty("has_discussions") val hasDiscussions: Boolean,
     @JacksonJsonProperty("homepage", required = true) val homepage: String?,
     @JacksonJsonProperty("hooks_url") val hooksUrl: String,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the repository */
+    /**
+     * Unique identifier of the repository
+     */
     val id: Long,
     @JacksonJsonProperty("issue_comment_url") val issueCommentUrl: String,
     @JacksonJsonProperty("issue_events_url") val issueEventsUrl: String,
@@ -310,20 +343,22 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepo(
     @JacksonJsonProperty("labels_url") val labelsUrl: String,
     @JacksonJsonProperty("language", required = true) val language: String?,
     @JacksonJsonProperty("languages_url") val languagesUrl: String,
-    @JacksonJsonProperty("license", required = true)
-    val license: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepoLicense?,
+    @JacksonJsonProperty("license", required = true) val license: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepoLicense?,
     @JacksonJsonProperty("merges_url") val mergesUrl: String,
     @JacksonJsonProperty("milestones_url") val milestonesUrl: String,
     @JacksonJsonProperty("mirror_url", required = true) val mirrorUrl: String?,
-    /** The name of the repository. */
+    /**
+     * The name of the repository.
+     */
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
     @JacksonJsonProperty("notifications_url") val notificationsUrl: String,
     @JacksonJsonProperty("open_issues") val openIssues: Long,
     @JacksonJsonProperty("open_issues_count") val openIssuesCount: Long,
-    @JacksonJsonProperty("owner", required = true)
-    val owner: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepoOwner?,
-    /** Whether the repository is private or public. */
+    @JacksonJsonProperty("owner", required = true) val owner: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepoOwner?,
+    /**
+     * Whether the repository is private or public.
+     */
     @JacksonJsonProperty("private") val `private`: Boolean,
     @JacksonJsonProperty("pulls_url") val pullsUrl: String,
     @JacksonJsonProperty("pushed_at", required = true) val pushedAt: Any?,
@@ -345,81 +380,74 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepo(
     val visibility: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX9b24922480,
     val watchers: Long,
     @JacksonJsonProperty("watchers_count") val watchersCount: Long,
-    /** Whether to allow auto-merge for pull requests. */
+    /**
+     * Whether to allow auto-merge for pull requests.
+     */
     @JacksonJsonProperty("allow_auto_merge") val allowAutoMerge: Boolean? = null,
-    /** Whether to allow private forks */
+    /**
+     * Whether to allow private forks
+     */
     @JacksonJsonProperty("allow_forking") val allowForking: Boolean? = null,
-    /** Whether to allow merge commits for pull requests. */
+    /**
+     * Whether to allow merge commits for pull requests.
+     */
     @JacksonJsonProperty("allow_merge_commit") val allowMergeCommit: Boolean? = null,
-    /** Whether to allow rebase merges for pull requests. */
+    /**
+     * Whether to allow rebase merges for pull requests.
+     */
     @JacksonJsonProperty("allow_rebase_merge") val allowRebaseMerge: Boolean? = null,
-    /** Whether to allow squash merges for pull requests. */
+    /**
+     * Whether to allow squash merges for pull requests.
+     */
     @JacksonJsonProperty("allow_squash_merge") val allowSquashMerge: Boolean? = null,
     @JacksonJsonProperty("allow_update_branch") val allowUpdateBranch: Boolean? = null,
-    /** Whether to delete head branches when pull requests are merged */
+    /**
+     * Whether to delete head branches when pull requests are merged
+     */
     @JacksonJsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
-    /** Returns whether or not this repository is disabled. */
+    /**
+     * Returns whether or not this repository is disabled.
+     */
     val disabled: Boolean? = null,
-    /** Whether pull requests are enabled. */
+    /**
+     * Whether pull requests are enabled.
+     */
     @JacksonJsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
-    /** The policy controlling who can create pull requests: all or collaborators_only. */
-    @JacksonJsonProperty("pull_request_creation_policy")
-    val pullRequestCreationPolicy:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX4bf65df07d? =
-        null,
+    /**
+     * The policy controlling who can create pull requests: all or collaborators_only.
+     */
+    @JacksonJsonProperty("pull_request_creation_policy") val pullRequestCreationPolicy: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX4bf65df07d? = null,
     @JacksonJsonProperty("is_template") val isTemplate: Boolean? = null,
     @JacksonJsonProperty("master_branch") val masterBranch: String? = null,
     /**
-     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
-     * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank
-     * commit message.
+     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
      */
-    @JacksonJsonProperty("merge_commit_message")
-    val mergeCommitMessage:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX8ee70f7668? =
-        null,
+    @JacksonJsonProperty("merge_commit_message") val mergeCommitMessage: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX8ee70f7668? = null,
     /**
-     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's
-     * title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull
-     * request #123 from branch-name).
+     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
      */
-    @JacksonJsonProperty("merge_commit_title")
-    val mergeCommitTitle:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX9261047360? =
-        null,
+    @JacksonJsonProperty("merge_commit_title") val mergeCommitTitle: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX9261047360? = null,
     val organization: String? = null,
-    val permissions: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX1ceb0eec6e? =
-        null,
+    val permissions: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX1ceb0eec6e? = null,
     @JacksonJsonProperty("public") val `public`: Boolean? = null,
     @JacksonJsonProperty("role_name") val roleName: String? = null,
     /**
-     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull
-     * request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` -
-     * default to a blank commit message.
+     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
      */
-    @JacksonJsonProperty("squash_merge_commit_message")
-    val squashMergeCommitMessage:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadXff40cdcee0? =
-        null,
+    @JacksonJsonProperty("squash_merge_commit_message") val squashMergeCommitMessage: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadXff40cdcee0? = null,
     /**
-     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull
-     * request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit)
-     * or the pull request's title (when more than one commit).
+     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
      */
-    @JacksonJsonProperty("squash_merge_commit_title")
-    val squashMergeCommitTitle:
-        WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadXc45a5acda4? =
-        null,
+    @JacksonJsonProperty("squash_merge_commit_title") val squashMergeCommitTitle: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadXc45a5acda4? = null,
     val stargazers: Long? = null,
     /**
-     * Whether a squash merge commit can use the pull request title as default. **This property is
-     * closing down. Please use `squash_merge_commit_title` instead.
+     * Whether a squash merge commit can use the pull request title as default. **This property is closing down. Please use `squash_merge_commit_title` instead.
      */
-    @JacksonJsonProperty("use_squash_pr_title_as_default")
-    val useSquashPrTitleAsDefault: Boolean? = null,
-    /** Whether to require contributors to sign off on web-based commits */
-    @JacksonJsonProperty("web_commit_signoff_required")
-    val webCommitSignoffRequired: Boolean? = null,
+    @JacksonJsonProperty("use_squash_pr_title_as_default") val useSquashPrTitleAsDefault: Boolean? = null,
+    /**
+     * Whether to require contributors to sign off on web-based commits
+     */
+    @JacksonJsonProperty("web_commit_signoff_required") val webCommitSignoffRequired: Boolean? = null
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadUser(
@@ -444,30 +472,37 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadUser(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadX7ac9235a0d? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestHead(
     val label: String,
     val ref: String,
-    /** A git repository */
+    /**
+     * A git repository
+     */
     val repo: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadRepo,
     val sha: String,
-    @JacksonJsonProperty("user", required = true)
-    val user: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadUser?,
+    @JacksonJsonProperty("user", required = true) val user: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHeadUser?
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestLabelsItem(
-    /** 6-character hex code, without the leading #, identifying the color */
+    /**
+     * 6-character hex code, without the leading #, identifying the color
+     */
     val color: String,
     val default: Boolean,
     @JacksonJsonProperty("description", required = true) val description: String?,
     val id: Long,
-    /** The name of the label. */
+    /**
+     * The name of the label.
+     */
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** URL for the label */
-    val url: String,
+    /**
+     * URL for the label
+     */
+    val url: String
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestMileX5f358ecf03(
@@ -492,31 +527,38 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestMileX5f358ec
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMileX5f1e1121de? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** A collection of related issues and pull requests. */
+/**
+ * A collection of related issues and pull requests.
+ */
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestMilestone(
     @JacksonJsonProperty("closed_at", required = true) val closedAt: OffsetDateTime?,
     @JacksonJsonProperty("closed_issues") val closedIssues: Long,
     @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-    @JacksonJsonProperty("creator", required = true)
-    val creator: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMileX5f358ecf03?,
+    @JacksonJsonProperty("creator", required = true) val creator: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMileX5f358ecf03?,
     @JacksonJsonProperty("description", required = true) val description: String?,
     @JacksonJsonProperty("due_on", required = true) val dueOn: OffsetDateTime?,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
     val id: Long,
     @JacksonJsonProperty("labels_url") val labelsUrl: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** The number of the milestone. */
+    /**
+     * The number of the milestone.
+     */
     val number: Long,
     @JacksonJsonProperty("open_issues") val openIssues: Long,
-    /** The state of the milestone. */
+    /**
+     * The state of the milestone.
+     */
     val state: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMileXf382d1e2f4,
-    /** The title of the milestone. */
+    /**
+     * The title of the milestone.
+     */
     val title: String,
     @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    val url: String,
+    val url: String
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX0cb6de2b18(
@@ -541,24 +583,34 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX0cb6de2
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX70e09ec214? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX497214deaf(
-    /** Description of the team */
+    /**
+     * Description of the team
+     */
     @JacksonJsonProperty("description", required = true) val description: String?,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the team */
+    /**
+     * Unique identifier of the team
+     */
     val id: Long,
     @JacksonJsonProperty("members_url") val membersUrl: String,
-    /** Name of the team */
+    /**
+     * Name of the team
+     */
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** Permission that the team will have for its repositories */
+    /**
+     * Permission that the team will have for its repositories
+     */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequXe5a072910b,
     @JacksonJsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /** URL for the team */
-    val url: String,
+    /**
+     * URL for the team
+     */
+    val url: String
 )

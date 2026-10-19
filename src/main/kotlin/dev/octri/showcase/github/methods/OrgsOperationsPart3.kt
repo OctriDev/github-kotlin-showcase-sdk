@@ -6,10 +6,10 @@ package dev.octri.showcase.github.methods
 import dev.octri.showcase.github.BasicError
 import dev.octri.showcase.github.ClientConfig
 import dev.octri.showcase.github.IssueType
-import dev.octri.showcase.github.OrgMembership
 import dev.octri.showcase.github.OrganizationCreateIssueTypeColorEnum
 import dev.octri.showcase.github.OrganizationProgrammaticAccessGrantRequest
 import dev.octri.showcase.github.OrganizationRole
+import dev.octri.showcase.github.OrgMembership
 import dev.octri.showcase.github.OrgsListMembersParameterEnum
 import dev.octri.showcase.github.OrgsListMembersParameterEnumc4d42bd8
 import dev.octri.showcase.github.OrgsListOutsideCollaboratorsParameterEnum
@@ -25,236 +25,91 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object OrgsDeleteIssueFieldOperation {
     /**
-     * Deletes an issue field for an organization. You can find out more about issue fields in
-     * Managing issue fields in an organization. To use this endpoint, the authenticated user must
-     * be an administrator for the organization. OAuth app tokens and personal access tokens
-     * (classic) need the `admin:org` scope to use this endpoint.
+     * Deletes an issue field for an organization. You can find out more about issue fields in Managing issue fields in an organization. To use this endpoint, the authenticated user must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param issueFieldId The unique identifier of the issue field.
      */
-    fun orgsDeleteIssueField(
-        clientConfig: ClientConfig,
-        org: String,
-        issueFieldId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/issue-fields/${SdkClient.encodePathSegment(issueFieldId)}",
-                config = clientConfig,
-                operationId = "orgsDeleteIssueField",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "404" to BasicError::class.java,
-                        "422" to ValidationErrorSimple::class.java,
-                    ),
-            )
-        )
+    fun orgsDeleteIssueField(clientConfig: ClientConfig, org: String, issueFieldId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/issue-fields/${SdkClient.encodePathSegment(issueFieldId)}", config = clientConfig, operationId = "orgsDeleteIssueField", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
     }
 }
 
 internal object OrgsListIssueTypesOperation {
     /**
-     * Lists all issue types for an organization. OAuth app tokens and personal access tokens
-     * (classic) need the read:org scope to use this endpoint.
+     * Lists all issue types for an organization. OAuth app tokens and personal access tokens (classic) need the read:org scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsListIssueTypes(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): List<IssueType?> {
-        return SdkClient.request<List<IssueType?>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/issue-types",
-                    config = clientConfig,
-                    operationId = "orgsListIssueTypes",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsListIssueTypes(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<IssueType?> {
+        return SdkClient.request<List<IssueType?>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/issue-types", config = clientConfig, operationId = "orgsListIssueTypes", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsCreateIssueTypeOperation {
     /**
-     * Create a new issue type for an organization. You can find out more about issue types in
-     * Managing issue types in an organization. To use this endpoint, the authenticated user must be
-     * an administrator for the organization. OAuth app tokens and personal access tokens (classic)
-     * need the `admin:org` scope to use this endpoint.
+     * Create a new issue type for an organization. You can find out more about issue types in Managing issue types in an organization. To use this endpoint, the authenticated user must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name Name of the issue type.
-     * @param isEnabled Whether or not the issue type is enabled at the organization level.
+     * @param isEnabled Whether or not the issue type is enabled at the organization
+     *   level.
      * @param description Description of the issue type.
      * @param color Color for the issue type.
      */
-    fun orgsCreateIssueType(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        isEnabled: Boolean,
-        description: SdkClient.SdkOptional<String?>? = null,
-        color: SdkClient.SdkOptional<OrganizationCreateIssueTypeColorEnum?>? = null,
-        options: RequestOptions? = null,
-    ): IssueType {
-        return SdkClient.request<IssueType>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/issue-types",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (name),
-                            "is_enabled" to (isEnabled),
-                            "description" to (description ?: SdkClient.SdkOptional.Omitted),
-                            "color" to (color ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "orgsCreateIssueType",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsCreateIssueType(clientConfig: ClientConfig, org: String, name: String, isEnabled: Boolean, description: SdkClient.SdkOptional<String?>? = null, color: SdkClient.SdkOptional<OrganizationCreateIssueTypeColorEnum?>? = null, options: RequestOptions? = null): IssueType {
+        return SdkClient.request<IssueType>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/issue-types", config = clientConfig, body = SdkClient.bodyMap("name" to (name), "is_enabled" to (isEnabled), "description" to
+    (description ?: SdkClient.SdkOptional.Omitted), "color" to (color ?: SdkClient.SdkOptional.Omitted)), operationId = "orgsCreateIssueType", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }
 
 internal object OrgsUpdateIssueTypeOperation {
     /**
-     * Updates an issue type for an organization. You can find out more about issue types in
-     * Managing issue types in an organization. To use this endpoint, the authenticated user must be
-     * an administrator for the organization. OAuth app tokens and personal access tokens (classic)
-     * need the `admin:org` scope to use this endpoint.
+     * Updates an issue type for an organization. You can find out more about issue types in Managing issue types in an organization. To use this endpoint, the authenticated user must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param issueTypeId The unique identifier of the issue type.
      * @param name Name of the issue type.
-     * @param isEnabled Whether or not the issue type is enabled at the organization level.
+     * @param isEnabled Whether or not the issue type is enabled at the organization
+     *   level.
      * @param description Description of the issue type.
      * @param color Color for the issue type.
      */
-    fun orgsUpdateIssueType(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsUpdateIssueTypeRequest,
-        options: RequestOptions? = null,
-    ): IssueType {
-        return SdkClient.request<IssueType>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/issue-types/${SdkClient.encodePathSegment(request.issueTypeId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (request.name),
-                            "is_enabled" to (request.isEnabled),
-                            "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
-                            "color" to (request.color ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "orgsUpdateIssueType",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsUpdateIssueType(clientConfig: ClientConfig, request: Orgs.OrgsUpdateIssueTypeRequest, options: RequestOptions? = null): IssueType {
+        return SdkClient.request<IssueType>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(request.org)}/issue-types/${SdkClient.encodePathSegment(request.issueTypeId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "is_enabled" to (request.isEnabled), "description" to
+    (request.description ?: SdkClient.SdkOptional.Omitted), "color" to (request.color ?: SdkClient.SdkOptional.Omitted)), operationId = "orgsUpdateIssueType", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }
 
 internal object OrgsDeleteIssueTypeOperation {
     /**
-     * Deletes an issue type for an organization. You can find out more about issue types in
-     * Managing issue types in an organization. To use this endpoint, the authenticated user must be
-     * an administrator for the organization. OAuth app tokens and personal access tokens (classic)
-     * need the `admin:org` scope to use this endpoint.
+     * Deletes an issue type for an organization. You can find out more about issue types in Managing issue types in an organization. To use this endpoint, the authenticated user must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param issueTypeId The unique identifier of the issue type.
      */
-    fun orgsDeleteIssueType(
-        clientConfig: ClientConfig,
-        org: String,
-        issueTypeId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/issue-types/${SdkClient.encodePathSegment(issueTypeId)}",
-                config = clientConfig,
-                operationId = "orgsDeleteIssueType",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "404" to BasicError::class.java,
-                        "422" to ValidationErrorSimple::class.java,
-                    ),
-            )
-        )
+    fun orgsDeleteIssueType(clientConfig: ClientConfig, org: String, issueTypeId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/issue-types/${SdkClient.encodePathSegment(issueTypeId)}", config = clientConfig, operationId = "orgsDeleteIssueType", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
     }
 }
 
 internal object OrgsListMembersOperation {
     /**
-     * List all users who are members of an organization. If the authenticated user is also a member
-     * of this organization then both concealed and public members will be returned.
+     * List all users who are members of an organization. If the authenticated user is also a member of this organization then both concealed and public members will be returned.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param filter Filter members returned in the list. `2fa_disabled` means that only members
-     *   without two-factor authentication enabled will be returned. `2fa_insecure` means that only
-     *   members with insecure 2FA methods will be returned. These options are only available for
-     *   organization owners.
+     * @param filter Filter members returned in the list. `2fa_disabled` means that
+     *   only members without two-factor authentication enabled will be returned.
+     *   `2fa_insecure` means that only members with insecure 2FA methods will be
+     *   returned. These options are only available for organization owners.
      * @param role Filter members returned by their role.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsListMembers(
-        clientConfig: ClientConfig,
-        org: String,
-        filter: OrgsListMembersParameterEnum? = null,
-        role: OrgsListMembersParameterEnumc4d42bd8? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/members",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "filter" to SdkClient.queryValue(filter, "form", true),
-                            "role" to SdkClient.queryValue(role, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsListMembers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+    fun orgsListMembers(clientConfig: ClientConfig, org: String, filter: OrgsListMembersParameterEnum? = null, role: OrgsListMembersParameterEnumc4d42bd8? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/members", config = clientConfig, query = mapOf("filter" to SdkClient.queryValue(filter, "form", true), "role" to SdkClient.queryValue(role, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }
 
@@ -265,494 +120,190 @@ internal object OrgsCheckMembershipForUserOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsCheckMembershipForUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "GET",
-                "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsCheckMembershipForUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsCheckMembershipForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsCheckMembershipForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object OrgsRemoveMemberOperation {
     /**
-     * Removing a user from this list will remove them from all teams and they will no longer have
-     * any access to the organization's repositories. > \[!NOTE\] > If a user has both direct
-     * membership in the organization as well as indirect membership via an enterprise team, only
-     * their direct membership will be removed. Their indirect membership via an enterprise team
-     * remains until the user is removed from the enterprise team.
+     * Removing a user from this list will remove them from all teams and they will no longer have any access to the organization's repositories. > \[!NOTE\] > If a user has both direct membership in the organization as well as indirect membership via an enterprise team, only their direct membership will be removed. Their indirect membership via an enterprise team remains until the user is removed from the enterprise team.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsRemoveMember(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsRemoveMember",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java),
-            )
-        )
+    fun orgsRemoveMember(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsRemoveMember", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
     }
 }
 
 internal object OrgsGetMembershipForUserOperation {
     /**
-     * In order to get a user's membership with an organization, the authenticated user must be an
-     * organization member. The `state` parameter in the response can be used to identify the user's
-     * membership status.
+     * In order to get a user's membership with an organization, the authenticated user must be an organization member. The `state` parameter in the response can be used to identify the user's membership status.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsGetMembershipForUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): OrgMembership {
-        return SdkClient.request<OrgMembership>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    operationId = "orgsGetMembershipForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsGetMembershipForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): OrgMembership {
+        return SdkClient.request<OrgMembership>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsGetMembershipForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsSetMembershipForUserOperation {
     /**
-     * Only authenticated organization owners can add a member to the organization or update the
-     * member's role. * If the authenticated user is _adding_ a member to the organization, the
-     * invited user will receive an email inviting them to the organization. The user's membership
-     * status will be `pending` until they accept the invitation. * Authenticated users can _update_
-     * a user's membership by passing the `role` parameter. If the authenticated user changes a
-     * member's role to `admin`,…
+     * Only authenticated organization owners can add a member to the organization or update the member's role. * If the authenticated user is _adding_ a member to the organization, the invited user will receive an email inviting them to the organization. The user's membership status will be `pending` until they accept the invitation. * Authenticated users can _update_ a user's membership by passing the `role` parameter. If the authenticated user changes a member's role to `admin`,…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
-     * @param role The role to give the user in the organization. Can be one of: * `admin` - The
-     *   user will become an owner of the organization. * `member` - The user will become a
-     *   non-owner member of the organization.
+     * @param role The role to give the user in the organization. Can be one of: *
+     *   `admin` - The user will become an owner of the organization. * `member` - The
+     *   user will become a non-owner member of the organization.
      */
-    fun orgsSetMembershipForUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        role: OrgsSetMembershipForUserRoleEnum? = null,
-        options: RequestOptions? = null,
-    ): OrgMembership {
-        return SdkClient.request<OrgMembership>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))),
-                    operationId = "orgsSetMembershipForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsSetMembershipForUser(clientConfig: ClientConfig, org: String, username: String, role: OrgsSetMembershipForUserRoleEnum? = null, options: RequestOptions? = null): OrgMembership {
+        return SdkClient.request<OrgMembership>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))), operationId = "orgsSetMembershipForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsRemoveMembershipForUserOperation {
     /**
-     * In order to remove a user's membership with an organization, the authenticated user must be
-     * an organization owner. If the specified user is an active member of the organization, this
-     * will remove them from the organization. If the specified user has been invited to the
-     * organization, this will cancel their invitation. The specified user will receive an email
-     * notification in both cases. > \[!NOTE\] > If a user has both direct membership in the
-     * organization as well as indirect…
+     * In order to remove a user's membership with an organization, the authenticated user must be an organization owner. If the specified user is an active member of the organization, this will remove them from the organization. If the specified user has been invited to the organization, this will cancel their invitation. The specified user will receive an email notification in both cases. > \[!NOTE\] > If a user has both direct membership in the organization as well as indirect…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsRemoveMembershipForUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsRemoveMembershipForUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-            )
-        )
+    fun orgsRemoveMembershipForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsRemoveMembershipForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }
 
 internal object OrgsListOrgRolesOperation {
     /**
-     * Lists the organization roles available in this organization. For more information on
-     * organization roles, see "Using organization roles." To use this endpoint, the authenticated
-     * user must be one of: - An administrator for the organization. - An organization member (or a
-     * member of a team) assigned a custom organization role that includes the **View organization
-     * roles** (`read_organization_custom_org_role`) permission. For more information, see
-     * "Permissions for organization…
+     * Lists the organization roles available in this organization. For more information on organization roles, see "Using organization roles." To use this endpoint, the authenticated user must be one of: - An administrator for the organization. - An organization member (or a member of a team) assigned a custom organization role that includes the **View organization roles** (`read_organization_custom_org_role`) permission. For more information, see "Permissions for organization…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsListOrgRoles(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsListOrgRolesResponse {
-        return SdkClient.request<Orgs.OrgsListOrgRolesResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles",
-                    config = clientConfig,
-                    operationId = "orgsListOrgRoles",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsListOrgRoles(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Orgs.OrgsListOrgRolesResponse {
+        return SdkClient.request<Orgs.OrgsListOrgRolesResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles", config = clientConfig, operationId = "orgsListOrgRoles", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsRevokeAllOrgRolesTeamOperation {
     /**
-     * Removes all assigned organization roles from a team. For more information on organization
-     * roles, see "Using organization roles." The authenticated user must be an administrator for
-     * the organization to use this endpoint. OAuth app tokens and personal access tokens (classic)
-     * need the `admin:org` scope to use this endpoint.
+     * Removes all assigned organization roles from a team. For more information on organization roles, see "Using organization roles." The authenticated user must be an administrator for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      */
-    fun orgsRevokeAllOrgRolesTeam(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/teams/${SdkClient.encodePathSegment(teamSlug)}",
-                config = clientConfig,
-                operationId = "orgsRevokeAllOrgRolesTeam",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsRevokeAllOrgRolesTeam(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/teams/${SdkClient.encodePathSegment(teamSlug)}", config = clientConfig, operationId = "orgsRevokeAllOrgRolesTeam", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object OrgsAssignTeamToOrgRoleOperation {
     /**
-     * Assigns an organization role to a team in an organization. For more information on
-     * organization roles, see "Using organization roles." The authenticated user must be an
-     * administrator for the organization to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Assigns an organization role to a team in an organization. For more information on organization roles, see "Using organization roles." The authenticated user must be an administrator for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param roleId The unique identifier of the role.
      */
-    fun orgsAssignTeamToOrgRole(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        roleId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/teams/${SdkClient.encodePathSegment(teamSlug)}/${SdkClient.encodePathSegment(roleId)}",
-                config = clientConfig,
-                operationId = "orgsAssignTeamToOrgRole",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsAssignTeamToOrgRole(clientConfig: ClientConfig, org: String, teamSlug: String, roleId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/teams/${SdkClient.encodePathSegment(teamSlug)}/${SdkClient.encodePathSegment(roleId)}", config = clientConfig, operationId = "orgsAssignTeamToOrgRole", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object OrgsRevokeOrgRoleTeamOperation {
     /**
-     * Removes an organization role from a team. For more information on organization roles, see
-     * "Using organization roles." The authenticated user must be an administrator for the
-     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `admin:org` scope to use this endpoint.
+     * Removes an organization role from a team. For more information on organization roles, see "Using organization roles." The authenticated user must be an administrator for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param roleId The unique identifier of the role.
      */
-    fun orgsRevokeOrgRoleTeam(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        roleId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/teams/${SdkClient.encodePathSegment(teamSlug)}/${SdkClient.encodePathSegment(roleId)}",
-                config = clientConfig,
-                operationId = "orgsRevokeOrgRoleTeam",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsRevokeOrgRoleTeam(clientConfig: ClientConfig, org: String, teamSlug: String, roleId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/teams/${SdkClient.encodePathSegment(teamSlug)}/${SdkClient.encodePathSegment(roleId)}", config = clientConfig, operationId = "orgsRevokeOrgRoleTeam", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object OrgsRevokeAllOrgRolesUserOperation {
     /**
-     * Revokes all assigned organization roles from a user. For more information on organization
-     * roles, see "Using organization roles." The authenticated user must be an administrator for
-     * the organization to use this endpoint. OAuth app tokens and personal access tokens (classic)
-     * need the `admin:org` scope to use this endpoint.
+     * Revokes all assigned organization roles from a user. For more information on organization roles, see "Using organization roles." The authenticated user must be an administrator for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsRevokeAllOrgRolesUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/users/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsRevokeAllOrgRolesUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsRevokeAllOrgRolesUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/users/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsRevokeAllOrgRolesUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object OrgsAssignUserToOrgRoleOperation {
     /**
-     * Assigns an organization role to a member of an organization. For more information on
-     * organization roles, see "Using organization roles." The authenticated user must be an
-     * administrator for the organization to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Assigns an organization role to a member of an organization. For more information on organization roles, see "Using organization roles." The authenticated user must be an administrator for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      * @param roleId The unique identifier of the role.
      */
-    fun orgsAssignUserToOrgRole(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        roleId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/users/${SdkClient.encodePathSegment(username)}/${SdkClient.encodePathSegment(roleId)}",
-                config = clientConfig,
-                operationId = "orgsAssignUserToOrgRole",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsAssignUserToOrgRole(clientConfig: ClientConfig, org: String, username: String, roleId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/users/${SdkClient.encodePathSegment(username)}/${SdkClient.encodePathSegment(roleId)}", config = clientConfig, operationId = "orgsAssignUserToOrgRole", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object OrgsRevokeOrgRoleUserOperation {
     /**
-     * Remove an organization role from a user. For more information on organization roles, see
-     * "Using organization roles." The authenticated user must be an administrator for the
-     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `admin:org` scope to use this endpoint.
+     * Remove an organization role from a user. For more information on organization roles, see "Using organization roles." The authenticated user must be an administrator for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      * @param roleId The unique identifier of the role.
      */
-    fun orgsRevokeOrgRoleUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        roleId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/users/${SdkClient.encodePathSegment(username)}/${SdkClient.encodePathSegment(roleId)}",
-                config = clientConfig,
-                operationId = "orgsRevokeOrgRoleUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsRevokeOrgRoleUser(clientConfig: ClientConfig, org: String, username: String, roleId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/users/${SdkClient.encodePathSegment(username)}/${SdkClient.encodePathSegment(roleId)}", config = clientConfig, operationId = "orgsRevokeOrgRoleUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object OrgsGetOrgRoleOperation {
     /**
-     * Gets an organization role that is available to this organization. For more information on
-     * organization roles, see "Using organization roles." To use this endpoint, the authenticated
-     * user must be one of: - An administrator for the organization. - An organization member (or a
-     * member of a team) assigned a custom organization role that includes the **View organization
-     * roles** (`read_organization_custom_org_role`) permission. For more information, see
-     * "Permissions for…
+     * Gets an organization role that is available to this organization. For more information on organization roles, see "Using organization roles." To use this endpoint, the authenticated user must be one of: - An administrator for the organization. - An organization member (or a member of a team) assigned a custom organization role that includes the **View organization roles** (`read_organization_custom_org_role`) permission. For more information, see "Permissions for…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param roleId The unique identifier of the role.
      */
-    fun orgsGetOrgRole(
-        clientConfig: ClientConfig,
-        org: String,
-        roleId: Long,
-        options: RequestOptions? = null,
-    ): OrganizationRole {
-        return SdkClient.request<OrganizationRole>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/${SdkClient.encodePathSegment(roleId)}",
-                    config = clientConfig,
-                    operationId = "orgsGetOrgRole",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsGetOrgRole(clientConfig: ClientConfig, org: String, roleId: Long, options: RequestOptions? = null): OrganizationRole {
+        return SdkClient.request<OrganizationRole>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/${SdkClient.encodePathSegment(roleId)}", config = clientConfig, operationId = "orgsGetOrgRole", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsListOrgRoleTeamsOperation {
     /**
-     * Lists the teams that are assigned to an organization role. For more information on
-     * organization roles, see "Using organization roles." To use this endpoint, you must be an
-     * administrator for the organization. OAuth app tokens and personal access tokens (classic)
-     * need the `admin:org` scope to use this endpoint.
+     * Lists the teams that are assigned to an organization role. For more information on organization roles, see "Using organization roles." To use this endpoint, you must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param roleId The unique identifier of the role.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsListOrgRoleTeams(
-        clientConfig: ClientConfig,
-        org: String,
-        roleId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<TeamRoleAssignment> {
-        return SdkClient.request<List<TeamRoleAssignment>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/${SdkClient.encodePathSegment(roleId)}/teams",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsListOrgRoleTeams",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun orgsListOrgRoleTeams(clientConfig: ClientConfig, org: String, roleId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamRoleAssignment> {
+        return SdkClient.request<List<TeamRoleAssignment>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/${SdkClient.encodePathSegment(roleId)}/teams", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListOrgRoleTeams", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object OrgsListOrgRoleUsersOperation {
     /**
-     * Lists organization members that are assigned to an organization role. For more information on
-     * organization roles, see "Using organization roles." To use this endpoint, you must be an
-     * administrator for the organization. OAuth app tokens and personal access tokens (classic)
-     * need the `admin:org` scope to use this endpoint.
+     * Lists organization members that are assigned to an organization role. For more information on organization roles, see "Using organization roles." To use this endpoint, you must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param roleId The unique identifier of the role.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsListOrgRoleUsers(
-        clientConfig: ClientConfig,
-        org: String,
-        roleId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<UserRoleAssignment> {
-        return SdkClient.request<List<UserRoleAssignment>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/${SdkClient.encodePathSegment(roleId)}/users",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsListOrgRoleUsers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun orgsListOrgRoleUsers(clientConfig: ClientConfig, org: String, roleId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<UserRoleAssignment> {
+        return SdkClient.request<List<UserRoleAssignment>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/organization-roles/${SdkClient.encodePathSegment(roleId)}/users", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListOrgRoleUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
@@ -761,77 +312,31 @@ internal object OrgsListOutsideCollaboratorsOperation {
      * List all users who are outside collaborators of an organization.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param filter Filter the list of outside collaborators. `2fa_disabled` means that only
-     *   outside collaborators without two-factor authentication enabled will be returned.
-     *   `2fa_insecure` means that only outside collaborators with insecure 2FA methods will be
-     *   returned.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param filter Filter the list of outside collaborators. `2fa_disabled` means
+     *   that only outside collaborators without two-factor authentication enabled will
+     *   be returned. `2fa_insecure` means that only outside collaborators with
+     *   insecure 2FA methods will be returned.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsListOutsideCollaborators(
-        clientConfig: ClientConfig,
-        org: String,
-        filter: OrgsListOutsideCollaboratorsParameterEnum? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "filter" to SdkClient.queryValue(filter, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsListOutsideCollaborators",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun orgsListOutsideCollaborators(clientConfig: ClientConfig, org: String, filter: OrgsListOutsideCollaboratorsParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators", config = clientConfig, query = mapOf("filter" to SdkClient.queryValue(filter, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListOutsideCollaborators", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object OrgsConvertMemberToOutsideCollaboratorOperation {
     /**
-     * When an organization member is converted to an outside collaborator, they'll only have access
-     * to the repositories that their current team membership allows. The user will no longer be a
-     * member of the organization. For more information, see "Converting an organization member to
-     * an outside collaborator". Converting an organization member to an outside collaborator may be
-     * restricted by enterprise administrators. For more information, see "Enforcing repository
-     * management…
+     * When an organization member is converted to an outside collaborator, they'll only have access to the repositories that their current team membership allows. The user will no longer be a member of the organization. For more information, see "Converting an organization member to an outside collaborator". Converting an organization member to an outside collaborator may be restricted by enterprise administrators. For more information, see "Enforcing repository management…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
-     * @param async When set to `true`, the request will be performed asynchronously. Returns a 202
-     *   status code when the job is successfully queued.
+     * @param async When set to `true`, the request will be performed asynchronously.
+     *   Returns a 202 status code when the job is successfully queued.
      */
-    fun orgsConvertMemberToOutsideCollaborator(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        async: Boolean? = null,
-        options: RequestOptions? = null,
-    ): Map<String, Any> {
-        return SdkClient.request<Map<String, Any>>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("async" to (SdkClient.omitIfNull(async))),
-                    operationId = "orgsConvertMemberToOutsideCollaborator",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsConvertMemberToOutsideCollaborator(clientConfig: ClientConfig, org: String, username: String, async: Boolean? = null, options: RequestOptions? = null): Map<String, Any> {
+        return SdkClient.request<Map<String, Any>>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("async" to (SdkClient.omitIfNull(async))), operationId = "orgsConvertMemberToOutsideCollaborator", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
@@ -842,115 +347,62 @@ internal object OrgsRemoveOutsideCollaboratorOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsRemoveOutsideCollaborator(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsRemoveOutsideCollaborator",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsRemoveOutsideCollaborator(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsRemoveOutsideCollaborator", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object OrgsListPatGrantRequestsOperation {
     /**
-     * Lists requests from organization members to access organization resources with a fine-grained
-     * personal access token. Only GitHub Apps can use this endpoint.
+     * Lists requests from organization members to access organization resources with a fine-grained personal access token. Only GitHub Apps can use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      * @param sort The property by which to sort the results.
      * @param direction The direction to sort the results by.
      * @param owner A list of owner usernames to use to filter the results.
      * @param repository The name of the repository to use to filter the results.
      * @param permission The permission to use to filter the results.
-     * @param lastUsedBefore Only show fine-grained personal access tokens used before the given
-     *   time. This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param lastUsedAfter Only show fine-grained personal access tokens used after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param lastUsedBefore Only show fine-grained personal access tokens used
+     *   before the given time. This is a timestamp in ISO 8601 format:
+     *   `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param lastUsedAfter Only show fine-grained personal access tokens used after
+     *   the given time. This is a timestamp in ISO 8601 format:
+     *   `YYYY-MM-DDTHH:MM:SSZ`.
      * @param tokenId The ID of the token
      */
-    fun orgsListPatGrantRequests(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsListPatGrantRequestsRequest,
-        options: RequestOptions? = null,
-    ): List<OrganizationProgrammaticAccessGrantRequest> {
+    fun orgsListPatGrantRequests(clientConfig: ClientConfig, request: Orgs.OrgsListPatGrantRequestsRequest, options: RequestOptions? = null): List<OrganizationProgrammaticAccessGrantRequest> {
         validateOrgsListPatGrantRequestsRequest(request)
 
-        return SdkClient.request<List<OrganizationProgrammaticAccessGrantRequest>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/personal-access-token-requests",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "owner" to SdkClient.queryValue(request.owner, "form", true),
-                            "repository" to SdkClient.queryValue(request.repository, "form", true),
-                            "permission" to SdkClient.queryValue(request.permission, "form", true),
-                            "last_used_before" to
-                                SdkClient.queryValue(
-                                    request.lastUsedBefore,
-                                    "form",
-                                    true,
-                                    "date-time",
-                                ),
-                            "last_used_after" to
-                                SdkClient.queryValue(
-                                    request.lastUsedAfter,
-                                    "form",
-                                    true,
-                                    "date-time",
-                                ),
-                            "token_id" to SdkClient.queryValue(request.tokenId, "form", true),
-                        ),
-                    operationId = "orgsListPatGrantRequests",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<List<OrganizationProgrammaticAccessGrantRequest>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/personal-access-token-requests", config = clientConfig, query = mapOf("per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "owner" to SdkClient.queryValue(request.owner, "form", true), "repository" to
+    SdkClient.queryValue(request.repository, "form", true), "permission" to
+    SdkClient.queryValue(request.permission, "form", true), "last_used_before" to
+    SdkClient.queryValue(request.lastUsedBefore, "form", true, "date-time"), "last_used_after" to
+    SdkClient.queryValue(request.lastUsedAfter, "form", true, "date-time"), "token_id" to
+    SdkClient.queryValue(request.tokenId, "form", true)), operationId = "orgsListPatGrantRequests", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 
-    private fun validateOrgsListPatGrantRequestsRequest(
-        request: Orgs.OrgsListPatGrantRequestsRequest
-    ) {
+
+    private fun validateOrgsListPatGrantRequestsRequest(request: Orgs.OrgsListPatGrantRequestsRequest) {
         if (request.owner != null) {
             Validation.validateItems("owner", request.owner, Validation.LengthOpts(max = 10))
-        }
+}
 
         if (request.lastUsedBefore != null) {
             Validation.validateDateTime("last_used_before", request.lastUsedBefore)
-        }
+}
 
         if (request.lastUsedAfter != null) {
             Validation.validateDateTime("last_used_after", request.lastUsedAfter)
-        }
+}
 
         if (request.tokenId != null) {
             Validation.validateItems("token_id", request.tokenId, Validation.LengthOpts(max = 50))
-        }
+}
     }
 }

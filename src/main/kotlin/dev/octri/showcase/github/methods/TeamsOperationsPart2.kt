@@ -16,270 +16,116 @@ import dev.octri.showcase.github.ValidationError
 
 internal object TeamsRemoveMembershipForUserLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[Remove team membership for a user endpoint. Team synchronization is available for
-     * > organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in
-     * > the GitHub Help documentation. To remove a membership between a user and a team, the
-     * > authenticated user must have 'admin'…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Remove team membership for a user endpoint. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To remove a membership between a user and a team, the authenticated user must have 'admin'…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsRemoveMembershipForUserLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "teamsRemoveMembershipForUserLegacy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun teamsRemoveMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsRemoveMembershipForUserLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object TeamsListReposLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[List team repositories endpoint.
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[List team repositories endpoint.
      *
      * @param teamId The unique identifier of the team.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsListReposLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/teams/${SdkClient.encodePathSegment(teamId)}/repos",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListReposLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun teamsListReposLegacy(clientConfig: ClientConfig, teamId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/repos", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListReposLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object TeamsCheckPermissionsForRepoLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[Check team permissions for a repository endpoint. > !NOTE\] > Repositories inherited
-     * > through a parent team will also be checked. You can also get information about the
-     * > specified repository, including what permissions the team grants on it, by passing the
-     * > following custom \[media type via the…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Check team permissions for a repository endpoint. > !NOTE\] > Repositories inherited through a parent team will also be checked. You can also get information about the specified repository, including what permissions the team grants on it, by passing the following custom \[media type via the…
      *
      * @param teamId The unique identifier of the team.
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsCheckPermissionsForRepoLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): TeamRepository {
-        return SdkClient.request<TeamRepository>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/teams/${SdkClient.encodePathSegment(teamId)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}",
-                    config = clientConfig,
-                    operationId = "teamsCheckPermissionsForRepoLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsCheckPermissionsForRepoLegacy(clientConfig: ClientConfig, teamId: Long, owner: String, repo: String, options: RequestOptions? = null): TeamRepository {
+        return SdkClient.request<TeamRepository>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}", config = clientConfig, operationId = "teamsCheckPermissionsForRepoLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsAddOrUpdateRepoPermissionsLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > "\[Add or update team repository permissions" endpoint. To add a repository to a team or
-     * > update the team's permission on a repository, the authenticated user must have admin access
-     * > to the repository, and must be able to see the team. The repository must be owned by the
-     * > organization, or a direct…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new "\[Add or update team repository permissions" endpoint. To add a repository to a team or update the team's permission on a repository, the authenticated user must have admin access to the repository, and must be able to see the team. The repository must be owned by the organization, or a direct…
      *
      * @param teamId The unique identifier of the team.
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param permission The permission to grant the team on this repository. If no permission is
-     *   specified, the team's `permission` attribute will be used to determine what permission to
-     *   grant the team on this repository.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param permission The permission to grant the team on this repository. If no
+     *   permission is specified, the team's `permission` attribute will be used to
+     *   determine what permission to grant the team on this repository.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsAddOrUpdateRepoPermissionsLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        owner: String,
-        repo: String,
-        permission: TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum? = null,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/teams/${SdkClient.encodePathSegment(teamId)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}",
-                config = clientConfig,
-                body = SdkClient.bodyMap("permission" to (SdkClient.omitIfNull(permission))),
-                operationId = "teamsAddOrUpdateRepoPermissionsLegacy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java),
-            )
-        )
+    fun teamsAddOrUpdateRepoPermissionsLegacy(clientConfig: ClientConfig, teamId: Long, owner: String, repo: String, permission: TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum? = null, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/teams/${SdkClient.encodePathSegment(teamId)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}", config = clientConfig, body = SdkClient.bodyMap("permission" to (SdkClient.omitIfNull(permission))), operationId = "teamsAddOrUpdateRepoPermissionsLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java)))
     }
 }
 
 internal object TeamsRemoveRepoLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[Remove a repository from a team endpoint. If the authenticated user is an organization
-     * > owner or a team maintainer, they can remove any repositories from the team. To remove a
-     * > repository from a team as an organization member, the authenticated user must have admin
-     * > access to the repository and must…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Remove a repository from a team endpoint. If the authenticated user is an organization owner or a team maintainer, they can remove any repositories from the team. To remove a repository from a team as an organization member, the authenticated user must have admin access to the repository and must…
      *
      * @param teamId The unique identifier of the team.
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsRemoveRepoLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/teams/${SdkClient.encodePathSegment(teamId)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}",
-                config = clientConfig,
-                operationId = "teamsRemoveRepoLegacy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun teamsRemoveRepoLegacy(clientConfig: ClientConfig, teamId: Long, owner: String, repo: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/teams/${SdkClient.encodePathSegment(teamId)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}", config = clientConfig, operationId = "teamsRemoveRepoLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object TeamsListChildLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[`List child teams` endpoint.
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[`List child teams` endpoint.
      *
      * @param teamId The unique identifier of the team.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsListChildLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Team> {
-        return SdkClient.request<List<Team>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/teams/${SdkClient.encodePathSegment(teamId)}/teams",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListChildLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun teamsListChildLegacy(clientConfig: ClientConfig, teamId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Team> {
+        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/teams", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListChildLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object TeamsListForAuthenticatedUserOperation {
     /**
-     * List all of the teams across all of the organizations to which the authenticated user
-     * belongs. OAuth app tokens and personal access tokens (classic) need the `user`, `repo`, or
-     * `read:org` scope to use this endpoint. When using a fine-grained personal access token, the
-     * resource owner of the token must be a single organization, and the response will only include
-     * the teams from that organization.
+     * List all of the teams across all of the organizations to which the authenticated user belongs. OAuth app tokens and personal access tokens (classic) need the `user`, `repo`, or `read:org` scope to use this endpoint. When using a fine-grained personal access token, the resource owner of the token must be a single organization, and the response will only include the teams from that organization.
      *
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun teamsListForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<TeamFull> {
-        return SdkClient.request<List<TeamFull>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/teams",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun teamsListForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamFull> {
+        return SdkClient.request<List<TeamFull>>(SdkClient.RequestSpec("GET", "/user/teams", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }

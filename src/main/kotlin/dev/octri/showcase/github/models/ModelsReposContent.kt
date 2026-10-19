@@ -6,7 +6,7 @@ package dev.octri.showcase.github.models
 data class ContentDirectoryItemLinks(
     @com.fasterxml.jackson.annotation.JsonProperty("git", required = true) val git: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("html", required = true) val html: String?,
-    val self: String,
+    val self: String
 )
 
 data class ContentDirectoryItem(
@@ -17,223 +17,388 @@ data class ContentDirectoryItem(
     val sha: String,
     val url: String,
     @com.fasterxml.jackson.annotation.JsonProperty("git_url", required = true) val gitUrl: String?,
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
-    val htmlUrl: String?,
-    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true)
-    val downloadUrl: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true) val downloadUrl: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentDirectoryItemLinks,
-    val content: String? = null,
+    val content: String? = null
 )
 
 typealias ContentDirectory = List<ContentDirectoryItem>
 
-/** Required object value serialized in the `_links` wire field. */
+/**
+ * Required object value serialized in the `_links` wire field.
+ */
 data class ContentFileLinks(
-    /** Required `uri`-formatted value serialized in the `git` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git", required = true) val git: String?,
-    /** Required `uri`-formatted value serialized in the `html` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html", required = true) val html: String?,
-    /** Required `uri`-formatted value serialized in the `self` wire field. */
-    val self: String,
+    /**
+     * Required `uri`-formatted value serialized in the `self` wire field.
+     */
+    val self: String
 )
 
-/** Content File */
+/**
+ * Content File
+ */
 data class ContentFile(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: ContentFileTypeEnum,
-    /** Required `string` value serialized in the `encoding` wire field. */
+    /**
+     * Required `string` value serialized in the `encoding` wire field.
+     */
     val encoding: String,
-    /** Required `integer` value serialized in the `size` wire field. */
+    /**
+     * Required `integer` value serialized in the `size` wire field.
+     */
     val size: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `path` wire field. */
+    /**
+     * Required `string` value serialized in the `path` wire field.
+     */
     val path: String,
-    /** Required `string` value serialized in the `content` wire field. */
+    /**
+     * Required `string` value serialized in the `content` wire field.
+     */
     val content: String,
-    /** Required `string` value serialized in the `sha` wire field. */
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
     val sha: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `git_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_url", required = true) val gitUrl: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
-    val htmlUrl: String?,
-    /** Required `uri`-formatted value serialized in the `download_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true)
-    val downloadUrl: String?,
-    /** Required object value serialized in the `_links` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `download_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true) val downloadUrl: String?,
+    /**
+     * Required object value serialized in the `_links` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentFileLinks,
-    /** Optional `string` value serialized in the `target` wire field. */
+    /**
+     * Optional `string` value serialized in the `target` wire field.
+     */
     val target: String? = null,
-    /** Optional `string` value serialized in the `submodule_git_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("submodule_git_url")
-    val submoduleGitUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `submodule_git_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("submodule_git_url") val submoduleGitUrl: String? = null
 )
 
-/** Required object value serialized in the `_links` wire field. */
+/**
+ * Required object value serialized in the `_links` wire field.
+ */
 data class ContentSubmoduleLinks(
-    /** Required `uri`-formatted value serialized in the `git` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git", required = true) val git: String?,
-    /** Required `uri`-formatted value serialized in the `html` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html", required = true) val html: String?,
-    /** Required `uri`-formatted value serialized in the `self` wire field. */
-    val self: String,
+    /**
+     * Required `uri`-formatted value serialized in the `self` wire field.
+     */
+    val self: String
 )
 
-/** An object describing a submodule */
+/**
+ * An object describing a submodule
+ */
 data class ContentSubmodule(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: ContentSubmoduleTypeEnum,
-    /** Required `uri`-formatted value serialized in the `submodule_git_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `submodule_git_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("submodule_git_url") val submoduleGitUrl: String,
-    /** Required `integer` value serialized in the `size` wire field. */
+    /**
+     * Required `integer` value serialized in the `size` wire field.
+     */
     val size: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `path` wire field. */
+    /**
+     * Required `string` value serialized in the `path` wire field.
+     */
     val path: String,
-    /** Required `string` value serialized in the `sha` wire field. */
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
     val sha: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `git_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_url", required = true) val gitUrl: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
-    val htmlUrl: String?,
-    /** Required `uri`-formatted value serialized in the `download_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true)
-    val downloadUrl: String?,
-    /** Required object value serialized in the `_links` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentSubmoduleLinks,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `download_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true) val downloadUrl: String?,
+    /**
+     * Required object value serialized in the `_links` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentSubmoduleLinks
 )
 
-/** Required object value serialized in the `_links` wire field. */
+/**
+ * Required object value serialized in the `_links` wire field.
+ */
 data class ContentSymlinkLinks(
-    /** Required `uri`-formatted value serialized in the `git` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git", required = true) val git: String?,
-    /** Required `uri`-formatted value serialized in the `html` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html", required = true) val html: String?,
-    /** Required `uri`-formatted value serialized in the `self` wire field. */
-    val self: String,
+    /**
+     * Required `uri`-formatted value serialized in the `self` wire field.
+     */
+    val self: String
 )
 
-/** An object describing a symlink */
+/**
+ * An object describing a symlink
+ */
 data class ContentSymlink(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: ContentSymlinkTypeEnum,
-    /** Required `string` value serialized in the `target` wire field. */
+    /**
+     * Required `string` value serialized in the `target` wire field.
+     */
     val target: String,
-    /** Required `integer` value serialized in the `size` wire field. */
+    /**
+     * Required `integer` value serialized in the `size` wire field.
+     */
     val size: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `path` wire field. */
+    /**
+     * Required `string` value serialized in the `path` wire field.
+     */
     val path: String,
-    /** Required `string` value serialized in the `sha` wire field. */
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
     val sha: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `git_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_url", required = true) val gitUrl: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
-    val htmlUrl: String?,
-    /** Required `uri`-formatted value serialized in the `download_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true)
-    val downloadUrl: String?,
-    /** Required object value serialized in the `_links` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentSymlinkLinks,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `download_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true) val downloadUrl: String?,
+    /**
+     * Required object value serialized in the `_links` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentSymlinkLinks
 )
 
-/** Content Traffic */
+/**
+ * Content Traffic
+ */
 data class ContentTraffic(
-    /** Required `string` value serialized in the `path` wire field. */
+    /**
+     * Required `string` value serialized in the `path` wire field.
+     */
     val path: String,
-    /** Required `string` value serialized in the `title` wire field. */
+    /**
+     * Required `string` value serialized in the `title` wire field.
+     */
     val title: String,
-    /** Required `integer` value serialized in the `count` wire field. */
+    /**
+     * Required `integer` value serialized in the `count` wire field.
+     */
     val count: Long,
-    /** Required `integer` value serialized in the `uniques` wire field. */
-    val uniques: Long,
+    /**
+     * Required `integer` value serialized in the `uniques` wire field.
+     */
+    val uniques: Long
 )
 
-/** Required object value serialized in the `_links` wire field. */
+/**
+ * Required object value serialized in the `_links` wire field.
+ */
 data class ContentTreeLinks(
-    /** Required `uri`-formatted value serialized in the `git` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git", required = true) val git: String?,
-    /** Required `uri`-formatted value serialized in the `html` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html", required = true) val html: String?,
-    /** Required `uri`-formatted value serialized in the `self` wire field. */
-    val self: String,
+    /**
+     * Required `uri`-formatted value serialized in the `self` wire field.
+     */
+    val self: String
 )
 
-/** Required object value serialized in the `_links` wire field. */
+/**
+ * Required object value serialized in the `_links` wire field.
+ */
 data class ContentTreeEntriesItemLinks(
-    /** Required `uri`-formatted value serialized in the `git` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git", required = true) val git: String?,
-    /** Required `uri`-formatted value serialized in the `html` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html", required = true) val html: String?,
-    /** Required `uri`-formatted value serialized in the `self` wire field. */
-    val self: String,
+    /**
+     * Required `uri`-formatted value serialized in the `self` wire field.
+     */
+    val self: String
 )
 
-/** Required object value serialized in the `entries[]` wire field. */
+/**
+ * Required object value serialized in the `entries[]` wire field.
+ */
 data class ContentTreeEntriesItem(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Required `integer` value serialized in the `size` wire field. */
+    /**
+     * Required `integer` value serialized in the `size` wire field.
+     */
     val size: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `path` wire field. */
+    /**
+     * Required `string` value serialized in the `path` wire field.
+     */
     val path: String,
-    /** Required `string` value serialized in the `sha` wire field. */
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
     val sha: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `git_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_url", required = true) val gitUrl: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
-    val htmlUrl: String?,
-    /** Required `uri`-formatted value serialized in the `download_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true)
-    val downloadUrl: String?,
-    /** Required object value serialized in the `_links` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentTreeEntriesItemLinks,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `download_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true) val downloadUrl: String?,
+    /**
+     * Required object value serialized in the `_links` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentTreeEntriesItemLinks
 )
 
-/** Content Tree */
+/**
+ * Content Tree
+ */
 data class ContentTree(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Required `integer` value serialized in the `size` wire field. */
+    /**
+     * Required `integer` value serialized in the `size` wire field.
+     */
     val size: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `path` wire field. */
+    /**
+     * Required `string` value serialized in the `path` wire field.
+     */
     val path: String,
-    /** Required `string` value serialized in the `sha` wire field. */
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
     val sha: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `git_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `git_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_url", required = true) val gitUrl: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
-    val htmlUrl: String?,
-    /** Required `uri`-formatted value serialized in the `download_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true)
-    val downloadUrl: String?,
-    /** Required object value serialized in the `_links` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `download_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true) val downloadUrl: String?,
+    /**
+     * Required object value serialized in the `_links` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: ContentTreeLinks,
-    /** Optional `string` value serialized in the `content` wire field. */
+    /**
+     * Optional `string` value serialized in the `content` wire field.
+     */
     val content: String? = null,
-    /** Optional array value serialized in the `entries` wire field. */
+    /**
+     * Optional array value serialized in the `entries` wire field.
+     */
     val entries: List<ContentTreeEntriesItem>? = null,
-    /** Optional `string` value serialized in the `encoding` wire field. */
-    val encoding: String? = null,
+    /**
+     * Optional `string` value serialized in the `encoding` wire field.
+     */
+    val encoding: String? = null
 )

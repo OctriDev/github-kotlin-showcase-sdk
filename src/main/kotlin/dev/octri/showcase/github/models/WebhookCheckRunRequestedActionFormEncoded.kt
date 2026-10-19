@@ -3,11 +3,12 @@
 
 package dev.octri.showcase.github.models
 
-/** The check_run.requested_action webhook encoded with URL encoding */
+/**
+ * The check_run.requested_action webhook encoded with URL encoding
+ */
 data class WebhookCheckRunRequestedActionFormEncoded(
     /**
-     * A URL-encoded string of the check_run.requested_action JSON payload. The decoded payload is a
-     * JSON object.
+     * A URL-encoded string of the check_run.requested_action JSON payload. The decoded payload is a JSON object.
      */
     val payload: String
 )

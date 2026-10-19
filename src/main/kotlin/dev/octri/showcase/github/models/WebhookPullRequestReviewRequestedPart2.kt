@@ -4,6 +4,7 @@
 package dev.octri.showcase.github.models
 
 import com.fasterxml.jackson.annotation.JsonProperty as JacksonJsonProperty
+
 import java.time.OffsetDateTime
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestHeadUser(
@@ -28,30 +29,37 @@ data class WebhookPullRequestReviewRequestedVariant0PullRequestHeadUser(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestHead(
     val label: String,
     val ref: String,
-    /** A git repository */
+    /**
+     * A git repository
+     */
     val repo: WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepo,
     val sha: String,
-    @JacksonJsonProperty("user", required = true)
-    val user: WebhookPullRequestReviewRequestedVariant0PullRequestHeadUser?,
+    @JacksonJsonProperty("user", required = true) val user: WebhookPullRequestReviewRequestedVariant0PullRequestHeadUser?
 )
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestLabelsItem(
-    /** 6-character hex code, without the leading #, identifying the color */
+    /**
+     * 6-character hex code, without the leading #, identifying the color
+     */
     val color: String,
     val default: Boolean,
     @JacksonJsonProperty("description", required = true) val description: String?,
     val id: Long,
-    /** The name of the label. */
+    /**
+     * The name of the label.
+     */
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** URL for the label */
-    val url: String,
+    /**
+     * URL for the label
+     */
+    val url: String
 )
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneCreator(
@@ -76,31 +84,38 @@ data class WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneCreator(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** A collection of related issues and pull requests. */
+/**
+ * A collection of related issues and pull requests.
+ */
 data class WebhookPullRequestReviewRequestedVariant0PullRequestMilestone(
     @JacksonJsonProperty("closed_at", required = true) val closedAt: OffsetDateTime?,
     @JacksonJsonProperty("closed_issues") val closedIssues: Long,
     @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-    @JacksonJsonProperty("creator", required = true)
-    val creator: WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneCreator?,
+    @JacksonJsonProperty("creator", required = true) val creator: WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneCreator?,
     @JacksonJsonProperty("description", required = true) val description: String?,
     @JacksonJsonProperty("due_on", required = true) val dueOn: OffsetDateTime?,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
     val id: Long,
     @JacksonJsonProperty("labels_url") val labelsUrl: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** The number of the milestone. */
+    /**
+     * The number of the milestone.
+     */
     val number: Long,
     @JacksonJsonProperty("open_issues") val openIssues: Long,
-    /** The state of the milestone. */
+    /**
+     * The state of the milestone.
+     */
     val state: WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum,
-    /** The title of the milestone. */
+    /**
+     * The title of the milestone.
+     */
     val title: String,
     @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    val url: String,
+    val url: String
 )
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX262e9a9d0e(
@@ -125,89 +140,133 @@ data class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX262e9a9
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXf2473eedbd(
-    /** Description of the team */
+    /**
+     * Description of the team
+     */
     @JacksonJsonProperty("description", required = true) val description: String?,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the team */
+    /**
+     * Unique identifier of the team
+     */
     val id: Long,
     @JacksonJsonProperty("members_url") val membersUrl: String,
-    /** Name of the team */
+    /**
+     * Name of the team
+     */
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** Permission that the team will have for its repositories */
+    /**
+     * Permission that the team will have for its repositories
+     */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f,
     @JacksonJsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /** URL for the team */
-    val url: String,
+    /**
+     * URL for the team
+     */
+    val url: String
 )
 
-/** Groups of organization members that gives permissions on specified repositories. */
+/**
+ * Groups of organization members that gives permissions on specified repositories.
+ */
 data class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXac20b0f837(
-    /** Description of the team */
+    /**
+     * Description of the team
+     */
     @JacksonJsonProperty("description", required = true) val description: String?,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the team */
+    /**
+     * Unique identifier of the team
+     */
     val id: Long,
     @JacksonJsonProperty("members_url") val membersUrl: String,
-    /** Name of the team */
+    /**
+     * Name of the team
+     */
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** Permission that the team will have for its repositories */
+    /**
+     * Permission that the team will have for its repositories
+     */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0,
     @JacksonJsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /** URL for the team */
+    /**
+     * URL for the team
+     */
     val url: String,
     val deleted: Boolean? = null,
-    val parent: WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXf2473eedbd? = null,
+    val parent: WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXf2473eedbd? = null
 )
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX284e32f947(
-    /** Description of the team */
+    /**
+     * Description of the team
+     */
     @JacksonJsonProperty("description", required = true) val description: String?,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the team */
+    /**
+     * Unique identifier of the team
+     */
     val id: Long,
     @JacksonJsonProperty("members_url") val membersUrl: String,
-    /** Name of the team */
+    /**
+     * Name of the team
+     */
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** Permission that the team will have for its repositories */
+    /**
+     * Permission that the team will have for its repositories
+     */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3,
     @JacksonJsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /** URL for the team */
-    val url: String,
+    /**
+     * URL for the team
+     */
+    val url: String
 )
 
-/** Groups of organization members that gives permissions on specified repositories. */
+/**
+ * Groups of organization members that gives permissions on specified repositories.
+ */
 data class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedTeamsItem(
-    /** Unique identifier of the team */
+    /**
+     * Unique identifier of the team
+     */
     val id: Long,
-    /** Name of the team */
+    /**
+     * Name of the team
+     */
     val name: String,
     val deleted: Boolean? = null,
-    /** Description of the team */
+    /**
+     * Description of the team
+     */
     val description: String? = null,
     @JacksonJsonProperty("html_url") val htmlUrl: String? = null,
     @JacksonJsonProperty("members_url") val membersUrl: String? = null,
     @JacksonJsonProperty("node_id") val nodeId: String? = null,
     val parent: WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX284e32f947? = null,
-    /** Permission that the team will have for its repositories */
+    /**
+     * Permission that the team will have for its repositories
+     */
     val permission: String? = null,
     val privacy: WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87? = null,
     @JacksonJsonProperty("repositories_url") val repositoriesUrl: String? = null,
     val slug: String? = null,
-    /** URL for the team */
-    val url: String? = null,
+    /**
+     * URL for the team
+     */
+    val url: String? = null
 )
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestUser(
@@ -232,7 +291,7 @@ data class WebhookPullRequestReviewRequestedVariant0PullRequestUser(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestedVariant0PullRequestMergedBy(
@@ -257,23 +316,22 @@ data class WebhookPullRequestReviewRequestedVariant0PullRequestMergedBy(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 class WebhookPullRequestReviewRequestedVariant0PullRequest(
-    @JacksonJsonProperty("_links")
-    val links: WebhookPullRequestReviewRequestedVariant0PullRequestLinks,
-    @JacksonJsonProperty("active_lock_reason", required = true)
-    val activeLockReason: WebhookPullRequestReviewRequestedVariant0PullRequestActiveLockReasonEnum?,
-    @JacksonJsonProperty("assignee", required = true)
-    val assignee: WebhookPullRequestReviewRequestedVariant0PullRequestAssignee?,
+    @JacksonJsonProperty("_links") val links: WebhookPullRequestReviewRequestedVariant0PullRequestLinks,
+    @JacksonJsonProperty("active_lock_reason", required = true) val activeLockReason: WebhookPullRequestReviewRequestedVariant0PullRequestActiveLockReasonEnum?,
+    @JacksonJsonProperty("assignee", required = true) val assignee: WebhookPullRequestReviewRequestedVariant0PullRequestAssignee?,
     val assignees: List<WebhookPullRequestReviewRequestedVariant0PullRequestAssigneesItem?>,
-    /** How the author is associated with the repository. */
-    @JacksonJsonProperty("author_association")
-    val authorAssociation: WebhookPullRequestReviewRequestedVariant0PullRequestAuthorAssX5ae7473c89,
-    /** The status of auto merging a pull request. */
-    @JacksonJsonProperty("auto_merge", required = true)
-    val autoMerge: WebhookPullRequestReviewRequestedVariant0PullRequestAutoMerge?,
+    /**
+     * How the author is associated with the repository.
+     */
+    @JacksonJsonProperty("author_association") val authorAssociation: WebhookPullRequestReviewRequestedVariant0PullRequestAuthorAssX5ae7473c89,
+    /**
+     * The status of auto merging a pull request.
+     */
+    @JacksonJsonProperty("auto_merge", required = true) val autoMerge: WebhookPullRequestReviewRequestedVariant0PullRequestAutoMerge?,
     val base: WebhookPullRequestReviewRequestedVariant0PullRequestBase,
     @JacksonJsonProperty("body", required = true) val body: String?,
     @JacksonJsonProperty("closed_at", required = true) val closedAt: OffsetDateTime?,
@@ -281,7 +339,9 @@ class WebhookPullRequestReviewRequestedVariant0PullRequest(
     @JacksonJsonProperty("commits_url") val commitsUrl: String,
     @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
     @JacksonJsonProperty("diff_url") val diffUrl: String,
-    /** Indicates whether or not the pull request is a draft. */
+    /**
+     * Indicates whether or not the pull request is a draft.
+     */
     val draft: Boolean,
     val head: WebhookPullRequestReviewRequestedVariant0PullRequestHead,
     @JacksonJsonProperty("html_url") val htmlUrl: String,
@@ -291,44 +351,51 @@ class WebhookPullRequestReviewRequestedVariant0PullRequest(
     val locked: Boolean,
     @JacksonJsonProperty("merge_commit_sha", required = true) val mergeCommitSha: String?,
     @JacksonJsonProperty("merged_at", required = true) val mergedAt: OffsetDateTime?,
-    /** A collection of related issues and pull requests. */
-    @JacksonJsonProperty("milestone", required = true)
-    val milestone: WebhookPullRequestReviewRequestedVariant0PullRequestMilestone?,
+    /**
+     * A collection of related issues and pull requests.
+     */
+    @JacksonJsonProperty("milestone", required = true) val milestone: WebhookPullRequestReviewRequestedVariant0PullRequestMilestone?,
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /** Number uniquely identifying the pull request within its repository. */
+    /**
+     * Number uniquely identifying the pull request within its repository.
+     */
     val number: Long,
     @JacksonJsonProperty("patch_url") val patchUrl: String,
     @JacksonJsonProperty("requested_reviewers") val requestedReviewers: List<Any?>,
-    @JacksonJsonProperty("requested_teams")
-    val requestedTeams:
-        List<WebhookPullRequestReviewRequestedVariant0PullRequestRequestedTeamsItem>,
+    @JacksonJsonProperty("requested_teams") val requestedTeams: List<WebhookPullRequestReviewRequestedVariant0PullRequestRequestedTeamsItem>,
     @JacksonJsonProperty("review_comment_url") val reviewCommentUrl: String,
     @JacksonJsonProperty("review_comments_url") val reviewCommentsUrl: String,
-    /** State of this Pull Request. Either `open` or `closed`. */
+    /**
+     * State of this Pull Request. Either `open` or `closed`.
+     */
     val state: WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum,
     @JacksonJsonProperty("statuses_url") val statusesUrl: String,
-    /** The title of the pull request. */
+    /**
+     * The title of the pull request.
+     */
     val title: String,
     @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
     val url: String,
-    @JacksonJsonProperty("user", required = true)
-    val user: WebhookPullRequestReviewRequestedVariant0PullRequestUser?,
+    @JacksonJsonProperty("user", required = true) val user: WebhookPullRequestReviewRequestedVariant0PullRequestUser?,
     val additions: Long? = null,
     @JacksonJsonProperty("changed_files") val changedFiles: Long? = null,
     val comments: Long? = null,
     val commits: Long? = null,
     val deletions: Long? = null,
-    /** Indicates whether maintainers can modify the pull request. */
+    /**
+     * Indicates whether maintainers can modify the pull request.
+     */
     @JacksonJsonProperty("maintainer_can_modify") val maintainerCanModify: Boolean? = null,
     val mergeable: Boolean? = null,
     @JacksonJsonProperty("mergeable_state") val mergeableState: String? = null,
     val merged: Boolean? = null,
-    @JacksonJsonProperty("merged_by")
-    val mergedBy: WebhookPullRequestReviewRequestedVariant0PullRequestMergedBy? = null,
+    @JacksonJsonProperty("merged_by") val mergedBy: WebhookPullRequestReviewRequestedVariant0PullRequestMergedBy? = null,
     val rebaseable: Boolean? = null,
     @JacksonJsonProperty("review_comments") val reviewComments: Long? = null,
-    /** The stack information associated with a pull request. */
-    val stack: PullRequestStack? = null,
+    /**
+     * The stack information associated with a pull request.
+     */
+    val stack: PullRequestStack? = null
 )
 
 data class WebhookPullRequestReviewRequestedVariant0RequestedReviewer(
@@ -353,77 +420,81 @@ data class WebhookPullRequestReviewRequestedVariant0RequestedReviewer(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class WebhookPullRequestReviewRequestedVariant0(
     val action: WebhookPullRequestReviewRequestedVariant0ActionEnum,
-    /** The pull request number. */
-    val number: Long,
-    @JacksonJsonProperty("pull_request")
-    val pullRequest: WebhookPullRequestReviewRequestedVariant0PullRequest,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The pull request number.
+     */
+    val number: Long,
+    @JacksonJsonProperty("pull_request") val pullRequest: WebhookPullRequestReviewRequestedVariant0PullRequest,
+    /**
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    @JacksonJsonProperty("requested_reviewer", required = true)
-    val requestedReviewer: WebhookPullRequestReviewRequestedVariant0RequestedReviewer?,
-    /** A GitHub user. */
+    @JacksonJsonProperty("requested_reviewer", required = true) val requestedReviewer: WebhookPullRequestReviewRequestedVariant0RequestedReviewer?,
+    /**
+     * A GitHub user.
+     */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null,
+    val organization: OrganizationSimpleWebhooks? = null
 ) : WebhookPullRequestReviewRequested
 
-data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksComments(val href: String)
+data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksComments(
+    val href: String
+)
 
-data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksCommits(val href: String)
+data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksCommits(
+    val href: String
+)
 
-data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksHtml(val href: String)
+data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksHtml(
+    val href: String
+)
 
-data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksIssue(val href: String)
+data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksIssue(
+    val href: String
+)
 
-data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksReviewComment(val href: String)
+data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksReviewComment(
+    val href: String
+)
 
-data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksReviewComments(val href: String)
+data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksReviewComments(
+    val href: String
+)
 
-data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksSelf(val href: String)
+data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksSelf(
+    val href: String
+)
 
-data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksStatuses(val href: String)
+data class WebhookPullRequestReviewRequestedVariant1PullRequestLinksStatuses(
+    val href: String
+)
 
 data class WebhookPullRequestReviewRequestedVariant1PullRequestLinks(
     val comments: WebhookPullRequestReviewRequestedVariant1PullRequestLinksComments,
     val commits: WebhookPullRequestReviewRequestedVariant1PullRequestLinksCommits,
     val html: WebhookPullRequestReviewRequestedVariant1PullRequestLinksHtml,
     val issue: WebhookPullRequestReviewRequestedVariant1PullRequestLinksIssue,
-    @JacksonJsonProperty("review_comment")
-    val reviewComment: WebhookPullRequestReviewRequestedVariant1PullRequestLinksReviewComment,
-    @JacksonJsonProperty("review_comments")
-    val reviewComments: WebhookPullRequestReviewRequestedVariant1PullRequestLinksReviewComments,
+    @JacksonJsonProperty("review_comment") val reviewComment: WebhookPullRequestReviewRequestedVariant1PullRequestLinksReviewComment,
+    @JacksonJsonProperty("review_comments") val reviewComments: WebhookPullRequestReviewRequestedVariant1PullRequestLinksReviewComments,
     val self: WebhookPullRequestReviewRequestedVariant1PullRequestLinksSelf,
-    val statuses: WebhookPullRequestReviewRequestedVariant1PullRequestLinksStatuses,
+    val statuses: WebhookPullRequestReviewRequestedVariant1PullRequestLinksStatuses
 )
 
 data class WebhookPullRequestReviewRequestedVariant1PullRequestAssignee(
@@ -448,7 +519,7 @@ data class WebhookPullRequestReviewRequestedVariant1PullRequestAssignee(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesItem(
@@ -473,7 +544,7 @@ data class WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesItem(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
 data class WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeEnabledBy(
@@ -498,20 +569,26 @@ data class WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeEnabledB
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** The status of auto merging a pull request. */
+/**
+ * The status of auto merging a pull request.
+ */
 data class WebhookPullRequestReviewRequestedVariant1PullRequestAutoMerge(
-    /** Commit message for the merge commit. */
+    /**
+     * Commit message for the merge commit.
+     */
     @JacksonJsonProperty("commit_message", required = true) val commitMessage: String?,
-    /** Title for the merge commit message. */
+    /**
+     * Title for the merge commit message.
+     */
     @JacksonJsonProperty("commit_title", required = true) val commitTitle: String?,
-    @JacksonJsonProperty("enabled_by", required = true)
-    val enabledBy: WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeEnabledBy?,
-    /** The merge method to use. */
-    @JacksonJsonProperty("merge_method")
-    val mergeMethod: WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f,
+    @JacksonJsonProperty("enabled_by", required = true) val enabledBy: WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeEnabledBy?,
+    /**
+     * The merge method to use.
+     */
+    @JacksonJsonProperty("merge_method") val mergeMethod: WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f
 )
 
 data class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoLicense(
@@ -519,7 +596,7 @@ data class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoLicense(
     val name: String,
     @JacksonJsonProperty("node_id") val nodeId: String,
     @JacksonJsonProperty("spdx_id") val spdxId: String,
-    @JacksonJsonProperty("url", required = true) val url: String?,
+    @JacksonJsonProperty("url", required = true) val url: String?
 )
 
 data class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOwner(
@@ -544,5 +621,5 @@ data class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOwner(
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de? = null,
     val url: String? = null,
-    @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
+    @JacksonJsonProperty("user_view_type") val userViewType: String? = null
 )

@@ -5,67 +5,86 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required object value serialized in the `environment` wire field. */
+/**
+ * Required object value serialized in the `environment` wire field.
+ */
 data class PendingDeploymentEnvironment(
-    /** The id of the environment. */
-    val id: Long? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** The name of the environment. */
-    val name: String? = null,
-    /** Optional `string` value serialized in the `url` wire field. */
-    val url: String? = null,
-    /** Optional `string` value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-)
-
-/** Required object value serialized in the `reviewers[]` wire field. */
-data class PendingDeploymentReviewersItem(
-    /** The type of reviewer. */
-    val type: DeploymentReviewerType? = null,
-    /** Optional API value serialized in the `reviewer` wire field. */
-    val reviewer: PendingDeploymentReviewersItemReviewer? = null,
-)
-
-/** Details of a deployment that is waiting for protection rules to pass */
-data class PendingDeployment(
-    /** Required object value serialized in the `environment` wire field. */
-    val environment: PendingDeploymentEnvironment,
-    /** The set duration of the wait timer */
-    @com.fasterxml.jackson.annotation.JsonProperty("wait_timer") val waitTimer: Long,
-    /** The time that the wait timer began. */
-    @com.fasterxml.jackson.annotation.JsonProperty("wait_timer_started_at", required = true)
-    val waitTimerStartedAt: OffsetDateTime?,
-    /** Whether the currently authenticated user can approve the deployment */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_can_approve")
-    val currentUserCanApprove: Boolean,
     /**
-     * The people or teams that may approve jobs that reference the environment. You can list up to
-     * six users or teams as reviewers. The reviewers must have at least read access to the
-     * repository. Only one of the required reviewers needs to approve the job for it to proceed.
+     * The id of the environment.
      */
-    val reviewers: List<PendingDeploymentReviewersItem>,
+    val id: Long? = null,
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
+    /**
+     * The name of the environment.
+     */
+    val name: String? = null,
+    /**
+     * Optional `string` value serialized in the `url` wire field.
+     */
+    val url: String? = null,
+    /**
+     * Optional `string` value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 )
 
-/** Optional API value serialized in the `reviewer` wire field. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = PendingDeploymentReviewersItemReviewer.Deserializer::class
+/**
+ * Required object value serialized in the `reviewers[]` wire field.
+ */
+data class PendingDeploymentReviewersItem(
+    /**
+     * The type of reviewer.
+     */
+    val type: DeploymentReviewerType? = null,
+    /**
+     * Optional API value serialized in the `reviewer` wire field.
+     */
+    val reviewer: PendingDeploymentReviewersItemReviewer? = null
 )
+
+/**
+ * Details of a deployment that is waiting for protection rules to pass
+ */
+data class PendingDeployment(
+    /**
+     * Required object value serialized in the `environment` wire field.
+     */
+    val environment: PendingDeploymentEnvironment,
+    /**
+     * The set duration of the wait timer
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("wait_timer") val waitTimer: Long,
+    /**
+     * The time that the wait timer began.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("wait_timer_started_at", required = true) val waitTimerStartedAt: OffsetDateTime?,
+    /**
+     * Whether the currently authenticated user can approve the deployment
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_can_approve") val currentUserCanApprove: Boolean,
+    /**
+     * The people or teams that may approve jobs that reference the environment. You can list up to six users or teams as reviewers. The reviewers must have at least read access to the repository. Only one of the required reviewers needs to approve the job for it to proceed.
+     */
+    val reviewers: List<PendingDeploymentReviewersItem>
+)
+
+/**
+ * Optional API value serialized in the `reviewer` wire field.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = PendingDeploymentReviewersItemReviewer.Deserializer::class)
 sealed interface PendingDeploymentReviewersItemReviewer {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer :
-        com.fasterxml.jackson.databind.JsonDeserializer<PendingDeploymentReviewersItemReviewer>() {
+    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<PendingDeploymentReviewersItemReviewer>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): PendingDeploymentReviewersItemReviewer {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType =
-                PendingDeploymentReviewersItemReviewerOwnedTypes.firstOrNull { (keys, _) ->
-                        keys.any(node::has)
-                    }
-                    ?.second
+            val ownedType = PendingDeploymentReviewersItemReviewerOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -73,191 +92,217 @@ sealed interface PendingDeploymentReviewersItemReviewer {
                     // Tried with the other branches below.
                 }
             }
-            val objectTypes: List<Class<out PendingDeploymentReviewersItemReviewer>> =
-                listOf(SimpleUser::class.java, Team::class.java)
-            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let {
-                return it
-            }
+            val objectTypes: List<Class<out PendingDeploymentReviewersItemReviewer>> = listOf(SimpleUser::class.java, Team::class.java)
+            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
             return when {
-                else ->
-                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                        parser,
-                        PendingDeploymentReviewersItemReviewer::class.java,
-                        "no PendingDeploymentReviewersItemReviewer branch accepts this payload",
-                    )
+                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                    parser, PendingDeploymentReviewersItemReviewer::class.java, "no PendingDeploymentReviewersItemReviewer branch accepts this payload")
             }
         }
     }
 }
 
-internal val PendingDeploymentReviewersItemReviewerOwnedTypes:
-    List<Pair<List<String>, Class<out PendingDeploymentReviewersItemReviewer>>> =
-    listOf(
-        listOf(
-            "email",
-            "login",
-            "avatar_url",
-            "gravatar_id",
-            "followers_url",
-            "following_url",
-            "gists_url",
-            "starred_url",
-            "subscriptions_url",
-            "organizations_url",
-            "repos_url",
-            "events_url",
-            "received_events_url",
-            "site_admin",
-            "starred_at",
-            "user_view_type",
-        ) to SimpleUser::class.java,
-        listOf(
-            "slug",
-            "description",
-            "privacy",
-            "notification_setting",
-            "permission",
-            "permissions",
-            "members_url",
-            "repositories_url",
-            "access_source",
-            "organization_id",
-            "enterprise_id",
-            "parent",
-        ) to Team::class.java,
-    )
+internal val PendingDeploymentReviewersItemReviewerOwnedTypes: List<Pair<List<String>, Class<out PendingDeploymentReviewersItemReviewer>>> = listOf(
+    listOf("email", "login", "avatar_url", "gravatar_id", "followers_url", "following_url", "gists_url", "starred_url", "subscriptions_url", "organizations_url", "repos_url", "events_url", "received_events_url", "site_admin", "starred_at", "user_view_type") to SimpleUser::class.java,
+    listOf("slug", "description", "privacy", "notification_setting", "permission", "permissions", "members_url", "repositories_url", "access_source", "organization_id", "enterprise_id", "parent") to Team::class.java,
+)
 
-/** A GitHub user. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * A GitHub user.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SimpleUser(
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Required `int64`-formatted value serialized in the `id` wire field. */
+    /**
+     * Required `int64`-formatted value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String,
-    /** Required `string` value serialized in the `gravatar_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id", required = true)
-    val gravatarId: String?,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `gravatar_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id", required = true) val gravatarId: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Required `uri`-formatted value serialized in the `followers_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `followers_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String,
-    /** Required `string` value serialized in the `following_url` wire field. */
+    /**
+     * Required `string` value serialized in the `following_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String,
-    /** Required `string` value serialized in the `gists_url` wire field. */
+    /**
+     * Required `string` value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String,
-    /** Required `string` value serialized in the `starred_url` wire field. */
+    /**
+     * Required `string` value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String,
-    /** Required `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String,
-    /** Required `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String,
-    /** Required `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String,
-    /** Required `string` value serialized in the `events_url` wire field. */
+    /**
+     * Required `string` value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String,
-    /** Required `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Required `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Required `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `string` value serialized in the `starred_at` wire field. */
+    /**
+     * Optional `string` value serialized in the `starred_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_at") val starredAt: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
-) :
-    IntegrationInstallationRequestAccount,
-    NullableIntegrationOwner,
-    CopilotSpaceOwner,
-    PendingDeploymentReviewersItemReviewer,
-    IntegrationOwner,
-    CommitAuthor,
-    CommitCommitter,
-    InstallationAccount
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
+) : IntegrationInstallationRequestAccount, NullableIntegrationOwner, CopilotSpaceOwner, PendingDeploymentReviewersItemReviewer, IntegrationOwner, CommitAuthor, CommitCommitter, InstallationAccount
 
-/** Optional object value serialized in the `permissions` wire field. */
+/**
+ * Optional object value serialized in the `permissions` wire field.
+ */
 data class TeamPermissions(
-    /** Required `boolean` value serialized in the `pull` wire field. */
+    /**
+     * Required `boolean` value serialized in the `pull` wire field.
+     */
     val pull: Boolean,
-    /** Required `boolean` value serialized in the `triage` wire field. */
+    /**
+     * Required `boolean` value serialized in the `triage` wire field.
+     */
     val triage: Boolean,
-    /** Required `boolean` value serialized in the `push` wire field. */
+    /**
+     * Required `boolean` value serialized in the `push` wire field.
+     */
     val push: Boolean,
-    /** Required `boolean` value serialized in the `maintain` wire field. */
+    /**
+     * Required `boolean` value serialized in the `maintain` wire field.
+     */
     val maintain: Boolean,
-    /** Required `boolean` value serialized in the `admin` wire field. */
-    val admin: Boolean,
+    /**
+     * Required `boolean` value serialized in the `admin` wire field.
+     */
+    val admin: Boolean
 )
 
-/** Groups of organization members that gives permissions on specified repositories. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Groups of organization members that gives permissions on specified repositories.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class Team(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `slug` wire field. */
+    /**
+     * Required `string` value serialized in the `slug` wire field.
+     */
     val slug: String,
-    /** Required `string` value serialized in the `description` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `string` value serialized in the `permission` wire field. */
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `string` value serialized in the `permission` wire field.
+     */
     val permission: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Required `string` value serialized in the `members_url` wire field. */
+    /**
+     * Required `string` value serialized in the `members_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /** Required `uri`-formatted value serialized in the `repositories_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `repositories_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
-    /** The ownership type of the team */
+    /**
+     * The ownership type of the team
+     */
     val type: TeamTypeEnum,
-    /** Groups of organization members that gives permissions on specified repositories. */
-    @com.fasterxml.jackson.annotation.JsonProperty("parent", required = true)
-    val parent: NullableTeamSimple?,
-    /** Optional `string` value serialized in the `privacy` wire field. */
+    /**
+     * Groups of organization members that gives permissions on specified repositories.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("parent", required = true) val parent: NullableTeamSimple?,
+    /**
+     * Optional `string` value serialized in the `privacy` wire field.
+     */
     val privacy: String? = null,
-    /** Optional `string` value serialized in the `notification_setting` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("notification_setting")
-    val notificationSetting: String? = null,
-    /** Optional object value serialized in the `permissions` wire field. */
+    /**
+     * Optional `string` value serialized in the `notification_setting` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("notification_setting") val notificationSetting: String? = null,
+    /**
+     * Optional object value serialized in the `permissions` wire field.
+     */
     val permissions: TeamPermissions? = null,
     /**
-     * How the team's access to the repository was granted. This property is only present when the
-     * team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`.
+     * How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("access_source")
-    val accessSource: TeamAccessSourceEnum? = null,
-    /** Unique identifier of the organization to which this team belongs */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_id")
-    val organizationId: Long? = null,
-    /** Unique identifier of the enterprise to which this team belongs */
-    @com.fasterxml.jackson.annotation.JsonProperty("enterprise_id") val enterpriseId: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("access_source") val accessSource: TeamAccessSourceEnum? = null,
+    /**
+     * Unique identifier of the organization to which this team belongs
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: Long? = null,
+    /**
+     * Unique identifier of the enterprise to which this team belongs
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("enterprise_id") val enterpriseId: Long? = null
 ) : CopilotSeatDetailsAssigningTeam, PendingDeploymentReviewersItemReviewer

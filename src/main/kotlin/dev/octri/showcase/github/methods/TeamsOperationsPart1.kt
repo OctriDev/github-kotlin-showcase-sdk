@@ -26,995 +26,431 @@ internal object TeamsListOperation {
      * Lists all teams in an organization that are visible to the authenticated user.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param teamType Filter team results by their type. For more information, see "What kind of
-     *   team should I use?"
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param teamType Filter team results by their type. For more information, see
+     *   "What kind of team should I use?"
      */
-    fun teamsList(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        teamType: SchemaSchemaEnum7df6f108? = null,
-        options: RequestOptions? = null,
-    ): List<Team> {
-        return SdkClient.request<List<Team>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "team_type" to SdkClient.queryValue(teamType, "form", true),
-                        ),
-                    operationId = "teamsList",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun teamsList(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, teamType: SchemaSchemaEnum7df6f108? = null, options: RequestOptions? = null): List<Team> {
+        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "team_type" to SdkClient.queryValue(teamType, "form", true)), operationId = "teamsList", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
     }
 }
 
 internal object TeamsCreateOperation {
     /**
-     * To create a team, the authenticated user must be a member or owner of `{org}`. By default,
-     * organization members can create teams. Organization owners can limit team creation to
-     * organization owners. For more information, see "Setting team creation permissions." When you
-     * create a new team, you automatically become a team maintainer without explicitly adding
-     * yourself to the optional array of `maintainers`. For more information, see "About teams".
+     * To create a team, the authenticated user must be a member or owner of `{org}`. By default, organization members can create teams. Organization owners can limit team creation to organization owners. For more information, see "Setting team creation permissions." When you create a new team, you automatically become a team maintainer without explicitly adding yourself to the optional array of `maintainers`. For more information, see "About teams".
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the team.
      * @param description The description of the team.
-     * @param maintainers List GitHub usernames for organization members who will become team
-     *   maintainers.
-     * @param repoNames The full name (e.g., "organization-name/repository-name") of repositories to
-     *   add the team to.
-     * @param privacy The level of privacy this team should have. The options are: **For a
-     *   non-nested team:** * `secret` - only visible to organization owners and members of this
-     *   team. * `closed` - visible to all members of this organization. Default: `secret` **For a
-     *   parent or child team:** * `closed` - visible to all members of this organization. Default
-     *   for child team: `closed`
-     * @param notificationSetting The notification setting the team has chosen. The options are: *
-     *   `notifications_enabled` - team members receive notifications when the team is @mentioned. *
-     *   `notifications_disabled` - no one receives notifications. Default: `notifications_enabled`
-     * @param permission **Closing down notice**. The permission that new repositories will be added
-     *   to the team with when none is specified.
+     * @param maintainers List GitHub usernames for organization members who will
+     *   become team maintainers.
+     * @param repoNames The full name (e.g., "organization-name/repository-name") of
+     *   repositories to add the team to.
+     * @param privacy The level of privacy this team should have. The options are:
+     *   **For a non-nested team:** * `secret` - only visible to organization owners
+     *   and members of this team. * `closed` - visible to all members of this
+     *   organization. Default: `secret` **For a parent or child team:** * `closed` -
+     *   visible to all members of this organization. Default for child team: `closed`
+     * @param notificationSetting The notification setting the team has chosen. The
+     *   options are: * `notifications_enabled` - team members receive notifications
+     *   when the team is @mentioned. * `notifications_disabled` - no one receives
+     *   notifications. Default: `notifications_enabled`
+     * @param permission **Closing down notice**. The permission that new
+     *   repositories will be added to the team with when none is specified.
      * @param parentTeamId The ID of a team to set as the parent team.
-     * @param parentTeamSlug The slug of a team to set as the parent team. Ignored when
-     *   `parent_team_id` is also provided.
+     * @param parentTeamSlug The slug of a team to set as the parent team. Ignored
+     *   when `parent_team_id` is also provided.
      */
-    fun teamsCreate(
-        clientConfig: ClientConfig,
-        request: Teams.TeamsCreateRequest,
-        options: RequestOptions? = null,
-    ): TeamFull {
-        return SdkClient.request<TeamFull>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/teams",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (request.name),
-                            "description" to (SdkClient.omitIfNull(request.description)),
-                            "maintainers" to (SdkClient.omitIfNull(request.maintainers)),
-                            "repo_names" to (SdkClient.omitIfNull(request.repoNames)),
-                            "privacy" to (SdkClient.omitIfNull(request.privacy)),
-                            "notification_setting" to
-                                (SdkClient.omitIfNull(request.notificationSetting)),
-                            "permission" to (SdkClient.omitIfNull(request.permission)),
-                            "parent_team_id" to (SdkClient.omitIfNull(request.parentTeamId)),
-                            "parent_team_slug" to (SdkClient.omitIfNull(request.parentTeamSlug)),
-                        ),
-                    operationId = "teamsCreate",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun teamsCreate(clientConfig: ClientConfig, request: Teams.TeamsCreateRequest, options: RequestOptions? = null): TeamFull {
+        return SdkClient.request<TeamFull>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/teams", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "description" to (SdkClient.omitIfNull(request.description)), "maintainers" to (SdkClient.omitIfNull(request.maintainers)), "repo_names" to (SdkClient.omitIfNull(request.repoNames)), "privacy" to (SdkClient.omitIfNull(request.privacy)), "notification_setting" to
+    (SdkClient.omitIfNull(request.notificationSetting)), "permission" to (SdkClient.omitIfNull(request.permission)), "parent_team_id" to
+    (SdkClient.omitIfNull(request.parentTeamId)), "parent_team_slug" to
+    (SdkClient.omitIfNull(request.parentTeamSlug))), operationId = "teamsCreate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object TeamsGetByNameOperation {
     /**
-     * Gets a team using the team's `slug`. To create the `slug`, GitHub replaces special characters
-     * in the `name` string, changes all words to lowercase, and replaces spaces with a `-`
-     * separator. For example, `"My TEam Näme"` would become `my-team-name`. > \[!NOTE\] > You can
-     * also specify a team by `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}`.
+     * Gets a team using the team's `slug`. To create the `slug`, GitHub replaces special characters in the `name` string, changes all words to lowercase, and replaces spaces with a `-` separator. For example, `"My TEam Näme"` would become `my-team-name`. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}`.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      */
-    fun teamsGetByName(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        options: RequestOptions? = null,
-    ): TeamFull {
-        return SdkClient.request<TeamFull>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}",
-                    config = clientConfig,
-                    operationId = "teamsGetByName",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun teamsGetByName(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): TeamFull {
+        return SdkClient.request<TeamFull>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}", config = clientConfig, operationId = "teamsGetByName", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object TeamsUpdateInOrgOperation {
     /**
-     * To edit a team, the authenticated user must either be an organization owner or a team
-     * maintainer. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the
-     * route `PATCH /organizations/{org_id}/team/{team_id}`.
+     * To edit a team, the authenticated user must either be an organization owner or a team maintainer. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route `PATCH /organizations/{org_id}/team/{team_id}`.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param name The name of the team.
      * @param description The description of the team.
-     * @param privacy The level of privacy this team should have. Editing teams without specifying
-     *   this parameter leaves `privacy` intact. When a team is nested, the `privacy` for parent
-     *   teams cannot be `secret`. The options are: **For a non-nested team:** * `secret` - only
-     *   visible to organization owners and members of this team. * `closed` - visible to all
-     *   members of this organization. **For a parent or child team:** * `closed` - visible to all
+     * @param privacy The level of privacy this team should have. Editing teams
+     *   without specifying this parameter leaves `privacy` intact. When a team is
+     *   nested, the `privacy` for parent teams cannot be `secret`. The options are:
+     *   **For a non-nested team:** * `secret` - only visible to organization owners
+     *   and members of this team. * `closed` - visible to all members of this
+     *   organization. **For a parent or child team:** * `closed` - visible to all
      *   members of this organization.
-     * @param notificationSetting The notification setting the team has chosen. Editing teams
-     *   without specifying this parameter leaves `notification_setting` intact. The options are: *
-     *   `notifications_enabled` - team members receive notifications when the team is @mentioned. *
-     *   `notifications_disabled` - no one receives notifications.
-     * @param permission **Closing down notice**. The permission that new repositories will be added
-     *   to the team with when none is specified.
+     * @param notificationSetting The notification setting the team has chosen.
+     *   Editing teams without specifying this parameter leaves `notification_setting`
+     *   intact. The options are: * `notifications_enabled` - team members receive
+     *   notifications when the team is @mentioned. * `notifications_disabled` - no one
+     *   receives notifications.
+     * @param permission **Closing down notice**. The permission that new
+     *   repositories will be added to the team with when none is specified.
      * @param parentTeamId The ID of a team to set as the parent team.
-     * @param parentTeamSlug The slug of a team to set as the parent team. Ignored when
-     *   `parent_team_id` is also provided.
+     * @param parentTeamSlug The slug of a team to set as the parent team. Ignored
+     *   when `parent_team_id` is also provided.
      */
-    fun teamsUpdateInOrg(
-        clientConfig: ClientConfig,
-        request: Teams.TeamsUpdateInOrgRequest,
-        options: RequestOptions? = null,
-    ): TeamFull {
-        return SdkClient.request<TeamFull>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/teams/${SdkClient.encodePathSegment(request.teamSlug)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                            "description" to (SdkClient.omitIfNull(request.description)),
-                            "privacy" to (SdkClient.omitIfNull(request.privacy)),
-                            "notification_setting" to
-                                (SdkClient.omitIfNull(request.notificationSetting)),
-                            "permission" to (SdkClient.omitIfNull(request.permission)),
-                            "parent_team_id" to
-                                (request.parentTeamId ?: SdkClient.SdkOptional.Omitted),
-                            "parent_team_slug" to
-                                (request.parentTeamSlug ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "teamsUpdateInOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun teamsUpdateInOrg(clientConfig: ClientConfig, request: Teams.TeamsUpdateInOrgRequest, options: RequestOptions? = null): TeamFull {
+        return SdkClient.request<TeamFull>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}/teams/${SdkClient.encodePathSegment(request.teamSlug)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "description" to (SdkClient.omitIfNull(request.description)), "privacy" to (SdkClient.omitIfNull(request.privacy)), "notification_setting" to
+    (SdkClient.omitIfNull(request.notificationSetting)), "permission" to (SdkClient.omitIfNull(request.permission)), "parent_team_id" to
+    (request.parentTeamId ?: SdkClient.SdkOptional.Omitted), "parent_team_slug" to
+    (request.parentTeamSlug ?: SdkClient.SdkOptional.Omitted)), operationId = "teamsUpdateInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object TeamsDeleteInOrgOperation {
     /**
-     * To delete a team, the authenticated user must be an organization owner or team maintainer. If
-     * you are an organization owner, deleting a parent team will delete all of its child teams as
-     * well. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route
-     * `DELETE /organizations/{org_id}/team/{team_id}`.
+     * To delete a team, the authenticated user must be an organization owner or team maintainer. If you are an organization owner, deleting a parent team will delete all of its child teams as well. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route `DELETE /organizations/{org_id}/team/{team_id}`.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      */
-    fun teamsDeleteInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}",
-                config = clientConfig,
-                operationId = "teamsDeleteInOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun teamsDeleteInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}", config = clientConfig, operationId = "teamsDeleteInOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object TeamsListPendingInvitationsInOrgOperation {
     /**
-     * The return hash contains a `role` field which refers to the Organization Invitation role and
-     * will be one of the following values: `direct_member`, `admin`, `billing_manager`,
-     * `hiring_manager`, or `reinstate`. If the invitee is not a GitHub member, the `login` field in
-     * the return hash will be `null`. > \[!NOTE\] > You can also specify a team by `org_id` and
-     * `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/invitations`.
+     * The return hash contains a `role` field which refers to the Organization Invitation role and will be one of the following values: `direct_member`, `admin`, `billing_manager`, `hiring_manager`, or `reinstate`. If the invitee is not a GitHub member, the `login` field in the return hash will be `null`. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/invitations`.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun teamsListPendingInvitationsInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<OrganizationInvitation> {
-        return SdkClient.request<List<OrganizationInvitation>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/invitations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListPendingInvitationsInOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsListPendingInvitationsInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<OrganizationInvitation> {
+        return SdkClient.request<List<OrganizationInvitation>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/invitations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListPendingInvitationsInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsListMembersInOrgOperation {
     /**
-     * Team members will include the members of child teams. Each member includes their `role` on
-     * the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership
-     * is inherited from a child team (`true`) or is a direct membership (`false`). These fields let
-     * you read a member's role and direct/inherited status without additional requests. To list
-     * members in a team, the team must be visible to the authenticated user. > \[!NOTE\] > You can
-     * also specify a team…
+     * Team members will include the members of child teams. Each member includes their `role` on the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership is inherited from a child team (`true`) or is a direct membership (`false`). These fields let you read a member's role and direct/inherited status without additional requests. To list members in a team, the team must be visible to the authenticated user. > \[!NOTE\] > You can also specify a team…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param role Filters members returned by their role in the team.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun teamsListMembersInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        role: TeamsListMembersInOrgParameterEnum? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<TeamMember> {
-        return SdkClient.request<List<TeamMember>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/members",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "role" to SdkClient.queryValue(role, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListMembersInOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsListMembersInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, role: TeamsListMembersInOrgParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamMember> {
+        return SdkClient.request<List<TeamMember>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/members", config = clientConfig, query = mapOf("role" to SdkClient.queryValue(role, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListMembersInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsGetMembershipForUserInOrgOperation {
     /**
-     * Team members will include the members of child teams. To get a user's membership with a team,
-     * the team must be visible to the authenticated user. > !NOTE] > You can also specify a team by
-     * `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}/memberships/{username}`. > \[!NOTE\] > The response
-     * contains the `state` of the membership and the member's `role`. The `role` for organization
-     * owners is set to `maintainer`. For more information about…
+     * Team members will include the members of child teams. To get a user's membership with a team, the team must be visible to the authenticated user. > !NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/memberships/{username}`. > \[!NOTE\] > The response contains the `state` of the membership and the member's `role`. The `role` for organization owners is set to `maintainer`. For more information about…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param username The handle for the GitHub user account.
      */
-    fun teamsGetMembershipForUserInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): TeamMembership {
-        return SdkClient.request<TeamMembership>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    operationId = "teamsGetMembershipForUserInOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsGetMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, options: RequestOptions? = null): TeamMembership {
+        return SdkClient.request<TeamMembership>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsGetMembershipForUserInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsAddOrUpdateMembershipForUserInOrgOperation {
     /**
-     * Adds an organization member to a team. An authenticated organization owner or team maintainer
-     * can add organization members to a team. Team synchronization is available for organizations
-     * using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help
-     * documentation. > !NOTE] > When you have team synchronization set up for a team with your
-     * organization's identity provider (IdP), you will see an error if you attempt to use the API
-     * for making changes…
+     * Adds an organization member to a team. An authenticated organization owner or team maintainer can add organization members to a team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. > !NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param username The handle for the GitHub user account.
      * @param role The role that this user should have in the team.
      */
-    fun teamsAddOrUpdateMembershipForUserInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        username: String,
-        role: TeamsAddOrUpdateMembershipForUserInOrgRoleEnum? = null,
-        options: RequestOptions? = null,
-    ): TeamMembership {
-        return SdkClient.request<TeamMembership>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))),
-                    operationId = "teamsAddOrUpdateMembershipForUserInOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsAddOrUpdateMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, role: TeamsAddOrUpdateMembershipForUserInOrgRoleEnum? = null, options: RequestOptions? = null): TeamMembership {
+        return SdkClient.request<TeamMembership>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))), operationId = "teamsAddOrUpdateMembershipForUserInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsRemoveMembershipForUserInOrgOperation {
     /**
-     * To remove a membership between a user and a team, the authenticated user must have 'admin'
-     * permissions to the team or be an owner of the organization that the team is associated with.
-     * Removing team membership does not delete the user, it just removes their membership from the
-     * team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For
-     * more information, see GitHub's products in the GitHub Help documentation. > !NOTE] > When you
-     * have team…
+     * To remove a membership between a user and a team, the authenticated user must have 'admin' permissions to the team or be an owner of the organization that the team is associated with. Removing team membership does not delete the user, it just removes their membership from the team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. > !NOTE] > When you have team…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param username The handle for the GitHub user account.
      */
-    fun teamsRemoveMembershipForUserInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "teamsRemoveMembershipForUserInOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun teamsRemoveMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsRemoveMembershipForUserInOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object TeamsListReposInOrgOperation {
     /**
-     * Lists a team's repositories visible to the authenticated user. OAuth app tokens and personal
-     * access tokens (classic) need the `read:org` or `repo` scope to use this endpoint. >
-     * \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}/repos`.
+     * Lists a team's repositories visible to the authenticated user. OAuth app tokens and personal access tokens (classic) need the `read:org` or `repo` scope to use this endpoint. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/repos`.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun teamsListReposInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/repos",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListReposInOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsListReposInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/repos", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListReposInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsCheckPermissionsForRepoInOrgOperation {
     /**
-     * Checks whether a team has `admin`, `push`, `maintain`, `triage`, or `pull` permission for a
-     * repository. Repositories inherited through a parent team will also be checked. You can also
-     * get information about the specified repository, including what permissions the team grants on
-     * it, by passing the following custom media type via the
-     * `application/vnd.github.v3.repository+json` accept header. If a team doesn't have permission
-     * for the repository, you will receive a `404 Not…
+     * Checks whether a team has `admin`, `push`, `maintain`, `triage`, or `pull` permission for a repository. Repositories inherited through a parent team will also be checked. You can also get information about the specified repository, including what permissions the team grants on it, by passing the following custom media type via the `application/vnd.github.v3.repository+json` accept header. If a team doesn't have permission for the repository, you will receive a `404 Not…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun teamsCheckPermissionsForRepoInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): TeamRepository {
-        return SdkClient.request<TeamRepository>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}",
-                    config = clientConfig,
-                    operationId = "teamsCheckPermissionsForRepoInOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsCheckPermissionsForRepoInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, owner: String, repo: String, options: RequestOptions? = null): TeamRepository {
+        return SdkClient.request<TeamRepository>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}", config = clientConfig, operationId = "teamsCheckPermissionsForRepoInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsAddOrUpdateRepoPermissionsInOrgOperation {
     /**
-     * To add a repository to a team or update the team's permission on a repository, the
-     * authenticated user must have admin access to the repository, and must be able to see the
-     * team. The repository must be owned by the organization, or a direct fork of a repository
-     * owned by the organization. You will get a `422 Unprocessable Entity` status if you attempt to
-     * add a repository to a team that is not owned by the organization. Note that, if you choose
-     * not to pass any parameters,…
+     * To add a repository to a team or update the team's permission on a repository, the authenticated user must have admin access to the repository, and must be able to see the team. The repository must be owned by the organization, or a direct fork of a repository owned by the organization. You will get a `422 Unprocessable Entity` status if you attempt to add a repository to a team that is not owned by the organization. Note that, if you choose not to pass any parameters,…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param permission The permission to grant the team on this repository. We accept the
-     *   following permissions to be set: `pull`, `triage`, `push`, `maintain`, `admin` and you can
-     *   also specify a custom repository role name, if the owning organization has defined any. If
-     *   no permission is specified, the team's `permission` attribute will be used to determine
-     *   what permission to grant the team on this repository.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param permission The permission to grant the team on this repository. We
+     *   accept the following permissions to be set: `pull`, `triage`, `push`,
+     *   `maintain`, `admin` and you can also specify a custom repository role name, if
+     *   the owning organization has defined any. If no permission is specified, the
+     *   team's `permission` attribute will be used to determine what permission to
+     *   grant the team on this repository.
      */
-    fun teamsAddOrUpdateRepoPermissionsInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        owner: String,
-        repo: String,
-        permission: String? = null,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}",
-                config = clientConfig,
-                body = SdkClient.bodyMap("permission" to (SdkClient.omitIfNull(permission))),
-                operationId = "teamsAddOrUpdateRepoPermissionsInOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun teamsAddOrUpdateRepoPermissionsInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, owner: String, repo: String, permission: String? = null, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}", config = clientConfig, body = SdkClient.bodyMap("permission" to (SdkClient.omitIfNull(permission))), operationId = "teamsAddOrUpdateRepoPermissionsInOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object TeamsRemoveRepoInOrgOperation {
     /**
-     * If the authenticated user is an organization owner or a team maintainer, they can remove any
-     * repositories from the team. To remove a repository from a team as an organization member, the
-     * authenticated user must have admin access to the repository and must be able to see the team.
-     * This does not delete the repository, it just removes it from the team. > \[!NOTE\] > You can
-     * also specify a team by `org_id` and `team_id` using the route `DELETE…
+     * If the authenticated user is an organization owner or a team maintainer, they can remove any repositories from the team. To remove a repository from a team as an organization member, the authenticated user must have admin access to the repository and must be able to see the team. This does not delete the repository, it just removes it from the team. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route `DELETE…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun teamsRemoveRepoInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}",
-                config = clientConfig,
-                operationId = "teamsRemoveRepoInOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun teamsRemoveRepoInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, owner: String, repo: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}", config = clientConfig, operationId = "teamsRemoveRepoInOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object TeamsListChildInOrgOperation {
     /**
-     * Lists the child teams of the team specified by `{team_slug}`. > \[!NOTE\] > You can also
-     * specify a team by `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}/teams`.
+     * Lists the child teams of the team specified by `{team_slug}`. > \[!NOTE\] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/teams`.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun teamsListChildInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Team> {
-        return SdkClient.request<List<Team>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/teams",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListChildInOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsListChildInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Team> {
+        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/teams", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListChildInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsGetLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the \[Get a
-     * > team by name endpoint.
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the \[Get a team by name endpoint.
      *
      * @param teamId The unique identifier of the team.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsGetLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        options: RequestOptions? = null,
-    ): TeamFull {
-        return SdkClient.request<TeamFull>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/teams/${SdkClient.encodePathSegment(teamId)}",
-                    config = clientConfig,
-                    operationId = "teamsGetLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun teamsGetLegacy(clientConfig: ClientConfig, teamId: Long, options: RequestOptions? = null): TeamFull {
+        return SdkClient.request<TeamFull>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}", config = clientConfig, operationId = "teamsGetLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object TeamsUpdateLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[Update a team endpoint. To edit a team, the authenticated user must either be an
-     * > organization owner or a team maintainer. > \[!NOTE\] > With nested teams, the `privacy` for
-     * > parent teams cannot be `secret`.
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Update a team endpoint. To edit a team, the authenticated user must either be an organization owner or a team maintainer. > \[!NOTE\] > With nested teams, the `privacy` for parent teams cannot be `secret`.
      *
      * @param teamId The unique identifier of the team.
      * @param name The name of the team.
      * @param description The description of the team.
-     * @param privacy The level of privacy this team should have. Editing teams without specifying
-     *   this parameter leaves `privacy` intact. The options are: **For a non-nested team:** *
-     *   `secret` - only visible to organization owners and members of this team. * `closed` -
-     *   visible to all members of this organization. **For a parent or child team:** * `closed` -
-     *   visible to all members of this organization.
-     * @param notificationSetting The notification setting the team has chosen. Editing teams
-     *   without specifying this parameter leaves `notification_setting` intact. The options are: *
-     *   `notifications_enabled` - team members receive notifications when the team is @mentioned. *
-     *   `notifications_disabled` - no one receives notifications.
-     * @param permission **Closing down notice**. The permission that new repositories will be added
-     *   to the team with when none is specified.
+     * @param privacy The level of privacy this team should have. Editing teams
+     *   without specifying this parameter leaves `privacy` intact. The options are:
+     *   **For a non-nested team:** * `secret` - only visible to organization owners
+     *   and members of this team. * `closed` - visible to all members of this
+     *   organization. **For a parent or child team:** * `closed` - visible to all
+     *   members of this organization.
+     * @param notificationSetting The notification setting the team has chosen.
+     *   Editing teams without specifying this parameter leaves `notification_setting`
+     *   intact. The options are: * `notifications_enabled` - team members receive
+     *   notifications when the team is @mentioned. * `notifications_disabled` - no one
+     *   receives notifications.
+     * @param permission **Closing down notice**. The permission that new
+     *   repositories will be added to the team with when none is specified.
      * @param parentTeamId The ID of a team to set as the parent team.
-     * @param parentTeamSlug The slug of a team to set as the parent team. Ignored when
-     *   `parent_team_id` is also provided.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param parentTeamSlug The slug of a team to set as the parent team. Ignored
+     *   when `parent_team_id` is also provided.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsUpdateLegacy(
-        clientConfig: ClientConfig,
-        request: Teams.TeamsUpdateLegacyRequest,
-        options: RequestOptions? = null,
-    ): TeamFull {
-        return SdkClient.request<TeamFull>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/teams/${SdkClient.encodePathSegment(request.teamId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (request.name),
-                            "description" to (SdkClient.omitIfNull(request.description)),
-                            "privacy" to (SdkClient.omitIfNull(request.privacy)),
-                            "notification_setting" to
-                                (SdkClient.omitIfNull(request.notificationSetting)),
-                            "permission" to (SdkClient.omitIfNull(request.permission)),
-                            "parent_team_id" to
-                                (request.parentTeamId ?: SdkClient.SdkOptional.Omitted),
-                            "parent_team_slug" to
-                                (request.parentTeamSlug ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "teamsUpdateLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun teamsUpdateLegacy(clientConfig: ClientConfig, request: Teams.TeamsUpdateLegacyRequest, options: RequestOptions? = null): TeamFull {
+        return SdkClient.request<TeamFull>(SdkClient.RequestSpec("PATCH", "/teams/${SdkClient.encodePathSegment(request.teamId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "description" to (SdkClient.omitIfNull(request.description)), "privacy" to (SdkClient.omitIfNull(request.privacy)), "notification_setting" to
+    (SdkClient.omitIfNull(request.notificationSetting)), "permission" to (SdkClient.omitIfNull(request.permission)), "parent_team_id" to
+    (request.parentTeamId ?: SdkClient.SdkOptional.Omitted), "parent_team_slug" to
+    (request.parentTeamSlug ?: SdkClient.SdkOptional.Omitted)), operationId = "teamsUpdateLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object TeamsDeleteLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[Delete a team endpoint. To delete a team, the authenticated user must be an organization
-     * > owner or team maintainer. If you are an organization owner, deleting a parent team will
-     * > delete all of its child teams as well.
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Delete a team endpoint. To delete a team, the authenticated user must be an organization owner or team maintainer. If you are an organization owner, deleting a parent team will delete all of its child teams as well.
      *
      * @param teamId The unique identifier of the team.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsDeleteLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/teams/${SdkClient.encodePathSegment(teamId)}",
-                config = clientConfig,
-                operationId = "teamsDeleteLegacy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
-            )
-        )
+    fun teamsDeleteLegacy(clientConfig: ClientConfig, teamId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/teams/${SdkClient.encodePathSegment(teamId)}", config = clientConfig, operationId = "teamsDeleteLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
     }
 }
 
 internal object TeamsListPendingInvitationsLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[`List pending team invitations` endpoint. The return hash contains a `role` field which
-     * > refers to the Organization Invitation role and will be one of the following values:
-     * > `direct_member`, `admin`, `billing_manager`, `hiring_manager`, or `reinstate`. If the
-     * > invitee is not a GitHub member, the…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[`List pending team invitations` endpoint. The return hash contains a `role` field which refers to the Organization Invitation role and will be one of the following values: `direct_member`, `admin`, `billing_manager`, `hiring_manager`, or `reinstate`. If the invitee is not a GitHub member, the…
      *
      * @param teamId The unique identifier of the team.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsListPendingInvitationsLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<OrganizationInvitation> {
-        return SdkClient.request<List<OrganizationInvitation>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/teams/${SdkClient.encodePathSegment(teamId)}/invitations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListPendingInvitationsLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun teamsListPendingInvitationsLegacy(clientConfig: ClientConfig, teamId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<OrganizationInvitation> {
+        return SdkClient.request<List<OrganizationInvitation>>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/invitations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListPendingInvitationsLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object TeamsListMembersLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[`List team members` endpoint. Team members will include the members of child teams. Each
-     * > member includes their `role` on the team (`member` or `maintainer`) and an `inherited` flag
-     * > indicating whether the membership is inherited from a child team (`true`) or is a direct
-     * > membership (`false`).
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[`List team members` endpoint. Team members will include the members of child teams. Each member includes their `role` on the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership is inherited from a child team (`true`) or is a direct membership (`false`).
      *
      * @param teamId The unique identifier of the team.
      * @param role Filters members returned by their role in the team.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsListMembersLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        role: TeamsListMembersLegacyParameterEnum? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<TeamMember> {
-        return SdkClient.request<List<TeamMember>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/teams/${SdkClient.encodePathSegment(teamId)}/members",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "role" to SdkClient.queryValue(role, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "teamsListMembersLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun teamsListMembersLegacy(clientConfig: ClientConfig, teamId: Long, role: TeamsListMembersLegacyParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamMember> {
+        return SdkClient.request<List<TeamMember>>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/members", config = clientConfig, query = mapOf("role" to SdkClient.queryValue(role, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListMembersLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object TeamsGetMemberLegacyOperation {
     /**
-     * The "Get team member" endpoint (described below) is closing down. We recommend using the Get
-     * team membership for a user endpoint instead. It allows you to get both active and pending
-     * memberships. To list members in a team, the team must be visible to the authenticated user.
+     * The "Get team member" endpoint (described below) is closing down. We recommend using the Get team membership for a user endpoint instead. It allows you to get both active and pending memberships. To list members in a team, the team must be visible to the authenticated user.
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsGetMemberLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "GET",
-                "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "teamsGetMemberLegacy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun teamsGetMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsGetMemberLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object TeamsAddMemberLegacyOperation {
     /**
-     * The "Add team member" endpoint (described below) is closing down. We recommend using the Add
-     * or update team membership for a user endpoint instead. It allows you to invite new
-     * organization members to your teams. Team synchronization is available for organizations using
-     * GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help
-     * documentation. To add someone to a team, the authenticated user must be an organization owner
-     * or a team maintainer in the…
+     * The "Add team member" endpoint (described below) is closing down. We recommend using the Add or update team membership for a user endpoint instead. It allows you to invite new organization members to your teams. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To add someone to a team, the authenticated user must be an organization owner or a team maintainer in the…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsAddMemberLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "teamsAddMemberLegacy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java),
-            )
-        )
+    fun teamsAddMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsAddMemberLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
     }
 }
 
 internal object TeamsRemoveMemberLegacyOperation {
     /**
-     * The "Remove team member" endpoint (described below) is closing down. We recommend using the
-     * Remove team membership for a user endpoint instead. It allows you to remove both active and
-     * pending memberships. Team synchronization is available for organizations using GitHub
-     * Enterprise Cloud. For more information, see GitHub's products in the GitHub Help
-     * documentation. To remove a team member, the authenticated user must have 'admin' permissions
-     * to the team or be an owner of the…
+     * The "Remove team member" endpoint (described below) is closing down. We recommend using the Remove team membership for a user endpoint instead. It allows you to remove both active and pending memberships. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To remove a team member, the authenticated user must have 'admin' permissions to the team or be an owner of the…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsRemoveMemberLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "teamsRemoveMemberLegacy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun teamsRemoveMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsRemoveMemberLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object TeamsGetMembershipForUserLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[Get team membership for a user endpoint. Team members will include the members of child
-     * > teams. To get a user's membership with a team, the team must be visible to the
-     * > authenticated user. **Note:** The response contains the `state` of the membership and the
-     * > member's `role`. The `role` for…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Get team membership for a user endpoint. Team members will include the members of child teams. To get a user's membership with a team, the team must be visible to the authenticated user. **Note:** The response contains the `state` of the membership and the member's `role`. The `role` for…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsGetMembershipForUserLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): TeamMembership {
-        return SdkClient.request<TeamMembership>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    operationId = "teamsGetMembershipForUserLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun teamsGetMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): TeamMembership {
+        return SdkClient.request<TeamMembership>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsGetMembershipForUserLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object TeamsAddOrUpdateMembershipForUserLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > \[Add or update team membership for a user endpoint. Team synchronization is available for
-     * > organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in
-     * > the GitHub Help documentation. If the user is already a member of the team's organization,
-     * > this endpoint will add…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Add or update team membership for a user endpoint. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. If the user is already a member of the team's organization, this endpoint will add…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
      * @param role The role that this user should have in the team.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsAddOrUpdateMembershipForUserLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        role: TeamsAddOrUpdateMembershipForUserLegacyRoleEnum? = null,
-        options: RequestOptions? = null,
-    ): TeamMembership {
-        return SdkClient.request<TeamMembership>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))),
-                    operationId = "teamsAddOrUpdateMembershipForUserLegacy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun teamsAddOrUpdateMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, role: TeamsAddOrUpdateMembershipForUserLegacyRoleEnum? = null, options: RequestOptions? = null): TeamMembership {
+        return SdkClient.request<TeamMembership>(SdkClient.RequestSpec("PUT", "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))), operationId = "teamsAddOrUpdateMembershipForUserLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }

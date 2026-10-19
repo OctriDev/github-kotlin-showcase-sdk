@@ -23,937 +23,455 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object PullsListOperation {
     /**
-     * Lists pull requests in a specified repository. Draft pull requests are available in public
-     * repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy
-     * per-repository billing plans, and in public and private repositories with GitHub Team and
-     * GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help
-     * documentation. This endpoint supports the following custom media types. For more information,
-     * see "Media types." -…
+     * Lists pull requests in a specified repository. Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. This endpoint supports the following custom media types. For more information, see "Media types." -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param state Either `open`, `closed`, or `all` to filter by state.
-     * @param head Filter pulls by head user or head organization and branch name in the format of
-     *   `user:ref-name` or `organization:ref-name`. For example: `github:new-script-format` or
-     *   `octocat:test-branch`.
+     * @param head Filter pulls by head user or head organization and branch name in
+     *   the format of `user:ref-name` or `organization:ref-name`. For example:
+     *   `github:new-script-format` or `octocat:test-branch`.
      * @param base Filter pulls by base branch name. Example: `gh-pages`.
-     * @param sort What to sort results by. `popularity` will sort by the number of comments.
-     *   `long-running` will sort by date created and will limit the results to pull requests that
-     *   have been open for more than a month and have had activity within the past month.
-     * @param direction The direction of the sort. Default: `desc` when sort is `created` or sort is
-     *   not specified, otherwise `asc`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param sort What to sort results by. `popularity` will sort by the number of
+     *   comments. `long-running` will sort by date created and will limit the results
+     *   to pull requests that have been open for more than a month and have had
+     *   activity within the past month.
+     * @param direction The direction of the sort. Default: `desc` when sort is
+     *   `created` or sort is not specified, otherwise `asc`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsList(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsListRequest,
-        options: RequestOptions? = null,
-    ): List<PullRequestSimple> {
-        return SdkClient.request<List<PullRequestSimple>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "state" to SdkClient.queryValue(request.state, "form", true),
-                            "head" to SdkClient.queryValue(request.head, "form", true),
-                            "base" to SdkClient.queryValue(request.base, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "pullsList",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+    fun pullsList(clientConfig: ClientConfig, request: Pulls.PullsListRequest, options: RequestOptions? = null): List<PullRequestSimple> {
+        return SdkClient.request<List<PullRequestSimple>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls", config = clientConfig, query = mapOf("state" to SdkClient.queryValue(request.state, "form", true), "head" to SdkClient.queryValue(request.head, "form", true), "base" to SdkClient.queryValue(request.base, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "pullsList", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsCreateOperation {
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
-     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
-     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's
-     * products in the GitHub Help documentation. To open or update a pull request in a public
-     * repository, you must have write access to the head or the source branch. For
-     * organization-owned repositories,…
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To open or update a pull request in a public repository, you must have write access to the head or the source branch. For organization-owned repositories,…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param head The name of the branch where your changes are implemented. For cross-repository
-     *   pull requests in the same network, namespace `head` with a user like this:
-     *   `username:branch`.
-     * @param base The name of the branch you want the changes pulled into. This should be an
-     *   existing branch on the current repository. You cannot submit a pull request to one
-     *   repository that requests a merge to a base of another repository.
-     * @param title The title of the new pull request. Required unless `issue` is specified.
-     * @param headRepo The name of the repository where the changes in the pull request were made.
-     *   This field is required for cross-repository pull requests if both repositories are owned by
-     *   the same organization.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param head The name of the branch where your changes are implemented. For
+     *   cross-repository pull requests in the same network, namespace `head` with a
+     *   user like this: `username:branch`.
+     * @param base The name of the branch you want the changes pulled into. This
+     *   should be an existing branch on the current repository. You cannot submit a
+     *   pull request to one repository that requests a merge to a base of another
+     *   repository.
+     * @param title The title of the new pull request. Required unless `issue` is
+     *   specified.
+     * @param headRepo The name of the repository where the changes in the pull
+     *   request were made. This field is required for cross-repository pull requests
+     *   if both repositories are owned by the same organization.
      * @param body The contents of the pull request.
-     * @param maintainerCanModify Indicates whether maintainers can modify the pull request.
-     * @param draft Indicates whether the pull request is a draft. See "Draft Pull Requests" in the
-     *   GitHub Help documentation to learn more.
-     * @param issue An issue in the repository to convert to a pull request. The issue title, body,
-     *   and comments will become the title, body, and comments on the new pull request. Required
-     *   unless `title` is specified.
+     * @param maintainerCanModify Indicates whether maintainers can modify the pull
+     *   request.
+     * @param draft Indicates whether the pull request is a draft. See "Draft Pull
+     *   Requests" in the GitHub Help documentation to learn more.
+     * @param issue An issue in the repository to convert to a pull request. The
+     *   issue title, body, and comments will become the title, body, and comments on
+     *   the new pull request. Required unless `title` is specified.
      */
-    fun pullsCreate(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsCreateRequest,
-        options: RequestOptions? = null,
-    ): PullRequest {
-        return SdkClient.request<PullRequest>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "head" to (request.head),
-                            "base" to (request.base),
-                            "title" to (SdkClient.omitIfNull(request.title)),
-                            "head_repo" to (SdkClient.omitIfNull(request.headRepo)),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                            "maintainer_can_modify" to
-                                (SdkClient.omitIfNull(request.maintainerCanModify)),
-                            "draft" to (SdkClient.omitIfNull(request.draft)),
-                            "issue" to (SdkClient.omitIfNull(request.issue)),
-                        ),
-                    operationId = "pullsCreate",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsCreate(clientConfig: ClientConfig, request: Pulls.PullsCreateRequest, options: RequestOptions? = null): PullRequest {
+        return SdkClient.request<PullRequest>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls", config = clientConfig, body = SdkClient.bodyMap("head" to (request.head), "base" to (request.base), "title" to (SdkClient.omitIfNull(request.title)), "head_repo" to (SdkClient.omitIfNull(request.headRepo)), "body" to (SdkClient.omitIfNull(request.body)), "maintainer_can_modify" to
+    (SdkClient.omitIfNull(request.maintainerCanModify)), "draft" to (SdkClient.omitIfNull(request.draft)), "issue" to (SdkClient.omitIfNull(request.issue))), operationId = "pullsCreate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsListReviewCommentsForRepoOperation {
     /**
-     * Lists review comments across all pull requests in a repository, ordered by ID in ascending
-     * order by default. Use `sort`, `direction`, and `since` to control the results, and select a
-     * custom media type to receive the comment body as raw Markdown, plain text, rendered HTML, or
-     * all three. Use `page` and `per_page` to paginate the results.
+     * Lists review comments across all pull requests in a repository, ordered by ID in ascending order by default. Use `sort`, `direction`, and `since` to control the results, and select a custom media type to receive the comment body as raw Markdown, plain text, rendered HTML, or all three. Use `page` and `per_page` to paginate the results.
      *
-     * Lists review comments for all pull requests in a repository. By default, review comments are
-     * in ascending order by ID. This endpoint supports the following custom media types. For more
-     * information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**:
-     * Returns the raw markdown body. Response will include `body`. This is the default if you do
-     * not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**:
-     * Returns a text only…
+     * Lists review comments for all pull requests in a repository. By default, review comments are in ascending order by ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param direction The direction to sort results. Ignored without `sort` parameter.
-     * @param since Only show results that were last updated after the given time. This is a
-     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param direction The direction to sort results. Ignored without `sort`
+     *   parameter.
+     * @param since Only show results that were last updated after the given time.
+     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsListReviewCommentsForRepo(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsListReviewCommentsForRepoRequest,
-        options: RequestOptions? = null,
-    ): List<PullRequestReviewComment> {
+    fun pullsListReviewCommentsForRepo(clientConfig: ClientConfig, request: Pulls.PullsListReviewCommentsForRepoRequest, options: RequestOptions? = null): List<PullRequestReviewComment> {
         validatePullsListReviewCommentsForRepoRequest(request)
 
-        return SdkClient.request<List<PullRequestReviewComment>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/comments",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "since" to
-                                SdkClient.queryValue(request.since, "form", true, "date-time"),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "pullsListReviewCommentsForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<List<PullRequestReviewComment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/comments", config = clientConfig, query = mapOf("sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "since" to
+    SdkClient.queryValue(request.since, "form", true, "date-time"), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "pullsListReviewCommentsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validatePullsListReviewCommentsForRepoRequest(
-        request: Pulls.PullsListReviewCommentsForRepoRequest
-    ) {
+
+    private fun validatePullsListReviewCommentsForRepoRequest(request: Pulls.PullsListReviewCommentsForRepoRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-        }
+}
     }
 }
 
 internal object PullsGetReviewCommentOperation {
     /**
-     * Provides details for a specified review comment. This endpoint supports the following custom
-     * media types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
-     * the markdown body. Response will include `body_text`. -…
+     * Provides details for a specified review comment. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      */
-    fun pullsGetReviewComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): PullRequestReviewComment {
-        return SdkClient.request<PullRequestReviewComment>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}",
-                    config = clientConfig,
-                    operationId = "pullsGetReviewComment",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun pullsGetReviewComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): PullRequestReviewComment {
+        return SdkClient.request<PullRequestReviewComment>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, operationId = "pullsGetReviewComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object PullsUpdateReviewCommentOperation {
     /**
-     * Edits the content of a specified review comment. This endpoint supports the following custom
-     * media types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
-     * the markdown body. Response will include `body_text`. -…
+     * Edits the content of a specified review comment. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param body The text of the reply to the review comment.
      */
-    fun pullsUpdateReviewComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        commentId: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): PullRequestReviewComment {
-        return SdkClient.request<PullRequestReviewComment>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("body" to (body)),
-                    operationId = "pullsUpdateReviewComment",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun pullsUpdateReviewComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, body: String, options: RequestOptions? = null): PullRequestReviewComment {
+        return SdkClient.request<PullRequestReviewComment>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "pullsUpdateReviewComment", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object PullsDeleteReviewCommentOperation {
     /**
-     * Deletes a review comment from a pull request in a repository. Supply `owner` and `repo` to
-     * identify the repository and `comment_id` to select the comment. A 204 response confirms
-     * deletion without returning a response body.
+     * Deletes a review comment from a pull request in a repository. Supply `owner` and `repo` to identify the repository and `comment_id` to select the comment. A 204 response confirms deletion without returning a response body.
      *
      * Deletes a review comment.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      */
-    fun pullsDeleteReviewComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}",
-                config = clientConfig,
-                operationId = "pullsDeleteReviewComment",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun pullsDeleteReviewComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, operationId = "pullsDeleteReviewComment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }
 
 internal object PullsGetOperation {
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
-     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
-     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's
-     * products in the GitHub Help documentation. Lists details of a pull request by providing its
-     * number. When you get, create, or edit a pull request, GitHub creates a merge commit to test
-     * whether the…
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. Lists details of a pull request by providing its number. When you get, create, or edit a pull request, GitHub creates a merge commit to test whether the…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      */
-    fun pullsGet(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        options: RequestOptions? = null,
-    ): PullRequest {
-        return SdkClient.request<PullRequest>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}",
-                    config = clientConfig,
-                    operationId = "pullsGet",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "406" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsGet(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): PullRequest {
+        return SdkClient.request<PullRequest>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}", config = clientConfig, operationId = "pullsGet", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "406" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object PullsUpdateOperation {
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
-     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
-     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's
-     * products in the GitHub Help documentation. To open or update a pull request in a public
-     * repository, you must have write access to the head or the source branch. For
-     * organization-owned repositories,…
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To open or update a pull request in a public repository, you must have write access to the head or the source branch. For organization-owned repositories,…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param title The title of the pull request.
      * @param body The contents of the pull request.
      * @param state State of this Pull Request. Either `open` or `closed`.
-     * @param base The name of the branch you want your changes pulled into. This should be an
-     *   existing branch on the current repository. You cannot update the base branch on a pull
-     *   request to point to another repository.
-     * @param maintainerCanModify Indicates whether maintainers can modify the pull request.
+     * @param base The name of the branch you want your changes pulled into. This
+     *   should be an existing branch on the current repository. You cannot update the
+     *   base branch on a pull request to point to another repository.
+     * @param maintainerCanModify Indicates whether maintainers can modify the pull
+     *   request.
      */
-    fun pullsUpdate(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsUpdateRequest,
-        options: RequestOptions? = null,
-    ): PullRequest {
-        return SdkClient.request<PullRequest>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "title" to (SdkClient.omitIfNull(request.title)),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                            "state" to (SdkClient.omitIfNull(request.state)),
-                            "base" to (SdkClient.omitIfNull(request.base)),
-                            "maintainer_can_modify" to
-                                (SdkClient.omitIfNull(request.maintainerCanModify)),
-                        ),
-                    operationId = "pullsUpdate",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsUpdate(clientConfig: ClientConfig, request: Pulls.PullsUpdateRequest, options: RequestOptions? = null): PullRequest {
+        return SdkClient.request<PullRequest>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}", config = clientConfig, body = SdkClient.bodyMap("title" to (SdkClient.omitIfNull(request.title)), "body" to (SdkClient.omitIfNull(request.body)), "state" to (SdkClient.omitIfNull(request.state)), "base" to (SdkClient.omitIfNull(request.base)), "maintainer_can_modify" to
+    (SdkClient.omitIfNull(request.maintainerCanModify))), operationId = "pullsUpdate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsListReviewCommentsOperation {
     /**
-     * Lists all review comments for a specified pull request. By default, review comments are in
-     * ascending order by ID. This endpoint supports the following custom media types. For more
-     * information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**:
-     * Returns the raw markdown body. Response will include `body`. This is the default if you do
-     * not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**:
-     * Returns a text only…
+     * Lists all review comments for a specified pull request. By default, review comments are in ascending order by ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param sort The property to sort the results by.
-     * @param direction The direction to sort results. Ignored without `sort` parameter.
-     * @param since Only show results that were last updated after the given time. This is a
-     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param direction The direction to sort results. Ignored without `sort`
+     *   parameter.
+     * @param since Only show results that were last updated after the given time.
+     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsListReviewComments(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsListReviewCommentsRequest,
-        options: RequestOptions? = null,
-    ): List<PullRequestReviewComment> {
+    fun pullsListReviewComments(clientConfig: ClientConfig, request: Pulls.PullsListReviewCommentsRequest, options: RequestOptions? = null): List<PullRequestReviewComment> {
         validatePullsListReviewCommentsRequest(request)
 
-        return SdkClient.request<List<PullRequestReviewComment>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/comments",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "since" to
-                                SdkClient.queryValue(request.since, "form", true, "date-time"),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "pullsListReviewComments",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<List<PullRequestReviewComment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/comments", config = clientConfig, query = mapOf("sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "since" to
+    SdkClient.queryValue(request.since, "form", true, "date-time"), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "pullsListReviewComments", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validatePullsListReviewCommentsRequest(
-        request: Pulls.PullsListReviewCommentsRequest
-    ) {
+
+    private fun validatePullsListReviewCommentsRequest(request: Pulls.PullsListReviewCommentsRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-        }
+}
     }
 }
 
 internal object PullsCreateReviewCommentOperation {
     /**
-     * Creates a review comment on the diff of a specified pull request. To add a regular comment to
-     * a pull request timeline, see "Create an issue comment." If your comment applies to more than
-     * one line in the pull request diff, you should use the parameters `line`, `side`, and
-     * optionally `start_line` and `start_side` in your request. The `position` parameter is closing
-     * down. If you use `position`, the `line`, `side`, `start_line`, and `start_side` parameters
-     * are not required. This…
+     * Creates a review comment on the diff of a specified pull request. To add a regular comment to a pull request timeline, see "Create an issue comment." If your comment applies to more than one line in the pull request diff, you should use the parameters `line`, `side`, and optionally `start_line` and `start_side` in your request. The `position` parameter is closing down. If you use `position`, the `line`, `side`, `start_line`, and `start_side` parameters are not required. This…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param body The text of the review comment.
-     * @param commitId The SHA of the commit needing a comment. Not using the latest commit SHA may
-     *   render your comment outdated if a subsequent commit modifies the line you specify as the
-     *   `position`.
+     * @param commitId The SHA of the commit needing a comment. Not using the latest
+     *   commit SHA may render your comment outdated if a subsequent commit modifies
+     *   the line you specify as the `position`.
      * @param path The relative path to the file that necessitates a comment.
-     * @param position **This parameter is closing down. Use `line` instead**. The position in the
-     *   diff where you want to add a review comment. Note this value is not the same as the line
-     *   number in the file. The position value equals the number of lines down from the first "@@"
-     *   hunk header in the file you want to add a comment. The line just below the "@@" line is
-     *   position 1, the next line is position 2, and so on. The position in the diff continues to
-     *   increase through lines of whitespace and…
-     * @param side In a split diff view, the side of the diff that the pull request's changes appear
-     *   on. Can be `LEFT` or `RIGHT`. Use `LEFT` for deletions that appear in red. Use `RIGHT` for
-     *   additions that appear in green or unchanged lines that appear in white and are shown for
-     *   context. For a multi-line comment, side represents whether the last line of the comment
-     *   range is a deletion or addition. For more information, see "Diff view options" in the
+     * @param position **This parameter is closing down. Use `line` instead**. The
+     *   position in the diff where you want to add a review comment. Note this value
+     *   is not the same as the line number in the file. The position value equals the
+     *   number of lines down from the first "@@" hunk header in the file you want to
+     *   add a comment. The line just below the "@@" line is position 1, the next line
+     *   is position 2, and so on. The position in the diff continues to increase
+     *   through lines of whitespace and…
+     * @param side In a split diff view, the side of the diff that the pull request's
+     *   changes appear on. Can be `LEFT` or `RIGHT`. Use `LEFT` for deletions that
+     *   appear in red. Use `RIGHT` for additions that appear in green or unchanged
+     *   lines that appear in white and are shown for context. For a multi-line
+     *   comment, side represents whether the last line of the comment range is a
+     *   deletion or addition. For more information, see "Diff view options" in the
      *   GitHub Help documentation.
-     * @param line **Required unless using `subject_type:file`**. The line of the blob in the pull
-     *   request diff that the comment applies to. For a multi-line comment, the last line of the
-     *   range that your comment applies to.
-     * @param startLine **Required when using multi-line comments unless using `in_reply_to`**. The
-     *   `start_line` is the first line in the pull request diff that your multi-line comment
-     *   applies to. To learn more about multi-line comments, see "Commenting on a pull request" in
-     *   the GitHub Help documentation.
-     * @param startSide **Required when using multi-line comments unless using `in_reply_to`**. The
-     *   `start_side` is the starting side of the diff that the comment applies to. Can be `LEFT` or
-     *   `RIGHT`. To learn more about multi-line comments, see "Commenting on a pull request" in the
-     *   GitHub Help documentation. See `side` in this table for additional context.
-     * @param inReplyTo The ID of the review comment to reply to. To find the ID of a review comment
-     *   with "List review comments on a pull request". When specified, all parameters other than
-     *   `body` in the request body are ignored.
+     * @param line **Required unless using `subject_type:file`**. The line of the
+     *   blob in the pull request diff that the comment applies to. For a multi-line
+     *   comment, the last line of the range that your comment applies to.
+     * @param startLine **Required when using multi-line comments unless using
+     *   `in_reply_to`**. The `start_line` is the first line in the pull request diff
+     *   that your multi-line comment applies to. To learn more about multi-line
+     *   comments, see "Commenting on a pull request" in the GitHub Help documentation.
+     * @param startSide **Required when using multi-line comments unless using
+     *   `in_reply_to`**. The `start_side` is the starting side of the diff that the
+     *   comment applies to. Can be `LEFT` or `RIGHT`. To learn more about multi-line
+     *   comments, see "Commenting on a pull request" in the GitHub Help documentation.
+     *   See `side` in this table for additional context.
+     * @param inReplyTo The ID of the review comment to reply to. To find the ID of a
+     *   review comment with "List review comments on a pull request". When specified,
+     *   all parameters other than `body` in the request body are ignored.
      * @param subjectType The level at which the comment is targeted.
      */
-    fun pullsCreateReviewComment(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsCreateReviewCommentRequest,
-        options: RequestOptions? = null,
-    ): PullRequestReviewComment {
-        return SdkClient.request<PullRequestReviewComment>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/comments",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "body" to (request.body),
-                            "commit_id" to (request.commitId),
-                            "path" to (request.path),
-                            "position" to (SdkClient.omitIfNull(request.position)),
-                            "side" to (SdkClient.omitIfNull(request.side)),
-                            "line" to (SdkClient.omitIfNull(request.line)),
-                            "start_line" to (SdkClient.omitIfNull(request.startLine)),
-                            "start_side" to (SdkClient.omitIfNull(request.startSide)),
-                            "in_reply_to" to (SdkClient.omitIfNull(request.inReplyTo)),
-                            "subject_type" to (SdkClient.omitIfNull(request.subjectType)),
-                        ),
-                    operationId = "pullsCreateReviewComment",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsCreateReviewComment(clientConfig: ClientConfig, request: Pulls.PullsCreateReviewCommentRequest, options: RequestOptions? = null): PullRequestReviewComment {
+        return SdkClient.request<PullRequestReviewComment>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/comments", config = clientConfig, body = SdkClient.bodyMap("body" to (request.body), "commit_id" to (request.commitId), "path" to (request.path), "position" to (SdkClient.omitIfNull(request.position)), "side" to (SdkClient.omitIfNull(request.side)), "line" to (SdkClient.omitIfNull(request.line)), "start_line" to (SdkClient.omitIfNull(request.startLine)), "start_side" to (SdkClient.omitIfNull(request.startSide)), "in_reply_to" to (SdkClient.omitIfNull(request.inReplyTo)), "subject_type" to
+    (SdkClient.omitIfNull(request.subjectType))), operationId = "pullsCreateReviewComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsCreateReplyForReviewCommentOperation {
     /**
-     * Creates a reply to a review comment for a pull request. For the `comment_id`, provide the ID
-     * of the review comment you are replying to. This must be the ID of a _top-level review
-     * comment_, not a reply to that comment. Replies to replies are not supported. This endpoint
-     * triggers notifications. Creating content too quickly using this endpoint may result in
-     * secondary rate limiting. For more information, see "Rate limits for the API" and "Best
-     * practices for using the REST API."…
+     * Creates a reply to a review comment for a pull request. For the `comment_id`, provide the ID of the review comment you are replying to. This must be the ID of a _top-level review comment_, not a reply to that comment. Replies to replies are not supported. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API."…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param commentId The unique identifier of the comment.
      * @param body The text of the review comment.
      */
-    fun pullsCreateReplyForReviewComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        commentId: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): PullRequestReviewComment {
-        return SdkClient.request<PullRequestReviewComment>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/comments/${SdkClient.encodePathSegment(commentId)}/replies",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("body" to (body)),
-                    operationId = "pullsCreateReplyForReviewComment",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun pullsCreateReplyForReviewComment(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, commentId: Long, body: String, options: RequestOptions? = null): PullRequestReviewComment {
+        return SdkClient.request<PullRequestReviewComment>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/comments/${SdkClient.encodePathSegment(commentId)}/replies", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "pullsCreateReplyForReviewComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object PullsListCommitsOperation {
     /**
-     * Lists a maximum of 250 commits for a pull request. To receive a complete commit list for pull
-     * requests with more than 250 commits, use the List commits endpoint. This endpoint supports
-     * the following custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a…
+     * Lists a maximum of 250 commits for a pull request. To receive a complete commit list for pull requests with more than 250 commits, use the List commits endpoint. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsListCommits(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Commit> {
-        return SdkClient.request<List<Commit>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/commits",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "pullsListCommits",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun pullsListCommits(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Commit> {
+        return SdkClient.request<List<Commit>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/commits", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "pullsListCommits", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object PullsListFilesOperation {
     /**
-     * Lists the files in a specified pull request. > !NOTE] > Responses include a maximum of 3000
-     * files. The paginated response returns 30 files per page by default. This endpoint supports
-     * the following custom media types. For more information, see "\[Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a…
+     * Lists the files in a specified pull request. > !NOTE] > Responses include a maximum of 3000 files. The paginated response returns 30 files per page by default. This endpoint supports the following custom media types. For more information, see "\[Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsListFiles(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<DiffEntry> {
-        return SdkClient.request<List<DiffEntry>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/files",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "pullsListFiles",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsListFiles(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<DiffEntry> {
+        return SdkClient.request<List<DiffEntry>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/files", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "pullsListFiles", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object PullsCheckIfMergedOperation {
     /**
-     * Checks if a pull request has been merged into the base branch. The HTTP status of the
-     * response indicates whether or not the pull request has been merged; the response body is
-     * empty.
+     * Checks if a pull request has been merged into the base branch. The HTTP status of the response indicates whether or not the pull request has been merged; the response body is empty.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      */
-    fun pullsCheckIfMerged(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "GET",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/merge",
-                config = clientConfig,
-                operationId = "pullsCheckIfMerged",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun pullsCheckIfMerged(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/merge", config = clientConfig, operationId = "pullsCheckIfMerged", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object PullsMergeOperation {
     /**
-     * > !NOTE] > We recommend using the \[asynchronous merge API instead. This endpoint does not
-     * > support stacked pull requests or merging with a merge queue. Merges a pull request into the
-     * > base branch. This endpoint triggers notifications. Creating content too quickly using this
-     * > endpoint may result in secondary rate limiting. For more information, see "Rate limits for
-     * > the API" and "Best practices for using the REST API."
+     * > !NOTE] > We recommend using the \[asynchronous merge API instead. This endpoint does not support stacked pull requests or merging with a merge queue. Merges a pull request into the base branch. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API."
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param commitTitle Title for the automatic commit message.
      * @param commitMessage Extra detail to append to automatic commit message.
      * @param sha SHA that pull request head must match to allow merge.
      * @param mergeMethod The merge method to use.
      */
-    fun pullsMerge(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsMergeRequest,
-        options: RequestOptions? = null,
-    ): PullRequestMergeResult {
-        return SdkClient.request<PullRequestMergeResult>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/merge",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "commit_title" to (SdkClient.omitIfNull(request.commitTitle)),
-                            "commit_message" to (SdkClient.omitIfNull(request.commitMessage)),
-                            "sha" to (SdkClient.omitIfNull(request.sha)),
-                            "merge_method" to (SdkClient.omitIfNull(request.mergeMethod)),
-                        ),
-                    operationId = "pullsMerge",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsMerge(clientConfig: ClientConfig, request: Pulls.PullsMergeRequest, options: RequestOptions? = null): PullRequestMergeResult {
+        return SdkClient.request<PullRequestMergeResult>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/merge", config = clientConfig, body = SdkClient.bodyMap("commit_title" to
+    (SdkClient.omitIfNull(request.commitTitle)), "commit_message" to
+    (SdkClient.omitIfNull(request.commitMessage)), "sha" to (SdkClient.omitIfNull(request.sha)), "merge_method" to
+    (SdkClient.omitIfNull(request.mergeMethod))), operationId = "pullsMerge", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsMergeAsyncOperation {
     /**
-     * Merges a pull request into the base branch in the background or adds it to a merge queue.
-     * Background processing allows certain types of errors to be retried and reduces the risk of
-     * timeouts for complex merges. This is the required API for merging stacked pull requests. For
-     * a stacked pull request, the operation includes all open downstack pull requests. A new
-     * asynchronous merge request returns a `202` response with a UUID that can be used to fetch the
-     * result of the merge. If…
+     * Merges a pull request into the base branch in the background or adds it to a merge queue. Background processing allows certain types of errors to be retried and reduces the risk of timeouts for complex merges. This is the required API for merging stacked pull requests. For a stacked pull request, the operation includes all open downstack pull requests. A new asynchronous merge request returns a `202` response with a UUID that can be used to fetch the result of the merge. If…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param commitTitle Title for the automatic commit message. Only supported for direct merges.
-     * @param commitMessage Extra detail to append to automatic commit message. Only supported for
+     * @param commitTitle Title for the automatic commit message. Only supported for
      *   direct merges.
-     * @param sha SHA that pull request head must match to allow merge. If not provided, the current
-     *   head of the PR at the time of the request will be used; if the PR is pushed in between the
-     *   merge being requested and being executed, the merge will be cancelled.
-     * @param mergeMethod The merge method to use for a direct merge. Only supported for direct
-     *   merges.
-     * @param mergeAction The action that will be taken to merge the pull request. `direct_merge`
-     *   merges the pull request directly without using a merge queue; `merge_queue` adds the pull
-     *   request to a merge queue; `default` uses a merge queue if one is configured for the target
-     *   branch, or merges directly otherwise. If omitted, defaults to `default`.
-     * @param bypassRules Whether to bypass repository rules that the authenticated actor is
-     *   permitted to bypass.
+     * @param commitMessage Extra detail to append to automatic commit message. Only
+     *   supported for direct merges.
+     * @param sha SHA that pull request head must match to allow merge. If not
+     *   provided, the current head of the PR at the time of the request will be used;
+     *   if the PR is pushed in between the merge being requested and being executed,
+     *   the merge will be cancelled.
+     * @param mergeMethod The merge method to use for a direct merge. Only supported
+     *   for direct merges.
+     * @param mergeAction The action that will be taken to merge the pull request.
+     *   `direct_merge` merges the pull request directly without using a merge queue;
+     *   `merge_queue` adds the pull request to a merge queue; `default` uses a merge
+     *   queue if one is configured for the target branch, or merges directly
+     *   otherwise. If omitted, defaults to `default`.
+     * @param bypassRules Whether to bypass repository rules that the authenticated
+     *   actor is permitted to bypass.
      */
-    fun pullsMergeAsync(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsMergeAsyncRequest,
-        options: RequestOptions? = null,
-    ): PullRequestMergeAsyncResult {
-        return SdkClient.request<PullRequestMergeAsyncResult>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/merge-async",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "commit_title" to (SdkClient.omitIfNull(request.commitTitle)),
-                            "commit_message" to (SdkClient.omitIfNull(request.commitMessage)),
-                            "sha" to (SdkClient.omitIfNull(request.sha)),
-                            "merge_method" to (SdkClient.omitIfNull(request.mergeMethod)),
-                            "merge_action" to (SdkClient.omitIfNull(request.mergeAction)),
-                            "bypass_rules" to (SdkClient.omitIfNull(request.bypassRules)),
-                        ),
-                    operationId = "pullsMergeAsync",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to PullRequestMergeAsyncResult::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "409" to PullRequestMergeAsyncResult::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsMergeAsync(clientConfig: ClientConfig, request: Pulls.PullsMergeAsyncRequest, options: RequestOptions? = null): PullRequestMergeAsyncResult {
+        return SdkClient.request<PullRequestMergeAsyncResult>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/merge-async", config = clientConfig, body = SdkClient.bodyMap("commit_title" to
+    (SdkClient.omitIfNull(request.commitTitle)), "commit_message" to
+    (SdkClient.omitIfNull(request.commitMessage)), "sha" to (SdkClient.omitIfNull(request.sha)), "merge_method" to
+    (SdkClient.omitIfNull(request.mergeMethod)), "merge_action" to
+    (SdkClient.omitIfNull(request.mergeAction)), "bypass_rules" to
+    (SdkClient.omitIfNull(request.bypassRules))), operationId = "pullsMergeAsync", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to PullRequestMergeAsyncResult::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to PullRequestMergeAsyncResult::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsGetMergeAsyncResultOperation {
     /**
-     * Fetches the current result of an asynchronous merge request, identified by the UUID that was
-     * returned when the merge was requested. While the request's status is `pending`, the response
-     * includes the UUID, merge method, merge action, and expected head SHA of the request. Once the
-     * asynchronous request completes, its status is one of: - `merged`: The pull request was merged
-     * into the base branch. The response includes the merge commit OID. - `enqueued`: The pull
-     * request was…
+     * Fetches the current result of an asynchronous merge request, identified by the UUID that was returned when the merge was requested. While the request's status is `pending`, the response includes the UUID, merge method, merge action, and expected head SHA of the request. Once the asynchronous request completes, its status is one of: - `merged`: The pull request was merged into the base branch. The response includes the merge commit OID. - `enqueued`: The pull request was…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param uuid The UUID of the asynchronous merge request, as returned when the merge was
-     *   requested.
+     * @param uuid The UUID of the asynchronous merge request, as returned when the
+     *   merge was requested.
      */
-    fun pullsGetMergeAsyncResult(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        uuid: String,
-        options: RequestOptions? = null,
-    ): PullRequestMergeAsyncResult {
-        return SdkClient.request<PullRequestMergeAsyncResult>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/merge-async/${SdkClient.encodePathSegment(uuid)}",
-                    config = clientConfig,
-                    operationId = "pullsGetMergeAsyncResult",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun pullsGetMergeAsyncResult(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, uuid: String, options: RequestOptions? = null): PullRequestMergeAsyncResult {
+        return SdkClient.request<PullRequestMergeAsyncResult>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/merge-async/${SdkClient.encodePathSegment(uuid)}", config = clientConfig, operationId = "pullsGetMergeAsyncResult", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object PullsListRequestedReviewersOperation {
     /**
-     * Gets the users or teams whose review is requested for a pull request. Once a requested
-     * reviewer submits a review, they are no longer considered a requested reviewer. Their review
-     * will instead be returned by the List reviews for a pull request operation.
+     * Gets the users or teams whose review is requested for a pull request. Once a requested reviewer submits a review, they are no longer considered a requested reviewer. Their review will instead be returned by the List reviews for a pull request operation.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      */
-    fun pullsListRequestedReviewers(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        options: RequestOptions? = null,
-    ): PullRequestReviewRequest {
-        return SdkClient.request<PullRequestReviewRequest>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers",
-                    config = clientConfig,
-                    operationId = "pullsListRequestedReviewers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun pullsListRequestedReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): PullRequestReviewRequest {
+        return SdkClient.request<PullRequestReviewRequest>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers", config = clientConfig, operationId = "pullsListRequestedReviewers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object PullsRequestReviewersOperation {
     /**
-     * Requests reviews for a pull request from a given set of users and/or teams. This endpoint
-     * triggers notifications. Creating content too quickly using this endpoint may result in
-     * secondary rate limiting. For more information, see "Rate limits for the API" and "Best
-     * practices for using the REST API."
+     * Requests reviews for a pull request from a given set of users and/or teams. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API."
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewers An array of user `login`s that will be requested.
      * @param teamReviewers An array of team `slug`s that will be requested.
      */
-    fun pullsRequestReviewers(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        reviewers: List<String>? = null,
-        teamReviewers: List<String>? = null,
-        options: RequestOptions? = null,
-    ): PullRequestSimple {
-        return SdkClient.request<PullRequestSimple>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "reviewers" to (SdkClient.omitIfNull(reviewers)),
-                            "team_reviewers" to (SdkClient.omitIfNull(teamReviewers)),
-                        ),
-                    operationId = "pullsRequestReviewers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsRequestReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>? = null, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple {
+        return SdkClient.request<PullRequestSimple>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers", config = clientConfig, body = SdkClient.bodyMap("reviewers" to (SdkClient.omitIfNull(reviewers)), "team_reviewers" to (SdkClient.omitIfNull(teamReviewers))), operationId = "pullsRequestReviewers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 }
 
@@ -961,262 +479,112 @@ internal object PullsRemoveRequestedReviewersOperation {
     /**
      * Removes review requests from a pull request for a given set of users and/or teams.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewers An array of user `login`s that will be removed.
      * @param teamReviewers An array of team `slug`s that will be removed.
      */
-    fun pullsRemoveRequestedReviewers(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        reviewers: List<String>,
-        teamReviewers: List<String>? = null,
-        options: RequestOptions? = null,
-    ): PullRequestSimple {
-        return SdkClient.request<PullRequestSimple>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "reviewers" to (reviewers),
-                            "team_reviewers" to (SdkClient.omitIfNull(teamReviewers)),
-                        ),
-                    operationId = "pullsRemoveRequestedReviewers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+    fun pullsRemoveRequestedReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple {
+        return SdkClient.request<PullRequestSimple>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers", config = clientConfig, body = SdkClient.bodyMap("reviewers" to (reviewers), "team_reviewers" to (SdkClient.omitIfNull(teamReviewers))), operationId = "pullsRemoveRequestedReviewers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsRerequestReviewersOperation {
     /**
-     * Rerequests reviews for a pull request from a given set of users and/or teams. This endpoint
-     * triggers notifications. Creating content too quickly using this endpoint may result in
-     * secondary rate limiting. For more information, see "Rate limits for the API" and "Best
-     * practices for using the REST API."
+     * Rerequests reviews for a pull request from a given set of users and/or teams. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API."
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewers An array of user `login`s whose reviews will be rerequested.
-     * @param teamReviewers An array of team `slug`s whose reviews will be rerequested.
+     * @param teamReviewers An array of team `slug`s whose reviews will be
+     *   rerequested.
      */
-    fun pullsRerequestReviewers(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        reviewers: List<String>? = null,
-        teamReviewers: List<String>? = null,
-        options: RequestOptions? = null,
-    ): PullRequestSimple {
-        return SdkClient.request<PullRequestSimple>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers/rerequest",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "reviewers" to (SdkClient.omitIfNull(reviewers)),
-                            "team_reviewers" to (SdkClient.omitIfNull(teamReviewers)),
-                        ),
-                    operationId = "pullsRerequestReviewers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun pullsRerequestReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>? = null, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple {
+        return SdkClient.request<PullRequestSimple>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers/rerequest", config = clientConfig, body = SdkClient.bodyMap("reviewers" to (SdkClient.omitIfNull(reviewers)), "team_reviewers" to (SdkClient.omitIfNull(teamReviewers))), operationId = "pullsRerequestReviewers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
     }
 }
 
 internal object PullsListReviewsOperation {
     /**
-     * Lists all reviews for a specified pull request. The list of reviews returns in chronological
-     * order. This endpoint supports the following custom media types. For more information, see
-     * "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw
-     * markdown body. Response will include `body`. This is the default if you do not pass any
-     * specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text
-     * only representation of the…
+     * Lists all reviews for a specified pull request. The list of reviews returns in chronological order. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsListReviews(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<PullRequestReview> {
-        return SdkClient.request<List<PullRequestReview>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "pullsListReviews",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun pullsListReviews(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PullRequestReview> {
+        return SdkClient.request<List<PullRequestReview>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "pullsListReviews", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object PullsCreateReviewOperation {
     /**
-     * Creates a review on a specified pull request. This endpoint triggers notifications. Creating
-     * content too quickly using this endpoint may result in secondary rate limiting. For more
-     * information, see "Rate limits for the API" and "Best practices for using the REST API." Pull
-     * request reviews created in the `PENDING` state are not submitted and therefore do not include
-     * the `submitted_at` property in the response. To create a pending review for a pull request,
-     * leave the `event`…
+     * Creates a review on a specified pull request. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." Pull request reviews created in the `PENDING` state are not submitted and therefore do not include the `submitted_at` property in the response. To create a pending review for a pull request, leave the `event`…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param commitId The SHA of the commit that needs a review. Not using the latest commit SHA
-     *   may render your review comment outdated if a subsequent commit modifies the line you
-     *   specify as the `position`. Defaults to the most recent commit in the pull request when you
-     *   do not specify a value.
-     * @param body **Required** when using `REQUEST_CHANGES` or `COMMENT` for the `event` parameter.
-     *   The body text of the pull request review.
-     * @param event The review action you want to perform. The review actions include: `APPROVE`,
-     *   `REQUEST_CHANGES`, or `COMMENT`. By leaving this blank, you set the review action state to
-     *   `PENDING`, which means you will need to submit the pull request review when you are ready.
-     * @param comments Use the following table to specify the location, destination, and contents of
-     *   the draft review comment.
+     * @param commitId The SHA of the commit that needs a review. Not using the
+     *   latest commit SHA may render your review comment outdated if a subsequent
+     *   commit modifies the line you specify as the `position`. Defaults to the most
+     *   recent commit in the pull request when you do not specify a value.
+     * @param body **Required** when using `REQUEST_CHANGES` or `COMMENT` for the
+     *   `event` parameter. The body text of the pull request review.
+     * @param event The review action you want to perform. The review actions
+     *   include: `APPROVE`, `REQUEST_CHANGES`, or `COMMENT`. By leaving this blank,
+     *   you set the review action state to `PENDING`, which means you will need to
+     *   submit the pull request review when you are ready.
+     * @param comments Use the following table to specify the location, destination,
+     *   and contents of the draft review comment.
      */
-    fun pullsCreateReview(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsCreateReviewRequest,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "commit_id" to (SdkClient.omitIfNull(request.commitId)),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                            "event" to (SdkClient.omitIfNull(request.event)),
-                            "comments" to (SdkClient.omitIfNull(request.comments)),
-                        ),
-                    operationId = "pullsCreateReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsCreateReview(clientConfig: ClientConfig, request: Pulls.PullsCreateReviewRequest, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews", config = clientConfig, body = SdkClient.bodyMap("commit_id" to (SdkClient.omitIfNull(request.commitId)), "body" to (SdkClient.omitIfNull(request.body)), "event" to (SdkClient.omitIfNull(request.event)), "comments" to (SdkClient.omitIfNull(request.comments))), operationId = "pullsCreateReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }
 
 internal object PullsGetReviewOperation {
     /**
-     * Retrieves a pull request review by its ID. This endpoint supports the following custom media
-     * types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
-     * the markdown body. Response will include `body_text`. -…
+     * Retrieves a pull request review by its ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewId The unique identifier of the review.
      */
-    fun pullsGetReview(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        reviewId: Long,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}",
-                    config = clientConfig,
-                    operationId = "pullsGetReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun pullsGetReview(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewId: Long, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}", config = clientConfig, operationId = "pullsGetReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object PullsUpdateReviewOperation {
     /**
-     * Updates the contents of a specified review summary comment. This endpoint supports the
-     * following custom media types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
-     * the markdown body. Response will include…
+     * Updates the contents of a specified review summary comment. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewId The unique identifier of the review.
      * @param body The body text of the pull request review.
      */
-    fun pullsUpdateReview(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        reviewId: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("body" to (body)),
-                    operationId = "pullsUpdateReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationErrorSimple::class.java),
-                )
-            )
-            .data
+    fun pullsUpdateReview(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewId: Long, body: String, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "pullsUpdateReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationErrorSimple::class.java))).data
     }
 }

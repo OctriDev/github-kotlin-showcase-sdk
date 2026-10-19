@@ -20,1067 +20,353 @@ import java.time.LocalDate
 
 internal object CopilotCopilotEnterpriseOneDayUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise usage metrics report
-     * for a specific day. The report provides comprehensive usage data for Copilot features across
-     * the enterprise. The report contains aggregated metrics for the specified day, including usage
-     * statistics for various Copilot features, user engagement data, and feature adoption metrics.
-     * Reports are generated daily and made available for download through signed URLs with a
-     * limited expiration…
+     * Use this endpoint to retrieve download links for the Copilot enterprise usage metrics report for a specific day. The report provides comprehensive usage data for Copilot features across the enterprise. The report contains aggregated metrics for the specified day, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration…
      *
      * @param enterprise The slug version of the enterprise name.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotEnterpriseOneDayUsageMetrics(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotEnterpriseOneDayUsageMetrics(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/enterprise-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotEnterpriseOneDayUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/enterprise-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotEnterpriseOneDayUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotEnterpriseUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day enterprise Copilot usage
-     * metrics report. The report provides comprehensive usage data for Copilot features across the
-     * enterprise. The report contains aggregated metrics for the previous 28 days, including usage
-     * statistics for various Copilot features, user engagement data, and feature adoption metrics.
-     * Reports are generated daily and made available for download through signed URLs with a
-     * limited expiration…
+     * Use this endpoint to retrieve download links for the latest 28-day enterprise Copilot usage metrics report. The report provides comprehensive usage data for Copilot features across the enterprise. The report contains aggregated metrics for the previous 28 days, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration…
      *
      * @param enterprise The slug version of the enterprise name.
      */
-    fun copilotCopilotEnterpriseUsageMetrics(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics28DayReport {
-        return SdkClient.request<CopilotUsageMetrics28DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/enterprise-28-day/latest",
-                    config = clientConfig,
-                    operationId = "copilotCopilotEnterpriseUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotCopilotEnterpriseUsageMetrics(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport {
+        return SdkClient.request<CopilotUsageMetrics28DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/enterprise-28-day/latest", config = clientConfig, operationId = "copilotCopilotEnterpriseUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotEnterpriseReposOneDayReportOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise repository report for
-     * a specific day. The report provides per-repository pull request metrics for Copilot across
-     * the enterprise, with one entry per repository. The report contains repository-level pull
-     * request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot
-     * Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are
-     * included. Reports are…
+     * Use this endpoint to retrieve download links for the Copilot enterprise repository report for a specific day. The report provides per-repository pull request metrics for Copilot across the enterprise, with one entry per repository. The report contains repository-level pull request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are included. Reports are…
      *
      * @param enterprise The slug version of the enterprise name.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotEnterpriseReposOneDayReport(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotEnterpriseReposOneDayReport(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/repos-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotEnterpriseReposOneDayReport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/repos-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotEnterpriseReposOneDayReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotEnterpriseUserTeamsOneDayReportOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise user-teams report for
-     * a specific day. The report provides user-team join data for Copilot across the enterprise,
-     * with one entry per user-team pair. The report contains user-team membership data for the
-     * specified day, enabling consumers to join with the existing enterprise user reports to
-     * compute team-level usage metrics. Reports are generated daily and made available for download
-     * through signed URLs with…
+     * Use this endpoint to retrieve download links for the Copilot enterprise user-teams report for a specific day. The report provides user-team join data for Copilot across the enterprise, with one entry per user-team pair. The report contains user-team membership data for the specified day, enabling consumers to join with the existing enterprise user reports to compute team-level usage metrics. Reports are generated daily and made available for download through signed URLs with…
      *
      * @param enterprise The slug version of the enterprise name.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotEnterpriseUserTeamsOneDayReport(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotEnterpriseUserTeamsOneDayReport(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/user-teams-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotEnterpriseUserTeamsOneDayReport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/user-teams-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotEnterpriseUserTeamsOneDayReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotUsersOneDayUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot user usage metrics report for a
-     * specific day. The report provides detailed user-level usage data and engagement metrics for
-     * Copilot features across the enterprise. The report contains user-specific metrics for the
-     * specified day, including individual user engagement statistics, feature usage patterns, and
-     * adoption metrics broken down by user. This report allows authorized users to analyze Copilot
-     * usage at the user…
+     * Use this endpoint to retrieve download links for the Copilot user usage metrics report for a specific day. The report provides detailed user-level usage data and engagement metrics for Copilot features across the enterprise. The report contains user-specific metrics for the specified day, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user…
      *
      * @param enterprise The slug version of the enterprise name.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotUsersOneDayUsageMetrics(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotUsersOneDayUsageMetrics(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/users-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotUsersOneDayUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/users-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotUsersOneDayUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotUsersUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day enterprise users Copilot
-     * usage metrics report. The report provides detailed user-level usage data and engagement
-     * metrics for Copilot features across the enterprise. The report contains user-specific metrics
-     * for the previous 28 days, including individual user engagement statistics, feature usage
-     * patterns, and adoption metrics broken down by user. This report allows authorized users to
-     * analyze Copilot usage at…
+     * Use this endpoint to retrieve download links for the latest 28-day enterprise users Copilot usage metrics report. The report provides detailed user-level usage data and engagement metrics for Copilot features across the enterprise. The report contains user-specific metrics for the previous 28 days, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at…
      *
      * @param enterprise The slug version of the enterprise name.
      */
-    fun copilotCopilotUsersUsageMetrics(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics28DayReport {
-        return SdkClient.request<CopilotUsageMetrics28DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/users-28-day/latest",
-                    config = clientConfig,
-                    operationId = "copilotCopilotUsersUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotCopilotUsersUsageMetrics(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport {
+        return SdkClient.request<CopilotUsageMetrics28DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/users-28-day/latest", config = clientConfig, operationId = "copilotCopilotUsersUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotSetEnterpriseCodingAgentPolicyOperation {
     /**
-     * Sets the policy for Copilot cloud agent usage across an enterprise. Enterprise owners can
-     * configure whether Copilot cloud agent is enabled for all organizations, disabled for all
-     * organizations, configured by individual organization admins, or enabled for selected
-     * organizations only. Only enterprise owners can set the coding agent policy for their
-     * enterprise. OAuth app tokens and personal access tokens (classic) need either the
-     * `manage_billing:copilot` or `admin:enterprise`…
+     * Sets the policy for Copilot cloud agent usage across an enterprise. Enterprise owners can configure whether Copilot cloud agent is enabled for all organizations, disabled for all organizations, configured by individual organization admins, or enabled for selected organizations only. Only enterprise owners can set the coding agent policy for their enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:enterprise`…
      *
      * @param enterprise The slug version of the enterprise name.
-     * @param policyState The policy state for Copilot cloud agent in the enterprise. Can be one of
-     *   `enabled_for_all_orgs`, `disabled_for_all_orgs`, `enabled_for_selected_orgs`, or
-     *   `configured_by_org_admins`.
+     * @param policyState The policy state for Copilot cloud agent in the enterprise.
+     *   Can be one of `enabled_for_all_orgs`, `disabled_for_all_orgs`,
+     *   `enabled_for_selected_orgs`, or `configured_by_org_admins`.
      */
-    fun copilotSetEnterpriseCodingAgentPolicy(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        policyState: CopilotSetEnterpriseCodingAgentPolicyPolicyStateEnum,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/policies/coding_agent",
-                config = clientConfig,
-                body = SdkClient.bodyMap("policy_state" to (policyState)),
-                operationId = "copilotSetEnterpriseCodingAgentPolicy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("400" to BasicError::class.java),
-            )
-        )
+    fun copilotSetEnterpriseCodingAgentPolicy(clientConfig: ClientConfig, enterprise: String, policyState: CopilotSetEnterpriseCodingAgentPolicyPolicyStateEnum, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/policies/coding_agent", config = clientConfig, body = SdkClient.bodyMap("policy_state" to (policyState)), operationId = "copilotSetEnterpriseCodingAgentPolicy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java)))
     }
 }
 
 internal object CopilotAddOrganizationsToEnterpriseCodingAgentPolicyOperation {
     /**
-     * Enables Copilot cloud agent for the specified organizations within the enterprise. The
-     * enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before using this
-     * endpoint. Organizations can be specified by login or matched via custom properties. Only
-     * organizations that have Copilot enabled and belong to the enterprise will be affected. Only
-     * enterprise owners can add organizations to the coding agent policy. OAuth app tokens and
-     * personal access tokens…
+     * Enables Copilot cloud agent for the specified organizations within the enterprise. The enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before using this endpoint. Organizations can be specified by login or matched via custom properties. Only organizations that have Copilot enabled and belong to the enterprise will be affected. Only enterprise owners can add organizations to the coding agent policy. OAuth app tokens and personal access tokens…
      *
      * @param enterprise The slug version of the enterprise name.
-     * @param organizations List of organization logins within the enterprise to enable Copilot
-     *   cloud agent for.
-     * @param customProperties List of custom property filters to match organizations. Organizations
-     *   matching any of the specified property name/value pairs will be included. This is a
-     *   one-time operation, setting the property on an organization in the future will not
-     *   automatically update its coding agent policy.
+     * @param organizations List of organization logins within the enterprise to
+     *   enable Copilot cloud agent for.
+     * @param customProperties List of custom property filters to match
+     *   organizations. Organizations matching any of the specified property name/value
+     *   pairs will be included. This is a one-time operation, setting the property on
+     *   an organization in the future will not automatically update its coding agent
+     *   policy.
      */
-    fun copilotAddOrganizationsToEnterpriseCodingAgentPolicy(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        organizations: List<String>? = null,
-        customProperties:
-            List<
-                Copilot.CopilotAddOrganizationsToEnterpriseCodingAgentPolicyCustomPropertiesItem
-            >? =
-            null,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "POST",
-                "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/policies/coding_agent/organizations",
-                config = clientConfig,
-                body =
-                    SdkClient.bodyMap(
-                        "organizations" to (SdkClient.omitIfNull(organizations)),
-                        "custom_properties" to (SdkClient.omitIfNull(customProperties)),
-                    ),
-                operationId = "copilotAddOrganizationsToEnterpriseCodingAgentPolicy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("400" to BasicError::class.java),
-            )
-        )
+    fun copilotAddOrganizationsToEnterpriseCodingAgentPolicy(clientConfig: ClientConfig, enterprise: String, organizations: List<String>? = null, customProperties: List<Copilot.CopilotAddOrganizationsToEnterpriseCodingAgentPolicyCustomPropertiesItem>? = null, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/policies/coding_agent/organizations", config = clientConfig, body = SdkClient.bodyMap("organizations" to (SdkClient.omitIfNull(organizations)), "custom_properties" to
+    (SdkClient.omitIfNull(customProperties))), operationId = "copilotAddOrganizationsToEnterpriseCodingAgentPolicy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java)))
     }
 }
 
 internal object CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyOperation {
     /**
-     * Disables Copilot cloud agent for the specified organizations within the enterprise. The
-     * enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before using this
-     * endpoint. Organizations can be specified by login or matched via custom properties. Only
-     * organizations that have Copilot enabled and belong to the enterprise will be affected. Only
-     * enterprise owners can remove organizations from the coding agent policy. OAuth app tokens and
-     * personal access tokens…
+     * Disables Copilot cloud agent for the specified organizations within the enterprise. The enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before using this endpoint. Organizations can be specified by login or matched via custom properties. Only organizations that have Copilot enabled and belong to the enterprise will be affected. Only enterprise owners can remove organizations from the coding agent policy. OAuth app tokens and personal access tokens…
      *
      * @param enterprise The slug version of the enterprise name.
-     * @param organizations List of organization logins within the enterprise to disable Copilot
-     *   cloud agent for.
-     * @param customProperties List of custom property filters to match organizations. Organizations
-     *   matching any of the specified property name/value pairs will be included. This is a
-     *   one-time operation, setting the property on an organization in the future will not
-     *   automatically update its coding agent policy.
+     * @param organizations List of organization logins within the enterprise to
+     *   disable Copilot cloud agent for.
+     * @param customProperties List of custom property filters to match
+     *   organizations. Organizations matching any of the specified property name/value
+     *   pairs will be included. This is a one-time operation, setting the property on
+     *   an organization in the future will not automatically update its coding agent
+     *   policy.
      */
-    fun copilotRemoveOrganizationsFromEnterpriseCodingAgentPolicy(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        organizations: List<String>? = null,
-        customProperties:
-            List<
-                Copilot.CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyCustX6572c3b03c
-            >? =
-            null,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/policies/coding_agent/organizations",
-                config = clientConfig,
-                body =
-                    SdkClient.bodyMap(
-                        "organizations" to (SdkClient.omitIfNull(organizations)),
-                        "custom_properties" to (SdkClient.omitIfNull(customProperties)),
-                    ),
-                operationId = "copilotRemoveOrganizationsFromEnterpriseCodingAgentPolicy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("400" to BasicError::class.java),
-            )
-        )
+    fun copilotRemoveOrganizationsFromEnterpriseCodingAgentPolicy(clientConfig: ClientConfig, enterprise: String, organizations: List<String>? = null, customProperties: List<Copilot.CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyCustX6572c3b03c>? = null, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/policies/coding_agent/organizations", config = clientConfig, body = SdkClient.bodyMap("organizations" to (SdkClient.omitIfNull(organizations)), "custom_properties" to
+    (SdkClient.omitIfNull(customProperties))), operationId = "copilotRemoveOrganizationsFromEnterpriseCodingAgentPolicy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java)))
     }
 }
 
 internal object CopilotGetCopilotOrganizationDetailsOperation {
     /**
-     * Retrieves an organization's Copilot subscription details, including its seat breakdown and
-     * feature policies. Use `org` to identify the organization; only organization owners can view
-     * these details. OAuth app tokens and classic personal access tokens need the
-     * `manage_billing:copilot` or `read:org` scope.
+     * Retrieves an organization's Copilot subscription details, including its seat breakdown and feature policies. Use `org` to identify the organization; only organization owners can view these details. OAuth app tokens and classic personal access tokens need the `manage_billing:copilot` or `read:org` scope.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Gets information
-     * > about an organization's Copilot subscription, including seat breakdown and feature
-     * > policies. To configure these settings, go to your organization's settings on GitHub.com.
-     * > For more information, see "\[Managing policies for Copilot in your organization." Only
-     * > organization owners can view details about the organization's Copilot Business or Copilot
-     * > Enterprise subscription. OAuth app tokens…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Gets information about an organization's Copilot subscription, including seat breakdown and feature policies. To configure these settings, go to your organization's settings on GitHub.com. For more information, see "\[Managing policies for Copilot in your organization." Only organization owners can view details about the organization's Copilot Business or Copilot Enterprise subscription. OAuth app tokens…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun copilotGetCopilotOrganizationDetails(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): CopilotOrganizationDetails {
-        return SdkClient.request<CopilotOrganizationDetails>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing",
-                    config = clientConfig,
-                    operationId = "copilotGetCopilotOrganizationDetails",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotGetCopilotOrganizationDetails(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotOrganizationDetails {
+        return SdkClient.request<CopilotOrganizationDetails>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing", config = clientConfig, operationId = "copilotGetCopilotOrganizationDetails", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotListCopilotSeatsOperation {
     /**
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Lists all Copilot
-     * > seats for which an organization with a Copilot Business or Copilot Enterprise subscription
-     * > is currently being billed. Only organization owners can view assigned seats. Each seat
-     * > object contains information about the assigned user's most recent Copilot activity. Users
-     * > must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in
-     * > `last_activity_at`. For more…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Lists all Copilot seats for which an organization with a Copilot Business or Copilot Enterprise subscription is currently being billed. Only organization owners can view assigned seats. Each seat object contains information about the assigned user's most recent Copilot activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in `last_activity_at`. For more…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
      */
-    fun copilotListCopilotSeats(
-        clientConfig: ClientConfig,
-        org: String,
-        page: Long? = null,
-        perPage: Long? = null,
-        options: RequestOptions? = null,
-    ): Copilot.CopilotListCopilotSeatsResponse {
-        return SdkClient.request<Copilot.CopilotListCopilotSeatsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/seats",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                        ),
-                    operationId = "copilotListCopilotSeats",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotListCopilotSeats(clientConfig: ClientConfig, org: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Copilot.CopilotListCopilotSeatsResponse {
+        return SdkClient.request<Copilot.CopilotListCopilotSeatsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/seats", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "copilotListCopilotSeats", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotAddCopilotSeatsForTeamsOperation {
     /**
-     * Creates Copilot seats for users in the specified organization teams. Supply `selected_teams`
-     * with at least one team name; the organization must have a Copilot Business or Copilot
-     * Enterprise subscription and a configured public code suggestions policy. The organization is
-     * billed for each seat according to its Copilot plan.
+     * Creates Copilot seats for users in the specified organization teams. Supply `selected_teams` with at least one team name; the organization must have a Copilot Business or Copilot Enterprise subscription and a configured public code suggestions policy. The organization is billed for each seat according to its Copilot plan.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Purchases a GitHub
-     * > Copilot seat for all users within each specified team. The organization will be billed for
-     * > each seat based on the organization's Copilot plan. For more information about Copilot
-     * > pricing, see "\[About billing for GitHub Copilot in your organization." Only organization
-     * > owners can purchase Copilot seats for their organization members. The organization must
-     * > have a Copilot Business or…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Purchases a GitHub Copilot seat for all users within each specified team. The organization will be billed for each seat based on the organization's Copilot plan. For more information about Copilot pricing, see "\[About billing for GitHub Copilot in your organization." Only organization owners can purchase Copilot seats for their organization members. The organization must have a Copilot Business or…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedTeams List of team names within the organization to which to grant access to
-     *   GitHub Copilot.
+     * @param selectedTeams List of team names within the organization to which to
+     *   grant access to GitHub Copilot.
      */
-    fun copilotAddCopilotSeatsForTeams(
-        clientConfig: ClientConfig,
-        org: String,
-        selectedTeams: List<String>,
-        options: RequestOptions? = null,
-    ): Copilot.CopilotAddCopilotSeatsForTeamsResponse {
+    fun copilotAddCopilotSeatsForTeams(clientConfig: ClientConfig, org: String, selectedTeams: List<String>, options: RequestOptions? = null): Copilot.CopilotAddCopilotSeatsForTeamsResponse {
         Validation.validateItems("selected_teams", selectedTeams, Validation.LengthOpts(min = 1))
 
-        return SdkClient.request<Copilot.CopilotAddCopilotSeatsForTeamsResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_teams",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("selected_teams" to (selectedTeams)),
-                    operationId = "copilotAddCopilotSeatsForTeams",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<Copilot.CopilotAddCopilotSeatsForTeamsResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_teams", config = clientConfig, body = SdkClient.bodyMap("selected_teams" to (selectedTeams)), operationId = "copilotAddCopilotSeatsForTeams", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCancelCopilotSeatAssignmentForTeamsOperation {
     /**
-     * Triggers cancellation of Copilot seats for users in the specified organization teams by
-     * setting those seats to pending cancellation. Supply `selected_teams` with at least one team
-     * name; only organization owners can cancel seats for organization members. Affected users lose
-     * Copilot access at the end of the current billing cycle unless they retain access through
-     * another team.
+     * Triggers cancellation of Copilot seats for users in the specified organization teams by setting those seats to pending cancellation. Supply `selected_teams` with at least one team name; only organization owners can cancel seats for organization members. Affected users lose Copilot access at the end of the current billing cycle unless they retain access through another team.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets seats for all
-     * > members of each team specified to "pending cancellation". This will cause the members of
-     * > the specified team(s) to lose access to GitHub Copilot at the end of the current billing
-     * > cycle unless they retain access through another team. For more information about disabling
-     * > access to Copilot, see "\[Revoking access to Copilot for members of your organization."
-     * > Only organization owners can…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets seats for all members of each team specified to "pending cancellation". This will cause the members of the specified team(s) to lose access to GitHub Copilot at the end of the current billing cycle unless they retain access through another team. For more information about disabling access to Copilot, see "\[Revoking access to Copilot for members of your organization." Only organization owners can…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedTeams The names of teams from which to revoke access to GitHub Copilot.
+     * @param selectedTeams The names of teams from which to revoke access to GitHub
+     *   Copilot.
      */
-    fun copilotCancelCopilotSeatAssignmentForTeams(
-        clientConfig: ClientConfig,
-        org: String,
-        selectedTeams: List<String>,
-        options: RequestOptions? = null,
-    ): Copilot.CopilotCancelCopilotSeatAssignmentForTeamsResponse {
+    fun copilotCancelCopilotSeatAssignmentForTeams(clientConfig: ClientConfig, org: String, selectedTeams: List<String>, options: RequestOptions? = null): Copilot.CopilotCancelCopilotSeatAssignmentForTeamsResponse {
         Validation.validateItems("selected_teams", selectedTeams, Validation.LengthOpts(min = 1))
 
-        return SdkClient.request<Copilot.CopilotCancelCopilotSeatAssignmentForTeamsResponse>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_teams",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("selected_teams" to (selectedTeams)),
-                    operationId = "copilotCancelCopilotSeatAssignmentForTeams",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<Copilot.CopilotCancelCopilotSeatAssignmentForTeamsResponse>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_teams", config = clientConfig, body = SdkClient.bodyMap("selected_teams" to (selectedTeams)), operationId = "copilotCancelCopilotSeatAssignmentForTeams", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotAddCopilotSeatsForUsersOperation {
     /**
-     * Creates Copilot seats for organization members listed in `selected_usernames`. Submit at
-     * least one username; the organization must have a Copilot Business or Copilot Enterprise
-     * subscription, billing configured, and a suggestion matching policy set. The organization is
-     * billed for each seat, and only organization owners can purchase seats.
+     * Creates Copilot seats for organization members listed in `selected_usernames`. Submit at least one username; the organization must have a Copilot Business or Copilot Enterprise subscription, billing configured, and a suggestion matching policy set. The organization is billed for each seat, and only organization owners can purchase seats.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Purchases a GitHub
-     * > Copilot seat for each user specified. The organization will be billed for each seat based
-     * > on the organization's Copilot plan. For more information about Copilot pricing, see
-     * > "\[About billing for GitHub Copilot in your organization." Only organization owners can
-     * > purchase Copilot seats for their organization members. The organization must have a Copilot
-     * > Business or Copilot Enterprise…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Purchases a GitHub Copilot seat for each user specified. The organization will be billed for each seat based on the organization's Copilot plan. For more information about Copilot pricing, see "\[About billing for GitHub Copilot in your organization." Only organization owners can purchase Copilot seats for their organization members. The organization must have a Copilot Business or Copilot Enterprise…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedUsernames The usernames of the organization members to be granted access to
-     *   GitHub Copilot.
+     * @param selectedUsernames The usernames of the organization members to be
+     *   granted access to GitHub Copilot.
      */
-    fun copilotAddCopilotSeatsForUsers(
-        clientConfig: ClientConfig,
-        org: String,
-        selectedUsernames: List<String>,
-        options: RequestOptions? = null,
-    ): Copilot.CopilotAddCopilotSeatsForUsersResponse {
-        Validation.validateItems(
-            "selected_usernames",
-            selectedUsernames,
-            Validation.LengthOpts(min = 1),
-        )
+    fun copilotAddCopilotSeatsForUsers(clientConfig: ClientConfig, org: String, selectedUsernames: List<String>, options: RequestOptions? = null): Copilot.CopilotAddCopilotSeatsForUsersResponse {
+        Validation.validateItems("selected_usernames", selectedUsernames, Validation.LengthOpts(min = 1))
 
-        return SdkClient.request<Copilot.CopilotAddCopilotSeatsForUsersResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_users",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)),
-                    operationId = "copilotAddCopilotSeatsForUsers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<Copilot.CopilotAddCopilotSeatsForUsersResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_users", config = clientConfig, body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)), operationId = "copilotAddCopilotSeatsForUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCancelCopilotSeatAssignmentForUsersOperation {
     /**
-     * Cancels Copilot seat assignments for the organization members listed in `selected_usernames`.
-     * Their seats become pending cancellation, and members lose access at the end of the current
-     * billing cycle unless they retain access through team membership. Only organization owners can
-     * cancel seats for organization members.
+     * Cancels Copilot seat assignments for the organization members listed in `selected_usernames`. Their seats become pending cancellation, and members lose access at the end of the current billing cycle unless they retain access through team membership. Only organization owners can cancel seats for organization members.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets seats for all
-     * > users specified to "pending cancellation". This will cause the specified users to lose
-     * > access to GitHub Copilot at the end of the current billing cycle unless they retain access
-     * > through team membership. For more information about disabling access to Copilot, see
-     * > "\[Revoking access to Copilot for members of your organization." Only organization owners
-     * > can cancel Copilot seats for their…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets seats for all users specified to "pending cancellation". This will cause the specified users to lose access to GitHub Copilot at the end of the current billing cycle unless they retain access through team membership. For more information about disabling access to Copilot, see "\[Revoking access to Copilot for members of your organization." Only organization owners can cancel Copilot seats for their…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedUsernames The usernames of the organization members for which to revoke access
-     *   to GitHub Copilot.
+     * @param selectedUsernames The usernames of the organization members for which
+     *   to revoke access to GitHub Copilot.
      */
-    fun copilotCancelCopilotSeatAssignmentForUsers(
-        clientConfig: ClientConfig,
-        org: String,
-        selectedUsernames: List<String>,
-        options: RequestOptions? = null,
-    ): Copilot.CopilotCancelCopilotSeatAssignmentForUsersResponse {
-        Validation.validateItems(
-            "selected_usernames",
-            selectedUsernames,
-            Validation.LengthOpts(min = 1),
-        )
+    fun copilotCancelCopilotSeatAssignmentForUsers(clientConfig: ClientConfig, org: String, selectedUsernames: List<String>, options: RequestOptions? = null): Copilot.CopilotCancelCopilotSeatAssignmentForUsersResponse {
+        Validation.validateItems("selected_usernames", selectedUsernames, Validation.LengthOpts(min = 1))
 
-        return SdkClient.request<Copilot.CopilotCancelCopilotSeatAssignmentForUsersResponse>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_users",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)),
-                    operationId = "copilotCancelCopilotSeatAssignmentForUsers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<Copilot.CopilotCancelCopilotSeatAssignmentForUsersResponse>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_users", config = clientConfig, body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)), operationId = "copilotCancelCopilotSeatAssignmentForUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotGetCopilotCodingAgentPermissionsOrganizationOperation {
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Gets information
-     * > about which repositories in an organization have been enabled or disabled for the Copilot
-     * > cloud agent. Organization owners can configure whether Copilot cloud agent is enabled for
-     * > all repositories, selected repositories, or no repositories owned by organization. OAuth
-     * > app tokens and personal access tokens (classic) need the `admin:org` scope to use this
-     * > endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Gets information about which repositories in an organization have been enabled or disabled for the Copilot cloud agent. Organization owners can configure whether Copilot cloud agent is enabled for all repositories, selected repositories, or no repositories owned by organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun copilotGetCopilotCodingAgentPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): Copilot.CopilotGetCopilotCodingAgentPermissionsOrganizationResponse {
-        return SdkClient.request<
-                Copilot.CopilotGetCopilotCodingAgentPermissionsOrganizationResponse
-            >(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions",
-                    config = clientConfig,
-                    operationId = "copilotGetCopilotCodingAgentPermissionsOrganization",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotGetCopilotCodingAgentPermissionsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Copilot.CopilotGetCopilotCodingAgentPermissionsOrganizationResponse {
+        return SdkClient.request<Copilot.CopilotGetCopilotCodingAgentPermissionsOrganizationResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions", config = clientConfig, operationId = "copilotGetCopilotCodingAgentPermissionsOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotSetCopilotCodingAgentPermissionsOrganizationOperation {
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Sets the policy
-     * > for which repositories in an organization can use Copilot cloud agent. Organization owners
-     * > can configure whether Copilot cloud agent is enabled for all repositories, selected
-     * > repositories, or no repositories owned by the organization. OAuth app tokens and personal
-     * > access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Sets the policy for which repositories in an organization can use Copilot cloud agent. Organization owners can configure whether Copilot cloud agent is enabled for all repositories, selected repositories, or no repositories owned by the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param enabledRepositories The policy for which repositories can use Copilot cloud agent. Can
-     *   be one of `all`, `selected`, or `none`.
+     * @param enabledRepositories The policy for which repositories can use Copilot
+     *   cloud agent. Can be one of `all`, `selected`, or `none`.
      */
-    fun copilotSetCopilotCodingAgentPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        enabledRepositories:
-            CopilotSetCopilotCodingAgentPermissionsOrganizationEnabledRepX9d9552bfc6,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions",
-                config = clientConfig,
-                body = SdkClient.bodyMap("enabled_repositories" to (enabledRepositories)),
-                operationId = "copilotSetCopilotCodingAgentPermissionsOrganization",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                        "500" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun copilotSetCopilotCodingAgentPermissionsOrganization(clientConfig: ClientConfig, org: String, enabledRepositories: CopilotSetCopilotCodingAgentPermissionsOrganizationEnabledRepX9d9552bfc6, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions", config = clientConfig, body = SdkClient.bodyMap("enabled_repositories" to (enabledRepositories)), operationId = "copilotSetCopilotCodingAgentPermissionsOrganization", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java)))
     }
 }
 
 internal object CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizatX247131edde {
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Lists the selected
-     * > repositories that are enabled for Copilot cloud agent in an organization. Organization
-     * > owners can use this endpoint when the coding agent repository policy is set to `selected`
-     * > to see which repositories have been enabled. OAuth app tokens and personal access tokens
-     * > (classic) need the `admin:org` scope to use this endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Lists the selected repositories that are enabled for Copilot cloud agent in an organization. Organization owners can use this endpoint when the coding agent repository policy is set to `selected` to see which repositories have been enabled. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun copilotListCopilotCodingAgentSelectedRepositoriesForOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Copilot.CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse {
-        return SdkClient.request<
-                Copilot.CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse
-            >(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions/repositories",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId =
-                        "copilotListCopilotCodingAgentSelectedRepositoriesForOrganization",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "409" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotListCopilotCodingAgentSelectedRepositoriesForOrganization(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Copilot.CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse {
+        return SdkClient.request<Copilot.CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions/repositories", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "copilotListCopilotCodingAgentSelectedRepositoriesForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotSetCopilotCodingAgentSelectedRepositoriesForOrganizationOperation {
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Replaces the list
-     * > of selected repositories that are enabled for Copilot cloud agent in an organization. This
-     * > method can only be called when the cloud agent repository policy is set to `selected`.
-     * > OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use
-     * > this endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Replaces the list of selected repositories that are enabled for Copilot cloud agent in an organization. This method can only be called when the cloud agent repository policy is set to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedRepositoryIds List of repository IDs to enable for Copilot cloud agent.
+     * @param selectedRepositoryIds List of repository IDs to enable for Copilot
+     *   cloud agent.
      */
-    fun copilotSetCopilotCodingAgentSelectedRepositoriesForOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        selectedRepositoryIds: List<Long>,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions/repositories",
-                config = clientConfig,
-                body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)),
-                operationId = "copilotSetCopilotCodingAgentSelectedRepositoriesForOrganization",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "409" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                        "500" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun copilotSetCopilotCodingAgentSelectedRepositoriesForOrganization(clientConfig: ClientConfig, org: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions/repositories", config = clientConfig, body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)), operationId = "copilotSetCopilotCodingAgentSelectedRepositoriesForOrganization", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java)))
     }
 }
 
 internal object CopilotEnableCopilotCodingAgentForRepositoryInOrganizationOperation {
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Adds a repository
-     * > to the list of selected repositories enabled for Copilot cloud agent in an organization.
-     * > This method can only be called when the cloud agent repository policy is set to `selected`.
-     * > OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use
-     * > this endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Adds a repository to the list of selected repositories enabled for Copilot cloud agent in an organization. This method can only be called when the cloud agent repository policy is set to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param repositoryId The unique identifier of the repository.
      */
-    fun copilotEnableCopilotCodingAgentForRepositoryInOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions/repositories/${SdkClient.encodePathSegment(repositoryId)}",
-                config = clientConfig,
-                operationId = "copilotEnableCopilotCodingAgentForRepositoryInOrganization",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "409" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                        "500" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun copilotEnableCopilotCodingAgentForRepositoryInOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "copilotEnableCopilotCodingAgentForRepositoryInOrganization", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java)))
     }
 }
 
 internal object CopilotDisableCopilotCodingAgentForRepositoryInOrganizationOperation {
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Removes a
-     * > repository from the list of selected repositories enabled for Copilot cloud agent in an
-     * > organization. This method can only be called when the cloud agent repository policy is set
-     * > to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org`
-     * > scopes to use this endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Removes a repository from the list of selected repositories enabled for Copilot cloud agent in an organization. This method can only be called when the cloud agent repository policy is set to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org` scopes to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param repositoryId The unique identifier of the repository.
      */
-    fun copilotDisableCopilotCodingAgentForRepositoryInOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions/repositories/${SdkClient.encodePathSegment(repositoryId)}",
-                config = clientConfig,
-                operationId = "copilotDisableCopilotCodingAgentForRepositoryInOrganization",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "409" to BasicError::class.java,
-                        "500" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun copilotDisableCopilotCodingAgentForRepositoryInOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/coding-agent/permissions/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "copilotDisableCopilotCodingAgentForRepositoryInOrganization", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "500" to BasicError::class.java)))
     }
 }
 
 internal object CopilotCopilotContentExclusionForOrganizationOperation {
     /**
-     * Retrieves the Copilot content exclusion rules configured for an organization. Use this
-     * endpoint to view the organization's path rules; organization owners can view these details.
-     * The response does not include comments, and duplicate keys are represented by their last
-     * occurrence.
+     * Retrieves the Copilot content exclusion rules configured for an organization. Use this endpoint to view the organization's path rules; organization owners can view these details. The response does not include comments, and duplicate keys are represented by their last occurrence.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Gets information
-     * > about an organization's Copilot content exclusion path rules. To configure these settings,
-     * > go to the organization's settings on GitHub. For more information, see "\[Excluding content
-     * > from GitHub Copilot." Organization owners can view details about Copilot content exclusion
-     * > rules for the organization. OAuth app tokens and personal access tokens (classic) need
-     * > either the `copilot` or…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Gets information about an organization's Copilot content exclusion path rules. To configure these settings, go to the organization's settings on GitHub. For more information, see "\[Excluding content from GitHub Copilot." Organization owners can view details about Copilot content exclusion rules for the organization. OAuth app tokens and personal access tokens (classic) need either the `copilot` or…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun copilotCopilotContentExclusionForOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): CopilotOrganizationContentExclusionDetails {
-        return SdkClient.request<CopilotOrganizationContentExclusionDetails>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/content_exclusion",
-                    config = clientConfig,
-                    operationId = "copilotCopilotContentExclusionForOrganization",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotCopilotContentExclusionForOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotOrganizationContentExclusionDetails {
+        return SdkClient.request<CopilotOrganizationContentExclusionDetails>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/content_exclusion", config = clientConfig, operationId = "copilotCopilotContentExclusionForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotSetCopilotContentExclusionForOrganizationOperation {
     /**
-     * Sets Copilot content exclusion rules for an organization. Submit rule keys mapped to arrays
-     * of excluded paths or conditional matching rules; duplicate keys overwrite earlier entries.
-     * Existing comments are deleted because the API does not support comments.
+     * Sets Copilot content exclusion rules for an organization. Submit rule keys mapped to arrays of excluded paths or conditional matching rules; duplicate keys overwrite earlier entries. Existing comments are deleted because the API does not support comments.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets Copilot content
-     * > exclusion path rules for an organization. To configure these settings, go to the
-     * > organization's settings on GitHub. For more information, see "\[Excluding content from
-     * > GitHub Copilot." Organization owners can set Copilot content exclusion rules for the
-     * > organization. OAuth app tokens and personal access tokens (classic) need the `copilot`
-     * > scope to use this endpoint. > \[!CAUTION\] > * At…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets Copilot content exclusion path rules for an organization. To configure these settings, go to the organization's settings on GitHub. For more information, see "\[Excluding content from GitHub Copilot." Organization owners can set Copilot content exclusion rules for the organization. OAuth app tokens and personal access tokens (classic) need the `copilot` scope to use this endpoint. > \[!CAUTION\] > * At…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun copilotSetCopilotContentExclusionForOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        body: Map<String, List<Any>>,
-        options: RequestOptions? = null,
-    ): Copilot.CopilotSetCopilotContentExclusionForOrganizationResponse {
-        return SdkClient.request<Copilot.CopilotSetCopilotContentExclusionForOrganizationResponse>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/content_exclusion",
-                    config = clientConfig,
-                    body = body,
-                    operationId = "copilotSetCopilotContentExclusionForOrganization",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "413" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotSetCopilotContentExclusionForOrganization(clientConfig: ClientConfig, org: String, body: Map<String, List<Any>>, options: RequestOptions? = null): Copilot.CopilotSetCopilotContentExclusionForOrganizationResponse {
+        return SdkClient.request<Copilot.CopilotSetCopilotContentExclusionForOrganizationResponse>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/content_exclusion", config = clientConfig, body = body, operationId = "copilotSetCopilotContentExclusionForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "413" to BasicError::class.java, "422" to ValidationErrorSimple::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotOrganizationOneDayUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization usage metrics
-     * report for a specific day. The report provides comprehensive usage data for Copilot features
-     * across the organization. The report contains aggregated metrics for the specified day,
-     * including usage statistics for various Copilot features, user engagement data, and feature
-     * adoption metrics. Reports are generated daily and made available for download through signed
-     * URLs with a limited…
+     * Use this endpoint to retrieve download links for the Copilot organization usage metrics report for a specific day. The report provides comprehensive usage data for Copilot features across the organization. The report contains aggregated metrics for the specified day, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotOrganizationOneDayUsageMetrics(
-        clientConfig: ClientConfig,
-        org: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotOrganizationOneDayUsageMetrics(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/organization-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotOrganizationOneDayUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/organization-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotOrganizationOneDayUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotOrganizationUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day organization Copilot usage
-     * metrics report. The report provides comprehensive usage data for Copilot features across the
-     * organization. The report contains aggregated metrics for the previous 28 days, including
-     * usage statistics for various Copilot features, user engagement data, and feature adoption
-     * metrics. Reports are generated daily and made available for download through signed URLs with
-     * a limited…
+     * Use this endpoint to retrieve download links for the latest 28-day organization Copilot usage metrics report. The report provides comprehensive usage data for Copilot features across the organization. The report contains aggregated metrics for the previous 28 days, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun copilotCopilotOrganizationUsageMetrics(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics28DayReport {
-        return SdkClient.request<CopilotUsageMetrics28DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/organization-28-day/latest",
-                    config = clientConfig,
-                    operationId = "copilotCopilotOrganizationUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotCopilotOrganizationUsageMetrics(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport {
+        return SdkClient.request<CopilotUsageMetrics28DayReport>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/organization-28-day/latest", config = clientConfig, operationId = "copilotCopilotOrganizationUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }

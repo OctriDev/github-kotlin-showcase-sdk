@@ -3,14 +3,13 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `ReposCreateDeploymentRequestPayload` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = ReposCreateDeploymentRequestPayload.Deserializer::class
-)
+/**
+ * Typed representation of the `ReposCreateDeploymentRequestPayload` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = ReposCreateDeploymentRequestPayload.Deserializer::class)
 sealed interface ReposCreateDeploymentRequestPayload {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer :
-        com.fasterxml.jackson.databind.JsonDeserializer<ReposCreateDeploymentRequestPayload>() {
+    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<ReposCreateDeploymentRequestPayload>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
@@ -18,92 +17,47 @@ sealed interface ReposCreateDeploymentRequestPayload {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
             return when {
-                node.isObject ->
-                    ObjectMapReposCreateDeploymentRequestPayload(
-                        mapper.convertValue(
-                            node,
-                            object :
-                                com.fasterxml.jackson.core.type.TypeReference<
-                                    Map<String, Any>
-                                >() {},
-                        )
-                    )
-                node.isTextual ->
-                    StringReposCreateDeploymentRequestPayload(
-                        mapper.convertValue(
-                            node,
-                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
-                        )
-                    )
-                else ->
-                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                        parser,
-                        ReposCreateDeploymentRequestPayload::class.java,
-                        "no ReposCreateDeploymentRequestPayload branch accepts this payload",
-                    )
+                node.isObject -> ObjectMapReposCreateDeploymentRequestPayload(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<Map<String, Any>>() {}))
+                node.isTextual -> StringReposCreateDeploymentRequestPayload(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
+                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                    parser, ReposCreateDeploymentRequestPayload::class.java, "no ReposCreateDeploymentRequestPayload branch accepts this payload")
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ObjectMapReposCreateDeploymentRequestPayload(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: Map<String, Any>
-) : ReposCreateDeploymentRequestPayload
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class ObjectMapReposCreateDeploymentRequestPayload(@get:com.fasterxml.jackson.annotation.JsonValue val value: Map<String, Any>) : ReposCreateDeploymentRequestPayload
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class StringReposCreateDeploymentRequestPayload(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
-) : ReposCreateDeploymentRequestPayload
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class StringReposCreateDeploymentRequestPayload(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : ReposCreateDeploymentRequestPayload
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ReposUpdateInformationAboutPagesSiteRequestSourceVariant1(
-    /** The repository branch used to publish your site's source files. */
+    /**
+     * The repository branch used to publish your site's source files.
+     */
     val branch: String,
     /**
-     * The repository directory that includes the source files for the Pages site. Allowed paths are
-     * `/` or `/docs`.
+     * The repository directory that includes the source files for the Pages site. Allowed paths are `/` or `/docs`.
      */
-    val path: ReposUpdateInformationAboutPagesSiteRequestSourceVariant1PathEnum,
+    val path: ReposUpdateInformationAboutPagesSiteRequestSourceVariant1PathEnum
 ) : ReposUpdateInformationAboutPagesSiteRequestSource
 
-/** Typed representation of the `ReposUpdateInformationAboutPagesSiteRequestSource` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = ReposUpdateInformationAboutPagesSiteRequestSource.Deserializer::class
-)
+/**
+ * Typed representation of the `ReposUpdateInformationAboutPagesSiteRequestSource` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = ReposUpdateInformationAboutPagesSiteRequestSource.Deserializer::class)
 sealed interface ReposUpdateInformationAboutPagesSiteRequestSource {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer :
-        com.fasterxml.jackson.databind.JsonDeserializer<
-            ReposUpdateInformationAboutPagesSiteRequestSource
-        >() {
+    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<ReposUpdateInformationAboutPagesSiteRequestSource>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): ReposUpdateInformationAboutPagesSiteRequestSource {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType =
-                ReposUpdateInformationAboutPagesSiteRequestSourceOwnedTypes.firstOrNull { (keys, _)
-                        ->
-                        keys.any(node::has)
-                    }
-                    ?.second
+            val ownedType = ReposUpdateInformationAboutPagesSiteRequestSourceOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -111,8 +65,7 @@ sealed interface ReposUpdateInformationAboutPagesSiteRequestSource {
                     // Tried with the other branches below.
                 }
             }
-            val objectTypes: List<Class<out ReposUpdateInformationAboutPagesSiteRequestSource>> =
-                listOf(ReposUpdateInformationAboutPagesSiteRequestSourceVariant1::class.java)
+            val objectTypes: List<Class<out ReposUpdateInformationAboutPagesSiteRequestSource>> = listOf(ReposUpdateInformationAboutPagesSiteRequestSourceVariant1::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -121,37 +74,17 @@ sealed interface ReposUpdateInformationAboutPagesSiteRequestSource {
                 }
             }
             return when {
-                node.isTextual ->
-                    StringReposUpdateInformationAboutPagesSiteRequestSource(
-                        mapper.convertValue(
-                            node,
-                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
-                        )
-                    )
-                else ->
-                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                        parser,
-                        ReposUpdateInformationAboutPagesSiteRequestSource::class.java,
-                        "no ReposUpdateInformationAboutPagesSiteRequestSource branch accepts this payload",
-                    )
+                node.isTextual -> StringReposUpdateInformationAboutPagesSiteRequestSource(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
+                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                    parser, ReposUpdateInformationAboutPagesSiteRequestSource::class.java, "no ReposUpdateInformationAboutPagesSiteRequestSource branch accepts this payload")
             }
         }
     }
 }
 
-internal val ReposUpdateInformationAboutPagesSiteRequestSourceOwnedTypes:
-    List<Pair<List<String>, Class<out ReposUpdateInformationAboutPagesSiteRequestSource>>> =
-    listOf(
-        listOf("branch", "path") to
-            ReposUpdateInformationAboutPagesSiteRequestSourceVariant1::class.java
-    )
+internal val ReposUpdateInformationAboutPagesSiteRequestSourceOwnedTypes: List<Pair<List<String>, Class<out ReposUpdateInformationAboutPagesSiteRequestSource>>> = listOf(
+    listOf("branch", "path") to ReposUpdateInformationAboutPagesSiteRequestSourceVariant1::class.java,
+)
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class StringReposUpdateInformationAboutPagesSiteRequestSource(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
-) : ReposUpdateInformationAboutPagesSiteRequestSource
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class StringReposUpdateInformationAboutPagesSiteRequestSource(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : ReposUpdateInformationAboutPagesSiteRequestSource

@@ -3,116 +3,81 @@
 
 package dev.octri.showcase.github
 
-typealias WebhookOrgBlockBlockedActionEnum =
-    dev.octri.showcase.github.models.WebhookOrgBlockBlockedActionEnum
+typealias WebhookOrgBlockBlockedActionEnum = dev.octri.showcase.github.models.WebhookOrgBlockBlockedActionEnum
 
 typealias WebhookOrgBlockUnblocked = dev.octri.showcase.github.models.WebhookOrgBlockUnblocked
 
-typealias WebhookOrgBlockUnblockedActionEnum =
-    dev.octri.showcase.github.models.WebhookOrgBlockUnblockedActionEnum
+typealias WebhookOrgBlockUnblockedActionEnum = dev.octri.showcase.github.models.WebhookOrgBlockUnblockedActionEnum
 
 typealias WebhookPackagePublished = dev.octri.showcase.github.models.WebhookPackagePublished
 
-typealias WebhookPackagePublishedActionEnum =
-    dev.octri.showcase.github.models.WebhookPackagePublishedActionEnum
+typealias WebhookPackagePublishedActionEnum = dev.octri.showcase.github.models.WebhookPackagePublishedActionEnum
 
-typealias WebhookPackagePublishedPackage =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackage
+typealias WebhookPackagePublishedPackage = dev.octri.showcase.github.models.WebhookPackagePublishedPackage
 
-typealias WebhookPackagePublishedPackageOwner =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackageOwner
+typealias WebhookPackagePublishedPackageOwner = dev.octri.showcase.github.models.WebhookPackagePublishedPackageOwner
 
-typealias WebhookPackagePublishedPackageOwnerTypeEnum =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackageOwnerTypeEnum
+typealias WebhookPackagePublishedPackageOwnerTypeEnum = dev.octri.showcase.github.models.WebhookPackagePublishedPackageOwnerTypeEnum
 
-typealias WebhookPackagePublishedPackagePackageVersion =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersion
+typealias WebhookPackagePublishedPackagePackageVersion = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersion
 
-typealias WebhookPackagePublishedPackagePackageVersionAuthor =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionAuthor
+typealias WebhookPackagePublishedPackagePackageVersionAuthor = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionAuthor
 
-typealias WebhookPackagePublishedPackagePackageVersionAuthorTypeEnum =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionAuthorTypeEnum
+typealias WebhookPackagePublishedPackagePackageVersionAuthorTypeEnum = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionAuthorTypeEnum
 
-typealias WebhookPackagePublishedPackagePackageVersionBody =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionBody
+typealias WebhookPackagePublishedPackagePackageVersionBody = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionBody
 
-typealias WebhookPackagePublishedPackagePackageVersionContainerMetadata =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionContainerMetadata
+typealias WebhookPackagePublishedPackagePackageVersionContainerMetadata = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionContainerMetadata
 
-typealias WebhookPackagePublishedPackagePackageVersionContainerMetadataTag =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionContainerMetadataTag
+typealias WebhookPackagePublishedPackagePackageVersionContainerMetadataTag = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionContainerMetadataTag
 
-typealias WebhookPackagePublishedPackagePackageVersionDockerMetadataItem =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionDockerMetadataItem
+typealias WebhookPackagePublishedPackagePackageVersionDockerMetadataItem = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionDockerMetadataItem
 
-typealias WebhookPackagePublishedPackagePackageVersionNpmMetadata =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionNpmMetadata
+typealias WebhookPackagePublishedPackagePackageVersionNpmMetadata = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionNpmMetadata
 
-typealias WebhookPackagePublishedPackagePackageVersionNugetMetadataItem =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionNugetMetadataItem
+typealias WebhookPackagePublishedPackagePackageVersionNugetMetadataItem = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionNugetMetadataItem
 
-typealias WebhookPackagePublishedPackagePackageVersionNugetMetadataItemValue =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionNugetMetadataItemValue
+typealias WebhookPackagePublishedPackagePackageVersionNugetMetadataItemValue = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionNugetMetadataItemValue
 
-typealias WebhookPackagePublishedPackagePackageVersionNugetMetadataItemX69135351c1 =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionNugetMetadataItemX69135351c1
+typealias WebhookPackagePublishedPackagePackageVersionNugetMetadataItemX69135351c1 = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionNugetMetadataItemX69135351c1
 
-typealias WebhookPackagePublishedPackagePackageVersionPackageFilesItem =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionPackageFilesItem
+typealias WebhookPackagePublishedPackagePackageVersionPackageFilesItem = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionPackageFilesItem
 
-typealias WebhookPackagePublishedPackagePackageVersionRelease =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionRelease
+typealias WebhookPackagePublishedPackagePackageVersionRelease = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionRelease
 
-typealias WebhookPackagePublishedPackagePackageVersionReleaseAuthor =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionReleaseAuthor
+typealias WebhookPackagePublishedPackagePackageVersionReleaseAuthor = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionReleaseAuthor
 
-typealias WebhookPackagePublishedPackagePackageVersionReleaseAuthorTypeEnum =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionReleaseAuthorTypeEnum
+typealias WebhookPackagePublishedPackagePackageVersionReleaseAuthorTypeEnum = dev.octri.showcase.github.models.WebhookPackagePublishedPackagePackageVersionReleaseAuthorTypeEnum
 
-typealias WebhookPackagePublishedPackageRegistry =
-    dev.octri.showcase.github.models.WebhookPackagePublishedPackageRegistry
+typealias WebhookPackagePublishedPackageRegistry = dev.octri.showcase.github.models.WebhookPackagePublishedPackageRegistry
 
 typealias WebhookPackageUpdated = dev.octri.showcase.github.models.WebhookPackageUpdated
 
-typealias WebhookPackageUpdatedActionEnum =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedActionEnum
+typealias WebhookPackageUpdatedActionEnum = dev.octri.showcase.github.models.WebhookPackageUpdatedActionEnum
 
-typealias WebhookPackageUpdatedPackage =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackage
+typealias WebhookPackageUpdatedPackage = dev.octri.showcase.github.models.WebhookPackageUpdatedPackage
 
-typealias WebhookPackageUpdatedPackageOwner =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackageOwner
+typealias WebhookPackageUpdatedPackageOwner = dev.octri.showcase.github.models.WebhookPackageUpdatedPackageOwner
 
-typealias WebhookPackageUpdatedPackageOwnerTypeEnum =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackageOwnerTypeEnum
+typealias WebhookPackageUpdatedPackageOwnerTypeEnum = dev.octri.showcase.github.models.WebhookPackageUpdatedPackageOwnerTypeEnum
 
-typealias WebhookPackageUpdatedPackagePackageVersion =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersion
+typealias WebhookPackageUpdatedPackagePackageVersion = dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersion
 
-typealias WebhookPackageUpdatedPackagePackageVersionAuthor =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionAuthor
+typealias WebhookPackageUpdatedPackagePackageVersionAuthor = dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionAuthor
 
-typealias WebhookPackageUpdatedPackagePackageVersionAuthorTypeEnum =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionAuthorTypeEnum
+typealias WebhookPackageUpdatedPackagePackageVersionAuthorTypeEnum = dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionAuthorTypeEnum
 
-typealias WebhookPackageUpdatedPackagePackageVersionDockerMetadataItem =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionDockerMetadataItem
+typealias WebhookPackageUpdatedPackagePackageVersionDockerMetadataItem = dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionDockerMetadataItem
 
-typealias WebhookPackageUpdatedPackagePackageVersionPackageFilesItem =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionPackageFilesItem
+typealias WebhookPackageUpdatedPackagePackageVersionPackageFilesItem = dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionPackageFilesItem
 
-typealias WebhookPackageUpdatedPackagePackageVersionRelease =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionRelease
+typealias WebhookPackageUpdatedPackagePackageVersionRelease = dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionRelease
 
-typealias WebhookPackageUpdatedPackagePackageVersionReleaseAuthor =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionReleaseAuthor
+typealias WebhookPackageUpdatedPackagePackageVersionReleaseAuthor = dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionReleaseAuthor
 
-typealias WebhookPackageUpdatedPackagePackageVersionReleaseAuthorTypeEnum =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionReleaseAuthorTypeEnum
+typealias WebhookPackageUpdatedPackagePackageVersionReleaseAuthorTypeEnum = dev.octri.showcase.github.models.WebhookPackageUpdatedPackagePackageVersionReleaseAuthorTypeEnum
 
-typealias WebhookPackageUpdatedPackageRegistry =
-    dev.octri.showcase.github.models.WebhookPackageUpdatedPackageRegistry
+typealias WebhookPackageUpdatedPackageRegistry = dev.octri.showcase.github.models.WebhookPackageUpdatedPackageRegistry
 
 typealias WebhookPageBuild = dev.octri.showcase.github.models.WebhookPageBuild
 
@@ -122,32 +87,23 @@ typealias WebhookPageBuildBuildError = dev.octri.showcase.github.models.WebhookP
 
 typealias WebhookPageBuildBuildPusher = dev.octri.showcase.github.models.WebhookPageBuildBuildPusher
 
-typealias WebhookPageBuildBuildPusherTypeEnum =
-    dev.octri.showcase.github.models.WebhookPageBuildBuildPusherTypeEnum
+typealias WebhookPageBuildBuildPusherTypeEnum = dev.octri.showcase.github.models.WebhookPageBuildBuildPusherTypeEnum
 
-typealias WebhookPersonalAccessTokenRequestApproved =
-    dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestApproved
+typealias WebhookPersonalAccessTokenRequestApproved = dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestApproved
 
-typealias WebhookPersonalAccessTokenRequestApprovedActionEnum =
-    dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestApprovedActionEnum
+typealias WebhookPersonalAccessTokenRequestApprovedActionEnum = dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestApprovedActionEnum
 
-typealias WebhookPersonalAccessTokenRequestCancelled =
-    dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestCancelled
+typealias WebhookPersonalAccessTokenRequestCancelled = dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestCancelled
 
-typealias WebhookPersonalAccessTokenRequestCancelledActionEnum =
-    dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestCancelledActionEnum
+typealias WebhookPersonalAccessTokenRequestCancelledActionEnum = dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestCancelledActionEnum
 
-typealias WebhookPersonalAccessTokenRequestCreated =
-    dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestCreated
+typealias WebhookPersonalAccessTokenRequestCreated = dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestCreated
 
-typealias WebhookPersonalAccessTokenRequestCreatedActionEnum =
-    dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestCreatedActionEnum
+typealias WebhookPersonalAccessTokenRequestCreatedActionEnum = dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestCreatedActionEnum
 
-typealias WebhookPersonalAccessTokenRequestDenied =
-    dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestDenied
+typealias WebhookPersonalAccessTokenRequestDenied = dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestDenied
 
-typealias WebhookPersonalAccessTokenRequestDeniedActionEnum =
-    dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestDeniedActionEnum
+typealias WebhookPersonalAccessTokenRequestDeniedActionEnum = dev.octri.showcase.github.models.WebhookPersonalAccessTokenRequestDeniedActionEnum
 
 typealias WebhookPing = dev.octri.showcase.github.models.WebhookPing
 
@@ -161,465 +117,322 @@ typealias WebhookPingHookNameEnum = dev.octri.showcase.github.models.WebhookPing
 
 typealias WebhookProjectCardConverted = dev.octri.showcase.github.models.WebhookProjectCardConverted
 
-typealias WebhookProjectCardConvertedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectCardConvertedActionEnum
+typealias WebhookProjectCardConvertedActionEnum = dev.octri.showcase.github.models.WebhookProjectCardConvertedActionEnum
 
-typealias WebhookProjectCardConvertedChanges =
-    dev.octri.showcase.github.models.WebhookProjectCardConvertedChanges
+typealias WebhookProjectCardConvertedChanges = dev.octri.showcase.github.models.WebhookProjectCardConvertedChanges
 
-typealias WebhookProjectCardConvertedChangesNote =
-    dev.octri.showcase.github.models.WebhookProjectCardConvertedChangesNote
+typealias WebhookProjectCardConvertedChangesNote = dev.octri.showcase.github.models.WebhookProjectCardConvertedChangesNote
 
 typealias WebhookProjectCardCreated = dev.octri.showcase.github.models.WebhookProjectCardCreated
 
-typealias WebhookProjectCardCreatedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectCardCreatedActionEnum
+typealias WebhookProjectCardCreatedActionEnum = dev.octri.showcase.github.models.WebhookProjectCardCreatedActionEnum
 
 typealias WebhookProjectCardDeleted = dev.octri.showcase.github.models.WebhookProjectCardDeleted
 
-typealias WebhookProjectCardDeletedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectCardDeletedActionEnum
+typealias WebhookProjectCardDeletedActionEnum = dev.octri.showcase.github.models.WebhookProjectCardDeletedActionEnum
 
-typealias WebhookProjectCardDeletedProjectCard =
-    dev.octri.showcase.github.models.WebhookProjectCardDeletedProjectCard
+typealias WebhookProjectCardDeletedProjectCard = dev.octri.showcase.github.models.WebhookProjectCardDeletedProjectCard
 
-typealias WebhookProjectCardDeletedProjectCardCreator =
-    dev.octri.showcase.github.models.WebhookProjectCardDeletedProjectCardCreator
+typealias WebhookProjectCardDeletedProjectCardCreator = dev.octri.showcase.github.models.WebhookProjectCardDeletedProjectCardCreator
 
-typealias WebhookProjectCardDeletedProjectCardCreatorTypeEnum =
-    dev.octri.showcase.github.models.WebhookProjectCardDeletedProjectCardCreatorTypeEnum
+typealias WebhookProjectCardDeletedProjectCardCreatorTypeEnum = dev.octri.showcase.github.models.WebhookProjectCardDeletedProjectCardCreatorTypeEnum
 
 typealias WebhookProjectCardEdited = dev.octri.showcase.github.models.WebhookProjectCardEdited
 
-typealias WebhookProjectCardEditedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectCardEditedActionEnum
+typealias WebhookProjectCardEditedActionEnum = dev.octri.showcase.github.models.WebhookProjectCardEditedActionEnum
 
-typealias WebhookProjectCardEditedChanges =
-    dev.octri.showcase.github.models.WebhookProjectCardEditedChanges
+typealias WebhookProjectCardEditedChanges = dev.octri.showcase.github.models.WebhookProjectCardEditedChanges
 
-typealias WebhookProjectCardEditedChangesNote =
-    dev.octri.showcase.github.models.WebhookProjectCardEditedChangesNote
+typealias WebhookProjectCardEditedChangesNote = dev.octri.showcase.github.models.WebhookProjectCardEditedChangesNote
 
 typealias WebhookProjectCardMoved = dev.octri.showcase.github.models.WebhookProjectCardMoved
 
-typealias WebhookProjectCardMovedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectCardMovedActionEnum
+typealias WebhookProjectCardMovedActionEnum = dev.octri.showcase.github.models.WebhookProjectCardMovedActionEnum
 
-typealias WebhookProjectCardMovedChanges =
-    dev.octri.showcase.github.models.WebhookProjectCardMovedChanges
+typealias WebhookProjectCardMovedChanges = dev.octri.showcase.github.models.WebhookProjectCardMovedChanges
 
-typealias WebhookProjectCardMovedChangesColumnId =
-    dev.octri.showcase.github.models.WebhookProjectCardMovedChangesColumnId
+typealias WebhookProjectCardMovedChangesColumnId = dev.octri.showcase.github.models.WebhookProjectCardMovedChangesColumnId
 
-typealias WebhookProjectCardMovedProjectCard =
-    dev.octri.showcase.github.models.WebhookProjectCardMovedProjectCard
+typealias WebhookProjectCardMovedProjectCard = dev.octri.showcase.github.models.WebhookProjectCardMovedProjectCard
 
-typealias WebhookProjectCardMovedProjectCardCreator =
-    dev.octri.showcase.github.models.WebhookProjectCardMovedProjectCardCreator
+typealias WebhookProjectCardMovedProjectCardCreator = dev.octri.showcase.github.models.WebhookProjectCardMovedProjectCardCreator
 
 typealias WebhookProjectClosed = dev.octri.showcase.github.models.WebhookProjectClosed
 
-typealias WebhookProjectClosedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectClosedActionEnum
+typealias WebhookProjectClosedActionEnum = dev.octri.showcase.github.models.WebhookProjectClosedActionEnum
 
 typealias WebhookProjectColumnCreated = dev.octri.showcase.github.models.WebhookProjectColumnCreated
 
-typealias WebhookProjectColumnCreatedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectColumnCreatedActionEnum
+typealias WebhookProjectColumnCreatedActionEnum = dev.octri.showcase.github.models.WebhookProjectColumnCreatedActionEnum
 
 typealias WebhookProjectColumnDeleted = dev.octri.showcase.github.models.WebhookProjectColumnDeleted
 
-typealias WebhookProjectColumnDeletedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectColumnDeletedActionEnum
+typealias WebhookProjectColumnDeletedActionEnum = dev.octri.showcase.github.models.WebhookProjectColumnDeletedActionEnum
 
 typealias WebhookProjectColumnEdited = dev.octri.showcase.github.models.WebhookProjectColumnEdited
 
-typealias WebhookProjectColumnEditedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectColumnEditedActionEnum
+typealias WebhookProjectColumnEditedActionEnum = dev.octri.showcase.github.models.WebhookProjectColumnEditedActionEnum
 
-typealias WebhookProjectColumnEditedChanges =
-    dev.octri.showcase.github.models.WebhookProjectColumnEditedChanges
+typealias WebhookProjectColumnEditedChanges = dev.octri.showcase.github.models.WebhookProjectColumnEditedChanges
 
-typealias WebhookProjectColumnEditedChangesName =
-    dev.octri.showcase.github.models.WebhookProjectColumnEditedChangesName
+typealias WebhookProjectColumnEditedChangesName = dev.octri.showcase.github.models.WebhookProjectColumnEditedChangesName
 
 typealias WebhookProjectColumnMoved = dev.octri.showcase.github.models.WebhookProjectColumnMoved
 
-typealias WebhookProjectColumnMovedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectColumnMovedActionEnum
+typealias WebhookProjectColumnMovedActionEnum = dev.octri.showcase.github.models.WebhookProjectColumnMovedActionEnum
 
 typealias WebhookProjectCreated = dev.octri.showcase.github.models.WebhookProjectCreated
 
-typealias WebhookProjectCreatedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectCreatedActionEnum
+typealias WebhookProjectCreatedActionEnum = dev.octri.showcase.github.models.WebhookProjectCreatedActionEnum
 
 typealias WebhookProjectDeleted = dev.octri.showcase.github.models.WebhookProjectDeleted
 
-typealias WebhookProjectDeletedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectDeletedActionEnum
+typealias WebhookProjectDeletedActionEnum = dev.octri.showcase.github.models.WebhookProjectDeletedActionEnum
 
 typealias WebhookProjectEdited = dev.octri.showcase.github.models.WebhookProjectEdited
 
-typealias WebhookProjectEditedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectEditedActionEnum
+typealias WebhookProjectEditedActionEnum = dev.octri.showcase.github.models.WebhookProjectEditedActionEnum
 
 typealias WebhookProjectEditedChanges = dev.octri.showcase.github.models.WebhookProjectEditedChanges
 
-typealias WebhookProjectEditedChangesBody =
-    dev.octri.showcase.github.models.WebhookProjectEditedChangesBody
+typealias WebhookProjectEditedChangesBody = dev.octri.showcase.github.models.WebhookProjectEditedChangesBody
 
-typealias WebhookProjectEditedChangesName =
-    dev.octri.showcase.github.models.WebhookProjectEditedChangesName
+typealias WebhookProjectEditedChangesName = dev.octri.showcase.github.models.WebhookProjectEditedChangesName
 
 typealias WebhookProjectReopened = dev.octri.showcase.github.models.WebhookProjectReopened
 
-typealias WebhookProjectReopenedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectReopenedActionEnum
+typealias WebhookProjectReopenedActionEnum = dev.octri.showcase.github.models.WebhookProjectReopenedActionEnum
 
-typealias WebhookProjectsV2ItemArchived =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemArchived
+typealias WebhookProjectsV2ItemArchived = dev.octri.showcase.github.models.WebhookProjectsV2ItemArchived
 
-typealias WebhookProjectsV2ItemArchivedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemArchivedActionEnum
+typealias WebhookProjectsV2ItemArchivedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ItemArchivedActionEnum
 
-typealias WebhookProjectsV2ItemConverted =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemConverted
+typealias WebhookProjectsV2ItemConverted = dev.octri.showcase.github.models.WebhookProjectsV2ItemConverted
 
-typealias WebhookProjectsV2ItemConvertedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemConvertedActionEnum
+typealias WebhookProjectsV2ItemConvertedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ItemConvertedActionEnum
 
-typealias WebhookProjectsV2ItemConvertedChanges =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemConvertedChanges
+typealias WebhookProjectsV2ItemConvertedChanges = dev.octri.showcase.github.models.WebhookProjectsV2ItemConvertedChanges
 
-typealias WebhookProjectsV2ItemConvertedChangesContentType =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemConvertedChangesContentType
+typealias WebhookProjectsV2ItemConvertedChangesContentType = dev.octri.showcase.github.models.WebhookProjectsV2ItemConvertedChangesContentType
 
-typealias WebhookProjectsV2ItemCreated =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemCreated
+typealias WebhookProjectsV2ItemCreated = dev.octri.showcase.github.models.WebhookProjectsV2ItemCreated
 
-typealias WebhookProjectsV2ItemCreatedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemCreatedActionEnum
+typealias WebhookProjectsV2ItemCreatedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ItemCreatedActionEnum
 
-typealias WebhookProjectsV2ItemDeleted =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemDeleted
+typealias WebhookProjectsV2ItemDeleted = dev.octri.showcase.github.models.WebhookProjectsV2ItemDeleted
 
-typealias WebhookProjectsV2ItemDeletedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemDeletedActionEnum
+typealias WebhookProjectsV2ItemDeletedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ItemDeletedActionEnum
 
 typealias WebhookProjectsV2ItemEdited = dev.octri.showcase.github.models.WebhookProjectsV2ItemEdited
 
-typealias WebhookProjectsV2ItemEditedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedActionEnum
+typealias WebhookProjectsV2ItemEditedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedActionEnum
 
-typealias WebhookProjectsV2ItemEditedChanges =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChanges
+typealias WebhookProjectsV2ItemEditedChanges = dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChanges
 
-typealias WebhookProjectsV2ItemEditedChangesVariant0 =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChangesVariant0
+typealias WebhookProjectsV2ItemEditedChangesVariant0 = dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChangesVariant0
 
-typealias WebhookProjectsV2ItemEditedChangesVariant0FieldValue =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChangesVariant0FieldValue
+typealias WebhookProjectsV2ItemEditedChangesVariant0FieldValue = dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChangesVariant0FieldValue
 
-typealias WebhookProjectsV2ItemEditedChangesVariant1 =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChangesVariant1
+typealias WebhookProjectsV2ItemEditedChangesVariant1 = dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChangesVariant1
 
-typealias WebhookProjectsV2ItemEditedChangesVariant1Body =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChangesVariant1Body
+typealias WebhookProjectsV2ItemEditedChangesVariant1Body = dev.octri.showcase.github.models.WebhookProjectsV2ItemEditedChangesVariant1Body
 
-typealias WebhookProjectsV2ItemReordered =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemReordered
+typealias WebhookProjectsV2ItemReordered = dev.octri.showcase.github.models.WebhookProjectsV2ItemReordered
 
-typealias WebhookProjectsV2ItemReorderedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemReorderedActionEnum
+typealias WebhookProjectsV2ItemReorderedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ItemReorderedActionEnum
 
-typealias WebhookProjectsV2ItemReorderedChanges =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemReorderedChanges
+typealias WebhookProjectsV2ItemReorderedChanges = dev.octri.showcase.github.models.WebhookProjectsV2ItemReorderedChanges
 
-typealias WebhookProjectsV2ItemReorderedChangesPreviousProjectsV2ItemNodeId =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemReorderedChangesPreviousProjectsV2ItemNodeId
+typealias WebhookProjectsV2ItemReorderedChangesPreviousProjectsV2ItemNodeId = dev.octri.showcase.github.models.WebhookProjectsV2ItemReorderedChangesPreviousProjectsV2ItemNodeId
 
-typealias WebhookProjectsV2ItemRestored =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemRestored
+typealias WebhookProjectsV2ItemRestored = dev.octri.showcase.github.models.WebhookProjectsV2ItemRestored
 
-typealias WebhookProjectsV2ItemRestoredActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ItemRestoredActionEnum
+typealias WebhookProjectsV2ItemRestoredActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ItemRestoredActionEnum
 
-typealias WebhookProjectsV2ProjectClosed =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectClosed
+typealias WebhookProjectsV2ProjectClosed = dev.octri.showcase.github.models.WebhookProjectsV2ProjectClosed
 
-typealias WebhookProjectsV2ProjectClosedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectClosedActionEnum
+typealias WebhookProjectsV2ProjectClosedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ProjectClosedActionEnum
 
-typealias WebhookProjectsV2ProjectCreated =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectCreated
+typealias WebhookProjectsV2ProjectCreated = dev.octri.showcase.github.models.WebhookProjectsV2ProjectCreated
 
-typealias WebhookProjectsV2ProjectCreatedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectCreatedActionEnum
+typealias WebhookProjectsV2ProjectCreatedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ProjectCreatedActionEnum
 
-typealias WebhookProjectsV2ProjectDeleted =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectDeleted
+typealias WebhookProjectsV2ProjectDeleted = dev.octri.showcase.github.models.WebhookProjectsV2ProjectDeleted
 
-typealias WebhookProjectsV2ProjectDeletedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectDeletedActionEnum
+typealias WebhookProjectsV2ProjectDeletedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ProjectDeletedActionEnum
 
-typealias WebhookProjectsV2ProjectEdited =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectEdited
+typealias WebhookProjectsV2ProjectEdited = dev.octri.showcase.github.models.WebhookProjectsV2ProjectEdited
 
-typealias WebhookProjectsV2ProjectEditedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedActionEnum
+typealias WebhookProjectsV2ProjectEditedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedActionEnum
 
-typealias WebhookProjectsV2ProjectEditedChanges =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChanges
+typealias WebhookProjectsV2ProjectEditedChanges = dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChanges
 
-typealias WebhookProjectsV2ProjectEditedChangesDescription =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChangesDescription
+typealias WebhookProjectsV2ProjectEditedChangesDescription = dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChangesDescription
 
-typealias WebhookProjectsV2ProjectEditedChangesPublic =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChangesPublic
+typealias WebhookProjectsV2ProjectEditedChangesPublic = dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChangesPublic
 
-typealias WebhookProjectsV2ProjectEditedChangesShortDescription =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChangesShortDescription
+typealias WebhookProjectsV2ProjectEditedChangesShortDescription = dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChangesShortDescription
 
-typealias WebhookProjectsV2ProjectEditedChangesTitle =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChangesTitle
+typealias WebhookProjectsV2ProjectEditedChangesTitle = dev.octri.showcase.github.models.WebhookProjectsV2ProjectEditedChangesTitle
 
-typealias WebhookProjectsV2ProjectReopened =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectReopened
+typealias WebhookProjectsV2ProjectReopened = dev.octri.showcase.github.models.WebhookProjectsV2ProjectReopened
 
-typealias WebhookProjectsV2ProjectReopenedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2ProjectReopenedActionEnum
+typealias WebhookProjectsV2ProjectReopenedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2ProjectReopenedActionEnum
 
-typealias WebhookProjectsV2StatusUpdateCreated =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateCreated
+typealias WebhookProjectsV2StatusUpdateCreated = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateCreated
 
-typealias WebhookProjectsV2StatusUpdateCreatedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateCreatedActionEnum
+typealias WebhookProjectsV2StatusUpdateCreatedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateCreatedActionEnum
 
-typealias WebhookProjectsV2StatusUpdateDeleted =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateDeleted
+typealias WebhookProjectsV2StatusUpdateDeleted = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateDeleted
 
-typealias WebhookProjectsV2StatusUpdateDeletedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateDeletedActionEnum
+typealias WebhookProjectsV2StatusUpdateDeletedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateDeletedActionEnum
 
-typealias WebhookProjectsV2StatusUpdateEdited =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEdited
+typealias WebhookProjectsV2StatusUpdateEdited = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEdited
 
-typealias WebhookProjectsV2StatusUpdateEditedActionEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedActionEnum
+typealias WebhookProjectsV2StatusUpdateEditedActionEnum = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedActionEnum
 
-typealias WebhookProjectsV2StatusUpdateEditedChanges =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChanges
+typealias WebhookProjectsV2StatusUpdateEditedChanges = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChanges
 
-typealias WebhookProjectsV2StatusUpdateEditedChangesBody =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesBody
+typealias WebhookProjectsV2StatusUpdateEditedChangesBody = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesBody
 
-typealias WebhookProjectsV2StatusUpdateEditedChangesStartDate =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesStartDate
+typealias WebhookProjectsV2StatusUpdateEditedChangesStartDate = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesStartDate
 
-typealias WebhookProjectsV2StatusUpdateEditedChangesStatus =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesStatus
+typealias WebhookProjectsV2StatusUpdateEditedChangesStatus = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesStatus
 
-typealias WebhookProjectsV2StatusUpdateEditedChangesStatusFromEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesStatusFromEnum
+typealias WebhookProjectsV2StatusUpdateEditedChangesStatusFromEnum = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesStatusFromEnum
 
-typealias WebhookProjectsV2StatusUpdateEditedChangesStatusToEnum =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesStatusToEnum
+typealias WebhookProjectsV2StatusUpdateEditedChangesStatusToEnum = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesStatusToEnum
 
-typealias WebhookProjectsV2StatusUpdateEditedChangesTargetDate =
-    dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesTargetDate
+typealias WebhookProjectsV2StatusUpdateEditedChangesTargetDate = dev.octri.showcase.github.models.WebhookProjectsV2StatusUpdateEditedChangesTargetDate
 
 typealias WebhookPublic = dev.octri.showcase.github.models.WebhookPublic
 
 typealias WebhookPullRequestAssigned = dev.octri.showcase.github.models.WebhookPullRequestAssigned
 
-typealias WebhookPullRequestAssignedActionEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedActionEnum
+typealias WebhookPullRequestAssignedActionEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedActionEnum
 
-typealias WebhookPullRequestAssignedPullRequest =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequest
+typealias WebhookPullRequestAssignedPullRequest = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequest
 
-typealias WebhookPullRequestAssignedPullRequestActiveLockReasonEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestActiveLockReasonEnum
+typealias WebhookPullRequestAssignedPullRequestActiveLockReasonEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestActiveLockReasonEnum
 
-typealias WebhookPullRequestAssignedPullRequestAssignee =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAssignee
+typealias WebhookPullRequestAssignedPullRequestAssignee = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAssignee
 
-typealias WebhookPullRequestAssignedPullRequestAssigneesItem =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAssigneesItem
+typealias WebhookPullRequestAssignedPullRequestAssigneesItem = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAssigneesItem
 
-typealias WebhookPullRequestAssignedPullRequestAssigneesItemTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAssigneesItemTypeEnum
+typealias WebhookPullRequestAssignedPullRequestAssigneesItemTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAssigneesItemTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestAssigneeTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAssigneeTypeEnum
+typealias WebhookPullRequestAssignedPullRequestAssigneeTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAssigneeTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestAuthorAssociationEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAuthorAssociationEnum
+typealias WebhookPullRequestAssignedPullRequestAuthorAssociationEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAuthorAssociationEnum
 
-typealias WebhookPullRequestAssignedPullRequestAutoMerge =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAutoMerge
+typealias WebhookPullRequestAssignedPullRequestAutoMerge = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAutoMerge
 
-typealias WebhookPullRequestAssignedPullRequestAutoMergeEnabledBy =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAutoMergeEnabledBy
+typealias WebhookPullRequestAssignedPullRequestAutoMergeEnabledBy = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAutoMergeEnabledBy
 
-typealias WebhookPullRequestAssignedPullRequestAutoMergeEnabledByTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAutoMergeEnabledByTypeEnum
+typealias WebhookPullRequestAssignedPullRequestAutoMergeEnabledByTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAutoMergeEnabledByTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestAutoMergeMergeMethodEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAutoMergeMergeMethodEnum
+typealias WebhookPullRequestAssignedPullRequestAutoMergeMergeMethodEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestAutoMergeMergeMethodEnum
 
-typealias WebhookPullRequestAssignedPullRequestBase =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBase
+typealias WebhookPullRequestAssignedPullRequestBase = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBase
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepo =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepo
+typealias WebhookPullRequestAssignedPullRequestBaseRepo = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepo
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoLicense =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoLicense
+typealias WebhookPullRequestAssignedPullRequestBaseRepoLicense = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoLicense
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoMergeCommitMessageEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoMergeCommitMessageEnum
+typealias WebhookPullRequestAssignedPullRequestBaseRepoMergeCommitMessageEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoMergeCommitMessageEnum
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoMergeCommitTitleEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoMergeCommitTitleEnum
+typealias WebhookPullRequestAssignedPullRequestBaseRepoMergeCommitTitleEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoMergeCommitTitleEnum
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoOwner =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoOwner
+typealias WebhookPullRequestAssignedPullRequestBaseRepoOwner = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoOwner
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoOwnerTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoOwnerTypeEnum
+typealias WebhookPullRequestAssignedPullRequestBaseRepoOwnerTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoOwnerTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoPermissions =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoPermissions
+typealias WebhookPullRequestAssignedPullRequestBaseRepoPermissions = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoPermissions
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoPullRequestCreatXe753d658b1 =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoPullRequestCreatXe753d658b1
+typealias WebhookPullRequestAssignedPullRequestBaseRepoPullRequestCreatXe753d658b1 = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoPullRequestCreatXe753d658b1
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoSquashMergeCommitTitleEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoSquashMergeCommitTitleEnum
+typealias WebhookPullRequestAssignedPullRequestBaseRepoSquashMergeCommitTitleEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoSquashMergeCommitTitleEnum
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoSquashMergeCommiX7859b3dba9 =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoSquashMergeCommiX7859b3dba9
+typealias WebhookPullRequestAssignedPullRequestBaseRepoSquashMergeCommiX7859b3dba9 = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoSquashMergeCommiX7859b3dba9
 
-typealias WebhookPullRequestAssignedPullRequestBaseRepoVisibilityEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoVisibilityEnum
+typealias WebhookPullRequestAssignedPullRequestBaseRepoVisibilityEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseRepoVisibilityEnum
 
-typealias WebhookPullRequestAssignedPullRequestBaseUser =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseUser
+typealias WebhookPullRequestAssignedPullRequestBaseUser = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseUser
 
-typealias WebhookPullRequestAssignedPullRequestBaseUserTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseUserTypeEnum
+typealias WebhookPullRequestAssignedPullRequestBaseUserTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestBaseUserTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestHead =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHead
+typealias WebhookPullRequestAssignedPullRequestHead = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHead
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepo =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepo
+typealias WebhookPullRequestAssignedPullRequestHeadRepo = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepo
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoLicense =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoLicense
+typealias WebhookPullRequestAssignedPullRequestHeadRepoLicense = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoLicense
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoMergeCommitMessageEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoMergeCommitMessageEnum
+typealias WebhookPullRequestAssignedPullRequestHeadRepoMergeCommitMessageEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoMergeCommitMessageEnum
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoMergeCommitTitleEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoMergeCommitTitleEnum
+typealias WebhookPullRequestAssignedPullRequestHeadRepoMergeCommitTitleEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoMergeCommitTitleEnum
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoOwner =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoOwner
+typealias WebhookPullRequestAssignedPullRequestHeadRepoOwner = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoOwner
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoOwnerTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoOwnerTypeEnum
+typealias WebhookPullRequestAssignedPullRequestHeadRepoOwnerTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoOwnerTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoPermissions =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoPermissions
+typealias WebhookPullRequestAssignedPullRequestHeadRepoPermissions = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoPermissions
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoPullRequestCreatX4770ecac9e =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoPullRequestCreatX4770ecac9e
+typealias WebhookPullRequestAssignedPullRequestHeadRepoPullRequestCreatX4770ecac9e = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoPullRequestCreatX4770ecac9e
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoSquashMergeCommitTitleEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoSquashMergeCommitTitleEnum
+typealias WebhookPullRequestAssignedPullRequestHeadRepoSquashMergeCommitTitleEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoSquashMergeCommitTitleEnum
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoSquashMergeCommiXaa172d247a =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoSquashMergeCommiXaa172d247a
+typealias WebhookPullRequestAssignedPullRequestHeadRepoSquashMergeCommiXaa172d247a = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoSquashMergeCommiXaa172d247a
 
-typealias WebhookPullRequestAssignedPullRequestHeadRepoVisibilityEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoVisibilityEnum
+typealias WebhookPullRequestAssignedPullRequestHeadRepoVisibilityEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadRepoVisibilityEnum
 
-typealias WebhookPullRequestAssignedPullRequestHeadUser =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadUser
+typealias WebhookPullRequestAssignedPullRequestHeadUser = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadUser
 
-typealias WebhookPullRequestAssignedPullRequestHeadUserTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadUserTypeEnum
+typealias WebhookPullRequestAssignedPullRequestHeadUserTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestHeadUserTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestLabelsItem =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLabelsItem
+typealias WebhookPullRequestAssignedPullRequestLabelsItem = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLabelsItem
 
-typealias WebhookPullRequestAssignedPullRequestLinks =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinks
+typealias WebhookPullRequestAssignedPullRequestLinks = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinks
 
-typealias WebhookPullRequestAssignedPullRequestLinksComments =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksComments
+typealias WebhookPullRequestAssignedPullRequestLinksComments = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksComments
 
-typealias WebhookPullRequestAssignedPullRequestLinksCommits =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksCommits
+typealias WebhookPullRequestAssignedPullRequestLinksCommits = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksCommits
 
-typealias WebhookPullRequestAssignedPullRequestLinksHtml =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksHtml
+typealias WebhookPullRequestAssignedPullRequestLinksHtml = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksHtml
 
-typealias WebhookPullRequestAssignedPullRequestLinksIssue =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksIssue
+typealias WebhookPullRequestAssignedPullRequestLinksIssue = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksIssue
 
-typealias WebhookPullRequestAssignedPullRequestLinksReviewComment =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksReviewComment
+typealias WebhookPullRequestAssignedPullRequestLinksReviewComment = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksReviewComment
 
-typealias WebhookPullRequestAssignedPullRequestLinksReviewComments =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksReviewComments
+typealias WebhookPullRequestAssignedPullRequestLinksReviewComments = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksReviewComments
 
-typealias WebhookPullRequestAssignedPullRequestLinksSelf =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksSelf
+typealias WebhookPullRequestAssignedPullRequestLinksSelf = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksSelf
 
-typealias WebhookPullRequestAssignedPullRequestLinksStatuses =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksStatuses
+typealias WebhookPullRequestAssignedPullRequestLinksStatuses = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestLinksStatuses
 
-typealias WebhookPullRequestAssignedPullRequestMergedBy =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMergedBy
+typealias WebhookPullRequestAssignedPullRequestMergedBy = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMergedBy
 
-typealias WebhookPullRequestAssignedPullRequestMergedByTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMergedByTypeEnum
+typealias WebhookPullRequestAssignedPullRequestMergedByTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMergedByTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestMilestone =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMilestone
+typealias WebhookPullRequestAssignedPullRequestMilestone = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMilestone
 
-typealias WebhookPullRequestAssignedPullRequestMilestoneCreator =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMilestoneCreator
+typealias WebhookPullRequestAssignedPullRequestMilestoneCreator = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMilestoneCreator
 
-typealias WebhookPullRequestAssignedPullRequestMilestoneCreatorTypeEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMilestoneCreatorTypeEnum
+typealias WebhookPullRequestAssignedPullRequestMilestoneCreatorTypeEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMilestoneCreatorTypeEnum
 
-typealias WebhookPullRequestAssignedPullRequestMilestoneStateEnum =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMilestoneStateEnum
+typealias WebhookPullRequestAssignedPullRequestMilestoneStateEnum = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestMilestoneStateEnum
 
-typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItem =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItem
+typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItem = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItem
 
-typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVariant0 =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVariant0
+typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVariant0 = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVariant0
 
-typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVariant1 =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVariant1
+typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVariant1 = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVariant1
 
-typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX37e7bd6688 =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX37e7bd6688
+typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX37e7bd6688 = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX37e7bd6688
 
-typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX3de9e6677b =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX3de9e6677b
+typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX3de9e6677b = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX3de9e6677b
 
-typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX688751e691 =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX688751e691
+typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX688751e691 = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX688751e691
 
-typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX843d75ac8d =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX843d75ac8d
+typealias WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX843d75ac8d = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedReviewersItemVaX843d75ac8d
 
-typealias WebhookPullRequestAssignedPullRequestRequestedTeamsItem =
-    dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedTeamsItem
+typealias WebhookPullRequestAssignedPullRequestRequestedTeamsItem = dev.octri.showcase.github.models.WebhookPullRequestAssignedPullRequestRequestedTeamsItem

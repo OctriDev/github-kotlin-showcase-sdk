@@ -3,166 +3,256 @@
 
 package dev.octri.showcase.github.models
 
-/** Optional object value serialized in the `name` wire field. */
+/**
+ * Optional object value serialized in the `name` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesName(
-    /** Optional `string` value serialized in the `from` wire field. */
+    /**
+     * Optional `string` value serialized in the `from` wire field.
+     */
     val from: String? = null
 )
 
-/** Optional object value serialized in the `enforcement` wire field. */
+/**
+ * Optional object value serialized in the `enforcement` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesEnforcement(
-    /** Optional `string` value serialized in the `from` wire field. */
+    /**
+     * Optional `string` value serialized in the `from` wire field.
+     */
     val from: String? = null
 )
 
-/** Optional object value serialized in the `condition_type` wire field. */
+/**
+ * Optional object value serialized in the `condition_type` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChaX690cc143d8(
-    /** Optional `string` value serialized in the `from` wire field. */
+    /**
+     * Optional `string` value serialized in the `from` wire field.
+     */
     val from: String? = null
 )
 
-/** Optional object value serialized in the `target` wire field. */
+/**
+ * Optional object value serialized in the `target` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChangesTarget(
-    /** Optional `string` value serialized in the `from` wire field. */
+    /**
+     * Optional `string` value serialized in the `from` wire field.
+     */
     val from: String? = null
 )
 
-/** Optional object value serialized in the `include` wire field. */
+/**
+ * Optional object value serialized in the `include` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChangesInclude(
-    /** Optional array value serialized in the `from` wire field. */
+    /**
+     * Optional array value serialized in the `from` wire field.
+     */
     val from: List<String>? = null
 )
 
-/** Optional object value serialized in the `exclude` wire field. */
+/**
+ * Optional object value serialized in the `exclude` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChangesExclude(
-    /** Optional array value serialized in the `from` wire field. */
+    /**
+     * Optional array value serialized in the `from` wire field.
+     */
     val from: List<String>? = null
 )
 
-/** Optional object value serialized in the `changes` wire field. */
+/**
+ * Optional object value serialized in the `changes` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChanges(
-    /** Optional object value serialized in the `condition_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("condition_type")
-    val conditionType: WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChaX690cc143d8? =
-        null,
-    /** Optional object value serialized in the `target` wire field. */
+    /**
+     * Optional object value serialized in the `condition_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("condition_type") val conditionType: WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChaX690cc143d8? = null,
+    /**
+     * Optional object value serialized in the `target` wire field.
+     */
     val target: WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChangesTarget? = null,
-    /** Optional object value serialized in the `include` wire field. */
+    /**
+     * Optional object value serialized in the `include` wire field.
+     */
     val include: WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChangesInclude? = null,
-    /** Optional object value serialized in the `exclude` wire field. */
-    val exclude: WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChangesExclude? = null,
+    /**
+     * Optional object value serialized in the `exclude` wire field.
+     */
+    val exclude: WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChangesExclude? = null
 )
 
-/** Required object value serialized in the `updated[]` wire field. */
+/**
+ * Required object value serialized in the `updated[]` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesConditionsUpdatedItem(
-    /** Parameters for a repository ruleset ref name condition */
+    /**
+     * Parameters for a repository ruleset ref name condition
+     */
     val condition: RepositoryRulesetConditions? = null,
-    /** Optional object value serialized in the `changes` wire field. */
-    val changes: WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChanges? = null,
+    /**
+     * Optional object value serialized in the `changes` wire field.
+     */
+    val changes: WebhookRepositoryRulesetEditedChangesConditionsUpdatedItemChanges? = null
 )
 
-/** Optional object value serialized in the `conditions` wire field. */
+/**
+ * Optional object value serialized in the `conditions` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesConditions(
-    /** Optional array value serialized in the `added` wire field. */
+    /**
+     * Optional array value serialized in the `added` wire field.
+     */
     val added: List<RepositoryRulesetConditions>? = null,
-    /** Optional array value serialized in the `deleted` wire field. */
+    /**
+     * Optional array value serialized in the `deleted` wire field.
+     */
     val deleted: List<RepositoryRulesetConditions>? = null,
-    /** Optional array value serialized in the `updated` wire field. */
-    val updated: List<WebhookRepositoryRulesetEditedChangesConditionsUpdatedItem>? = null,
+    /**
+     * Optional array value serialized in the `updated` wire field.
+     */
+    val updated: List<WebhookRepositoryRulesetEditedChangesConditionsUpdatedItem>? = null
 )
 
-/** Optional object value serialized in the `configuration` wire field. */
+/**
+ * Optional object value serialized in the `configuration` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesCX78a12d5efb(
-    /** Optional `string` value serialized in the `from` wire field. */
+    /**
+     * Optional `string` value serialized in the `from` wire field.
+     */
     val from: String? = null
 )
 
-/** Optional object value serialized in the `rule_type` wire field. */
+/**
+ * Optional object value serialized in the `rule_type` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesRuleType(
-    /** Optional `string` value serialized in the `from` wire field. */
+    /**
+     * Optional `string` value serialized in the `from` wire field.
+     */
     val from: String? = null
 )
 
-/** Optional object value serialized in the `pattern` wire field. */
+/**
+ * Optional object value serialized in the `pattern` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesPattern(
-    /** Optional `string` value serialized in the `from` wire field. */
+    /**
+     * Optional `string` value serialized in the `from` wire field.
+     */
     val from: String? = null
 )
 
-/** Optional object value serialized in the `changes` wire field. */
+/**
+ * Optional object value serialized in the `changes` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChanges(
-    /** Optional object value serialized in the `configuration` wire field. */
-    val configuration: WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesCX78a12d5efb? =
-        null,
-    /** Optional object value serialized in the `rule_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("rule_type")
-    val ruleType: WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesRuleType? = null,
-    /** Optional object value serialized in the `pattern` wire field. */
-    val pattern: WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesPattern? = null,
+    /**
+     * Optional object value serialized in the `configuration` wire field.
+     */
+    val configuration: WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesCX78a12d5efb? = null,
+    /**
+     * Optional object value serialized in the `rule_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("rule_type") val ruleType: WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesRuleType? = null,
+    /**
+     * Optional object value serialized in the `pattern` wire field.
+     */
+    val pattern: WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChangesPattern? = null
 )
 
-/** Required object value serialized in the `updated[]` wire field. */
+/**
+ * Required object value serialized in the `updated[]` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesRulesUpdatedItem(
-    /** A repository rule. */
+    /**
+     * A repository rule.
+     */
     val rule: RepositoryRule? = null,
-    /** Optional object value serialized in the `changes` wire field. */
-    val changes: WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChanges? = null,
+    /**
+     * Optional object value serialized in the `changes` wire field.
+     */
+    val changes: WebhookRepositoryRulesetEditedChangesRulesUpdatedItemChanges? = null
 )
 
-/** Optional object value serialized in the `rules` wire field. */
+/**
+ * Optional object value serialized in the `rules` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChangesRules(
-    /** Optional array value serialized in the `added` wire field. */
+    /**
+     * Optional array value serialized in the `added` wire field.
+     */
     val added: List<RepositoryRule>? = null,
-    /** Optional array value serialized in the `deleted` wire field. */
+    /**
+     * Optional array value serialized in the `deleted` wire field.
+     */
     val deleted: List<RepositoryRule>? = null,
-    /** Optional array value serialized in the `updated` wire field. */
-    val updated: List<WebhookRepositoryRulesetEditedChangesRulesUpdatedItem>? = null,
+    /**
+     * Optional array value serialized in the `updated` wire field.
+     */
+    val updated: List<WebhookRepositoryRulesetEditedChangesRulesUpdatedItem>? = null
 )
 
-/** Optional object value serialized in the `changes` wire field. */
+/**
+ * Optional object value serialized in the `changes` wire field.
+ */
 data class WebhookRepositoryRulesetEditedChanges(
-    /** Optional object value serialized in the `name` wire field. */
+    /**
+     * Optional object value serialized in the `name` wire field.
+     */
     val name: WebhookRepositoryRulesetEditedChangesName? = null,
-    /** Optional object value serialized in the `enforcement` wire field. */
+    /**
+     * Optional object value serialized in the `enforcement` wire field.
+     */
     val enforcement: WebhookRepositoryRulesetEditedChangesEnforcement? = null,
-    /** Optional object value serialized in the `conditions` wire field. */
+    /**
+     * Optional object value serialized in the `conditions` wire field.
+     */
     val conditions: WebhookRepositoryRulesetEditedChangesConditions? = null,
-    /** Optional object value serialized in the `rules` wire field. */
-    val rules: WebhookRepositoryRulesetEditedChangesRules? = null,
+    /**
+     * Optional object value serialized in the `rules` wire field.
+     */
+    val rules: WebhookRepositoryRulesetEditedChangesRules? = null
 )
 
-/** Typed representation of the `WebhookRepositoryRulesetEdited` API schema. */
+/**
+ * Typed representation of the `WebhookRepositoryRulesetEdited` API schema.
+ */
 data class WebhookRepositoryRulesetEdited(
-    /** Required enumerated value serialized in the `action` wire field. */
+    /**
+     * Required enumerated value serialized in the `action` wire field.
+     */
     val action: WebhookRepositoryRulesetEditedActionEnum,
-    /** A set of rules to apply when specified conditions are met. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_ruleset")
-    val repositoryRuleset: RepositoryRuleset,
-    /** A GitHub user. */
+    /**
+     * A set of rules to apply when specified conditions are met.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_ruleset") val repositoryRuleset: RepositoryRuleset,
+    /**
+     * A GitHub user.
+     */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks? = null,
-    /** Optional object value serialized in the `changes` wire field. */
-    val changes: WebhookRepositoryRulesetEditedChanges? = null,
+    /**
+     * Optional object value serialized in the `changes` wire field.
+     */
+    val changes: WebhookRepositoryRulesetEditedChanges? = null
 )

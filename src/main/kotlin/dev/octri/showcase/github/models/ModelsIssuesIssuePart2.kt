@@ -5,463 +5,624 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Issue Event Label */
+/**
+ * Issue Event Label
+ */
 data class IssueEventLabel(
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?,
-    /** Required `string` value serialized in the `color` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("color", required = true) val color: String?,
+    /**
+     * Required `string` value serialized in the `color` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("color", required = true) val color: String?
 )
 
-/** Issue Event Milestone */
+/**
+ * Issue Event Milestone
+ */
 data class IssueEventMilestone(
-    /** Required `string` value serialized in the `title` wire field. */
+    /**
+     * Required `string` value serialized in the `title` wire field.
+     */
     val title: String
 )
 
-/** Issue Event Project Card */
+/**
+ * Issue Event Project Card
+ */
 data class IssueEventProjectCard(
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `uri`-formatted value serialized in the `project_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `project_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("project_url") val projectUrl: String,
-    /** Required `integer` value serialized in the `project_id` wire field. */
+    /**
+     * Required `integer` value serialized in the `project_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("project_id") val projectId: Long,
-    /** Required `string` value serialized in the `column_name` wire field. */
+    /**
+     * Required `string` value serialized in the `column_name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("column_name") val columnName: String,
-    /** Optional `string` value serialized in the `previous_column_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_column_name")
-    val previousColumnName: String? = null,
+    /**
+     * Optional `string` value serialized in the `previous_column_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_column_name") val previousColumnName: String? = null
 )
 
-/** Issue Event Rename */
+/**
+ * Issue Event Rename
+ */
 data class IssueEventRename(
-    /** Required `string` value serialized in the `from` wire field. */
+    /**
+     * Required `string` value serialized in the `from` wire field.
+     */
     val from: String,
-    /** Required `string` value serialized in the `to` wire field. */
-    val to: String,
+    /**
+     * Required `string` value serialized in the `to` wire field.
+     */
+    val to: String
 )
 
-/** An agent-proposed change to an issue that a maintainer can approve or dismiss. */
+/**
+ * An agent-proposed change to an issue that a maintainer can approve or dismiss.
+ */
 data class IssueSuggestion(
-    /** The unique identifier of the suggestion. */
+    /**
+     * The unique identifier of the suggestion.
+     */
     val id: Long,
-    /** The unique identifier of the issue the suggestion applies to. */
+    /**
+     * The unique identifier of the issue the suggestion applies to.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_id") val issueId: Long,
-    /** The kind of change proposed. */
+    /**
+     * The kind of change proposed.
+     */
     val action: IssueSuggestionActionEnum,
-    /** The suggestion's lifecycle state. */
+    /**
+     * The suggestion's lifecycle state.
+     */
     val state: IssueSuggestionStateEnum,
     /**
-     * The identifier of the target the change applies to (issue type, label, field, assignee, or
-     * duplicate issue), when applicable.
+     * The identifier of the target the change applies to (issue type, label, field, assignee, or duplicate issue), when applicable.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("target_id", required = true)
-    val targetId: Long?,
-    /** The proposed value, when applicable. An array for multi-select field suggestions. */
-    @com.fasterxml.jackson.annotation.JsonProperty("target_value", required = true)
-    val targetValue: Any?,
-    /** The rationale the actor provided for the suggestion. */
-    @com.fasterxml.jackson.annotation.JsonProperty("rationale", required = true)
-    val rationale: String?,
-    /** The actor's confidence level in the suggestion. */
-    @com.fasterxml.jackson.annotation.JsonProperty("confidence", required = true)
-    val confidence: IssueSuggestionConfidenceEnum?,
-    /** The unique identifier of the actor that proposed the suggestion. */
+    @com.fasterxml.jackson.annotation.JsonProperty("target_id", required = true) val targetId: Long?,
+    /**
+     * The proposed value, when applicable. An array for multi-select field suggestions.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("target_value", required = true) val targetValue: Any?,
+    /**
+     * The rationale the actor provided for the suggestion.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("rationale", required = true) val rationale: String?,
+    /**
+     * The actor's confidence level in the suggestion.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("confidence", required = true) val confidence: IssueSuggestionConfidenceEnum?,
+    /**
+     * The unique identifier of the actor that proposed the suggestion.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("actor_id", required = true) val actorId: Long?,
     /**
-     * The identifier of the timeline event created when the suggestion was approved, when
-     * applicable.
+     * The identifier of the timeline event created when the suggestion was approved, when applicable.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_event_id", required = true)
-    val issueEventId: Long?,
-    /** The unique identifier of the user who approved or dismissed the suggestion. */
-    @com.fasterxml.jackson.annotation.JsonProperty("resolved_by", required = true)
-    val resolvedBy: Long?,
-    /** The time the suggestion was created. */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_event_id", required = true) val issueEventId: Long?,
+    /**
+     * The unique identifier of the user who approved or dismissed the suggestion.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("resolved_by", required = true) val resolvedBy: Long?,
+    /**
+     * The time the suggestion was created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** The time the suggestion was last updated. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * The time the suggestion was last updated.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
 )
 
-/** The type of issue. */
+/**
+ * The type of issue.
+ */
 data class IssueTypeWebhook(
-    /** The unique identifier of the issue type. */
+    /**
+     * The unique identifier of the issue type.
+     */
     val id: Long,
-    /** The name of the issue type. */
+    /**
+     * The name of the issue type.
+     */
     val name: String,
-    /** The color of the issue type. */
-    val color: IssueTypeWebhookColorEnum? = null,
+    /**
+     * The color of the issue type.
+     */
+    val color: IssueTypeWebhookColorEnum? = null
 )
 
-/** Required object value serialized in the `label` wire field. */
+/**
+ * Required object value serialized in the `label` wire field.
+ */
 data class LabeledIssueEventLabel(
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `color` wire field. */
-    val color: String,
+    /**
+     * Required `string` value serialized in the `color` wire field.
+     */
+    val color: String
 )
 
-/** Labeled Issue Event */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Labeled Issue Event
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class LabeledIssueEvent(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val actor: SimpleUser,
-    /** Required `string` value serialized in the `event` wire field. */
+    /**
+     * Required `string` value serialized in the `event` wire field.
+     */
     val event: String,
-    /** Required `string` value serialized in the `commit_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
-    val commitId: String?,
-    /** Required `string` value serialized in the `commit_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
-    val commitUrl: String?,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `commit_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
+    /**
+     * Required `string` value serialized in the `commit_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
-    val performedViaGithubApp: NullableIntegration?,
-    /** Required object value serialized in the `label` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    /**
+     * Required object value serialized in the `label` wire field.
+     */
     val label: LabeledIssueEventLabel,
     /**
-     * The intent behind an agent's action on an issue, including the rationale and confidence.
-     * Present (and `null` when the event carried no agent intent) on supported event types while
-     * the issue suggestions feature is enabled for the repository; the property is omitted entirely
-     * when the feature is disabled or the event type does not support intent.
+     * The intent behind an agent's action on an issue, including the rationale and confidence. Present (and `null` when the event carried no agent intent) on supported event types while the issue suggestions feature is enabled for the repository; the property is omitted entirely when the feature is disabled or the event type does not support intent.
      */
-    val intent: NullableIssueEventIntent? = null,
+    val intent: NullableIssueEventIntent? = null
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/** Locked Issue Event */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Locked Issue Event
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class LockedIssueEvent(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val actor: SimpleUser,
-    /** Required `string` value serialized in the `event` wire field. */
+    /**
+     * Required `string` value serialized in the `event` wire field.
+     */
     val event: String,
-    /** Required `string` value serialized in the `commit_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
-    val commitId: String?,
-    /** Required `string` value serialized in the `commit_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
-    val commitUrl: String?,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `commit_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
+    /**
+     * Required `string` value serialized in the `commit_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
-    val performedViaGithubApp: NullableIntegration?,
-    /** Required `string` value serialized in the `lock_reason` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("lock_reason", required = true)
-    val lockReason: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    /**
+     * Required `string` value serialized in the `lock_reason` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("lock_reason", required = true) val lockReason: String?
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/** Required object value serialized in the `milestone` wire field. */
+/**
+ * Required object value serialized in the `milestone` wire field.
+ */
 data class MilestonedIssueEventMilestone(
-    /** Required `string` value serialized in the `title` wire field. */
+    /**
+     * Required `string` value serialized in the `title` wire field.
+     */
     val title: String
 )
 
-/** Milestoned Issue Event */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Milestoned Issue Event
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class MilestonedIssueEvent(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val actor: SimpleUser,
-    /** Required `string` value serialized in the `event` wire field. */
+    /**
+     * Required `string` value serialized in the `event` wire field.
+     */
     val event: String,
-    /** Required `string` value serialized in the `commit_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
-    val commitId: String?,
-    /** Required `string` value serialized in the `commit_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
-    val commitUrl: String?,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `commit_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
+    /**
+     * Required `string` value serialized in the `commit_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
-    val performedViaGithubApp: NullableIntegration?,
-    /** Required object value serialized in the `milestone` wire field. */
-    val milestone: MilestonedIssueEventMilestone,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    /**
+     * Required object value serialized in the `milestone` wire field.
+     */
+    val milestone: MilestonedIssueEventMilestone
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/** Optional object value serialized in the `project_card` wire field. */
+/**
+ * Optional object value serialized in the `project_card` wire field.
+ */
 data class MovedColumnInProjectIssueEventProjectCard(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `integer` value serialized in the `project_id` wire field. */
+    /**
+     * Required `integer` value serialized in the `project_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("project_id") val projectId: Long,
-    /** Required `uri`-formatted value serialized in the `project_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `project_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("project_url") val projectUrl: String,
-    /** Required `string` value serialized in the `column_name` wire field. */
+    /**
+     * Required `string` value serialized in the `column_name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("column_name") val columnName: String,
-    /** Optional `string` value serialized in the `previous_column_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_column_name")
-    val previousColumnName: String? = null,
+    /**
+     * Optional `string` value serialized in the `previous_column_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_column_name") val previousColumnName: String? = null
 )
 
-/** Moved Column in Project Issue Event */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Moved Column in Project Issue Event
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class MovedColumnInProjectIssueEvent(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val actor: SimpleUser,
-    /** Required `string` value serialized in the `event` wire field. */
+    /**
+     * Required `string` value serialized in the `event` wire field.
+     */
     val event: String,
-    /** Required `string` value serialized in the `commit_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
-    val commitId: String?,
-    /** Required `string` value serialized in the `commit_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
-    val commitUrl: String?,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `commit_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
+    /**
+     * Required `string` value serialized in the `commit_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
-    val performedViaGithubApp: NullableIntegration?,
-    /** Optional object value serialized in the `project_card` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("project_card")
-    val projectCard: MovedColumnInProjectIssueEventProjectCard? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    /**
+     * Optional object value serialized in the `project_card` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("project_card") val projectCard: MovedColumnInProjectIssueEventProjectCard? = null
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/** Parent-issue Added Issue Event */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Parent-issue Added Issue Event
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ParentIssueAddedIssueEvent(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val actor: SimpleUser,
-    /** Required `string` value serialized in the `event` wire field. */
+    /**
+     * Required `string` value serialized in the `event` wire field.
+     */
     val event: String,
-    /** Required `string` value serialized in the `commit_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
-    val commitId: String?,
-    /** Required `string` value serialized in the `commit_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
-    val commitUrl: String?,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `commit_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
+    /**
+     * Required `string` value serialized in the `commit_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
-    val performedViaGithubApp: NullableIntegration?,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
     /**
-     * A minimal reference to an issue linked from a timeline event (e.g. sub-issue, parent-issue,
-     * or dependency events).
+     * A minimal reference to an issue linked from a timeline event (e.g. sub-issue, parent-issue, or dependency events).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("parent_issue", required = true)
-    val parentIssue: NullableIssueReference?,
+    @com.fasterxml.jackson.annotation.JsonProperty("parent_issue", required = true) val parentIssue: NullableIssueReference?
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/** Parent-issue Removed Issue Event */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Parent-issue Removed Issue Event
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ParentIssueRemovedIssueEvent(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val actor: SimpleUser,
-    /** Required `string` value serialized in the `event` wire field. */
+    /**
+     * Required `string` value serialized in the `event` wire field.
+     */
     val event: String,
-    /** Required `string` value serialized in the `commit_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
-    val commitId: String?,
-    /** Required `string` value serialized in the `commit_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
-    val commitUrl: String?,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `commit_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
+    /**
+     * Required `string` value serialized in the `commit_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
-    val performedViaGithubApp: NullableIntegration?,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
     /**
-     * A minimal reference to an issue linked from a timeline event (e.g. sub-issue, parent-issue,
-     * or dependency events).
+     * A minimal reference to an issue linked from a timeline event (e.g. sub-issue, parent-issue, or dependency events).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("parent_issue", required = true)
-    val parentIssue: NullableIssueReference?,
+    @com.fasterxml.jackson.annotation.JsonProperty("parent_issue", required = true) val parentIssue: NullableIssueReference?
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/** Optional object value serialized in the `project_card` wire field. */
+/**
+ * Optional object value serialized in the `project_card` wire field.
+ */
 data class RemovedFromProjectIssueEventProjectCard(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `integer` value serialized in the `project_id` wire field. */
+    /**
+     * Required `integer` value serialized in the `project_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("project_id") val projectId: Long,
-    /** Required `uri`-formatted value serialized in the `project_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `project_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("project_url") val projectUrl: String,
-    /** Required `string` value serialized in the `column_name` wire field. */
+    /**
+     * Required `string` value serialized in the `column_name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("column_name") val columnName: String,
-    /** Optional `string` value serialized in the `previous_column_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_column_name")
-    val previousColumnName: String? = null,
+    /**
+     * Optional `string` value serialized in the `previous_column_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_column_name") val previousColumnName: String? = null
 )
 
-/** Removed from Project Issue Event */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Removed from Project Issue Event
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RemovedFromProjectIssueEvent(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val actor: SimpleUser,
-    /** Required `string` value serialized in the `event` wire field. */
+    /**
+     * Required `string` value serialized in the `event` wire field.
+     */
     val event: String,
-    /** Required `string` value serialized in the `commit_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
-    val commitId: String?,
-    /** Required `string` value serialized in the `commit_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
-    val commitUrl: String?,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `commit_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
+    /**
+     * Required `string` value serialized in the `commit_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
-    val performedViaGithubApp: NullableIntegration?,
-    /** Optional object value serialized in the `project_card` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("project_card")
-    val projectCard: RemovedFromProjectIssueEventProjectCard? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    /**
+     * Optional object value serialized in the `project_card` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("project_card") val projectCard: RemovedFromProjectIssueEventProjectCard? = null
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/** Required object value serialized in the `rename` wire field. */
+/**
+ * Required object value serialized in the `rename` wire field.
+ */
 data class RenamedIssueEventRename(
-    /** Required `string` value serialized in the `from` wire field. */
+    /**
+     * Required `string` value serialized in the `from` wire field.
+     */
     val from: String,
-    /** Required `string` value serialized in the `to` wire field. */
-    val to: String,
+    /**
+     * Required `string` value serialized in the `to` wire field.
+     */
+    val to: String
 )
 
-/** Renamed Issue Event */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Renamed Issue Event
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RenamedIssueEvent(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val actor: SimpleUser,
-    /** Required `string` value serialized in the `event` wire field. */
+    /**
+     * Required `string` value serialized in the `event` wire field.
+     */
     val event: String,
-    /** Required `string` value serialized in the `commit_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
-    val commitId: String?,
-    /** Required `string` value serialized in the `commit_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
-    val commitUrl: String?,
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `commit_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
+    /**
+     * Required `string` value serialized in the `commit_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
-    val performedViaGithubApp: NullableIntegration?,
-    /** Required object value serialized in the `rename` wire field. */
-    val rename: RenamedIssueEventRename,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    /**
+     * Required object value serialized in the `rename` wire field.
+     */
+    val rename: RenamedIssueEventRename
 ) : IssueEventForIssue, TimelineIssueEvents

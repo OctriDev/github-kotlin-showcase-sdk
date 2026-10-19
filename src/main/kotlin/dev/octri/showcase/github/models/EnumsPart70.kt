@@ -4,953 +4,577 @@
 package dev.octri.showcase.github.models
 
 /**
- * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's
- * body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a
- * blank commit message.
+ * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
  */
-class WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_BODY =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169("PR_BODY")
-        @JvmField
-        val COMMIT_MESSAGES =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169(
-                "COMMIT_MESSAGES"
-            )
-        @JvmField
-        val BLANK =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169("BLANK")
+        @JvmField val PR_BODY = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169("PR_BODY")
+        @JvmField val COMMIT_MESSAGES = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169("COMMIT_MESSAGES")
+        @JvmField val BLANK = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSX5ffdcda169(value)
     }
 }
 
 /**
- * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's
- * title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull
- * request's title (when more than one commit).
+ * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
  */
-class WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_TITLE =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98("PR_TITLE")
-        @JvmField
-        val COMMIT_OR_PR_TITLE =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98(
-                "COMMIT_OR_PR_TITLE"
-            )
+        @JvmField val PR_TITLE = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98("PR_TITLE")
+        @JvmField val COMMIT_OR_PR_TITLE = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98("COMMIT_OR_PR_TITLE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoSXe2e6702f98(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PUBLIC =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3("public")
-        @JvmField
-        val PRIVATE =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3("private")
-        @JvmField
-        val INTERNAL =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3("internal")
+        @JvmField val PUBLIC = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3("public")
+        @JvmField val PRIVATE = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3("private")
+        @JvmField val INTERNAL = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3("internal")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestHeadRepoVXee9a25c6f3(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum("Organization")
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestHeadUserTypeEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum("Organization")
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestMergedByTypeEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40("Organization")
-        @JvmField
-        val MANNEQUIN =
-            WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40("Mannequin")
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40("Organization")
+        @JvmField val MANNEQUIN = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40("Mannequin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneX1638d98c40(value)
     }
 }
 
-/** The state of the milestone. */
-class WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum &&
-            value == other.value
-
+/**
+ * The state of the milestone.
+ */
+class WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum("open")
-        @JvmField
-        val CLOSED =
-            WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum("closed")
+        @JvmField val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum("open")
+        @JvmField val CLOSED = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum("closed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestMilestoneStateEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc("Organization")
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb969212ffc(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f("open")
-        @JvmField
-        val CLOSED =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f("closed")
-        @JvmField
-        val SECRET =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f("secret")
+        @JvmField val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f("open")
+        @JvmField val CLOSED = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f("closed")
+        @JvmField val SECRET = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f("secret")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedX444d1deb9f(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0("open")
-        @JvmField
-        val CLOSED =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0("closed")
-        @JvmField
-        val SECRET =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0("secret")
+        @JvmField val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0("open")
+        @JvmField val CLOSED = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0("closed")
+        @JvmField val SECRET = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0("secret")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXfa719b3dd0(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3("open")
-        @JvmField
-        val CLOSED =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3("closed")
-        @JvmField
-        val SECRET =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3("secret")
+        @JvmField val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3("open")
+        @JvmField val CLOSED = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3("closed")
+        @JvmField val SECRET = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3("secret")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXb5207140a3(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87("open")
-        @JvmField
-        val CLOSED =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87("closed")
-        @JvmField
-        val SECRET =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87("secret")
+        @JvmField val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87("open")
+        @JvmField val CLOSED = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87("closed")
+        @JvmField val SECRET = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87("secret")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestRequestedXdb7c5f6f87(value)
     }
 }
 
-/** State of this Pull Request. Either `open` or `closed`. */
-class WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum &&
-            value == other.value
-
+/**
+ * State of this Pull Request. Either `open` or `closed`.
+ */
+class WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val OPEN = WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum("open")
-        @JvmField
-        val CLOSED = WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum("closed")
+        @JvmField val CLOSED = WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum("closed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestStateEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val BOT = WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum("Organization")
-        @JvmField
-        val MANNEQUIN =
-            WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum("Mannequin")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum("Organization")
+        @JvmField val MANNEQUIN = WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum("Mannequin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0PullRequestUserTypeEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum("Organization")
-        @JvmField
-        val MANNEQUIN =
-            WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum("Mannequin")
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum("Organization")
+        @JvmField val MANNEQUIN = WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum("Mannequin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant0RequestedReviewerTypeEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant1ActionEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1ActionEnum && value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1ActionEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1ActionEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val REVIEW_REQUESTED =
-            WebhookPullRequestReviewRequestedVariant1ActionEnum("review_requested")
+        @JvmField val REVIEW_REQUESTED = WebhookPullRequestReviewRequestedVariant1ActionEnum("review_requested")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1ActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1ActionEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val RESOLVED =
-            WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum("resolved")
-        @JvmField
-        val OFF_TOPIC =
-            WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum("off-topic")
-        @JvmField
-        val TOO_HEATED =
-            WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum("too heated")
-        @JvmField
-        val SPAM = WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum("spam")
+        @JvmField val RESOLVED = WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum("resolved")
+        @JvmField val OFF_TOPIC = WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum("off-topic")
+        @JvmField val TOO_HEATED = WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum("too heated")
+        @JvmField val SPAM = WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum("spam")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestActiveLockReasonEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum("Organization")
-        @JvmField
-        val MANNEQUIN =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum("Mannequin")
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum("Organization")
+        @JvmField val MANNEQUIN = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum("Mannequin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneeTypeEnum(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8("Organization")
-        @JvmField
-        val MANNEQUIN =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8("Mannequin")
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8("Organization")
+        @JvmField val MANNEQUIN = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8("Mannequin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8(value)
-    }
-}
-
-/** How the author is associated with the repository. */
-class WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87 &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val COLLABORATOR =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("COLLABORATOR")
-        @JvmField
-        val CONTRIBUTOR =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("CONTRIBUTOR")
-        @JvmField
-        val FIRST_TIMER =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("FIRST_TIMER")
-        @JvmField
-        val FIRST_TIME_CONTRIBUTOR =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87(
-                "FIRST_TIME_CONTRIBUTOR"
-            )
-        @JvmField
-        val MANNEQUIN =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("MANNEQUIN")
-        @JvmField
-        val MEMBER =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("MEMBER")
-        @JvmField
-        val NONE = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("NONE")
-        @JvmField
-        val OWNER =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("OWNER")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87(value)
-    }
-}
-
-class WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e("Organization")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e(value)
-    }
-}
-
-/** The merge method to use. */
-class WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val MERGE =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f("merge")
-        @JvmField
-        val SQUASH =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f("squash")
-        @JvmField
-        val REBASE =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f("rebase")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestAssigneesX9c401dc6c8(value)
     }
 }
 
 /**
- * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
- * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit
- * message.
+ * How the author is associated with the repository.
  */
-class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_BODY =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892("PR_BODY")
-        @JvmField
-        val PR_TITLE =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892("PR_TITLE")
-        @JvmField
-        val BLANK =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892("BLANK")
+        @JvmField val COLLABORATOR = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("COLLABORATOR")
+        @JvmField val CONTRIBUTOR = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("CONTRIBUTOR")
+        @JvmField val FIRST_TIMER = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("FIRST_TIMER")
+        @JvmField val FIRST_TIME_CONTRIBUTOR = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("FIRST_TIME_CONTRIBUTOR")
+        @JvmField val MANNEQUIN = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("MANNEQUIN")
+        @JvmField val MEMBER = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("MEMBER")
+        @JvmField val NONE = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("NONE")
+        @JvmField val OWNER = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87("OWNER")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestAuthorAssX1065690f87(value)
+    }
+}
+
+class WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e("Organization")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXfbbdc0d28e(value)
     }
 }
 
 /**
- * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. -
- * `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123
- * from branch-name).
+ * The merge method to use.
  */
-class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_TITLE =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6("PR_TITLE")
-        @JvmField
-        val MERGE_MESSAGE =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6(
-                "MERGE_MESSAGE"
-            )
+        @JvmField val MERGE = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f("merge")
+        @JvmField val SQUASH = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f("squash")
+        @JvmField val REBASE = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f("rebase")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6(value)
-    }
-}
-
-class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de("Organization")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de(value)
-    }
-}
-
-/** The policy controlling who can create pull requests: all or collaborators_only. */
-class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888 &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ALL = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888("all")
-        @JvmField
-        val COLLABORATORS_ONLY =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888(
-                "collaborators_only"
-            )
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestAutoMergeXa4938eda6f(value)
     }
 }
 
 /**
- * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's
- * body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a
- * blank commit message.
+ * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
  */
-class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_BODY =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc("PR_BODY")
-        @JvmField
-        val COMMIT_MESSAGES =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc(
-                "COMMIT_MESSAGES"
-            )
-        @JvmField
-        val BLANK =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc("BLANK")
+        @JvmField val PR_BODY = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892("PR_BODY")
+        @JvmField val PR_TITLE = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892("PR_TITLE")
+        @JvmField val BLANK = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMXf2f8ebc892(value)
     }
 }
 
 /**
- * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's
- * title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull
- * request's title (when more than one commit).
+ * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
  */
-class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PR_TITLE =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee("PR_TITLE")
-        @JvmField
-        val COMMIT_OR_PR_TITLE =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee(
-                "COMMIT_OR_PR_TITLE"
-            )
+        @JvmField val PR_TITLE = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6("PR_TITLE")
+        @JvmField val MERGE_MESSAGE = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6("MERGE_MESSAGE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoMX5b9aec86b6(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763 &&
-            value == other.value
-
+class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val PUBLIC =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763("public")
-        @JvmField
-        val PRIVATE =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763("private")
-        @JvmField
-        val INTERNAL =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763("internal")
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoOX929ec146de(value)
     }
 }
 
-class WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum &&
-            value == other.value
-
+/**
+ * The policy controlling who can create pull requests: all or collaborators_only.
+ */
+class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum("Bot")
-        @JvmField
-        val USER = WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum("User")
-        @JvmField
-        val ORGANIZATION =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum("Organization")
+        @JvmField val ALL = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888("all")
+        @JvmField val COLLABORATORS_ONLY = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888("collaborators_only")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoPXac30407888(value)
+    }
+}
+
+/**
+ * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+ */
+class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val PR_BODY = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc("PR_BODY")
+        @JvmField val COMMIT_MESSAGES = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc("COMMIT_MESSAGES")
+        @JvmField val BLANK = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc("BLANK")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX7546d7c4fc(value)
+    }
+}
+
+/**
+ * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+ */
+class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val PR_TITLE = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee("PR_TITLE")
+        @JvmField val COMMIT_OR_PR_TITLE = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee("COMMIT_OR_PR_TITLE")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoSX49da8507ee(value)
+    }
+}
+
+class WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763 && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val PUBLIC = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763("public")
+        @JvmField val PRIVATE = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763("private")
+        @JvmField val INTERNAL = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763("internal")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestBaseRepoVX6b34259763(value)
+    }
+}
+
+class WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val BOT = WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum("Bot")
+        @JvmField val USER = WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum("User")
+        @JvmField val ORGANIZATION = WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum("Organization")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = WebhookPullRequestReviewRequestedVariant1PullRequestBaseUserTypeEnum(value)
     }
 }

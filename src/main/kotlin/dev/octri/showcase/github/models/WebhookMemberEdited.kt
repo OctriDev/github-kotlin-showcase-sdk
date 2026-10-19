@@ -3,61 +3,78 @@
 
 package dev.octri.showcase.github.models
 
-/** Optional object value serialized in the `old_permission` wire field. */
+/**
+ * Optional object value serialized in the `old_permission` wire field.
+ */
 data class WebhookMemberEditedChangesOldPermission(
-    /** The previous permissions of the collaborator if the action was edited. */
+    /**
+     * The previous permissions of the collaborator if the action was edited.
+     */
     val from: String
 )
 
-/** Optional object value serialized in the `permission` wire field. */
+/**
+ * Optional object value serialized in the `permission` wire field.
+ */
 data class WebhookMemberEditedChangesPermission(
-    /** Optional `string` value serialized in the `from` wire field. */
-    val from: String? = null,
-    /** Optional `string` value serialized in the `to` wire field. */
-    val to: String? = null,
-)
-
-/** The changes to the collaborator permissions */
-data class WebhookMemberEditedChanges(
-    /** Optional object value serialized in the `old_permission` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("old_permission")
-    val oldPermission: WebhookMemberEditedChangesOldPermission? = null,
-    /** Optional object value serialized in the `permission` wire field. */
-    val permission: WebhookMemberEditedChangesPermission? = null,
-)
-
-/** Typed representation of the `WebhookMemberEdited` API schema. */
-data class WebhookMemberEdited(
-    /** Required enumerated value serialized in the `action` wire field. */
-    val action: WebhookMemberEditedActionEnum,
-    /** The changes to the collaborator permissions */
-    val changes: WebhookMemberEditedChanges,
-    /** Required object value serialized in the `member` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("member", required = true)
-    val member: WebhooksUser?,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * Optional `string` value serialized in the `from` wire field.
+     */
+    val from: String? = null,
+    /**
+     * Optional `string` value serialized in the `to` wire field.
+     */
+    val to: String? = null
+)
+
+/**
+ * The changes to the collaborator permissions
+ */
+data class WebhookMemberEditedChanges(
+    /**
+     * Optional object value serialized in the `old_permission` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("old_permission") val oldPermission: WebhookMemberEditedChangesOldPermission? = null,
+    /**
+     * Optional object value serialized in the `permission` wire field.
+     */
+    val permission: WebhookMemberEditedChangesPermission? = null
+)
+
+/**
+ * Typed representation of the `WebhookMemberEdited` API schema.
+ */
+data class WebhookMemberEdited(
+    /**
+     * Required enumerated value serialized in the `action` wire field.
+     */
+    val action: WebhookMemberEditedActionEnum,
+    /**
+     * The changes to the collaborator permissions
+     */
+    val changes: WebhookMemberEditedChanges,
+    /**
+     * Required object value serialized in the `member` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("member", required = true) val member: WebhooksUser?,
+    /**
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null,
+    val organization: OrganizationSimpleWebhooks? = null
 )

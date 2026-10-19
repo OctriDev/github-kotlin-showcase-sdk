@@ -5,581 +5,596 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** A custom pattern for secret scanning. */
+/**
+ * A custom pattern for secret scanning.
+ */
 data class SecretScanningCustomPattern(
-    /** The ID of the custom pattern. */
+    /**
+     * The ID of the custom pattern.
+     */
     val id: Long,
-    /** The name of the custom pattern. */
+    /**
+     * The name of the custom pattern.
+     */
     val name: String,
-    /** The regular expression of the custom pattern. */
+    /**
+     * The regular expression of the custom pattern.
+     */
     val pattern: String,
-    /** A URL-friendly identifier for the custom pattern, derived from its name. */
+    /**
+     * A URL-friendly identifier for the custom pattern, derived from its name.
+     */
     val slug: String,
-    /** The state of the custom pattern. */
+    /**
+     * The state of the custom pattern.
+     */
     val state: SecretScanningCustomPatternStateEnum,
-    /** Whether push protection is enabled for this custom pattern. */
-    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_enabled")
-    val pushProtectionEnabled: Boolean,
-    /** The start delimiter regex for the custom pattern. */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_delimiter")
-    val startDelimiter: String? = null,
-    /** The end delimiter regex for the custom pattern. */
-    @com.fasterxml.jackson.annotation.JsonProperty("end_delimiter")
-    val endDelimiter: String? = null,
-    /** List of regexes that the secret must match. */
-    @com.fasterxml.jackson.annotation.JsonProperty("must_match")
-    val mustMatch: List<String>? = null,
-    /** List of regexes that the secret must not match. */
-    @com.fasterxml.jackson.annotation.JsonProperty("must_not_match")
-    val mustNotMatch: List<String>? = null,
     /**
-     * The version of the entity. This is used to confirm you're updating the current version of the
-     * entity and mitigate unintentionally overriding someone else's update.
+     * Whether push protection is enabled for this custom pattern.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_version")
-    val customPatternVersion: SecretScanningRowVersion? = null,
-    /** The date and time the custom pattern was created in ISO 8601 format. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: OffsetDateTime? = null,
-    /** The date and time the custom pattern was last updated in ISO 8601 format. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
-    val updatedAt: OffsetDateTime? = null,
-)
-
-/** A custom pattern to create in a bulk operation. */
-data class SecretScanningCustomPatternToCreate(
-    /** The name of the custom pattern. */
-    val name: String,
-    /** The regular expression of the custom pattern. */
-    val pattern: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_enabled") val pushProtectionEnabled: Boolean,
     /**
-     * The start delimiter regex for the custom pattern. Defaults to `\A|[^0-9A-Za-z]` when not
-     * specified.
+     * The start delimiter regex for the custom pattern.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_delimiter")
-    val startDelimiter: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("start_delimiter") val startDelimiter: String? = null,
     /**
-     * The end delimiter regex for the custom pattern. Defaults to `\z|[^0-9A-Za-z]` when not
-     * specified.
+     * The end delimiter regex for the custom pattern.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("end_delimiter")
-    val endDelimiter: String? = null,
-    /** List of regexes that the secret must match. */
-    @com.fasterxml.jackson.annotation.JsonProperty("must_match")
-    val mustMatch: List<String>? = null,
-    /** List of regexes that the secret must not match. */
-    @com.fasterxml.jackson.annotation.JsonProperty("must_not_match")
-    val mustNotMatch: List<String>? = null,
-)
-
-/** A custom pattern to delete in a bulk operation. */
-data class SecretScanningCustomPatternToDelete(
-    /** The ID of the custom pattern to delete. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pattern_id") val patternId: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("end_delimiter") val endDelimiter: String? = null,
     /**
-     * The version of the entity. This is used to confirm you're updating the current version of the
-     * entity and mitigate unintentionally overriding someone else's update.
+     * List of regexes that the secret must match.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_version")
-    val customPatternVersion: SecretScanningRowVersion? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("must_match") val mustMatch: List<String>? = null,
+    /**
+     * List of regexes that the secret must not match.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("must_not_match") val mustNotMatch: List<String>? = null,
+    /**
+     * The version of the entity. This is used to confirm you're updating the current version of the entity and mitigate unintentionally overriding someone else's update.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_version") val customPatternVersion: SecretScanningRowVersion? = null,
+    /**
+     * The date and time the custom pattern was created in ISO 8601 format.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
+    /**
+     * The date and time the custom pattern was last updated in ISO 8601 format.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null
 )
 
 /**
- * Fields to update on a custom pattern. At least one updatable field (`pattern`, `start_delimiter`,
- * `end_delimiter`, `must_match`, or `must_not_match`) must also be provided. Only provided fields
- * will be updated.
+ * A custom pattern to create in a bulk operation.
+ */
+data class SecretScanningCustomPatternToCreate(
+    /**
+     * The name of the custom pattern.
+     */
+    val name: String,
+    /**
+     * The regular expression of the custom pattern.
+     */
+    val pattern: String,
+    /**
+     * The start delimiter regex for the custom pattern. Defaults to `\A|[^0-9A-Za-z]` when not specified.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_delimiter") val startDelimiter: String? = null,
+    /**
+     * The end delimiter regex for the custom pattern. Defaults to `\z|[^0-9A-Za-z]` when not specified.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("end_delimiter") val endDelimiter: String? = null,
+    /**
+     * List of regexes that the secret must match.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("must_match") val mustMatch: List<String>? = null,
+    /**
+     * List of regexes that the secret must not match.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("must_not_match") val mustNotMatch: List<String>? = null
+)
+
+/**
+ * A custom pattern to delete in a bulk operation.
+ */
+data class SecretScanningCustomPatternToDelete(
+    /**
+     * The ID of the custom pattern to delete.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pattern_id") val patternId: Long,
+    /**
+     * The version of the entity. This is used to confirm you're updating the current version of the entity and mitigate unintentionally overriding someone else's update.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_version") val customPatternVersion: SecretScanningRowVersion? = null
+)
+
+/**
+ * Fields to update on a custom pattern. At least one updatable field (`pattern`, `start_delimiter`, `end_delimiter`, `must_match`, or `must_not_match`) must also be provided. Only provided fields will be updated.
  */
 data class SecretScanningCustomPatternToUpdate(
     /**
-     * The version of the entity. This is used to confirm you're updating the current version of the
-     * entity and mitigate unintentionally overriding someone else's update.
+     * The version of the entity. This is used to confirm you're updating the current version of the entity and mitigate unintentionally overriding someone else's update.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_version", required = true)
-    val customPatternVersion: SecretScanningRowVersion?,
-    /** The updated regular expression of the custom pattern. */
-    val pattern: String? = null,
-    /** The updated start delimiter regex for the custom pattern. */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_delimiter")
-    val startDelimiter: String? = null,
-    /** The updated end delimiter regex for the custom pattern. */
-    @com.fasterxml.jackson.annotation.JsonProperty("end_delimiter")
-    val endDelimiter: String? = null,
-    /** Updated list of regexes that the secret must match. */
-    @com.fasterxml.jackson.annotation.JsonProperty("must_match")
-    val mustMatch: List<String>? = null,
-    /** Updated list of regexes that the secret must not match. */
-    @com.fasterxml.jackson.annotation.JsonProperty("must_not_match")
-    val mustNotMatch: List<String>? = null,
-)
-
-/** A validation error for a custom pattern in a batch operation. */
-data class SecretScanningCustomPatternValidationError(
-    /** A machine-readable code describing the error. */
-    val code: SecretScanningCustomPatternValidationErrorCodeEnum? = null,
-    /** A human-readable description of the error. */
-    val message: String? = null,
-)
-
-/** Typed representation of the `SecretScanningLocation` API schema. */
-data class SecretScanningLocation(
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_version", required = true) val customPatternVersion: SecretScanningRowVersion?,
     /**
-     * The location type. Because secrets may be found in different types of resources (ie. code,
-     * comments, issues, pull requests, discussions), this field identifies the type of resource
-     * where the secret was found.
+     * The updated regular expression of the custom pattern.
      */
-    val type: SecretScanningLocationTypeEnum? = null,
-    /** Optional API value serialized in the `details` wire field. */
-    val details: SecretScanningLocationDetails? = null,
+    val pattern: String? = null,
+    /**
+     * The updated start delimiter regex for the custom pattern.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_delimiter") val startDelimiter: String? = null,
+    /**
+     * The updated end delimiter regex for the custom pattern.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("end_delimiter") val endDelimiter: String? = null,
+    /**
+     * Updated list of regexes that the secret must match.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("must_match") val mustMatch: List<String>? = null,
+    /**
+     * Updated list of regexes that the secret must not match.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("must_not_match") val mustNotMatch: List<String>? = null
 )
 
 /**
- * Represents a 'commit' secret scanning location type. This location type shows that a secret was
- * detected inside a commit to a repository.
+ * A validation error for a custom pattern in a batch operation.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+data class SecretScanningCustomPatternValidationError(
+    /**
+     * A machine-readable code describing the error.
+     */
+    val code: SecretScanningCustomPatternValidationErrorCodeEnum? = null,
+    /**
+     * A human-readable description of the error.
+     */
+    val message: String? = null
 )
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+
+/**
+ * Typed representation of the `SecretScanningLocation` API schema.
+ */
+data class SecretScanningLocation(
+    /**
+     * The location type. Because secrets may be found in different types of resources (ie. code, comments, issues, pull requests, discussions), this field identifies the type of resource where the secret was found.
+     */
+    val type: SecretScanningLocationTypeEnum? = null,
+    /**
+     * Optional API value serialized in the `details` wire field.
+     */
+    val details: SecretScanningLocationDetails? = null
 )
+
+/**
+ * Represents a 'commit' secret scanning location type. This location type shows that a secret was detected inside a commit to a repository.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationCommit(
-    /** The file path in the repository */
+    /**
+     * The file path in the repository
+     */
     val path: String,
-    /** Line number at which the secret starts in the file */
+    /**
+     * Line number at which the secret starts in the file
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Double,
-    /** Line number at which the secret ends in the file */
+    /**
+     * Line number at which the secret ends in the file
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("end_line") val endLine: Double,
     /**
-     * The column at which the secret starts within the start line when the file is interpreted as
-     * 8BIT ASCII
+     * The column at which the secret starts within the start line when the file is interpreted as 8BIT ASCII
      */
     @com.fasterxml.jackson.annotation.JsonProperty("start_column") val startColumn: Double,
     /**
-     * The column at which the secret ends within the end line when the file is interpreted as 8BIT
-     * ASCII
+     * The column at which the secret ends within the end line when the file is interpreted as 8BIT ASCII
      */
     @com.fasterxml.jackson.annotation.JsonProperty("end_column") val endColumn: Double,
-    /** SHA-1 hash ID of the associated blob */
+    /**
+     * SHA-1 hash ID of the associated blob
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("blob_sha") val blobSha: String,
-    /** The API URL to get the associated blob resource */
+    /**
+     * The API URL to get the associated blob resource
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("blob_url") val blobUrl: String,
-    /** SHA-1 hash ID of the associated commit */
+    /**
+     * SHA-1 hash ID of the associated commit
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_sha") val commitSha: String,
-    /** The API URL to get the associated commit resource */
+    /**
+     * The API URL to get the associated commit resource
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_url") val commitUrl: String,
-    /** The GitHub URL to get the associated commit resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The GitHub URL to get the associated commit resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
-/** Optional API value serialized in the `details` wire field. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
-)
+/**
+ * Optional API value serialized in the `details` wire field.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationCommit::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationWikiCommit::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationIssueTitle::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationIssueBody::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationIssueComment::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationDiscussionTitle::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationDiscussionBody::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationDiscussionComment::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationPullRequestTitle::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationPullRequestBody::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationPullRequestComment::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationPullRequestReview::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = SecretScanningLocationPullRequestReviewComment::class
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationWikiCommit::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationIssueTitle::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationIssueBody::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationIssueComment::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationDiscussionTitle::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationDiscussionBody::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationDiscussionComment::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestTitle::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestBody::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestComment::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestReview::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestReviewComment::class)
 )
 sealed interface SecretScanningLocationDetails
 
 /**
- * Represents a 'discussion_body' secret scanning location type. This location type shows that a
- * secret was detected in the body of a discussion.
+ * Represents a 'discussion_body' secret scanning location type. This location type shows that a secret was detected in the body of a discussion.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationDiscussionBody(
-    /** The URL to the discussion where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("discussion_body_url")
-    val discussionBodyUrl: String
+    /**
+     * The URL to the discussion where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("discussion_body_url") val discussionBodyUrl: String
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents a 'discussion_comment' secret scanning location type. This location type shows that a
- * secret was detected in a comment on a discussion.
+ * Represents a 'discussion_comment' secret scanning location type. This location type shows that a secret was detected in a comment on a discussion.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationDiscussionComment(
-    /** The API URL to get the discussion comment where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("discussion_comment_url")
-    val discussionCommentUrl: String
+    /**
+     * The API URL to get the discussion comment where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("discussion_comment_url") val discussionCommentUrl: String
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents a 'discussion_title' secret scanning location type. This location type shows that a
- * secret was detected in the title of a discussion.
+ * Represents a 'discussion_title' secret scanning location type. This location type shows that a secret was detected in the title of a discussion.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationDiscussionTitle(
-    /** The URL to the discussion where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("discussion_title_url")
-    val discussionTitleUrl: String
+    /**
+     * The URL to the discussion where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("discussion_title_url") val discussionTitleUrl: String
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents an 'issue_body' secret scanning location type. This location type shows that a secret
- * was detected in the body of an issue.
+ * Represents an 'issue_body' secret scanning location type. This location type shows that a secret was detected in the body of an issue.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationIssueBody(
-    /** The API URL to get the issue where the secret was detected. */
+    /**
+     * The API URL to get the issue where the secret was detected.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_body_url") val issueBodyUrl: String,
-    /** The GitHub URL for the issue where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The GitHub URL for the issue where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents an 'issue_comment' secret scanning location type. This location type shows that a
- * secret was detected in a comment on an issue.
+ * Represents an 'issue_comment' secret scanning location type. This location type shows that a secret was detected in a comment on an issue.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationIssueComment(
-    /** The API URL to get the issue comment where the secret was detected. */
+    /**
+     * The API URL to get the issue comment where the secret was detected.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_comment_url") val issueCommentUrl: String,
-    /** The GitHub URL for the issue comment where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The GitHub URL for the issue comment where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents an 'issue_title' secret scanning location type. This location type shows that a secret
- * was detected in the title of an issue.
+ * Represents an 'issue_title' secret scanning location type. This location type shows that a secret was detected in the title of an issue.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationIssueTitle(
-    /** The API URL to get the issue where the secret was detected. */
+    /**
+     * The API URL to get the issue where the secret was detected.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_title_url") val issueTitleUrl: String,
-    /** The GitHub URL for the issue where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The GitHub URL for the issue where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents a 'pull_request_body' secret scanning location type. This location type shows that a
- * secret was detected in the body of a pull request.
+ * Represents a 'pull_request_body' secret scanning location type. This location type shows that a secret was detected in the body of a pull request.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationPullRequestBody(
-    /** The API URL to get the pull request where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_body_url")
-    val pullRequestBodyUrl: String,
-    /** The GitHub URL for the pull request where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The API URL to get the pull request where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_body_url") val pullRequestBodyUrl: String,
+    /**
+     * The GitHub URL for the pull request where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents a 'pull_request_comment' secret scanning location type. This location type shows that
- * a secret was detected in a comment on a pull request.
+ * Represents a 'pull_request_comment' secret scanning location type. This location type shows that a secret was detected in a comment on a pull request.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationPullRequestComment(
-    /** The API URL to get the pull request comment where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_comment_url")
-    val pullRequestCommentUrl: String,
-    /** The GitHub URL for the pull request comment where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The API URL to get the pull request comment where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_comment_url") val pullRequestCommentUrl: String,
+    /**
+     * The GitHub URL for the pull request comment where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents a 'pull_request_review' secret scanning location type. This location type shows that a
- * secret was detected in a review on a pull request.
+ * Represents a 'pull_request_review' secret scanning location type. This location type shows that a secret was detected in a review on a pull request.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationPullRequestReview(
-    /** The API URL to get the pull request review where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_review_url")
-    val pullRequestReviewUrl: String,
-    /** The GitHub URL for the pull request review where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The API URL to get the pull request review where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_review_url") val pullRequestReviewUrl: String,
+    /**
+     * The GitHub URL for the pull request review where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents a 'pull_request_review_comment' secret scanning location type. This location type
- * shows that a secret was detected in a review comment on a pull request.
+ * Represents a 'pull_request_review_comment' secret scanning location type. This location type shows that a secret was detected in a review comment on a pull request.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationPullRequestReviewComment(
-    /** The API URL to get the pull request review comment where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_review_comment_url")
-    val pullRequestReviewCommentUrl: String,
-    /** The GitHub URL for the pull request review comment where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The API URL to get the pull request review comment where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_review_comment_url") val pullRequestReviewCommentUrl: String,
+    /**
+     * The GitHub URL for the pull request review comment where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents a 'pull_request_title' secret scanning location type. This location type shows that a
- * secret was detected in the title of a pull request.
+ * Represents a 'pull_request_title' secret scanning location type. This location type shows that a secret was detected in the title of a pull request.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationPullRequestTitle(
-    /** The API URL to get the pull request where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_title_url")
-    val pullRequestTitleUrl: String,
-    /** The GitHub URL for the pull request where the secret was detected. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * The API URL to get the pull request where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_title_url") val pullRequestTitleUrl: String,
+    /**
+     * The GitHub URL for the pull request where the secret was detected.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
 /**
- * Represents a 'wiki_commit' secret scanning location type. This location type shows that a secret
- * was detected inside a commit to a repository wiki.
+ * Represents a 'wiki_commit' secret scanning location type. This location type shows that a secret was detected inside a commit to a repository wiki.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class SecretScanningLocationWikiCommit(
-    /** The file path of the wiki page */
+    /**
+     * The file path of the wiki page
+     */
     val path: String,
-    /** Line number at which the secret starts in the file */
+    /**
+     * Line number at which the secret starts in the file
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Double,
-    /** Line number at which the secret ends in the file */
+    /**
+     * Line number at which the secret ends in the file
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("end_line") val endLine: Double,
     /**
-     * The column at which the secret starts within the start line when the file is interpreted as
-     * 8-bit ASCII.
+     * The column at which the secret starts within the start line when the file is interpreted as 8-bit ASCII.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("start_column") val startColumn: Double,
     /**
-     * The column at which the secret ends within the end line when the file is interpreted as 8-bit
-     * ASCII.
+     * The column at which the secret ends within the end line when the file is interpreted as 8-bit ASCII.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("end_column") val endColumn: Double,
-    /** SHA-1 hash ID of the associated blob */
+    /**
+     * SHA-1 hash ID of the associated blob
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("blob_sha") val blobSha: String,
-    /** The GitHub URL to get the associated wiki page */
+    /**
+     * The GitHub URL to get the associated wiki page
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("page_url") val pageUrl: String,
-    /** SHA-1 hash ID of the associated commit */
+    /**
+     * SHA-1 hash ID of the associated commit
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_sha") val commitSha: String,
-    /** The GitHub URL to get the associated wiki commit */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url") val commitUrl: String,
+    /**
+     * The GitHub URL to get the associated wiki commit
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url") val commitUrl: String
 ) : NullableSecretScanningFirstDetectedLocation, SecretScanningLocationDetails
 
-/** A collection of secret scanning patterns and their settings related to push protection. */
+/**
+ * A collection of secret scanning patterns and their settings related to push protection.
+ */
 data class SecretScanningPatternConfiguration(
     /**
-     * The version of the entity. This is used to confirm you're updating the current version of the
-     * entity and mitigate unintentionally overriding someone else's update.
+     * The version of the entity. This is used to confirm you're updating the current version of the entity and mitigate unintentionally overriding someone else's update.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pattern_config_version")
-    val patternConfigVersion: SecretScanningRowVersion? = null,
-    /** Overrides for partner patterns. */
-    @com.fasterxml.jackson.annotation.JsonProperty("provider_pattern_overrides")
-    val providerPatternOverrides: List<SecretScanningPatternOverride>? = null,
-    /** Overrides for custom patterns defined by the organization. */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_overrides")
-    val customPatternOverrides: List<SecretScanningPatternOverride>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pattern_config_version") val patternConfigVersion: SecretScanningRowVersion? = null,
+    /**
+     * Overrides for partner patterns.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("provider_pattern_overrides") val providerPatternOverrides: List<SecretScanningPatternOverride>? = null,
+    /**
+     * Overrides for custom patterns defined by the organization.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_overrides") val customPatternOverrides: List<SecretScanningPatternOverride>? = null
 )
 
-/** Typed representation of the `SecretScanningPatternOverride` API schema. */
+/**
+ * Typed representation of the `SecretScanningPatternOverride` API schema.
+ */
 data class SecretScanningPatternOverride(
-    /** The ID of the pattern. */
+    /**
+     * The ID of the pattern.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("token_type") val tokenType: String? = null,
-    /** The version of this pattern if it's a custom pattern. */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_version")
-    val customPatternVersion: String? = null,
-    /** The slug of the pattern. */
+    /**
+     * The version of this pattern if it's a custom pattern.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_version") val customPatternVersion: String? = null,
+    /**
+     * The slug of the pattern.
+     */
     val slug: String? = null,
-    /** The user-friendly name for the pattern. */
+    /**
+     * The user-friendly name for the pattern.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String? = null,
-    /** The total number of alerts generated by this pattern. */
+    /**
+     * The total number of alerts generated by this pattern.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("alert_total") val alertTotal: Long? = null,
     /**
      * The percentage of all alerts that this pattern represents, rounded to the nearest integer.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("alert_total_percentage")
-    val alertTotalPercentage: Long? = null,
-    /** The number of false positive alerts generated by this pattern. */
-    @com.fasterxml.jackson.annotation.JsonProperty("false_positives")
-    val falsePositives: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("alert_total_percentage") val alertTotalPercentage: Long? = null,
     /**
-     * The percentage of alerts from this pattern that are false positives, rounded to the nearest
-     * integer.
+     * The number of false positive alerts generated by this pattern.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("false_positive_rate")
-    val falsePositiveRate: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("false_positives") val falsePositives: Long? = null,
+    /**
+     * The percentage of alerts from this pattern that are false positives, rounded to the nearest integer.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("false_positive_rate") val falsePositiveRate: Long? = null,
     /**
      * The percentage of blocks for this pattern that were bypassed, rounded to the nearest integer.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("bypass_rate") val bypassRate: Long? = null,
-    /** The default push protection setting for this pattern. */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_setting")
-    val defaultSetting: SecretScanningPatternOverrideDefaultSettingEnum? = null,
     /**
-     * The push protection setting for this pattern set at the enterprise level. Only present for
-     * partner patterns when the organization has a parent enterprise.
+     * The default push protection setting for this pattern.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("enterprise_setting")
-    val enterpriseSetting: SecretScanningPatternOverrideEnterpriseSettingEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("default_setting") val defaultSetting: SecretScanningPatternOverrideDefaultSettingEnum? = null,
     /**
-     * The current push protection setting for this pattern. If this is `not-set`, then it inherits
-     * either the enterprise setting if it exists or the default setting.
+     * The push protection setting for this pattern set at the enterprise level. Only present for partner patterns when the organization has a parent enterprise.
      */
-    val setting: SecretScanningPatternOverrideSettingEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("enterprise_setting") val enterpriseSetting: SecretScanningPatternOverrideEnterpriseSettingEnum? = null,
+    /**
+     * The current push protection setting for this pattern. If this is `not-set`, then it inherits either the enterprise setting if it exists or the default setting.
+     */
+    val setting: SecretScanningPatternOverrideSettingEnum? = null
 )
 
-/** Typed representation of the `SecretScanningPushProtectionBypass` API schema. */
+/**
+ * Typed representation of the `SecretScanningPushProtectionBypass` API schema.
+ */
 data class SecretScanningPushProtectionBypass(
-    /** The reason for bypassing push protection. */
+    /**
+     * The reason for bypassing push protection.
+     */
     val reason: SecretScanningPushProtectionBypassReason? = null,
-    /** The time that the bypass will expire in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("expire_at")
-    val expireAt: OffsetDateTime? = null,
-    /** The token type this bypass is for. */
-    @com.fasterxml.jackson.annotation.JsonProperty("token_type") val tokenType: String? = null,
+    /**
+     * The time that the bypass will expire in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("expire_at") val expireAt: OffsetDateTime? = null,
+    /**
+     * The token type this bypass is for.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("token_type") val tokenType: String? = null
 )
 
 typealias SecretScanningRowVersion = String
 
-/** Information on a single scan performed by secret scanning on the repository */
+/**
+ * Information on a single scan performed by secret scanning on the repository
+ */
 data class SecretScanningScan(
-    /** The type of scan */
+    /**
+     * The type of scan
+     */
     val type: String? = null,
     /**
-     * The state of the scan. Either "completed", "running", "pending", "failed", or "unknown".
-     * "failed": this scan type has hit its retry limit and has been marked permanently failed. This
-     * usually resolves on its own at the next scheduled scan attempt. If "failed" persists, contact
-     * Support. "unknown": the scan is in an unrecognized or currently unhandled state.
+     * The state of the scan. Either "completed", "running", "pending", "failed", or "unknown". "failed": this scan type has hit its retry limit and has been marked permanently failed. This usually resolves on its own at the next scheduled scan attempt. If "failed" persists, contact Support. "unknown": the scan is in an unrecognized or currently unhandled state.
      */
     val status: String? = null,
-    /** The time that the scan was completed. Empty if the scan is running */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at")
-    val completedAt: OffsetDateTime? = null,
-    /** The time that the scan was started. Empty if the scan is pending */
-    @com.fasterxml.jackson.annotation.JsonProperty("started_at")
-    val startedAt: OffsetDateTime? = null,
+    /**
+     * The time that the scan was completed. Empty if the scan is running
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at") val completedAt: OffsetDateTime? = null,
+    /**
+     * The time that the scan was started. Empty if the scan is pending
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("started_at") val startedAt: OffsetDateTime? = null
 )
 
-/** Required object value serialized in the `custom_pattern_backfill_scans[]` wire field. */
+/**
+ * Required object value serialized in the `custom_pattern_backfill_scans[]` wire field.
+ */
 data class SecretScanningScanHistoryCustomPatternBackfillScansItem(
-    /** The type of scan */
+    /**
+     * The type of scan
+     */
     val type: String? = null,
     /**
-     * The state of the scan. Either "completed", "running", "pending", "failed", or "unknown".
-     * "failed": this scan type has hit its retry limit and has been marked permanently failed. This
-     * usually resolves on its own at the next scheduled scan attempt. If "failed" persists, contact
-     * Support. "unknown": the scan is in an unrecognized or currently unhandled state.
+     * The state of the scan. Either "completed", "running", "pending", "failed", or "unknown". "failed": this scan type has hit its retry limit and has been marked permanently failed. This usually resolves on its own at the next scheduled scan attempt. If "failed" persists, contact Support. "unknown": the scan is in an unrecognized or currently unhandled state.
      */
     val status: String? = null,
-    /** The time that the scan was completed. Empty if the scan is running */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at")
-    val completedAt: OffsetDateTime? = null,
-    /** The time that the scan was started. Empty if the scan is pending */
-    @com.fasterxml.jackson.annotation.JsonProperty("started_at")
-    val startedAt: OffsetDateTime? = null,
-    /** Name of the custom pattern for custom pattern scans */
+    /**
+     * The time that the scan was completed. Empty if the scan is running
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at") val completedAt: OffsetDateTime? = null,
+    /**
+     * The time that the scan was started. Empty if the scan is pending
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("started_at") val startedAt: OffsetDateTime? = null,
+    /**
+     * Name of the custom pattern for custom pattern scans
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("pattern_name") val patternName: String? = null,
     /**
-     * Level at which the custom pattern is defined, one of "repository", "organization", or
-     * "enterprise"
+     * Level at which the custom pattern is defined, one of "repository", "organization", or "enterprise"
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pattern_scope")
-    val patternScope: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pattern_scope") val patternScope: String? = null
 )
 
-/** Typed representation of the `SecretScanningScanHistory` API schema. */
+/**
+ * Typed representation of the `SecretScanningScanHistory` API schema.
+ */
 data class SecretScanningScanHistory(
-    /** Optional array value serialized in the `incremental_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("incremental_scans")
-    val incrementalScans: List<SecretScanningScan>? = null,
-    /** Optional array value serialized in the `pattern_update_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pattern_update_scans")
-    val patternUpdateScans: List<SecretScanningScan>? = null,
-    /** Optional array value serialized in the `backfill_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("backfill_scans")
-    val backfillScans: List<SecretScanningScan>? = null,
-    /** Optional array value serialized in the `custom_pattern_backfill_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_backfill_scans")
-    val customPatternBackfillScans: List<SecretScanningScanHistoryCustomPatternBackfillScansItem>? =
-        null,
-    /** Optional array value serialized in the `generic_secrets_backfill_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("generic_secrets_backfill_scans")
-    val genericSecretsBackfillScans: List<SecretScanningScan>? = null,
+    /**
+     * Optional array value serialized in the `incremental_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("incremental_scans") val incrementalScans: List<SecretScanningScan>? = null,
+    /**
+     * Optional array value serialized in the `pattern_update_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pattern_update_scans") val patternUpdateScans: List<SecretScanningScan>? = null,
+    /**
+     * Optional array value serialized in the `backfill_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("backfill_scans") val backfillScans: List<SecretScanningScan>? = null,
+    /**
+     * Optional array value serialized in the `custom_pattern_backfill_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_backfill_scans") val customPatternBackfillScans: List<SecretScanningScanHistoryCustomPatternBackfillScansItem>? = null,
+    /**
+     * Optional array value serialized in the `generic_secrets_backfill_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("generic_secrets_backfill_scans") val genericSecretsBackfillScans: List<SecretScanningScan>? = null
 )

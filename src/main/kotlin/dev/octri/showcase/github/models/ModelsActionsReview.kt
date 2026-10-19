@@ -3,23 +3,34 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `ReviewCustomGatesCommentRequired` API schema. */
+/**
+ * Typed representation of the `ReviewCustomGatesCommentRequired` API schema.
+ */
 data class ReviewCustomGatesCommentRequired(
-    /** The name of the environment to approve or reject. */
+    /**
+     * The name of the environment to approve or reject.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("environment_name") val environmentName: String,
     /**
-     * Comment associated with the pending deployment protection rule. **Required when state is not
-     * provided.**
+     * Comment associated with the pending deployment protection rule. **Required when state is not provided.**
      */
-    val comment: String,
+    val comment: String
 )
 
-/** Typed representation of the `ReviewCustomGatesStateRequired` API schema. */
+/**
+ * Typed representation of the `ReviewCustomGatesStateRequired` API schema.
+ */
 data class ReviewCustomGatesStateRequired(
-    /** The name of the environment to approve or reject. */
+    /**
+     * The name of the environment to approve or reject.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("environment_name") val environmentName: String,
-    /** Whether to approve or reject deployment to the specified environments. */
+    /**
+     * Whether to approve or reject deployment to the specified environments.
+     */
     val state: ReviewCustomGatesStateRequiredStateEnum,
-    /** Optional comment to include with the review. */
-    val comment: String? = null,
+    /**
+     * Optional comment to include with the review.
+     */
+    val comment: String? = null
 )

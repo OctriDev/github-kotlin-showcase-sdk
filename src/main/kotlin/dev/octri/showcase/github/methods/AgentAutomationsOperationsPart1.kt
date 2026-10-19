@@ -12,474 +12,235 @@ import dev.octri.showcase.github.Validation
 
 internal object AgentAutomationsListAutomationsOperation {
     /**
-     * Returns automations whose `created_by` user is the authenticated caller, across repositories
-     * the caller can read. This includes both user-owned and repository-owned automations created
-     * by the caller but excludes repository-owned automations created by someone else even if the
-     * caller has write access to the repository. Use the repository-scoped list operation for those
-     * automations. The `owner_type` filter only narrows this creator-scoped collection.
-     * **Fine-grained access…
+     * Returns automations whose `created_by` user is the authenticated caller, across repositories the caller can read. This includes both user-owned and repository-owned automations created by the caller but excludes repository-owned automations created by someone else even if the caller has write access to the repository. Use the repository-scoped list operation for those automations. The `owner_type` filter only narrows this creator-scoped collection. **Fine-grained access…
      *
      * @param page The page number of the results to fetch.
      * @param perPage The number of results per page (max 100).
-     * @param ownerType Filter automations by owner type. `user` returns automations owned by their
-     *   creator, `repository` returns automations owned by the repository. Omit to return both.
+     * @param ownerType Filter automations by owner type. `user` returns automations
+     *   owned by their creator, `repository` returns automations owned by the
+     *   repository. Omit to return both.
      */
-    fun agentAutomationsListAutomations(
-        clientConfig: ClientConfig,
-        page: Long? = null,
-        perPage: Long? = null,
-        ownerType: AgentAutomationsListAutomationsParameterEnum? = null,
-        options: RequestOptions? = null,
-    ): List<AgentAutomations.AgentAutomationsListAutomationsResponseItem> {
+    fun agentAutomationsListAutomations(clientConfig: ClientConfig, page: Long? = null, perPage: Long? = null, ownerType: AgentAutomationsListAutomationsParameterEnum? = null, options: RequestOptions? = null): List<AgentAutomations.AgentAutomationsListAutomationsResponseItem> {
         if (page != null) {
             Validation.validateRange("page", page, Validation.RangeOpts(min = 1.0))
-        }
+}
 
         if (perPage != null) {
-            Validation.validateRange(
-                "per_page",
-                perPage,
-                Validation.RangeOpts(min = 1.0, max = 100.0),
-            )
-        }
+            Validation.validateRange("per_page", perPage, Validation.RangeOpts(min = 1.0, max = 100.0))
+}
 
-        return SdkClient.request<
-                List<AgentAutomations.AgentAutomationsListAutomationsResponseItem>
-            >(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/agents/automations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "owner_type" to SdkClient.queryValue(ownerType, "form", true),
-                        ),
-                    operationId = "agentAutomationsListAutomations",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<List<AgentAutomations.AgentAutomationsListAutomationsResponseItem>>(SdkClient.RequestSpec("GET", "/agents/automations", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "owner_type" to
+    SdkClient.queryValue(ownerType, "form", true)), operationId = "agentAutomationsListAutomations", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object AgentAutomationsListAvailableAutomationToolsOperation {
     /**
-     * Returns the tools available to the authenticated caller for use when creating or updating an
-     * automation. **Fine-grained access tokens for "List available automation tools"** This
-     * endpoint works with the following fine-grained token types: * GitHub App user access tokens *
-     * Fine-grained personal access tokens This endpoint does not require repository permissions.
-     * GitHub App installation access tokens are not supported for this endpoint.
+     * Returns the tools available to the authenticated caller for use when creating or updating an automation. **Fine-grained access tokens for "List available automation tools"** This endpoint works with the following fine-grained token types: * GitHub App user access tokens * Fine-grained personal access tokens This endpoint does not require repository permissions. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsListAvailableAutomationTools(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): List<AgentAutomations.AgentAutomationsListAvailableAutomationToolsResponseItem> {
-        return SdkClient.request<
-                List<AgentAutomations.AgentAutomationsListAvailableAutomationToolsResponseItem>
-            >(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/agents/automations/available-tools",
-                    config = clientConfig,
-                    operationId = "agentAutomationsListAvailableAutomationTools",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun agentAutomationsListAvailableAutomationTools(clientConfig: ClientConfig, options: RequestOptions? = null): List<AgentAutomations.AgentAutomationsListAvailableAutomationToolsResponseItem> {
+        return SdkClient.request<List<AgentAutomations.AgentAutomationsListAvailableAutomationToolsResponseItem>>(SdkClient.RequestSpec("GET", "/agents/automations/available-tools", config = clientConfig, operationId = "agentAutomationsListAvailableAutomationTools", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object AgentAutomationsListAvailableAutomationTriggersOperation {
     /**
-     * Returns the triggers available to the authenticated caller, including machine-readable
-     * schemas for their configurable fields. **Fine-grained access tokens for "List available
-     * automation triggers"** This endpoint works with the following fine-grained token types: *
-     * GitHub App user access tokens * Fine-grained personal access tokens This endpoint does not
-     * require repository permissions. GitHub App installation access tokens are not supported for
-     * this endpoint.
+     * Returns the triggers available to the authenticated caller, including machine-readable schemas for their configurable fields. **Fine-grained access tokens for "List available automation triggers"** This endpoint works with the following fine-grained token types: * GitHub App user access tokens * Fine-grained personal access tokens This endpoint does not require repository permissions. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsListAvailableAutomationTriggers(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): List<AgentAutomations.AgentAutomationsListAvailableAutomationTriggersResponseItem> {
-        return SdkClient.request<
-                List<AgentAutomations.AgentAutomationsListAvailableAutomationTriggersResponseItem>
-            >(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/agents/automations/available-triggers",
-                    config = clientConfig,
-                    operationId = "agentAutomationsListAvailableAutomationTriggers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun agentAutomationsListAvailableAutomationTriggers(clientConfig: ClientConfig, options: RequestOptions? = null): List<AgentAutomations.AgentAutomationsListAvailableAutomationTriggersResponseItem> {
+        return SdkClient.request<List<AgentAutomations.AgentAutomationsListAvailableAutomationTriggersResponseItem>>(SdkClient.RequestSpec("GET", "/agents/automations/available-triggers", config = clientConfig, operationId = "agentAutomationsListAvailableAutomationTriggers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object AgentAutomationsGetAutomationOperation {
     /**
-     * Returns an automation by ID without requiring repository context when its `created_by` user
-     * is the authenticated caller and the caller can read its repository. This includes both
-     * user-owned and repository-owned automations created by the caller but excludes
-     * repository-owned automations created by someone else even if the caller has write access to
-     * the repository. Use the repository-scoped get operation for those automations. The response
-     * includes repository identity so…
+     * Returns an automation by ID without requiring repository context when its `created_by` user is the authenticated caller and the caller can read its repository. This includes both user-owned and repository-owned automations created by the caller but excludes repository-owned automations created by someone else even if the caller has write access to the repository. Use the repository-scoped get operation for those automations. The response includes repository identity so…
      *
      * @param automationId The unique identifier of the automation.
      */
-    fun agentAutomationsGetAutomation(
-        clientConfig: ClientConfig,
-        automationId: String,
-        options: RequestOptions? = null,
-    ): AgentAutomations.AgentAutomationsGetAutomationResponse {
-        return SdkClient.request<AgentAutomations.AgentAutomationsGetAutomationResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/agents/automations/${SdkClient.encodePathSegment(automationId)}",
-                    config = clientConfig,
-                    operationId = "agentAutomationsGetAutomation",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun agentAutomationsGetAutomation(clientConfig: ClientConfig, automationId: String, options: RequestOptions? = null): AgentAutomations.AgentAutomationsGetAutomationResponse {
+        return SdkClient.request<AgentAutomations.AgentAutomationsGetAutomationResponse>(SdkClient.RequestSpec("GET", "/agents/automations/${SdkClient.encodePathSegment(automationId)}", config = clientConfig, operationId = "agentAutomationsGetAutomation", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object AgentAutomationsListAutomationTasksOperation {
     /**
-     * Returns a list of tasks triggered by the specified automation. User-owned automation history
-     * is available only to its creator, while repository-owned automation history is available to
-     * anyone with read access to the repository. Deleted and unlisted tasks are excluded. Tasks
-     * produced by private-session agents are excluded unless the caller created the task, is a task
-     * collaborator, or the task is shared. **Fine-grained access tokens for "List tasks for an
-     * automation"** This…
+     * Returns a list of tasks triggered by the specified automation. User-owned automation history is available only to its creator, while repository-owned automation history is available to anyone with read access to the repository. Deleted and unlisted tasks are excluded. Tasks produced by private-session agents are excluded unless the caller created the task, is a task collaborator, or the task is shared. **Fine-grained access tokens for "List tasks for an automation"** This…
      *
      * @param automationId The unique identifier of the automation.
      * @param perPage The number of results per page (max 100).
      * @param page The page number of the results to fetch.
      * @param sort The field to sort results by. Can be `updated_at` or `created_at`.
      * @param direction The direction to sort results. Can be `asc` or `desc`.
-     * @param state Comma-separated list of task states to filter by. Can be any combination of:
-     *   `queued`, `in_progress`, `completed`, `failed`, `idle`, `waiting_for_user`, `timed_out`,
-     *   `cancelled`.
-     * @param isArchived Filter by archived status. When `true`, returns only archived tasks. When
-     *   `false` or omitted, returns only non-archived tasks. Defaults to `false`.
+     * @param state Comma-separated list of task states to filter by. Can be any
+     *   combination of: `queued`, `in_progress`, `completed`, `failed`, `idle`,
+     *   `waiting_for_user`, `timed_out`, `cancelled`.
+     * @param isArchived Filter by archived status. When `true`, returns only
+     *   archived tasks. When `false` or omitted, returns only non-archived tasks.
+     *   Defaults to `false`.
      */
-    fun agentAutomationsListAutomationTasks(
-        clientConfig: ClientConfig,
-        request: AgentAutomations.AgentAutomationsListAutomationTasksRequest,
-        options: RequestOptions? = null,
-    ): AgentAutomations.AgentAutomationsListAutomationTasksResponse {
+    fun agentAutomationsListAutomationTasks(clientConfig: ClientConfig, request: AgentAutomations.AgentAutomationsListAutomationTasksRequest, options: RequestOptions? = null): AgentAutomations.AgentAutomationsListAutomationTasksResponse {
         validateAgentAutomationsListAutomationTasksRequest(request)
 
-        return SdkClient.request<AgentAutomations.AgentAutomationsListAutomationTasksResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/agents/automations/${SdkClient.encodePathSegment(request.automationId)}/tasks",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "state" to SdkClient.queryValue(request.state, "form", true),
-                            "is_archived" to SdkClient.queryValue(request.isArchived, "form", true),
-                        ),
-                    operationId = "agentAutomationsListAutomationTasks",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<AgentAutomations.AgentAutomationsListAutomationTasksResponse>(SdkClient.RequestSpec("GET", "/agents/automations/${SdkClient.encodePathSegment(request.automationId)}/tasks", config = clientConfig, query = mapOf("per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "state" to SdkClient.queryValue(request.state, "form", true), "is_archived" to
+    SdkClient.queryValue(request.isArchived, "form", true)), operationId = "agentAutomationsListAutomationTasks", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateAgentAutomationsListAutomationTasksRequest(
-        request: AgentAutomations.AgentAutomationsListAutomationTasksRequest
-    ) {
+
+    private fun validateAgentAutomationsListAutomationTasksRequest(request: AgentAutomations.AgentAutomationsListAutomationTasksRequest) {
         if (request.perPage != null) {
-            Validation.validateRange(
-                "per_page",
-                request.perPage,
-                Validation.RangeOpts(min = 1.0, max = 100.0),
-            )
-        }
+            Validation.validateRange("per_page", request.perPage, Validation.RangeOpts(min = 1.0, max = 100.0))
+}
 
         if (request.page != null) {
             Validation.validateRange("page", request.page, Validation.RangeOpts(min = 1.0))
-        }
+}
     }
 }
 
 internal object AgentAutomationsListRepoAutomationsOperation {
     /**
-     * Returns a paginated list of the authenticated user's automations for a repository, together
-     * with every repository-owned automation in it. `total_count` is the number of caller-visible
-     * automations matching the supplied filters across all pages. Repository-owned automations are
-     * visible to anyone with read access to the repository, so the results are not limited to
-     * automations the caller created. Use the `owner_type` field on each automation to tell the two
-     * apart.…
+     * Returns a paginated list of the authenticated user's automations for a repository, together with every repository-owned automation in it. `total_count` is the number of caller-visible automations matching the supplied filters across all pages. Repository-owned automations are visible to anyone with read access to the repository, so the results are not limited to automations the caller created. Use the `owner_type` field on each automation to tell the two apart.…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param owner The account owner of the repository. The name is not case
+     *   sensitive.
      * @param repo The name of the repository. The name is not case sensitive.
      * @param page The page number of the results to fetch.
      * @param perPage The number of results per page (max 100).
-     * @param ownerType Filter automations by owner type. `user` returns automations owned by their
-     *   creator, `repository` returns automations owned by the repository. Omit to return both.
+     * @param ownerType Filter automations by owner type. `user` returns automations
+     *   owned by their creator, `repository` returns automations owned by the
+     *   repository. Omit to return both.
      */
-    fun agentAutomationsListRepoAutomations(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        page: Long? = null,
-        perPage: Long? = null,
-        ownerType: AgentAutomationsListRepoAutomationsParameterEnum? = null,
-        options: RequestOptions? = null,
-    ): AgentAutomations.AgentAutomationsListRepoAutomationsResponse {
+    fun agentAutomationsListRepoAutomations(clientConfig: ClientConfig, owner: String, repo: String, page: Long? = null, perPage: Long? = null, ownerType: AgentAutomationsListRepoAutomationsParameterEnum? = null, options: RequestOptions? = null): AgentAutomations.AgentAutomationsListRepoAutomationsResponse {
         if (page != null) {
             Validation.validateRange("page", page, Validation.RangeOpts(min = 1.0))
-        }
+}
 
         if (perPage != null) {
-            Validation.validateRange(
-                "per_page",
-                perPage,
-                Validation.RangeOpts(min = 1.0, max = 100.0),
-            )
-        }
+            Validation.validateRange("per_page", perPage, Validation.RangeOpts(min = 1.0, max = 100.0))
+}
 
-        return SdkClient.request<AgentAutomations.AgentAutomationsListRepoAutomationsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/agents/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "owner_type" to SdkClient.queryValue(ownerType, "form", true),
-                        ),
-                    operationId = "agentAutomationsListRepoAutomations",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<AgentAutomations.AgentAutomationsListRepoAutomationsResponse>(SdkClient.RequestSpec("GET", "/agents/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automations", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "owner_type" to
+    SdkClient.queryValue(ownerType, "form", true)), operationId = "agentAutomationsListRepoAutomations", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object AgentAutomationsCreateRepoAutomationOperation {
     /**
-     * Creates a new automation in a repository. User-owned automations remain private to their
-     * creator. Repository-owned automations are visible to anyone with read access to the
-     * repository and manageable by anyone with write access to the repository. **Fine-grained
-     * access tokens for "Create an automation for a repository"** This endpoint works with the
-     * following fine-grained token types: * GitHub App user access tokens * Fine-grained personal
-     * access tokens The fine-grained token…
+     * Creates a new automation in a repository. User-owned automations remain private to their creator. Repository-owned automations are visible to anyone with read access to the repository and manageable by anyone with write access to the repository. **Fine-grained access tokens for "Create an automation for a repository"** This endpoint works with the following fine-grained token types: * GitHub App user access tokens * Fine-grained personal access tokens The fine-grained token…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param owner The account owner of the repository. The name is not case
+     *   sensitive.
      * @param repo The name of the repository. The name is not case sensitive.
      * @param name The name of the automation.
      * @param prompt The prompt template for the automation.
-     * @param triggers Public trigger configuration keyed by stable public trigger identifier. Each
-     *   trigger has a closed, trigger-specific configuration schema.
-     * @param model The model to use for sessions triggered by this automation. Omit to use the
-     *   platform default.
-     * @param reasoningEffort The reasoning effort to use for sessions triggered by this automation.
-     *   Omit or leave empty for no override. Currently supported values: `none`, `low`, `medium`,
-     *   `high`, `xhigh`, `max`
+     * @param triggers Public trigger configuration keyed by stable public trigger
+     *   identifier. Each trigger has a closed, trigger-specific configuration schema.
+     * @param model The model to use for sessions triggered by this automation. Omit
+     *   to use the platform default.
+     * @param reasoningEffort The reasoning effort to use for sessions triggered by
+     *   this automation. Omit or leave empty for no override. Currently supported
+     *   values: `none`, `low`, `medium`, `high`, `xhigh`, `max`
      * @param tools The tools available to the automation.
-     * @param allowedCustomAgents Custom agents (subagents) this automation is allowed to invoke.
-     * @param enabled Whether the automation should be created enabled. Defaults to true when
-     *   omitted.
-     * @param ownerType Who owns the automation, fixed at creation. `user` keeps it private to its
-     *   creator and its runs act as that user. `repository` makes it belong to the repository,
-     *   visible to anyone with read access to the repository and maintainable by anyone with write
-     *   access to the repository, and its runs act as the Copilot app rather than as a person.
-     *   `repository` is rejected when repository ownership is not available for the repository.
-     *   Supported values: `user`, `repository`. Defaults to…
-     * @param writeScope Controls which repository resources a run may modify. `trigger` limits
-     *   writes to the resource that started the run, when one exists, and resources created during
-     *   the run; `repository` allows writes to any resource in the repository. Supported values:
-     *   `trigger`, `repository`.
-     * @param requireActorWritePermission When true, event-triggered runs require the event actor to
-     *   have repo write permission, even when the org's allow_read_access_triggers policy is
-     *   enabled. Does not apply to interval-scheduled runs, which always run as the automation
-     *   owner. Defaults to false.
+     * @param allowedCustomAgents Custom agents (subagents) this automation is
+     *   allowed to invoke.
+     * @param enabled Whether the automation should be created enabled. Defaults to
+     *   true when omitted.
+     * @param ownerType Who owns the automation, fixed at creation. `user` keeps it
+     *   private to its creator and its runs act as that user. `repository` makes it
+     *   belong to the repository, visible to anyone with read access to the repository
+     *   and maintainable by anyone with write access to the repository, and its runs
+     *   act as the Copilot app rather than as a person. `repository` is rejected when
+     *   repository ownership is not available for the repository. Supported values:
+     *   `user`, `repository`. Defaults to…
+     * @param writeScope Controls which repository resources a run may modify.
+     *   `trigger` limits writes to the resource that started the run, when one exists,
+     *   and resources created during the run; `repository` allows writes to any
+     *   resource in the repository. Supported values: `trigger`, `repository`.
+     * @param requireActorWritePermission When true, event-triggered runs require the
+     *   event actor to have repo write permission, even when the org's
+     *   allow_read_access_triggers policy is enabled. Does not apply to
+     *   interval-scheduled runs, which always run as the automation owner. Defaults to
+     *   false.
      */
-    fun agentAutomationsCreateRepoAutomation(
-        clientConfig: ClientConfig,
-        request: AgentAutomations.AgentAutomationsCreateRepoAutomationRequest,
-        options: RequestOptions? = null,
-    ): AgentAutomations.AgentAutomationsCreateRepoAutomationResponse {
-        return SdkClient.request<AgentAutomations.AgentAutomationsCreateRepoAutomationResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/agents/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/automations",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (request.name),
-                            "prompt" to (request.prompt),
-                            "triggers" to (SdkClient.omitIfNull(request.triggers)),
-                            "model" to (SdkClient.omitIfNull(request.model)),
-                            "reasoning_effort" to (SdkClient.omitIfNull(request.reasoningEffort)),
-                            "tools" to (SdkClient.omitIfNull(request.tools)),
-                            "allowed_custom_agents" to
-                                (SdkClient.omitIfNull(request.allowedCustomAgents)),
-                            "enabled" to (SdkClient.omitIfNull(request.enabled)),
-                            "owner_type" to (SdkClient.omitIfNull(request.ownerType)),
-                            "write_scope" to (SdkClient.omitIfNull(request.writeScope)),
-                            "require_actor_write_permission" to
-                                (SdkClient.omitIfNull(request.requireActorWritePermission)),
-                        ),
-                    operationId = "agentAutomationsCreateRepoAutomation",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun agentAutomationsCreateRepoAutomation(clientConfig: ClientConfig, request: AgentAutomations.AgentAutomationsCreateRepoAutomationRequest, options: RequestOptions? = null): AgentAutomations.AgentAutomationsCreateRepoAutomationResponse {
+        return SdkClient.request<AgentAutomations.AgentAutomationsCreateRepoAutomationResponse>(SdkClient.RequestSpec("POST", "/agents/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/automations", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "prompt" to (request.prompt), "triggers" to (SdkClient.omitIfNull(request.triggers)), "model" to (SdkClient.omitIfNull(request.model)), "reasoning_effort" to
+    (SdkClient.omitIfNull(request.reasoningEffort)), "tools" to (SdkClient.omitIfNull(request.tools)), "allowed_custom_agents" to
+    (SdkClient.omitIfNull(request.allowedCustomAgents)), "enabled" to (SdkClient.omitIfNull(request.enabled)), "owner_type" to (SdkClient.omitIfNull(request.ownerType)), "write_scope" to (SdkClient.omitIfNull(request.writeScope)), "require_actor_write_permission" to
+    (SdkClient.omitIfNull(request.requireActorWritePermission))), operationId = "agentAutomationsCreateRepoAutomation", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object AgentAutomationsGetRepoAutomationOperation {
     /**
-     * Returns an automation by ID in a repository. User-owned automations are visible only to their
-     * creator. Repository-owned automations are visible to anyone with read access to the
-     * repository. The `created_by` field identifies the creator and is distinct from the
-     * automation's `owner_type`. **Fine-grained access tokens for "Get an automation for a
-     * repository"** This endpoint works with the following fine-grained token types: * GitHub App
-     * user access tokens * Fine-grained…
+     * Returns an automation by ID in a repository. User-owned automations are visible only to their creator. Repository-owned automations are visible to anyone with read access to the repository. The `created_by` field identifies the creator and is distinct from the automation's `owner_type`. **Fine-grained access tokens for "Get an automation for a repository"** This endpoint works with the following fine-grained token types: * GitHub App user access tokens * Fine-grained…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param owner The account owner of the repository. The name is not case
+     *   sensitive.
      * @param repo The name of the repository. The name is not case sensitive.
      * @param automationId The unique identifier of the automation.
      */
-    fun agentAutomationsGetRepoAutomation(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        automationId: String,
-        options: RequestOptions? = null,
-    ): AgentAutomations.AgentAutomationsGetRepoAutomationResponse {
-        return SdkClient.request<AgentAutomations.AgentAutomationsGetRepoAutomationResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/agents/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automations/${SdkClient.encodePathSegment(automationId)}",
-                    config = clientConfig,
-                    operationId = "agentAutomationsGetRepoAutomation",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun agentAutomationsGetRepoAutomation(clientConfig: ClientConfig, owner: String, repo: String, automationId: String, options: RequestOptions? = null): AgentAutomations.AgentAutomationsGetRepoAutomationResponse {
+        return SdkClient.request<AgentAutomations.AgentAutomationsGetRepoAutomationResponse>(SdkClient.RequestSpec("GET", "/agents/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automations/${SdkClient.encodePathSegment(automationId)}", config = clientConfig, operationId = "agentAutomationsGetRepoAutomation", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object AgentAutomationsEditRepoAutomationOperation {
     /**
-     * Edits specified fields on an existing automation in a repository. Omitted fields are left
-     * unchanged. The automation's `owner_type` is immutable and cannot be changed by this
-     * operation. **Fine-grained access tokens for "Edit an automation for a repository"** This
-     * endpoint works with the following fine-grained token types: * GitHub App user access tokens *
-     * Fine-grained personal access tokens The fine-grained token must have one of the following
-     * permission sets for each…
+     * Edits specified fields on an existing automation in a repository. Omitted fields are left unchanged. The automation's `owner_type` is immutable and cannot be changed by this operation. **Fine-grained access tokens for "Edit an automation for a repository"** This endpoint works with the following fine-grained token types: * GitHub App user access tokens * Fine-grained personal access tokens The fine-grained token must have one of the following permission sets for each…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param owner The account owner of the repository. The name is not case
+     *   sensitive.
      * @param repo The name of the repository. The name is not case sensitive.
      * @param automationId The unique identifier of the automation.
      * @param name The name of the automation.
-     * @param enabled Set to true to enable, false to disable. Omit to leave unchanged.
-     * @param writeScope Controls which repository resources a run may modify. `trigger` limits
-     *   writes to the resource that started the run, when one exists, and resources created during
-     *   the run; `repository` allows writes to any resource in the repository. Supported values:
-     *   `trigger`, `repository`. Omit to leave unchanged.
-     * @param requireActorWritePermission When true, event-triggered runs require the event actor to
-     *   have repo write permission, even when the org's allow_read_access_triggers policy is
-     *   enabled. Does not apply to interval-scheduled runs, which always run as the automation
-     *   owner. Omit to leave unchanged.
-     * @param model The model to use for sessions triggered by this automation. Omit to leave
-     *   unchanged. Send an empty string to clear the model and revert to the platform default.
-     * @param reasoningEffort The reasoning effort to use for sessions triggered by this automation.
-     *   Omit to leave unchanged. Send an empty string to clear the override. Currently supported
-     *   values: `none`, `low`, `medium`, `high`, `xhigh`, `max`
-     * @param triggers Public trigger configuration keyed by stable public trigger identifier. Each
-     *   trigger has a closed, trigger-specific configuration schema.
+     * @param enabled Set to true to enable, false to disable. Omit to leave
+     *   unchanged.
+     * @param writeScope Controls which repository resources a run may modify.
+     *   `trigger` limits writes to the resource that started the run, when one exists,
+     *   and resources created during the run; `repository` allows writes to any
+     *   resource in the repository. Supported values: `trigger`, `repository`. Omit to
+     *   leave unchanged.
+     * @param requireActorWritePermission When true, event-triggered runs require the
+     *   event actor to have repo write permission, even when the org's
+     *   allow_read_access_triggers policy is enabled. Does not apply to
+     *   interval-scheduled runs, which always run as the automation owner. Omit to
+     *   leave unchanged.
+     * @param model The model to use for sessions triggered by this automation. Omit
+     *   to leave unchanged. Send an empty string to clear the model and revert to the
+     *   platform default.
+     * @param reasoningEffort The reasoning effort to use for sessions triggered by
+     *   this automation. Omit to leave unchanged. Send an empty string to clear the
+     *   override. Currently supported values: `none`, `low`, `medium`, `high`,
+     *   `xhigh`, `max`
+     * @param triggers Public trigger configuration keyed by stable public trigger
+     *   identifier. Each trigger has a closed, trigger-specific configuration schema.
      * @param prompt The prompt template for the automation.
-     * @param tools The tools available to the automation. Send an empty array to clear all tools.
-     * @param allowedCustomAgents Custom agents (subagents) this automation is allowed to invoke.
-     *   Send an empty array to clear all custom agents.
+     * @param tools The tools available to the automation. Send an empty array to
+     *   clear all tools.
+     * @param allowedCustomAgents Custom agents (subagents) this automation is
+     *   allowed to invoke. Send an empty array to clear all custom agents.
      */
-    fun agentAutomationsEditRepoAutomation(
-        clientConfig: ClientConfig,
-        request: AgentAutomations.AgentAutomationsEditRepoAutomationRequest,
-        options: RequestOptions? = null,
-    ): AgentAutomations.AgentAutomationsEditRepoAutomationResponse {
-        return SdkClient.request<AgentAutomations.AgentAutomationsEditRepoAutomationResponse>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/agents/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/automations/${SdkClient.encodePathSegment(request.automationId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                            "enabled" to (SdkClient.omitIfNull(request.enabled)),
-                            "write_scope" to (SdkClient.omitIfNull(request.writeScope)),
-                            "require_actor_write_permission" to
-                                (SdkClient.omitIfNull(request.requireActorWritePermission)),
-                            "model" to (SdkClient.omitIfNull(request.model)),
-                            "reasoning_effort" to (SdkClient.omitIfNull(request.reasoningEffort)),
-                            "triggers" to (SdkClient.omitIfNull(request.triggers)),
-                            "prompt" to (SdkClient.omitIfNull(request.prompt)),
-                            "tools" to (SdkClient.omitIfNull(request.tools)),
-                            "allowed_custom_agents" to
-                                (SdkClient.omitIfNull(request.allowedCustomAgents)),
-                        ),
-                    operationId = "agentAutomationsEditRepoAutomation",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun agentAutomationsEditRepoAutomation(clientConfig: ClientConfig, request: AgentAutomations.AgentAutomationsEditRepoAutomationRequest, options: RequestOptions? = null): AgentAutomations.AgentAutomationsEditRepoAutomationResponse {
+        return SdkClient.request<AgentAutomations.AgentAutomationsEditRepoAutomationResponse>(SdkClient.RequestSpec("PATCH", "/agents/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/automations/${SdkClient.encodePathSegment(request.automationId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "enabled" to (SdkClient.omitIfNull(request.enabled)), "write_scope" to (SdkClient.omitIfNull(request.writeScope)), "require_actor_write_permission" to
+    (SdkClient.omitIfNull(request.requireActorWritePermission)), "model" to (SdkClient.omitIfNull(request.model)), "reasoning_effort" to
+    (SdkClient.omitIfNull(request.reasoningEffort)), "triggers" to (SdkClient.omitIfNull(request.triggers)), "prompt" to (SdkClient.omitIfNull(request.prompt)), "tools" to (SdkClient.omitIfNull(request.tools)), "allowed_custom_agents" to
+    (SdkClient.omitIfNull(request.allowedCustomAgents))), operationId = "agentAutomationsEditRepoAutomation", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object AgentAutomationsDeleteRepoAutomationOperation {
     /**
-     * Deletes an automation in a repository. **Fine-grained access tokens for "Delete an automation
-     * for a repository"** This endpoint works with the following fine-grained token types: * GitHub
-     * App user access tokens * Fine-grained personal access tokens The fine-grained token must have
-     * one of the following permission sets for each repository accessed by this request: * "Agent
-     * tasks" repository permissions (read and write) * "Contents" repository permissions (read and
-     * write) The…
+     * Deletes an automation in a repository. **Fine-grained access tokens for "Delete an automation for a repository"** This endpoint works with the following fine-grained token types: * GitHub App user access tokens * Fine-grained personal access tokens The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read and write) * "Contents" repository permissions (read and write) The…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param owner The account owner of the repository. The name is not case
+     *   sensitive.
      * @param repo The name of the repository. The name is not case sensitive.
      * @param automationId The unique identifier of the automation.
      */
-    fun agentAutomationsDeleteRepoAutomation(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        automationId: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/agents/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automations/${SdkClient.encodePathSegment(automationId)}",
-                config = clientConfig,
-                operationId = "agentAutomationsDeleteRepoAutomation",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun agentAutomationsDeleteRepoAutomation(clientConfig: ClientConfig, owner: String, repo: String, automationId: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/agents/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automations/${SdkClient.encodePathSegment(automationId)}", config = clientConfig, operationId = "agentAutomationsDeleteRepoAutomation", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }

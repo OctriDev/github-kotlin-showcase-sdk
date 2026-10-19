@@ -9,26 +9,20 @@ import dev.octri.showcase.github.SdkClient
 
 object Emojis {
 
+
     /**
-     * Lists the emojis available to use on GitHub. Use the emoji names as keys and their string
-     * values to identify the corresponding entries.
+     * Lists the emojis available to use on GitHub. Use the emoji names as keys and their string values to identify the corresponding entries.
      *
      * Lists all the emojis available to use on GitHub.
      */
-    fun emojisGet(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): Map<String, String> {
-        return SdkClient.request<Map<String, String>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/emojis",
-                    config = clientConfig,
-                    operationId = "emojisGet",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun emojisGet(clientConfig: ClientConfig, options: RequestOptions? = null): Map<String, String> {
+        return SdkClient.request<Map<String, String>>(SdkClient.RequestSpec("GET", "/emojis", config = clientConfig, operationId = "emojisGet", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
+
 }

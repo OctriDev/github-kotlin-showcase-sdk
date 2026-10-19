@@ -3,76 +3,72 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `field_value` wire field. */
+/**
+ * Required object value serialized in the `field_value` wire field.
+ */
 data class WebhookProjectsV2ItemEditedChangesVariant0FieldValue(
-    /** Optional `string` value serialized in the `field_node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `field_node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("field_node_id") val fieldNodeId: String? = null,
-    /** Optional `string` value serialized in the `field_type` wire field. */
+    /**
+     * Optional `string` value serialized in the `field_type` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("field_type") val fieldType: String? = null,
-    /** Optional `string` value serialized in the `field_name` wire field. */
+    /**
+     * Optional `string` value serialized in the `field_name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("field_name") val fieldName: String? = null,
-    /** Optional `integer` value serialized in the `project_number` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("project_number")
-    val projectNumber: Long? = null,
-    /** Optional API value serialized in the `from` wire field. */
-    @com.fasterxml.jackson.annotation.JsonSubTypes(
-        com.fasterxml.jackson.annotation.JsonSubTypes.Type(ProjectsV2SingleSelectOption::class),
-        com.fasterxml.jackson.annotation.JsonSubTypes.Type(ProjectsV2IterationSetting::class),
-    )
-    val from: Any? = null,
-    /** Optional API value serialized in the `to` wire field. */
-    @com.fasterxml.jackson.annotation.JsonSubTypes(
-        com.fasterxml.jackson.annotation.JsonSubTypes.Type(ProjectsV2SingleSelectOption::class),
-        com.fasterxml.jackson.annotation.JsonSubTypes.Type(ProjectsV2IterationSetting::class),
-    )
-    val to: Any? = null,
+    /**
+     * Optional `integer` value serialized in the `project_number` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("project_number") val projectNumber: Long? = null,
+    /**
+     * Optional API value serialized in the `from` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonSubTypes(com.fasterxml.jackson.annotation.JsonSubTypes.Type(ProjectsV2SingleSelectOption::class), com.fasterxml.jackson.annotation.JsonSubTypes.Type(ProjectsV2IterationSetting::class)) val from: Any? = null,
+    /**
+     * Optional API value serialized in the `to` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonSubTypes(com.fasterxml.jackson.annotation.JsonSubTypes.Type(ProjectsV2SingleSelectOption::class), com.fasterxml.jackson.annotation.JsonSubTypes.Type(ProjectsV2IterationSetting::class)) val to: Any? = null
 )
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class WebhookProjectsV2ItemEditedChangesVariant0(
-    /** Required object value serialized in the `field_value` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("field_value")
-    val fieldValue: WebhookProjectsV2ItemEditedChangesVariant0FieldValue
+    /**
+     * Required object value serialized in the `field_value` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("field_value") val fieldValue: WebhookProjectsV2ItemEditedChangesVariant0FieldValue
 ) : WebhookProjectsV2ItemEditedChanges
 
-/** Required object value serialized in the `body` wire field. */
+/**
+ * Required object value serialized in the `body` wire field.
+ */
 data class WebhookProjectsV2ItemEditedChangesVariant1Body(
-    /** Optional `string` value serialized in the `from` wire field. */
+    /**
+     * Optional `string` value serialized in the `from` wire field.
+     */
     val from: String? = null,
-    /** Optional `string` value serialized in the `to` wire field. */
-    val to: String? = null,
+    /**
+     * Optional `string` value serialized in the `to` wire field.
+     */
+    val to: String? = null
 )
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class WebhookProjectsV2ItemEditedChangesVariant1(
-    /** Required object value serialized in the `body` wire field. */
+    /**
+     * Required object value serialized in the `body` wire field.
+     */
     val body: WebhookProjectsV2ItemEditedChangesVariant1Body
 ) : WebhookProjectsV2ItemEditedChanges
 
 /**
- * The changes made to the item may involve modifications in the item's fields and draft issue body.
- * It includes altered values for text, number, date, single select, and iteration fields, along
- * with the GraphQL node ID of the changed field.
+ * The changes made to the item may involve modifications in the item's fields and draft issue body. It includes altered values for text, number, date, single select, and iteration fields, along with the GraphQL node ID of the changed field.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
-)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = WebhookProjectsV2ItemEditedChangesVariant0::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = WebhookProjectsV2ItemEditedChangesVariant1::class
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = WebhookProjectsV2ItemEditedChangesVariant0::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = WebhookProjectsV2ItemEditedChangesVariant1::class)
 )
 sealed interface WebhookProjectsV2ItemEditedChanges

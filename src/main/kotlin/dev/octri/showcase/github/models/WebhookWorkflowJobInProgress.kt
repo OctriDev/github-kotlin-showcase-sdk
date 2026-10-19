@@ -3,115 +3,168 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `steps[]` wire field. */
+/**
+ * Required object value serialized in the `steps[]` wire field.
+ */
 data class WebhookWorkflowJobInProgressWorkflowJobStepsItem(
-    /** Required `string` value serialized in the `completed_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at", required = true)
-    val completedAt: String?,
-    /** Required `string` value serialized in the `conclusion` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true)
-    val conclusion: String?,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `completed_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at", required = true) val completedAt: String?,
+    /**
+     * Required `string` value serialized in the `conclusion` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true) val conclusion: String?,
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `integer` value serialized in the `number` wire field. */
+    /**
+     * Required `integer` value serialized in the `number` wire field.
+     */
     val number: Long,
-    /** Required `string` value serialized in the `started_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("started_at", required = true)
-    val startedAt: String?,
-    /** Required enumerated value serialized in the `status` wire field. */
-    val status: WebhookWorkflowJobInProgressWorkflowJobStepsItemStatusEnum,
+    /**
+     * Required `string` value serialized in the `started_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("started_at", required = true) val startedAt: String?,
+    /**
+     * Required enumerated value serialized in the `status` wire field.
+     */
+    val status: WebhookWorkflowJobInProgressWorkflowJobStepsItemStatusEnum
 )
 
-/** Required object value serialized in the `workflow_job` wire field. */
+/**
+ * Required object value serialized in the `workflow_job` wire field.
+ */
 data class WebhookWorkflowJobInProgressWorkflowJob(
-    /** Required `string` value serialized in the `check_run_url` wire field. */
+    /**
+     * Required `string` value serialized in the `check_run_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("check_run_url") val checkRunUrl: String,
-    /** Required `string` value serialized in the `completed_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at", required = true)
-    val completedAt: String?,
-    /** Required `string` value serialized in the `conclusion` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true)
-    val conclusion: String?,
-    /** The time that the job created. */
+    /**
+     * Required `string` value serialized in the `completed_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at", required = true) val completedAt: String?,
+    /**
+     * Required `string` value serialized in the `conclusion` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true) val conclusion: String?,
+    /**
+     * The time that the job created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /** Required `string` value serialized in the `head_sha` wire field. */
+    /**
+     * Required `string` value serialized in the `head_sha` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("head_sha") val headSha: String,
-    /** Required `string` value serialized in the `html_url` wire field. */
+    /**
+     * Required `string` value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required array value serialized in the `labels` wire field. */
+    /**
+     * Required array value serialized in the `labels` wire field.
+     */
     val labels: List<String>,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `integer` value serialized in the `run_attempt` wire field. */
+    /**
+     * Required `integer` value serialized in the `run_attempt` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("run_attempt") val runAttempt: Long,
-    /** Required `integer` value serialized in the `run_id` wire field. */
+    /**
+     * Required `integer` value serialized in the `run_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("run_id") val runId: Long,
-    /** Required `string` value serialized in the `run_url` wire field. */
+    /**
+     * Required `string` value serialized in the `run_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("run_url") val runUrl: String,
-    /** Required `number` value serialized in the `runner_group_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_group_id", required = true)
-    val runnerGroupId: Double?,
-    /** Required `string` value serialized in the `runner_group_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_group_name", required = true)
-    val runnerGroupName: String?,
-    /** Required `number` value serialized in the `runner_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_id", required = true)
-    val runnerId: Double?,
-    /** Required `string` value serialized in the `runner_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_name", required = true)
-    val runnerName: String?,
-    /** Required `string` value serialized in the `started_at` wire field. */
+    /**
+     * Required `number` value serialized in the `runner_group_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_group_id", required = true) val runnerGroupId: Double?,
+    /**
+     * Required `string` value serialized in the `runner_group_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_group_name", required = true) val runnerGroupName: String?,
+    /**
+     * Required `number` value serialized in the `runner_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_id", required = true) val runnerId: Double?,
+    /**
+     * Required `string` value serialized in the `runner_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_name", required = true) val runnerName: String?,
+    /**
+     * Required `string` value serialized in the `started_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("started_at") val startedAt: String,
-    /** Required enumerated value serialized in the `status` wire field. */
+    /**
+     * Required enumerated value serialized in the `status` wire field.
+     */
     val status: WebhookWorkflowJobInProgressWorkflowJobStatusEnum,
-    /** The name of the current branch. */
-    @com.fasterxml.jackson.annotation.JsonProperty("head_branch", required = true)
-    val headBranch: String?,
-    /** The name of the workflow. */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_name", required = true)
-    val workflowName: String?,
-    /** Required array value serialized in the `steps` wire field. */
+    /**
+     * The name of the current branch.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("head_branch", required = true) val headBranch: String?,
+    /**
+     * The name of the workflow.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_name", required = true) val workflowName: String?,
+    /**
+     * Required array value serialized in the `steps` wire field.
+     */
     val steps: List<WebhookWorkflowJobInProgressWorkflowJobStepsItem>,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Typed representation of the `WebhookWorkflowJobInProgress` API schema. */
+/**
+ * Typed representation of the `WebhookWorkflowJobInProgress` API schema.
+ */
 data class WebhookWorkflowJobInProgress(
-    /** Required enumerated value serialized in the `action` wire field. */
+    /**
+     * Required enumerated value serialized in the `action` wire field.
+     */
     val action: WebhookWorkflowJobInProgressActionEnum,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /** A GitHub user. */
-    val sender: SimpleUser,
-    /** Required object value serialized in the `workflow_job` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_job")
-    val workflowJob: WebhookWorkflowJobInProgressWorkflowJob,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * A GitHub user.
+     */
+    val sender: SimpleUser,
+    /**
+     * Required object value serialized in the `workflow_job` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_job") val workflowJob: WebhookWorkflowJobInProgressWorkflowJob,
+    /**
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
-    /** A request for a specific ref(branch,sha,tag) to be deployed */
-    val deployment: Deployment? = null,
+    /**
+     * A request for a specific ref(branch,sha,tag) to be deployed
+     */
+    val deployment: Deployment? = null
 )

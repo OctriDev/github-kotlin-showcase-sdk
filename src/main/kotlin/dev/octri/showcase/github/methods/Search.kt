@@ -30,179 +30,118 @@ import dev.octri.showcase.github.ValidationError
 
 object Search {
 
-    data class SearchCodeResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results")
-        val incompleteResults: Boolean,
-        val items: List<CodeSearchResultItem>,
-    )
+data class SearchCodeResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results") val incompleteResults: Boolean,
+    val items: List<CodeSearchResultItem>
+)
 
-    data class SearchCommitsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results")
-        val incompleteResults: Boolean,
-        val items: List<CommitSearchResultItem>,
-    )
+data class SearchCommitsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results") val incompleteResults: Boolean,
+    val items: List<CommitSearchResultItem>
+)
 
-    data class SearchIssuesAndPullRequestsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results")
-        val incompleteResults: Boolean,
-        val items: List<IssueSearchResultItem>,
-        /**
-         * The type of search that was performed. Possible values are `lexical`, `semantic`, or
-         * `hybrid`.
-         */
-        @com.fasterxml.jackson.annotation.JsonProperty("search_type")
-        val searchType: SearchIssuesAndPullRequestsResponseSearchTypeEnum,
-        /**
-         * When a semantic or hybrid search falls back to lexical search, this field contains the
-         * reasons for the fallback. Only present when a fallback occurred.
-         */
-        @com.fasterxml.jackson.annotation.JsonProperty("lexical_fallback_reason")
-        val lexicalFallbackReason:
-            List<SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum>? =
-            null,
-    )
 
-    data class SearchLabelsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results")
-        val incompleteResults: Boolean,
-        val items: List<LabelSearchResultItem>,
-    )
 
-    data class SearchReposResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results")
-        val incompleteResults: Boolean,
-        val items: List<RepoSearchResultItem>,
-    )
 
-    data class SearchTopicsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results")
-        val incompleteResults: Boolean,
-        val items: List<TopicSearchResultItem>,
-    )
 
-    data class SearchUsersResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results")
-        val incompleteResults: Boolean,
-        val items: List<UserSearchResultItem>,
-    )
+data class SearchIssuesAndPullRequestsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results") val incompleteResults: Boolean,
+    val items: List<IssueSearchResultItem>,
+    /**
+     * The type of search that was performed. Possible values are `lexical`, `semantic`, or `hybrid`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("search_type") val searchType: SearchIssuesAndPullRequestsResponseSearchTypeEnum,
+    /**
+     * When a semantic or hybrid search falls back to lexical search, this field contains the reasons for the fallback. Only present when a fallback occurred.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("lexical_fallback_reason") val lexicalFallbackReason: List<SearchIssuesAndPullRequestsResponseLexicalFallbackReasonItemEnum>? = null
+)
+
+data class SearchLabelsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results") val incompleteResults: Boolean,
+    val items: List<LabelSearchResultItem>
+)
+
+data class SearchReposResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results") val incompleteResults: Boolean,
+    val items: List<RepoSearchResultItem>
+)
+
+data class SearchTopicsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results") val incompleteResults: Boolean,
+    val items: List<TopicSearchResultItem>
+)
+
+data class SearchUsersResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("incomplete_results") val incompleteResults: Boolean,
+    val items: List<UserSearchResultItem>
+)
+
 
     /**
-     * Searches for query terms inside of a file. This method returns up to 100 results per page.
-     * When searching for code, you can get text match metadata for the file **content** and file
-     * **path** fields when you pass the `text-match` media type. For more details about how to
-     * receive highlighted search results, see Text match metadata. For example, if you want to find
-     * the definition of the `addClass` function inside jQuery repository, your query would look
-     * something like this:…
+     * Searches for query terms inside of a file. This method returns up to 100 results per page. When searching for code, you can get text match metadata for the file **content** and file **path** fields when you pass the `text-match` media type. For more details about how to receive highlighted search results, see Text match metadata. For example, if you want to find the definition of the `addClass` function inside jQuery repository, your query would look something like this:…
      *
-     * @param q The query contains one or more search keywords and qualifiers. Qualifiers allow you
-     *   to limit your search to specific areas of GitHub. The REST API supports the same qualifiers
-     *   as the web interface for GitHub. To learn more about the format of the query, see
-     *   Constructing a search query. See "Searching code" for a detailed list of qualifiers.
-     * @param sort **This field is closing down.** Sorts the results of your query. Can only be
-     *   `indexed`, which indicates how recently a file has been indexed by the GitHub search
-     *   infrastructure. Default: best match
-     * @param order **This field is closing down.** Determines whether the first search result
-     *   returned is the highest number of matches (`desc`) or lowest number of matches (`asc`).
-     *   This parameter is ignored unless you provide `sort`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param q The query contains one or more search keywords and qualifiers.
+     *   Qualifiers allow you to limit your search to specific areas of GitHub. The
+     *   REST API supports the same qualifiers as the web interface for GitHub. To
+     *   learn more about the format of the query, see Constructing a search query. See
+     *   "Searching code" for a detailed list of qualifiers.
+     * @param sort **This field is closing down.** Sorts the results of your query.
+     *   Can only be `indexed`, which indicates how recently a file has been indexed by
+     *   the GitHub search infrastructure. Default: best match
+     * @param order **This field is closing down.** Determines whether the first
+     *   search result returned is the highest number of matches (`desc`) or lowest
+     *   number of matches (`asc`). This parameter is ignored unless you provide
+     *   `sort`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun searchCode(
-        clientConfig: ClientConfig,
-        q: String,
-        sort: SearchCodeParameterEnum? = null,
-        order: SearchCodeParameterEnum73682240? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): SearchCodeResponse {
-        return SdkClient.request<SearchCodeResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/search/code",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "q" to SdkClient.queryValue(q, "form", true),
-                            "sort" to SdkClient.queryValue(sort, "form", true),
-                            "order" to SdkClient.queryValue(order, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "searchCode",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun searchCode(clientConfig: ClientConfig, q: String, sort: SearchCodeParameterEnum? = null, order: SearchCodeParameterEnum73682240? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SearchCodeResponse {
+        return SdkClient.request<SearchCodeResponse>(SdkClient.RequestSpec("GET", "/search/code", config = clientConfig, query = mapOf("q" to SdkClient.queryValue(q, "form", true), "sort" to SdkClient.queryValue(sort, "form", true), "order" to SdkClient.queryValue(order, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "searchCode", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Find commits via various criteria on the default branch (usually `main`). This method returns
-     * up to 100 results per page. When searching for commits, you can get text match metadata for
-     * the **message** field when you provide the `text-match` media type. For more details about
-     * how to receive highlighted search results, see Text match metadata. For example, if you want
-     * to find commits related to CSS in the octocat/Spoon-Knife repository. Your query would look
-     * something like…
+     * Find commits via various criteria on the default branch (usually `main`). This method returns up to 100 results per page. When searching for commits, you can get text match metadata for the **message** field when you provide the `text-match` media type. For more details about how to receive highlighted search results, see Text match metadata. For example, if you want to find commits related to CSS in the octocat/Spoon-Knife repository. Your query would look something like…
      *
-     * @param q The query contains one or more search keywords and qualifiers. Qualifiers allow you
-     *   to limit your search to specific areas of GitHub. The REST API supports the same qualifiers
-     *   as the web interface for GitHub. To learn more about the format of the query, see
-     *   Constructing a search query. See "Searching commits" for a detailed list of qualifiers.
-     * @param sort Sorts the results of your query by `author-date` or `committer-date`. Default:
-     *   best match
-     * @param order Determines whether the first search result returned is the highest number of
-     *   matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you
-     *   provide `sort`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param q The query contains one or more search keywords and qualifiers.
+     *   Qualifiers allow you to limit your search to specific areas of GitHub. The
+     *   REST API supports the same qualifiers as the web interface for GitHub. To
+     *   learn more about the format of the query, see Constructing a search query. See
+     *   "Searching commits" for a detailed list of qualifiers.
+     * @param sort Sorts the results of your query by `author-date` or
+     *   `committer-date`. Default: best match
+     * @param order Determines whether the first search result returned is the
+     *   highest number of matches (`desc`) or lowest number of matches (`asc`). This
+     *   parameter is ignored unless you provide `sort`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun searchCommits(
-        clientConfig: ClientConfig,
-        q: String,
-        sort: SearchCommitsParameterEnum? = null,
-        order: SchemaSchemaEnum8674e2c0? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): SearchCommitsResponse {
-        return SdkClient.request<SearchCommitsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/search/commits",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "q" to SdkClient.queryValue(q, "form", true),
-                            "sort" to SdkClient.queryValue(sort, "form", true),
-                            "order" to SdkClient.queryValue(order, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "searchCommits",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun searchCommits(clientConfig: ClientConfig, q: String, sort: SearchCommitsParameterEnum? = null, order: SchemaSchemaEnum8674e2c0? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SearchCommitsResponse {
+        return SdkClient.request<SearchCommitsResponse>(SdkClient.RequestSpec("GET", "/search/commits", config = clientConfig, query = mapOf("q" to SdkClient.queryValue(q, "form", true), "sort" to SdkClient.queryValue(sort, "form", true), "order" to SdkClient.queryValue(order, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "searchCommits", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
 
     /** Parameters for [searchIssuesAndPullRequests]. */
     data class SearchIssuesAndPullRequestsRequest(
@@ -212,75 +151,50 @@ object Search {
         val perPage: Long? = null,
         val page: Long? = null,
         val advancedSearch: String? = null,
-        val searchType: SchemaSchemaEnumdfca6a72? = null,
+        val searchType: SchemaSchemaEnumdfca6a72? = null
     )
 
     /**
-     * Find issues by state and keyword. This method returns up to 100 results per page. When
-     * searching for issues, you can get text match metadata for the issue **title**, issue
-     * **body**, and issue **comment body** fields when you pass the `text-match` media type. For
-     * more details about how to receive highlighted search results, see Text match metadata. For
-     * example, if you want to find the oldest unresolved Python bugs on Windows. Your query might
-     * look something like this.…
+     * Find issues by state and keyword. This method returns up to 100 results per page. When searching for issues, you can get text match metadata for the issue **title**, issue **body**, and issue **comment body** fields when you pass the `text-match` media type. For more details about how to receive highlighted search results, see Text match metadata. For example, if you want to find the oldest unresolved Python bugs on Windows. Your query might look something like this.…
      *
-     * @param q The query contains one or more search keywords and qualifiers. Qualifiers allow you
-     *   to limit your search to specific areas of GitHub. The REST API supports the same qualifiers
-     *   as the web interface for GitHub. To learn more about the format of the query, see
-     *   Constructing a search query. See "Searching issues and pull requests" for a detailed list
-     *   of qualifiers.
-     * @param sort Sorts the results of your query by the number of `comments`, `reactions`,
-     *   `reactions-+1`, `reactions--1`, `reactions-smile`, `reactions-thinking_face`,
-     *   `reactions-heart`, `reactions-tada`, or `interactions`. You can also sort results by how
-     *   recently the items were `created` or `updated`, Default: best match
-     * @param order Determines whether the first search result returned is the highest number of
-     *   matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you
-     *   provide `sort`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param advancedSearch Set to `true` to use advanced search. Example: `api.github.com
-     * @param searchType The type of search to perform on issues. When not specified, the default is
-     *   lexical search. - `semantic` — performs a pure semantic (vector) search using
-     *   embedding-based understanding. - `hybrid` — combines semantic search with lexical search
-     *   for best results. Semantic and hybrid search require authentication and are rate limited to
-     *   10 requests per minute. Only applies to issue searches (`/search/issues`).
+     * @param q The query contains one or more search keywords and qualifiers.
+     *   Qualifiers allow you to limit your search to specific areas of GitHub. The
+     *   REST API supports the same qualifiers as the web interface for GitHub. To
+     *   learn more about the format of the query, see Constructing a search query. See
+     *   "Searching issues and pull requests" for a detailed list of qualifiers.
+     * @param sort Sorts the results of your query by the number of `comments`,
+     *   `reactions`, `reactions-+1`, `reactions--1`, `reactions-smile`,
+     *   `reactions-thinking_face`, `reactions-heart`, `reactions-tada`, or
+     *   `interactions`. You can also sort results by how recently the items were
+     *   `created` or `updated`, Default: best match
+     * @param order Determines whether the first search result returned is the
+     *   highest number of matches (`desc`) or lowest number of matches (`asc`). This
+     *   parameter is ignored unless you provide `sort`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param advancedSearch Set to `true` to use advanced search. Example:
+     *   `api.github.com
+     * @param searchType The type of search to perform on issues. When not specified,
+     *   the default is lexical search. - `semantic` — performs a pure semantic
+     *   (vector) search using embedding-based understanding. - `hybrid` — combines
+     *   semantic search with lexical search for best results. Semantic and hybrid
+     *   search require authentication and are rate limited to 10 requests per minute.
+     *   Only applies to issue searches (`/search/issues`).
      */
-    fun searchIssuesAndPullRequests(
-        clientConfig: ClientConfig,
-        request: SearchIssuesAndPullRequestsRequest,
-        options: RequestOptions? = null,
-    ): SearchIssuesAndPullRequestsResponse {
-        return SdkClient.request<SearchIssuesAndPullRequestsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/search/issues",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "q" to SdkClient.queryValue(request.q, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "order" to SdkClient.queryValue(request.order, "form", true),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                            "advanced_search" to
-                                SdkClient.queryValue(request.advancedSearch, "form", true),
-                            "search_type" to SdkClient.queryValue(request.searchType, "form", true),
-                        ),
-                    operationId = "searchIssuesAndPullRequests",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun searchIssuesAndPullRequests(clientConfig: ClientConfig, request: SearchIssuesAndPullRequestsRequest, options: RequestOptions? = null): SearchIssuesAndPullRequestsResponse {
+        return SdkClient.request<SearchIssuesAndPullRequestsResponse>(SdkClient.RequestSpec("GET", "/search/issues", config = clientConfig, query = mapOf("q" to SdkClient.queryValue(request.q, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "order" to SdkClient.queryValue(request.order, "form", true), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "advanced_search" to
+    SdkClient.queryValue(request.advancedSearch, "form", true), "search_type" to
+    SdkClient.queryValue(request.searchType, "form", true)), operationId = "searchIssuesAndPullRequests", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [searchLabels]. */
     data class SearchLabelsRequest(
@@ -289,219 +203,115 @@ object Search {
         val sort: SearchLabelsParameterEnum? = null,
         val order: SchemaSchemaEnum8674e2c0? = null,
         val perPage: Long? = null,
-        val page: Long? = null,
+        val page: Long? = null
     )
 
     /**
-     * Find labels in a repository with names or descriptions that match search keywords. Returns up
-     * to 100 results per page. When searching for labels, you can get text match metadata for the
-     * label **name** and **description** fields when you pass the `text-match` media type. For more
-     * details about how to receive highlighted search results, see Text match metadata. For
-     * example, if you want to find labels in the `linguist` repository that match `bug`, `defect`,
-     * or `enhancement`.…
+     * Find labels in a repository with names or descriptions that match search keywords. Returns up to 100 results per page. When searching for labels, you can get text match metadata for the label **name** and **description** fields when you pass the `text-match` media type. For more details about how to receive highlighted search results, see Text match metadata. For example, if you want to find labels in the `linguist` repository that match `bug`, `defect`, or `enhancement`.…
      *
      * @param repositoryId The id of the repository.
-     * @param q The search keywords. This endpoint does not accept qualifiers in the query. To learn
-     *   more about the format of the query, see Constructing a search query.
-     * @param sort Sorts the results of your query by when the label was `created` or `updated`.
-     *   Default: best match
-     * @param order Determines whether the first search result returned is the highest number of
-     *   matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you
-     *   provide `sort`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param q The search keywords. This endpoint does not accept qualifiers in the
+     *   query. To learn more about the format of the query, see Constructing a search
+     *   query.
+     * @param sort Sorts the results of your query by when the label was `created` or
+     *   `updated`. Default: best match
+     * @param order Determines whether the first search result returned is the
+     *   highest number of matches (`desc`) or lowest number of matches (`asc`). This
+     *   parameter is ignored unless you provide `sort`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun searchLabels(
-        clientConfig: ClientConfig,
-        request: SearchLabelsRequest,
-        options: RequestOptions? = null,
-    ): SearchLabelsResponse {
-        return SdkClient.request<SearchLabelsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/search/labels",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "repository_id" to
-                                SdkClient.queryValue(request.repositoryId, "form", true),
-                            "q" to SdkClient.queryValue(request.q, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "order" to SdkClient.queryValue(request.order, "form", true),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "searchLabels",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun searchLabels(clientConfig: ClientConfig, request: SearchLabelsRequest, options: RequestOptions? = null): SearchLabelsResponse {
+        return SdkClient.request<SearchLabelsResponse>(SdkClient.RequestSpec("GET", "/search/labels", config = clientConfig, query = mapOf("repository_id" to
+    SdkClient.queryValue(request.repositoryId, "form", true), "q" to SdkClient.queryValue(request.q, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "order" to SdkClient.queryValue(request.order, "form", true), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "searchLabels", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Find repositories via various criteria. This method returns up to 100 results per page. When
-     * searching for repositories, you can get text match metadata for the **name** and
-     * **description** fields when you pass the `text-match` media type. For more details about how
-     * to receive highlighted search results, see Text match metadata. For example, if you want to
-     * search for popular Tetris repositories written in assembly code, your query might look like
-     * this:…
+     * Find repositories via various criteria. This method returns up to 100 results per page. When searching for repositories, you can get text match metadata for the **name** and **description** fields when you pass the `text-match` media type. For more details about how to receive highlighted search results, see Text match metadata. For example, if you want to search for popular Tetris repositories written in assembly code, your query might look like this:…
      *
-     * @param q The query contains one or more search keywords and qualifiers. Qualifiers allow you
-     *   to limit your search to specific areas of GitHub. The REST API supports the same qualifiers
-     *   as the web interface for GitHub. To learn more about the format of the query, see
-     *   Constructing a search query. See "Searching for repositories" for a detailed list of
-     *   qualifiers.
+     * @param q The query contains one or more search keywords and qualifiers.
+     *   Qualifiers allow you to limit your search to specific areas of GitHub. The
+     *   REST API supports the same qualifiers as the web interface for GitHub. To
+     *   learn more about the format of the query, see Constructing a search query. See
+     *   "Searching for repositories" for a detailed list of qualifiers.
      * @param sort Sorts the results of your query by number of `stars`, `forks`, or
-     *   `help-wanted-issues` or how recently the items were `updated`. Default: best match
-     * @param order Determines whether the first search result returned is the highest number of
-     *   matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you
-     *   provide `sort`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     *   `help-wanted-issues` or how recently the items were `updated`. Default: best
+     *   match
+     * @param order Determines whether the first search result returned is the
+     *   highest number of matches (`desc`) or lowest number of matches (`asc`). This
+     *   parameter is ignored unless you provide `sort`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun searchRepos(
-        clientConfig: ClientConfig,
-        q: String,
-        sort: SearchReposParameterEnum? = null,
-        order: SchemaSchemaEnum8674e2c0? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): SearchReposResponse {
-        return SdkClient.request<SearchReposResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/search/repositories",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "q" to SdkClient.queryValue(q, "form", true),
-                            "sort" to SdkClient.queryValue(sort, "form", true),
-                            "order" to SdkClient.queryValue(order, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "searchRepos",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "422" to ValidationError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun searchRepos(clientConfig: ClientConfig, q: String, sort: SearchReposParameterEnum? = null, order: SchemaSchemaEnum8674e2c0? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SearchReposResponse {
+        return SdkClient.request<SearchReposResponse>(SdkClient.RequestSpec("GET", "/search/repositories", config = clientConfig, query = mapOf("q" to SdkClient.queryValue(q, "form", true), "sort" to SdkClient.queryValue(sort, "form", true), "order" to SdkClient.queryValue(order, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "searchRepos", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 
-    /**
-     * Find topics via various criteria. Results are sorted by best match. This method returns up to
-     * 100 results per page. See "Searching topics" for a detailed list of qualifiers. When
-     * searching for topics, you can get text match metadata for the topic's **short\_description**,
-     * **description**, **name**, or **display\_name** field when you pass the `text-match` media
-     * type. For more details about how to receive highlighted search results, see Text match
-     * metadata. For example, if…
-     *
-     * @param q The query contains one or more search keywords and qualifiers. Qualifiers allow you
-     *   to limit your search to specific areas of GitHub. The REST API supports the same qualifiers
-     *   as the web interface for GitHub. To learn more about the format of the query, see
-     *   Constructing a search query.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     */
-    fun searchTopics(
-        clientConfig: ClientConfig,
-        q: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): SearchTopicsResponse {
-        return SdkClient.request<SearchTopicsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/search/topics",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "q" to SdkClient.queryValue(q, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "searchTopics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
-    }
+
+
+
+
+
 
     /**
-     * Find users via various criteria. This method returns up to 100 results per page. When
-     * searching for users, you can get text match metadata for the issue **login**, public
-     * **email**, and **name** fields when you pass the `text-match` media type. For more details
-     * about highlighting search results, see Text match metadata. For more details about how to
-     * receive highlighted search results, see Text match metadata. For example, if you're looking
-     * for a list of popular users, you…
+     * Find topics via various criteria. Results are sorted by best match. This method returns up to 100 results per page. See "Searching topics" for a detailed list of qualifiers. When searching for topics, you can get text match metadata for the topic's **short\_description**, **description**, **name**, or **display\_name** field when you pass the `text-match` media type. For more details about how to receive highlighted search results, see Text match metadata. For example, if…
      *
-     * @param q The query contains one or more search keywords and qualifiers. Qualifiers allow you
-     *   to limit your search to specific areas of GitHub. The REST API supports the same qualifiers
-     *   as the web interface for GitHub. To learn more about the format of the query, see
-     *   Constructing a search query. See "Searching users" for a detailed list of qualifiers.
-     * @param sort Sorts the results of your query by number of `followers` or `repositories`, or
-     *   when the person `joined` GitHub. Default: best match
-     * @param order Determines whether the first search result returned is the highest number of
-     *   matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you
-     *   provide `sort`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param q The query contains one or more search keywords and qualifiers.
+     *   Qualifiers allow you to limit your search to specific areas of GitHub. The
+     *   REST API supports the same qualifiers as the web interface for GitHub. To
+     *   learn more about the format of the query, see Constructing a search query.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun searchUsers(
-        clientConfig: ClientConfig,
-        q: String,
-        sort: SearchUsersParameterEnum? = null,
-        order: SchemaSchemaEnum8674e2c0? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): SearchUsersResponse {
-        return SdkClient.request<SearchUsersResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/search/users",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "q" to SdkClient.queryValue(q, "form", true),
-                            "sort" to SdkClient.queryValue(sort, "form", true),
-                            "order" to SdkClient.queryValue(order, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "searchUsers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "422" to ValidationError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun searchTopics(clientConfig: ClientConfig, q: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SearchTopicsResponse {
+        return SdkClient.request<SearchTopicsResponse>(SdkClient.RequestSpec("GET", "/search/topics", config = clientConfig, query = mapOf("q" to SdkClient.queryValue(q, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "searchTopics", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
+
+    /**
+     * Find users via various criteria. This method returns up to 100 results per page. When searching for users, you can get text match metadata for the issue **login**, public **email**, and **name** fields when you pass the `text-match` media type. For more details about highlighting search results, see Text match metadata. For more details about how to receive highlighted search results, see Text match metadata. For example, if you're looking for a list of popular users, you…
+     *
+     * @param q The query contains one or more search keywords and qualifiers.
+     *   Qualifiers allow you to limit your search to specific areas of GitHub. The
+     *   REST API supports the same qualifiers as the web interface for GitHub. To
+     *   learn more about the format of the query, see Constructing a search query. See
+     *   "Searching users" for a detailed list of qualifiers.
+     * @param sort Sorts the results of your query by number of `followers` or
+     *   `repositories`, or when the person `joined` GitHub. Default: best match
+     * @param order Determines whether the first search result returned is the
+     *   highest number of matches (`desc`) or lowest number of matches (`asc`). This
+     *   parameter is ignored unless you provide `sort`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     */
+    fun searchUsers(clientConfig: ClientConfig, q: String, sort: SearchUsersParameterEnum? = null, order: SchemaSchemaEnum8674e2c0? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SearchUsersResponse {
+        return SdkClient.request<SearchUsersResponse>(SdkClient.RequestSpec("GET", "/search/users", config = clientConfig, query = mapOf("q" to SdkClient.queryValue(q, "form", true), "sort" to SdkClient.queryValue(sort, "form", true), "order" to SdkClient.queryValue(order, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "searchUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
+    }
+
+
+
+
+
+
+
 }
