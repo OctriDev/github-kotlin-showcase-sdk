@@ -684,7 +684,7 @@ data class OrgsGetImmutableReleasesSettingsRepositoriesResponse(
         val customPropertyName: String,
         val valueType: CustomPropertySetPayloadValueTypeEnum,
         val required: Boolean? = null,
-        val defaultValue: SdkClient.SdkOptional<Any?>? = null,
+        val defaultValue: SdkClient.SdkOptional<List<String>?>? = null,
         val description: SdkClient.SdkOptional<String?>? = null,
         val allowedValues: SdkClient.SdkOptional<List<String>?>? = null,
         val valuesEditableBy: SdkClient.SdkOptional<CustomPropertySetPayloadValuesEditableByEnum?>? = null,
