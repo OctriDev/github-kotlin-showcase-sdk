@@ -153,7 +153,8 @@ data class CustomPropertySetPayload(
     /** Whether the property is required. */
     val required: Boolean? = null,
     /** Default value of the property */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_value") val defaultValue: Any? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("default_value")
+    val defaultValue: List<String>? = null,
     /** Short description of the property */
     val description: String? = null,
     /**
