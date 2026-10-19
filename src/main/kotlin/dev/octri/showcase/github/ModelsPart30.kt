@@ -5,23 +5,28 @@ package dev.octri.showcase.github
 
 typealias WebhooksReviewCommentUser = dev.octri.showcase.github.models.WebhooksReviewCommentUser
 
-typealias WebhooksReviewCommentUserTypeEnum = dev.octri.showcase.github.models.WebhooksReviewCommentUserTypeEnum
+typealias WebhooksReviewCommentUserTypeEnum =
+    dev.octri.showcase.github.models.WebhooksReviewCommentUserTypeEnum
 
 typealias WebhooksReviewers = dev.octri.showcase.github.models.WebhooksReviewers
 
 typealias WebhooksReviewersItem = dev.octri.showcase.github.models.WebhooksReviewersItem
 
-typealias WebhooksReviewersItemReviewer = dev.octri.showcase.github.models.WebhooksReviewersItemReviewer
+typealias WebhooksReviewersItemReviewer =
+    dev.octri.showcase.github.models.WebhooksReviewersItemReviewer
 
-typealias WebhooksReviewersItemReviewerTypeEnum = dev.octri.showcase.github.models.WebhooksReviewersItemReviewerTypeEnum
+typealias WebhooksReviewersItemReviewerTypeEnum =
+    dev.octri.showcase.github.models.WebhooksReviewersItemReviewerTypeEnum
 
-typealias WebhooksReviewersItemTypeEnum = dev.octri.showcase.github.models.WebhooksReviewersItemTypeEnum
+typealias WebhooksReviewersItemTypeEnum =
+    dev.octri.showcase.github.models.WebhooksReviewersItemTypeEnum
 
 typealias WebhooksReviewLinks = dev.octri.showcase.github.models.WebhooksReviewLinks
 
 typealias WebhooksReviewLinksHtml = dev.octri.showcase.github.models.WebhooksReviewLinksHtml
 
-typealias WebhooksReviewLinksPullRequest = dev.octri.showcase.github.models.WebhooksReviewLinksPullRequest
+typealias WebhooksReviewLinksPullRequest =
+    dev.octri.showcase.github.models.WebhooksReviewLinksPullRequest
 
 typealias WebhooksReviewUser = dev.octri.showcase.github.models.WebhooksReviewUser
 
@@ -29,93 +34,126 @@ typealias WebhooksReviewUserTypeEnum = dev.octri.showcase.github.models.Webhooks
 
 typealias WebhooksRule = dev.octri.showcase.github.models.WebhooksRule
 
-typealias WebhooksRuleAllowDeletionsEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRuleAllowDeletionsEnforcementLevelEnum
+typealias WebhooksRuleAllowDeletionsEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleAllowDeletionsEnforcementLevelEnum
 
-typealias WebhooksRuleAllowForcePushesEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRuleAllowForcePushesEnforcementLevelEnum
+typealias WebhooksRuleAllowForcePushesEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleAllowForcePushesEnforcementLevelEnum
 
-typealias WebhooksRuleLinearHistoryRequirementEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRuleLinearHistoryRequirementEnforcementLevelEnum
+typealias WebhooksRuleLinearHistoryRequirementEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleLinearHistoryRequirementEnforcementLevelEnum
 
-typealias WebhooksRuleLockBranchEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRuleLockBranchEnforcementLevelEnum
+typealias WebhooksRuleLockBranchEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleLockBranchEnforcementLevelEnum
 
-typealias WebhooksRuleMergeQueueEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRuleMergeQueueEnforcementLevelEnum
+typealias WebhooksRuleMergeQueueEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleMergeQueueEnforcementLevelEnum
 
-typealias WebhooksRulePullRequestReviewsEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRulePullRequestReviewsEnforcementLevelEnum
+typealias WebhooksRulePullRequestReviewsEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRulePullRequestReviewsEnforcementLevelEnum
 
-typealias WebhooksRuleRequiredConversationResolutionLevelEnum = dev.octri.showcase.github.models.WebhooksRuleRequiredConversationResolutionLevelEnum
+typealias WebhooksRuleRequiredConversationResolutionLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleRequiredConversationResolutionLevelEnum
 
-typealias WebhooksRuleRequiredDeploymentsEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRuleRequiredDeploymentsEnforcementLevelEnum
+typealias WebhooksRuleRequiredDeploymentsEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleRequiredDeploymentsEnforcementLevelEnum
 
-typealias WebhooksRuleRequiredStatusChecksEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRuleRequiredStatusChecksEnforcementLevelEnum
+typealias WebhooksRuleRequiredStatusChecksEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleRequiredStatusChecksEnforcementLevelEnum
 
-typealias WebhooksRuleSignatureRequirementEnforcementLevelEnum = dev.octri.showcase.github.models.WebhooksRuleSignatureRequirementEnforcementLevelEnum
+typealias WebhooksRuleSignatureRequirementEnforcementLevelEnum =
+    dev.octri.showcase.github.models.WebhooksRuleSignatureRequirementEnforcementLevelEnum
 
 typealias WebhooksSecurityAdvisory = dev.octri.showcase.github.models.WebhooksSecurityAdvisory
 
-typealias WebhooksSecurityAdvisoryCvss = dev.octri.showcase.github.models.WebhooksSecurityAdvisoryCvss
+typealias WebhooksSecurityAdvisoryCvss =
+    dev.octri.showcase.github.models.WebhooksSecurityAdvisoryCvss
 
-typealias WebhooksSecurityAdvisoryCwesItem = dev.octri.showcase.github.models.WebhooksSecurityAdvisoryCwesItem
+typealias WebhooksSecurityAdvisoryCwesItem =
+    dev.octri.showcase.github.models.WebhooksSecurityAdvisoryCwesItem
 
-typealias WebhooksSecurityAdvisoryIdentifiersItem = dev.octri.showcase.github.models.WebhooksSecurityAdvisoryIdentifiersItem
+typealias WebhooksSecurityAdvisoryIdentifiersItem =
+    dev.octri.showcase.github.models.WebhooksSecurityAdvisoryIdentifiersItem
 
-typealias WebhooksSecurityAdvisoryReferencesItem = dev.octri.showcase.github.models.WebhooksSecurityAdvisoryReferencesItem
+typealias WebhooksSecurityAdvisoryReferencesItem =
+    dev.octri.showcase.github.models.WebhooksSecurityAdvisoryReferencesItem
 
-typealias WebhooksSecurityAdvisoryVulnerabilitiesItem = dev.octri.showcase.github.models.WebhooksSecurityAdvisoryVulnerabilitiesItem
+typealias WebhooksSecurityAdvisoryVulnerabilitiesItem =
+    dev.octri.showcase.github.models.WebhooksSecurityAdvisoryVulnerabilitiesItem
 
-typealias WebhooksSecurityAdvisoryVulnerabilitiesItemFirstPatchedVersion = dev.octri.showcase.github.models.WebhooksSecurityAdvisoryVulnerabilitiesItemFirstPatchedVersion
+typealias WebhooksSecurityAdvisoryVulnerabilitiesItemFirstPatchedVersion =
+    dev.octri.showcase.github.models.WebhooksSecurityAdvisoryVulnerabilitiesItemFirstPatchedVersion
 
-typealias WebhooksSecurityAdvisoryVulnerabilitiesItemPackage = dev.octri.showcase.github.models.WebhooksSecurityAdvisoryVulnerabilitiesItemPackage
+typealias WebhooksSecurityAdvisoryVulnerabilitiesItemPackage =
+    dev.octri.showcase.github.models.WebhooksSecurityAdvisoryVulnerabilitiesItemPackage
 
 typealias WebhooksSponsorship = dev.octri.showcase.github.models.WebhooksSponsorship
 
-typealias WebhooksSponsorshipMaintainer = dev.octri.showcase.github.models.WebhooksSponsorshipMaintainer
+typealias WebhooksSponsorshipMaintainer =
+    dev.octri.showcase.github.models.WebhooksSponsorshipMaintainer
 
 typealias WebhooksSponsorshipSponsor = dev.octri.showcase.github.models.WebhooksSponsorshipSponsor
 
-typealias WebhooksSponsorshipSponsorable = dev.octri.showcase.github.models.WebhooksSponsorshipSponsorable
+typealias WebhooksSponsorshipSponsorable =
+    dev.octri.showcase.github.models.WebhooksSponsorshipSponsorable
 
-typealias WebhooksSponsorshipSponsorableTypeEnum = dev.octri.showcase.github.models.WebhooksSponsorshipSponsorableTypeEnum
+typealias WebhooksSponsorshipSponsorableTypeEnum =
+    dev.octri.showcase.github.models.WebhooksSponsorshipSponsorableTypeEnum
 
-typealias WebhooksSponsorshipSponsorTypeEnum = dev.octri.showcase.github.models.WebhooksSponsorshipSponsorTypeEnum
+typealias WebhooksSponsorshipSponsorTypeEnum =
+    dev.octri.showcase.github.models.WebhooksSponsorshipSponsorTypeEnum
 
 typealias WebhooksSponsorshipTier = dev.octri.showcase.github.models.WebhooksSponsorshipTier
 
 typealias WebhookStarCreated = dev.octri.showcase.github.models.WebhookStarCreated
 
-typealias WebhookStarCreatedActionEnum = dev.octri.showcase.github.models.WebhookStarCreatedActionEnum
+typealias WebhookStarCreatedActionEnum =
+    dev.octri.showcase.github.models.WebhookStarCreatedActionEnum
 
 typealias WebhookStarDeleted = dev.octri.showcase.github.models.WebhookStarDeleted
 
-typealias WebhookStarDeletedActionEnum = dev.octri.showcase.github.models.WebhookStarDeletedActionEnum
+typealias WebhookStarDeletedActionEnum =
+    dev.octri.showcase.github.models.WebhookStarDeletedActionEnum
 
 typealias WebhookStatus = dev.octri.showcase.github.models.WebhookStatus
 
 typealias WebhookStatusBranchesItem = dev.octri.showcase.github.models.WebhookStatusBranchesItem
 
-typealias WebhookStatusBranchesItemCommit = dev.octri.showcase.github.models.WebhookStatusBranchesItemCommit
+typealias WebhookStatusBranchesItemCommit =
+    dev.octri.showcase.github.models.WebhookStatusBranchesItemCommit
 
 typealias WebhookStatusCommit = dev.octri.showcase.github.models.WebhookStatusCommit
 
 typealias WebhookStatusCommitAuthor = dev.octri.showcase.github.models.WebhookStatusCommitAuthor
 
-typealias WebhookStatusCommitAuthorTypeEnum = dev.octri.showcase.github.models.WebhookStatusCommitAuthorTypeEnum
+typealias WebhookStatusCommitAuthorTypeEnum =
+    dev.octri.showcase.github.models.WebhookStatusCommitAuthorTypeEnum
 
 typealias WebhookStatusCommitCommit = dev.octri.showcase.github.models.WebhookStatusCommitCommit
 
-typealias WebhookStatusCommitCommitAuthor = dev.octri.showcase.github.models.WebhookStatusCommitCommitAuthor
+typealias WebhookStatusCommitCommitAuthor =
+    dev.octri.showcase.github.models.WebhookStatusCommitCommitAuthor
 
-typealias WebhookStatusCommitCommitCommitter = dev.octri.showcase.github.models.WebhookStatusCommitCommitCommitter
+typealias WebhookStatusCommitCommitCommitter =
+    dev.octri.showcase.github.models.WebhookStatusCommitCommitCommitter
 
-typealias WebhookStatusCommitCommitter = dev.octri.showcase.github.models.WebhookStatusCommitCommitter
+typealias WebhookStatusCommitCommitter =
+    dev.octri.showcase.github.models.WebhookStatusCommitCommitter
 
-typealias WebhookStatusCommitCommitterTypeEnum = dev.octri.showcase.github.models.WebhookStatusCommitCommitterTypeEnum
+typealias WebhookStatusCommitCommitterTypeEnum =
+    dev.octri.showcase.github.models.WebhookStatusCommitCommitterTypeEnum
 
-typealias WebhookStatusCommitCommitTree = dev.octri.showcase.github.models.WebhookStatusCommitCommitTree
+typealias WebhookStatusCommitCommitTree =
+    dev.octri.showcase.github.models.WebhookStatusCommitCommitTree
 
-typealias WebhookStatusCommitCommitVerification = dev.octri.showcase.github.models.WebhookStatusCommitCommitVerification
+typealias WebhookStatusCommitCommitVerification =
+    dev.octri.showcase.github.models.WebhookStatusCommitCommitVerification
 
-typealias WebhookStatusCommitCommitVerificationReasonEnum = dev.octri.showcase.github.models.WebhookStatusCommitCommitVerificationReasonEnum
+typealias WebhookStatusCommitCommitVerificationReasonEnum =
+    dev.octri.showcase.github.models.WebhookStatusCommitCommitVerificationReasonEnum
 
-typealias WebhookStatusCommitParentsItem = dev.octri.showcase.github.models.WebhookStatusCommitParentsItem
+typealias WebhookStatusCommitParentsItem =
+    dev.octri.showcase.github.models.WebhookStatusCommitParentsItem
 
 typealias WebhookStatusStateEnum = dev.octri.showcase.github.models.WebhookStatusStateEnum
 
@@ -123,13 +161,16 @@ typealias WebhooksTeam = dev.octri.showcase.github.models.WebhooksTeam
 
 typealias WebhooksTeam1 = dev.octri.showcase.github.models.WebhooksTeam1
 
-typealias WebhooksTeam1NotificationSettingEnum = dev.octri.showcase.github.models.WebhooksTeam1NotificationSettingEnum
+typealias WebhooksTeam1NotificationSettingEnum =
+    dev.octri.showcase.github.models.WebhooksTeam1NotificationSettingEnum
 
 typealias WebhooksTeam1Parent = dev.octri.showcase.github.models.WebhooksTeam1Parent
 
-typealias WebhooksTeam1ParentNotificationSettingEnum = dev.octri.showcase.github.models.WebhooksTeam1ParentNotificationSettingEnum
+typealias WebhooksTeam1ParentNotificationSettingEnum =
+    dev.octri.showcase.github.models.WebhooksTeam1ParentNotificationSettingEnum
 
-typealias WebhooksTeam1ParentPrivacyEnum = dev.octri.showcase.github.models.WebhooksTeam1ParentPrivacyEnum
+typealias WebhooksTeam1ParentPrivacyEnum =
+    dev.octri.showcase.github.models.WebhooksTeam1ParentPrivacyEnum
 
 typealias WebhooksTeam1ParentTypeEnum = dev.octri.showcase.github.models.WebhooksTeam1ParentTypeEnum
 
@@ -137,13 +178,16 @@ typealias WebhooksTeam1PrivacyEnum = dev.octri.showcase.github.models.WebhooksTe
 
 typealias WebhooksTeam1TypeEnum = dev.octri.showcase.github.models.WebhooksTeam1TypeEnum
 
-typealias WebhooksTeamNotificationSettingEnum = dev.octri.showcase.github.models.WebhooksTeamNotificationSettingEnum
+typealias WebhooksTeamNotificationSettingEnum =
+    dev.octri.showcase.github.models.WebhooksTeamNotificationSettingEnum
 
 typealias WebhooksTeamParent = dev.octri.showcase.github.models.WebhooksTeamParent
 
-typealias WebhooksTeamParentNotificationSettingEnum = dev.octri.showcase.github.models.WebhooksTeamParentNotificationSettingEnum
+typealias WebhooksTeamParentNotificationSettingEnum =
+    dev.octri.showcase.github.models.WebhooksTeamParentNotificationSettingEnum
 
-typealias WebhooksTeamParentPrivacyEnum = dev.octri.showcase.github.models.WebhooksTeamParentPrivacyEnum
+typealias WebhooksTeamParentPrivacyEnum =
+    dev.octri.showcase.github.models.WebhooksTeamParentPrivacyEnum
 
 typealias WebhooksTeamParentTypeEnum = dev.octri.showcase.github.models.WebhooksTeamParentTypeEnum
 
@@ -151,27 +195,36 @@ typealias WebhooksTeamPrivacyEnum = dev.octri.showcase.github.models.WebhooksTea
 
 typealias WebhooksTeamTypeEnum = dev.octri.showcase.github.models.WebhooksTeamTypeEnum
 
-typealias WebhookSubIssuesParentIssueAdded = dev.octri.showcase.github.models.WebhookSubIssuesParentIssueAdded
+typealias WebhookSubIssuesParentIssueAdded =
+    dev.octri.showcase.github.models.WebhookSubIssuesParentIssueAdded
 
-typealias WebhookSubIssuesParentIssueAddedActionEnum = dev.octri.showcase.github.models.WebhookSubIssuesParentIssueAddedActionEnum
+typealias WebhookSubIssuesParentIssueAddedActionEnum =
+    dev.octri.showcase.github.models.WebhookSubIssuesParentIssueAddedActionEnum
 
-typealias WebhookSubIssuesParentIssueRemoved = dev.octri.showcase.github.models.WebhookSubIssuesParentIssueRemoved
+typealias WebhookSubIssuesParentIssueRemoved =
+    dev.octri.showcase.github.models.WebhookSubIssuesParentIssueRemoved
 
-typealias WebhookSubIssuesParentIssueRemovedActionEnum = dev.octri.showcase.github.models.WebhookSubIssuesParentIssueRemovedActionEnum
+typealias WebhookSubIssuesParentIssueRemovedActionEnum =
+    dev.octri.showcase.github.models.WebhookSubIssuesParentIssueRemovedActionEnum
 
-typealias WebhookSubIssuesSubIssueAdded = dev.octri.showcase.github.models.WebhookSubIssuesSubIssueAdded
+typealias WebhookSubIssuesSubIssueAdded =
+    dev.octri.showcase.github.models.WebhookSubIssuesSubIssueAdded
 
-typealias WebhookSubIssuesSubIssueAddedActionEnum = dev.octri.showcase.github.models.WebhookSubIssuesSubIssueAddedActionEnum
+typealias WebhookSubIssuesSubIssueAddedActionEnum =
+    dev.octri.showcase.github.models.WebhookSubIssuesSubIssueAddedActionEnum
 
-typealias WebhookSubIssuesSubIssueRemoved = dev.octri.showcase.github.models.WebhookSubIssuesSubIssueRemoved
+typealias WebhookSubIssuesSubIssueRemoved =
+    dev.octri.showcase.github.models.WebhookSubIssuesSubIssueRemoved
 
-typealias WebhookSubIssuesSubIssueRemovedActionEnum = dev.octri.showcase.github.models.WebhookSubIssuesSubIssueRemovedActionEnum
+typealias WebhookSubIssuesSubIssueRemovedActionEnum =
+    dev.octri.showcase.github.models.WebhookSubIssuesSubIssueRemovedActionEnum
 
 typealias WebhooksUser = dev.octri.showcase.github.models.WebhooksUser
 
 typealias WebhooksUserMannequin = dev.octri.showcase.github.models.WebhooksUserMannequin
 
-typealias WebhooksUserMannequinTypeEnum = dev.octri.showcase.github.models.WebhooksUserMannequinTypeEnum
+typealias WebhooksUserMannequinTypeEnum =
+    dev.octri.showcase.github.models.WebhooksUserMannequinTypeEnum
 
 typealias WebhooksUserTypeEnum = dev.octri.showcase.github.models.WebhooksUserTypeEnum
 
@@ -181,53 +234,75 @@ typealias WebhooksWorkflowJobRun = dev.octri.showcase.github.models.WebhooksWork
 
 typealias WebhookTeamAdd = dev.octri.showcase.github.models.WebhookTeamAdd
 
-typealias WebhookTeamAddedToRepository = dev.octri.showcase.github.models.WebhookTeamAddedToRepository
+typealias WebhookTeamAddedToRepository =
+    dev.octri.showcase.github.models.WebhookTeamAddedToRepository
 
-typealias WebhookTeamAddedToRepositoryActionEnum = dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryActionEnum
+typealias WebhookTeamAddedToRepositoryActionEnum =
+    dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryActionEnum
 
-typealias WebhookTeamAddedToRepositoryRepository = dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepository
+typealias WebhookTeamAddedToRepositoryRepository =
+    dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepository
 
-typealias WebhookTeamAddedToRepositoryRepositoryLicense = dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryLicense
+typealias WebhookTeamAddedToRepositoryRepositoryLicense =
+    dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryLicense
 
-typealias WebhookTeamAddedToRepositoryRepositoryOwner = dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryOwner
+typealias WebhookTeamAddedToRepositoryRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryOwner
 
-typealias WebhookTeamAddedToRepositoryRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryOwnerTypeEnum
+typealias WebhookTeamAddedToRepositoryRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryOwnerTypeEnum
 
-typealias WebhookTeamAddedToRepositoryRepositoryPermissions = dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryPermissions
+typealias WebhookTeamAddedToRepositoryRepositoryPermissions =
+    dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryPermissions
 
-typealias WebhookTeamAddedToRepositoryRepositoryVisibilityEnum = dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryVisibilityEnum
+typealias WebhookTeamAddedToRepositoryRepositoryVisibilityEnum =
+    dev.octri.showcase.github.models.WebhookTeamAddedToRepositoryRepositoryVisibilityEnum
 
 typealias WebhookTeamCreated = dev.octri.showcase.github.models.WebhookTeamCreated
 
-typealias WebhookTeamCreatedActionEnum = dev.octri.showcase.github.models.WebhookTeamCreatedActionEnum
+typealias WebhookTeamCreatedActionEnum =
+    dev.octri.showcase.github.models.WebhookTeamCreatedActionEnum
 
-typealias WebhookTeamCreatedRepository = dev.octri.showcase.github.models.WebhookTeamCreatedRepository
+typealias WebhookTeamCreatedRepository =
+    dev.octri.showcase.github.models.WebhookTeamCreatedRepository
 
-typealias WebhookTeamCreatedRepositoryLicense = dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryLicense
+typealias WebhookTeamCreatedRepositoryLicense =
+    dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryLicense
 
-typealias WebhookTeamCreatedRepositoryOwner = dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryOwner
+typealias WebhookTeamCreatedRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryOwner
 
-typealias WebhookTeamCreatedRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryOwnerTypeEnum
+typealias WebhookTeamCreatedRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryOwnerTypeEnum
 
-typealias WebhookTeamCreatedRepositoryPermissions = dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryPermissions
+typealias WebhookTeamCreatedRepositoryPermissions =
+    dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryPermissions
 
-typealias WebhookTeamCreatedRepositoryVisibilityEnum = dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryVisibilityEnum
+typealias WebhookTeamCreatedRepositoryVisibilityEnum =
+    dev.octri.showcase.github.models.WebhookTeamCreatedRepositoryVisibilityEnum
 
 typealias WebhookTeamDeleted = dev.octri.showcase.github.models.WebhookTeamDeleted
 
-typealias WebhookTeamDeletedActionEnum = dev.octri.showcase.github.models.WebhookTeamDeletedActionEnum
+typealias WebhookTeamDeletedActionEnum =
+    dev.octri.showcase.github.models.WebhookTeamDeletedActionEnum
 
-typealias WebhookTeamDeletedRepository = dev.octri.showcase.github.models.WebhookTeamDeletedRepository
+typealias WebhookTeamDeletedRepository =
+    dev.octri.showcase.github.models.WebhookTeamDeletedRepository
 
-typealias WebhookTeamDeletedRepositoryLicense = dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryLicense
+typealias WebhookTeamDeletedRepositoryLicense =
+    dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryLicense
 
-typealias WebhookTeamDeletedRepositoryOwner = dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryOwner
+typealias WebhookTeamDeletedRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryOwner
 
-typealias WebhookTeamDeletedRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryOwnerTypeEnum
+typealias WebhookTeamDeletedRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryOwnerTypeEnum
 
-typealias WebhookTeamDeletedRepositoryPermissions = dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryPermissions
+typealias WebhookTeamDeletedRepositoryPermissions =
+    dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryPermissions
 
-typealias WebhookTeamDeletedRepositoryVisibilityEnum = dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryVisibilityEnum
+typealias WebhookTeamDeletedRepositoryVisibilityEnum =
+    dev.octri.showcase.github.models.WebhookTeamDeletedRepositoryVisibilityEnum
 
 typealias WebhookTeamEdited = dev.octri.showcase.github.models.WebhookTeamEdited
 
@@ -235,204 +310,297 @@ typealias WebhookTeamEditedActionEnum = dev.octri.showcase.github.models.Webhook
 
 typealias WebhookTeamEditedChanges = dev.octri.showcase.github.models.WebhookTeamEditedChanges
 
-typealias WebhookTeamEditedChangesDescription = dev.octri.showcase.github.models.WebhookTeamEditedChangesDescription
+typealias WebhookTeamEditedChangesDescription =
+    dev.octri.showcase.github.models.WebhookTeamEditedChangesDescription
 
-typealias WebhookTeamEditedChangesName = dev.octri.showcase.github.models.WebhookTeamEditedChangesName
+typealias WebhookTeamEditedChangesName =
+    dev.octri.showcase.github.models.WebhookTeamEditedChangesName
 
-typealias WebhookTeamEditedChangesNotificationSetting = dev.octri.showcase.github.models.WebhookTeamEditedChangesNotificationSetting
+typealias WebhookTeamEditedChangesNotificationSetting =
+    dev.octri.showcase.github.models.WebhookTeamEditedChangesNotificationSetting
 
-typealias WebhookTeamEditedChangesPrivacy = dev.octri.showcase.github.models.WebhookTeamEditedChangesPrivacy
+typealias WebhookTeamEditedChangesPrivacy =
+    dev.octri.showcase.github.models.WebhookTeamEditedChangesPrivacy
 
-typealias WebhookTeamEditedChangesRepository = dev.octri.showcase.github.models.WebhookTeamEditedChangesRepository
+typealias WebhookTeamEditedChangesRepository =
+    dev.octri.showcase.github.models.WebhookTeamEditedChangesRepository
 
-typealias WebhookTeamEditedChangesRepositoryPermissions = dev.octri.showcase.github.models.WebhookTeamEditedChangesRepositoryPermissions
+typealias WebhookTeamEditedChangesRepositoryPermissions =
+    dev.octri.showcase.github.models.WebhookTeamEditedChangesRepositoryPermissions
 
-typealias WebhookTeamEditedChangesRepositoryPermissionsFrom = dev.octri.showcase.github.models.WebhookTeamEditedChangesRepositoryPermissionsFrom
+typealias WebhookTeamEditedChangesRepositoryPermissionsFrom =
+    dev.octri.showcase.github.models.WebhookTeamEditedChangesRepositoryPermissionsFrom
 
 typealias WebhookTeamEditedRepository = dev.octri.showcase.github.models.WebhookTeamEditedRepository
 
-typealias WebhookTeamEditedRepositoryLicense = dev.octri.showcase.github.models.WebhookTeamEditedRepositoryLicense
+typealias WebhookTeamEditedRepositoryLicense =
+    dev.octri.showcase.github.models.WebhookTeamEditedRepositoryLicense
 
-typealias WebhookTeamEditedRepositoryOwner = dev.octri.showcase.github.models.WebhookTeamEditedRepositoryOwner
+typealias WebhookTeamEditedRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookTeamEditedRepositoryOwner
 
-typealias WebhookTeamEditedRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookTeamEditedRepositoryOwnerTypeEnum
+typealias WebhookTeamEditedRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookTeamEditedRepositoryOwnerTypeEnum
 
-typealias WebhookTeamEditedRepositoryPermissions = dev.octri.showcase.github.models.WebhookTeamEditedRepositoryPermissions
+typealias WebhookTeamEditedRepositoryPermissions =
+    dev.octri.showcase.github.models.WebhookTeamEditedRepositoryPermissions
 
-typealias WebhookTeamEditedRepositoryVisibilityEnum = dev.octri.showcase.github.models.WebhookTeamEditedRepositoryVisibilityEnum
+typealias WebhookTeamEditedRepositoryVisibilityEnum =
+    dev.octri.showcase.github.models.WebhookTeamEditedRepositoryVisibilityEnum
 
-typealias WebhookTeamRemovedFromRepository = dev.octri.showcase.github.models.WebhookTeamRemovedFromRepository
+typealias WebhookTeamRemovedFromRepository =
+    dev.octri.showcase.github.models.WebhookTeamRemovedFromRepository
 
-typealias WebhookTeamRemovedFromRepositoryActionEnum = dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryActionEnum
+typealias WebhookTeamRemovedFromRepositoryActionEnum =
+    dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryActionEnum
 
-typealias WebhookTeamRemovedFromRepositoryRepository = dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepository
+typealias WebhookTeamRemovedFromRepositoryRepository =
+    dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepository
 
-typealias WebhookTeamRemovedFromRepositoryRepositoryLicense = dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryLicense
+typealias WebhookTeamRemovedFromRepositoryRepositoryLicense =
+    dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryLicense
 
-typealias WebhookTeamRemovedFromRepositoryRepositoryOwner = dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryOwner
+typealias WebhookTeamRemovedFromRepositoryRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryOwner
 
-typealias WebhookTeamRemovedFromRepositoryRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryOwnerTypeEnum
+typealias WebhookTeamRemovedFromRepositoryRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryOwnerTypeEnum
 
-typealias WebhookTeamRemovedFromRepositoryRepositoryPermissions = dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryPermissions
+typealias WebhookTeamRemovedFromRepositoryRepositoryPermissions =
+    dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryPermissions
 
-typealias WebhookTeamRemovedFromRepositoryRepositoryVisibilityEnum = dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryVisibilityEnum
+typealias WebhookTeamRemovedFromRepositoryRepositoryVisibilityEnum =
+    dev.octri.showcase.github.models.WebhookTeamRemovedFromRepositoryRepositoryVisibilityEnum
 
 typealias WebhookWatchStarted = dev.octri.showcase.github.models.WebhookWatchStarted
 
-typealias WebhookWatchStartedActionEnum = dev.octri.showcase.github.models.WebhookWatchStartedActionEnum
+typealias WebhookWatchStartedActionEnum =
+    dev.octri.showcase.github.models.WebhookWatchStartedActionEnum
 
 typealias WebhookWorkflowDispatch = dev.octri.showcase.github.models.WebhookWorkflowDispatch
 
 typealias WebhookWorkflowJobCompleted = dev.octri.showcase.github.models.WebhookWorkflowJobCompleted
 
-typealias WebhookWorkflowJobCompletedActionEnum = dev.octri.showcase.github.models.WebhookWorkflowJobCompletedActionEnum
+typealias WebhookWorkflowJobCompletedActionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobCompletedActionEnum
 
-typealias WebhookWorkflowJobCompletedWorkflowJob = dev.octri.showcase.github.models.WebhookWorkflowJobCompletedWorkflowJob
+typealias WebhookWorkflowJobCompletedWorkflowJob =
+    dev.octri.showcase.github.models.WebhookWorkflowJobCompletedWorkflowJob
 
-typealias WebhookWorkflowJobCompletedWorkflowJobConclusionEnum = dev.octri.showcase.github.models.WebhookWorkflowJobCompletedWorkflowJobConclusionEnum
+typealias WebhookWorkflowJobCompletedWorkflowJobConclusionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobCompletedWorkflowJobConclusionEnum
 
-typealias WebhookWorkflowJobInProgress = dev.octri.showcase.github.models.WebhookWorkflowJobInProgress
+typealias WebhookWorkflowJobInProgress =
+    dev.octri.showcase.github.models.WebhookWorkflowJobInProgress
 
-typealias WebhookWorkflowJobInProgressActionEnum = dev.octri.showcase.github.models.WebhookWorkflowJobInProgressActionEnum
+typealias WebhookWorkflowJobInProgressActionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobInProgressActionEnum
 
-typealias WebhookWorkflowJobInProgressWorkflowJob = dev.octri.showcase.github.models.WebhookWorkflowJobInProgressWorkflowJob
+typealias WebhookWorkflowJobInProgressWorkflowJob =
+    dev.octri.showcase.github.models.WebhookWorkflowJobInProgressWorkflowJob
 
-typealias WebhookWorkflowJobInProgressWorkflowJobStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowJobInProgressWorkflowJobStatusEnum
+typealias WebhookWorkflowJobInProgressWorkflowJobStatusEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobInProgressWorkflowJobStatusEnum
 
-typealias WebhookWorkflowJobInProgressWorkflowJobStepsItem = dev.octri.showcase.github.models.WebhookWorkflowJobInProgressWorkflowJobStepsItem
+typealias WebhookWorkflowJobInProgressWorkflowJobStepsItem =
+    dev.octri.showcase.github.models.WebhookWorkflowJobInProgressWorkflowJobStepsItem
 
-typealias WebhookWorkflowJobInProgressWorkflowJobStepsItemStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowJobInProgressWorkflowJobStepsItemStatusEnum
+typealias WebhookWorkflowJobInProgressWorkflowJobStepsItemStatusEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobInProgressWorkflowJobStepsItemStatusEnum
 
 typealias WebhookWorkflowJobQueued = dev.octri.showcase.github.models.WebhookWorkflowJobQueued
 
-typealias WebhookWorkflowJobQueuedActionEnum = dev.octri.showcase.github.models.WebhookWorkflowJobQueuedActionEnum
+typealias WebhookWorkflowJobQueuedActionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobQueuedActionEnum
 
-typealias WebhookWorkflowJobQueuedWorkflowJob = dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJob
+typealias WebhookWorkflowJobQueuedWorkflowJob =
+    dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJob
 
-typealias WebhookWorkflowJobQueuedWorkflowJobStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJobStatusEnum
+typealias WebhookWorkflowJobQueuedWorkflowJobStatusEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJobStatusEnum
 
-typealias WebhookWorkflowJobQueuedWorkflowJobStepsItem = dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJobStepsItem
+typealias WebhookWorkflowJobQueuedWorkflowJobStepsItem =
+    dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJobStepsItem
 
-typealias WebhookWorkflowJobQueuedWorkflowJobStepsItemConclusionEnum = dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJobStepsItemConclusionEnum
+typealias WebhookWorkflowJobQueuedWorkflowJobStepsItemConclusionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJobStepsItemConclusionEnum
 
-typealias WebhookWorkflowJobQueuedWorkflowJobStepsItemStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJobStepsItemStatusEnum
+typealias WebhookWorkflowJobQueuedWorkflowJobStepsItemStatusEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobQueuedWorkflowJobStepsItemStatusEnum
 
 typealias WebhookWorkflowJobWaiting = dev.octri.showcase.github.models.WebhookWorkflowJobWaiting
 
-typealias WebhookWorkflowJobWaitingActionEnum = dev.octri.showcase.github.models.WebhookWorkflowJobWaitingActionEnum
+typealias WebhookWorkflowJobWaitingActionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobWaitingActionEnum
 
-typealias WebhookWorkflowJobWaitingWorkflowJob = dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJob
+typealias WebhookWorkflowJobWaitingWorkflowJob =
+    dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJob
 
-typealias WebhookWorkflowJobWaitingWorkflowJobStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJobStatusEnum
+typealias WebhookWorkflowJobWaitingWorkflowJobStatusEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJobStatusEnum
 
-typealias WebhookWorkflowJobWaitingWorkflowJobStepsItem = dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJobStepsItem
+typealias WebhookWorkflowJobWaitingWorkflowJobStepsItem =
+    dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJobStepsItem
 
-typealias WebhookWorkflowJobWaitingWorkflowJobStepsItemConclusionEnum = dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJobStepsItemConclusionEnum
+typealias WebhookWorkflowJobWaitingWorkflowJobStepsItemConclusionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJobStepsItemConclusionEnum
 
-typealias WebhookWorkflowJobWaitingWorkflowJobStepsItemStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJobStepsItemStatusEnum
+typealias WebhookWorkflowJobWaitingWorkflowJobStepsItemStatusEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowJobWaitingWorkflowJobStepsItemStatusEnum
 
 typealias WebhookWorkflowRunCompleted = dev.octri.showcase.github.models.WebhookWorkflowRunCompleted
 
-typealias WebhookWorkflowRunCompletedActionEnum = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedActionEnum
+typealias WebhookWorkflowRunCompletedActionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedActionEnum
 
-typealias WebhookWorkflowRunCompletedWorkflowRun = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRun
+typealias WebhookWorkflowRunCompletedWorkflowRun =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRun
 
-typealias WebhookWorkflowRunCompletedWorkflowRunActor = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunActor
+typealias WebhookWorkflowRunCompletedWorkflowRunActor =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunActor
 
-typealias WebhookWorkflowRunCompletedWorkflowRunActorTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunActorTypeEnum
+typealias WebhookWorkflowRunCompletedWorkflowRunActorTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunActorTypeEnum
 
-typealias WebhookWorkflowRunCompletedWorkflowRunConclusionEnum = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunConclusionEnum
+typealias WebhookWorkflowRunCompletedWorkflowRunConclusionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunConclusionEnum
 
-typealias WebhookWorkflowRunCompletedWorkflowRunHeadCommit = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadCommit
+typealias WebhookWorkflowRunCompletedWorkflowRunHeadCommit =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadCommit
 
-typealias WebhookWorkflowRunCompletedWorkflowRunHeadCommitAuthor = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadCommitAuthor
+typealias WebhookWorkflowRunCompletedWorkflowRunHeadCommitAuthor =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadCommitAuthor
 
-typealias WebhookWorkflowRunCompletedWorkflowRunHeadCommitCommitter = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadCommitCommitter
+typealias WebhookWorkflowRunCompletedWorkflowRunHeadCommitCommitter =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadCommitCommitter
 
-typealias WebhookWorkflowRunCompletedWorkflowRunHeadRepository = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadRepository
+typealias WebhookWorkflowRunCompletedWorkflowRunHeadRepository =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadRepository
 
-typealias WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwner = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwner
+typealias WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwner
 
-typealias WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwnerTypeEnum
+typealias WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunHeadRepositoryOwnerTypeEnum
 
-typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItem = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItem
+typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItem =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItem
 
-typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBase = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBase
+typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBase =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBase
 
-typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBaseRepo = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBaseRepo
+typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBaseRepo =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemBaseRepo
 
-typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHead = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHead
+typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHead =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHead
 
-typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHeadRepo = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHeadRepo
+typealias WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHeadRepo =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunPullRequestsItemHeadRepo
 
-typealias WebhookWorkflowRunCompletedWorkflowRunReferencedWorkflowsItem = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunReferencedWorkflowsItem
+typealias WebhookWorkflowRunCompletedWorkflowRunReferencedWorkflowsItem =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunReferencedWorkflowsItem
 
-typealias WebhookWorkflowRunCompletedWorkflowRunRepository = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunRepository
+typealias WebhookWorkflowRunCompletedWorkflowRunRepository =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunRepository
 
-typealias WebhookWorkflowRunCompletedWorkflowRunRepositoryOwner = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunRepositoryOwner
+typealias WebhookWorkflowRunCompletedWorkflowRunRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunRepositoryOwner
 
-typealias WebhookWorkflowRunCompletedWorkflowRunRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunRepositoryOwnerTypeEnum
+typealias WebhookWorkflowRunCompletedWorkflowRunRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunRepositoryOwnerTypeEnum
 
-typealias WebhookWorkflowRunCompletedWorkflowRunStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunStatusEnum
+typealias WebhookWorkflowRunCompletedWorkflowRunStatusEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunStatusEnum
 
-typealias WebhookWorkflowRunCompletedWorkflowRunTriggeringActor = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunTriggeringActor
+typealias WebhookWorkflowRunCompletedWorkflowRunTriggeringActor =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunTriggeringActor
 
-typealias WebhookWorkflowRunCompletedWorkflowRunTriggeringActorTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunTriggeringActorTypeEnum
+typealias WebhookWorkflowRunCompletedWorkflowRunTriggeringActorTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunCompletedWorkflowRunTriggeringActorTypeEnum
 
-typealias WebhookWorkflowRunInProgress = dev.octri.showcase.github.models.WebhookWorkflowRunInProgress
+typealias WebhookWorkflowRunInProgress =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgress
 
-typealias WebhookWorkflowRunInProgressActionEnum = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressActionEnum
+typealias WebhookWorkflowRunInProgressActionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressActionEnum
 
-typealias WebhookWorkflowRunInProgressWorkflowRun = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRun
+typealias WebhookWorkflowRunInProgressWorkflowRun =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRun
 
-typealias WebhookWorkflowRunInProgressWorkflowRunActor = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunActor
+typealias WebhookWorkflowRunInProgressWorkflowRunActor =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunActor
 
-typealias WebhookWorkflowRunInProgressWorkflowRunActorTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunActorTypeEnum
+typealias WebhookWorkflowRunInProgressWorkflowRunActorTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunActorTypeEnum
 
-typealias WebhookWorkflowRunInProgressWorkflowRunConclusionEnum = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunConclusionEnum
+typealias WebhookWorkflowRunInProgressWorkflowRunConclusionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunConclusionEnum
 
-typealias WebhookWorkflowRunInProgressWorkflowRunHeadCommit = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadCommit
+typealias WebhookWorkflowRunInProgressWorkflowRunHeadCommit =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadCommit
 
-typealias WebhookWorkflowRunInProgressWorkflowRunHeadCommitAuthor = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadCommitAuthor
+typealias WebhookWorkflowRunInProgressWorkflowRunHeadCommitAuthor =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadCommitAuthor
 
-typealias WebhookWorkflowRunInProgressWorkflowRunHeadCommitCommitter = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadCommitCommitter
+typealias WebhookWorkflowRunInProgressWorkflowRunHeadCommitCommitter =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadCommitCommitter
 
-typealias WebhookWorkflowRunInProgressWorkflowRunHeadRepository = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadRepository
+typealias WebhookWorkflowRunInProgressWorkflowRunHeadRepository =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadRepository
 
-typealias WebhookWorkflowRunInProgressWorkflowRunHeadRepositoryOwner = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadRepositoryOwner
+typealias WebhookWorkflowRunInProgressWorkflowRunHeadRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadRepositoryOwner
 
-typealias WebhookWorkflowRunInProgressWorkflowRunHeadRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadRepositoryOwnerTypeEnum
+typealias WebhookWorkflowRunInProgressWorkflowRunHeadRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunHeadRepositoryOwnerTypeEnum
 
-typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItem = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItem
+typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItem =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItem
 
-typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemBase = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemBase
+typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemBase =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemBase
 
-typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemBaseRepo = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemBaseRepo
+typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemBaseRepo =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemBaseRepo
 
-typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemHead = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemHead
+typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemHead =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemHead
 
-typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemHeadRepo = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemHeadRepo
+typealias WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemHeadRepo =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunPullRequestsItemHeadRepo
 
-typealias WebhookWorkflowRunInProgressWorkflowRunReferencedWorkflowsItem = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunReferencedWorkflowsItem
+typealias WebhookWorkflowRunInProgressWorkflowRunReferencedWorkflowsItem =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunReferencedWorkflowsItem
 
-typealias WebhookWorkflowRunInProgressWorkflowRunRepository = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunRepository
+typealias WebhookWorkflowRunInProgressWorkflowRunRepository =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunRepository
 
-typealias WebhookWorkflowRunInProgressWorkflowRunRepositoryOwner = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunRepositoryOwner
+typealias WebhookWorkflowRunInProgressWorkflowRunRepositoryOwner =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunRepositoryOwner
 
-typealias WebhookWorkflowRunInProgressWorkflowRunRepositoryOwnerTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunRepositoryOwnerTypeEnum
+typealias WebhookWorkflowRunInProgressWorkflowRunRepositoryOwnerTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunRepositoryOwnerTypeEnum
 
-typealias WebhookWorkflowRunInProgressWorkflowRunStatusEnum = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunStatusEnum
+typealias WebhookWorkflowRunInProgressWorkflowRunStatusEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunStatusEnum
 
-typealias WebhookWorkflowRunInProgressWorkflowRunTriggeringActor = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunTriggeringActor
+typealias WebhookWorkflowRunInProgressWorkflowRunTriggeringActor =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunTriggeringActor
 
-typealias WebhookWorkflowRunInProgressWorkflowRunTriggeringActorTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunTriggeringActorTypeEnum
+typealias WebhookWorkflowRunInProgressWorkflowRunTriggeringActorTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunInProgressWorkflowRunTriggeringActorTypeEnum
 
 typealias WebhookWorkflowRunRequested = dev.octri.showcase.github.models.WebhookWorkflowRunRequested
 
-typealias WebhookWorkflowRunRequestedActionEnum = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedActionEnum
+typealias WebhookWorkflowRunRequestedActionEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedActionEnum
 
-typealias WebhookWorkflowRunRequestedWorkflowRun = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRun
+typealias WebhookWorkflowRunRequestedWorkflowRun =
+    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRun
 
-typealias WebhookWorkflowRunRequestedWorkflowRunActor = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunActor
+typealias WebhookWorkflowRunRequestedWorkflowRunActor =
+    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunActor
 
-typealias WebhookWorkflowRunRequestedWorkflowRunActorTypeEnum = dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunActorTypeEnum
+typealias WebhookWorkflowRunRequestedWorkflowRunActorTypeEnum =
+    dev.octri.showcase.github.models.WebhookWorkflowRunRequestedWorkflowRunActorTypeEnum

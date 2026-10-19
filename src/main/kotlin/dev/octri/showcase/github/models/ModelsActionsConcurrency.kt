@@ -5,180 +5,130 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Required object value serialized in the `group_members[]` wire field.
- */
+/** Required object value serialized in the `group_members[]` wire field. */
 data class ConcurrencyGroupGroupMembersItem(
-    /**
-     * The ID of the workflow run.
-     */
+    /** The ID of the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_id") val runId: Long,
-    /**
-     * The name of the workflow run.
-     */
+    /** The name of the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_name") val runName: String,
-    /**
-     * API URL for the workflow run.
-     */
+    /** API URL for the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_url", required = true) val runUrl: String?,
-    /**
-     * Web URL for the workflow run.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("run_html_url", required = true) val runHtmlUrl: String?,
-    /**
-     * Required enumerated value serialized in the `status` wire field.
-     */
+    /** Web URL for the workflow run. */
+    @com.fasterxml.jackson.annotation.JsonProperty("run_html_url", required = true)
+    val runHtmlUrl: String?,
+    /** Required enumerated value serialized in the `status` wire field. */
     val status: ConcurrencyGroupGroupMembersItemStatusEnum,
-    /**
-     * The ID of the job, when the item represents a job-level or reusable-workflow-level lease.
-     */
+    /** The ID of the job, when the item represents a job-level or reusable-workflow-level lease. */
     @com.fasterxml.jackson.annotation.JsonProperty("job_id") val jobId: Long? = null,
     /**
-     * The display name of the job, when the item represents a job-level or reusable-workflow-level lease.
+     * The display name of the job, when the item represents a job-level or reusable-workflow-level
+     * lease.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("job_name") val jobName: String? = null,
-    /**
-     * API URL for the job.
-     */
+    /** API URL for the job. */
     @com.fasterxml.jackson.annotation.JsonProperty("job_url") val jobUrl: String? = null,
-    /**
-     * Web URL for the job.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("job_html_url") val jobHtmlUrl: String? = null
+    /** Web URL for the job. */
+    @com.fasterxml.jackson.annotation.JsonProperty("job_html_url") val jobHtmlUrl: String? = null,
 )
 
 /**
- * A concurrency group with the workflow runs and jobs that are either currently holding or waiting for the concurrency group lease.
+ * A concurrency group with the workflow runs and jobs that are either currently holding or waiting
+ * for the concurrency group lease.
  */
 data class ConcurrencyGroup(
-    /**
-     * The name of the concurrency group.
-     */
+    /** The name of the concurrency group. */
     @com.fasterxml.jackson.annotation.JsonProperty("group_name") val groupName: String,
-    /**
-     * API URL for this concurrency group.
-     */
+    /** API URL for this concurrency group. */
     @com.fasterxml.jackson.annotation.JsonProperty("group_url") val groupUrl: String,
-    /**
-     * Required `integer` value serialized in the `total_count` wire field.
-     */
+    /** Required `integer` value serialized in the `total_count` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    /**
-     * Required array value serialized in the `group_members` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("group_members") val groupMembers: List<ConcurrencyGroupGroupMembersItem>
+    /** Required array value serialized in the `group_members` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("group_members")
+    val groupMembers: List<ConcurrencyGroupGroupMembersItem>,
 )
 
-/**
- * Required object value serialized in the `concurrency_groups[]` wire field.
- */
+/** Required object value serialized in the `concurrency_groups[]` wire field. */
 data class ConcurrencyGroupListConcurrencyGroupsItem(
-    /**
-     * The name of the concurrency group.
-     */
+    /** The name of the concurrency group. */
     @com.fasterxml.jackson.annotation.JsonProperty("group_name") val groupName: String,
-    /**
-     * API URL for this concurrency group.
-     */
+    /** API URL for this concurrency group. */
     @com.fasterxml.jackson.annotation.JsonProperty("group_url") val groupUrl: String,
-    /**
-     * Required `date-time`-formatted value serialized in the `last_acquired_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_acquired_at", required = true) val lastAcquiredAt: OffsetDateTime?
+    /** Required `date-time`-formatted value serialized in the `last_acquired_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_acquired_at", required = true)
+    val lastAcquiredAt: OffsetDateTime?,
 )
 
-/**
- * A list of active concurrency groups for a repository.
- */
+/** A list of active concurrency groups for a repository. */
 data class ConcurrencyGroupList(
-    /**
-     * Required `integer` value serialized in the `total_count` wire field.
-     */
+    /** Required `integer` value serialized in the `total_count` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    /**
-     * Required array value serialized in the `concurrency_groups` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("concurrency_groups") val concurrencyGroups: List<ConcurrencyGroupListConcurrencyGroupsItem>
+    /** Required array value serialized in the `concurrency_groups` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("concurrency_groups")
+    val concurrencyGroups: List<ConcurrencyGroupListConcurrencyGroupsItem>,
 )
 
-/**
- * Required object value serialized in the `group_members[]` wire field.
- */
+/** Required object value serialized in the `group_members[]` wire field. */
 data class ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItem(
-    /**
-     * The ID of the workflow run.
-     */
+    /** The ID of the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_id") val runId: Long,
-    /**
-     * The name of the workflow run.
-     */
+    /** The name of the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_name") val runName: String,
-    /**
-     * API URL for the workflow run.
-     */
+    /** API URL for the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_url", required = true) val runUrl: String?,
+    /** Web URL for the workflow run. */
+    @com.fasterxml.jackson.annotation.JsonProperty("run_html_url", required = true)
+    val runHtmlUrl: String?,
     /**
-     * Web URL for the workflow run.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("run_html_url", required = true) val runHtmlUrl: String?,
-    /**
-     * Queue position. 0 means the item holds the concurrency lease (in_progress), 1 or higher means queued (pending).
+     * Queue position. 0 means the item holds the concurrency lease (in_progress), 1 or higher means
+     * queued (pending).
      */
     val position: Long,
-    /**
-     * API URL to get items ahead of this item in the concurrency group.
-     */
+    /** API URL to get items ahead of this item in the concurrency group. */
     @com.fasterxml.jackson.annotation.JsonProperty("position_url") val positionUrl: String,
-    /**
-     * Required enumerated value serialized in the `status` wire field.
-     */
+    /** Required enumerated value serialized in the `status` wire field. */
     val status: ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItemStatusEnum,
-    /**
-     * The ID of the job, when the item represents a job-level or reusable-workflow-level lease.
-     */
+    /** The ID of the job, when the item represents a job-level or reusable-workflow-level lease. */
     @com.fasterxml.jackson.annotation.JsonProperty("job_id") val jobId: Long? = null,
     /**
-     * The display name of the job, when the item represents a job-level or reusable-workflow-level lease.
+     * The display name of the job, when the item represents a job-level or reusable-workflow-level
+     * lease.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("job_name") val jobName: String? = null,
-    /**
-     * API URL for the job.
-     */
+    /** API URL for the job. */
     @com.fasterxml.jackson.annotation.JsonProperty("job_url") val jobUrl: String? = null,
-    /**
-     * Web URL for the job.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("job_html_url") val jobHtmlUrl: String? = null
+    /** Web URL for the job. */
+    @com.fasterxml.jackson.annotation.JsonProperty("job_html_url") val jobHtmlUrl: String? = null,
 )
 
-/**
- * Required object value serialized in the `concurrency_groups[]` wire field.
- */
+/** Required object value serialized in the `concurrency_groups[]` wire field. */
 data class ConcurrencyGroupRunListConcurrencyGroupsItem(
-    /**
-     * The name of the concurrency group.
-     */
+    /** The name of the concurrency group. */
     @com.fasterxml.jackson.annotation.JsonProperty("group_name") val groupName: String,
     /**
-     * API URL for this concurrency group. May return 404 if the group has no active items at the time it is requested, since the get-by-name endpoint reports the live repo-wide state of a group while this endpoint lists groups associated with a run by configuration.
+     * API URL for this concurrency group. May return 404 if the group has no active items at the
+     * time it is requested, since the get-by-name endpoint reports the live repo-wide state of a
+     * group while this endpoint lists groups associated with a run by configuration.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("group_url") val groupUrl: String,
     /**
-     * Items belonging to this workflow run that are either currently holding or waiting for the concurrency group lease. May be empty if the run no longer has any active or queued items in this group.
+     * Items belonging to this workflow run that are either currently holding or waiting for the
+     * concurrency group lease. May be empty if the run no longer has any active or queued items in
+     * this group.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("group_members") val groupMembers: List<ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItem>
+    @com.fasterxml.jackson.annotation.JsonProperty("group_members")
+    val groupMembers: List<ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItem>,
 )
 
-/**
- * A list of concurrency groups associated with a workflow run.
- */
+/** A list of concurrency groups associated with a workflow run. */
 data class ConcurrencyGroupRunList(
     /**
-     * The total number of concurrency groups this workflow run participates in, derived from the run's configuration. This count is not filtered by whether the run currently holds or is waiting in each group, so it can include groups whose `group_members` array is empty (for example, when the run has already released its lease in that group).
+     * The total number of concurrency groups this workflow run participates in, derived from the
+     * run's configuration. This count is not filtered by whether the run currently holds or is
+     * waiting in each group, so it can include groups whose `group_members` array is empty (for
+     * example, when the run has already released its lease in that group).
      */
     @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    /**
-     * Required array value serialized in the `concurrency_groups` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("concurrency_groups") val concurrencyGroups: List<ConcurrencyGroupRunListConcurrencyGroupsItem>
+    /** Required array value serialized in the `concurrency_groups` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("concurrency_groups")
+    val concurrencyGroups: List<ConcurrencyGroupRunListConcurrencyGroupsItem>,
 )

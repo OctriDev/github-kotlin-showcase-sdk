@@ -5,236 +5,162 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `PullRequestWebhook` API schema.
- */
+/** Typed representation of the `PullRequestWebhook` API schema. */
 class PullRequestWebhook(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `diff_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `diff_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("diff_url") val diffUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `patch_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `patch_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("patch_url") val patchUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `issue_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `issue_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_url") val issueUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `commits_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `commits_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `review_comments_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comments_url") val reviewCommentsUrl: String,
-    /**
-     * Required `string` value serialized in the `review_comment_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comment_url") val reviewCommentUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `comments_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `review_comments_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comments_url")
+    val reviewCommentsUrl: String,
+    /** Required `string` value serialized in the `review_comment_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comment_url")
+    val reviewCommentUrl: String,
+    /** Required `uri`-formatted value serialized in the `comments_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `statuses_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `statuses_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String,
-    /**
-     * Number uniquely identifying the pull request within its repository.
-     */
+    /** Number uniquely identifying the pull request within its repository. */
     val number: Long,
-    /**
-     * State of this Pull Request. Either `open` or `closed`.
-     */
+    /** State of this Pull Request. Either `open` or `closed`. */
     val state: PullRequestStateEnum,
-    /**
-     * Required `boolean` value serialized in the `locked` wire field.
-     */
+    /** Required `boolean` value serialized in the `locked` wire field. */
     val locked: Boolean,
-    /**
-     * The title of the pull request.
-     */
+    /** The title of the pull request. */
     val title: String,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val user: SimpleUser,
-    /**
-     * Required `string` value serialized in the `body` wire field.
-     */
+    /** Required `string` value serialized in the `body` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("body", required = true) val body: String?,
-    /**
-     * Required array value serialized in the `labels` wire field.
-     */
+    /** Required array value serialized in the `labels` wire field. */
     val labels: List<PullRequestLabelsItem>,
-    /**
-     * A collection of related issues and pull requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("milestone", required = true) val milestone: NullableMilestone?,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** A collection of related issues and pull requests. */
+    @com.fasterxml.jackson.annotation.JsonProperty("milestone", required = true)
+    val milestone: NullableMilestone?,
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `closed_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true) val closedAt: OffsetDateTime?,
-    /**
-     * Required `date-time`-formatted value serialized in the `merged_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true) val mergedAt: OffsetDateTime?,
-    /**
-     * Required `string` value serialized in the `merge_commit_sha` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_sha", required = true) val mergeCommitSha: String?,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("assignee", required = true) val assignee: NullableSimpleUser?,
-    /**
-     * Required object value serialized in the `head` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `closed_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true)
+    val closedAt: OffsetDateTime?,
+    /** Required `date-time`-formatted value serialized in the `merged_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true)
+    val mergedAt: OffsetDateTime?,
+    /** Required `string` value serialized in the `merge_commit_sha` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_sha", required = true)
+    val mergeCommitSha: String?,
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("assignee", required = true)
+    val assignee: NullableSimpleUser?,
+    /** Required object value serialized in the `head` wire field. */
     val head: PullRequestHead,
-    /**
-     * Required object value serialized in the `base` wire field.
-     */
+    /** Required object value serialized in the `base` wire field. */
     val base: PullRequestBase,
-    /**
-     * Required object value serialized in the `_links` wire field.
-     */
+    /** Required object value serialized in the `_links` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: PullRequestLinks,
-    /**
-     * How the author is associated with the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: AuthorAssociation,
-    /**
-     * The status of auto merging a pull request.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_merge", required = true) val autoMerge: AutoMerge?,
-    /**
-     * Required `boolean` value serialized in the `merged` wire field.
-     */
+    /** How the author is associated with the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
+    val authorAssociation: AuthorAssociation,
+    /** The status of auto merging a pull request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_merge", required = true)
+    val autoMerge: AutoMerge?,
+    /** Required `boolean` value serialized in the `merged` wire field. */
     val merged: Boolean,
-    /**
-     * Required `boolean` value serialized in the `mergeable` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("mergeable", required = true) val mergeable: Boolean?,
-    /**
-     * Required `string` value serialized in the `mergeable_state` wire field.
-     */
+    /** Required `boolean` value serialized in the `mergeable` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("mergeable", required = true)
+    val mergeable: Boolean?,
+    /** Required `string` value serialized in the `mergeable_state` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("mergeable_state") val mergeableState: String,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("merged_by", required = true) val mergedBy: NullableSimpleUser?,
-    /**
-     * Required `integer` value serialized in the `comments` wire field.
-     */
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("merged_by", required = true)
+    val mergedBy: NullableSimpleUser?,
+    /** Required `integer` value serialized in the `comments` wire field. */
     val comments: Long,
-    /**
-     * Required `integer` value serialized in the `review_comments` wire field.
-     */
+    /** Required `integer` value serialized in the `review_comments` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("review_comments") val reviewComments: Long,
-    /**
-     * Indicates whether maintainers can modify the pull request.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("maintainer_can_modify") val maintainerCanModify: Boolean,
-    /**
-     * Required `integer` value serialized in the `commits` wire field.
-     */
+    /** Indicates whether maintainers can modify the pull request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("maintainer_can_modify")
+    val maintainerCanModify: Boolean,
+    /** Required `integer` value serialized in the `commits` wire field. */
     val commits: Long,
-    /**
-     * Required `integer` value serialized in the `additions` wire field.
-     */
+    /** Required `integer` value serialized in the `additions` wire field. */
     val additions: Long,
-    /**
-     * Required `integer` value serialized in the `deletions` wire field.
-     */
+    /** Required `integer` value serialized in the `deletions` wire field. */
     val deletions: Long,
-    /**
-     * Required `integer` value serialized in the `changed_files` wire field.
-     */
+    /** Required `integer` value serialized in the `changed_files` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("changed_files") val changedFiles: Long,
-    /**
-     * Optional `string` value serialized in the `active_lock_reason` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("active_lock_reason") val activeLockReason: String? = null,
-    /**
-     * Optional array value serialized in the `assignees` wire field.
-     */
+    /** Optional `string` value serialized in the `active_lock_reason` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("active_lock_reason")
+    val activeLockReason: String? = null,
+    /** Optional array value serialized in the `assignees` wire field. */
     val assignees: List<SimpleUser>? = null,
-    /**
-     * Optional array value serialized in the `requested_reviewers` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_reviewers") val requestedReviewers: List<SimpleUser>? = null,
-    /**
-     * Optional array value serialized in the `requested_teams` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_teams") val requestedTeams: List<TeamSimple>? = null,
-    /**
-     * The stack information associated with a pull request.
-     */
+    /** Optional array value serialized in the `requested_reviewers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_reviewers")
+    val requestedReviewers: List<SimpleUser>? = null,
+    /** Optional array value serialized in the `requested_teams` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_teams")
+    val requestedTeams: List<TeamSimple>? = null,
+    /** The stack information associated with a pull request. */
     val stack: PullRequestStack? = null,
-    /**
-     * Indicates whether or not the pull request is a draft.
-     */
+    /** Indicates whether or not the pull request is a draft. */
     val draft: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `rebaseable` wire field.
-     */
+    /** Optional `boolean` value serialized in the `rebaseable` wire field. */
     val rebaseable: Boolean? = null,
+    /** Whether to allow auto-merge for pull requests. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_auto_merge")
+    val allowAutoMerge: Boolean? = null,
+    /** Whether to allow updating the pull request's branch. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_update_branch")
+    val allowUpdateBranch: Boolean? = null,
+    /** Whether to delete head branches when pull requests are merged. */
+    @com.fasterxml.jackson.annotation.JsonProperty("delete_branch_on_merge")
+    val deleteBranchOnMerge: Boolean? = null,
     /**
-     * Whether to allow auto-merge for pull requests.
+     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
+     * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank
+     * commit message.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_auto_merge") val allowAutoMerge: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_message")
+    val mergeCommitMessage: PullRequestWebhookVariant1MergeCommitMessageEnum? = null,
     /**
-     * Whether to allow updating the pull request's branch.
+     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's
+     * title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., "Merge
+     * pull request #123 from branch-name").
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_update_branch") val allowUpdateBranch: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_title")
+    val mergeCommitTitle: PullRequestWebhookVariant1MergeCommitTitleEnum? = null,
     /**
-     * Whether to delete head branches when pull requests are merged.
+     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull
+     * request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` -
+     * default to a blank commit message.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_message")
+    val squashMergeCommitMessage: PullRequestWebhookVariant1SquashMergeCommitMessageEnum? = null,
     /**
-     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
+     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull
+     * request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit)
+     * or the pull request's title (when more than one commit).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_message") val mergeCommitMessage: PullRequestWebhookVariant1MergeCommitMessageEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_title")
+    val squashMergeCommitTitle: PullRequestWebhookVariant1SquashMergeCommitTitleEnum? = null,
     /**
-     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., "Merge pull request #123 from branch-name").
+     * Whether a squash merge commit can use the pull request title as default. **This property is
+     * closing down. Please use `squash_merge_commit_title` instead.**
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_title") val mergeCommitTitle: PullRequestWebhookVariant1MergeCommitTitleEnum? = null,
-    /**
-     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_message") val squashMergeCommitMessage: PullRequestWebhookVariant1SquashMergeCommitMessageEnum? = null,
-    /**
-     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_title") val squashMergeCommitTitle: PullRequestWebhookVariant1SquashMergeCommitTitleEnum? = null,
-    /**
-     * Whether a squash merge commit can use the pull request title as default. **This property is closing down. Please use `squash_merge_commit_title` instead.**
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("use_squash_pr_title_as_default") val useSquashPrTitleAsDefault: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("use_squash_pr_title_as_default")
+    val useSquashPrTitleAsDefault: Boolean? = null,
 )

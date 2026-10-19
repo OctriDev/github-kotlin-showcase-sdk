@@ -24,38 +24,35 @@ import dev.octri.showcase.github.SchemaSchemaEnuma304fedd
 import dev.octri.showcase.github.SchemaSchemaEnumb6482dba
 
 object Dependabot {
-data class DependabotListOrgSecretsResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val secrets: List<OrganizationDependabotSecret>
-)
+    data class DependabotListOrgSecretsResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val secrets: List<OrganizationDependabotSecret>,
+    )
 
-data class DependabotListSelectedReposForOrgSecretResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val repositories: List<MinimalRepository>
-)
+    data class DependabotListSelectedReposForOrgSecretResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val repositories: List<MinimalRepository>,
+    )
 
-/**
- * Parameters for AI agent assignment. Only used when an agent bot login is included in `assignees`. Ignored when no agent is being assigned.
- */
-data class DependabotUpdateAlertAgentAssignment(
     /**
-     * Custom instructions for the agent.
+     * Parameters for AI agent assignment. Only used when an agent bot login is included in
+     * `assignees`. Ignored when no agent is being assigned.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_instructions") val customInstructions: String? = null,
-    /**
-     * A custom agent identifier.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_agent") val customAgent: String? = null,
-    /**
-     * The model to use for the agent.
-     */
-    val model: String? = null
-)
+    data class DependabotUpdateAlertAgentAssignment(
+        /** Custom instructions for the agent. */
+        @com.fasterxml.jackson.annotation.JsonProperty("custom_instructions")
+        val customInstructions: String? = null,
+        /** A custom agent identifier. */
+        @com.fasterxml.jackson.annotation.JsonProperty("custom_agent")
+        val customAgent: String? = null,
+        /** The model to use for the agent. */
+        val model: String? = null,
+    )
 
-data class DependabotListRepoSecretsResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val secrets: List<DependabotSecret>
-)
+    data class DependabotListRepoSecretsResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val secrets: List<DependabotSecret>,
+    )
 
     /** Parameters for [dependabotListAlertsForEnterprise]. */
     data class DependabotListAlertsForEnterpriseRequest(
@@ -74,7 +71,7 @@ data class DependabotListRepoSecretsResponse(
         val direction: SchemaSchemaEnum0df64690? = null,
         val before: String? = null,
         val after: String? = null,
-        val perPage: Long? = null
+        val perPage: Long? = null,
     )
 
     /** Parameters for [dependabotListAlertsForOrg]. */
@@ -97,7 +94,7 @@ data class DependabotListRepoSecretsResponse(
         val direction: SchemaSchemaEnum0df64690? = null,
         val before: String? = null,
         val after: String? = null,
-        val perPage: Long? = null
+        val perPage: Long? = null,
     )
 
     /** Parameters for [dependabotCreateOrUpdateOrgSecret]. */
@@ -107,7 +104,7 @@ data class DependabotListRepoSecretsResponse(
         val visibility: DependabotCreateOrUpdateOrgSecretVisibilityEnum,
         val encryptedValue: String? = null,
         val keyId: String? = null,
-        val selectedRepositoryIds: List<Any>? = null
+        val selectedRepositoryIds: List<Any>? = null,
     )
 
     /** Parameters for [dependabotListAlertsForRepo]. */
@@ -129,7 +126,7 @@ data class DependabotListRepoSecretsResponse(
         val direction: SchemaSchemaEnum0df64690? = null,
         val before: String? = null,
         val after: String? = null,
-        val perPage: Long? = null
+        val perPage: Long? = null,
     )
 
     /** Parameters for [dependabotUpdateAlert]. */
@@ -141,125 +138,239 @@ data class DependabotListRepoSecretsResponse(
         val dismissedReason: DependabotUpdateAlertDismissedReasonEnum? = null,
         val dismissedComment: String? = null,
         val assignees: List<String>? = null,
-        val agentAssignment: DependabotUpdateAlertAgentAssignment? = null
+        val agentAssignment: DependabotUpdateAlertAgentAssignment? = null,
     )
 
     /**
-     * Lists Dependabot alerts for repositories that are owned by the specified enterprise. The authenticated user must be a member of the enterprise to use this endpoint. Alerts are only returned for organizations in the enterprise for which you are an organization owner or a security manager. For more information about security managers, see "[Managing security managers in your organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)." OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint.
+     * Lists Dependabot alerts for repositories that are owned by the specified enterprise. The
+     * authenticated user must be a member of the enterprise to use this endpoint. Alerts are only
+     * returned for organizations in the enterprise for which you are an organization owner or a
+     * security manager. For more information about security managers, see "[Managing security
+     * managers in your
+     * organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)."
+     * OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events`
+     * scope to use this endpoint.
      */
-    fun dependabotListAlertsForEnterprise(clientConfig: ClientConfig, request: DependabotListAlertsForEnterpriseRequest, options: RequestOptions? = null): List<DependabotAlertWithRepository> =
-        dev.octri.showcase.github.methods.DependabotListAlertsForEnterpriseOperation.dependabotListAlertsForEnterprise(
-            clientConfig,
-            request,
-            options,
-        )
+    fun dependabotListAlertsForEnterprise(
+        clientConfig: ClientConfig,
+        request: DependabotListAlertsForEnterpriseRequest,
+        options: RequestOptions? = null,
+    ): List<DependabotAlertWithRepository> =
+        dev.octri.showcase.github.methods.DependabotListAlertsForEnterpriseOperation
+            .dependabotListAlertsForEnterprise(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists repositories that enterprise admins have allowed Dependabot to access when updating dependencies across organizations in the enterprise. The authenticated user must be an enterprise owner to use this endpoint. > [!NOTE] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Lists repositories that enterprise admins have allowed Dependabot to access when updating
+     * dependencies across organizations in the enterprise. The authenticated user must be an
+     * enterprise owner to use this endpoint. > [!NOTE] > The "Enterprise administration"
+     * fine-grained permission is not available to callers. To use this API, you must use an OAuth
+     * app token or a personal access token (classic).
      */
-    fun dependabotRepositoryAccessForEnterprise(clientConfig: ClientConfig, enterprise: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): DependabotRepositoryAccessDetails =
-        dev.octri.showcase.github.methods.DependabotRepositoryAccessForEnterpriseOperation.dependabotRepositoryAccessForEnterprise(
-            clientConfig,
-            enterprise,
-            page,
-            perPage,
-            options,
-        )
+    fun dependabotRepositoryAccessForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): DependabotRepositoryAccessDetails =
+        dev.octri.showcase.github.methods.DependabotRepositoryAccessForEnterpriseOperation
+            .dependabotRepositoryAccessForEnterprise(
+                clientConfig,
+                enterprise,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Updates repositories according to the list of repositories that enterprise admins have given Dependabot access to when they've updated dependencies across organizations in the enterprise. The authenticated user must be an enterprise owner to use this endpoint. **Example request body:** ```json { "repository_ids_to_add": [123, 456], "repository_ids_to_remove": [789] } ``` > [!NOTE] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Updates repositories according to the list of repositories that enterprise admins have given
+     * Dependabot access to when they've updated dependencies across organizations in the
+     * enterprise. The authenticated user must be an enterprise owner to use this endpoint.
+     * **Example request body:** ```json { "repository_ids_to_add": [123, 456],
+     * "repository_ids_to_remove": [789] } ``` > [!NOTE] > The "Enterprise administration"
+     * fine-grained permission is not available to callers. To use this API, you must use an OAuth
+     * app token or a personal access token (classic).
      */
-    fun dependabotUpdateRepositoryAccessForEnterprise(clientConfig: ClientConfig, enterprise: String, repositoryIdsToAdd: List<Long>? = null, repositoryIdsToRemove: List<Long>? = null, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotUpdateRepositoryAccessForEnterpriseOperation.dependabotUpdateRepositoryAccessForEnterprise(
-            clientConfig,
-            enterprise,
-            repositoryIdsToAdd,
-            repositoryIdsToRemove,
-            options,
-        )
+    fun dependabotUpdateRepositoryAccessForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        repositoryIdsToAdd: List<Long>? = null,
+        repositoryIdsToRemove: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.DependabotUpdateRepositoryAccessForEnterpriseOperation
+            .dependabotUpdateRepositoryAccessForEnterprise(
+                clientConfig,
+                enterprise,
+                repositoryIdsToAdd,
+                repositoryIdsToRemove,
+                options,
+            )
 
     /**
-     * Sets the default level of repository access Dependabot will have while performing an update across organizations in the enterprise. Available values are: - 'public' - Dependabot will only have access to public repositories, unless access is explicitly granted to non-public repositories. - 'internal' - Dependabot will only have access to public and internal repositories, unless access is explicitly granted to private repositories. The authenticated user must be an enterprise owner to use this endpoint. > [!NOTE] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Sets the default level of repository access Dependabot will have while performing an update
+     * across organizations in the enterprise. Available values are: - 'public' - Dependabot will
+     * only have access to public repositories, unless access is explicitly granted to non-public
+     * repositories. - 'internal' - Dependabot will only have access to public and internal
+     * repositories, unless access is explicitly granted to private repositories. The authenticated
+     * user must be an enterprise owner to use this endpoint. > [!NOTE] > The "Enterprise
+     * administration" fine-grained permission is not available to callers. To use this API, you
+     * must use an OAuth app token or a personal access token (classic).
      */
-    fun dependabotSetRepositoryAccessDefaultLevelForEnterprise(clientConfig: ClientConfig, enterprise: String, defaultLevel: DependabotSetRepositoryAccessDefaultLevelForEnterpriseDefaultLevelEnum, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotSetRepositoryAccessDefaultLevelForEnterpriseOperation.dependabotSetRepositoryAccessDefaultLevelForEnterprise(
-            clientConfig,
-            enterprise,
-            defaultLevel,
-            options,
-        )
+    fun dependabotSetRepositoryAccessDefaultLevelForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        defaultLevel: DependabotSetRepositoryAccessDefaultLevelForEnterpriseDefaultLevelEnum,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods
+            .DependabotSetRepositoryAccessDefaultLevelForEnterpriseOperation
+            .dependabotSetRepositoryAccessDefaultLevelForEnterprise(
+                clientConfig,
+                enterprise,
+                defaultLevel,
+                options,
+            )
 
     /**
-     * Lists Dependabot alerts for an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
+     * Lists Dependabot alerts for an organization. The authenticated user must be an owner or
+     * security manager for the organization to use this endpoint. OAuth app tokens and personal
+     * access tokens (classic) need the `security_events` scope to use this endpoint. If this
+     * endpoint is only used with public repositories, the token can use the `public_repo` scope
+     * instead.
      */
-    fun dependabotListAlertsForOrg(clientConfig: ClientConfig, request: DependabotListAlertsForOrgRequest, options: RequestOptions? = null): List<DependabotAlertWithRepository> =
-        dev.octri.showcase.github.methods.DependabotListAlertsForOrgOperation.dependabotListAlertsForOrg(
-            clientConfig,
-            request,
-            options,
-        )
+    fun dependabotListAlertsForOrg(
+        clientConfig: ClientConfig,
+        request: DependabotListAlertsForOrgRequest,
+        options: RequestOptions? = null,
+    ): List<DependabotAlertWithRepository> =
+        dev.octri.showcase.github.methods.DependabotListAlertsForOrgOperation
+            .dependabotListAlertsForOrg(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists repositories that organization admins have allowed Dependabot to access when updating dependencies. > [!NOTE] > This operation supports both server-to-server and user-to-server access. Unauthorized users will not see the existence of this endpoint.
+     * Lists repositories that organization admins have allowed Dependabot to access when updating
+     * dependencies. > [!NOTE] > This operation supports both server-to-server and user-to-server
+     * access. Unauthorized users will not see the existence of this endpoint.
      */
-    fun dependabotRepositoryAccessForOrg(clientConfig: ClientConfig, org: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): DependabotRepositoryAccessDetails =
-        dev.octri.showcase.github.methods.DependabotRepositoryAccessForOrgOperation.dependabotRepositoryAccessForOrg(
-            clientConfig,
-            org,
-            page,
-            perPage,
-            options,
-        )
+    fun dependabotRepositoryAccessForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): DependabotRepositoryAccessDetails =
+        dev.octri.showcase.github.methods.DependabotRepositoryAccessForOrgOperation
+            .dependabotRepositoryAccessForOrg(
+                clientConfig,
+                org,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Updates repositories according to the list of repositories that organization admins have given Dependabot access to when they've updated dependencies. > [!NOTE] > This operation supports both server-to-server and user-to-server access. Unauthorized users will not see the existence of this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. **Example request body:** ```json { "repository_ids_to_add": [123, 456], "repository_ids_to_remove": [789] } ```
+     * Updates repositories according to the list of repositories that organization admins have
+     * given Dependabot access to when they've updated dependencies. > [!NOTE] > This operation
+     * supports both server-to-server and user-to-server access. Unauthorized users will not see the
+     * existence of this endpoint. OAuth app tokens and personal access tokens (classic) need the
+     * `write:org` scope to use this endpoint. **Example request body:** ```json {
+     * "repository_ids_to_add": [123, 456], "repository_ids_to_remove": [789] } ```
      */
-    fun dependabotUpdateRepositoryAccessForOrg(clientConfig: ClientConfig, org: String, repositoryIdsToAdd: List<Long>? = null, repositoryIdsToRemove: List<Long>? = null, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotUpdateRepositoryAccessForOrgOperation.dependabotUpdateRepositoryAccessForOrg(
-            clientConfig,
-            org,
-            repositoryIdsToAdd,
-            repositoryIdsToRemove,
-            options,
-        )
+    fun dependabotUpdateRepositoryAccessForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        repositoryIdsToAdd: List<Long>? = null,
+        repositoryIdsToRemove: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.DependabotUpdateRepositoryAccessForOrgOperation
+            .dependabotUpdateRepositoryAccessForOrg(
+                clientConfig,
+                org,
+                repositoryIdsToAdd,
+                repositoryIdsToRemove,
+                options,
+            )
 
     /**
-     * Sets the default level of repository access Dependabot will have while performing an update. Available values are: - 'public' - Dependabot will only have access to public repositories, unless access is explicitly granted to non-public repositories. - 'internal' - Dependabot will only have access to public and internal repositories, unless access is explicitly granted to private repositories. Unauthorized users will not see the existence of this endpoint. This operation supports both server-to-server and user-to-server access. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Sets the default level of repository access Dependabot will have while performing an update.
+     * Available values are: - 'public' - Dependabot will only have access to public repositories,
+     * unless access is explicitly granted to non-public repositories. - 'internal' - Dependabot
+     * will only have access to public and internal repositories, unless access is explicitly
+     * granted to private repositories. Unauthorized users will not see the existence of this
+     * endpoint. This operation supports both server-to-server and user-to-server access. OAuth app
+     * tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun dependabotSetRepositoryAccessDefaultLevel(clientConfig: ClientConfig, org: String, defaultLevel: DependabotSetRepositoryAccessDefaultLevelDefaultLevelEnum, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotSetRepositoryAccessDefaultLevelOperation.dependabotSetRepositoryAccessDefaultLevel(
-            clientConfig,
-            org,
-            defaultLevel,
-            options,
-        )
+    fun dependabotSetRepositoryAccessDefaultLevel(
+        clientConfig: ClientConfig,
+        org: String,
+        defaultLevel: DependabotSetRepositoryAccessDefaultLevelDefaultLevelEnum,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.DependabotSetRepositoryAccessDefaultLevelOperation
+            .dependabotSetRepositoryAccessDefaultLevel(
+                clientConfig,
+                org,
+                defaultLevel,
+                options,
+            )
 
     /**
-     * Lists all secrets available in an organization without revealing their encrypted values. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists all secrets available in an organization without revealing their encrypted values.
+     * OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * endpoint.
      */
-    fun dependabotListOrgSecrets(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): DependabotListOrgSecretsResponse =
-        dev.octri.showcase.github.methods.DependabotListOrgSecretsOperation.dependabotListOrgSecrets(
-            clientConfig,
-            org,
-            perPage,
-            page,
-            options,
-        )
+    fun dependabotListOrgSecrets(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): DependabotListOrgSecretsResponse =
+        dev.octri.showcase.github.methods.DependabotListOrgSecretsOperation
+            .dependabotListOrgSecrets(
+                clientConfig,
+                org,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. OAuth app tokens and personal access tokens (classic) need
+     * the `admin:org` scope to use this endpoint.
      */
-    fun dependabotGetOrgPublicKey(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): DependabotPublicKey =
-        dev.octri.showcase.github.methods.DependabotGetOrgPublicKeyOperation.dependabotGetOrgPublicKey(
-            clientConfig,
-            org,
-            options,
-        )
+    fun dependabotGetOrgPublicKey(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): DependabotPublicKey =
+        dev.octri.showcase.github.methods.DependabotGetOrgPublicKeyOperation
+            .dependabotGetOrgPublicKey(
+                clientConfig,
+                org,
+                options,
+            )
 
     /**
-     * Gets a single organization secret without revealing its encrypted value. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets a single organization secret without revealing its encrypted value. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun dependabotGetOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): OrganizationDependabotSecret =
+    fun dependabotGetOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): OrganizationDependabotSecret =
         dev.octri.showcase.github.methods.DependabotGetOrgSecretOperation.dependabotGetOrgSecret(
             clientConfig,
             org,
@@ -268,89 +379,159 @@ data class DependabotListRepoSecretsResponse(
         )
 
     /**
-     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using
+     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
+     * information, see "[Encrypting secrets for the REST
+     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." OAuth app
+     * tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun dependabotCreateOrUpdateOrgSecret(clientConfig: ClientConfig, request: DependabotCreateOrUpdateOrgSecretRequest, options: RequestOptions? = null): EmptyObject =
-        dev.octri.showcase.github.methods.DependabotCreateOrUpdateOrgSecretOperation.dependabotCreateOrUpdateOrgSecret(
-            clientConfig,
-            request,
-            options,
-        )
+    fun dependabotCreateOrUpdateOrgSecret(
+        clientConfig: ClientConfig,
+        request: DependabotCreateOrUpdateOrgSecretRequest,
+        options: RequestOptions? = null,
+    ): EmptyObject =
+        dev.octri.showcase.github.methods.DependabotCreateOrUpdateOrgSecretOperation
+            .dependabotCreateOrUpdateOrgSecret(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes a secret in an organization using the secret name. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Deletes a secret in an organization using the secret name. OAuth app tokens and personal
+     * access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun dependabotDeleteOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotDeleteOrgSecretOperation.dependabotDeleteOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            options,
-        )
+    fun dependabotDeleteOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.DependabotDeleteOrgSecretOperation
+            .dependabotDeleteOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                options,
+            )
 
     /**
-     * Lists all repositories that have been selected when the `visibility` for repository access to a secret is set to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists all repositories that have been selected when the `visibility` for repository access to
+     * a secret is set to `selected`. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint.
      */
-    fun dependabotListSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): DependabotListSelectedReposForOrgSecretResponse =
-        dev.octri.showcase.github.methods.DependabotListSelectedReposForOrgSecretOperation.dependabotListSelectedReposForOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            page,
-            perPage,
-            options,
-        )
+    fun dependabotListSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): DependabotListSelectedReposForOrgSecretResponse =
+        dev.octri.showcase.github.methods.DependabotListSelectedReposForOrgSecretOperation
+            .dependabotListSelectedReposForOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Replaces all repositories for an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you [Create or update an organization secret](https://docs.github.com/rest/dependabot/secrets#create-or-update-an-organization-secret). OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Replaces all repositories for an organization secret when the `visibility` for repository
+     * access is set to `selected`. The visibility is set when you
+     * [Create or update an organization secret](https://docs.github.com/rest/dependabot/secrets#create-or-update-an-organization-secret).
+     * OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * endpoint.
      */
-    fun dependabotSetSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotSetSelectedReposForOrgSecretOperation.dependabotSetSelectedReposForOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            selectedRepositoryIds,
-            options,
-        )
+    fun dependabotSetSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.DependabotSetSelectedReposForOrgSecretOperation
+            .dependabotSetSelectedReposForOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * Adds a repository to an organization secret's selected repository list. Use this operation when the secret's repository `visibility` is set to `selected`; OAuth app tokens and personal access tokens (classic) need the `admin:org` scope.
+     * Adds a repository to an organization secret's selected repository list. Use this operation
+     * when the secret's repository `visibility` is set to `selected`; OAuth app tokens and personal
+     * access tokens (classic) need the `admin:org` scope.
      */
-    fun dependabotAddSelectedRepoToOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotAddSelectedRepoToOrgSecretOperation.dependabotAddSelectedRepoToOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            repositoryId,
-            options,
-        )
+    fun dependabotAddSelectedRepoToOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.DependabotAddSelectedRepoToOrgSecretOperation
+            .dependabotAddSelectedRepoToOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Removes a repository from an organization secret's selected repository list. Use this operation when the secret's repository `visibility` is set to `selected`; OAuth app tokens and personal access tokens (classic) need the `admin:org` scope.
+     * Removes a repository from an organization secret's selected repository list. Use this
+     * operation when the secret's repository `visibility` is set to `selected`; OAuth app tokens
+     * and personal access tokens (classic) need the `admin:org` scope.
      */
-    fun dependabotRemoveSelectedRepoFromOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotRemoveSelectedRepoFromOrgSecretOperation.dependabotRemoveSelectedRepoFromOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            repositoryId,
-            options,
-        )
+    fun dependabotRemoveSelectedRepoFromOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.DependabotRemoveSelectedRepoFromOrgSecretOperation
+            .dependabotRemoveSelectedRepoFromOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                repositoryId,
+                options,
+            )
 
     /**
-     * OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
+     * OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use
+     * this endpoint. If this endpoint is only used with public repositories, the token can use the
+     * `public_repo` scope instead.
      */
-    fun dependabotListAlertsForRepo(clientConfig: ClientConfig, request: DependabotListAlertsForRepoRequest, options: RequestOptions? = null): List<DependabotAlert> =
-        dev.octri.showcase.github.methods.DependabotListAlertsForRepoOperation.dependabotListAlertsForRepo(
-            clientConfig,
-            request,
-            options,
-        )
+    fun dependabotListAlertsForRepo(
+        clientConfig: ClientConfig,
+        request: DependabotListAlertsForRepoRequest,
+        options: RequestOptions? = null,
+    ): List<DependabotAlert> =
+        dev.octri.showcase.github.methods.DependabotListAlertsForRepoOperation
+            .dependabotListAlertsForRepo(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Retrieves a Dependabot alert from a repository by its alert number. Use the `alert_number` value returned by the repository's Dependabot alerts listing, and provide a token with the required scope for the repository's visibility.
+     * Retrieves a Dependabot alert from a repository by its alert number. Use the `alert_number`
+     * value returned by the repository's Dependabot alerts listing, and provide a token with the
+     * required scope for the repository's visibility.
      */
-    fun dependabotGetAlert(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, options: RequestOptions? = null): DependabotAlert =
+    fun dependabotGetAlert(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        alertNumber: AlertNumber,
+        options: RequestOptions? = null,
+    ): DependabotAlert =
         dev.octri.showcase.github.methods.DependabotGetAlertOperation.dependabotGetAlert(
             clientConfig,
             owner,
@@ -360,9 +541,18 @@ data class DependabotListRepoSecretsResponse(
         )
 
     /**
-     * Updates a Dependabot alert in a repository, changing its state, dismissal details, assignees, or agent assignment. Provide `state` or `assignees` at minimum; when dismissing an alert, include `dismissed_reason`, and use `assignees` to replace or clear the existing assignments. The authenticated user needs access to repository security alerts, and OAuth app tokens or classic personal access tokens need the `security_events` scope, or `public_repo` for public repositories.
+     * Updates a Dependabot alert in a repository, changing its state, dismissal details, assignees,
+     * or agent assignment. Provide `state` or `assignees` at minimum; when dismissing an alert,
+     * include `dismissed_reason`, and use `assignees` to replace or clear the existing assignments.
+     * The authenticated user needs access to repository security alerts, and OAuth app tokens or
+     * classic personal access tokens need the `security_events` scope, or `public_repo` for public
+     * repositories.
      */
-    fun dependabotUpdateAlert(clientConfig: ClientConfig, request: DependabotUpdateAlertRequest, options: RequestOptions? = null): DependabotAlert =
+    fun dependabotUpdateAlert(
+        clientConfig: ClientConfig,
+        request: DependabotUpdateAlertRequest,
+        options: RequestOptions? = null,
+    ): DependabotAlert =
         dev.octri.showcase.github.methods.DependabotUpdateAlertOperation.dependabotUpdateAlert(
             clientConfig,
             request,
@@ -370,33 +560,58 @@ data class DependabotListRepoSecretsResponse(
         )
 
     /**
-     * Lists all secrets available in a repository without revealing their encrypted values. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all secrets available in a repository without revealing their encrypted values. OAuth
+     * app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun dependabotListRepoSecrets(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): DependabotListRepoSecretsResponse =
-        dev.octri.showcase.github.methods.DependabotListRepoSecretsOperation.dependabotListRepoSecrets(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun dependabotListRepoSecrets(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): DependabotListRepoSecretsResponse =
+        dev.octri.showcase.github.methods.DependabotListRepoSecretsOperation
+            .dependabotListRepoSecrets(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint if the repository is private.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. Anyone with read access to the repository can use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint if the repository is private.
      */
-    fun dependabotGetRepoPublicKey(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): DependabotPublicKey =
-        dev.octri.showcase.github.methods.DependabotGetRepoPublicKeyOperation.dependabotGetRepoPublicKey(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun dependabotGetRepoPublicKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): DependabotPublicKey =
+        dev.octri.showcase.github.methods.DependabotGetRepoPublicKeyOperation
+            .dependabotGetRepoPublicKey(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Gets a single repository secret without revealing its encrypted value. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single repository secret without revealing its encrypted value. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun dependabotGetRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): DependabotSecret =
+    fun dependabotGetRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): DependabotSecret =
         dev.octri.showcase.github.methods.DependabotGetRepoSecretOperation.dependabotGetRepoSecret(
             clientConfig,
             owner,
@@ -406,28 +621,49 @@ data class DependabotListRepoSecretsResponse(
         )
 
     /**
-     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using
+     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
+     * information, see "[Encrypting secrets for the REST
+     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." OAuth app
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun dependabotCreateOrUpdateRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, encryptedValue: String? = null, keyId: String? = null, options: RequestOptions? = null): EmptyObject =
-        dev.octri.showcase.github.methods.DependabotCreateOrUpdateRepoSecretOperation.dependabotCreateOrUpdateRepoSecret(
-            clientConfig,
-            owner,
-            repo,
-            secretName,
-            encryptedValue,
-            keyId,
-            options,
-        )
+    fun dependabotCreateOrUpdateRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        encryptedValue: String? = null,
+        keyId: String? = null,
+        options: RequestOptions? = null,
+    ): EmptyObject =
+        dev.octri.showcase.github.methods.DependabotCreateOrUpdateRepoSecretOperation
+            .dependabotCreateOrUpdateRepoSecret(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                encryptedValue,
+                keyId,
+                options,
+            )
 
     /**
-     * Deletes a secret in a repository using the secret name. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in a repository using the secret name. OAuth app tokens and personal access
+     * tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun dependabotDeleteRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.DependabotDeleteRepoSecretOperation.dependabotDeleteRepoSecret(
-            clientConfig,
-            owner,
-            repo,
-            secretName,
-            options,
-        )
+    fun dependabotDeleteRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.DependabotDeleteRepoSecretOperation
+            .dependabotDeleteRepoSecret(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                options,
+            )
 }

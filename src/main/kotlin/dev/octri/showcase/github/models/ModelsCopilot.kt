@@ -9,274 +9,217 @@ import java.time.OffsetDateTime
 typealias CopilotOrganizationContentExclusionDetails = Map<String, List<String>>
 
 /**
- * Information about the seat breakdown and policies set for an organization with a Copilot Business or Copilot Enterprise subscription.
+ * Information about the seat breakdown and policies set for an organization with a Copilot Business
+ * or Copilot Enterprise subscription.
  */
 data class CopilotOrganizationDetails(
+    /** The breakdown of Copilot Business seats for the organization. */
+    @com.fasterxml.jackson.annotation.JsonProperty("seat_breakdown")
+    val seatBreakdown: CopilotOrganizationSeatBreakdown,
     /**
-     * The breakdown of Copilot Business seats for the organization.
+     * The organization policy for allowing or blocking suggestions matching public code
+     * (duplication detection filter).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("seat_breakdown") val seatBreakdown: CopilotOrganizationSeatBreakdown,
-    /**
-     * The organization policy for allowing or blocking suggestions matching public code (duplication detection filter).
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("public_code_suggestions") val publicCodeSuggestions: CopilotOrganizationDetailsPublicCodeSuggestionsEnum,
-    /**
-     * The mode of assigning new seats.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("seat_management_setting") val seatManagementSetting: CopilotOrganizationDetailsSeatManagementSettingEnum,
-    /**
-     * The organization policy for allowing or disallowing Copilot Chat in the IDE.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("ide_chat") val ideChat: CopilotOrganizationDetailsIdeChatEnum? = null,
-    /**
-     * The organization policy for allowing or disallowing Copilot features on GitHub.com.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("platform_chat") val platformChat: CopilotOrganizationDetailsPlatformChatEnum? = null,
-    /**
-     * The organization policy for allowing or disallowing Copilot CLI.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("public_code_suggestions")
+    val publicCodeSuggestions: CopilotOrganizationDetailsPublicCodeSuggestionsEnum,
+    /** The mode of assigning new seats. */
+    @com.fasterxml.jackson.annotation.JsonProperty("seat_management_setting")
+    val seatManagementSetting: CopilotOrganizationDetailsSeatManagementSettingEnum,
+    /** The organization policy for allowing or disallowing Copilot Chat in the IDE. */
+    @com.fasterxml.jackson.annotation.JsonProperty("ide_chat")
+    val ideChat: CopilotOrganizationDetailsIdeChatEnum? = null,
+    /** The organization policy for allowing or disallowing Copilot features on GitHub.com. */
+    @com.fasterxml.jackson.annotation.JsonProperty("platform_chat")
+    val platformChat: CopilotOrganizationDetailsPlatformChatEnum? = null,
+    /** The organization policy for allowing or disallowing Copilot CLI. */
     val cli: CopilotOrganizationDetailsCliEnum? = null,
-    /**
-     * The Copilot plan of the organization, or the parent enterprise, when applicable.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("plan_type") val planType: CopilotOrganizationDetailsPlanTypeEnum? = null
+    /** The Copilot plan of the organization, or the parent enterprise, when applicable. */
+    @com.fasterxml.jackson.annotation.JsonProperty("plan_type")
+    val planType: CopilotOrganizationDetailsPlanTypeEnum? = null,
 ) {
     @field:com.fasterxml.jackson.annotation.JsonAnySetter
     @get:com.fasterxml.jackson.annotation.JsonAnyGetter
     val additionalProperties: MutableMap<String, Any?> = linkedMapOf()
 }
 
-/**
- * The breakdown of Copilot Business seats for the organization.
- */
+/** The breakdown of Copilot Business seats for the organization. */
 data class CopilotOrganizationSeatBreakdown(
     /**
      * The total number of seats being billed for the organization as of the current billing cycle.
      */
     val total: Long? = null,
-    /**
-     * Seats added during the current billing cycle.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("added_this_cycle") val addedThisCycle: Long? = null,
+    /** Seats added during the current billing cycle. */
+    @com.fasterxml.jackson.annotation.JsonProperty("added_this_cycle")
+    val addedThisCycle: Long? = null,
     /**
      * The number of seats that are pending cancellation at the end of the current billing cycle.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pending_cancellation") val pendingCancellation: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pending_cancellation")
+    val pendingCancellation: Long? = null,
     /**
-     * The number of users who have been invited to receive a Copilot seat through this organization.
+     * The number of users who have been invited to receive a Copilot seat through this
+     * organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pending_invitation") val pendingInvitation: Long? = null,
-    /**
-     * The number of seats that have used Copilot during the current billing cycle.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("active_this_cycle") val activeThisCycle: Long? = null,
-    /**
-     * The number of seats that have not used Copilot during the current billing cycle.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("inactive_this_cycle") val inactiveThisCycle: Long? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("pending_invitation")
+    val pendingInvitation: Long? = null,
+    /** The number of seats that have used Copilot during the current billing cycle. */
+    @com.fasterxml.jackson.annotation.JsonProperty("active_this_cycle")
+    val activeThisCycle: Long? = null,
+    /** The number of seats that have not used Copilot during the current billing cycle. */
+    @com.fasterxml.jackson.annotation.JsonProperty("inactive_this_cycle")
+    val inactiveThisCycle: Long? = null,
 )
 
-/**
- * Information about a Copilot Business seat assignment for a user, team, or organization.
- */
+/** Information about a Copilot Business seat assignment for a user, team, or organization. */
 data class CopilotSeatDetails(
     /**
      * Timestamp of when the assignee was last granted access to GitHub Copilot, in ISO 8601 format.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val assignee: NullableSimpleUser? = null,
-    /**
-     * A GitHub organization.
-     */
+    /** A GitHub organization. */
     val organization: NullableOrganizationSimple? = null,
+    /** The team through which the assignee is granted access to GitHub Copilot, if applicable. */
+    @com.fasterxml.jackson.annotation.JsonProperty("assigning_team")
+    val assigningTeam: CopilotSeatDetailsAssigningTeam? = null,
     /**
-     * The team through which the assignee is granted access to GitHub Copilot, if applicable.
+     * The pending cancellation date for the seat, in `YYYY-MM-DD` format. This will be null unless
+     * the assignee's Copilot access has been canceled during the current billing cycle. If the seat
+     * has been cancelled, this corresponds to the start of the organization's next billing cycle.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("assigning_team") val assigningTeam: CopilotSeatDetailsAssigningTeam? = null,
-    /**
-     * The pending cancellation date for the seat, in `YYYY-MM-DD` format. This will be null unless the assignee's Copilot access has been canceled during the current billing cycle. If the seat has been cancelled, this corresponds to the start of the organization's next billing cycle.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pending_cancellation_date") val pendingCancellationDate: LocalDate? = null,
-    /**
-     * Timestamp of user's last GitHub Copilot activity, in ISO 8601 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_activity_at") val lastActivityAt: OffsetDateTime? = null,
-    /**
-     * Last editor that was used by the user for a GitHub Copilot completion.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_activity_editor") val lastActivityEditor: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pending_cancellation_date")
+    val pendingCancellationDate: LocalDate? = null,
+    /** Timestamp of user's last GitHub Copilot activity, in ISO 8601 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_activity_at")
+    val lastActivityAt: OffsetDateTime? = null,
+    /** Last editor that was used by the user for a GitHub Copilot completion. */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_activity_editor")
+    val lastActivityEditor: String? = null,
     /**
      * Timestamp of the last time the user authenticated with GitHub Copilot, in ISO 8601 format.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_authenticated_at") val lastAuthenticatedAt: OffsetDateTime? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_authenticated_at")
+    val lastAuthenticatedAt: OffsetDateTime? = null,
     /**
-     * **Closing down notice:** This field is no longer relevant and is closing down. Use the `created_at` field to determine when the assignee was last granted access to GitHub Copilot. Timestamp of when the assignee's GitHub Copilot access was last updated, in ISO 8601 format.
+     * **Closing down notice:** This field is no longer relevant and is closing down. Use the
+     * `created_at` field to determine when the assignee was last granted access to GitHub Copilot.
+     * Timestamp of when the assignee's GitHub Copilot access was last updated, in ISO 8601 format.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
-    /**
-     * The Copilot plan of the organization, or the parent enterprise, when applicable.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("plan_type") val planType: CopilotSeatDetailsPlanTypeEnum? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: OffsetDateTime? = null,
+    /** The Copilot plan of the organization, or the parent enterprise, when applicable. */
+    @com.fasterxml.jackson.annotation.JsonProperty("plan_type")
+    val planType: CopilotSeatDetailsPlanTypeEnum? = null,
 )
 
-/**
- * The team through which the assignee is granted access to GitHub Copilot, if applicable.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+/** The team through which the assignee is granted access to GitHub Copilot, if applicable. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = Team::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = EnterpriseTeam::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = EnterpriseTeam::class),
 )
 sealed interface CopilotSeatDetailsAssigningTeam
 
 /**
- * Links to download the Copilot usage metrics report for an enterprise/organization for a specific day.
+ * Links to download the Copilot usage metrics report for an enterprise/organization for a specific
+ * day.
  */
 data class CopilotUsageMetrics1DayReport(
     /**
-     * The URLs to download the Copilot usage metrics report for the enterprise/organization for the specified day.
+     * The URLs to download the Copilot usage metrics report for the enterprise/organization for the
+     * specified day.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_links") val downloadLinks: List<String>,
-    /**
-     * The day of the report in `YYYY-MM-DD` format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("report_day") val reportDay: LocalDate
+    @com.fasterxml.jackson.annotation.JsonProperty("download_links")
+    val downloadLinks: List<String>,
+    /** The day of the report in `YYYY-MM-DD` format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("report_day") val reportDay: LocalDate,
 )
 
-/**
- * Links to download the latest Copilot usage metrics report for an enterprise/organization.
- */
+/** Links to download the latest Copilot usage metrics report for an enterprise/organization. */
 data class CopilotUsageMetrics28DayReport(
     /**
      * The URLs to download the latest Copilot usage metrics report for the enterprise/organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_links") val downloadLinks: List<String>,
-    /**
-     * The start date of the report period in `YYYY-MM-DD` format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("report_start_day") val reportStartDay: LocalDate,
-    /**
-     * The end date of the report period in `YYYY-MM-DD` format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("report_end_day") val reportEndDay: LocalDate
+    @com.fasterxml.jackson.annotation.JsonProperty("download_links")
+    val downloadLinks: List<String>,
+    /** The start date of the report period in `YYYY-MM-DD` format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("report_start_day")
+    val reportStartDay: LocalDate,
+    /** The end date of the report period in `YYYY-MM-DD` format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("report_end_day") val reportEndDay: LocalDate,
 )
 
-/**
- * Group of enterprise owners and/or members
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Group of enterprise owners and/or members */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class EnterpriseTeam(
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `slug` wire field.
-     */
+    /** Required `string` value serialized in the `slug` wire field. */
     val slug: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `group_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("group_id", required = true) val groupId: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `string` value serialized in the `group_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("group_id", required = true)
+    val groupId: String?,
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `string` value serialized in the `members_url` wire field.
-     */
+    /** Required `string` value serialized in the `members_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
+    /** Optional `string` value serialized in the `description` wire field. */
     val description: String? = null,
-    /**
-     * Retired: this field will not be returned with GHEC enterprise teams.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sync_to_organizations") val syncToOrganizations: String? = null,
-    /**
-     * Optional `string` value serialized in the `organization_selection_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_selection_type") val organizationSelectionType: String? = null,
-    /**
-     * Retired: this field will not be returned with GHEC enterprise teams.
-     */
+    /** Retired: this field will not be returned with GHEC enterprise teams. */
+    @com.fasterxml.jackson.annotation.JsonProperty("sync_to_organizations")
+    val syncToOrganizations: String? = null,
+    /** Optional `string` value serialized in the `organization_selection_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_selection_type")
+    val organizationSelectionType: String? = null,
+    /** Retired: this field will not be returned with GHEC enterprise teams. */
     @com.fasterxml.jackson.annotation.JsonProperty("group_name") val groupName: String? = null,
-    /**
-     * Whether team members will receive notifications when the team is mentioned.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("notification_setting") val notificationSetting: EnterpriseTeamNotificationSettingEnum? = null
+    /** Whether team members will receive notifications when the team is mentioned. */
+    @com.fasterxml.jackson.annotation.JsonProperty("notification_setting")
+    val notificationSetting: EnterpriseTeamNotificationSettingEnum? = null,
 ) : CopilotSeatDetailsAssigningTeam
 
-/**
- * A GitHub organization.
- */
+/** A GitHub organization. */
 data class NullableOrganizationSimple(
-    /**
-     * Required `string` value serialized in the `login` wire field.
-     */
+    /** Required `string` value serialized in the `login` wire field. */
     val login: String,
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `uri`-formatted value serialized in the `repos_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `repos_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `events_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `events_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String,
-    /**
-     * Required `string` value serialized in the `hooks_url` wire field.
-     */
+    /** Required `string` value serialized in the `hooks_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String,
-    /**
-     * Required `string` value serialized in the `issues_url` wire field.
-     */
+    /** Required `string` value serialized in the `issues_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("issues_url") val issuesUrl: String,
-    /**
-     * Required `string` value serialized in the `members_url` wire field.
-     */
+    /** Required `string` value serialized in the `members_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /**
-     * Required `string` value serialized in the `public_members_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("public_members_url") val publicMembersUrl: String,
-    /**
-     * Required `string` value serialized in the `avatar_url` wire field.
-     */
+    /** Required `string` value serialized in the `public_members_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("public_members_url")
+    val publicMembersUrl: String,
+    /** Required `string` value serialized in the `avatar_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?
+    /** Required `string` value serialized in the `description` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
 )

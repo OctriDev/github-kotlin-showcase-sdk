@@ -3,78 +3,42 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Commit Activity
- */
+/** Commit Activity */
 data class CommitActivity(
-    /**
-     * Required array value serialized in the `days` wire field.
-     */
+    /** Required array value serialized in the `days` wire field. */
     val days: List<Long>,
-    /**
-     * Required `integer` value serialized in the `total` wire field.
-     */
+    /** Required `integer` value serialized in the `total` wire field. */
     val total: Long,
-    /**
-     * Required `integer` value serialized in the `week` wire field.
-     */
-    val week: Long
+    /** Required `integer` value serialized in the `week` wire field. */
+    val week: Long,
 )
 
-/**
- * Commit Comparison
- */
+/** Commit Comparison */
 data class CommitComparison(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `permalink_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `permalink_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("permalink_url") val permalinkUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `diff_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `diff_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("diff_url") val diffUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `patch_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `patch_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("patch_url") val patchUrl: String,
-    /**
-     * Commit
-     */
+    /** Commit */
     @com.fasterxml.jackson.annotation.JsonProperty("base_commit") val baseCommit: Commit,
-    /**
-     * Commit
-     */
+    /** Commit */
     @com.fasterxml.jackson.annotation.JsonProperty("merge_base_commit") val mergeBaseCommit: Commit,
-    /**
-     * Required enumerated value serialized in the `status` wire field.
-     */
+    /** Required enumerated value serialized in the `status` wire field. */
     val status: CommitComparisonStatusEnum,
-    /**
-     * Required `integer` value serialized in the `ahead_by` wire field.
-     */
+    /** Required `integer` value serialized in the `ahead_by` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("ahead_by") val aheadBy: Long,
-    /**
-     * Required `integer` value serialized in the `behind_by` wire field.
-     */
+    /** Required `integer` value serialized in the `behind_by` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("behind_by") val behindBy: Long,
-    /**
-     * Required `integer` value serialized in the `total_commits` wire field.
-     */
+    /** Required `integer` value serialized in the `total_commits` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_commits") val totalCommits: Long,
-    /**
-     * Required array value serialized in the `commits` wire field.
-     */
+    /** Required array value serialized in the `commits` wire field. */
     val commits: List<Commit>,
-    /**
-     * Optional array value serialized in the `files` wire field.
-     */
-    val files: List<DiffEntry>? = null
+    /** Optional array value serialized in the `files` wire field. */
+    val files: List<DiffEntry>? = null,
 )

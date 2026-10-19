@@ -20,384 +20,947 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object ActionsListLabelsForSelfHostedRunnerForOrgOperation {
     /**
-     * Lists all labels for a self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all labels for a self-hosted runner configured in an organization. Authenticated users
+     * must have admin access to the organization to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
+     * repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerId Unique identifier of the self-hosted runner.
      */
-    fun actionsListLabelsForSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, options: RequestOptions? = null): ActionsRunnerLabels {
-        return SdkClient.request<ActionsRunnerLabels>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels", config = clientConfig, operationId = "actionsListLabelsForSelfHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun actionsListLabelsForSelfHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerId: Long,
+        options: RequestOptions? = null,
+    ): ActionsRunnerLabels {
+        return SdkClient.request<ActionsRunnerLabels>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels",
+                    config = clientConfig,
+                    operationId = "actionsListLabelsForSelfHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsAddCustomLabelsToSelfHostedRunnerForOrgOperation {
     /**
-     * Adds custom labels to a self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Adds custom labels to a self-hosted runner configured in an organization. Authenticated users
+     * must have admin access to the organization to use this endpoint. OAuth tokens and personal
+     * access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerId Unique identifier of the self-hosted runner.
      * @param labels The names of the custom labels to add to the runner.
      */
-    fun actionsAddCustomLabelsToSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, labels: List<String>, options: RequestOptions? = null): ActionsRunnerLabels {
+    fun actionsAddCustomLabelsToSelfHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerId: Long,
+        labels: List<String>,
+        options: RequestOptions? = null,
+    ): ActionsRunnerLabels {
         Validation.validateItems("labels", labels, Validation.LengthOpts(min = 1, max = 100))
 
-        return SdkClient.request<ActionsRunnerLabels>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels", config = clientConfig, body = SdkClient.bodyMap("labels" to (labels)), operationId = "actionsAddCustomLabelsToSelfHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
+        return SdkClient.request<ActionsRunnerLabels>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("labels" to (labels)),
+                    operationId = "actionsAddCustomLabelsToSelfHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationErrorSimple::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetCustomLabelsForSelfHostedRunnerForOrgOperation {
     /**
-     * Remove all previous custom labels and set the new custom labels for a specific self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Remove all previous custom labels and set the new custom labels for a specific self-hosted
+     * runner configured in an organization. Authenticated users must have admin access to the
+     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
+     * also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerId Unique identifier of the self-hosted runner.
-     * @param labels The names of the custom labels to set for the runner. You can
-     *   pass an empty array to remove all custom labels.
+     * @param labels The names of the custom labels to set for the runner. You can pass an empty
+     *   array to remove all custom labels.
      */
-    fun actionsSetCustomLabelsForSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, labels: List<String>, options: RequestOptions? = null): ActionsRunnerLabels {
+    fun actionsSetCustomLabelsForSelfHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerId: Long,
+        labels: List<String>,
+        options: RequestOptions? = null,
+    ): ActionsRunnerLabels {
         Validation.validateItems("labels", labels, Validation.LengthOpts(min = 0, max = 100))
 
-        return SdkClient.request<ActionsRunnerLabels>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels", config = clientConfig, body = SdkClient.bodyMap("labels" to (labels)), operationId = "actionsSetCustomLabelsForSelfHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
+        return SdkClient.request<ActionsRunnerLabels>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("labels" to (labels)),
+                    operationId = "actionsSetCustomLabelsForSelfHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationErrorSimple::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrgOperation {
     /**
-     * Remove all custom labels from a self-hosted runner configured in an organization. Returns the remaining read-only labels from the runner. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Remove all custom labels from a self-hosted runner configured in an organization. Returns the
+     * remaining read-only labels from the runner. Authenticated users must have admin access to the
+     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
+     * also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerId Unique identifier of the self-hosted runner.
      */
-    fun actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, options: RequestOptions? = null): ActionsRunnerLabelsReadonly {
-        return SdkClient.request<ActionsRunnerLabelsReadonly>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels", config = clientConfig, operationId = "actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerId: Long,
+        options: RequestOptions? = null,
+    ): ActionsRunnerLabelsReadonly {
+        return SdkClient.request<ActionsRunnerLabelsReadonly>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels",
+                    config = clientConfig,
+                    operationId = "actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsRemoveCustomLabelFromSelfHostedRunnerForOrgOperation {
     /**
-     * Remove a custom label from a self-hosted runner configured in an organization. Returns the remaining labels from the runner. This endpoint returns a `404 Not Found` status if the custom label is not present on the runner. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Remove a custom label from a self-hosted runner configured in an organization. Returns the
+     * remaining labels from the runner. This endpoint returns a `404 Not Found` status if the
+     * custom label is not present on the runner. Authenticated users must have admin access to the
+     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
+     * also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerId Unique identifier of the self-hosted runner.
      * @param name The name of a self-hosted runner's custom label.
      */
-    fun actionsRemoveCustomLabelFromSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, name: String, options: RequestOptions? = null): ActionsRunnerLabels {
-        return SdkClient.request<ActionsRunnerLabels>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels/${SdkClient.encodePathSegment(name)}", config = clientConfig, operationId = "actionsRemoveCustomLabelFromSelfHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
+    fun actionsRemoveCustomLabelFromSelfHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerId: Long,
+        name: String,
+        options: RequestOptions? = null,
+    ): ActionsRunnerLabels {
+        return SdkClient.request<ActionsRunnerLabels>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels/${SdkClient.encodePathSegment(name)}",
+                    config = clientConfig,
+                    operationId = "actionsRemoveCustomLabelFromSelfHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationErrorSimple::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsListOrgSecretsOperation {
     /**
-     * Lists all secrets available in an organization without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all secrets available in an organization without revealing their encrypted values.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListOrgSecrets(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListOrgSecretsResponse {
-        return SdkClient.request<Actions.ActionsListOrgSecretsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListOrgSecrets", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListOrgSecrets(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListOrgSecretsResponse {
+        return SdkClient.request<Actions.ActionsListOrgSecretsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsListOrgSecrets",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetOrgPublicKeyOperation {
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. The authenticated user must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. The authenticated user must have collaborator access to a
+     * repository to create, update, or read secrets. OAuth tokens and personal access tokens
+     * (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetOrgPublicKey(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsPublicKey {
-        return SdkClient.request<ActionsPublicKey>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/public-key", config = clientConfig, operationId = "actionsGetOrgPublicKey", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetOrgPublicKey(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): ActionsPublicKey {
+        return SdkClient.request<ActionsPublicKey>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/public-key",
+                    config = clientConfig,
+                    operationId = "actionsGetOrgPublicKey",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetOrgSecretOperation {
     /**
-     * Gets a single organization secret without revealing its encrypted value. The authenticated user must have collaborator access to a repository to create, update, or read secrets OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single organization secret without revealing its encrypted value. The authenticated
+     * user must have collaborator access to a repository to create, update, or read secrets OAuth
+     * tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint.
+     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsGetOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): OrganizationActionsSecret {
-        return SdkClient.request<OrganizationActionsSecret>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "actionsGetOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): OrganizationActionsSecret {
+        return SdkClient.request<OrganizationActionsSecret>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}",
+                    config = clientConfig,
+                    operationId = "actionsGetOrgSecret",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsCreateOrUpdateOrgSecretOperation {
     /**
-     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use…
+     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using
+     * LibSodium. For more information, see "Encrypting secrets for the REST API." Authenticated
+     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint.
+     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
+     * `repo` scope to use…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param encryptedValue Value for your secret, encrypted with LibSodium using
-     *   the public key retrieved from the Get an organization public key endpoint.
+     * @param encryptedValue Value for your secret, encrypted with LibSodium using the public key
+     *   retrieved from the Get an organization public key endpoint.
      * @param keyId ID of the key you used to encrypt the secret.
-     * @param visibility Which type of organization repositories have access to the
-     *   organization secret. `selected` means only the repositories specified by
-     *   `selected_repository_ids` can access the secret.
-     * @param selectedRepositoryIds An array of repository ids that can access the
-     *   organization secret. You can only provide a list of repository ids when the
-     *   `visibility` is set to `selected`. You can manage the list of selected
-     *   repositories using the List selected repositories for an organization secret,
-     *   Set selected repositories for an organization secret, and Remove selected
-     *   repository from an organization secret endpoints.
+     * @param visibility Which type of organization repositories have access to the organization
+     *   secret. `selected` means only the repositories specified by `selected_repository_ids` can
+     *   access the secret.
+     * @param selectedRepositoryIds An array of repository ids that can access the organization
+     *   secret. You can only provide a list of repository ids when the `visibility` is set to
+     *   `selected`. You can manage the list of selected repositories using the List selected
+     *   repositories for an organization secret, Set selected repositories for an organization
+     *   secret, and Remove selected repository from an organization secret endpoints.
      */
-    fun actionsCreateOrUpdateOrgSecret(clientConfig: ClientConfig, request: Actions.ActionsCreateOrUpdateOrgSecretRequest, options: RequestOptions? = null): EmptyObject {
+    fun actionsCreateOrUpdateOrgSecret(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsCreateOrUpdateOrgSecretRequest,
+        options: RequestOptions? = null,
+    ): EmptyObject {
         validateActionsCreateOrUpdateOrgSecretRequest(request)
 
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/secrets/${SdkClient.encodePathSegment(request.secretName)}", config = clientConfig, body = SdkClient.bodyMap("encrypted_value" to (request.encryptedValue), "key_id" to (request.keyId), "visibility" to (request.visibility), "selected_repository_ids" to
-    (SdkClient.omitIfNull(request.selectedRepositoryIds))), operationId = "actionsCreateOrUpdateOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<EmptyObject>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/secrets/${SdkClient.encodePathSegment(request.secretName)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "encrypted_value" to (request.encryptedValue),
+                            "key_id" to (request.keyId),
+                            "visibility" to (request.visibility),
+                            "selected_repository_ids" to
+                                (SdkClient.omitIfNull(request.selectedRepositoryIds)),
+                        ),
+                    operationId = "actionsCreateOrUpdateOrgSecret",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateActionsCreateOrUpdateOrgSecretRequest(request: Actions.ActionsCreateOrUpdateOrgSecretRequest) {
-        Validation.validatePattern("encrypted_value", request.encryptedValue, "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$")
+    private fun validateActionsCreateOrUpdateOrgSecretRequest(
+        request: Actions.ActionsCreateOrUpdateOrgSecretRequest
+    ) {
+        Validation.validatePattern(
+            "encrypted_value",
+            request.encryptedValue,
+            "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$",
+        )
     }
 }
 
 internal object ActionsDeleteOrgSecretOperation {
     /**
-     * Deletes a secret in an organization using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in an organization using the secret name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
+     * personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsDeleteOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "actionsDeleteOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsDeleteOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}",
+                config = clientConfig,
+                operationId = "actionsDeleteOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListSelectedReposForOrgSecretOperation {
     /**
-     * Lists all repositories that have been selected when the `visibility` for repository access to a secret is set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all repositories that have been selected when the `visibility` for repository access to
+     * a secret is set to `selected`. Authenticated users must have collaborator access to a
+     * repository to create, update, or read secrets. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Actions.ActionsListSelectedReposForOrgSecretResponse {
-        return SdkClient.request<Actions.ActionsListSelectedReposForOrgSecretResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "actionsListSelectedReposForOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListSelectedReposForOrgSecretResponse {
+        return SdkClient.request<Actions.ActionsListSelectedReposForOrgSecretResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "actionsListSelectedReposForOrgSecret",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetSelectedReposForOrgSecretOperation {
     /**
-     * Replaces all repositories for an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you Create or update an organization secret. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Replaces all repositories for an organization secret when the `visibility` for repository
+     * access is set to `selected`. The visibility is set when you Create or update an organization
+     * secret. Authenticated users must have collaborator access to a repository to create, update,
+     * or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org`
+     * scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param selectedRepositoryIds An array of repository ids that can access the
-     *   organization secret. You can only provide a list of repository ids when the
-     *   `visibility` is set to `selected`. You can add and remove individual
-     *   repositories using the Add selected repository to an organization secret and
-     *   Remove selected repository from an organization secret endpoints.
+     * @param selectedRepositoryIds An array of repository ids that can access the organization
+     *   secret. You can only provide a list of repository ids when the `visibility` is set to
+     *   `selected`. You can add and remove individual repositories using the Add selected
+     *   repository to an organization secret and Remove selected repository from an organization
+     *   secret endpoints.
      */
-    fun actionsSetSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories", config = clientConfig, body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)), operationId = "actionsSetSelectedReposForOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsSetSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories",
+                config = clientConfig,
+                body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)),
+                operationId = "actionsSetSelectedReposForOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsAddSelectedRepoToOrgSecretOperation {
     /**
-     * Adds a repository to an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth tokens and personal access tokens (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
+     * Adds a repository to an organization secret's selected repository list. Use this operation
+     * when the secret's `visibility` is set to `selected`; the authenticated user must have
+     * collaborator access to the repository. OAuth tokens and personal access tokens (classic) need
+     * the `admin:org` scope, plus the `repo` scope for private repositories.
      *
-     * Adds a repository to an organization secret when the `visibility` for repository access is set to `selected`. For more information about setting the visibility, see Create or update an organization secret. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens…
+     * Adds a repository to an organization secret when the `visibility` for repository access is
+     * set to `selected`. For more information about setting the visibility, see Create or update an
+     * organization secret. Authenticated users must have collaborator access to a repository to
+     * create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and
+     * personal access tokens…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsAddSelectedRepoToOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "actionsAddSelectedRepoToOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsAddSelectedRepoToOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "actionsAddSelectedRepoToOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsRemoveSelectedRepoFromOrgSecretOperation {
     /**
-     * Removes a repository from an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
+     * Removes a repository from an organization secret's selected repository list. Use this
+     * operation when the secret's `visibility` is set to `selected`; the authenticated user must
+     * have collaborator access to the repository. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
      *
-     * Removes a repository from an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you Create or update an organization secret. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Removes a repository from an organization secret when the `visibility` for repository access
+     * is set to `selected`. The visibility is set when you Create or update an organization secret.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsRemoveSelectedRepoFromOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "actionsRemoveSelectedRepoFromOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsRemoveSelectedRepoFromOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "actionsRemoveSelectedRepoFromOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListOrgVariablesOperation {
     /**
-     * Lists all organization variables. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all organization variables. Authenticated users must have collaborator access to a
+     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 30). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 30). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListOrgVariables(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListOrgVariablesResponse {
-        return SdkClient.request<Actions.ActionsListOrgVariablesResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListOrgVariables", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListOrgVariables(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListOrgVariablesResponse {
+        return SdkClient.request<Actions.ActionsListOrgVariablesResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsListOrgVariables",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsCreateOrgVariableOperation {
     /**
-     * Creates an organization variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates an organization variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use
+     * this endpoint. If the repository is private, OAuth tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the variable.
      * @param value The value of the variable.
-     * @param visibility The type of repositories in the organization that can access
-     *   the variable. `selected` means only the repositories specified by
-     *   `selected_repository_ids` can access the variable.
-     * @param selectedRepositoryIds An array of repository ids that can access the
-     *   organization variable. You can only provide a list of repository ids when the
-     *   `visibility` is set to `selected`.
+     * @param visibility The type of repositories in the organization that can access the variable.
+     *   `selected` means only the repositories specified by `selected_repository_ids` can access
+     *   the variable.
+     * @param selectedRepositoryIds An array of repository ids that can access the organization
+     *   variable. You can only provide a list of repository ids when the `visibility` is set to
+     *   `selected`.
      */
-    fun actionsCreateOrgVariable(clientConfig: ClientConfig, org: String, name: String, value: String, visibility: ActionsCreateOrgVariableVisibilityEnum, selectedRepositoryIds: List<Long>? = null, options: RequestOptions? = null): EmptyObject {
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables", config = clientConfig, body = SdkClient.bodyMap("name" to (name), "value" to (value), "visibility" to (visibility), "selected_repository_ids" to
-    (SdkClient.omitIfNull(selectedRepositoryIds))), operationId = "actionsCreateOrgVariable", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsCreateOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        value: String,
+        visibility: ActionsCreateOrgVariableVisibilityEnum,
+        selectedRepositoryIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return SdkClient.request<EmptyObject>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (name),
+                            "value" to (value),
+                            "visibility" to (visibility),
+                            "selected_repository_ids" to
+                                (SdkClient.omitIfNull(selectedRepositoryIds)),
+                        ),
+                    operationId = "actionsCreateOrgVariable",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetOrgVariableOperation {
     /**
-     * Gets a specific variable in an organization. The authenticated user must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific variable in an organization. The authenticated user must have collaborator
+     * access to a repository to create, update, or read variables. OAuth tokens and personal access
+     * tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is
+     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the variable.
      */
-    fun actionsGetOrgVariable(clientConfig: ClientConfig, org: String, name: String, options: RequestOptions? = null): OrganizationActionsVariable {
-        return SdkClient.request<OrganizationActionsVariable>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}", config = clientConfig, operationId = "actionsGetOrgVariable", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): OrganizationActionsVariable {
+        return SdkClient.request<OrganizationActionsVariable>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}",
+                    config = clientConfig,
+                    operationId = "actionsGetOrgVariable",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsUpdateOrgVariableOperation {
     /**
-     * Updates an organization variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Updates an organization variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
+     * to use this endpoint. If the repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the variable.
      * @param name2 The name of the variable.
      * @param value The value of the variable.
-     * @param visibility The type of repositories in the organization that can access
-     *   the variable. `selected` means only the repositories specified by
-     *   `selected_repository_ids` can access the variable.
-     * @param selectedRepositoryIds An array of repository ids that can access the
-     *   organization variable. You can only provide a list of repository ids when the
-     *   `visibility` is set to `selected`.
+     * @param visibility The type of repositories in the organization that can access the variable.
+     *   `selected` means only the repositories specified by `selected_repository_ids` can access
+     *   the variable.
+     * @param selectedRepositoryIds An array of repository ids that can access the organization
+     *   variable. You can only provide a list of repository ids when the `visibility` is set to
+     *   `selected`.
      */
-    fun actionsUpdateOrgVariable(clientConfig: ClientConfig, request: Actions.ActionsUpdateOrgVariableRequest, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/variables/${SdkClient.encodePathSegment(request.name)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name2)), "value" to (SdkClient.omitIfNull(request.value)), "visibility" to (SdkClient.omitIfNull(request.visibility)), "selected_repository_ids" to
-    (SdkClient.omitIfNull(request.selectedRepositoryIds))), operationId = "actionsUpdateOrgVariable", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsUpdateOrgVariable(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsUpdateOrgVariableRequest,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PATCH",
+                "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/variables/${SdkClient.encodePathSegment(request.name)}",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "name" to (SdkClient.omitIfNull(request.name2)),
+                        "value" to (SdkClient.omitIfNull(request.value)),
+                        "visibility" to (SdkClient.omitIfNull(request.visibility)),
+                        "selected_repository_ids" to
+                            (SdkClient.omitIfNull(request.selectedRepositoryIds)),
+                    ),
+                operationId = "actionsUpdateOrgVariable",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsDeleteOrgVariableOperation {
     /**
-     * Deletes an organization variable using the variable name. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes an organization variable using the variable name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
+     * personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the variable.
      */
-    fun actionsDeleteOrgVariable(clientConfig: ClientConfig, org: String, name: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}", config = clientConfig, operationId = "actionsDeleteOrgVariable", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsDeleteOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}",
+                config = clientConfig,
+                operationId = "actionsDeleteOrgVariable",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListSelectedReposForOrgVariableOperation {
     /**
-     * Lists all repositories that can access an organization variable that is available to selected repositories. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all repositories that can access an organization variable that is available to selected
+     * repositories. Authenticated users must have collaborator access to a repository to create,
+     * update, or read variables. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
+     * also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the variable.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListSelectedReposForOrgVariable(clientConfig: ClientConfig, org: String, name: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Actions.ActionsListSelectedReposForOrgVariableResponse {
-        return SdkClient.request<Actions.ActionsListSelectedReposForOrgVariableResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}/repositories", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "actionsListSelectedReposForOrgVariable", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListSelectedReposForOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListSelectedReposForOrgVariableResponse {
+        return SdkClient.request<Actions.ActionsListSelectedReposForOrgVariableResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}/repositories",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "actionsListSelectedReposForOrgVariable",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetSelectedReposForOrgVariableOperation {
     /**
-     * Replaces all repositories for an organization variable that is available to selected repositories. Organization variables that are available to selected repositories have their `visibility` field set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also…
+     * Replaces all repositories for an organization variable that is available to selected
+     * repositories. Organization variables that are available to selected repositories have their
+     * `visibility` field set to `selected`. Authenticated users must have collaborator access to a
+     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the variable.
-     * @param selectedRepositoryIds The IDs of the repositories that can access the
-     *   organization variable.
+     * @param selectedRepositoryIds The IDs of the repositories that can access the organization
+     *   variable.
      */
-    fun actionsSetSelectedReposForOrgVariable(clientConfig: ClientConfig, org: String, name: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}/repositories", config = clientConfig, body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)), operationId = "actionsSetSelectedReposForOrgVariable", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsSetSelectedReposForOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}/repositories",
+                config = clientConfig,
+                body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)),
+                operationId = "actionsSetSelectedReposForOrgVariable",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsAddSelectedRepoToOrgVariableOperation {
     /**
-     * Adds a repository to an organization variable configured for selected repositories. Use `name` and `repository_id` to identify the variable and repository to include; the variable must have `visibility` set to `selected`. The authenticated user must have collaborator access to the repository, and the token must have the required organization scope.
+     * Adds a repository to an organization variable configured for selected repositories. Use
+     * `name` and `repository_id` to identify the variable and repository to include; the variable
+     * must have `visibility` set to `selected`. The authenticated user must have collaborator
+     * access to the repository, and the token must have the required organization scope.
      *
-     * Adds a repository to an organization variable that is available to selected repositories. Organization variables that are available to selected repositories have their `visibility` field set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens…
+     * Adds a repository to an organization variable that is available to selected repositories.
+     * Organization variables that are available to selected repositories have their `visibility`
+     * field set to `selected`. Authenticated users must have collaborator access to a repository to
+     * create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and
+     * personal access tokens…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the variable.
      */
-    fun actionsAddSelectedRepoToOrgVariable(clientConfig: ClientConfig, org: String, name: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "actionsAddSelectedRepoToOrgVariable", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsAddSelectedRepoToOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "actionsAddSelectedRepoToOrgVariable",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsRemoveSelectedRepoFromOrgVariableOperation {
     /**
-     * Removes a repository from an organization variable configured for selected repositories. Use `name` and `repository_id` to identify the variable and repository to remove; the variable must have `visibility` set to `selected`. The authenticated user must have collaborator access to the repository, and the token must have the required organization scope.
+     * Removes a repository from an organization variable configured for selected repositories. Use
+     * `name` and `repository_id` to identify the variable and repository to remove; the variable
+     * must have `visibility` set to `selected`. The authenticated user must have collaborator
+     * access to the repository, and the token must have the required organization scope.
      *
-     * Removes a repository from an organization variable that is available to selected repositories. Organization variables that are available to selected repositories have their `visibility` field set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also…
+     * Removes a repository from an organization variable that is available to selected
+     * repositories. Organization variables that are available to selected repositories have their
+     * `visibility` field set to `selected`. Authenticated users must have collaborator access to a
+     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the variable.
      */
-    fun actionsRemoveSelectedRepoFromOrgVariable(clientConfig: ClientConfig, org: String, name: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "actionsRemoveSelectedRepoFromOrgVariable", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsRemoveSelectedRepoFromOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/variables/${SdkClient.encodePathSegment(name)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "actionsRemoveSelectedRepoFromOrgVariable",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListArtifactsForRepoOperation {
     /**
-     * Lists all artifacts for a repository. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists all artifacts for a repository. Anyone with read access to the repository can use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param name The name field of an artifact. When specified, only artifacts with
-     *   this name will be returned.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param name The name field of an artifact. When specified, only artifacts with this name will
+     *   be returned.
      */
-    fun actionsListArtifactsForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, name: String? = null, options: RequestOptions? = null): Actions.ActionsListArtifactsForRepoResponse {
-        return SdkClient.request<Actions.ActionsListArtifactsForRepoResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "name" to SdkClient.queryValue(name, "form", true)), operationId = "actionsListArtifactsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListArtifactsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        name: String? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListArtifactsForRepoResponse {
+        return SdkClient.request<Actions.ActionsListArtifactsForRepoResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "name" to SdkClient.queryValue(name, "form", true),
+                        ),
+                    operationId = "actionsListArtifactsForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetArtifactOperation {
     /**
-     * Gets a specific artifact for a workflow run. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific artifact for a workflow run. Anyone with read access to the repository can
+     * use this endpoint. If the repository is private, OAuth tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param artifactId The unique identifier of the artifact.
      */
-    fun actionsGetArtifact(clientConfig: ClientConfig, owner: String, repo: String, artifactId: Long, options: RequestOptions? = null): Artifact {
-        return SdkClient.request<Artifact>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts/${SdkClient.encodePathSegment(artifactId)}", config = clientConfig, operationId = "actionsGetArtifact", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetArtifact(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        artifactId: Long,
+        options: RequestOptions? = null,
+    ): Artifact {
+        return SdkClient.request<Artifact>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts/${SdkClient.encodePathSegment(artifactId)}",
+                    config = clientConfig,
+                    operationId = "actionsGetArtifact",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

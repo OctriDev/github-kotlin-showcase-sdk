@@ -3,34 +3,25 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `CodeScanningSarifsReceipt` API schema.
- */
+/** Typed representation of the `CodeScanningSarifsReceipt` API schema. */
 data class CodeScanningSarifsReceipt(
-    /**
-     * An identifier for the upload.
-     */
+    /** An identifier for the upload. */
     val id: CodeScanningAnalysisSarifId? = null,
-    /**
-     * The REST API URL for checking the status of the upload.
-     */
-    val url: String? = null
+    /** The REST API URL for checking the status of the upload. */
+    val url: String? = null,
 )
 
-/**
- * Typed representation of the `CodeScanningSarifsStatus` API schema.
- */
+/** Typed representation of the `CodeScanningSarifsStatus` API schema. */
 data class CodeScanningSarifsStatus(
     /**
-     * `pending` files have not yet been processed, while `complete` means results from the SARIF have been stored. `failed` files have either not been processed at all, or could only be partially processed.
+     * `pending` files have not yet been processed, while `complete` means results from the SARIF
+     * have been stored. `failed` files have either not been processed at all, or could only be
+     * partially processed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("processing_status") val processingStatus: CodeScanningSarifsStatusProcessingStatusEnum? = null,
-    /**
-     * The REST API URL for getting the analyses associated with the upload.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("processing_status")
+    val processingStatus: CodeScanningSarifsStatusProcessingStatusEnum? = null,
+    /** The REST API URL for getting the analyses associated with the upload. */
     @com.fasterxml.jackson.annotation.JsonProperty("analyses_url") val analysesUrl: String? = null,
-    /**
-     * Any errors that ocurred during processing of the delivery.
-     */
-    val errors: List<String>? = null
+    /** Any errors that ocurred during processing of the delivery. */
+    val errors: List<String>? = null,
 )

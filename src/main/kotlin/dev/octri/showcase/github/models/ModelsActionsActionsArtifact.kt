@@ -3,26 +3,19 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `ActionsArtifactAndLogRetention` API schema.
- */
+/** Typed representation of the `ActionsArtifactAndLogRetention` API schema. */
 data class ActionsArtifactAndLogRetention(
-    /**
-     * The number of days to retain checks, workflow runs, commit statuses, artifacts, and logs
-     */
+    /** The number of days to retain checks, workflow runs, commit statuses, artifacts, and logs */
     val days: Long
 )
 
-/**
- * Typed representation of the `ActionsArtifactAndLogRetentionResponse` API schema.
- */
+/** Typed representation of the `ActionsArtifactAndLogRetentionResponse` API schema. */
 data class ActionsArtifactAndLogRetentionResponse(
     /**
      * The number of days checks, workflow runs, commit statuses, artifacts, and logs are retained
      */
     val days: Long,
-    /**
-     * The maximum number of days that can be configured
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("maximum_allowed_days") val maximumAllowedDays: Long
+    /** The maximum number of days that can be configured */
+    @com.fasterxml.jackson.annotation.JsonProperty("maximum_allowed_days")
+    val maximumAllowedDays: Long,
 )

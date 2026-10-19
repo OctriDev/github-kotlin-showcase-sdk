@@ -3,40 +3,36 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * An OIDC custom property inclusion for repository properties
- */
+/** An OIDC custom property inclusion for repository properties */
 data class OidcCustomPropertyInclusion(
-    /**
-     * The name of the custom property that is included in the OIDC token
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_property_name") val customPropertyName: String,
-    /**
-     * Whether the inclusion was defined at the organization or enterprise level
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("inclusion_source") val inclusionSource: OidcCustomPropertyInclusionInclusionSourceEnum
+    /** The name of the custom property that is included in the OIDC token */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_property_name")
+    val customPropertyName: String,
+    /** Whether the inclusion was defined at the organization or enterprise level */
+    @com.fasterxml.jackson.annotation.JsonProperty("inclusion_source")
+    val inclusionSource: OidcCustomPropertyInclusionInclusionSourceEnum,
 )
 
-/**
- * Input for creating an OIDC custom property inclusion
- */
+/** Input for creating an OIDC custom property inclusion */
 data class OidcCustomPropertyInclusionInput(
-    /**
-     * The name of the custom property to include in the OIDC token
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_property_name") val customPropertyName: String
+    /** The name of the custom property to include in the OIDC token */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_property_name")
+    val customPropertyName: String
 )
 
-/**
- * Actions OIDC Subject customization
- */
+/** Actions OIDC Subject customization */
 data class OidcCustomSub(
     /**
-     * Array of unique strings. Each claim key can only contain alphanumeric characters and underscores.
+     * Array of unique strings. Each claim key can only contain alphanumeric characters and
+     * underscores.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("include_claim_keys") val includeClaimKeys: List<String>,
+    @com.fasterxml.jackson.annotation.JsonProperty("include_claim_keys")
+    val includeClaimKeys: List<String>,
     /**
-     * Whether to opt in to the immutable OIDC subject claim format for the organization. When `true`, new OIDC tokens will use a stable, repository-ID-based `sub` claim instead of the name-based format.
+     * Whether to opt in to the immutable OIDC subject claim format for the organization. When
+     * `true`, new OIDC tokens will use a stable, repository-ID-based `sub` claim instead of the
+     * name-based format.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("use_immutable_subject") val useImmutableSubject: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("use_immutable_subject")
+    val useImmutableSubject: Boolean? = null,
 )

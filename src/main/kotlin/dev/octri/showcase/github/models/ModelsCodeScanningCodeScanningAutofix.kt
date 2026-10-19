@@ -5,50 +5,38 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `CodeScanningAutofix` API schema.
- */
+/** Typed representation of the `CodeScanningAutofix` API schema. */
 data class CodeScanningAutofix(
-    /**
-     * The status of an autofix.
-     */
+    /** The status of an autofix. */
     val status: CodeScanningAutofixStatus,
-    /**
-     * The description of an autofix.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: CodeScanningAutofixDescription?,
-    /**
-     * The start time of an autofix in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("started_at") val startedAt: CodeScanningAutofixStartedAt
+    /** The description of an autofix. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: CodeScanningAutofixDescription?,
+    /** The start time of an autofix in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("started_at")
+    val startedAt: CodeScanningAutofixStartedAt,
 )
 
-/**
- * Commit an autofix for a code scanning alert
- */
+/** Commit an autofix for a code scanning alert */
 data class CodeScanningAutofixCommits(
     /**
-     * The Git reference of target branch for the commit. Branch needs to already exist. For more information, see "Git References" in the Git documentation.
+     * The Git reference of target branch for the commit. Branch needs to already exist. For more
+     * information, see "Git References" in the Git documentation.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("target_ref") val targetRef: String? = null,
-    /**
-     * Commit message to be used.
-     */
-    val message: String? = null
+    /** Commit message to be used. */
+    val message: String? = null,
 )
 
-/**
- * Typed representation of the `CodeScanningAutofixCommitsResponse` API schema.
- */
+/** Typed representation of the `CodeScanningAutofixCommitsResponse` API schema. */
 data class CodeScanningAutofixCommitsResponse(
     /**
-     * The Git reference of target branch for the commit. For more information, see "Git References" in the Git documentation.
+     * The Git reference of target branch for the commit. For more information, see "Git References"
+     * in the Git documentation.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("target_ref") val targetRef: String? = null,
-    /**
-     * SHA of commit with autofix.
-     */
-    val sha: String? = null
+    /** SHA of commit with autofix. */
+    val sha: String? = null,
 )
 
 typealias CodeScanningAutofixDescription = String

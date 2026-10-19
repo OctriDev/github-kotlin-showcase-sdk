@@ -3,92 +3,54 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * The status of a commit.
- */
+/** The status of a commit. */
 data class Status(
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `avatar_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url", required = true) val avatarUrl: String?,
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `string` value serialized in the `avatar_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url", required = true)
+    val avatarUrl: String?,
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `state` wire field.
-     */
+    /** Required `string` value serialized in the `state` wire field. */
     val state: String,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * Required `string` value serialized in the `target_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("target_url", required = true) val targetUrl: String?,
-    /**
-     * Required `string` value serialized in the `context` wire field.
-     */
+    /** Required `string` value serialized in the `description` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** Required `string` value serialized in the `target_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("target_url", required = true)
+    val targetUrl: String?,
+    /** Required `string` value serialized in the `context` wire field. */
     val context: String,
-    /**
-     * Required `string` value serialized in the `created_at` wire field.
-     */
+    /** Required `string` value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /**
-     * Required `string` value serialized in the `updated_at` wire field.
-     */
+    /** Required `string` value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("creator", required = true) val creator: NullableSimpleUser?
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("creator", required = true)
+    val creator: NullableSimpleUser?,
 )
 
-/**
- * Required object value serialized in the `checks[]` wire field.
- */
+/** Required object value serialized in the `checks[]` wire field. */
 data class StatusCheckPolicyChecksItem(
-    /**
-     * Required `string` value serialized in the `context` wire field.
-     */
+    /** Required `string` value serialized in the `context` wire field. */
     val context: String,
-    /**
-     * Required `integer` value serialized in the `app_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("app_id", required = true) val appId: Long?
+    /** Required `integer` value serialized in the `app_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("app_id", required = true) val appId: Long?,
 )
 
-/**
- * Status Check Policy
- */
+/** Status Check Policy */
 data class StatusCheckPolicy(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `boolean` value serialized in the `strict` wire field.
-     */
+    /** Required `boolean` value serialized in the `strict` wire field. */
     val strict: Boolean,
-    /**
-     * Required array value serialized in the `contexts` wire field.
-     */
+    /** Required array value serialized in the `contexts` wire field. */
     val contexts: List<String>,
-    /**
-     * Required array value serialized in the `checks` wire field.
-     */
+    /** Required array value serialized in the `checks` wire field. */
     val checks: List<StatusCheckPolicyChecksItem>,
-    /**
-     * Required `uri`-formatted value serialized in the `contexts_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("contexts_url") val contextsUrl: String
+    /** Required `uri`-formatted value serialized in the `contexts_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("contexts_url") val contextsUrl: String,
 )

@@ -5,224 +5,141 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Required object value serialized in the `tree` wire field.
- */
+/** Required object value serialized in the `tree` wire field. */
 data class CommitCommitTree(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Required object value serialized in the `commit` wire field.
- */
+/** Required object value serialized in the `commit` wire field. */
 data class CommitCommit(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Metaproperties for Git author/committer information.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author", required = true) val author: NullableGitUser?,
-    /**
-     * Metaproperties for Git author/committer information.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("committer", required = true) val committer: NullableGitUser?,
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Metaproperties for Git author/committer information. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author", required = true)
+    val author: NullableGitUser?,
+    /** Metaproperties for Git author/committer information. */
+    @com.fasterxml.jackson.annotation.JsonProperty("committer", required = true)
+    val committer: NullableGitUser?,
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `integer` value serialized in the `comment_count` wire field.
-     */
+    /** Required `integer` value serialized in the `comment_count` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("comment_count") val commentCount: Long,
-    /**
-     * Required object value serialized in the `tree` wire field.
-     */
+    /** Required object value serialized in the `tree` wire field. */
     val tree: CommitCommitTree,
-    /**
-     * Optional object value serialized in the `verification` wire field.
-     */
-    val verification: Verification? = null
+    /** Optional object value serialized in the `verification` wire field. */
+    val verification: Verification? = null,
 )
 
-/**
- * Required object value serialized in the `parents[]` wire field.
- */
+/** Required object value serialized in the `parents[]` wire field. */
 data class CommitParentsItem(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Optional `uri`-formatted value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
+    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
 )
 
-/**
- * Optional object value serialized in the `stats` wire field.
- */
+/** Optional object value serialized in the `stats` wire field. */
 data class CommitStats(
-    /**
-     * Optional `integer` value serialized in the `additions` wire field.
-     */
+    /** Optional `integer` value serialized in the `additions` wire field. */
     val additions: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `deletions` wire field.
-     */
+    /** Optional `integer` value serialized in the `deletions` wire field. */
     val deletions: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `total` wire field.
-     */
-    val total: Long? = null
+    /** Optional `integer` value serialized in the `total` wire field. */
+    val total: Long? = null,
 )
 
-/**
- * Commit
- */
+/** Commit */
 data class Commit(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `comments_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `comments_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
-    /**
-     * Required object value serialized in the `commit` wire field.
-     */
+    /** Required object value serialized in the `commit` wire field. */
     val commit: CommitCommit,
-    /**
-     * Required API value serialized in the `author` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author", required = true) val author: CommitAuthor?,
-    /**
-     * Required API value serialized in the `committer` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("committer", required = true) val committer: CommitCommitter?,
-    /**
-     * Required array value serialized in the `parents` wire field.
-     */
+    /** Required API value serialized in the `author` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author", required = true)
+    val author: CommitAuthor?,
+    /** Required API value serialized in the `committer` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("committer", required = true)
+    val committer: CommitCommitter?,
+    /** Required array value serialized in the `parents` wire field. */
     val parents: List<CommitParentsItem>,
-    /**
-     * Optional object value serialized in the `stats` wire field.
-     */
+    /** Optional object value serialized in the `stats` wire field. */
     val stats: CommitStats? = null,
-    /**
-     * Optional array value serialized in the `files` wire field.
-     */
-    val files: List<DiffEntry>? = null
+    /** Optional array value serialized in the `files` wire field. */
+    val files: List<DiffEntry>? = null,
 )
 
-/**
- * Required API value serialized in the `author` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+/** Required API value serialized in the `author` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SimpleUser::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = EmptyObject::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = EmptyObject::class),
 )
 sealed interface CommitAuthor
 
-/**
- * Commit Comment
- */
+/** Commit Comment */
 data class CommitComment(
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `body` wire field.
-     */
+    /** Required `string` value serialized in the `body` wire field. */
     val body: String,
-    /**
-     * Required `string` value serialized in the `path` wire field.
-     */
+    /** Required `string` value serialized in the `path` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("path", required = true) val path: String?,
-    /**
-     * Required `integer` value serialized in the `position` wire field.
-     */
+    /** Required `integer` value serialized in the `position` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("position", required = true) val position: Long?,
-    /**
-     * Required `integer` value serialized in the `line` wire field.
-     */
+    /** Required `integer` value serialized in the `line` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("line", required = true) val line: Long?,
-    /**
-     * Required `string` value serialized in the `commit_id` wire field.
-     */
+    /** Required `string` value serialized in the `commit_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_id") val commitId: String,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: NullableSimpleUser?,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: NullableSimpleUser?,
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * How the author is associated with the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: AuthorAssociation,
-    /**
-     * Optional object value serialized in the `reactions` wire field.
-     */
-    val reactions: ReactionRollup? = null
+    /** How the author is associated with the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
+    val authorAssociation: AuthorAssociation,
+    /** Optional object value serialized in the `reactions` wire field. */
+    val reactions: ReactionRollup? = null,
 )
 
-/**
- * Required API value serialized in the `committer` wire field.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+/** Required API value serialized in the `committer` wire field. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SimpleUser::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = EmptyObject::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = EmptyObject::class),
 )
 sealed interface CommitCommitter
 
-/**
- * An object without any properties.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** An object without any properties. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 class EmptyObject : CommitAuthor, CommitCommitter

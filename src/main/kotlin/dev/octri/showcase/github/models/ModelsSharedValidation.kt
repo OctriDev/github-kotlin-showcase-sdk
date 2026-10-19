@@ -3,68 +3,40 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Required object value serialized in the `errors[]` wire field.
- */
+/** Required object value serialized in the `errors[]` wire field. */
 data class ValidationErrorErrorsItem(
-    /**
-     * Required `string` value serialized in the `code` wire field.
-     */
+    /** Required `string` value serialized in the `code` wire field. */
     val code: String,
-    /**
-     * Optional `string` value serialized in the `resource` wire field.
-     */
+    /** Optional `string` value serialized in the `resource` wire field. */
     val resource: String? = null,
-    /**
-     * Optional `string` value serialized in the `field` wire field.
-     */
+    /** Optional `string` value serialized in the `field` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("field") val `field`: String? = null,
-    /**
-     * Optional `string` value serialized in the `message` wire field.
-     */
+    /** Optional `string` value serialized in the `message` wire field. */
     val message: String? = null,
-    /**
-     * Optional `integer` value serialized in the `index` wire field.
-     */
+    /** Optional `integer` value serialized in the `index` wire field. */
     val index: Long? = null,
-    /**
-     * Optional API value serialized in the `value` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Any? = null
+    /** Optional API value serialized in the `value` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Any? = null,
 )
 
-/**
- * Validation Error
- */
+/** Validation Error */
 data class ValidationError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `documentation_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("documentation_url") val documentationUrl: String,
-    /**
-     * Optional array value serialized in the `errors` wire field.
-     */
-    val errors: List<ValidationErrorErrorsItem>? = null
+    /** Required `string` value serialized in the `documentation_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("documentation_url")
+    val documentationUrl: String,
+    /** Optional array value serialized in the `errors` wire field. */
+    val errors: List<ValidationErrorErrorsItem>? = null,
 ) : dev.octri.showcase.github.ErrorBody
 
-/**
- * Validation Error Simple
- */
+/** Validation Error Simple */
 data class ValidationErrorSimple(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `documentation_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("documentation_url") val documentationUrl: String,
-    /**
-     * Optional array value serialized in the `errors` wire field.
-     */
-    val errors: List<String>? = null
+    /** Required `string` value serialized in the `documentation_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("documentation_url")
+    val documentationUrl: String,
+    /** Optional array value serialized in the `errors` wire field. */
+    val errors: List<String>? = null,
 ) : dev.octri.showcase.github.ErrorBody

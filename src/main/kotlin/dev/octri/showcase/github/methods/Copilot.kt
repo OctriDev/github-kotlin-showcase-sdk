@@ -17,254 +17,417 @@ import dev.octri.showcase.github.RequestOptions
 import java.time.LocalDate
 
 object Copilot {
-data class CopilotAddOrganizationsToEnterpriseCodingAgentPolicyCustomPropertiesItem(
-    /**
-     * The name of the custom property to filter by.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String,
-    /**
-     * The values of the custom property to match.
-     */
-    val values: List<String>
-)
+    data class CopilotAddOrganizationsToEnterpriseCodingAgentPolicyCustomPropertiesItem(
+        /** The name of the custom property to filter by. */
+        @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String,
+        /** The values of the custom property to match. */
+        val values: List<String>,
+    )
 
-data class CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyCustX6572c3b03c(
-    /**
-     * The name of the custom property to filter by.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String,
-    /**
-     * The values of the custom property to match.
-     */
-    val values: List<String>
-)
+    data class CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyCustX6572c3b03c(
+        /** The name of the custom property to filter by. */
+        @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String,
+        /** The values of the custom property to match. */
+        val values: List<String>,
+    )
 
-data class CopilotListCopilotSeatsResponse(
-    /**
-     * Total number of Copilot seats for the organization currently being billed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_seats") val totalSeats: Long? = null,
-    val seats: List<CopilotSeatDetails>? = null
-)
+    data class CopilotListCopilotSeatsResponse(
+        /** Total number of Copilot seats for the organization currently being billed. */
+        @com.fasterxml.jackson.annotation.JsonProperty("total_seats") val totalSeats: Long? = null,
+        val seats: List<CopilotSeatDetails>? = null,
+    )
 
-/**
- * The total number of seats created for members of the specified team(s).
- */
-data class CopilotAddCopilotSeatsForTeamsResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("seats_created") val seatsCreated: Long
-)
-
-/**
- * The total number of seats set to "pending cancellation" for members of the specified team(s).
- */
-data class CopilotCancelCopilotSeatAssignmentForTeamsResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("seats_cancelled") val seatsCancelled: Long
-)
-
-/**
- * The total number of seats created for the specified user(s).
- */
-data class CopilotAddCopilotSeatsForUsersResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("seats_created") val seatsCreated: Long
-)
-
-/**
- * The total number of seats set to "pending cancellation" for the specified users.
- */
-data class CopilotCancelCopilotSeatAssignmentForUsersResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("seats_cancelled") val seatsCancelled: Long
-)
-
-data class CopilotGetCopilotCodingAgentPermissionsOrganizationResponse(
-    /**
-     * The policy for which repositories can use Copilot cloud agent. Can be one of `all`, `selected`, or `none`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("enabled_repositories") val enabledRepositories: CopilotGetCopilotCodingAgentPermissionsOrganizationResponseEnX1cede769bc,
-    /**
-     * The URL for the selected repositories endpoint. Only present when `enabled_repositories` is `selected`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("selected_repositories_url") val selectedRepositoriesUrl: String? = null
-)
-
-data class CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val repositories: List<MinimalRepository>
-)
-
-data class CopilotSetCopilotContentExclusionForOrganizationResponse(
-    val message: String? = null
-)
-
-/**
- * The enabled review tools for Copilot cloud agent.
- */
-data class CopilotGetCopilotCloudAgentConfigurationResponseEnabledTools(
-    /**
-     * Whether the CodeQL tool is enabled for the Copilot cloud agent.
-     */
-    val codeql: Boolean,
-    /**
-     * Whether the Copilot code review tool is enabled for the Copilot cloud agent.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("copilot_code_review") val copilotCodeReview: Boolean,
-    /**
-     * Whether the secret scanning tool is enabled for the Copilot cloud agent.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning") val secretScanning: Boolean,
-    /**
-     * Whether the dependency vulnerability checks tool is enabled for the Copilot cloud agent.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dependency_vulnerability_checks") val dependencyVulnerabilityChecks: Boolean
-)
-
-data class CopilotGetCopilotCloudAgentConfigurationResponse(
-    /**
-     * The user-supplied MCP server configuration for the repository, as a free-form JSON object. This will be set to `null` if no configuration has been set. The shape of a valid MCP configuration may evolve over time, so this property is intentionally not strictly typed. Clients should not assume a fixed schema.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("mcp_configuration", required = true) val mcpConfiguration: Map<String, Any>?,
-    /**
-     * The enabled review tools for Copilot cloud agent.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("enabled_tools") val enabledTools: CopilotGetCopilotCloudAgentConfigurationResponseEnabledTools,
-    /**
-     * Whether Actions workflow approval is required for Copilot cloud agent pull requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_actions_workflow_approval") val requireActionsWorkflowApproval: Boolean,
-    /**
-     * Whether the firewall is enabled.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_firewall_enabled") val isFirewallEnabled: Boolean,
-    /**
-     * Whether the firewall recommended allowlist is enabled.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_firewall_recommended_allowlist_enabled") val isFirewallRecommendedAllowlistEnabled: Boolean,
-    /**
-     * A list of custom allowlist entries, as hosts or URLs, that the firewall will allow the Copilot cloud agent to access.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_allowlist") val customAllowlist: List<String>,
-    /**
-     * Whether automations are enabled in this repository. When true, users can create automations that automatically run agents on a schedule or in response to events like new issues or updated pull requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_automations_enabled") val isAutomationsEnabled: Boolean,
-    /**
-     * Whether write access is required for automation triggers. When true, automations will only run if the user triggering the event has write access to the repository. When false, users can create automations that listen for events triggered by users without write access.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_write_access_for_automation_triggers") val requireWriteAccessForAutomationTriggers: Boolean
-)
+    /** The total number of seats created for members of the specified team(s). */
+    data class CopilotAddCopilotSeatsForTeamsResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("seats_created") val seatsCreated: Long
+    )
 
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise usage metrics report for a specific day. The report provides comprehensive usage data for Copilot features across the enterprise. The report contains aggregated metrics for the specified day, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Reports are available starting from October 10, 2025, and historical data can be accessed for up to 1 year from the current date. Enterprise owners, billing managers, and authorized users with fine-grained "View Enterprise Copilot Metrics" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
+     * The total number of seats set to "pending cancellation" for members of the specified team(s).
      */
-    fun copilotCopilotEnterpriseOneDayUsageMetrics(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotEnterpriseOneDayUsageMetricsOperation.copilotCopilotEnterpriseOneDayUsageMetrics(
-            clientConfig,
-            enterprise,
-            day,
-            options,
+    data class CopilotCancelCopilotSeatAssignmentForTeamsResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("seats_cancelled") val seatsCancelled: Long
+    )
+
+    /** The total number of seats created for the specified user(s). */
+    data class CopilotAddCopilotSeatsForUsersResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("seats_created") val seatsCreated: Long
+    )
+
+    /** The total number of seats set to "pending cancellation" for the specified users. */
+    data class CopilotCancelCopilotSeatAssignmentForUsersResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("seats_cancelled") val seatsCancelled: Long
+    )
+
+    data class CopilotGetCopilotCodingAgentPermissionsOrganizationResponse(
+        /**
+         * The policy for which repositories can use Copilot cloud agent. Can be one of `all`,
+         * `selected`, or `none`.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("enabled_repositories")
+        val enabledRepositories:
+            CopilotGetCopilotCodingAgentPermissionsOrganizationResponseEnX1cede769bc,
+        /**
+         * The URL for the selected repositories endpoint. Only present when `enabled_repositories`
+         * is `selected`.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("selected_repositories_url")
+        val selectedRepositoriesUrl: String? = null,
+    )
+
+    data class CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val repositories: List<MinimalRepository>,
+    )
+
+    data class CopilotSetCopilotContentExclusionForOrganizationResponse(val message: String? = null)
+
+    /** The enabled review tools for Copilot cloud agent. */
+    data class CopilotGetCopilotCloudAgentConfigurationResponseEnabledTools(
+        /** Whether the CodeQL tool is enabled for the Copilot cloud agent. */
+        val codeql: Boolean,
+        /** Whether the Copilot code review tool is enabled for the Copilot cloud agent. */
+        @com.fasterxml.jackson.annotation.JsonProperty("copilot_code_review")
+        val copilotCodeReview: Boolean,
+        /** Whether the secret scanning tool is enabled for the Copilot cloud agent. */
+        @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning")
+        val secretScanning: Boolean,
+        /**
+         * Whether the dependency vulnerability checks tool is enabled for the Copilot cloud agent.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("dependency_vulnerability_checks")
+        val dependencyVulnerabilityChecks: Boolean,
+    )
+
+    data class CopilotGetCopilotCloudAgentConfigurationResponse(
+        /**
+         * The user-supplied MCP server configuration for the repository, as a free-form JSON
+         * object. This will be set to `null` if no configuration has been set. The shape of a valid
+         * MCP configuration may evolve over time, so this property is intentionally not strictly
+         * typed. Clients should not assume a fixed schema.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("mcp_configuration", required = true)
+        val mcpConfiguration: Map<String, Any>?,
+        /** The enabled review tools for Copilot cloud agent. */
+        @com.fasterxml.jackson.annotation.JsonProperty("enabled_tools")
+        val enabledTools: CopilotGetCopilotCloudAgentConfigurationResponseEnabledTools,
+        /** Whether Actions workflow approval is required for Copilot cloud agent pull requests. */
+        @com.fasterxml.jackson.annotation.JsonProperty("require_actions_workflow_approval")
+        val requireActionsWorkflowApproval: Boolean,
+        /** Whether the firewall is enabled. */
+        @com.fasterxml.jackson.annotation.JsonProperty("is_firewall_enabled")
+        val isFirewallEnabled: Boolean,
+        /** Whether the firewall recommended allowlist is enabled. */
+        @com.fasterxml.jackson.annotation.JsonProperty("is_firewall_recommended_allowlist_enabled")
+        val isFirewallRecommendedAllowlistEnabled: Boolean,
+        /**
+         * A list of custom allowlist entries, as hosts or URLs, that the firewall will allow the
+         * Copilot cloud agent to access.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("custom_allowlist")
+        val customAllowlist: List<String>,
+        /**
+         * Whether automations are enabled in this repository. When true, users can create
+         * automations that automatically run agents on a schedule or in response to events like new
+         * issues or updated pull requests.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("is_automations_enabled")
+        val isAutomationsEnabled: Boolean,
+        /**
+         * Whether write access is required for automation triggers. When true, automations will
+         * only run if the user triggering the event has write access to the repository. When false,
+         * users can create automations that listen for events triggered by users without write
+         * access.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty(
+            "require_write_access_for_automation_triggers"
         )
+        val requireWriteAccessForAutomationTriggers: Boolean,
+    )
 
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day enterprise Copilot usage metrics report. The report provides comprehensive usage data for Copilot features across the enterprise. The report contains aggregated metrics for the previous 28 days, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date range covered by the report. The report covers a complete 28-day period ending on the most recent day for which data has been processed. Enterprise owners, billing managers, and authorized users with fine-grained "View Enterprise Copilot Metrics" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
+     * Use this endpoint to retrieve download links for the Copilot enterprise usage metrics report
+     * for a specific day. The report provides comprehensive usage data for Copilot features across
+     * the enterprise. The report contains aggregated metrics for the specified day, including usage
+     * statistics for various Copilot features, user engagement data, and feature adoption metrics.
+     * Reports are generated daily and made available for download through signed URLs with a
+     * limited expiration time. The response includes download links to the report files, along with
+     * the specific date of the report. The report covers a complete day for which data has been
+     * processed. Reports are available starting from October 10, 2025, and historical data can be
+     * accessed for up to 1 year from the current date. Enterprise owners, billing managers, and
+     * authorized users with fine-grained "View Enterprise Copilot Metrics" permission can retrieve
+     * Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens
+     * (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this
+     * endpoint.
      */
-    fun copilotCopilotEnterpriseUsageMetrics(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotEnterpriseUsageMetricsOperation.copilotCopilotEnterpriseUsageMetrics(
-            clientConfig,
-            enterprise,
-            options,
-        )
+    fun copilotCopilotEnterpriseOneDayUsageMetrics(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        day: LocalDate,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics1DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotEnterpriseOneDayUsageMetricsOperation
+            .copilotCopilotEnterpriseOneDayUsageMetrics(
+                clientConfig,
+                enterprise,
+                day,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise repository report for a specific day. The report provides per-repository pull request metrics for Copilot across the enterprise, with one entry per repository. The report contains repository-level pull request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are included. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Enterprise owners, billing managers, and authorized users with fine-grained "View Enterprise Copilot Metrics" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
+     * Use this endpoint to retrieve download links for the latest 28-day enterprise Copilot usage
+     * metrics report. The report provides comprehensive usage data for Copilot features across the
+     * enterprise. The report contains aggregated metrics for the previous 28 days, including usage
+     * statistics for various Copilot features, user engagement data, and feature adoption metrics.
+     * Reports are generated daily and made available for download through signed URLs with a
+     * limited expiration time. The response includes download links to the report files, along with
+     * the specific date range covered by the report. The report covers a complete 28-day period
+     * ending on the most recent day for which data has been processed. Enterprise owners, billing
+     * managers, and authorized users with fine-grained "View Enterprise Copilot Metrics" permission
+     * can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access
+     * tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use
+     * this endpoint.
      */
-    fun copilotCopilotEnterpriseReposOneDayReport(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotEnterpriseReposOneDayReportOperation.copilotCopilotEnterpriseReposOneDayReport(
-            clientConfig,
-            enterprise,
-            day,
-            options,
-        )
+    fun copilotCopilotEnterpriseUsageMetrics(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics28DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotEnterpriseUsageMetricsOperation
+            .copilotCopilotEnterpriseUsageMetrics(
+                clientConfig,
+                enterprise,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise user-teams report for a specific day. The report provides user-team join data for Copilot across the enterprise, with one entry per user-team pair. The report contains user-team membership data for the specified day, enabling consumers to join with the existing enterprise user reports to compute team-level usage metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Enterprise owners, billing managers, and authorized users with fine-grained "View Enterprise Copilot Metrics" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
+     * Use this endpoint to retrieve download links for the Copilot enterprise repository report for
+     * a specific day. The report provides per-repository pull request metrics for Copilot across
+     * the enterprise, with one entry per repository. The report contains repository-level pull
+     * request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot
+     * Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are
+     * included. Reports are generated daily and made available for download through signed URLs
+     * with a limited expiration time. The response includes download links to the report files,
+     * along with the specific date of the report. The report covers a complete day for which data
+     * has been processed. Enterprise owners, billing managers, and authorized users with
+     * fine-grained "View Enterprise Copilot Metrics" permission can retrieve Copilot metrics
+     * reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either
+     * the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
      */
-    fun copilotCopilotEnterpriseUserTeamsOneDayReport(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotEnterpriseUserTeamsOneDayReportOperation.copilotCopilotEnterpriseUserTeamsOneDayReport(
-            clientConfig,
-            enterprise,
-            day,
-            options,
-        )
+    fun copilotCopilotEnterpriseReposOneDayReport(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        day: LocalDate,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics1DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotEnterpriseReposOneDayReportOperation
+            .copilotCopilotEnterpriseReposOneDayReport(
+                clientConfig,
+                enterprise,
+                day,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the Copilot user usage metrics report for a specific day. The report provides detailed user-level usage data and engagement metrics for Copilot features across the enterprise. The report contains user-specific metrics for the specified day, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user level to understand adoption patterns and identify opportunities for increased engagement. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Reports are available starting from October 10, 2025, and historical data can be accessed for up to 1 year from the current date. Enterprise owners, billing managers, and authorized users with fine-grained "View Enterprise Copilot Metrics" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
+     * Use this endpoint to retrieve download links for the Copilot enterprise user-teams report for
+     * a specific day. The report provides user-team join data for Copilot across the enterprise,
+     * with one entry per user-team pair. The report contains user-team membership data for the
+     * specified day, enabling consumers to join with the existing enterprise user reports to
+     * compute team-level usage metrics. Reports are generated daily and made available for download
+     * through signed URLs with a limited expiration time. The response includes download links to
+     * the report files, along with the specific date of the report. The report covers a complete
+     * day for which data has been processed. Enterprise owners, billing managers, and authorized
+     * users with fine-grained "View Enterprise Copilot Metrics" permission can retrieve Copilot
+     * metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic)
+     * need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
      */
-    fun copilotCopilotUsersOneDayUsageMetrics(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotUsersOneDayUsageMetricsOperation.copilotCopilotUsersOneDayUsageMetrics(
-            clientConfig,
-            enterprise,
-            day,
-            options,
-        )
+    fun copilotCopilotEnterpriseUserTeamsOneDayReport(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        day: LocalDate,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics1DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotEnterpriseUserTeamsOneDayReportOperation
+            .copilotCopilotEnterpriseUserTeamsOneDayReport(
+                clientConfig,
+                enterprise,
+                day,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day enterprise users Copilot usage metrics report. The report provides detailed user-level usage data and engagement metrics for Copilot features across the enterprise. The report contains user-specific metrics for the previous 28 days, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user level to understand adoption patterns and identify opportunities for increased engagement. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date range covered by the report. The report covers a complete 28-day period ending on the most recent day for which data has been processed. Enterprise owners, billing managers, and authorized users with fine-grained "View Enterprise Copilot Metrics" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
+     * Use this endpoint to retrieve download links for the Copilot user usage metrics report for a
+     * specific day. The report provides detailed user-level usage data and engagement metrics for
+     * Copilot features across the enterprise. The report contains user-specific metrics for the
+     * specified day, including individual user engagement statistics, feature usage patterns, and
+     * adoption metrics broken down by user. This report allows authorized users to analyze Copilot
+     * usage at the user level to understand adoption patterns and identify opportunities for
+     * increased engagement. Reports are generated daily and made available for download through
+     * signed URLs with a limited expiration time. The response includes download links to the
+     * report files, along with the specific date of the report. The report covers a complete day
+     * for which data has been processed. Reports are available starting from October 10, 2025, and
+     * historical data can be accessed for up to 1 year from the current date. Enterprise owners,
+     * billing managers, and authorized users with fine-grained "View Enterprise Copilot Metrics"
+     * permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and
+     * personal access tokens (classic) need either the `manage_billing:copilot` or
+     * `read:enterprise` scopes to use this endpoint.
      */
-    fun copilotCopilotUsersUsageMetrics(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotUsersUsageMetricsOperation.copilotCopilotUsersUsageMetrics(
-            clientConfig,
-            enterprise,
-            options,
-        )
+    fun copilotCopilotUsersOneDayUsageMetrics(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        day: LocalDate,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics1DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotUsersOneDayUsageMetricsOperation
+            .copilotCopilotUsersOneDayUsageMetrics(
+                clientConfig,
+                enterprise,
+                day,
+                options,
+            )
 
     /**
-     * Sets the policy for Copilot cloud agent usage across an enterprise. Enterprise owners can configure whether Copilot cloud agent is enabled for all organizations, disabled for all organizations, configured by individual organization admins, or enabled for selected organizations only. Only enterprise owners can set the coding agent policy for their enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:enterprise` scopes to use this endpoint.
+     * Use this endpoint to retrieve download links for the latest 28-day enterprise users Copilot
+     * usage metrics report. The report provides detailed user-level usage data and engagement
+     * metrics for Copilot features across the enterprise. The report contains user-specific metrics
+     * for the previous 28 days, including individual user engagement statistics, feature usage
+     * patterns, and adoption metrics broken down by user. This report allows authorized users to
+     * analyze Copilot usage at the user level to understand adoption patterns and identify
+     * opportunities for increased engagement. Reports are generated daily and made available for
+     * download through signed URLs with a limited expiration time. The response includes download
+     * links to the report files, along with the specific date range covered by the report. The
+     * report covers a complete 28-day period ending on the most recent day for which data has been
+     * processed. Enterprise owners, billing managers, and authorized users with fine-grained "View
+     * Enterprise Copilot Metrics" permission can retrieve Copilot metrics reports for the
+     * enterprise. OAuth app tokens and personal access tokens (classic) need either the
+     * `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint.
      */
-    fun copilotSetEnterpriseCodingAgentPolicy(clientConfig: ClientConfig, enterprise: String, policyState: CopilotSetEnterpriseCodingAgentPolicyPolicyStateEnum, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CopilotSetEnterpriseCodingAgentPolicyOperation.copilotSetEnterpriseCodingAgentPolicy(
-            clientConfig,
-            enterprise,
-            policyState,
-            options,
-        )
+    fun copilotCopilotUsersUsageMetrics(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics28DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotUsersUsageMetricsOperation
+            .copilotCopilotUsersUsageMetrics(
+                clientConfig,
+                enterprise,
+                options,
+            )
 
     /**
-     * Enables Copilot cloud agent for the specified organizations within the enterprise. The enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before using this endpoint. Organizations can be specified by login or matched via custom properties. Only organizations that have Copilot enabled and belong to the enterprise will be affected. Only enterprise owners can add organizations to the coding agent policy. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:enterprise` scopes to use this endpoint.
+     * Sets the policy for Copilot cloud agent usage across an enterprise. Enterprise owners can
+     * configure whether Copilot cloud agent is enabled for all organizations, disabled for all
+     * organizations, configured by individual organization admins, or enabled for selected
+     * organizations only. Only enterprise owners can set the coding agent policy for their
+     * enterprise. OAuth app tokens and personal access tokens (classic) need either the
+     * `manage_billing:copilot` or `admin:enterprise` scopes to use this endpoint.
      */
-    fun copilotAddOrganizationsToEnterpriseCodingAgentPolicy(clientConfig: ClientConfig, enterprise: String, organizations: List<String>? = null, customProperties: List<CopilotAddOrganizationsToEnterpriseCodingAgentPolicyCustomPropertiesItem>? = null, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CopilotAddOrganizationsToEnterpriseCodingAgentPolicyOperation.copilotAddOrganizationsToEnterpriseCodingAgentPolicy(
-            clientConfig,
-            enterprise,
-            organizations,
-            customProperties,
-            options,
-        )
+    fun copilotSetEnterpriseCodingAgentPolicy(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        policyState: CopilotSetEnterpriseCodingAgentPolicyPolicyStateEnum,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.CopilotSetEnterpriseCodingAgentPolicyOperation
+            .copilotSetEnterpriseCodingAgentPolicy(
+                clientConfig,
+                enterprise,
+                policyState,
+                options,
+            )
 
     /**
-     * Disables Copilot cloud agent for the specified organizations within the enterprise. The enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before using this endpoint. Organizations can be specified by login or matched via custom properties. Only organizations that have Copilot enabled and belong to the enterprise will be affected. Only enterprise owners can remove organizations from the coding agent policy. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:enterprise` scopes to use this endpoint.
+     * Enables Copilot cloud agent for the specified organizations within the enterprise. The
+     * enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before using this
+     * endpoint. Organizations can be specified by login or matched via custom properties. Only
+     * organizations that have Copilot enabled and belong to the enterprise will be affected. Only
+     * enterprise owners can add organizations to the coding agent policy. OAuth app tokens and
+     * personal access tokens (classic) need either the `manage_billing:copilot` or
+     * `admin:enterprise` scopes to use this endpoint.
      */
-    fun copilotRemoveOrganizationsFromEnterpriseCodingAgentPolicy(clientConfig: ClientConfig, enterprise: String, organizations: List<String>? = null, customProperties: List<CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyCustX6572c3b03c>? = null, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyOperation.copilotRemoveOrganizationsFromEnterpriseCodingAgentPolicy(
-            clientConfig,
-            enterprise,
-            organizations,
-            customProperties,
-            options,
-        )
+    fun copilotAddOrganizationsToEnterpriseCodingAgentPolicy(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        organizations: List<String>? = null,
+        customProperties:
+            List<CopilotAddOrganizationsToEnterpriseCodingAgentPolicyCustomPropertiesItem>? =
+            null,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods
+            .CopilotAddOrganizationsToEnterpriseCodingAgentPolicyOperation
+            .copilotAddOrganizationsToEnterpriseCodingAgentPolicy(
+                clientConfig,
+                enterprise,
+                organizations,
+                customProperties,
+                options,
+            )
 
     /**
-     * Retrieves an organization's Copilot subscription details, including its seat breakdown and feature policies. Use `org` to identify the organization; only organization owners can view these details. OAuth app tokens and classic personal access tokens need the `manage_billing:copilot` or `read:org` scope.
+     * Disables Copilot cloud agent for the specified organizations within the enterprise. The
+     * enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before using this
+     * endpoint. Organizations can be specified by login or matched via custom properties. Only
+     * organizations that have Copilot enabled and belong to the enterprise will be affected. Only
+     * enterprise owners can remove organizations from the coding agent policy. OAuth app tokens and
+     * personal access tokens (classic) need either the `manage_billing:copilot` or
+     * `admin:enterprise` scopes to use this endpoint.
      */
-    fun copilotGetCopilotOrganizationDetails(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotOrganizationDetails =
-        dev.octri.showcase.github.methods.CopilotGetCopilotOrganizationDetailsOperation.copilotGetCopilotOrganizationDetails(
-            clientConfig,
-            org,
-            options,
-        )
+    fun copilotRemoveOrganizationsFromEnterpriseCodingAgentPolicy(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        organizations: List<String>? = null,
+        customProperties:
+            List<CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyCustX6572c3b03c>? =
+            null,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods
+            .CopilotRemoveOrganizationsFromEnterpriseCodingAgentPolicyOperation
+            .copilotRemoveOrganizationsFromEnterpriseCodingAgentPolicy(
+                clientConfig,
+                enterprise,
+                organizations,
+                customProperties,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Lists all Copilot seats for which an organization with a Copilot Business or Copilot Enterprise subscription is currently being billed. Only organization owners can view assigned seats. Each seat object contains information about the assigned user's most recent Copilot activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in `last_activity_at`. For more information about activity data, see [Metrics data properties for GitHub Copilot](https://docs.github.com/copilot/reference/metrics-data). OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:org` scopes to use this endpoint.
+     * Retrieves an organization's Copilot subscription details, including its seat breakdown and
+     * feature policies. Use `org` to identify the organization; only organization owners can view
+     * these details. OAuth app tokens and classic personal access tokens need the
+     * `manage_billing:copilot` or `read:org` scope.
      */
-    fun copilotListCopilotSeats(clientConfig: ClientConfig, org: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): CopilotListCopilotSeatsResponse =
+    fun copilotGetCopilotOrganizationDetails(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): CopilotOrganizationDetails =
+        dev.octri.showcase.github.methods.CopilotGetCopilotOrganizationDetailsOperation
+            .copilotGetCopilotOrganizationDetails(
+                clientConfig,
+                org,
+                options,
+            )
+
+    /**
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Lists all Copilot
+     * > seats for which an organization with a Copilot Business or Copilot Enterprise subscription
+     * > is currently being billed. Only organization owners can view assigned seats. Each seat
+     * > object contains information about the assigned user's most recent Copilot activity. Users
+     * > must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in
+     * > `last_activity_at`. For more information about activity data, see
+     * > [Metrics data properties for GitHub Copilot](https://docs.github.com/copilot/reference/metrics-data).
+     * > OAuth app tokens and personal access tokens (classic) need either the
+     * > `manage_billing:copilot` or `read:org` scopes to use this endpoint.
+     */
+    fun copilotListCopilotSeats(
+        clientConfig: ClientConfig,
+        org: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): CopilotListCopilotSeatsResponse =
         dev.octri.showcase.github.methods.CopilotListCopilotSeatsOperation.copilotListCopilotSeats(
             clientConfig,
             org,
@@ -274,219 +437,472 @@ data class CopilotGetCopilotCloudAgentConfigurationResponse(
         )
 
     /**
-     * Creates Copilot seats for users in the specified organization teams. Supply `selected_teams` with at least one team name; the organization must have a Copilot Business or Copilot Enterprise subscription and a configured public code suggestions policy. The organization is billed for each seat according to its Copilot plan.
+     * Creates Copilot seats for users in the specified organization teams. Supply `selected_teams`
+     * with at least one team name; the organization must have a Copilot Business or Copilot
+     * Enterprise subscription and a configured public code suggestions policy. The organization is
+     * billed for each seat according to its Copilot plan.
      */
-    fun copilotAddCopilotSeatsForTeams(clientConfig: ClientConfig, org: String, selectedTeams: List<String>, options: RequestOptions? = null): CopilotAddCopilotSeatsForTeamsResponse =
-        dev.octri.showcase.github.methods.CopilotAddCopilotSeatsForTeamsOperation.copilotAddCopilotSeatsForTeams(
-            clientConfig,
-            org,
-            selectedTeams,
-            options,
-        )
+    fun copilotAddCopilotSeatsForTeams(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedTeams: List<String>,
+        options: RequestOptions? = null,
+    ): CopilotAddCopilotSeatsForTeamsResponse =
+        dev.octri.showcase.github.methods.CopilotAddCopilotSeatsForTeamsOperation
+            .copilotAddCopilotSeatsForTeams(
+                clientConfig,
+                org,
+                selectedTeams,
+                options,
+            )
 
     /**
-     * Triggers cancellation of Copilot seats for users in the specified organization teams by setting those seats to pending cancellation. Supply `selected_teams` with at least one team name; only organization owners can cancel seats for organization members. Affected users lose Copilot access at the end of the current billing cycle unless they retain access through another team.
+     * Triggers cancellation of Copilot seats for users in the specified organization teams by
+     * setting those seats to pending cancellation. Supply `selected_teams` with at least one team
+     * name; only organization owners can cancel seats for organization members. Affected users lose
+     * Copilot access at the end of the current billing cycle unless they retain access through
+     * another team.
      */
-    fun copilotCancelCopilotSeatAssignmentForTeams(clientConfig: ClientConfig, org: String, selectedTeams: List<String>, options: RequestOptions? = null): CopilotCancelCopilotSeatAssignmentForTeamsResponse =
-        dev.octri.showcase.github.methods.CopilotCancelCopilotSeatAssignmentForTeamsOperation.copilotCancelCopilotSeatAssignmentForTeams(
-            clientConfig,
-            org,
-            selectedTeams,
-            options,
-        )
+    fun copilotCancelCopilotSeatAssignmentForTeams(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedTeams: List<String>,
+        options: RequestOptions? = null,
+    ): CopilotCancelCopilotSeatAssignmentForTeamsResponse =
+        dev.octri.showcase.github.methods.CopilotCancelCopilotSeatAssignmentForTeamsOperation
+            .copilotCancelCopilotSeatAssignmentForTeams(
+                clientConfig,
+                org,
+                selectedTeams,
+                options,
+            )
 
     /**
-     * Creates Copilot seats for organization members listed in `selected_usernames`. Submit at least one username; the organization must have a Copilot Business or Copilot Enterprise subscription, billing configured, and a suggestion matching policy set. The organization is billed for each seat, and only organization owners can purchase seats.
+     * Creates Copilot seats for organization members listed in `selected_usernames`. Submit at
+     * least one username; the organization must have a Copilot Business or Copilot Enterprise
+     * subscription, billing configured, and a suggestion matching policy set. The organization is
+     * billed for each seat, and only organization owners can purchase seats.
      */
-    fun copilotAddCopilotSeatsForUsers(clientConfig: ClientConfig, org: String, selectedUsernames: List<String>, options: RequestOptions? = null): CopilotAddCopilotSeatsForUsersResponse =
-        dev.octri.showcase.github.methods.CopilotAddCopilotSeatsForUsersOperation.copilotAddCopilotSeatsForUsers(
-            clientConfig,
-            org,
-            selectedUsernames,
-            options,
-        )
+    fun copilotAddCopilotSeatsForUsers(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedUsernames: List<String>,
+        options: RequestOptions? = null,
+    ): CopilotAddCopilotSeatsForUsersResponse =
+        dev.octri.showcase.github.methods.CopilotAddCopilotSeatsForUsersOperation
+            .copilotAddCopilotSeatsForUsers(
+                clientConfig,
+                org,
+                selectedUsernames,
+                options,
+            )
 
     /**
-     * Cancels Copilot seat assignments for the organization members listed in `selected_usernames`. Their seats become pending cancellation, and members lose access at the end of the current billing cycle unless they retain access through team membership. Only organization owners can cancel seats for organization members.
+     * Cancels Copilot seat assignments for the organization members listed in `selected_usernames`.
+     * Their seats become pending cancellation, and members lose access at the end of the current
+     * billing cycle unless they retain access through team membership. Only organization owners can
+     * cancel seats for organization members.
      */
-    fun copilotCancelCopilotSeatAssignmentForUsers(clientConfig: ClientConfig, org: String, selectedUsernames: List<String>, options: RequestOptions? = null): CopilotCancelCopilotSeatAssignmentForUsersResponse =
-        dev.octri.showcase.github.methods.CopilotCancelCopilotSeatAssignmentForUsersOperation.copilotCancelCopilotSeatAssignmentForUsers(
-            clientConfig,
-            org,
-            selectedUsernames,
-            options,
-        )
+    fun copilotCancelCopilotSeatAssignmentForUsers(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedUsernames: List<String>,
+        options: RequestOptions? = null,
+    ): CopilotCancelCopilotSeatAssignmentForUsersResponse =
+        dev.octri.showcase.github.methods.CopilotCancelCopilotSeatAssignmentForUsersOperation
+            .copilotCancelCopilotSeatAssignmentForUsers(
+                clientConfig,
+                org,
+                selectedUsernames,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Gets information about which repositories in an organization have been enabled or disabled for the Copilot cloud agent. Organization owners can configure whether Copilot cloud agent is enabled for all repositories, selected repositories, or no repositories owned by organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Gets information
+     * > about which repositories in an organization have been enabled or disabled for the Copilot
+     * > cloud agent. Organization owners can configure whether Copilot cloud agent is enabled for
+     * > all repositories, selected repositories, or no repositories owned by organization. OAuth
+     * > app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * > endpoint.
      */
-    fun copilotGetCopilotCodingAgentPermissionsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotGetCopilotCodingAgentPermissionsOrganizationResponse =
-        dev.octri.showcase.github.methods.CopilotGetCopilotCodingAgentPermissionsOrganizationOperation.copilotGetCopilotCodingAgentPermissionsOrganization(
-            clientConfig,
-            org,
-            options,
-        )
+    fun copilotGetCopilotCodingAgentPermissionsOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): CopilotGetCopilotCodingAgentPermissionsOrganizationResponse =
+        dev.octri.showcase.github.methods
+            .CopilotGetCopilotCodingAgentPermissionsOrganizationOperation
+            .copilotGetCopilotCodingAgentPermissionsOrganization(
+                clientConfig,
+                org,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Sets the policy for which repositories in an organization can use Copilot cloud agent. Organization owners can configure whether Copilot cloud agent is enabled for all repositories, selected repositories, or no repositories owned by the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Sets the policy for
+     * > which repositories in an organization can use Copilot cloud agent. Organization owners can
+     * > configure whether Copilot cloud agent is enabled for all repositories, selected
+     * > repositories, or no repositories owned by the organization. OAuth app tokens and personal
+     * > access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun copilotSetCopilotCodingAgentPermissionsOrganization(clientConfig: ClientConfig, org: String, enabledRepositories: CopilotSetCopilotCodingAgentPermissionsOrganizationEnabledRepX9d9552bfc6, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CopilotSetCopilotCodingAgentPermissionsOrganizationOperation.copilotSetCopilotCodingAgentPermissionsOrganization(
-            clientConfig,
-            org,
-            enabledRepositories,
-            options,
-        )
+    fun copilotSetCopilotCodingAgentPermissionsOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        enabledRepositories:
+            CopilotSetCopilotCodingAgentPermissionsOrganizationEnabledRepX9d9552bfc6,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods
+            .CopilotSetCopilotCodingAgentPermissionsOrganizationOperation
+            .copilotSetCopilotCodingAgentPermissionsOrganization(
+                clientConfig,
+                org,
+                enabledRepositories,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Lists the selected repositories that are enabled for Copilot cloud agent in an organization. Organization owners can use this endpoint when the coding agent repository policy is set to `selected` to see which repositories have been enabled. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Lists the selected
+     * > repositories that are enabled for Copilot cloud agent in an organization. Organization
+     * > owners can use this endpoint when the coding agent repository policy is set to `selected`
+     * > to see which repositories have been enabled. OAuth app tokens and personal access tokens
+     * > (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun copilotListCopilotCodingAgentSelectedRepositoriesForOrganization(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse =
-        dev.octri.showcase.github.methods.CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizatX247131edde.copilotListCopilotCodingAgentSelectedRepositoriesForOrganization(
-            clientConfig,
-            org,
-            perPage,
-            page,
-            options,
-        )
+    fun copilotListCopilotCodingAgentSelectedRepositoriesForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse =
+        dev.octri.showcase.github.methods
+            .CopilotListCopilotCodingAgentSelectedRepositoriesForOrganizatX247131edde
+            .copilotListCopilotCodingAgentSelectedRepositoriesForOrganization(
+                clientConfig,
+                org,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Replaces the list of selected repositories that are enabled for Copilot cloud agent in an organization. This method can only be called when the cloud agent repository policy is set to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Replaces the list of
+     * > selected repositories that are enabled for Copilot cloud agent in an organization. This
+     * > method can only be called when the cloud agent repository policy is set to `selected`.
+     * > OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use
+     * > this endpoint.
      */
-    fun copilotSetCopilotCodingAgentSelectedRepositoriesForOrganization(clientConfig: ClientConfig, org: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CopilotSetCopilotCodingAgentSelectedRepositoriesForOrganizationOperation.copilotSetCopilotCodingAgentSelectedRepositoriesForOrganization(
-            clientConfig,
-            org,
-            selectedRepositoryIds,
-            options,
-        )
+    fun copilotSetCopilotCodingAgentSelectedRepositoriesForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods
+            .CopilotSetCopilotCodingAgentSelectedRepositoriesForOrganizationOperation
+            .copilotSetCopilotCodingAgentSelectedRepositoriesForOrganization(
+                clientConfig,
+                org,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Adds a repository to the list of selected repositories enabled for Copilot cloud agent in an organization. This method can only be called when the cloud agent repository policy is set to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Adds a repository to
+     * > the list of selected repositories enabled for Copilot cloud agent in an organization. This
+     * > method can only be called when the cloud agent repository policy is set to `selected`.
+     * > OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use
+     * > this endpoint.
      */
-    fun copilotEnableCopilotCodingAgentForRepositoryInOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CopilotEnableCopilotCodingAgentForRepositoryInOrganizationOperation.copilotEnableCopilotCodingAgentForRepositoryInOrganization(
-            clientConfig,
-            org,
-            repositoryId,
-            options,
-        )
+    fun copilotEnableCopilotCodingAgentForRepositoryInOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods
+            .CopilotEnableCopilotCodingAgentForRepositoryInOrganizationOperation
+            .copilotEnableCopilotCodingAgentForRepositoryInOrganization(
+                clientConfig,
+                org,
+                repositoryId,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Removes a repository from the list of selected repositories enabled for Copilot cloud agent in an organization. This method can only be called when the cloud agent repository policy is set to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org` scopes to use this endpoint.
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Removes a repository
+     * > from the list of selected repositories enabled for Copilot cloud agent in an organization.
+     * > This method can only be called when the cloud agent repository policy is set to `selected`.
+     * > OAuth app tokens and personal access tokens (classic) need the `admin:org` scopes to use
+     * > this endpoint.
      */
-    fun copilotDisableCopilotCodingAgentForRepositoryInOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CopilotDisableCopilotCodingAgentForRepositoryInOrganizationOperation.copilotDisableCopilotCodingAgentForRepositoryInOrganization(
-            clientConfig,
-            org,
-            repositoryId,
-            options,
-        )
+    fun copilotDisableCopilotCodingAgentForRepositoryInOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods
+            .CopilotDisableCopilotCodingAgentForRepositoryInOrganizationOperation
+            .copilotDisableCopilotCodingAgentForRepositoryInOrganization(
+                clientConfig,
+                org,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Retrieves the Copilot content exclusion rules configured for an organization. Use this endpoint to view the organization's path rules; organization owners can view these details. The response does not include comments, and duplicate keys are represented by their last occurrence.
+     * Retrieves the Copilot content exclusion rules configured for an organization. Use this
+     * endpoint to view the organization's path rules; organization owners can view these details.
+     * The response does not include comments, and duplicate keys are represented by their last
+     * occurrence.
      */
-    fun copilotCopilotContentExclusionForOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotOrganizationContentExclusionDetails =
-        dev.octri.showcase.github.methods.CopilotCopilotContentExclusionForOrganizationOperation.copilotCopilotContentExclusionForOrganization(
-            clientConfig,
-            org,
-            options,
-        )
+    fun copilotCopilotContentExclusionForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): CopilotOrganizationContentExclusionDetails =
+        dev.octri.showcase.github.methods.CopilotCopilotContentExclusionForOrganizationOperation
+            .copilotCopilotContentExclusionForOrganization(
+                clientConfig,
+                org,
+                options,
+            )
 
     /**
-     * Sets Copilot content exclusion rules for an organization. Submit rule keys mapped to arrays of excluded paths or conditional matching rules; duplicate keys overwrite earlier entries. Existing comments are deleted because the API does not support comments.
+     * Sets Copilot content exclusion rules for an organization. Submit rule keys mapped to arrays
+     * of excluded paths or conditional matching rules; duplicate keys overwrite earlier entries.
+     * Existing comments are deleted because the API does not support comments.
      */
-    fun copilotSetCopilotContentExclusionForOrganization(clientConfig: ClientConfig, org: String, body: Map<String, List<Any>>, options: RequestOptions? = null): CopilotSetCopilotContentExclusionForOrganizationResponse =
-        dev.octri.showcase.github.methods.CopilotSetCopilotContentExclusionForOrganizationOperation.copilotSetCopilotContentExclusionForOrganization(
-            clientConfig,
-            org,
-            body,
-            options,
-        )
+    fun copilotSetCopilotContentExclusionForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        body: Map<String, List<Any>>,
+        options: RequestOptions? = null,
+    ): CopilotSetCopilotContentExclusionForOrganizationResponse =
+        dev.octri.showcase.github.methods.CopilotSetCopilotContentExclusionForOrganizationOperation
+            .copilotSetCopilotContentExclusionForOrganization(
+                clientConfig,
+                org,
+                body,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization usage metrics report for a specific day. The report provides comprehensive usage data for Copilot features across the organization. The report contains aggregated metrics for the specified day, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Organization owners and authorized users with fine-grained "View Organization Copilot Metrics" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. For more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
+     * Use this endpoint to retrieve download links for the Copilot organization usage metrics
+     * report for a specific day. The report provides comprehensive usage data for Copilot features
+     * across the organization. The report contains aggregated metrics for the specified day,
+     * including usage statistics for various Copilot features, user engagement data, and feature
+     * adoption metrics. Reports are generated daily and made available for download through signed
+     * URLs with a limited expiration time. The response includes download links to the report
+     * files, along with the specific date of the report. The report covers a complete day for which
+     * data has been processed. Organization owners and authorized users with fine-grained "View
+     * Organization Copilot Metrics" permission can retrieve Copilot metrics reports for the
+     * organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope
+     * to use this endpoint. For more information about organization metrics attribution, see
+     * [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
      */
-    fun copilotCopilotOrganizationOneDayUsageMetrics(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotOrganizationOneDayUsageMetricsOperation.copilotCopilotOrganizationOneDayUsageMetrics(
-            clientConfig,
-            org,
-            day,
-            options,
-        )
+    fun copilotCopilotOrganizationOneDayUsageMetrics(
+        clientConfig: ClientConfig,
+        org: String,
+        day: LocalDate,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics1DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotOrganizationOneDayUsageMetricsOperation
+            .copilotCopilotOrganizationOneDayUsageMetrics(
+                clientConfig,
+                org,
+                day,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day organization Copilot usage metrics report. The report provides comprehensive usage data for Copilot features across the organization. The report contains aggregated metrics for the previous 28 days, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date range covered by the report. The report covers a complete 28-day period ending on the most recent day for which data has been processed. Organization owners and authorized users with fine-grained "View Organization Copilot Metrics" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. For more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
+     * Use this endpoint to retrieve download links for the latest 28-day organization Copilot usage
+     * metrics report. The report provides comprehensive usage data for Copilot features across the
+     * organization. The report contains aggregated metrics for the previous 28 days, including
+     * usage statistics for various Copilot features, user engagement data, and feature adoption
+     * metrics. Reports are generated daily and made available for download through signed URLs with
+     * a limited expiration time. The response includes download links to the report files, along
+     * with the specific date range covered by the report. The report covers a complete 28-day
+     * period ending on the most recent day for which data has been processed. Organization owners
+     * and authorized users with fine-grained "View Organization Copilot Metrics" permission can
+     * retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access
+     * tokens (classic) need the `read:org` scope to use this endpoint. For more information about
+     * organization metrics attribution, see
+     * [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
      */
-    fun copilotCopilotOrganizationUsageMetrics(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotOrganizationUsageMetricsOperation.copilotCopilotOrganizationUsageMetrics(
-            clientConfig,
-            org,
-            options,
-        )
+    fun copilotCopilotOrganizationUsageMetrics(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics28DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotOrganizationUsageMetricsOperation
+            .copilotCopilotOrganizationUsageMetrics(
+                clientConfig,
+                org,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization repository report for a specific day. The report provides per-repository pull request metrics for Copilot across the organization, with one entry per repository. The report contains repository-level pull request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are included. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Organization owners and authorized users with fine-grained "View Organization Copilot Metrics" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. For more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
+     * Use this endpoint to retrieve download links for the Copilot organization repository report
+     * for a specific day. The report provides per-repository pull request metrics for Copilot
+     * across the organization, with one entry per repository. The report contains repository-level
+     * pull request activity for the specified day, including the Copilot Coding Agent (CCA) and
+     * Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified
+     * day are included. Reports are generated daily and made available for download through signed
+     * URLs with a limited expiration time. The response includes download links to the report
+     * files, along with the specific date of the report. The report covers a complete day for which
+     * data has been processed. Organization owners and authorized users with fine-grained "View
+     * Organization Copilot Metrics" permission can retrieve Copilot metrics reports for the
+     * organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope
+     * to use this endpoint. For more information about organization metrics attribution, see
+     * [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
      */
-    fun copilotCopilotOrganizationReposOneDayReport(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotOrganizationReposOneDayReportOperation.copilotCopilotOrganizationReposOneDayReport(
-            clientConfig,
-            org,
-            day,
-            options,
-        )
+    fun copilotCopilotOrganizationReposOneDayReport(
+        clientConfig: ClientConfig,
+        org: String,
+        day: LocalDate,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics1DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotOrganizationReposOneDayReportOperation
+            .copilotCopilotOrganizationReposOneDayReport(
+                clientConfig,
+                org,
+                day,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization user-teams report for a specific day. The report provides user-team join data for Copilot across the organization, with one entry per user-team pair. The report contains user-team membership data for the specified day, enabling consumers to join with the existing organization user reports to compute team-level usage metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Organization owners and authorized users with fine-grained "View Organization Copilot Metrics" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. For more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
+     * Use this endpoint to retrieve download links for the Copilot organization user-teams report
+     * for a specific day. The report provides user-team join data for Copilot across the
+     * organization, with one entry per user-team pair. The report contains user-team membership
+     * data for the specified day, enabling consumers to join with the existing organization user
+     * reports to compute team-level usage metrics. Reports are generated daily and made available
+     * for download through signed URLs with a limited expiration time. The response includes
+     * download links to the report files, along with the specific date of the report. The report
+     * covers a complete day for which data has been processed. Organization owners and authorized
+     * users with fine-grained "View Organization Copilot Metrics" permission can retrieve Copilot
+     * metrics reports for the organization. OAuth app tokens and personal access tokens (classic)
+     * need the `read:org` scope to use this endpoint. For more information about organization
+     * metrics attribution, see
+     * [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
      */
-    fun copilotCopilotOrganizationUserTeamsOneDayReport(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotOrganizationUserTeamsOneDayReportOperation.copilotCopilotOrganizationUserTeamsOneDayReport(
-            clientConfig,
-            org,
-            day,
-            options,
-        )
+    fun copilotCopilotOrganizationUserTeamsOneDayReport(
+        clientConfig: ClientConfig,
+        org: String,
+        day: LocalDate,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics1DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotOrganizationUserTeamsOneDayReportOperation
+            .copilotCopilotOrganizationUserTeamsOneDayReport(
+                clientConfig,
+                org,
+                day,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization user usage metrics report for a specific day. The report provides detailed user-level usage data and engagement metrics for Copilot features across the organization. The report contains user-specific metrics for the specified day, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user level to understand adoption patterns and identify opportunities for increased engagement. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Organization owners and authorized users with fine-grained "View Organization Copilot Metrics" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. For more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
+     * Use this endpoint to retrieve download links for the Copilot organization user usage metrics
+     * report for a specific day. The report provides detailed user-level usage data and engagement
+     * metrics for Copilot features across the organization. The report contains user-specific
+     * metrics for the specified day, including individual user engagement statistics, feature usage
+     * patterns, and adoption metrics broken down by user. This report allows authorized users to
+     * analyze Copilot usage at the user level to understand adoption patterns and identify
+     * opportunities for increased engagement. Reports are generated daily and made available for
+     * download through signed URLs with a limited expiration time. The response includes download
+     * links to the report files, along with the specific date of the report. The report covers a
+     * complete day for which data has been processed. Organization owners and authorized users with
+     * fine-grained "View Organization Copilot Metrics" permission can retrieve Copilot metrics
+     * reports for the organization. OAuth app tokens and personal access tokens (classic) need the
+     * `read:org` scope to use this endpoint. For more information about organization metrics
+     * attribution, see
+     * [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
      */
-    fun copilotCopilotOrganizationUsersOneDayUsageMetrics(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotOrganizationUsersOneDayUsageMetricsOperation.copilotCopilotOrganizationUsersOneDayUsageMetrics(
-            clientConfig,
-            org,
-            day,
-            options,
-        )
+    fun copilotCopilotOrganizationUsersOneDayUsageMetrics(
+        clientConfig: ClientConfig,
+        org: String,
+        day: LocalDate,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics1DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotOrganizationUsersOneDayUsageMetricsOperation
+            .copilotCopilotOrganizationUsersOneDayUsageMetrics(
+                clientConfig,
+                org,
+                day,
+                options,
+            )
 
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day organization users Copilot usage metrics report. The report provides detailed user-level usage data and engagement metrics for Copilot features across the organization. The report contains user-specific metrics for the previous 28 days, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user level to understand adoption patterns and identify opportunities for increased engagement. Reports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date range covered by the report. The report covers a complete 28-day period ending on the most recent day for which data has been processed. Organization owners and authorized users with fine-grained "View Organization Copilot Metrics" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. For more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
+     * Use this endpoint to retrieve download links for the latest 28-day organization users Copilot
+     * usage metrics report. The report provides detailed user-level usage data and engagement
+     * metrics for Copilot features across the organization. The report contains user-specific
+     * metrics for the previous 28 days, including individual user engagement statistics, feature
+     * usage patterns, and adoption metrics broken down by user. This report allows authorized users
+     * to analyze Copilot usage at the user level to understand adoption patterns and identify
+     * opportunities for increased engagement. Reports are generated daily and made available for
+     * download through signed URLs with a limited expiration time. The response includes download
+     * links to the report files, along with the specific date range covered by the report. The
+     * report covers a complete 28-day period ending on the most recent day for which data has been
+     * processed. Organization owners and authorized users with fine-grained "View Organization
+     * Copilot Metrics" permission can retrieve Copilot metrics reports for the organization. OAuth
+     * app tokens and personal access tokens (classic) need the `read:org` scope to use this
+     * endpoint. For more information about organization metrics attribution, see
+     * [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations).
      */
-    fun copilotCopilotOrganizationUsersUsageMetrics(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport =
-        dev.octri.showcase.github.methods.CopilotCopilotOrganizationUsersUsageMetricsOperation.copilotCopilotOrganizationUsersUsageMetrics(
-            clientConfig,
-            org,
-            options,
-        )
+    fun copilotCopilotOrganizationUsersUsageMetrics(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): CopilotUsageMetrics28DayReport =
+        dev.octri.showcase.github.methods.CopilotCopilotOrganizationUsersUsageMetricsOperation
+            .copilotCopilotOrganizationUsersUsageMetrics(
+                clientConfig,
+                org,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Gets the GitHub Copilot seat details for a member of an organization who currently has access to GitHub Copilot. The seat object contains information about the user's most recent Copilot activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in `last_activity_at`. For more information about activity data, see [Metrics data properties for GitHub Copilot](https://docs.github.com/copilot/reference/metrics-data). Only organization owners can view Copilot seat assignment details for members of their organization. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:org` scopes to use this endpoint.
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Gets the GitHub
+     * > Copilot seat details for a member of an organization who currently has access to GitHub
+     * > Copilot. The seat object contains information about the user's most recent Copilot
+     * > activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to
+     * > be reflected in `last_activity_at`. For more information about activity data, see
+     * > [Metrics data properties for GitHub Copilot](https://docs.github.com/copilot/reference/metrics-data).
+     * > Only organization owners can view Copilot seat assignment details for members of their
+     * > organization. OAuth app tokens and personal access tokens (classic) need either the
+     * > `manage_billing:copilot` or `read:org` scopes to use this endpoint.
      */
-    fun copilotGetCopilotSeatDetailsForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): CopilotSeatDetails =
-        dev.octri.showcase.github.methods.CopilotGetCopilotSeatDetailsForUserOperation.copilotGetCopilotSeatDetailsForUser(
-            clientConfig,
-            org,
-            username,
-            options,
-        )
+    fun copilotGetCopilotSeatDetailsForUser(
+        clientConfig: ClientConfig,
+        org: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): CopilotSeatDetails =
+        dev.octri.showcase.github.methods.CopilotGetCopilotSeatDetailsForUserOperation
+            .copilotGetCopilotSeatDetailsForUser(
+                clientConfig,
+                org,
+                username,
+                options,
+            )
 
     /**
-     * > [!NOTE] > This endpoint is in public preview and is subject to change. Gets the Copilot cloud agent configuration for a repository, including MCP server configuration, enabled review tools, Actions workflow approval settings, and firewall configuration. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * > [!NOTE] > This endpoint is in public preview and is subject to change. Gets the Copilot
+     * > cloud agent configuration for a repository, including MCP server configuration, enabled
+     * > review tools, Actions workflow approval settings, and firewall configuration. OAuth app
+     * > tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun copilotGetCopilotCloudAgentConfiguration(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CopilotGetCopilotCloudAgentConfigurationResponse =
-        dev.octri.showcase.github.methods.CopilotGetCopilotCloudAgentConfigurationOperation.copilotGetCopilotCloudAgentConfiguration(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun copilotGetCopilotCloudAgentConfiguration(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CopilotGetCopilotCloudAgentConfigurationResponse =
+        dev.octri.showcase.github.methods.CopilotGetCopilotCloudAgentConfigurationOperation
+            .copilotGetCopilotCloudAgentConfiguration(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 }

@@ -3,88 +3,66 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Optional object value serialized in the `description` wire field.
- */
+/** Optional object value serialized in the `description` wire field. */
 data class WebhookMilestoneEditedChangesDescription(
-    /**
-     * The previous version of the description if the action was `edited`.
-     */
+    /** The previous version of the description if the action was `edited`. */
     val from: String
 )
 
-/**
- * Optional object value serialized in the `due_on` wire field.
- */
+/** Optional object value serialized in the `due_on` wire field. */
 data class WebhookMilestoneEditedChangesDueOn(
-    /**
-     * The previous version of the due date if the action was `edited`.
-     */
+    /** The previous version of the due date if the action was `edited`. */
     val from: String
 )
 
-/**
- * Optional object value serialized in the `title` wire field.
- */
+/** Optional object value serialized in the `title` wire field. */
 data class WebhookMilestoneEditedChangesTitle(
-    /**
-     * The previous version of the title if the action was `edited`.
-     */
+    /** The previous version of the title if the action was `edited`. */
     val from: String
 )
 
-/**
- * The changes to the milestone if the action was `edited`.
- */
+/** The changes to the milestone if the action was `edited`. */
 data class WebhookMilestoneEditedChanges(
-    /**
-     * Optional object value serialized in the `description` wire field.
-     */
+    /** Optional object value serialized in the `description` wire field. */
     val description: WebhookMilestoneEditedChangesDescription? = null,
-    /**
-     * Optional object value serialized in the `due_on` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("due_on") val dueOn: WebhookMilestoneEditedChangesDueOn? = null,
-    /**
-     * Optional object value serialized in the `title` wire field.
-     */
-    val title: WebhookMilestoneEditedChangesTitle? = null
+    /** Optional object value serialized in the `due_on` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("due_on")
+    val dueOn: WebhookMilestoneEditedChangesDueOn? = null,
+    /** Optional object value serialized in the `title` wire field. */
+    val title: WebhookMilestoneEditedChangesTitle? = null,
 )
 
-/**
- * Typed representation of the `WebhookMilestoneEdited` API schema.
- */
+/** Typed representation of the `WebhookMilestoneEdited` API schema. */
 data class WebhookMilestoneEdited(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookMilestoneEditedActionEnum,
-    /**
-     * The changes to the milestone if the action was `edited`.
-     */
+    /** The changes to the milestone if the action was `edited`. */
     val changes: WebhookMilestoneEditedChanges,
-    /**
-     * A collection of related issues and pull requests.
-     */
+    /** A collection of related issues and pull requests. */
     val milestone: WebhooksMilestone,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
+     * is configured on an enterprise account or an organization that's part of an enterprise
+     * account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null
+    val organization: OrganizationSimpleWebhooks? = null,
 )

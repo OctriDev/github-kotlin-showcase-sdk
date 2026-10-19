@@ -5,374 +5,207 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Blob
- */
+/** Blob */
 data class Blob(
-    /**
-     * Required `string` value serialized in the `content` wire field.
-     */
+    /** Required `string` value serialized in the `content` wire field. */
     val content: String,
-    /**
-     * Required `string` value serialized in the `encoding` wire field.
-     */
+    /** Required `string` value serialized in the `encoding` wire field. */
     val encoding: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `integer` value serialized in the `size` wire field.
-     */
+    /** Required `integer` value serialized in the `size` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("size", required = true) val size: Long?,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Optional `string` value serialized in the `highlighted_content` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("highlighted_content") val highlightedContent: String? = null
+    /** Optional `string` value serialized in the `highlighted_content` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("highlighted_content")
+    val highlightedContent: String? = null,
 )
 
-/**
- * Identifying information for the git-user
- */
+/** Identifying information for the git-user */
 data class GitCommitAuthor(
-    /**
-     * Timestamp of the commit
-     */
+    /** Timestamp of the commit */
     val date: OffsetDateTime,
-    /**
-     * Git email address of the user
-     */
+    /** Git email address of the user */
     val email: String,
-    /**
-     * Name of the git user
-     */
-    val name: String
+    /** Name of the git user */
+    val name: String,
 )
 
-/**
- * Identifying information for the git-user
- */
+/** Identifying information for the git-user */
 data class GitCommitCommitter(
-    /**
-     * Timestamp of the commit
-     */
+    /** Timestamp of the commit */
     val date: OffsetDateTime,
-    /**
-     * Git email address of the user
-     */
+    /** Git email address of the user */
     val email: String,
-    /**
-     * Name of the git user
-     */
-    val name: String
+    /** Name of the git user */
+    val name: String,
 )
 
-/**
- * Required object value serialized in the `tree` wire field.
- */
+/** Required object value serialized in the `tree` wire field. */
 data class GitCommitTree(
-    /**
-     * SHA for the commit
-     */
+    /** SHA for the commit */
     val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Required object value serialized in the `parents[]` wire field.
- */
+/** Required object value serialized in the `parents[]` wire field. */
 data class GitCommitParentsItem(
-    /**
-     * SHA for the commit
-     */
+    /** SHA for the commit */
     val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
 )
 
-/**
- * Required object value serialized in the `verification` wire field.
- */
+/** Required object value serialized in the `verification` wire field. */
 data class GitCommitVerification(
-    /**
-     * Required `boolean` value serialized in the `verified` wire field.
-     */
+    /** Required `boolean` value serialized in the `verified` wire field. */
     val verified: Boolean,
-    /**
-     * Required `string` value serialized in the `reason` wire field.
-     */
+    /** Required `string` value serialized in the `reason` wire field. */
     val reason: String,
-    /**
-     * Required `string` value serialized in the `signature` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("signature", required = true) val signature: String?,
-    /**
-     * Required `string` value serialized in the `payload` wire field.
-     */
+    /** Required `string` value serialized in the `signature` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("signature", required = true)
+    val signature: String?,
+    /** Required `string` value serialized in the `payload` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("payload", required = true) val payload: String?,
-    /**
-     * Required `string` value serialized in the `verified_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("verified_at", required = true) val verifiedAt: String?
+    /** Required `string` value serialized in the `verified_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("verified_at", required = true)
+    val verifiedAt: String?,
 )
 
-/**
- * Low-level Git commit operations within a repository
- */
+/** Low-level Git commit operations within a repository */
 data class GitCommit(
-    /**
-     * SHA for the commit
-     */
+    /** SHA for the commit */
     val sha: String,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Identifying information for the git-user
-     */
+    /** Identifying information for the git-user */
     val author: GitCommitAuthor,
-    /**
-     * Identifying information for the git-user
-     */
+    /** Identifying information for the git-user */
     val committer: GitCommitCommitter,
-    /**
-     * Message describing the purpose of the commit
-     */
+    /** Message describing the purpose of the commit */
     val message: String,
-    /**
-     * Required object value serialized in the `tree` wire field.
-     */
+    /** Required object value serialized in the `tree` wire field. */
     val tree: GitCommitTree,
-    /**
-     * Required array value serialized in the `parents` wire field.
-     */
+    /** Required array value serialized in the `parents` wire field. */
     val parents: List<GitCommitParentsItem>,
-    /**
-     * Required object value serialized in the `verification` wire field.
-     */
+    /** Required object value serialized in the `verification` wire field. */
     val verification: GitCommitVerification,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
 )
 
-/**
- * Required object value serialized in the `object` wire field.
- */
+/** Required object value serialized in the `object` wire field. */
 data class GitRefObject(
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: String,
-    /**
-     * SHA for the reference
-     */
+    /** SHA for the reference */
     val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Git references within a repository
- */
+/** Git references within a repository */
 data class GitRef(
-    /**
-     * Required `string` value serialized in the `ref` wire field.
-     */
+    /** Required `string` value serialized in the `ref` wire field. */
     val ref: String,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required object value serialized in the `object` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("object") val `object`: GitRefObject
+    /** Required object value serialized in the `object` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("object") val `object`: GitRefObject,
 )
 
-/**
- * Required object value serialized in the `tagger` wire field.
- */
+/** Required object value serialized in the `tagger` wire field. */
 data class GitTagTagger(
-    /**
-     * Required `string` value serialized in the `date` wire field.
-     */
+    /** Required `string` value serialized in the `date` wire field. */
     val date: String,
-    /**
-     * Required `string` value serialized in the `email` wire field.
-     */
+    /** Required `string` value serialized in the `email` wire field. */
     val email: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
-    val name: String
+    /** Required `string` value serialized in the `name` wire field. */
+    val name: String,
 )
 
-/**
- * Required object value serialized in the `object` wire field.
- */
+/** Required object value serialized in the `object` wire field. */
 data class GitTagObject(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Metadata for a Git tag
- */
+/** Metadata for a Git tag */
 data class GitTag(
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Name of the tag
-     */
+    /** Name of the tag */
     val tag: String,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * URL for the tag
-     */
+    /** URL for the tag */
     val url: String,
-    /**
-     * Message describing the purpose of the tag
-     */
+    /** Message describing the purpose of the tag */
     val message: String,
-    /**
-     * Required object value serialized in the `tagger` wire field.
-     */
+    /** Required object value serialized in the `tagger` wire field. */
     val tagger: GitTagTagger,
-    /**
-     * Required object value serialized in the `object` wire field.
-     */
+    /** Required object value serialized in the `object` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("object") val `object`: GitTagObject,
-    /**
-     * Optional object value serialized in the `verification` wire field.
-     */
-    val verification: Verification? = null
+    /** Optional object value serialized in the `verification` wire field. */
+    val verification: Verification? = null,
 )
 
-/**
- * Required object value serialized in the `tree[]` wire field.
- */
+/** Required object value serialized in the `tree[]` wire field. */
 data class GitTreeTreeItem(
-    /**
-     * Required `string` value serialized in the `path` wire field.
-     */
+    /** Required `string` value serialized in the `path` wire field. */
     val path: String,
-    /**
-     * Required `string` value serialized in the `mode` wire field.
-     */
+    /** Required `string` value serialized in the `mode` wire field. */
     val mode: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: String,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Optional `integer` value serialized in the `size` wire field.
-     */
+    /** Optional `integer` value serialized in the `size` wire field. */
     val size: Long? = null,
-    /**
-     * Optional `string` value serialized in the `url` wire field.
-     */
-    val url: String? = null
+    /** Optional `string` value serialized in the `url` wire field. */
+    val url: String? = null,
 )
 
-/**
- * The hierarchy between files in a Git repository.
- */
+/** The hierarchy between files in a Git repository. */
 data class GitTree(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `boolean` value serialized in the `truncated` wire field.
-     */
+    /** Required `boolean` value serialized in the `truncated` wire field. */
     val truncated: Boolean,
-    /**
-     * Objects specifying a tree structure
-     */
+    /** Objects specifying a tree structure */
     val tree: List<GitTreeTreeItem>,
-    /**
-     * Optional `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String? = null
+    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    val url: String? = null,
 )
 
-/**
- * Metaproperties for Git author/committer information.
- */
+/** Metaproperties for Git author/committer information. */
 data class GitUser(
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `string` value serialized in the `email` wire field.
-     */
+    /** Optional `string` value serialized in the `email` wire field. */
     val email: String? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `date` wire field.
-     */
-    val date: OffsetDateTime? = null
+    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    val date: OffsetDateTime? = null,
 )
 
-/**
- * Short Blob
- */
+/** Short Blob */
 data class ShortBlob(
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
-    val sha: String
+    /** Required `string` value serialized in the `sha` wire field. */
+    val sha: String,
 )

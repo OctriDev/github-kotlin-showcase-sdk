@@ -3,84 +3,72 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Required object value serialized in the `organization_id` wire field.
- */
+/** Required object value serialized in the `organization_id` wire field. */
 data class EnterpriseRulesetConditionsOrganizationIdTargetOrganizationId(
     /**
-     * The organization IDs that the ruleset applies to. One of these IDs must match for the condition to pass.
+     * The organization IDs that the ruleset applies to. One of these IDs must match for the
+     * condition to pass.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_ids") val organizationIds: List<Long>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_ids")
+    val organizationIds: List<Long>? = null
 )
 
-/**
- * Parameters for an organization ID condition
- */
+/** Parameters for an organization ID condition */
 data class EnterpriseRulesetConditionsOrganizationIdTarget(
-    /**
-     * Required object value serialized in the `organization_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_id") val organizationId: EnterpriseRulesetConditionsOrganizationIdTargetOrganizationId
+    /** Required object value serialized in the `organization_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_id")
+    val organizationId: EnterpriseRulesetConditionsOrganizationIdTargetOrganizationId
 )
 
-/**
- * Required object value serialized in the `organization_name` wire field.
- */
+/** Required object value serialized in the `organization_name` wire field. */
 data class EnterpriseRulesetConditionsOrganizationNameTargetOrganizationName(
     /**
-     * Array of organization names or patterns to include. One of these patterns must match for the condition to pass. Also accepts `~ALL` to include all organizations and ~EMUS to target all enterprise managed user accounts.
+     * Array of organization names or patterns to include. One of these patterns must match for the
+     * condition to pass. Also accepts `~ALL` to include all organizations and ~EMUS to target all
+     * enterprise managed user accounts.
      */
     val include: List<String>? = null,
     /**
-     * Array of organization names or patterns to exclude. The condition will not pass if any of these patterns match.
+     * Array of organization names or patterns to exclude. The condition will not pass if any of
+     * these patterns match.
      */
-    val exclude: List<String>? = null
+    val exclude: List<String>? = null,
 )
 
-/**
- * Parameters for an organization name condition
- */
+/** Parameters for an organization name condition */
 data class EnterpriseRulesetConditionsOrganizationNameTarget(
-    /**
-     * Required object value serialized in the `organization_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_name") val organizationName: EnterpriseRulesetConditionsOrganizationNameTargetOrganizationName
+    /** Required object value serialized in the `organization_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_name")
+    val organizationName: EnterpriseRulesetConditionsOrganizationNameTargetOrganizationName
 )
 
-/**
- * Parameters for a targeting a organization property
- */
+/** Parameters for a targeting a organization property */
 data class EnterpriseRulesetConditionsOrganizationPropertySpec(
-    /**
-     * The name of the organization property to target
-     */
+    /** The name of the organization property to target */
     val name: String,
-    /**
-     * The values to match for the organization property
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("property_values") val propertyValues: List<String>
+    /** The values to match for the organization property */
+    @com.fasterxml.jackson.annotation.JsonProperty("property_values")
+    val propertyValues: List<String>,
 )
 
-/**
- * Required object value serialized in the `organization_property` wire field.
- */
+/** Required object value serialized in the `organization_property` wire field. */
 data class EnterpriseRulesetConditionsOrganizationPropertyTargetOrganizaXfd8187e868(
     /**
-     * The organization properties and values to include. All of these properties must match for the condition to pass.
+     * The organization properties and values to include. All of these properties must match for the
+     * condition to pass.
      */
     val include: List<EnterpriseRulesetConditionsOrganizationPropertySpec>? = null,
     /**
-     * The organization properties and values to exclude. The condition will not pass if any of these properties match.
+     * The organization properties and values to exclude. The condition will not pass if any of
+     * these properties match.
      */
-    val exclude: List<EnterpriseRulesetConditionsOrganizationPropertySpec>? = null
+    val exclude: List<EnterpriseRulesetConditionsOrganizationPropertySpec>? = null,
 )
 
-/**
- * Parameters for a organization property condition
- */
+/** Parameters for a organization property condition */
 data class EnterpriseRulesetConditionsOrganizationPropertyTarget(
-    /**
-     * Required object value serialized in the `organization_property` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_property") val organizationProperty: EnterpriseRulesetConditionsOrganizationPropertyTargetOrganizaXfd8187e868
+    /** Required object value serialized in the `organization_property` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_property")
+    val organizationProperty:
+        EnterpriseRulesetConditionsOrganizationPropertyTargetOrganizaXfd8187e868
 )

@@ -3,40 +3,42 @@
 
 package dev.octri.showcase.github.models
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class IssuesAddAssigneesRequestAssigneesItemVariant1(
-    /**
-     * The login of the user to assign.
-     */
+    /** The login of the user to assign. */
     val login: String,
-    /**
-     * Optional reasoning for adding this assignee.
-     */
+    /** Optional reasoning for adding this assignee. */
     val rationale: String? = null,
     /**
-     * If `true`, the assignee is stored as a pending suggestion for human review rather than applied directly.
+     * If `true`, the assignee is stored as a pending suggestion for human review rather than
+     * applied directly.
      */
     val suggest: Boolean? = null,
-    /**
-     * The confidence level for this assignee choice.
-     */
-    val confidence: IssuesAddAssigneesRequestAssigneesItemVariant1ConfidenceEnum? = null
+    /** The confidence level for this assignee choice. */
+    val confidence: IssuesAddAssigneesRequestAssigneesItemVariant1ConfidenceEnum? = null,
 ) : IssuesAddAssigneesRequestAssigneesItem
 
-/**
- * Typed representation of the `IssuesAddAssigneesRequestAssigneesItem` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = IssuesAddAssigneesRequestAssigneesItem.Deserializer::class)
+/** Typed representation of the `IssuesAddAssigneesRequestAssigneesItem` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = IssuesAddAssigneesRequestAssigneesItem.Deserializer::class
+)
 sealed interface IssuesAddAssigneesRequestAssigneesItem {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<IssuesAddAssigneesRequestAssigneesItem>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<IssuesAddAssigneesRequestAssigneesItem>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): IssuesAddAssigneesRequestAssigneesItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out IssuesAddAssigneesRequestAssigneesItem>> = listOf(IssuesAddAssigneesRequestAssigneesItemVariant1::class.java)
+            val objectTypes: List<Class<out IssuesAddAssigneesRequestAssigneesItem>> =
+                listOf(IssuesAddAssigneesRequestAssigneesItemVariant1::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -45,39 +47,63 @@ sealed interface IssuesAddAssigneesRequestAssigneesItem {
                 }
             }
             return when {
-                node.isTextual -> StringIssuesAddAssigneesRequestAssigneesItem(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, IssuesAddAssigneesRequestAssigneesItem::class.java, "no IssuesAddAssigneesRequestAssigneesItem branch accepts this payload")
+                node.isTextual ->
+                    StringIssuesAddAssigneesRequestAssigneesItem(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        IssuesAddAssigneesRequestAssigneesItem::class.java,
+                        "no IssuesAddAssigneesRequestAssigneesItem branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class StringIssuesAddAssigneesRequestAssigneesItem(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : IssuesAddAssigneesRequestAssigneesItem
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class StringIssuesAddAssigneesRequestAssigneesItem(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
+) : IssuesAddAssigneesRequestAssigneesItem
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class IssuesCreateRequestLabelsItemVariant1(
     val id: Long? = null,
     val name: String? = null,
     val description: String? = null,
-    val color: String? = null
+    val color: String? = null,
 ) : IssuesCreateRequestLabelsItem
 
-/**
- * Typed representation of the `IssuesCreateRequestLabelsItem` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = IssuesCreateRequestLabelsItem.Deserializer::class)
+/** Typed representation of the `IssuesCreateRequestLabelsItem` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = IssuesCreateRequestLabelsItem.Deserializer::class
+)
 sealed interface IssuesCreateRequestLabelsItem {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<IssuesCreateRequestLabelsItem>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<IssuesCreateRequestLabelsItem>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): IssuesCreateRequestLabelsItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out IssuesCreateRequestLabelsItem>> = listOf(IssuesCreateRequestLabelsItemVariant1::class.java)
+            val objectTypes: List<Class<out IssuesCreateRequestLabelsItem>> =
+                listOf(IssuesCreateRequestLabelsItemVariant1::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -86,48 +112,69 @@ sealed interface IssuesCreateRequestLabelsItem {
                 }
             }
             return when {
-                node.isTextual -> StringIssuesCreateRequestLabelsItem(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, IssuesCreateRequestLabelsItem::class.java, "no IssuesCreateRequestLabelsItem branch accepts this payload")
+                node.isTextual ->
+                    StringIssuesCreateRequestLabelsItem(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        IssuesCreateRequestLabelsItem::class.java,
+                        "no IssuesCreateRequestLabelsItem branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class StringIssuesCreateRequestLabelsItem(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : IssuesCreateRequestLabelsItem
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class StringIssuesCreateRequestLabelsItem(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
+) : IssuesCreateRequestLabelsItem
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class IssuesUpdateRequestAssigneesItemVariant1(
     val login: String? = null,
-    /**
-     * Optional reasoning for selecting this assignee.
-     */
+    /** Optional reasoning for selecting this assignee. */
     val rationale: String? = null,
     /**
-     * If `true`, the change is stored as a pending suggestion for human review rather than applied directly.
+     * If `true`, the change is stored as a pending suggestion for human review rather than applied
+     * directly.
      */
     val suggest: Boolean? = null,
-    /**
-     * The confidence level for this assignee choice.
-     */
-    val confidence: IssuesUpdateRequestAssigneesItemVariant1ConfidenceEnum? = null
+    /** The confidence level for this assignee choice. */
+    val confidence: IssuesUpdateRequestAssigneesItemVariant1ConfidenceEnum? = null,
 ) : IssuesUpdateRequestAssigneesItem
 
-/**
- * Typed representation of the `IssuesUpdateRequestAssigneesItem` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = IssuesUpdateRequestAssigneesItem.Deserializer::class)
+/** Typed representation of the `IssuesUpdateRequestAssigneesItem` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = IssuesUpdateRequestAssigneesItem.Deserializer::class
+)
 sealed interface IssuesUpdateRequestAssigneesItem {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<IssuesUpdateRequestAssigneesItem>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<IssuesUpdateRequestAssigneesItem>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): IssuesUpdateRequestAssigneesItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out IssuesUpdateRequestAssigneesItem>> = listOf(IssuesUpdateRequestAssigneesItemVariant1::class.java)
+            val objectTypes: List<Class<out IssuesUpdateRequestAssigneesItem>> =
+                listOf(IssuesUpdateRequestAssigneesItemVariant1::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -136,51 +183,72 @@ sealed interface IssuesUpdateRequestAssigneesItem {
                 }
             }
             return when {
-                node.isTextual -> StringIssuesUpdateRequestAssigneesItem(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, IssuesUpdateRequestAssigneesItem::class.java, "no IssuesUpdateRequestAssigneesItem branch accepts this payload")
+                node.isTextual ->
+                    StringIssuesUpdateRequestAssigneesItem(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        IssuesUpdateRequestAssigneesItem::class.java,
+                        "no IssuesUpdateRequestAssigneesItem branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class StringIssuesUpdateRequestAssigneesItem(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : IssuesUpdateRequestAssigneesItem
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class StringIssuesUpdateRequestAssigneesItem(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
+) : IssuesUpdateRequestAssigneesItem
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class IssuesUpdateRequestLabelsItemVariant1(
     val id: Long? = null,
     val name: String? = null,
     val description: String? = null,
     val color: String? = null,
-    /**
-     * Optional reasoning for selecting this label.
-     */
+    /** Optional reasoning for selecting this label. */
     val rationale: String? = null,
     /**
-     * If `true`, the change is stored as a pending suggestion for human review rather than applied directly.
+     * If `true`, the change is stored as a pending suggestion for human review rather than applied
+     * directly.
      */
     val suggest: Boolean? = null,
-    /**
-     * The confidence level for this label choice.
-     */
-    val confidence: IssuesUpdateRequestLabelsItemVariant1ConfidenceEnum? = null
+    /** The confidence level for this label choice. */
+    val confidence: IssuesUpdateRequestLabelsItemVariant1ConfidenceEnum? = null,
 ) : IssuesUpdateRequestLabelsItem
 
-/**
- * Typed representation of the `IssuesUpdateRequestLabelsItem` API schema.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = IssuesUpdateRequestLabelsItem.Deserializer::class)
+/** Typed representation of the `IssuesUpdateRequestLabelsItem` API schema. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = IssuesUpdateRequestLabelsItem.Deserializer::class
+)
 sealed interface IssuesUpdateRequestLabelsItem {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<IssuesUpdateRequestLabelsItem>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<IssuesUpdateRequestLabelsItem>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): IssuesUpdateRequestLabelsItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out IssuesUpdateRequestLabelsItem>> = listOf(IssuesUpdateRequestLabelsItemVariant1::class.java)
+            val objectTypes: List<Class<out IssuesUpdateRequestLabelsItem>> =
+                listOf(IssuesUpdateRequestLabelsItemVariant1::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -189,51 +257,76 @@ sealed interface IssuesUpdateRequestLabelsItem {
                 }
             }
             return when {
-                node.isTextual -> StringIssuesUpdateRequestLabelsItem(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, IssuesUpdateRequestLabelsItem::class.java, "no IssuesUpdateRequestLabelsItem branch accepts this payload")
+                node.isTextual ->
+                    StringIssuesUpdateRequestLabelsItem(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        IssuesUpdateRequestLabelsItem::class.java,
+                        "no IssuesUpdateRequestLabelsItem branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class StringIssuesUpdateRequestLabelsItem(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : IssuesUpdateRequestLabelsItem
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class StringIssuesUpdateRequestLabelsItem(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
+) : IssuesUpdateRequestLabelsItem
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class IssuesUpdateRequestTypeVariant1(
     /**
-     * The name of the issue type to associate with this issue, or `null` to remove the current issue type.
+     * The name of the issue type to associate with this issue, or `null` to remove the current
+     * issue type.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: String? = null,
-    /**
-     * Optional reasoning for selecting this type.
-     */
+    /** Optional reasoning for selecting this type. */
     val rationale: String? = null,
     /**
-     * If `true`, the change is stored as a pending suggestion for human review rather than applied directly.
+     * If `true`, the change is stored as a pending suggestion for human review rather than applied
+     * directly.
      */
     val suggest: Boolean? = null,
-    /**
-     * The confidence level for this type choice.
-     */
-    val confidence: IssuesUpdateRequestTypeVariant1ConfidenceEnum? = null
+    /** The confidence level for this type choice. */
+    val confidence: IssuesUpdateRequestTypeVariant1ConfidenceEnum? = null,
 ) : IssuesUpdateRequestType
 
 /**
- * The issue type to associate with this issue. Only users with push access can set the type for issues. Without push access to the repository, type changes are silently dropped.
+ * The issue type to associate with this issue. Only users with push access can set the type for
+ * issues. Without push access to the repository, type changes are silently dropped.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = IssuesUpdateRequestType.Deserializer::class)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = IssuesUpdateRequestType.Deserializer::class
+)
 sealed interface IssuesUpdateRequestType {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<IssuesUpdateRequestType>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<IssuesUpdateRequestType>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): IssuesUpdateRequestType {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out IssuesUpdateRequestType>> = listOf(IssuesUpdateRequestTypeVariant1::class.java)
+            val objectTypes: List<Class<out IssuesUpdateRequestType>> =
+                listOf(IssuesUpdateRequestTypeVariant1::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -242,13 +335,30 @@ sealed interface IssuesUpdateRequestType {
                 }
             }
             return when {
-                node.isTextual -> StringIssuesUpdateRequestType(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, IssuesUpdateRequestType::class.java, "no IssuesUpdateRequestType branch accepts this payload")
+                node.isTextual ->
+                    StringIssuesUpdateRequestType(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        IssuesUpdateRequestType::class.java,
+                        "no IssuesUpdateRequestType branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class StringIssuesUpdateRequestType(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : IssuesUpdateRequestType
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class StringIssuesUpdateRequestType(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
+) : IssuesUpdateRequestType

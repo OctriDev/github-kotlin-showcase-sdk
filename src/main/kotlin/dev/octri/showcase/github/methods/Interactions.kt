@@ -16,355 +16,576 @@ import dev.octri.showcase.github.ValidationError
 
 object Interactions {
 
-data class InteractionsGetPullRequestCreationCapForOrgResponse(
-    /**
-     * Whether the pull request creation cap is enabled
-     */
-    val enabled: Boolean,
-    /**
-     * The maximum number of open pull requests a user can have at one time
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_open_pull_requests") val maxOpenPullRequests: Long,
-    /**
-     * Whether draft pull requests count toward the pull request creation cap
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("include_drafts") val includeDrafts: Boolean? = null
-)
+    data class InteractionsGetPullRequestCreationCapForOrgResponse(
+        /** Whether the pull request creation cap is enabled */
+        val enabled: Boolean,
+        /** The maximum number of open pull requests a user can have at one time */
+        @com.fasterxml.jackson.annotation.JsonProperty("max_open_pull_requests")
+        val maxOpenPullRequests: Long,
+        /** Whether draft pull requests count toward the pull request creation cap */
+        @com.fasterxml.jackson.annotation.JsonProperty("include_drafts")
+        val includeDrafts: Boolean? = null,
+    )
 
-data class InteractionsUpdatePullRequestCreationCapForOrgResponse(
-    /**
-     * Whether the pull request creation cap is enabled
-     */
-    val enabled: Boolean,
-    /**
-     * The maximum number of open pull requests a user can have at one time
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_open_pull_requests") val maxOpenPullRequests: Long,
-    /**
-     * Whether draft pull requests count toward the pull request creation cap
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("include_drafts") val includeDrafts: Boolean? = null
-)
+    data class InteractionsUpdatePullRequestCreationCapForOrgResponse(
+        /** Whether the pull request creation cap is enabled */
+        val enabled: Boolean,
+        /** The maximum number of open pull requests a user can have at one time */
+        @com.fasterxml.jackson.annotation.JsonProperty("max_open_pull_requests")
+        val maxOpenPullRequests: Long,
+        /** Whether draft pull requests count toward the pull request creation cap */
+        @com.fasterxml.jackson.annotation.JsonProperty("include_drafts")
+        val includeDrafts: Boolean? = null,
+    )
 
-data class InteractionsGetPullRequestCreationCapForRepoResponse(
-    /**
-     * Whether the pull request creation cap is enabled
-     */
-    val enabled: Boolean,
-    /**
-     * The maximum number of open pull requests a user can have at one time
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_open_pull_requests") val maxOpenPullRequests: Long,
-    /**
-     * Whether draft pull requests count toward the pull request creation cap
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("include_drafts") val includeDrafts: Boolean? = null
-)
+    data class InteractionsGetPullRequestCreationCapForRepoResponse(
+        /** Whether the pull request creation cap is enabled */
+        val enabled: Boolean,
+        /** The maximum number of open pull requests a user can have at one time */
+        @com.fasterxml.jackson.annotation.JsonProperty("max_open_pull_requests")
+        val maxOpenPullRequests: Long,
+        /** Whether draft pull requests count toward the pull request creation cap */
+        @com.fasterxml.jackson.annotation.JsonProperty("include_drafts")
+        val includeDrafts: Boolean? = null,
+    )
 
-data class InteractionsUpdatePullRequestCreationCapForRepoResponse(
-    /**
-     * Whether the pull request creation cap is enabled
-     */
-    val enabled: Boolean,
-    /**
-     * The maximum number of open pull requests a user can have at one time
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_open_pull_requests") val maxOpenPullRequests: Long,
-    /**
-     * Whether draft pull requests count toward the pull request creation cap
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("include_drafts") val includeDrafts: Boolean? = null
-)
-
+    data class InteractionsUpdatePullRequestCreationCapForRepoResponse(
+        /** Whether the pull request creation cap is enabled */
+        val enabled: Boolean,
+        /** The maximum number of open pull requests a user can have at one time */
+        @com.fasterxml.jackson.annotation.JsonProperty("max_open_pull_requests")
+        val maxOpenPullRequests: Long,
+        /** Whether draft pull requests count toward the pull request creation cap */
+        @com.fasterxml.jackson.annotation.JsonProperty("include_drafts")
+        val includeDrafts: Boolean? = null,
+    )
 
     /**
-     * Shows which type of GitHub user can interact with this organization and when the restriction expires. If there is no restrictions, you will see an empty response.
+     * Shows which type of GitHub user can interact with this organization and when the restriction
+     * expires. If there is no restrictions, you will see an empty response.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun interactionsGetRestrictionsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Any {
-        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits", config = clientConfig, operationId = "interactionsGetRestrictionsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun interactionsGetRestrictionsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Any {
+        return SdkClient.request<Any>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits",
+                    config = clientConfig,
+                    operationId = "interactionsGetRestrictionsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Temporarily restricts interactions to a certain type of GitHub user in any public repository in the given organization. You must be an organization owner to set these restrictions. Setting the interaction limit at the organization level will overwrite any interaction limits that are set for individual repositories owned by the organization.
+     * Temporarily restricts interactions to a certain type of GitHub user in any public repository
+     * in the given organization. You must be an organization owner to set these restrictions.
+     * Setting the interaction limit at the organization level will overwrite any interaction limits
+     * that are set for individual repositories owned by the organization.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param limit The type of GitHub user that can comment, open issues, or create
-     *   pull requests while the interaction limit is in effect.
+     * @param limit The type of GitHub user that can comment, open issues, or create pull requests
+     *   while the interaction limit is in effect.
      * @param expiry The duration of the interaction restriction. Default: `one_day`.
      */
-    fun interactionsSetRestrictionsForOrg(clientConfig: ClientConfig, org: String, limit: InteractionGroup, expiry: InteractionExpiry? = null, options: RequestOptions? = null): InteractionLimitResponse {
-        return SdkClient.request<InteractionLimitResponse>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits", config = clientConfig, body = SdkClient.bodyMap("limit" to (limit), "expiry" to (SdkClient.omitIfNull(expiry))), operationId = "interactionsSetRestrictionsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun interactionsSetRestrictionsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        limit: InteractionGroup,
+        expiry: InteractionExpiry? = null,
+        options: RequestOptions? = null,
+    ): InteractionLimitResponse {
+        return SdkClient.request<InteractionLimitResponse>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "limit" to (limit),
+                            "expiry" to (SdkClient.omitIfNull(expiry)),
+                        ),
+                    operationId = "interactionsSetRestrictionsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Removes all interaction restrictions from public repositories in the given organization. You must be an organization owner to remove restrictions.
+     * Removes all interaction restrictions from public repositories in the given organization. You
+     * must be an organization owner to remove restrictions.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun interactionsRemoveRestrictionsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits", config = clientConfig, operationId = "interactionsRemoveRestrictionsForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun interactionsRemoveRestrictionsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits",
+                config = clientConfig,
+                operationId = "interactionsRemoveRestrictionsForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Gets the pull request creation cap configuration for an organization. The cap limits the total number of open pull requests a user can have across all public repositories in the organization at one time. Only users with admin access to the organization can view the cap configuration.
+     * Gets the pull request creation cap configuration for an organization. The cap limits the
+     * total number of open pull requests a user can have across all public repositories in the
+     * organization at one time. Only users with admin access to the organization can view the cap
+     * configuration.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun interactionsGetPullRequestCreationCapForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): InteractionsGetPullRequestCreationCapForOrgResponse {
-        return SdkClient.request<InteractionsGetPullRequestCreationCapForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits/pulls/creation-cap", config = clientConfig, operationId = "interactionsGetPullRequestCreationCapForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "405" to BasicError::class.java))).data
+    fun interactionsGetPullRequestCreationCapForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): InteractionsGetPullRequestCreationCapForOrgResponse {
+        return SdkClient.request<InteractionsGetPullRequestCreationCapForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits/pulls/creation-cap",
+                    config = clientConfig,
+                    operationId = "interactionsGetPullRequestCreationCapForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "405" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Updates the pull request creation cap for an organization. The cap limits the total number of open pull requests a user can have across all public repositories in the organization at one time. Only users with admin access to the organization can configure the cap.
+     * Updates the pull request creation cap for an organization. The cap limits the total number of
+     * open pull requests a user can have across all public repositories in the organization at one
+     * time. Only users with admin access to the organization can configure the cap.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param enabled Whether the pull request creation cap is enabled
-     * @param maxOpenPullRequests The maximum number of open pull requests a user can
-     *   have at one time
-     * @param includeDrafts Whether draft pull requests count toward the pull request
-     *   creation cap
+     * @param maxOpenPullRequests The maximum number of open pull requests a user can have at one
+     *   time
+     * @param includeDrafts Whether draft pull requests count toward the pull request creation cap
      */
-    fun interactionsUpdatePullRequestCreationCapForOrg(clientConfig: ClientConfig, org: String, enabled: Boolean, maxOpenPullRequests: Long? = null, includeDrafts: Boolean? = null, options: RequestOptions? = null): InteractionsUpdatePullRequestCreationCapForOrgResponse {
+    fun interactionsUpdatePullRequestCreationCapForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        enabled: Boolean,
+        maxOpenPullRequests: Long? = null,
+        includeDrafts: Boolean? = null,
+        options: RequestOptions? = null,
+    ): InteractionsUpdatePullRequestCreationCapForOrgResponse {
         if (maxOpenPullRequests != null) {
-            Validation.validateRange("max_open_pull_requests", maxOpenPullRequests, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "max_open_pull_requests",
+                maxOpenPullRequests,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
-        return SdkClient.request<InteractionsUpdatePullRequestCreationCapForOrgResponse>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits/pulls/creation-cap", config = clientConfig, body = SdkClient.bodyMap("enabled" to (enabled), "max_open_pull_requests" to
-    (SdkClient.omitIfNull(maxOpenPullRequests)), "include_drafts" to (SdkClient.omitIfNull(includeDrafts))), operationId = "interactionsUpdatePullRequestCreationCapForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "405" to BasicError::class.java, "422" to ValidationError::class.java))).data
+        return SdkClient.request<InteractionsUpdatePullRequestCreationCapForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/interaction-limits/pulls/creation-cap",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "enabled" to (enabled),
+                            "max_open_pull_requests" to (SdkClient.omitIfNull(maxOpenPullRequests)),
+                            "include_drafts" to (SdkClient.omitIfNull(includeDrafts)),
+                        ),
+                    operationId = "interactionsUpdatePullRequestCreationCapForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "405" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Shows which type of GitHub user can interact with this repository and when the restriction expires. If there are no restrictions, you will see an empty response.
+     * Shows which type of GitHub user can interact with this repository and when the restriction
+     * expires. If there are no restrictions, you will see an empty response.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun interactionsGetRestrictionsForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Any {
-        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits", config = clientConfig, operationId = "interactionsGetRestrictionsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun interactionsGetRestrictionsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Any {
+        return SdkClient.request<Any>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits",
+                    config = clientConfig,
+                    operationId = "interactionsGetRestrictionsForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Temporarily restricts interactions to a certain type of GitHub user within the given repository. You must have owner or admin access to set these restrictions. If an interaction limit is set for the user or organization that owns this repository, you will receive a `409 Conflict` response and will not be able to use this endpoint to change the interaction limit for a single repository.
+     * Temporarily restricts interactions to a certain type of GitHub user within the given
+     * repository. You must have owner or admin access to set these restrictions. If an interaction
+     * limit is set for the user or organization that owns this repository, you will receive a `409
+     * Conflict` response and will not be able to use this endpoint to change the interaction limit
+     * for a single repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param limit The type of GitHub user that can comment, open issues, or create
-     *   pull requests while the interaction limit is in effect.
+     * @param limit The type of GitHub user that can comment, open issues, or create pull requests
+     *   while the interaction limit is in effect.
      * @param expiry The duration of the interaction restriction. Default: `one_day`.
      */
-    fun interactionsSetRestrictionsForRepo(clientConfig: ClientConfig, owner: String, repo: String, limit: InteractionGroup, expiry: InteractionExpiry? = null, options: RequestOptions? = null): InteractionLimitResponse {
-        return SdkClient.request<InteractionLimitResponse>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits", config = clientConfig, body = SdkClient.bodyMap("limit" to (limit), "expiry" to (SdkClient.omitIfNull(expiry))), operationId = "interactionsSetRestrictionsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun interactionsSetRestrictionsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        limit: InteractionGroup,
+        expiry: InteractionExpiry? = null,
+        options: RequestOptions? = null,
+    ): InteractionLimitResponse {
+        return SdkClient.request<InteractionLimitResponse>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "limit" to (limit),
+                            "expiry" to (SdkClient.omitIfNull(expiry)),
+                        ),
+                    operationId = "interactionsSetRestrictionsForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Removes all interaction restrictions from the given repository. You must have owner or admin access to remove restrictions. If the interaction limit is set for the user or organization that owns this repository, you will receive a `409 Conflict` response and will not be able to use this endpoint to change the interaction limit for a single repository.
+     * Removes all interaction restrictions from the given repository. You must have owner or admin
+     * access to remove restrictions. If the interaction limit is set for the user or organization
+     * that owns this repository, you will receive a `409 Conflict` response and will not be able to
+     * use this endpoint to change the interaction limit for a single repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun interactionsRemoveRestrictionsForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits", config = clientConfig, operationId = "interactionsRemoveRestrictionsForRepo", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun interactionsRemoveRestrictionsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits",
+                config = clientConfig,
+                operationId = "interactionsRemoveRestrictionsForRepo",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists the users that are on the pull request creation cap bypass list for a repository. Users on this list can create pull requests regardless of any configured pull request creation cap. Only users with maintainer permissions can view the bypass list.
+     * Lists the users that are on the pull request creation cap bypass list for a repository. Users
+     * on this list can create pull requests regardless of any configured pull request creation cap.
+     * Only users with maintainer permissions can view the bypass list.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun interactionsGetPullRequestBypassListForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/bypass-list", config = clientConfig, operationId = "interactionsGetPullRequestBypassListForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun interactionsGetPullRequestBypassListForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/bypass-list",
+                    config = clientConfig,
+                    operationId = "interactionsGetPullRequestBypassListForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Adds users to the pull request creation cap bypass list for a repository. Users on this list can create pull requests regardless of any configured pull request creation cap. Only users with maintainer permissions can modify the bypass list. You can add a maximum of 100 users per request. The bypass list can only hold a maximum of 100 users.
+     * Adds users to the pull request creation cap bypass list for a repository. Users on this list
+     * can create pull requests regardless of any configured pull request creation cap. Only users
+     * with maintainer permissions can modify the bypass list. You can add a maximum of 100 users
+     * per request. The bypass list can only hold a maximum of 100 users.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param users A list of user logins to add or remove from the bypass list.
      */
-    fun interactionsSetPullRequestBypassListForRepo(clientConfig: ClientConfig, owner: String, repo: String, users: List<String>, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/bypass-list", config = clientConfig, body = SdkClient.bodyMap("users" to (users)), operationId = "interactionsSetPullRequestBypassListForRepo", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun interactionsSetPullRequestBypassListForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/bypass-list",
+                config = clientConfig,
+                body = SdkClient.bodyMap("users" to (users)),
+                operationId = "interactionsSetPullRequestBypassListForRepo",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Removes users from the pull request creation cap bypass list for a repository. Removed users will be subject to any configured pull request creation cap. Only users with maintainer permissions can modify the bypass list. You can remove a maximum of 100 users per request.
+     * Removes users from the pull request creation cap bypass list for a repository. Removed users
+     * will be subject to any configured pull request creation cap. Only users with maintainer
+     * permissions can modify the bypass list. You can remove a maximum of 100 users per request.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param users A list of user logins to add or remove from the bypass list.
      */
-    fun interactionsRemovePullRequestBypassListForRepo(clientConfig: ClientConfig, owner: String, repo: String, users: List<String>, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/bypass-list", config = clientConfig, body = SdkClient.bodyMap("users" to (users)), operationId = "interactionsRemovePullRequestBypassListForRepo", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun interactionsRemovePullRequestBypassListForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/bypass-list",
+                config = clientConfig,
+                body = SdkClient.bodyMap("users" to (users)),
+                operationId = "interactionsRemovePullRequestBypassListForRepo",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Gets the pull request creation cap configuration for a repository. The cap limits the number of open pull requests a user can have at one time. Only users with admin access to the repository can view the cap configuration.
+     * Gets the pull request creation cap configuration for a repository. The cap limits the number
+     * of open pull requests a user can have at one time. Only users with admin access to the
+     * repository can view the cap configuration.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun interactionsGetPullRequestCreationCapForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): InteractionsGetPullRequestCreationCapForRepoResponse {
-        return SdkClient.request<InteractionsGetPullRequestCreationCapForRepoResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/creation-cap", config = clientConfig, operationId = "interactionsGetPullRequestCreationCapForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "405" to BasicError::class.java))).data
+    fun interactionsGetPullRequestCreationCapForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): InteractionsGetPullRequestCreationCapForRepoResponse {
+        return SdkClient.request<InteractionsGetPullRequestCreationCapForRepoResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/creation-cap",
+                    config = clientConfig,
+                    operationId = "interactionsGetPullRequestCreationCapForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "405" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Updates the pull request creation cap for a repository. The cap limits the number of open pull requests a user can have at one time. Only users with admin access to the repository can configure the cap.
+     * Updates the pull request creation cap for a repository. The cap limits the number of open
+     * pull requests a user can have at one time. Only users with admin access to the repository can
+     * configure the cap.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param enabled Whether the pull request creation cap is enabled
-     * @param maxOpenPullRequests The maximum number of open pull requests a user can
-     *   have at one time
-     * @param includeDrafts Whether draft pull requests count toward the pull request
-     *   creation cap
+     * @param maxOpenPullRequests The maximum number of open pull requests a user can have at one
+     *   time
+     * @param includeDrafts Whether draft pull requests count toward the pull request creation cap
      */
-    fun interactionsUpdatePullRequestCreationCapForRepo(clientConfig: ClientConfig, owner: String, repo: String, enabled: Boolean, maxOpenPullRequests: Long? = null, includeDrafts: Boolean? = null, options: RequestOptions? = null): InteractionsUpdatePullRequestCreationCapForRepoResponse {
+    fun interactionsUpdatePullRequestCreationCapForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        enabled: Boolean,
+        maxOpenPullRequests: Long? = null,
+        includeDrafts: Boolean? = null,
+        options: RequestOptions? = null,
+    ): InteractionsUpdatePullRequestCreationCapForRepoResponse {
         if (maxOpenPullRequests != null) {
-            Validation.validateRange("max_open_pull_requests", maxOpenPullRequests, Validation.RangeOpts(min = 1.0, max = 1000.0))
-}
+            Validation.validateRange(
+                "max_open_pull_requests",
+                maxOpenPullRequests,
+                Validation.RangeOpts(min = 1.0, max = 1000.0),
+            )
+        }
 
-        return SdkClient.request<InteractionsUpdatePullRequestCreationCapForRepoResponse>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/creation-cap", config = clientConfig, body = SdkClient.bodyMap("enabled" to (enabled), "max_open_pull_requests" to
-    (SdkClient.omitIfNull(maxOpenPullRequests)), "include_drafts" to (SdkClient.omitIfNull(includeDrafts))), operationId = "interactionsUpdatePullRequestCreationCapForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "405" to BasicError::class.java, "422" to ValidationError::class.java))).data
+        return SdkClient.request<InteractionsUpdatePullRequestCreationCapForRepoResponse>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/interaction-limits/pulls/creation-cap",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "enabled" to (enabled),
+                            "max_open_pull_requests" to (SdkClient.omitIfNull(maxOpenPullRequests)),
+                            "include_drafts" to (SdkClient.omitIfNull(includeDrafts)),
+                        ),
+                    operationId = "interactionsUpdatePullRequestCreationCapForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "405" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Shows which type of GitHub user can interact with your public repositories and when the restriction expires.
+     * Shows which type of GitHub user can interact with your public repositories and when the
+     * restriction expires.
      */
-    fun interactionsGetRestrictionsForAuthenticatedUser(clientConfig: ClientConfig, options: RequestOptions? = null): Any {
-        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/user/interaction-limits", config = clientConfig, operationId = "interactionsGetRestrictionsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun interactionsGetRestrictionsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): Any {
+        return SdkClient.request<Any>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/interaction-limits",
+                    config = clientConfig,
+                    operationId = "interactionsGetRestrictionsForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Temporarily restricts which type of GitHub user can interact with your public repositories. Setting the interaction limit at the user level will overwrite any interaction limits that are set for individual repositories owned by the user.
+     * Temporarily restricts which type of GitHub user can interact with your public repositories.
+     * Setting the interaction limit at the user level will overwrite any interaction limits that
+     * are set for individual repositories owned by the user.
      *
-     * @param limit The type of GitHub user that can comment, open issues, or create
-     *   pull requests while the interaction limit is in effect.
+     * @param limit The type of GitHub user that can comment, open issues, or create pull requests
+     *   while the interaction limit is in effect.
      * @param expiry The duration of the interaction restriction. Default: `one_day`.
      */
-    fun interactionsSetRestrictionsForAuthenticatedUser(clientConfig: ClientConfig, limit: InteractionGroup, expiry: InteractionExpiry? = null, options: RequestOptions? = null): InteractionLimitResponse {
-        return SdkClient.request<InteractionLimitResponse>(SdkClient.RequestSpec("PUT", "/user/interaction-limits", config = clientConfig, body = SdkClient.bodyMap("limit" to (limit), "expiry" to (SdkClient.omitIfNull(expiry))), operationId = "interactionsSetRestrictionsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun interactionsSetRestrictionsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        limit: InteractionGroup,
+        expiry: InteractionExpiry? = null,
+        options: RequestOptions? = null,
+    ): InteractionLimitResponse {
+        return SdkClient.request<InteractionLimitResponse>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/user/interaction-limits",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "limit" to (limit),
+                            "expiry" to (SdkClient.omitIfNull(expiry)),
+                        ),
+                    operationId = "interactionsSetRestrictionsForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
-    /**
-     * Removes any interaction restrictions from your public repositories.
-     */
-    fun interactionsRemoveRestrictionsForAuthenticatedUser(clientConfig: ClientConfig, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/interaction-limits", config = clientConfig, operationId = "interactionsRemoveRestrictionsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /** Removes any interaction restrictions from your public repositories. */
+    fun interactionsRemoveRestrictionsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/user/interaction-limits",
+                config = clientConfig,
+                operationId = "interactionsRemoveRestrictionsForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
-
-
 }

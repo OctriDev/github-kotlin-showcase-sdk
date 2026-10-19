@@ -5,78 +5,52 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Optional object value serialized in the `alert_stats` wire field.
- */
+/** Optional object value serialized in the `alert_stats` wire field. */
 data class CampaignSummaryAlertStats(
-    /**
-     * The number of open alerts
-     */
+    /** The number of open alerts */
     @com.fasterxml.jackson.annotation.JsonProperty("open_count") val openCount: Long,
-    /**
-     * The number of closed alerts
-     */
+    /** The number of closed alerts */
     @com.fasterxml.jackson.annotation.JsonProperty("closed_count") val closedCount: Long,
-    /**
-     * The number of in-progress alerts
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("in_progress_count") val inProgressCount: Long
+    /** The number of in-progress alerts */
+    @com.fasterxml.jackson.annotation.JsonProperty("in_progress_count") val inProgressCount: Long,
 )
 
-/**
- * The campaign metadata and alert stats.
- */
+/** The campaign metadata and alert stats. */
 data class CampaignSummary(
-    /**
-     * The number of the newly created campaign
-     */
+    /** The number of the newly created campaign */
     val number: Long,
-    /**
-     * The date and time the campaign was created, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.
-     */
+    /** The date and time the campaign was created, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
     /**
      * The date and time the campaign was last updated, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * The campaign description
-     */
+    /** The campaign description */
     val description: String,
-    /**
-     * The campaign managers
-     */
+    /** The campaign managers */
     val managers: List<SimpleUser>,
-    /**
-     * The date and time the campaign has ended, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.
-     */
+    /** The date and time the campaign has ended, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ. */
     @com.fasterxml.jackson.annotation.JsonProperty("ends_at") val endsAt: OffsetDateTime,
-    /**
-     * Indicates whether a campaign is open or closed
-     */
+    /** Indicates whether a campaign is open or closed */
     val state: CampaignState,
-    /**
-     * The contact link of the campaign.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("contact_link", required = true) val contactLink: String?,
-    /**
-     * The campaign name
-     */
+    /** The contact link of the campaign. */
+    @com.fasterxml.jackson.annotation.JsonProperty("contact_link", required = true)
+    val contactLink: String?,
+    /** The campaign name */
     val name: String? = null,
+    /** The campaign team managers */
+    @com.fasterxml.jackson.annotation.JsonProperty("team_managers")
+    val teamManagers: List<Team>? = null,
+    /** The date and time the campaign was published, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ. */
+    @com.fasterxml.jackson.annotation.JsonProperty("published_at")
+    val publishedAt: OffsetDateTime? = null,
     /**
-     * The campaign team managers
+     * The date and time the campaign was closed, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ. Will
+     * be null if the campaign is still open.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("team_managers") val teamManagers: List<Team>? = null,
-    /**
-     * The date and time the campaign was published, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("published_at") val publishedAt: OffsetDateTime? = null,
-    /**
-     * The date and time the campaign was closed, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ. Will be null if the campaign is still open.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("closed_at") val closedAt: OffsetDateTime? = null,
-    /**
-     * Optional object value serialized in the `alert_stats` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("alert_stats") val alertStats: CampaignSummaryAlertStats? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("closed_at")
+    val closedAt: OffsetDateTime? = null,
+    /** Optional object value serialized in the `alert_stats` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("alert_stats")
+    val alertStats: CampaignSummaryAlertStats? = null,
 )
