@@ -3,110 +3,72 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Optional object value serialized in the `description` wire field.
- */
+/** Optional object value serialized in the `description` wire field. */
 data class WebhookProjectsV2ProjectEditedChangesDescription(
-    /**
-     * Optional `string` value serialized in the `from` wire field.
-     */
+    /** Optional `string` value serialized in the `from` wire field. */
     val from: String? = null,
-    /**
-     * Optional `string` value serialized in the `to` wire field.
-     */
-    val to: String? = null
+    /** Optional `string` value serialized in the `to` wire field. */
+    val to: String? = null,
 )
 
-/**
- * Optional object value serialized in the `public` wire field.
- */
+/** Optional object value serialized in the `public` wire field. */
 data class WebhookProjectsV2ProjectEditedChangesPublic(
-    /**
-     * Optional `boolean` value serialized in the `from` wire field.
-     */
+    /** Optional `boolean` value serialized in the `from` wire field. */
     val from: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `to` wire field.
-     */
-    val to: Boolean? = null
+    /** Optional `boolean` value serialized in the `to` wire field. */
+    val to: Boolean? = null,
 )
 
-/**
- * Optional object value serialized in the `short_description` wire field.
- */
+/** Optional object value serialized in the `short_description` wire field. */
 data class WebhookProjectsV2ProjectEditedChangesShortDescription(
-    /**
-     * Optional `string` value serialized in the `from` wire field.
-     */
+    /** Optional `string` value serialized in the `from` wire field. */
     val from: String? = null,
-    /**
-     * Optional `string` value serialized in the `to` wire field.
-     */
-    val to: String? = null
+    /** Optional `string` value serialized in the `to` wire field. */
+    val to: String? = null,
 )
 
-/**
- * Optional object value serialized in the `title` wire field.
- */
+/** Optional object value serialized in the `title` wire field. */
 data class WebhookProjectsV2ProjectEditedChangesTitle(
-    /**
-     * Optional `string` value serialized in the `from` wire field.
-     */
+    /** Optional `string` value serialized in the `from` wire field. */
     val from: String? = null,
-    /**
-     * Optional `string` value serialized in the `to` wire field.
-     */
-    val to: String? = null
+    /** Optional `string` value serialized in the `to` wire field. */
+    val to: String? = null,
 )
 
-/**
- * Required object value serialized in the `changes` wire field.
- */
+/** Required object value serialized in the `changes` wire field. */
 data class WebhookProjectsV2ProjectEditedChanges(
-    /**
-     * Optional object value serialized in the `description` wire field.
-     */
+    /** Optional object value serialized in the `description` wire field. */
     val description: WebhookProjectsV2ProjectEditedChangesDescription? = null,
-    /**
-     * Optional object value serialized in the `public` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("public") val `public`: WebhookProjectsV2ProjectEditedChangesPublic? = null,
-    /**
-     * Optional object value serialized in the `short_description` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("short_description") val shortDescription: WebhookProjectsV2ProjectEditedChangesShortDescription? = null,
-    /**
-     * Optional object value serialized in the `title` wire field.
-     */
-    val title: WebhookProjectsV2ProjectEditedChangesTitle? = null
+    /** Optional object value serialized in the `public` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("public")
+    val `public`: WebhookProjectsV2ProjectEditedChangesPublic? = null,
+    /** Optional object value serialized in the `short_description` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("short_description")
+    val shortDescription: WebhookProjectsV2ProjectEditedChangesShortDescription? = null,
+    /** Optional object value serialized in the `title` wire field. */
+    val title: WebhookProjectsV2ProjectEditedChangesTitle? = null,
 )
 
-/**
- * Typed representation of the `WebhookProjectsV2ProjectEdited` API schema.
- */
+/** Typed representation of the `WebhookProjectsV2ProjectEdited` API schema. */
 data class WebhookProjectsV2ProjectEdited(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookProjectsV2ProjectEditedActionEnum,
-    /**
-     * Required object value serialized in the `changes` wire field.
-     */
+    /** Required object value serialized in the `changes` wire field. */
     val changes: WebhookProjectsV2ProjectEditedChanges,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks,
-    /**
-     * A projects v2 project
-     */
+    /** A projects v2 project */
     @com.fasterxml.jackson.annotation.JsonProperty("projects_v2") val projectsV2: ProjectsV2,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
-    val installation: SimpleInstallation? = null
+    val installation: SimpleInstallation? = null,
 )

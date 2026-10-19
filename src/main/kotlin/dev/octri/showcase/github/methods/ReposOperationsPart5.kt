@@ -12,10 +12,10 @@ import dev.octri.showcase.github.Hook
 import dev.octri.showcase.github.HookDelivery
 import dev.octri.showcase.github.HookDeliveryItem
 import dev.octri.showcase.github.MinimalRepository
-import dev.octri.showcase.github.RepositoryHashAlgorithm
-import dev.octri.showcase.github.RepositoryInvitation
 import dev.octri.showcase.github.ReposListForksParameterEnum
 import dev.octri.showcase.github.ReposUpdateInvitationPermissionsEnum
+import dev.octri.showcase.github.RepositoryHashAlgorithm
+import dev.octri.showcase.github.RepositoryInvitation
 import dev.octri.showcase.github.RequestOptions
 import dev.octri.showcase.github.SdkClient
 import dev.octri.showcase.github.Validation
@@ -24,112 +24,259 @@ import dev.octri.showcase.github.WebhookConfig
 
 internal object ReposCreateDeploymentProtectionRuleOperation {
     /**
-     * Enable a custom deployment protection rule for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. For more information about the app that is providing this custom deployment rule, see the documentation for the `GET /apps/{app_slug}` endpoint, as well as the guide to creating custom deployment protection rules. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Enable a custom deployment protection rule for an environment. The authenticated user must
+     * have admin or owner permissions to the repository to use this endpoint. For more information
+     * about the app that is providing this custom deployment rule, see the documentation for the
+     * `GET /apps/{app_slug}` endpoint, as well as the guide to creating custom deployment
+     * protection rules. OAuth app tokens and personal access tokens (classic) need the `repo` scope
+     * to use this endpoint.
      *
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param owner The account owner of the repository. The name is not case
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param integrationId The ID of the custom app that will be enabled on the
-     *   environment.
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param integrationId The ID of the custom app that will be enabled on the environment.
      */
-    fun reposCreateDeploymentProtectionRule(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, integrationId: Long? = null, options: RequestOptions? = null): DeploymentProtectionRule {
-        return SdkClient.request<DeploymentProtectionRule>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules", config = clientConfig, body = SdkClient.bodyMap("integration_id" to (SdkClient.omitIfNull(integrationId))), operationId = "reposCreateDeploymentProtectionRule", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCreateDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        integrationId: Long? = null,
+        options: RequestOptions? = null,
+    ): DeploymentProtectionRule {
+        return SdkClient.request<DeploymentProtectionRule>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "integration_id" to (SdkClient.omitIfNull(integrationId))
+                        ),
+                    operationId = "reposCreateDeploymentProtectionRule",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListCustomDeploymentRuleIntegrationsOperation {
     /**
-     * Gets all custom deployment protection rule integrations that are available for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. For more information about environments, see "Using environments for deployment." For more information about the app that is providing this custom deployment rule, see "GET an app". OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with…
+     * Gets all custom deployment protection rule integrations that are available for an
+     * environment. The authenticated user must have admin or owner permissions to the repository to
+     * use this endpoint. For more information about environments, see "Using environments for
+     * deployment." For more information about the app that is providing this custom deployment
+     * rule, see "GET an app". OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint with…
      *
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param owner The account owner of the repository. The name is not case
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCustomDeploymentRuleIntegrations(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Repos.ReposListCustomDeploymentRuleIntegrationsResponse {
-        return SdkClient.request<Repos.ReposListCustomDeploymentRuleIntegrationsResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/apps", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "reposListCustomDeploymentRuleIntegrations", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListCustomDeploymentRuleIntegrations(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Repos.ReposListCustomDeploymentRuleIntegrationsResponse {
+        return SdkClient.request<Repos.ReposListCustomDeploymentRuleIntegrationsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/apps",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "reposListCustomDeploymentRuleIntegrations",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetCustomDeploymentProtectionRuleOperation {
     /**
-     * Gets an enabled custom deployment protection rule for an environment. Anyone with read access to the repository can use this endpoint. For more information about environments, see "Using environments for deployment." For more information about the app that is providing this custom deployment rule, see `GET /apps/{app_slug}`. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets an enabled custom deployment protection rule for an environment. Anyone with read access
+     * to the repository can use this endpoint. For more information about environments, see "Using
+     * environments for deployment." For more information about the app that is providing this
+     * custom deployment rule, see `GET /apps/{app_slug}`. OAuth app tokens and personal access
+     * tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
      * @param protectionRuleId The unique identifier of the protection rule.
      */
-    fun reposGetCustomDeploymentProtectionRule(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, protectionRuleId: Long, options: RequestOptions? = null): DeploymentProtectionRule {
-        return SdkClient.request<DeploymentProtectionRule>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/${SdkClient.encodePathSegment(protectionRuleId)}", config = clientConfig, operationId = "reposGetCustomDeploymentProtectionRule", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetCustomDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        protectionRuleId: Long,
+        options: RequestOptions? = null,
+    ): DeploymentProtectionRule {
+        return SdkClient.request<DeploymentProtectionRule>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/${SdkClient.encodePathSegment(protectionRuleId)}",
+                    config = clientConfig,
+                    operationId = "reposGetCustomDeploymentProtectionRule",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDisableDeploymentProtectionRuleOperation {
     /**
-     * Disables a custom deployment protection rule for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Disables a custom deployment protection rule for an environment. The authenticated user must
+     * have admin or owner permissions to the repository to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param owner The account owner of the repository. The name is not case
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
+     * @param owner The account owner of the repository. The name is not case sensitive.
      * @param protectionRuleId The unique identifier of the protection rule.
      */
-    fun reposDisableDeploymentProtectionRule(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, protectionRuleId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/${SdkClient.encodePathSegment(protectionRuleId)}", config = clientConfig, operationId = "reposDisableDeploymentProtectionRule", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposDisableDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        protectionRuleId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/${SdkClient.encodePathSegment(protectionRuleId)}",
+                config = clientConfig,
+                operationId = "reposDisableDeploymentProtectionRule",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposListForksOperation {
     /**
-     * Lists forks of a repository. Use `sort` to order forks by newest, oldest, stargazers, or watchers. Use `page` and `per_page` to paginate the results.
+     * Lists forks of a repository. Use `sort` to order forks by newest, oldest, stargazers, or
+     * watchers. Use `page` and `per_page` to paginate the results.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param sort The sort order. `stargazers` will sort by star count.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListForks(clientConfig: ClientConfig, owner: String, repo: String, sort: ReposListForksParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/forks", config = clientConfig, query = mapOf("sort" to SdkClient.queryValue(sort, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListForks", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java))).data
+    fun reposListForks(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        sort: ReposListForksParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/forks",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "sort" to SdkClient.queryValue(sort, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListForks",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("400" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateForkOperation {
     /**
-     * Create a fork for the authenticated user. > !NOTE] > Forking a Repository happens asynchronously. You may have to wait a short period of time before you can access the git objects. If this takes longer than 5 minutes, be sure to contact \[GitHub Support. > \[!NOTE\] > Although this endpoint works with GitHub Apps, the GitHub App must be installed on the destination account with access to all repositories and on the source account with access to the source repository.
+     * Create a fork for the authenticated user. > !NOTE] > Forking a Repository happens
+     * asynchronously. You may have to wait a short period of time before you can access the git
+     * objects. If this takes longer than 5 minutes, be sure to contact \[GitHub Support. >
+     * \[!NOTE\] > Although this endpoint works with GitHub Apps, the GitHub App must be installed
+     * on the destination account with access to all repositories and on the source account with
+     * access to the source repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param organization Optional parameter to specify the organization name if
-     *   forking into an organization.
+     * @param organization Optional parameter to specify the organization name if forking into an
+     *   organization.
      * @param name When forking from an existing repository, a new name for the fork.
-     * @param defaultBranchOnly When forking from an existing repository, fork with
-     *   only the default branch.
+     * @param defaultBranchOnly When forking from an existing repository, fork with only the default
+     *   branch.
      */
-    fun reposCreateFork(clientConfig: ClientConfig, owner: String, repo: String, organization: String? = null, name: String? = null, defaultBranchOnly: Boolean? = null, options: RequestOptions? = null): FullRepository {
-        return SdkClient.request<FullRepository>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/forks", config = clientConfig, body = SdkClient.bodyMap("organization" to (SdkClient.omitIfNull(organization)), "name" to (SdkClient.omitIfNull(name)), "default_branch_only" to
-    (SdkClient.omitIfNull(defaultBranchOnly))), operationId = "reposCreateFork", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposCreateFork(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        organization: String? = null,
+        name: String? = null,
+        defaultBranchOnly: Boolean? = null,
+        options: RequestOptions? = null,
+    ): FullRepository {
+        return SdkClient.request<FullRepository>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/forks",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "organization" to (SdkClient.omitIfNull(organization)),
+                            "name" to (SdkClient.omitIfNull(name)),
+                            "default_branch_only" to (SdkClient.omitIfNull(defaultBranchOnly)),
+                        ),
+                    operationId = "reposCreateFork",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
@@ -137,159 +284,330 @@ internal object ReposGetHashAlgorithmOperation {
     /**
      * Returns the hash algorithm used to store repository objects.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetHashAlgorithm(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): RepositoryHashAlgorithm {
-        return SdkClient.request<RepositoryHashAlgorithm>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hash-algorithm", config = clientConfig, operationId = "reposGetHashAlgorithm", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun reposGetHashAlgorithm(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): RepositoryHashAlgorithm {
+        return SdkClient.request<RepositoryHashAlgorithm>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hash-algorithm",
+                    config = clientConfig,
+                    operationId = "reposGetHashAlgorithm",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListWebhooksOperation {
     /**
-     * Lists webhooks for a repository. `last response` may return null if there have not been any deliveries within 30 days.
+     * Lists webhooks for a repository. `last response` may return null if there have not been any
+     * deliveries within 30 days.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListWebhooks(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Hook> {
-        return SdkClient.request<List<Hook>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListWebhooks", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposListWebhooks(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Hook> {
+        return SdkClient.request<List<Hook>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListWebhooks",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateWebhookOperation {
     /**
-     * Repositories can have multiple webhooks installed. Each webhook should have a unique `config`. Multiple webhooks can share the same `config` as long as those webhooks do not have any `events` that overlap.
+     * Repositories can have multiple webhooks installed. Each webhook should have a unique
+     * `config`. Multiple webhooks can share the same `config` as long as those webhooks do not have
+     * any `events` that overlap.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param name Use `web` to create a webhook. Default: `web`. This parameter only
-     *   accepts the value `web`.
+     * @param name Use `web` to create a webhook. Default: `web`. This parameter only accepts the
+     *   value `web`.
      * @param config Key/value pairs to provide settings for this webhook.
      * @param events Determines what events the hook is triggered for.
-     * @param active Determines if notifications are sent when the webhook is
-     *   triggered. Set to `true` to send notifications.
+     * @param active Determines if notifications are sent when the webhook is triggered. Set to
+     *   `true` to send notifications.
      */
-    fun reposCreateWebhook(clientConfig: ClientConfig, request: Repos.ReposCreateWebhookRequest, options: RequestOptions? = null): Hook {
-        return SdkClient.request<Hook>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/hooks", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "config" to (SdkClient.omitIfNull(request.config)), "events" to (SdkClient.omitIfNull(request.events)), "active" to (SdkClient.omitIfNull(request.active))), operationId = "reposCreateWebhook", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposCreateWebhook(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateWebhookRequest,
+        options: RequestOptions? = null,
+    ): Hook {
+        return SdkClient.request<Hook>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/hooks",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (SdkClient.omitIfNull(request.name)),
+                            "config" to (SdkClient.omitIfNull(request.config)),
+                            "events" to (SdkClient.omitIfNull(request.events)),
+                            "active" to (SdkClient.omitIfNull(request.active)),
+                        ),
+                    operationId = "reposCreateWebhook",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetWebhookOperation {
     /**
-     * Returns a webhook configured in a repository. To get only the webhook `config` properties, see "Get a webhook configuration for a repository."
+     * Returns a webhook configured in a repository. To get only the webhook `config` properties,
+     * see "Get a webhook configuration for a repository."
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun reposGetWebhook(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): Hook {
-        return SdkClient.request<Hook>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}", config = clientConfig, operationId = "reposGetWebhook", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetWebhook(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): Hook {
+        return SdkClient.request<Hook>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}",
+                    config = clientConfig,
+                    operationId = "reposGetWebhook",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposUpdateWebhookOperation {
     /**
-     * Updates a webhook configured in a repository. If you previously had a `secret` set, you must provide the same `secret` or set a new `secret` or the secret will be removed. If you are only updating individual webhook `config` properties, use "Update a webhook configuration for a repository."
+     * Updates a webhook configured in a repository. If you previously had a `secret` set, you must
+     * provide the same `secret` or set a new `secret` or the secret will be removed. If you are
+     * only updating individual webhook `config` properties, use "Update a webhook configuration for
+     * a repository."
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      * @param config Configuration object of the webhook
-     * @param events Determines what events the hook is triggered for. This replaces
-     *   the entire array of events.
-     * @param addEvents Determines a list of events to be added to the list of events
-     *   that the Hook triggers for.
-     * @param removeEvents Determines a list of events to be removed from the list of
-     *   events that the Hook triggers for.
-     * @param active Determines if notifications are sent when the webhook is
-     *   triggered. Set to `true` to send notifications.
+     * @param events Determines what events the hook is triggered for. This replaces the entire
+     *   array of events.
+     * @param addEvents Determines a list of events to be added to the list of events that the Hook
+     *   triggers for.
+     * @param removeEvents Determines a list of events to be removed from the list of events that
+     *   the Hook triggers for.
+     * @param active Determines if notifications are sent when the webhook is triggered. Set to
+     *   `true` to send notifications.
      */
-    fun reposUpdateWebhook(clientConfig: ClientConfig, request: Repos.ReposUpdateWebhookRequest, options: RequestOptions? = null): Hook {
-        return SdkClient.request<Hook>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/hooks/${SdkClient.encodePathSegment(request.hookId)}", config = clientConfig, body = SdkClient.bodyMap("config" to (SdkClient.omitIfNull(request.config)), "events" to (SdkClient.omitIfNull(request.events)), "add_events" to (SdkClient.omitIfNull(request.addEvents)), "remove_events" to
-    (SdkClient.omitIfNull(request.removeEvents)), "active" to (SdkClient.omitIfNull(request.active))), operationId = "reposUpdateWebhook", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposUpdateWebhook(
+        clientConfig: ClientConfig,
+        request: Repos.ReposUpdateWebhookRequest,
+        options: RequestOptions? = null,
+    ): Hook {
+        return SdkClient.request<Hook>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/hooks/${SdkClient.encodePathSegment(request.hookId)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "config" to (SdkClient.omitIfNull(request.config)),
+                            "events" to (SdkClient.omitIfNull(request.events)),
+                            "add_events" to (SdkClient.omitIfNull(request.addEvents)),
+                            "remove_events" to (SdkClient.omitIfNull(request.removeEvents)),
+                            "active" to (SdkClient.omitIfNull(request.active)),
+                        ),
+                    operationId = "reposUpdateWebhook",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDeleteWebhookOperation {
     /**
-     * Delete a webhook for an organization. The authenticated user must be a repository owner, or have admin access in the repository, to delete the webhook.
+     * Delete a webhook for an organization. The authenticated user must be a repository owner, or
+     * have admin access in the repository, to delete the webhook.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun reposDeleteWebhook(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}", config = clientConfig, operationId = "reposDeleteWebhook", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun reposDeleteWebhook(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}",
+                config = clientConfig,
+                operationId = "reposDeleteWebhook",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposGetWebhookConfigForRepoOperation {
     /**
-     * Returns the webhook configuration for a repository. To get more information about the webhook, including the `active` state and `events`, use "Get a repository webhook." OAuth app tokens and personal access tokens (classic) need the `read:repo_hook` or `repo` scope to use this endpoint.
+     * Returns the webhook configuration for a repository. To get more information about the
+     * webhook, including the `active` state and `events`, use "Get a repository webhook." OAuth app
+     * tokens and personal access tokens (classic) need the `read:repo_hook` or `repo` scope to use
+     * this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun reposGetWebhookConfigForRepo(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): WebhookConfig {
-        return SdkClient.request<WebhookConfig>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/config", config = clientConfig, operationId = "reposGetWebhookConfigForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetWebhookConfigForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): WebhookConfig {
+        return SdkClient.request<WebhookConfig>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/config",
+                    config = clientConfig,
+                    operationId = "reposGetWebhookConfigForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposUpdateWebhookConfigForRepoOperation {
     /**
-     * Updates the delivery settings for a webhook configured in a repository. Supply the configuration fields you want to change; use the repository webhook update endpoint to change its active state or subscribed events. OAuth app tokens and personal access tokens (classic) need the `write:repo_hook` or `repo` scope.
+     * Updates the delivery settings for a webhook configured in a repository. Supply the
+     * configuration fields you want to change; use the repository webhook update endpoint to change
+     * its active state or subscribed events. OAuth app tokens and personal access tokens (classic)
+     * need the `write:repo_hook` or `repo` scope.
      *
-     * Updates the webhook configuration for a repository. To update more information about the webhook, including the `active` state and `events`, use "Update a repository webhook." OAuth app tokens and personal access tokens (classic) need the `write:repo_hook` or `repo` scope to use this endpoint.
+     * Updates the webhook configuration for a repository. To update more information about the
+     * webhook, including the `active` state and `events`, use "Update a repository webhook." OAuth
+     * app tokens and personal access tokens (classic) need the `write:repo_hook` or `repo` scope to
+     * use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      * @param url The URL to which the payloads will be delivered.
-     * @param contentType The media type used to serialize the payloads. Supported
-     *   values include `json` and `form`. The default is `form`.
-     * @param secret If provided, the `secret` will be used as the `key` to generate
-     *   the HMAC hex digest value for delivery signature headers.
+     * @param contentType The media type used to serialize the payloads. Supported values include
+     *   `json` and `form`. The default is `form`.
+     * @param secret If provided, the `secret` will be used as the `key` to generate the HMAC hex
+     *   digest value for delivery signature headers.
      */
-    fun reposUpdateWebhookConfigForRepo(clientConfig: ClientConfig, request: Repos.ReposUpdateWebhookConfigForRepoRequest, options: RequestOptions? = null): WebhookConfig {
+    fun reposUpdateWebhookConfigForRepo(
+        clientConfig: ClientConfig,
+        request: Repos.ReposUpdateWebhookConfigForRepoRequest,
+        options: RequestOptions? = null,
+    ): WebhookConfig {
         validateReposUpdateWebhookConfigForRepoRequest(request)
 
-        return SdkClient.request<WebhookConfig>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/hooks/${SdkClient.encodePathSegment(request.hookId)}/config", config = clientConfig, body = SdkClient.bodyMap("url" to (SdkClient.omitIfNull(request.url)), "content_type" to
-    (SdkClient.omitIfNull(request.contentType)), "secret" to (SdkClient.omitIfNull(request.secret)), "insecure_ssl" to
-    (SdkClient.omitIfNull(request.insecureSsl))), operationId = "reposUpdateWebhookConfigForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<WebhookConfig>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/hooks/${SdkClient.encodePathSegment(request.hookId)}/config",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "url" to (SdkClient.omitIfNull(request.url)),
+                            "content_type" to (SdkClient.omitIfNull(request.contentType)),
+                            "secret" to (SdkClient.omitIfNull(request.secret)),
+                            "insecure_ssl" to (SdkClient.omitIfNull(request.insecureSsl)),
+                        ),
+                    operationId = "reposUpdateWebhookConfigForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateReposUpdateWebhookConfigForRepoRequest(request: Repos.ReposUpdateWebhookConfigForRepoRequest) {
+    private fun validateReposUpdateWebhookConfigForRepoRequest(
+        request: Repos.ReposUpdateWebhookConfigForRepoRequest
+    ) {
         if (request.url != null) {
             Validation.validateUri("url", request.url)
-}
+        }
     }
 }
 
@@ -297,64 +615,129 @@ internal object ReposListWebhookDeliveriesOperation {
     /**
      * Returns a list of webhook deliveries for a webhook configured in a repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param cursor Used for pagination: the starting delivery from which the page
-     *   of deliveries is fetched. Refer to the `link` header for the next and previous
-     *   page cursors.
-     * @param status Returns webhook deliveries filtered by delivery outcome
-     *   classification based on `status_code` range. A `status` of `success` returns
-     *   deliveries with a `status_code` in the 200-399 range (inclusive). A `status`
-     *   of `failure` returns deliveries with a `status_code` in the 400-599 range
-     *   (inclusive).
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param cursor Used for pagination: the starting delivery from which the page of deliveries is
+     *   fetched. Refer to the `link` header for the next and previous page cursors.
+     * @param status Returns webhook deliveries filtered by delivery outcome classification based on
+     *   `status_code` range. A `status` of `success` returns deliveries with a `status_code` in the
+     *   200-399 range (inclusive). A `status` of `failure` returns deliveries with a `status_code`
+     *   in the 400-599 range (inclusive).
      */
-    fun reposListWebhookDeliveries(clientConfig: ClientConfig, request: Repos.ReposListWebhookDeliveriesRequest, options: RequestOptions? = null): List<HookDeliveryItem> {
-        return SdkClient.request<List<HookDeliveryItem>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/hooks/${SdkClient.encodePathSegment(request.hookId)}/deliveries", config = clientConfig, query = mapOf("per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "cursor" to
-    SdkClient.queryValue(request.cursor, "form", true), "status" to
-    SdkClient.queryValue(request.status, "form", true)), operationId = "reposListWebhookDeliveries", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposListWebhookDeliveries(
+        clientConfig: ClientConfig,
+        request: Repos.ReposListWebhookDeliveriesRequest,
+        options: RequestOptions? = null,
+    ): List<HookDeliveryItem> {
+        return SdkClient.request<List<HookDeliveryItem>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/hooks/${SdkClient.encodePathSegment(request.hookId)}/deliveries",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "cursor" to SdkClient.queryValue(request.cursor, "form", true),
+                            "status" to SdkClient.queryValue(request.status, "form", true),
+                        ),
+                    operationId = "reposListWebhookDeliveries",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetWebhookDeliveryOperation {
     /**
-     * Retrieves a delivery record for a webhook configured in a repository. Use the repository owner, repository name, hook ID, and delivery ID to inspect the delivery status, event metadata, and request and response details.
+     * Retrieves a delivery record for a webhook configured in a repository. Use the repository
+     * owner, repository name, hook ID, and delivery ID to inspect the delivery status, event
+     * metadata, and request and response details.
      *
      * Returns a delivery for a webhook configured in a repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun reposGetWebhookDelivery(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, deliveryId: Long, options: RequestOptions? = null): HookDelivery {
-        return SdkClient.request<HookDelivery>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries/${SdkClient.encodePathSegment(deliveryId)}", config = clientConfig, operationId = "reposGetWebhookDelivery", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposGetWebhookDelivery(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        deliveryId: Long,
+        options: RequestOptions? = null,
+    ): HookDelivery {
+        return SdkClient.request<HookDelivery>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries/${SdkClient.encodePathSegment(deliveryId)}",
+                    config = clientConfig,
+                    operationId = "reposGetWebhookDelivery",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRedeliverWebhookDeliveryOperation {
     /**
-     * Submits a redelivery attempt for a delivery made by a webhook configured in a repository. Use the repository owner, repository name, hook ID, and delivery ID to identify the delivery to retry. A 202 response confirms that the redelivery request was accepted.
+     * Submits a redelivery attempt for a delivery made by a webhook configured in a repository. Use
+     * the repository owner, repository name, hook ID, and delivery ID to identify the delivery to
+     * retry. A 202 response confirms that the redelivery request was accepted.
      *
      * Redeliver a webhook delivery for a webhook configured in a repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun reposRedeliverWebhookDelivery(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, deliveryId: Long, options: RequestOptions? = null): Map<String, Any> {
-        return SdkClient.request<Map<String, Any>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries/${SdkClient.encodePathSegment(deliveryId)}/attempts", config = clientConfig, operationId = "reposRedeliverWebhookDelivery", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposRedeliverWebhookDelivery(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        deliveryId: Long,
+        options: RequestOptions? = null,
+    ): Map<String, Any> {
+        return SdkClient.request<Map<String, Any>>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries/${SdkClient.encodePathSegment(deliveryId)}/attempts",
+                    config = clientConfig,
+                    operationId = "reposRedeliverWebhookDelivery",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
@@ -362,123 +745,258 @@ internal object ReposPingWebhookOperation {
     /**
      * This will trigger a ping event to be sent to the hook.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun reposPingWebhook(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/pings", config = clientConfig, operationId = "reposPingWebhook", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun reposPingWebhook(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/pings",
+                config = clientConfig,
+                operationId = "reposPingWebhook",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposTestPushWebhookOperation {
     /**
-     * This will trigger the hook with the latest push to the current repository if the hook is subscribed to `push` events. If the hook is not subscribed to `push` events, the server will respond with 204 but no test POST will be generated. > \[!NOTE\] > Previously `/repos/:owner/:repo/hooks/:hook_id/test`
+     * This will trigger the hook with the latest push to the current repository if the hook is
+     * subscribed to `push` events. If the hook is not subscribed to `push` events, the server will
+     * respond with 204 but no test POST will be generated. > \[!NOTE\] > Previously
+     * `/repos/:owner/:repo/hooks/:hook_id/test`
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in
-     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in the
+     *   `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun reposTestPushWebhook(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/tests", config = clientConfig, operationId = "reposTestPushWebhook", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun reposTestPushWebhook(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hooks/${SdkClient.encodePathSegment(hookId)}/tests",
+                config = clientConfig,
+                operationId = "reposTestPushWebhook",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposCheckImmutableReleasesOperation {
     /**
-     * Shows whether immutable releases are enabled or disabled. Also identifies whether immutability is being enforced by the repository owner. The authenticated user must have admin read access to the repository.
+     * Shows whether immutable releases are enabled or disabled. Also identifies whether
+     * immutability is being enforced by the repository owner. The authenticated user must have
+     * admin read access to the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposCheckImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CheckImmutableReleases {
-        return SdkClient.request<CheckImmutableReleases>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposCheckImmutableReleases", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCheckImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CheckImmutableReleases {
+        return SdkClient.request<CheckImmutableReleases>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                    config = clientConfig,
+                    operationId = "reposCheckImmutableReleases",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposEnableImmutableReleasesOperation {
     /**
-     * Enables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Enables immutable releases for a repository. The authenticated user must have admin access to
+     * the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposEnableImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposEnableImmutableReleases", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("409" to BasicError::class.java)))
+    fun reposEnableImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                config = clientConfig,
+                operationId = "reposEnableImmutableReleases",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposDisableImmutableReleasesOperation {
     /**
-     * Disables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Disables immutable releases for a repository. The authenticated user must have admin access
+     * to the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposDisableImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposDisableImmutableReleases", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("409" to BasicError::class.java)))
+    fun reposDisableImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                config = clientConfig,
+                operationId = "reposDisableImmutableReleases",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposListInvitationsOperation {
     /**
-     * When authenticating as a user with admin rights to a repository, this endpoint will list all currently open repository invitations.
+     * When authenticating as a user with admin rights to a repository, this endpoint will list all
+     * currently open repository invitations.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListInvitations(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<RepositoryInvitation> {
-        return SdkClient.request<List<RepositoryInvitation>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/invitations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListInvitations", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListInvitations(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<RepositoryInvitation> {
+        return SdkClient.request<List<RepositoryInvitation>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/invitations",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListInvitations",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposUpdateInvitationOperation {
     /**
-     * Updates the permissions on a repository invitation. Supply `permissions` to set the invitee's access level; accepted values are read, write, maintain, triage, and admin. A 200 response returns the updated invitation, including its repository, invitee, inviter, and permissions.
+     * Updates the permissions on a repository invitation. Supply `permissions` to set the invitee's
+     * access level; accepted values are read, write, maintain, triage, and admin. A 200 response
+     * returns the updated invitation, including its repository, invitee, inviter, and permissions.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param invitationId The unique identifier of the invitation.
-     * @param permissions The permissions that the associated user will have on the
-     *   repository. Valid values are `read`, `write`, `maintain`, `triage`, and
-     *   `admin`.
+     * @param permissions The permissions that the associated user will have on the repository.
+     *   Valid values are `read`, `write`, `maintain`, `triage`, and `admin`.
      */
-    fun reposUpdateInvitation(clientConfig: ClientConfig, owner: String, repo: String, invitationId: Long, permissions: ReposUpdateInvitationPermissionsEnum? = null, options: RequestOptions? = null): RepositoryInvitation {
-        return SdkClient.request<RepositoryInvitation>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/invitations/${SdkClient.encodePathSegment(invitationId)}", config = clientConfig, body = SdkClient.bodyMap("permissions" to (SdkClient.omitIfNull(permissions))), operationId = "reposUpdateInvitation", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposUpdateInvitation(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        invitationId: Long,
+        permissions: ReposUpdateInvitationPermissionsEnum? = null,
+        options: RequestOptions? = null,
+    ): RepositoryInvitation {
+        return SdkClient.request<RepositoryInvitation>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/invitations/${SdkClient.encodePathSegment(invitationId)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("permissions" to (SdkClient.omitIfNull(permissions))),
+                    operationId = "reposUpdateInvitation",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDeleteInvitationOperation {
     /**
-     * Deletes a repository invitation from a repository. Use the repository owner, repository name, and invitation identifier to select the invitation to remove. A 204 response confirms the invitation was deleted and contains no response body.
+     * Deletes a repository invitation from a repository. Use the repository owner, repository name,
+     * and invitation identifier to select the invitation to remove. A 204 response confirms the
+     * invitation was deleted and contains no response body.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param invitationId The unique identifier of the invitation.
      */
-    fun reposDeleteInvitation(clientConfig: ClientConfig, owner: String, repo: String, invitationId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/invitations/${SdkClient.encodePathSegment(invitationId)}", config = clientConfig, operationId = "reposDeleteInvitation", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposDeleteInvitation(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/invitations/${SdkClient.encodePathSegment(invitationId)}",
+                config = clientConfig,
+                operationId = "reposDeleteInvitation",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

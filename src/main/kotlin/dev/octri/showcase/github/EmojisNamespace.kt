@@ -3,15 +3,14 @@
 
 package dev.octri.showcase.github
 
-
 class EmojisNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists the emojis available to use on GitHub. Use the emoji names as keys and their string values to identify the corresponding entries.
+     * Lists the emojis available to use on GitHub. Use the emoji names as keys and their string
+     * values to identify the corresponding entries.
      *
      * Lists all the emojis available to use on GitHub.
      */
     fun get(options: RequestOptions? = null): Map<String, String> {
         return dev.octri.showcase.github.methods.Emojis.emojisGet(clientConfig, options)
     }
-
 }

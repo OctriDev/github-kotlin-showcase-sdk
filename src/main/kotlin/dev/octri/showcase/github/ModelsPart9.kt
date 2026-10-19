@@ -9,33 +9,44 @@ typealias PullRequestStackMinimal = dev.octri.showcase.github.models.PullRequest
 
 typealias PullRequestStackMinimalBase = dev.octri.showcase.github.models.PullRequestStackMinimalBase
 
-typealias PullRequestStackMinimalPullRequestsItem = dev.octri.showcase.github.models.PullRequestStackMinimalPullRequestsItem
+typealias PullRequestStackMinimalPullRequestsItem =
+    dev.octri.showcase.github.models.PullRequestStackMinimalPullRequestsItem
 
-typealias PullRequestStackMinimalPullRequestsItemHead = dev.octri.showcase.github.models.PullRequestStackMinimalPullRequestsItemHead
+typealias PullRequestStackMinimalPullRequestsItemHead =
+    dev.octri.showcase.github.models.PullRequestStackMinimalPullRequestsItemHead
 
-typealias PullRequestStackMinimalPullRequestsItemStateEnum = dev.octri.showcase.github.models.PullRequestStackMinimalPullRequestsItemStateEnum
+typealias PullRequestStackMinimalPullRequestsItemStateEnum =
+    dev.octri.showcase.github.models.PullRequestStackMinimalPullRequestsItemStateEnum
 
 typealias PullRequestStackPullRequest = dev.octri.showcase.github.models.PullRequestStackPullRequest
 
-typealias PullRequestStackPullRequestVariant1StateEnum = dev.octri.showcase.github.models.PullRequestStackPullRequestVariant1StateEnum
+typealias PullRequestStackPullRequestVariant1StateEnum =
+    dev.octri.showcase.github.models.PullRequestStackPullRequestVariant1StateEnum
 
 typealias PullRequestStateEnum = dev.octri.showcase.github.models.PullRequestStateEnum
 
 typealias PullRequestWebhook = dev.octri.showcase.github.models.PullRequestWebhook
 
-typealias PullRequestWebhookVariant1MergeCommitMessageEnum = dev.octri.showcase.github.models.PullRequestWebhookVariant1MergeCommitMessageEnum
+typealias PullRequestWebhookVariant1MergeCommitMessageEnum =
+    dev.octri.showcase.github.models.PullRequestWebhookVariant1MergeCommitMessageEnum
 
-typealias PullRequestWebhookVariant1MergeCommitTitleEnum = dev.octri.showcase.github.models.PullRequestWebhookVariant1MergeCommitTitleEnum
+typealias PullRequestWebhookVariant1MergeCommitTitleEnum =
+    dev.octri.showcase.github.models.PullRequestWebhookVariant1MergeCommitTitleEnum
 
-typealias PullRequestWebhookVariant1SquashMergeCommitMessageEnum = dev.octri.showcase.github.models.PullRequestWebhookVariant1SquashMergeCommitMessageEnum
+typealias PullRequestWebhookVariant1SquashMergeCommitMessageEnum =
+    dev.octri.showcase.github.models.PullRequestWebhookVariant1SquashMergeCommitMessageEnum
 
-typealias PullRequestWebhookVariant1SquashMergeCommitTitleEnum = dev.octri.showcase.github.models.PullRequestWebhookVariant1SquashMergeCommitTitleEnum
+typealias PullRequestWebhookVariant1SquashMergeCommitTitleEnum =
+    dev.octri.showcase.github.models.PullRequestWebhookVariant1SquashMergeCommitTitleEnum
 
-typealias PullsCreateReviewCommentSideEnum = dev.octri.showcase.github.models.PullsCreateReviewCommentSideEnum
+typealias PullsCreateReviewCommentSideEnum =
+    dev.octri.showcase.github.models.PullsCreateReviewCommentSideEnum
 
-typealias PullsCreateReviewCommentStartSideEnum = dev.octri.showcase.github.models.PullsCreateReviewCommentStartSideEnum
+typealias PullsCreateReviewCommentStartSideEnum =
+    dev.octri.showcase.github.models.PullsCreateReviewCommentStartSideEnum
 
-typealias PullsCreateReviewCommentSubjectTypeEnum = dev.octri.showcase.github.models.PullsCreateReviewCommentSubjectTypeEnum
+typealias PullsCreateReviewCommentSubjectTypeEnum =
+    dev.octri.showcase.github.models.PullsCreateReviewCommentSubjectTypeEnum
 
 typealias PullsCreateReviewEventEnum = dev.octri.showcase.github.models.PullsCreateReviewEventEnum
 
@@ -43,19 +54,26 @@ typealias PullsDismissReviewEventEnum = dev.octri.showcase.github.models.PullsDi
 
 typealias PullsListParameterEnum = dev.octri.showcase.github.models.PullsListParameterEnum
 
-typealias PullsListParameterEnum365eb0a0 = dev.octri.showcase.github.models.PullsListParameterEnum365eb0a0
+typealias PullsListParameterEnum365eb0a0 =
+    dev.octri.showcase.github.models.PullsListParameterEnum365eb0a0
 
-typealias PullsListParameterEnumf37e00f7 = dev.octri.showcase.github.models.PullsListParameterEnumf37e00f7
+typealias PullsListParameterEnumf37e00f7 =
+    dev.octri.showcase.github.models.PullsListParameterEnumf37e00f7
 
-typealias PullsListReviewCommentsForRepoParameterEnum = dev.octri.showcase.github.models.PullsListReviewCommentsForRepoParameterEnum
+typealias PullsListReviewCommentsForRepoParameterEnum =
+    dev.octri.showcase.github.models.PullsListReviewCommentsForRepoParameterEnum
 
-typealias PullsListReviewCommentsForRepoParameterEnum7977536e = dev.octri.showcase.github.models.PullsListReviewCommentsForRepoParameterEnum7977536e
+typealias PullsListReviewCommentsForRepoParameterEnum7977536e =
+    dev.octri.showcase.github.models.PullsListReviewCommentsForRepoParameterEnum7977536e
 
-typealias PullsListReviewCommentsParameterEnum = dev.octri.showcase.github.models.PullsListReviewCommentsParameterEnum
+typealias PullsListReviewCommentsParameterEnum =
+    dev.octri.showcase.github.models.PullsListReviewCommentsParameterEnum
 
-typealias PullsMergeAsyncMergeActionEnum = dev.octri.showcase.github.models.PullsMergeAsyncMergeActionEnum
+typealias PullsMergeAsyncMergeActionEnum =
+    dev.octri.showcase.github.models.PullsMergeAsyncMergeActionEnum
 
-typealias PullsMergeAsyncMergeMethodEnum = dev.octri.showcase.github.models.PullsMergeAsyncMergeMethodEnum
+typealias PullsMergeAsyncMergeMethodEnum =
+    dev.octri.showcase.github.models.PullsMergeAsyncMergeMethodEnum
 
 typealias PullsMergeMergeMethodEnum = dev.octri.showcase.github.models.PullsMergeMergeMethodEnum
 
@@ -77,25 +95,35 @@ typealias ReactionContentEnum = dev.octri.showcase.github.models.ReactionContent
 
 typealias ReactionRollup = dev.octri.showcase.github.models.ReactionRollup
 
-typealias ReactionsCreateForCommitCommentContentEnum = dev.octri.showcase.github.models.ReactionsCreateForCommitCommentContentEnum
+typealias ReactionsCreateForCommitCommentContentEnum =
+    dev.octri.showcase.github.models.ReactionsCreateForCommitCommentContentEnum
 
-typealias ReactionsCreateForIssueCommentContentEnum = dev.octri.showcase.github.models.ReactionsCreateForIssueCommentContentEnum
+typealias ReactionsCreateForIssueCommentContentEnum =
+    dev.octri.showcase.github.models.ReactionsCreateForIssueCommentContentEnum
 
-typealias ReactionsCreateForIssueContentEnum = dev.octri.showcase.github.models.ReactionsCreateForIssueContentEnum
+typealias ReactionsCreateForIssueContentEnum =
+    dev.octri.showcase.github.models.ReactionsCreateForIssueContentEnum
 
-typealias ReactionsCreateForPullRequestReviewCommentContentEnum = dev.octri.showcase.github.models.ReactionsCreateForPullRequestReviewCommentContentEnum
+typealias ReactionsCreateForPullRequestReviewCommentContentEnum =
+    dev.octri.showcase.github.models.ReactionsCreateForPullRequestReviewCommentContentEnum
 
-typealias ReactionsCreateForReleaseContentEnum = dev.octri.showcase.github.models.ReactionsCreateForReleaseContentEnum
+typealias ReactionsCreateForReleaseContentEnum =
+    dev.octri.showcase.github.models.ReactionsCreateForReleaseContentEnum
 
-typealias ReactionsListForCommitCommentParameterEnum = dev.octri.showcase.github.models.ReactionsListForCommitCommentParameterEnum
+typealias ReactionsListForCommitCommentParameterEnum =
+    dev.octri.showcase.github.models.ReactionsListForCommitCommentParameterEnum
 
-typealias ReactionsListForIssueCommentParameterEnum = dev.octri.showcase.github.models.ReactionsListForIssueCommentParameterEnum
+typealias ReactionsListForIssueCommentParameterEnum =
+    dev.octri.showcase.github.models.ReactionsListForIssueCommentParameterEnum
 
-typealias ReactionsListForIssueParameterEnum = dev.octri.showcase.github.models.ReactionsListForIssueParameterEnum
+typealias ReactionsListForIssueParameterEnum =
+    dev.octri.showcase.github.models.ReactionsListForIssueParameterEnum
 
-typealias ReactionsListForPullRequestReviewCommentParameterEnum = dev.octri.showcase.github.models.ReactionsListForPullRequestReviewCommentParameterEnum
+typealias ReactionsListForPullRequestReviewCommentParameterEnum =
+    dev.octri.showcase.github.models.ReactionsListForPullRequestReviewCommentParameterEnum
 
-typealias ReactionsListForReleaseParameterEnum = dev.octri.showcase.github.models.ReactionsListForReleaseParameterEnum
+typealias ReactionsListForReleaseParameterEnum =
+    dev.octri.showcase.github.models.ReactionsListForReleaseParameterEnum
 
 typealias ReferencedWorkflow = dev.octri.showcase.github.models.ReferencedWorkflow
 
@@ -113,9 +141,11 @@ typealias ReleaseEventRelease = dev.octri.showcase.github.models.ReleaseEventRel
 
 typealias ReleaseNotesContent = dev.octri.showcase.github.models.ReleaseNotesContent
 
-typealias RemovedFromProjectIssueEvent = dev.octri.showcase.github.models.RemovedFromProjectIssueEvent
+typealias RemovedFromProjectIssueEvent =
+    dev.octri.showcase.github.models.RemovedFromProjectIssueEvent
 
-typealias RemovedFromProjectIssueEventProjectCard = dev.octri.showcase.github.models.RemovedFromProjectIssueEventProjectCard
+typealias RemovedFromProjectIssueEventProjectCard =
+    dev.octri.showcase.github.models.RemovedFromProjectIssueEventProjectCard
 
 typealias RenamedIssueEvent = dev.octri.showcase.github.models.RenamedIssueEvent
 
@@ -123,45 +153,64 @@ typealias RenamedIssueEventRename = dev.octri.showcase.github.models.RenamedIssu
 
 typealias RepoCodespacesSecret = dev.octri.showcase.github.models.RepoCodespacesSecret
 
-typealias ReposCreateCommitStatusStateEnum = dev.octri.showcase.github.models.ReposCreateCommitStatusStateEnum
+typealias ReposCreateCommitStatusStateEnum =
+    dev.octri.showcase.github.models.ReposCreateCommitStatusStateEnum
 
-typealias ReposCreateDeploymentRequestPayload = dev.octri.showcase.github.models.ReposCreateDeploymentRequestPayload
+typealias ReposCreateDeploymentRequestPayload =
+    dev.octri.showcase.github.models.ReposCreateDeploymentRequestPayload
 
-typealias ReposCreateDeploymentStatusStateEnum = dev.octri.showcase.github.models.ReposCreateDeploymentStatusStateEnum
+typealias ReposCreateDeploymentStatusStateEnum =
+    dev.octri.showcase.github.models.ReposCreateDeploymentStatusStateEnum
 
-typealias ReposCreateForAuthenticatedUserMergeCommitMessageEnum = dev.octri.showcase.github.models.ReposCreateForAuthenticatedUserMergeCommitMessageEnum
+typealias ReposCreateForAuthenticatedUserMergeCommitMessageEnum =
+    dev.octri.showcase.github.models.ReposCreateForAuthenticatedUserMergeCommitMessageEnum
 
-typealias ReposCreateForAuthenticatedUserMergeCommitTitleEnum = dev.octri.showcase.github.models.ReposCreateForAuthenticatedUserMergeCommitTitleEnum
+typealias ReposCreateForAuthenticatedUserMergeCommitTitleEnum =
+    dev.octri.showcase.github.models.ReposCreateForAuthenticatedUserMergeCommitTitleEnum
 
-typealias ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum = dev.octri.showcase.github.models.ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum
+typealias ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum =
+    dev.octri.showcase.github.models.ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum
 
-typealias ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum = dev.octri.showcase.github.models.ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum
+typealias ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum =
+    dev.octri.showcase.github.models.ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum
 
-typealias ReposCreateInOrgMergeCommitMessageEnum = dev.octri.showcase.github.models.ReposCreateInOrgMergeCommitMessageEnum
+typealias ReposCreateInOrgMergeCommitMessageEnum =
+    dev.octri.showcase.github.models.ReposCreateInOrgMergeCommitMessageEnum
 
-typealias ReposCreateInOrgMergeCommitTitleEnum = dev.octri.showcase.github.models.ReposCreateInOrgMergeCommitTitleEnum
+typealias ReposCreateInOrgMergeCommitTitleEnum =
+    dev.octri.showcase.github.models.ReposCreateInOrgMergeCommitTitleEnum
 
-typealias ReposCreateInOrgSquashMergeCommitMessageEnum = dev.octri.showcase.github.models.ReposCreateInOrgSquashMergeCommitMessageEnum
+typealias ReposCreateInOrgSquashMergeCommitMessageEnum =
+    dev.octri.showcase.github.models.ReposCreateInOrgSquashMergeCommitMessageEnum
 
-typealias ReposCreateInOrgSquashMergeCommitTitleEnum = dev.octri.showcase.github.models.ReposCreateInOrgSquashMergeCommitTitleEnum
+typealias ReposCreateInOrgSquashMergeCommitTitleEnum =
+    dev.octri.showcase.github.models.ReposCreateInOrgSquashMergeCommitTitleEnum
 
-typealias ReposCreateInOrgVisibilityEnum = dev.octri.showcase.github.models.ReposCreateInOrgVisibilityEnum
+typealias ReposCreateInOrgVisibilityEnum =
+    dev.octri.showcase.github.models.ReposCreateInOrgVisibilityEnum
 
-typealias ReposCreateOrgRulesetTargetEnum = dev.octri.showcase.github.models.ReposCreateOrgRulesetTargetEnum
+typealias ReposCreateOrgRulesetTargetEnum =
+    dev.octri.showcase.github.models.ReposCreateOrgRulesetTargetEnum
 
-typealias ReposCreatePagesSiteBuildTypeEnum = dev.octri.showcase.github.models.ReposCreatePagesSiteBuildTypeEnum
+typealias ReposCreatePagesSiteBuildTypeEnum =
+    dev.octri.showcase.github.models.ReposCreatePagesSiteBuildTypeEnum
 
-typealias ReposCreatePagesSiteSourcePathEnum = dev.octri.showcase.github.models.ReposCreatePagesSiteSourcePathEnum
+typealias ReposCreatePagesSiteSourcePathEnum =
+    dev.octri.showcase.github.models.ReposCreatePagesSiteSourcePathEnum
 
-typealias ReposCreateReleaseMakeLatestEnum = dev.octri.showcase.github.models.ReposCreateReleaseMakeLatestEnum
+typealias ReposCreateReleaseMakeLatestEnum =
+    dev.octri.showcase.github.models.ReposCreateReleaseMakeLatestEnum
 
-typealias ReposCreateRepoRulesetTargetEnum = dev.octri.showcase.github.models.ReposCreateRepoRulesetTargetEnum
+typealias ReposCreateRepoRulesetTargetEnum =
+    dev.octri.showcase.github.models.ReposCreateRepoRulesetTargetEnum
 
 typealias RepoSearchResultItem = dev.octri.showcase.github.models.RepoSearchResultItem
 
-typealias RepoSearchResultItemPermissions = dev.octri.showcase.github.models.RepoSearchResultItemPermissions
+typealias RepoSearchResultItemPermissions =
+    dev.octri.showcase.github.models.RepoSearchResultItemPermissions
 
-typealias RepoSearchResultItemPullRequestCreationPolicyEnum = dev.octri.showcase.github.models.RepoSearchResultItemPullRequestCreationPolicyEnum
+typealias RepoSearchResultItemPullRequestCreationPolicyEnum =
+    dev.octri.showcase.github.models.RepoSearchResultItemPullRequestCreationPolicyEnum
 
 typealias Repository = dev.octri.showcase.github.models.Repository
 
@@ -169,270 +218,384 @@ typealias RepositoryAdvisory = dev.octri.showcase.github.models.RepositoryAdviso
 
 typealias RepositoryAdvisoryCreate = dev.octri.showcase.github.models.RepositoryAdvisoryCreate
 
-typealias RepositoryAdvisoryCreateCreditsItem = dev.octri.showcase.github.models.RepositoryAdvisoryCreateCreditsItem
+typealias RepositoryAdvisoryCreateCreditsItem =
+    dev.octri.showcase.github.models.RepositoryAdvisoryCreateCreditsItem
 
-typealias RepositoryAdvisoryCreateSeverityEnum = dev.octri.showcase.github.models.RepositoryAdvisoryCreateSeverityEnum
+typealias RepositoryAdvisoryCreateSeverityEnum =
+    dev.octri.showcase.github.models.RepositoryAdvisoryCreateSeverityEnum
 
-typealias RepositoryAdvisoryCreateVulnerabilitiesItem = dev.octri.showcase.github.models.RepositoryAdvisoryCreateVulnerabilitiesItem
+typealias RepositoryAdvisoryCreateVulnerabilitiesItem =
+    dev.octri.showcase.github.models.RepositoryAdvisoryCreateVulnerabilitiesItem
 
-typealias RepositoryAdvisoryCreateVulnerabilitiesItemPackage = dev.octri.showcase.github.models.RepositoryAdvisoryCreateVulnerabilitiesItemPackage
+typealias RepositoryAdvisoryCreateVulnerabilitiesItemPackage =
+    dev.octri.showcase.github.models.RepositoryAdvisoryCreateVulnerabilitiesItemPackage
 
 typealias RepositoryAdvisoryCredit = dev.octri.showcase.github.models.RepositoryAdvisoryCredit
 
-typealias RepositoryAdvisoryCreditsItem = dev.octri.showcase.github.models.RepositoryAdvisoryCreditsItem
+typealias RepositoryAdvisoryCreditsItem =
+    dev.octri.showcase.github.models.RepositoryAdvisoryCreditsItem
 
-typealias RepositoryAdvisoryCreditStateEnum = dev.octri.showcase.github.models.RepositoryAdvisoryCreditStateEnum
+typealias RepositoryAdvisoryCreditStateEnum =
+    dev.octri.showcase.github.models.RepositoryAdvisoryCreditStateEnum
 
 typealias RepositoryAdvisoryCvss = dev.octri.showcase.github.models.RepositoryAdvisoryCvss
 
 typealias RepositoryAdvisoryCwesItem = dev.octri.showcase.github.models.RepositoryAdvisoryCwesItem
 
-typealias RepositoryAdvisoryDescriptionValidationError = dev.octri.showcase.github.models.RepositoryAdvisoryDescriptionValidationError
+typealias RepositoryAdvisoryDescriptionValidationError =
+    dev.octri.showcase.github.models.RepositoryAdvisoryDescriptionValidationError
 
-typealias RepositoryAdvisoryDescriptionValidationErrorErrorsItem = dev.octri.showcase.github.models.RepositoryAdvisoryDescriptionValidationErrorErrorsItem
+typealias RepositoryAdvisoryDescriptionValidationErrorErrorsItem =
+    dev.octri.showcase.github.models.RepositoryAdvisoryDescriptionValidationErrorErrorsItem
 
-typealias RepositoryAdvisoryIdentifiersItem = dev.octri.showcase.github.models.RepositoryAdvisoryIdentifiersItem
+typealias RepositoryAdvisoryIdentifiersItem =
+    dev.octri.showcase.github.models.RepositoryAdvisoryIdentifiersItem
 
-typealias RepositoryAdvisoryIdentifiersItemTypeEnum = dev.octri.showcase.github.models.RepositoryAdvisoryIdentifiersItemTypeEnum
+typealias RepositoryAdvisoryIdentifiersItemTypeEnum =
+    dev.octri.showcase.github.models.RepositoryAdvisoryIdentifiersItemTypeEnum
 
-typealias RepositoryAdvisorySeverityEnum = dev.octri.showcase.github.models.RepositoryAdvisorySeverityEnum
+typealias RepositoryAdvisorySeverityEnum =
+    dev.octri.showcase.github.models.RepositoryAdvisorySeverityEnum
 
 typealias RepositoryAdvisoryStateEnum = dev.octri.showcase.github.models.RepositoryAdvisoryStateEnum
 
-typealias RepositoryAdvisorySubmission = dev.octri.showcase.github.models.RepositoryAdvisorySubmission
+typealias RepositoryAdvisorySubmission =
+    dev.octri.showcase.github.models.RepositoryAdvisorySubmission
 
 typealias RepositoryAdvisoryUpdate = dev.octri.showcase.github.models.RepositoryAdvisoryUpdate
 
-typealias RepositoryAdvisoryUpdateCreditsItem = dev.octri.showcase.github.models.RepositoryAdvisoryUpdateCreditsItem
+typealias RepositoryAdvisoryUpdateCreditsItem =
+    dev.octri.showcase.github.models.RepositoryAdvisoryUpdateCreditsItem
 
-typealias RepositoryAdvisoryUpdateSeverityEnum = dev.octri.showcase.github.models.RepositoryAdvisoryUpdateSeverityEnum
+typealias RepositoryAdvisoryUpdateSeverityEnum =
+    dev.octri.showcase.github.models.RepositoryAdvisoryUpdateSeverityEnum
 
-typealias RepositoryAdvisoryUpdateStateEnum = dev.octri.showcase.github.models.RepositoryAdvisoryUpdateStateEnum
+typealias RepositoryAdvisoryUpdateStateEnum =
+    dev.octri.showcase.github.models.RepositoryAdvisoryUpdateStateEnum
 
-typealias RepositoryAdvisoryUpdateVulnerabilitiesItem = dev.octri.showcase.github.models.RepositoryAdvisoryUpdateVulnerabilitiesItem
+typealias RepositoryAdvisoryUpdateVulnerabilitiesItem =
+    dev.octri.showcase.github.models.RepositoryAdvisoryUpdateVulnerabilitiesItem
 
-typealias RepositoryAdvisoryUpdateVulnerabilitiesItemPackage = dev.octri.showcase.github.models.RepositoryAdvisoryUpdateVulnerabilitiesItemPackage
+typealias RepositoryAdvisoryUpdateVulnerabilitiesItemPackage =
+    dev.octri.showcase.github.models.RepositoryAdvisoryUpdateVulnerabilitiesItemPackage
 
-typealias RepositoryAdvisoryVulnerability = dev.octri.showcase.github.models.RepositoryAdvisoryVulnerability
+typealias RepositoryAdvisoryVulnerability =
+    dev.octri.showcase.github.models.RepositoryAdvisoryVulnerability
 
-typealias RepositoryAdvisoryVulnerabilityPackage = dev.octri.showcase.github.models.RepositoryAdvisoryVulnerabilityPackage
+typealias RepositoryAdvisoryVulnerabilityPackage =
+    dev.octri.showcase.github.models.RepositoryAdvisoryVulnerabilityPackage
 
-typealias RepositoryCodeSearchIndexStatus = dev.octri.showcase.github.models.RepositoryCodeSearchIndexStatus
+typealias RepositoryCodeSearchIndexStatus =
+    dev.octri.showcase.github.models.RepositoryCodeSearchIndexStatus
 
-typealias RepositoryCollaboratorPermission = dev.octri.showcase.github.models.RepositoryCollaboratorPermission
+typealias RepositoryCollaboratorPermission =
+    dev.octri.showcase.github.models.RepositoryCollaboratorPermission
 
-typealias RepositoryExternalPropertyPayload = dev.octri.showcase.github.models.RepositoryExternalPropertyPayload
+typealias RepositoryExternalPropertyPayload =
+    dev.octri.showcase.github.models.RepositoryExternalPropertyPayload
 
 typealias RepositoryHashAlgorithm = dev.octri.showcase.github.models.RepositoryHashAlgorithm
 
-typealias RepositoryHashAlgorithmHashAlgorithmEnum = dev.octri.showcase.github.models.RepositoryHashAlgorithmHashAlgorithmEnum
+typealias RepositoryHashAlgorithmHashAlgorithmEnum =
+    dev.octri.showcase.github.models.RepositoryHashAlgorithmHashAlgorithmEnum
 
 typealias RepositoryInvitation = dev.octri.showcase.github.models.RepositoryInvitation
 
-typealias RepositoryInvitationPermissionsEnum = dev.octri.showcase.github.models.RepositoryInvitationPermissionsEnum
+typealias RepositoryInvitationPermissionsEnum =
+    dev.octri.showcase.github.models.RepositoryInvitationPermissionsEnum
 
-typealias RepositoryMergeCommitMessageEnum = dev.octri.showcase.github.models.RepositoryMergeCommitMessageEnum
+typealias RepositoryMergeCommitMessageEnum =
+    dev.octri.showcase.github.models.RepositoryMergeCommitMessageEnum
 
-typealias RepositoryMergeCommitTitleEnum = dev.octri.showcase.github.models.RepositoryMergeCommitTitleEnum
+typealias RepositoryMergeCommitTitleEnum =
+    dev.octri.showcase.github.models.RepositoryMergeCommitTitleEnum
 
 typealias RepositoryPermissions = dev.octri.showcase.github.models.RepositoryPermissions
 
-typealias RepositoryPullRequestCreationPolicyEnum = dev.octri.showcase.github.models.RepositoryPullRequestCreationPolicyEnum
+typealias RepositoryPullRequestCreationPolicyEnum =
+    dev.octri.showcase.github.models.RepositoryPullRequestCreationPolicyEnum
 
 typealias RepositoryRule = dev.octri.showcase.github.models.RepositoryRule
 
-typealias RepositoryRuleBranchNamePattern = dev.octri.showcase.github.models.RepositoryRuleBranchNamePattern
+typealias RepositoryRuleBranchNamePattern =
+    dev.octri.showcase.github.models.RepositoryRuleBranchNamePattern
 
-typealias RepositoryRuleBranchNamePatternParameters = dev.octri.showcase.github.models.RepositoryRuleBranchNamePatternParameters
+typealias RepositoryRuleBranchNamePatternParameters =
+    dev.octri.showcase.github.models.RepositoryRuleBranchNamePatternParameters
 
-typealias RepositoryRuleBranchNamePatternParametersOperatorEnum = dev.octri.showcase.github.models.RepositoryRuleBranchNamePatternParametersOperatorEnum
+typealias RepositoryRuleBranchNamePatternParametersOperatorEnum =
+    dev.octri.showcase.github.models.RepositoryRuleBranchNamePatternParametersOperatorEnum
 
-typealias RepositoryRuleBranchNamePatternTypeEnum = dev.octri.showcase.github.models.RepositoryRuleBranchNamePatternTypeEnum
+typealias RepositoryRuleBranchNamePatternTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleBranchNamePatternTypeEnum
 
 typealias RepositoryRuleCodeCoverage = dev.octri.showcase.github.models.RepositoryRuleCodeCoverage
 
-typealias RepositoryRuleCodeCoverageParameters = dev.octri.showcase.github.models.RepositoryRuleCodeCoverageParameters
+typealias RepositoryRuleCodeCoverageParameters =
+    dev.octri.showcase.github.models.RepositoryRuleCodeCoverageParameters
 
-typealias RepositoryRuleCodeCoverageTypeEnum = dev.octri.showcase.github.models.RepositoryRuleCodeCoverageTypeEnum
+typealias RepositoryRuleCodeCoverageTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCodeCoverageTypeEnum
 
 typealias RepositoryRuleCodeQuality = dev.octri.showcase.github.models.RepositoryRuleCodeQuality
 
-typealias RepositoryRuleCodeQualityParameters = dev.octri.showcase.github.models.RepositoryRuleCodeQualityParameters
+typealias RepositoryRuleCodeQualityParameters =
+    dev.octri.showcase.github.models.RepositoryRuleCodeQualityParameters
 
-typealias RepositoryRuleCodeQualityParametersSeverityEnum = dev.octri.showcase.github.models.RepositoryRuleCodeQualityParametersSeverityEnum
+typealias RepositoryRuleCodeQualityParametersSeverityEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCodeQualityParametersSeverityEnum
 
-typealias RepositoryRuleCodeQualityTypeEnum = dev.octri.showcase.github.models.RepositoryRuleCodeQualityTypeEnum
+typealias RepositoryRuleCodeQualityTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCodeQualityTypeEnum
 
 typealias RepositoryRuleCodeScanning = dev.octri.showcase.github.models.RepositoryRuleCodeScanning
 
-typealias RepositoryRuleCodeScanningParameters = dev.octri.showcase.github.models.RepositoryRuleCodeScanningParameters
+typealias RepositoryRuleCodeScanningParameters =
+    dev.octri.showcase.github.models.RepositoryRuleCodeScanningParameters
 
-typealias RepositoryRuleCodeScanningTypeEnum = dev.octri.showcase.github.models.RepositoryRuleCodeScanningTypeEnum
+typealias RepositoryRuleCodeScanningTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCodeScanningTypeEnum
 
-typealias RepositoryRuleCommitAuthorEmailPattern = dev.octri.showcase.github.models.RepositoryRuleCommitAuthorEmailPattern
+typealias RepositoryRuleCommitAuthorEmailPattern =
+    dev.octri.showcase.github.models.RepositoryRuleCommitAuthorEmailPattern
 
-typealias RepositoryRuleCommitAuthorEmailPatternParameters = dev.octri.showcase.github.models.RepositoryRuleCommitAuthorEmailPatternParameters
+typealias RepositoryRuleCommitAuthorEmailPatternParameters =
+    dev.octri.showcase.github.models.RepositoryRuleCommitAuthorEmailPatternParameters
 
-typealias RepositoryRuleCommitAuthorEmailPatternParametersOperatorEnum = dev.octri.showcase.github.models.RepositoryRuleCommitAuthorEmailPatternParametersOperatorEnum
+typealias RepositoryRuleCommitAuthorEmailPatternParametersOperatorEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCommitAuthorEmailPatternParametersOperatorEnum
 
-typealias RepositoryRuleCommitAuthorEmailPatternTypeEnum = dev.octri.showcase.github.models.RepositoryRuleCommitAuthorEmailPatternTypeEnum
+typealias RepositoryRuleCommitAuthorEmailPatternTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCommitAuthorEmailPatternTypeEnum
 
-typealias RepositoryRuleCommitMessagePattern = dev.octri.showcase.github.models.RepositoryRuleCommitMessagePattern
+typealias RepositoryRuleCommitMessagePattern =
+    dev.octri.showcase.github.models.RepositoryRuleCommitMessagePattern
 
-typealias RepositoryRuleCommitMessagePatternParameters = dev.octri.showcase.github.models.RepositoryRuleCommitMessagePatternParameters
+typealias RepositoryRuleCommitMessagePatternParameters =
+    dev.octri.showcase.github.models.RepositoryRuleCommitMessagePatternParameters
 
-typealias RepositoryRuleCommitMessagePatternParametersOperatorEnum = dev.octri.showcase.github.models.RepositoryRuleCommitMessagePatternParametersOperatorEnum
+typealias RepositoryRuleCommitMessagePatternParametersOperatorEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCommitMessagePatternParametersOperatorEnum
 
-typealias RepositoryRuleCommitMessagePatternTypeEnum = dev.octri.showcase.github.models.RepositoryRuleCommitMessagePatternTypeEnum
+typealias RepositoryRuleCommitMessagePatternTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCommitMessagePatternTypeEnum
 
-typealias RepositoryRuleCommitterEmailPattern = dev.octri.showcase.github.models.RepositoryRuleCommitterEmailPattern
+typealias RepositoryRuleCommitterEmailPattern =
+    dev.octri.showcase.github.models.RepositoryRuleCommitterEmailPattern
 
-typealias RepositoryRuleCommitterEmailPatternParameters = dev.octri.showcase.github.models.RepositoryRuleCommitterEmailPatternParameters
+typealias RepositoryRuleCommitterEmailPatternParameters =
+    dev.octri.showcase.github.models.RepositoryRuleCommitterEmailPatternParameters
 
-typealias RepositoryRuleCommitterEmailPatternParametersOperatorEnum = dev.octri.showcase.github.models.RepositoryRuleCommitterEmailPatternParametersOperatorEnum
+typealias RepositoryRuleCommitterEmailPatternParametersOperatorEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCommitterEmailPatternParametersOperatorEnum
 
-typealias RepositoryRuleCommitterEmailPatternTypeEnum = dev.octri.showcase.github.models.RepositoryRuleCommitterEmailPatternTypeEnum
+typealias RepositoryRuleCommitterEmailPatternTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCommitterEmailPatternTypeEnum
 
-typealias RepositoryRuleCopilotCodeReview = dev.octri.showcase.github.models.RepositoryRuleCopilotCodeReview
+typealias RepositoryRuleCopilotCodeReview =
+    dev.octri.showcase.github.models.RepositoryRuleCopilotCodeReview
 
-typealias RepositoryRuleCopilotCodeReviewParameters = dev.octri.showcase.github.models.RepositoryRuleCopilotCodeReviewParameters
+typealias RepositoryRuleCopilotCodeReviewParameters =
+    dev.octri.showcase.github.models.RepositoryRuleCopilotCodeReviewParameters
 
-typealias RepositoryRuleCopilotCodeReviewTypeEnum = dev.octri.showcase.github.models.RepositoryRuleCopilotCodeReviewTypeEnum
+typealias RepositoryRuleCopilotCodeReviewTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCopilotCodeReviewTypeEnum
 
 typealias RepositoryRuleCreation = dev.octri.showcase.github.models.RepositoryRuleCreation
 
-typealias RepositoryRuleCreationTypeEnum = dev.octri.showcase.github.models.RepositoryRuleCreationTypeEnum
+typealias RepositoryRuleCreationTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleCreationTypeEnum
 
 typealias RepositoryRuleDeletion = dev.octri.showcase.github.models.RepositoryRuleDeletion
 
-typealias RepositoryRuleDeletionTypeEnum = dev.octri.showcase.github.models.RepositoryRuleDeletionTypeEnum
+typealias RepositoryRuleDeletionTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleDeletionTypeEnum
 
 typealias RepositoryRuleDetailed = dev.octri.showcase.github.models.RepositoryRuleDetailed
 
-typealias RepositoryRuleDetailedVariant0 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant0
+typealias RepositoryRuleDetailedVariant0 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant0
 
-typealias RepositoryRuleDetailedVariant1 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant1
+typealias RepositoryRuleDetailedVariant1 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant1
 
-typealias RepositoryRuleDetailedVariant10 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant10
+typealias RepositoryRuleDetailedVariant10 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant10
 
-typealias RepositoryRuleDetailedVariant11 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant11
+typealias RepositoryRuleDetailedVariant11 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant11
 
-typealias RepositoryRuleDetailedVariant12 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant12
+typealias RepositoryRuleDetailedVariant12 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant12
 
-typealias RepositoryRuleDetailedVariant13 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant13
+typealias RepositoryRuleDetailedVariant13 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant13
 
-typealias RepositoryRuleDetailedVariant14 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant14
+typealias RepositoryRuleDetailedVariant14 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant14
 
-typealias RepositoryRuleDetailedVariant15 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant15
+typealias RepositoryRuleDetailedVariant15 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant15
 
-typealias RepositoryRuleDetailedVariant16 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant16
+typealias RepositoryRuleDetailedVariant16 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant16
 
-typealias RepositoryRuleDetailedVariant17 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant17
+typealias RepositoryRuleDetailedVariant17 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant17
 
-typealias RepositoryRuleDetailedVariant18 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant18
+typealias RepositoryRuleDetailedVariant18 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant18
 
-typealias RepositoryRuleDetailedVariant19 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant19
+typealias RepositoryRuleDetailedVariant19 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant19
 
-typealias RepositoryRuleDetailedVariant2 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant2
+typealias RepositoryRuleDetailedVariant2 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant2
 
-typealias RepositoryRuleDetailedVariant20 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant20
+typealias RepositoryRuleDetailedVariant20 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant20
 
-typealias RepositoryRuleDetailedVariant21 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant21
+typealias RepositoryRuleDetailedVariant21 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant21
 
-typealias RepositoryRuleDetailedVariant22 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant22
+typealias RepositoryRuleDetailedVariant22 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant22
 
-typealias RepositoryRuleDetailedVariant23 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant23
+typealias RepositoryRuleDetailedVariant23 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant23
 
-typealias RepositoryRuleDetailedVariant24 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant24
+typealias RepositoryRuleDetailedVariant24 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant24
 
-typealias RepositoryRuleDetailedVariant3 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant3
+typealias RepositoryRuleDetailedVariant3 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant3
 
-typealias RepositoryRuleDetailedVariant4 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant4
+typealias RepositoryRuleDetailedVariant4 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant4
 
-typealias RepositoryRuleDetailedVariant5 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant5
+typealias RepositoryRuleDetailedVariant5 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant5
 
-typealias RepositoryRuleDetailedVariant6 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant6
+typealias RepositoryRuleDetailedVariant6 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant6
 
-typealias RepositoryRuleDetailedVariant7 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant7
+typealias RepositoryRuleDetailedVariant7 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant7
 
-typealias RepositoryRuleDetailedVariant8 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant8
+typealias RepositoryRuleDetailedVariant8 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant8
 
-typealias RepositoryRuleDetailedVariant9 = dev.octri.showcase.github.models.RepositoryRuleDetailedVariant9
+typealias RepositoryRuleDetailedVariant9 =
+    dev.octri.showcase.github.models.RepositoryRuleDetailedVariant9
 
 typealias RepositoryRuleEnforcement = dev.octri.showcase.github.models.RepositoryRuleEnforcement
 
-typealias RepositoryRuleFileExtensionRestriction = dev.octri.showcase.github.models.RepositoryRuleFileExtensionRestriction
+typealias RepositoryRuleFileExtensionRestriction =
+    dev.octri.showcase.github.models.RepositoryRuleFileExtensionRestriction
 
-typealias RepositoryRuleFileExtensionRestrictionParameters = dev.octri.showcase.github.models.RepositoryRuleFileExtensionRestrictionParameters
+typealias RepositoryRuleFileExtensionRestrictionParameters =
+    dev.octri.showcase.github.models.RepositoryRuleFileExtensionRestrictionParameters
 
-typealias RepositoryRuleFileExtensionRestrictionTypeEnum = dev.octri.showcase.github.models.RepositoryRuleFileExtensionRestrictionTypeEnum
+typealias RepositoryRuleFileExtensionRestrictionTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleFileExtensionRestrictionTypeEnum
 
-typealias RepositoryRuleFilePathRestriction = dev.octri.showcase.github.models.RepositoryRuleFilePathRestriction
+typealias RepositoryRuleFilePathRestriction =
+    dev.octri.showcase.github.models.RepositoryRuleFilePathRestriction
 
-typealias RepositoryRuleFilePathRestrictionParameters = dev.octri.showcase.github.models.RepositoryRuleFilePathRestrictionParameters
+typealias RepositoryRuleFilePathRestrictionParameters =
+    dev.octri.showcase.github.models.RepositoryRuleFilePathRestrictionParameters
 
-typealias RepositoryRuleFilePathRestrictionTypeEnum = dev.octri.showcase.github.models.RepositoryRuleFilePathRestrictionTypeEnum
+typealias RepositoryRuleFilePathRestrictionTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleFilePathRestrictionTypeEnum
 
-typealias RepositoryRuleLicenseComplianceScanning = dev.octri.showcase.github.models.RepositoryRuleLicenseComplianceScanning
+typealias RepositoryRuleLicenseComplianceScanning =
+    dev.octri.showcase.github.models.RepositoryRuleLicenseComplianceScanning
 
-typealias RepositoryRuleLicenseComplianceScanningTypeEnum = dev.octri.showcase.github.models.RepositoryRuleLicenseComplianceScanningTypeEnum
+typealias RepositoryRuleLicenseComplianceScanningTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleLicenseComplianceScanningTypeEnum
 
-typealias RepositoryRuleMaxFilePathLength = dev.octri.showcase.github.models.RepositoryRuleMaxFilePathLength
+typealias RepositoryRuleMaxFilePathLength =
+    dev.octri.showcase.github.models.RepositoryRuleMaxFilePathLength
 
-typealias RepositoryRuleMaxFilePathLengthParameters = dev.octri.showcase.github.models.RepositoryRuleMaxFilePathLengthParameters
+typealias RepositoryRuleMaxFilePathLengthParameters =
+    dev.octri.showcase.github.models.RepositoryRuleMaxFilePathLengthParameters
 
-typealias RepositoryRuleMaxFilePathLengthTypeEnum = dev.octri.showcase.github.models.RepositoryRuleMaxFilePathLengthTypeEnum
+typealias RepositoryRuleMaxFilePathLengthTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleMaxFilePathLengthTypeEnum
 
 typealias RepositoryRuleMaxFileSize = dev.octri.showcase.github.models.RepositoryRuleMaxFileSize
 
-typealias RepositoryRuleMaxFileSizeParameters = dev.octri.showcase.github.models.RepositoryRuleMaxFileSizeParameters
+typealias RepositoryRuleMaxFileSizeParameters =
+    dev.octri.showcase.github.models.RepositoryRuleMaxFileSizeParameters
 
-typealias RepositoryRuleMaxFileSizeTypeEnum = dev.octri.showcase.github.models.RepositoryRuleMaxFileSizeTypeEnum
+typealias RepositoryRuleMaxFileSizeTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleMaxFileSizeTypeEnum
 
 typealias RepositoryRuleMergeQueue = dev.octri.showcase.github.models.RepositoryRuleMergeQueue
 
-typealias RepositoryRuleMergeQueueParameters = dev.octri.showcase.github.models.RepositoryRuleMergeQueueParameters
+typealias RepositoryRuleMergeQueueParameters =
+    dev.octri.showcase.github.models.RepositoryRuleMergeQueueParameters
 
-typealias RepositoryRuleMergeQueueParametersGroupingStrategyEnum = dev.octri.showcase.github.models.RepositoryRuleMergeQueueParametersGroupingStrategyEnum
+typealias RepositoryRuleMergeQueueParametersGroupingStrategyEnum =
+    dev.octri.showcase.github.models.RepositoryRuleMergeQueueParametersGroupingStrategyEnum
 
-typealias RepositoryRuleMergeQueueParametersMergeMethodEnum = dev.octri.showcase.github.models.RepositoryRuleMergeQueueParametersMergeMethodEnum
+typealias RepositoryRuleMergeQueueParametersMergeMethodEnum =
+    dev.octri.showcase.github.models.RepositoryRuleMergeQueueParametersMergeMethodEnum
 
-typealias RepositoryRuleMergeQueueTypeEnum = dev.octri.showcase.github.models.RepositoryRuleMergeQueueTypeEnum
+typealias RepositoryRuleMergeQueueTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleMergeQueueTypeEnum
 
-typealias RepositoryRuleNonFastForward = dev.octri.showcase.github.models.RepositoryRuleNonFastForward
+typealias RepositoryRuleNonFastForward =
+    dev.octri.showcase.github.models.RepositoryRuleNonFastForward
 
-typealias RepositoryRuleNonFastForwardTypeEnum = dev.octri.showcase.github.models.RepositoryRuleNonFastForwardTypeEnum
+typealias RepositoryRuleNonFastForwardTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleNonFastForwardTypeEnum
 
 typealias RepositoryRuleParamsActor = dev.octri.showcase.github.models.RepositoryRuleParamsActor
 
-typealias RepositoryRuleParamsActorTypeEnum = dev.octri.showcase.github.models.RepositoryRuleParamsActorTypeEnum
+typealias RepositoryRuleParamsActorTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleParamsActorTypeEnum
 
-typealias RepositoryRuleParamsCodeScanningTool = dev.octri.showcase.github.models.RepositoryRuleParamsCodeScanningTool
+typealias RepositoryRuleParamsCodeScanningTool =
+    dev.octri.showcase.github.models.RepositoryRuleParamsCodeScanningTool
 
-typealias RepositoryRuleParamsCodeScanningToolAlertsThresholdEnum = dev.octri.showcase.github.models.RepositoryRuleParamsCodeScanningToolAlertsThresholdEnum
+typealias RepositoryRuleParamsCodeScanningToolAlertsThresholdEnum =
+    dev.octri.showcase.github.models.RepositoryRuleParamsCodeScanningToolAlertsThresholdEnum
 
-typealias RepositoryRuleParamsCodeScanningToolSecurityAlertsThresholdEnum = dev.octri.showcase.github.models.RepositoryRuleParamsCodeScanningToolSecurityAlertsThresholdEnum
+typealias RepositoryRuleParamsCodeScanningToolSecurityAlertsThresholdEnum =
+    dev.octri.showcase.github.models.RepositoryRuleParamsCodeScanningToolSecurityAlertsThresholdEnum
 
-typealias RepositoryRuleParamsDismissalRestriction = dev.octri.showcase.github.models.RepositoryRuleParamsDismissalRestriction
+typealias RepositoryRuleParamsDismissalRestriction =
+    dev.octri.showcase.github.models.RepositoryRuleParamsDismissalRestriction
 
-typealias RepositoryRuleParamsProofOfPresence = dev.octri.showcase.github.models.RepositoryRuleParamsProofOfPresence
+typealias RepositoryRuleParamsProofOfPresence =
+    dev.octri.showcase.github.models.RepositoryRuleParamsProofOfPresence
 
-typealias RepositoryRuleParamsProofOfPresenceRequiredAuthenticationLevelEnum = dev.octri.showcase.github.models.RepositoryRuleParamsProofOfPresenceRequiredAuthenticationLevelEnum
+typealias RepositoryRuleParamsProofOfPresenceRequiredAuthenticationLevelEnum =
+    dev.octri.showcase.github.models.RepositoryRuleParamsProofOfPresenceRequiredAuthenticationLevelEnum
 
-typealias RepositoryRuleParamsRequiredReviewerConfiguration = dev.octri.showcase.github.models.RepositoryRuleParamsRequiredReviewerConfiguration
+typealias RepositoryRuleParamsRequiredReviewerConfiguration =
+    dev.octri.showcase.github.models.RepositoryRuleParamsRequiredReviewerConfiguration
 
-typealias RepositoryRuleParamsRestrictedCommits = dev.octri.showcase.github.models.RepositoryRuleParamsRestrictedCommits
+typealias RepositoryRuleParamsRestrictedCommits =
+    dev.octri.showcase.github.models.RepositoryRuleParamsRestrictedCommits
 
-typealias RepositoryRuleParamsReviewer = dev.octri.showcase.github.models.RepositoryRuleParamsReviewer
+typealias RepositoryRuleParamsReviewer =
+    dev.octri.showcase.github.models.RepositoryRuleParamsReviewer
 
-typealias RepositoryRuleParamsReviewerTypeEnum = dev.octri.showcase.github.models.RepositoryRuleParamsReviewerTypeEnum
+typealias RepositoryRuleParamsReviewerTypeEnum =
+    dev.octri.showcase.github.models.RepositoryRuleParamsReviewerTypeEnum
 
-typealias RepositoryRuleParamsStatusCheckConfiguration = dev.octri.showcase.github.models.RepositoryRuleParamsStatusCheckConfiguration
+typealias RepositoryRuleParamsStatusCheckConfiguration =
+    dev.octri.showcase.github.models.RepositoryRuleParamsStatusCheckConfiguration
 
-typealias RepositoryRuleParamsWorkflowFileReference = dev.octri.showcase.github.models.RepositoryRuleParamsWorkflowFileReference
+typealias RepositoryRuleParamsWorkflowFileReference =
+    dev.octri.showcase.github.models.RepositoryRuleParamsWorkflowFileReference
 
 typealias RepositoryRulePullRequest = dev.octri.showcase.github.models.RepositoryRulePullRequest
 
-typealias RepositoryRulePullRequestParameters = dev.octri.showcase.github.models.RepositoryRulePullRequestParameters
+typealias RepositoryRulePullRequestParameters =
+    dev.octri.showcase.github.models.RepositoryRulePullRequestParameters
 
-typealias RepositoryRulePullRequestParametersAllowedMergeMethodsItemEnum = dev.octri.showcase.github.models.RepositoryRulePullRequestParametersAllowedMergeMethodsItemEnum
+typealias RepositoryRulePullRequestParametersAllowedMergeMethodsItemEnum =
+    dev.octri.showcase.github.models.RepositoryRulePullRequestParametersAllowedMergeMethodsItemEnum

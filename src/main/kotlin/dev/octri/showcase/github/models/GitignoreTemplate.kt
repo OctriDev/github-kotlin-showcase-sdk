@@ -3,16 +3,10 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Gitignore Template
- */
+/** Gitignore Template */
 data class GitignoreTemplate(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `source` wire field.
-     */
-    val source: String
+    /** Required `string` value serialized in the `source` wire field. */
+    val source: String,
 )

@@ -8,8 +8,8 @@ import dev.octri.showcase.github.ClientConfig
 import dev.octri.showcase.github.Issue
 import dev.octri.showcase.github.IssueEventForIssue
 import dev.octri.showcase.github.IssueFieldValue
-import dev.octri.showcase.github.IssuesLockLockReasonEnum
 import dev.octri.showcase.github.IssueSuggestion
+import dev.octri.showcase.github.IssuesLockLockReasonEnum
 import dev.octri.showcase.github.Label
 import dev.octri.showcase.github.RequestOptions
 import dev.octri.showcase.github.SdkClient
@@ -21,213 +21,520 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object IssuesListEventsOperation {
     /**
-     * Lists events recorded for an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
+     * Lists events recorded for an issue in a repository. Use `owner`, `repo`, and `issue_number`
+     * to identify the issue, and paginate the results with `page` and `per_page`.
      *
      * Lists all events for an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListEvents(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IssueEventForIssue> {
-        return SdkClient.request<List<IssueEventForIssue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/events", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListEvents", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("410" to BasicError::class.java))).data
+    fun issuesListEvents(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<IssueEventForIssue> {
+        return SdkClient.request<List<IssueEventForIssue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/events",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListEvents",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("410" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListIssueFieldValuesForIssueOperation {
     /**
-     * Lists the field values assigned to an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
+     * Lists the field values assigned to an issue in a repository. Use `owner`, `repo`, and
+     * `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
      *
      * Lists all issue field values for an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListIssueFieldValuesForIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IssueFieldValue> {
-        return SdkClient.request<List<IssueFieldValue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListIssueFieldValuesForIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListIssueFieldValuesForIssue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<IssueFieldValue> {
+        return SdkClient.request<List<IssueFieldValue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListIssueFieldValuesForIssue",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesAddIssueFieldValuesOperation {
     /**
-     * Add custom field values to an issue. You can set values for organization-level issue fields that have been defined for the repository's organization. Adding an empty array will clear all existing field values for the issue. This endpoint supports the following field data types: - **`text`**: String values for text fields - **`single_select`**: Option names for single-select fields (must match an existing option name) - **`number`**: Numeric values for number fields -…
+     * Add custom field values to an issue. You can set values for organization-level issue fields
+     * that have been defined for the repository's organization. Adding an empty array will clear
+     * all existing field values for the issue. This endpoint supports the following field data
+     * types: - **`text`**: String values for text fields - **`single_select`**: Option names for
+     * single-select fields (must match an existing option name) - **`number`**: Numeric values for
+     * number fields -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param issueFieldValues An array of issue field values to add to this issue.
-     *   Each field value must include the field ID and the value to set.
+     * @param issueFieldValues An array of issue field values to add to this issue. Each field value
+     *   must include the field ID and the value to set.
      */
-    fun issuesAddIssueFieldValues(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueFieldValues: List<Issues.IssuesAddIssueFieldValuesIssueFieldValuesItem>? = null, options: RequestOptions? = null): List<IssueFieldValue> {
+    fun issuesAddIssueFieldValues(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        issueFieldValues: List<Issues.IssuesAddIssueFieldValuesIssueFieldValuesItem>? = null,
+        options: RequestOptions? = null,
+    ): List<IssueFieldValue> {
         if (issueFieldValues != null) {
-            Validation.validateItems("issue_field_values", issueFieldValues, Validation.LengthOpts(max = 25))
-}
+            Validation.validateItems(
+                "issue_field_values",
+                issueFieldValues,
+                Validation.LengthOpts(max = 25),
+            )
+        }
 
-        return SdkClient.request<List<IssueFieldValue>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values", config = clientConfig, body = SdkClient.bodyMap("issue_field_values" to
-    (SdkClient.omitIfNull(issueFieldValues))), operationId = "issuesAddIssueFieldValues", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
+        return SdkClient.request<List<IssueFieldValue>>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "issue_field_values" to (SdkClient.omitIfNull(issueFieldValues))
+                        ),
+                    operationId = "issuesAddIssueFieldValues",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesSetIssueFieldValuesOperation {
     /**
-     * Set custom field values for an issue, replacing any existing values. You can set values for organization-level issue fields that have been defined for the repository's organization. This endpoint supports the following field data types: - **`text`**: String values for text fields - **`single_select`**: Option names for single-select fields (must match an existing option name) - **`number`**: Numeric values for number fields - **`date`**: ISO 8601 date strings for date fields…
+     * Set custom field values for an issue, replacing any existing values. You can set values for
+     * organization-level issue fields that have been defined for the repository's organization.
+     * This endpoint supports the following field data types: - **`text`**: String values for text
+     * fields - **`single_select`**: Option names for single-select fields (must match an existing
+     * option name) - **`number`**: Numeric values for number fields - **`date`**: ISO 8601 date
+     * strings for date fields…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param issueFieldValues An array of issue field values to set for this issue.
-     *   Each field value must include the field ID and the value to set. All existing
-     *   field values will be replaced.
+     * @param issueFieldValues An array of issue field values to set for this issue. Each field
+     *   value must include the field ID and the value to set. All existing field values will be
+     *   replaced.
      */
-    fun issuesSetIssueFieldValues(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueFieldValues: List<Issues.IssuesSetIssueFieldValuesIssueFieldValuesItem>? = null, options: RequestOptions? = null): List<IssueFieldValue> {
+    fun issuesSetIssueFieldValues(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        issueFieldValues: List<Issues.IssuesSetIssueFieldValuesIssueFieldValuesItem>? = null,
+        options: RequestOptions? = null,
+    ): List<IssueFieldValue> {
         if (issueFieldValues != null) {
-            Validation.validateItems("issue_field_values", issueFieldValues, Validation.LengthOpts(max = 25))
-}
+            Validation.validateItems(
+                "issue_field_values",
+                issueFieldValues,
+                Validation.LengthOpts(max = 25),
+            )
+        }
 
-        return SdkClient.request<List<IssueFieldValue>>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values", config = clientConfig, body = SdkClient.bodyMap("issue_field_values" to
-    (SdkClient.omitIfNull(issueFieldValues))), operationId = "issuesSetIssueFieldValues", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
+        return SdkClient.request<List<IssueFieldValue>>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "issue_field_values" to (SdkClient.omitIfNull(issueFieldValues))
+                        ),
+                    operationId = "issuesSetIssueFieldValues",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesDeleteIssueFieldValueOperation {
     /**
-     * Remove a specific custom field value from an issue. Only users with push access to the repository can delete issue field values. If you don't have the proper permissions, you'll receive a `403 Forbidden` response. If the specified field does not have a value set on the issue, this operation will return a `404` error. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate…
+     * Remove a specific custom field value from an issue. Only users with push access to the
+     * repository can delete issue field values. If you don't have the proper permissions, you'll
+     * receive a `403 Forbidden` response. If the specified field does not have a value set on the
+     * issue, this operation will return a `404` error. This endpoint triggers notifications.
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "Rate…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param issueFieldId The unique identifier of the issue field.
      */
-    fun issuesDeleteIssueFieldValue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueFieldId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values/${SdkClient.encodePathSegment(issueFieldId)}", config = clientConfig, operationId = "issuesDeleteIssueFieldValue", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java)))
+    fun issuesDeleteIssueFieldValue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        issueFieldId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values/${SdkClient.encodePathSegment(issueFieldId)}",
+                config = clientConfig,
+                operationId = "issuesDeleteIssueFieldValue",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                        "503" to ServiceUnavailable::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object IssuesListLabelsOnIssueOperation {
     /**
-     * Lists the labels applied to an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
+     * Lists the labels applied to an issue in a repository. Use `owner`, `repo`, and `issue_number`
+     * to identify the issue, and paginate the results with `page` and `per_page`.
      *
      * Lists all labels for an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListLabelsOnIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Label> {
-        return SdkClient.request<List<Label>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListLabelsOnIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListLabelsOnIssue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Label> {
+        return SdkClient.request<List<Label>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListLabelsOnIssue",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesAddLabelsOperation {
     /**
-     * Adds labels to an issue without removing its existing labels. Supply label names directly or use an object payload with a `labels` array; label objects can include `rationale`, `suggest`, and `confidence`. A suggested label is stored for human review rather than applied directly.
+     * Adds labels to an issue without removing its existing labels. Supply label names directly or
+     * use an object payload with a `labels` array; label objects can include `rationale`,
+     * `suggest`, and `confidence`. A suggested label is stored for human review rather than applied
+     * directly.
      *
      * Adds labels to an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesAddLabels(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, body: Any? = null, options: RequestOptions? = null): List<Label> {
-        return SdkClient.request<List<Label>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels", config = clientConfig, body = body, operationId = "issuesAddLabels", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesAddLabels(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Label> {
+        return SdkClient.request<List<Label>>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "issuesAddLabels",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesSetLabelsOperation {
     /**
-     * Replaces all labels on an issue with the labels in your request. Supply the label names in a `labels` array or as a direct array; unlike adding labels, this operation removes labels that are not included in the request.
+     * Replaces all labels on an issue with the labels in your request. Supply the label names in a
+     * `labels` array or as a direct array; unlike adding labels, this operation removes labels that
+     * are not included in the request.
      *
      * Removes any previous labels and sets the new labels for an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesSetLabels(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, body: Any? = null, options: RequestOptions? = null): List<Label> {
-        return SdkClient.request<List<Label>>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels", config = clientConfig, body = body, operationId = "issuesSetLabels", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesSetLabels(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Label> {
+        return SdkClient.request<List<Label>>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "issuesSetLabels",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesRemoveAllLabelsOperation {
     /**
-     * Removes all labels from an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue whose labels you want to clear.
+     * Removes all labels from an issue in a repository. Use `owner`, `repo`, and `issue_number` to
+     * identify the issue whose labels you want to clear.
      *
      * Removes all labels from an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesRemoveAllLabels(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels", config = clientConfig, operationId = "issuesRemoveAllLabels", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java)))
+    fun issuesRemoveAllLabels(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels",
+                config = clientConfig,
+                operationId = "issuesRemoveAllLabels",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "301" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "410" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object IssuesRemoveLabelOperation {
     /**
-     * Removes a specified label from an issue and returns the labels that remain. Use `owner`, `repo`, and `issue_number` to identify the issue, and `name` to select the label to remove.
+     * Removes a specified label from an issue and returns the labels that remain. Use `owner`,
+     * `repo`, and `issue_number` to identify the issue, and `name` to select the label to remove.
      *
-     * Removes the specified label from the issue, and returns the remaining labels on the issue. This endpoint returns a `404 Not Found` status if the label does not exist.
+     * Removes the specified label from the issue, and returns the remaining labels on the issue.
+     * This endpoint returns a `404 Not Found` status if the label does not exist.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesRemoveLabel(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, name: String, options: RequestOptions? = null): List<Label> {
-        return SdkClient.request<List<Label>>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels/${SdkClient.encodePathSegment(name)}", config = clientConfig, operationId = "issuesRemoveLabel", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesRemoveLabel(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        name: String,
+        options: RequestOptions? = null,
+    ): List<Label> {
+        return SdkClient.request<List<Label>>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/labels/${SdkClient.encodePathSegment(name)}",
+                    config = clientConfig,
+                    operationId = "issuesRemoveLabel",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesLockOperation {
     /**
-     * Locks the conversation on an issue or pull request in a repository. Use `owner`, `repo`, and `issue_number` to identify the conversation, and set `lock_reason` to explain the lock. Users with push access can lock conversations; if you omit the request body, send a `Content-Length` header with a value of zero.
+     * Locks the conversation on an issue or pull request in a repository. Use `owner`, `repo`, and
+     * `issue_number` to identify the conversation, and set `lock_reason` to explain the lock. Users
+     * with push access can lock conversations; if you omit the request body, send a
+     * `Content-Length` header with a value of zero.
      *
-     * Users with push access can lock an issue or pull request's conversation. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "HTTP method."
+     * Users with push access can lock an issue or pull request's conversation. Note that, if you
+     * choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling
+     * out to this endpoint. For more information, see "HTTP method."
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param lockReason The reason for locking the issue or pull request
-     *   conversation. Lock will fail if you don't use one of these reasons: *
-     *   `off-topic` * `too heated` * `resolved` * `spam`
+     * @param lockReason The reason for locking the issue or pull request conversation. Lock will
+     *   fail if you don't use one of these reasons: * `off-topic` * `too heated` * `resolved` *
+     *   `spam`
      */
-    fun issuesLock(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, lockReason: IssuesLockLockReasonEnum? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/lock", config = clientConfig, body = SdkClient.bodyMap("lock_reason" to (SdkClient.omitIfNull(lockReason))), operationId = "issuesLock", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun issuesLock(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        lockReason: IssuesLockLockReasonEnum? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/lock",
+                config = clientConfig,
+                body = SdkClient.bodyMap("lock_reason" to (SdkClient.omitIfNull(lockReason))),
+                operationId = "issuesLock",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "410" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                    ),
+            )
+        )
     }
 }
 
@@ -235,265 +542,653 @@ internal object IssuesUnlockOperation {
     /**
      * Users with push access can unlock an issue's conversation.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesUnlock(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/lock", config = clientConfig, operationId = "issuesUnlock", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun issuesUnlock(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/lock",
+                config = clientConfig,
+                operationId = "issuesUnlock",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object IssuesGetParentOperation {
     /**
-     * Retrieves the parent issue of a sub-issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the sub-issue; the selected media type controls which representation of the parent's Markdown body is included.
+     * Retrieves the parent issue of a sub-issue in a repository. Use `owner`, `repo`, and
+     * `issue_number` to identify the sub-issue; the selected media type controls which
+     * representation of the parent's Markdown body is included.
      *
-     * You can use the REST API to get the parent issue of a sub-issue. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
+     * You can use the REST API to get the parent issue of a sub-issue. This endpoint supports the
+     * following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
+     * body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesGetParent(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/parent", config = clientConfig, operationId = "issuesGetParent", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesGetParent(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/parent",
+                    config = clientConfig,
+                    operationId = "issuesGetParent",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListRelatesToOperation {
     /**
-     * Lists issues related to an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, then use `page` and `per_page` to paginate the results.
+     * Lists issues related to an issue in a repository. Use `owner`, `repo`, and `issue_number` to
+     * identify the issue, then use `page` and `per_page` to paginate the results.
      *
-     * You can use the REST API to list the issues that are related to an issue. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
+     * You can use the REST API to list the issues that are related to an issue. This endpoint
+     * supports the following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
+     * body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListRelatesTo(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/relates_to", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListRelatesTo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListRelatesTo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Issue> {
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/relates_to",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListRelatesTo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesAddRelatesToOperation {
     /**
-     * Adds a relationship marking one issue as related to another issue in a repository. Identify the issue with `owner`, `repo`, and `issue_number`, and provide the related issue's `issue_id` in the request body. Creating content too quickly with this operation may result in secondary rate limiting.
+     * Adds a relationship marking one issue as related to another issue in a repository. Identify
+     * the issue with `owner`, `repo`, and `issue_number`, and provide the related issue's
+     * `issue_id` in the request body. Creating content too quickly with this operation may result
+     * in secondary rate limiting.
      *
-     * You can use the REST API to mark an issue as related to another issue. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see Rate limits for the API and Best practices for using the REST API. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do…
+     * You can use the REST API to mark an issue as related to another issue. Creating content too
+     * quickly using this endpoint may result in secondary rate limiting. For more information, see
+     * Rate limits for the API and Best practices for using the REST API. This endpoint supports the
+     * following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the default if you do…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param issueId The id of the issue to mark as related to the current issue
      */
-    fun issuesAddRelatesTo(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueId: Long, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/relates_to", config = clientConfig, body = SdkClient.bodyMap("issue_id" to (issueId)), operationId = "issuesAddRelatesTo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesAddRelatesTo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        issueId: Long,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/relates_to",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("issue_id" to (issueId)),
+                    operationId = "issuesAddRelatesTo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesRemoveRelatesToOperation {
     /**
-     * Removes the related-issue relationship between two issues in a repository. Use `owner`, `repo`, `issue_number`, and `issue_id` to identify the issue pair whose relationship you want to remove.
+     * Removes the related-issue relationship between two issues in a repository. Use `owner`,
+     * `repo`, `issue_number`, and `issue_id` to identify the issue pair whose relationship you want
+     * to remove.
      *
-     * You can use the REST API to remove a 'relates to' relationship between two issues. Removing content too quickly using this endpoint may result in secondary rate limiting. For more information, see Rate limits for the API and Best practices for using the REST API. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the…
+     * You can use the REST API to remove a 'relates to' relationship between two issues. Removing
+     * content too quickly using this endpoint may result in secondary rate limiting. For more
+     * information, see Rate limits for the API and Best practices for using the REST API. This
+     * endpoint supports the following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param issueId The id of the related issue to remove
      */
-    fun issuesRemoveRelatesTo(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueId: Long, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/relates_to/${SdkClient.encodePathSegment(issueId)}", config = clientConfig, operationId = "issuesRemoveRelatesTo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesRemoveRelatesTo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        issueId: Long,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/relates_to/${SdkClient.encodePathSegment(issueId)}",
+                    config = clientConfig,
+                    operationId = "issuesRemoveRelatesTo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "400" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesRemoveSubIssueOperation {
     /**
-     * You can use the REST API to remove a sub-issue from an issue. Removing content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do…
+     * You can use the REST API to remove a sub-issue from an issue. Removing content too quickly
+     * using this endpoint may result in secondary rate limiting. For more information, see "Rate
+     * limits for the API" and "Best practices for using the REST API." This endpoint supports the
+     * following custom media types. For more information, see "Media types." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param subIssueId The id of the sub-issue to remove
      */
-    fun issuesRemoveSubIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, subIssueId: Long, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issue", config = clientConfig, body = SdkClient.bodyMap("sub_issue_id" to (subIssueId)), operationId = "issuesRemoveSubIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun issuesRemoveSubIssue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        subIssueId: Long,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issue",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("sub_issue_id" to (subIssueId)),
+                    operationId = "issuesRemoveSubIssue",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListSubIssuesOperation {
     /**
-     * Lists the sub-issues attached to an issue in a repository. Use `owner`, `repo`, and `issue_number` to select the parent issue, and `page` and `per_page` to paginate the results.
+     * Lists the sub-issues attached to an issue in a repository. Use `owner`, `repo`, and
+     * `issue_number` to select the parent issue, and `page` and `per_page` to paginate the results.
      *
-     * You can use the REST API to list the sub-issues on an issue. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
+     * You can use the REST API to list the sub-issues on an issue. This endpoint supports the
+     * following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
+     * body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListSubIssues(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issues", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListSubIssues", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListSubIssues(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Issue> {
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issues",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListSubIssues",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("404" to BasicError::class.java, "410" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesAddSubIssueOperation {
     /**
-     * Adds an existing issue as a sub-issue of a parent issue in a repository. Provide the sub-issue's `sub_issue_id`; it must belong to the same repository owner as the parent, and `replace_parent` transfers it from its current parent when true. A 201 response returns the added sub-issue.
+     * Adds an existing issue as a sub-issue of a parent issue in a repository. Provide the
+     * sub-issue's `sub_issue_id`; it must belong to the same repository owner as the parent, and
+     * `replace_parent` transfers it from its current parent when true. A 201 response returns the
+     * added sub-issue.
      *
-     * You can use the REST API to add sub-issues to issues. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass…
+     * You can use the REST API to add sub-issues to issues. Creating content too quickly using this
+     * endpoint may result in secondary rate limiting. For more information, see "Rate limits for
+     * the API" and "Best practices for using the REST API." This endpoint supports the following
+     * custom media types. For more information, see "Media types." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param subIssueId The id of the sub-issue to add. The sub-issue must belong to
-     *   the same repository owner as the parent issue
-     * @param replaceParent Option that, when true, instructs the operation to
-     *   replace the sub-issues current parent issue
+     * @param subIssueId The id of the sub-issue to add. The sub-issue must belong to the same
+     *   repository owner as the parent issue
+     * @param replaceParent Option that, when true, instructs the operation to replace the
+     *   sub-issues current parent issue
      */
-    fun issuesAddSubIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, subIssueId: Long, replaceParent: Boolean? = null, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issues", config = clientConfig, body = SdkClient.bodyMap("sub_issue_id" to (subIssueId), "replace_parent" to (SdkClient.omitIfNull(replaceParent))), operationId = "issuesAddSubIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesAddSubIssue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        subIssueId: Long,
+        replaceParent: Boolean? = null,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issues",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "sub_issue_id" to (subIssueId),
+                            "replace_parent" to (SdkClient.omitIfNull(replaceParent)),
+                        ),
+                    operationId = "issuesAddSubIssue",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesReprioritizeSubIssueOperation {
     /**
-     * You can use the REST API to reprioritize a sub-issue to a different position in the parent list.
+     * You can use the REST API to reprioritize a sub-issue to a different position in the parent
+     * list.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param subIssueId The id of the sub-issue to reprioritize
-     * @param afterId The id of the sub-issue to be prioritized after (either
-     *   positional argument after OR before should be specified).
-     * @param beforeId The id of the sub-issue to be prioritized before (either
-     *   positional argument after OR before should be specified).
+     * @param afterId The id of the sub-issue to be prioritized after (either positional argument
+     *   after OR before should be specified).
+     * @param beforeId The id of the sub-issue to be prioritized before (either positional argument
+     *   after OR before should be specified).
      */
-    fun issuesReprioritizeSubIssue(clientConfig: ClientConfig, request: Issues.IssuesReprioritizeSubIssueRequest, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/sub_issues/priority", config = clientConfig, body = SdkClient.bodyMap("sub_issue_id" to (request.subIssueId), "after_id" to (SdkClient.omitIfNull(request.afterId)), "before_id" to (SdkClient.omitIfNull(request.beforeId))), operationId = "issuesReprioritizeSubIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java, "503" to ServiceUnavailable::class.java))).data
+    fun issuesReprioritizeSubIssue(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesReprioritizeSubIssueRequest,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/sub_issues/priority",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "sub_issue_id" to (request.subIssueId),
+                            "after_id" to (SdkClient.omitIfNull(request.afterId)),
+                            "before_id" to (SdkClient.omitIfNull(request.beforeId)),
+                        ),
+                    operationId = "issuesReprioritizeSubIssue",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationErrorSimple::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListSuggestionsOperation {
     /**
-     * Lists the suggestions on an issue. A suggestion is an agent-proposed change to an issue's type, labels, fields, assignees, or closed state that a maintainer can approve or dismiss. By default only pending suggestions are returned. Use `state=all` to return suggestions in every state, or `state=<state>` to filter to a single state. Use `action=<action>` to return only suggestions for a specific change. This endpoint is only available while the issue suggestions feature is…
+     * Lists the suggestions on an issue. A suggestion is an agent-proposed change to an issue's
+     * type, labels, fields, assignees, or closed state that a maintainer can approve or dismiss. By
+     * default only pending suggestions are returned. Use `state=all` to return suggestions in every
+     * state, or `state=<state>` to filter to a single state. Use `action=<action>` to return only
+     * suggestions for a specific change. This endpoint is only available while the issue
+     * suggestions feature is…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param state Filter suggestions by their state.
      * @param action Filter suggestions by the change they propose.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListSuggestions(clientConfig: ClientConfig, request: Issues.IssuesListSuggestionsRequest, options: RequestOptions? = null): List<IssueSuggestion> {
-        return SdkClient.request<List<IssueSuggestion>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/suggestions", config = clientConfig, query = mapOf("state" to SdkClient.queryValue(request.state, "form", true), "action" to
-    SdkClient.queryValue(request.action, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "issuesListSuggestions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesListSuggestions(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListSuggestionsRequest,
+        options: RequestOptions? = null,
+    ): List<IssueSuggestion> {
+        return SdkClient.request<List<IssueSuggestion>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/suggestions",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "state" to SdkClient.queryValue(request.state, "form", true),
+                            "action" to SdkClient.queryValue(request.action, "form", true),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "issuesListSuggestions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesApproveSuggestionOperation {
     /**
-     * Approves a pending suggestion on an issue. Applies the proposed change (creating the corresponding timeline event), transitions the suggestion to `approved`, and dismisses any competing pending suggestions for the same change. Requires triage access to the repository. Approving a suggestion also requires permission to perform the change it applies (for example, setting the issue type, adding a label or assignee, or closing the issue); this only affects fine-grained access…
+     * Approves a pending suggestion on an issue. Applies the proposed change (creating the
+     * corresponding timeline event), transitions the suggestion to `approved`, and dismisses any
+     * competing pending suggestions for the same change. Requires triage access to the repository.
+     * Approving a suggestion also requires permission to perform the change it applies (for
+     * example, setting the issue type, adding a label or assignee, or closing the issue); this only
+     * affects fine-grained access…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param suggestionId The unique identifier of the suggestion.
      */
-    fun issuesApproveSuggestion(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, suggestionId: Long, options: RequestOptions? = null): IssueSuggestion {
-        return SdkClient.request<IssueSuggestion>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/suggestions/${SdkClient.encodePathSegment(suggestionId)}/approve", config = clientConfig, operationId = "issuesApproveSuggestion", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesApproveSuggestion(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        suggestionId: Long,
+        options: RequestOptions? = null,
+    ): IssueSuggestion {
+        return SdkClient.request<IssueSuggestion>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/suggestions/${SdkClient.encodePathSegment(suggestionId)}/approve",
+                    config = clientConfig,
+                    operationId = "issuesApproveSuggestion",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesDismissSuggestionOperation {
     /**
-     * Dismisses a pending suggestion on an issue. Transitions the suggestion to `dismissed` without applying any change or creating a timeline event. Requires triage access to the repository. This endpoint only supports issues, not pull requests.
+     * Dismisses a pending suggestion on an issue. Transitions the suggestion to `dismissed` without
+     * applying any change or creating a timeline event. Requires triage access to the repository.
+     * This endpoint only supports issues, not pull requests.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param suggestionId The unique identifier of the suggestion.
      */
-    fun issuesDismissSuggestion(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, suggestionId: Long, options: RequestOptions? = null): IssueSuggestion {
-        return SdkClient.request<IssueSuggestion>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/suggestions/${SdkClient.encodePathSegment(suggestionId)}/dismiss", config = clientConfig, operationId = "issuesDismissSuggestion", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesDismissSuggestion(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        suggestionId: Long,
+        options: RequestOptions? = null,
+    ): IssueSuggestion {
+        return SdkClient.request<IssueSuggestion>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/suggestions/${SdkClient.encodePathSegment(suggestionId)}/dismiss",
+                    config = clientConfig,
+                    operationId = "issuesDismissSuggestion",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListEventsForTimelineOperation {
     /**
-     * Lists timeline events recorded for a repository issue. Use `exclude` to omit selected event types, and `page` and `per_page` to paginate the results.
+     * Lists timeline events recorded for a repository issue. Use `exclude` to omit selected event
+     * types, and `page` and `per_page` to paginate the results.
      *
      * List all timeline events for an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param exclude A comma-separated list of timeline event names to exclude from
-     *   the response.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param exclude A comma-separated list of timeline event names to exclude from the response.
      */
-    fun issuesListEventsForTimeline(clientConfig: ClientConfig, request: Issues.IssuesListEventsForTimelineRequest, options: RequestOptions? = null): List<TimelineIssueEvents> {
-        return SdkClient.request<List<TimelineIssueEvents>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/timeline", config = clientConfig, query = mapOf("per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "exclude" to
-    SdkClient.queryValue(request.exclude, "form", true)), operationId = "issuesListEventsForTimeline", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListEventsForTimeline(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListEventsForTimelineRequest,
+        options: RequestOptions? = null,
+    ): List<TimelineIssueEvents> {
+        return SdkClient.request<List<TimelineIssueEvents>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/timeline",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "exclude" to SdkClient.queryValue(request.exclude, "form", true),
+                        ),
+                    operationId = "issuesListEventsForTimeline",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListLabelsForRepoOperation {
     /**
-     * Lists labels in a repository. Use `owner` and `repo` to identify the repository, and use `page` and `per_page` to paginate the results.
+     * Lists labels in a repository. Use `owner` and `repo` to identify the repository, and use
+     * `page` and `per_page` to paginate the results.
      *
      * Lists all labels for a repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListLabelsForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Label> {
-        return SdkClient.request<List<Label>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListLabelsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun issuesListLabelsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Label> {
+        return SdkClient.request<List<Label>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListLabelsForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

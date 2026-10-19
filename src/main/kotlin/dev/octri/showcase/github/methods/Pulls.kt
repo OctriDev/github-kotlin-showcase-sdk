@@ -37,101 +37,102 @@ import dev.octri.showcase.github.SchemaSchemaEnum2e5fa964
 import java.time.OffsetDateTime
 
 object Pulls {
-data class PullsCreateReviewCommentsItem(
-    /**
-     * The relative path to the file that necessitates a review comment.
-     */
-    val path: String,
-    /**
-     * Text of the review comment.
-     */
-    val body: String,
-    /**
-     * The position in the diff where you want to add a review comment. Note this value is not the same as the line number in the file. The `position` value equals the number of lines down from the first "@@" hunk header in the file you want to add a comment. The line just below the "@@" line is position 1, the next line is position 2, and so on. The position in the diff continues to increase through lines of whitespace and additional hunks until the beginning of a new file.
-     */
-    val position: Long? = null,
-    val line: Long? = null,
-    val side: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("start_side") val startSide: String? = null
-)
+    data class PullsCreateReviewCommentsItem(
+        /** The relative path to the file that necessitates a review comment. */
+        val path: String,
+        /** Text of the review comment. */
+        val body: String,
+        /**
+         * The position in the diff where you want to add a review comment. Note this value is not
+         * the same as the line number in the file. The `position` value equals the number of lines
+         * down from the first "@@" hunk header in the file you want to add a comment. The line just
+         * below the "@@" line is position 1, the next line is position 2, and so on. The position
+         * in the diff continues to increase through lines of whitespace and additional hunks until
+         * the beginning of a new file.
+         */
+        val position: Long? = null,
+        val line: Long? = null,
+        val side: String? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("start_side") val startSide: String? = null,
+    )
 
-data class PullsUpdateBranchResponse(
-    val message: String? = null,
-    val url: String? = null
-)
+    data class PullsUpdateBranchResponse(
+        val message: String? = null,
+        val url: String? = null,
+    )
 
-data class PullRequestStacksCreateResponseBase(
-    val ref: String
-)
+    data class PullRequestStacksCreateResponseBase(val ref: String)
 
-data class PullRequestStacksCreateResponse(
-    val id: Long,
-    val number: Long,
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    val url: String,
-    val base: PullRequestStacksCreateResponseBase,
-    /**
-     * Whether the stack has any open pull request. False when all pull requests are merged or closed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: List<PullRequestStackPullRequest>
-)
+    data class PullRequestStacksCreateResponse(
+        val id: Long,
+        val number: Long,
+        @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+        val url: String,
+        val base: PullRequestStacksCreateResponseBase,
+        /**
+         * Whether the stack has any open pull request. False when all pull requests are merged or
+         * closed.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
+        @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+        @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
+        val pullRequests: List<PullRequestStackPullRequest>,
+    )
 
-data class PullRequestStacksGetResponseBase(
-    val ref: String
-)
+    data class PullRequestStacksGetResponseBase(val ref: String)
 
-data class PullRequestStacksGetResponse(
-    val id: Long,
-    val number: Long,
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    val url: String,
-    val base: PullRequestStacksGetResponseBase,
-    /**
-     * Whether the stack has any open pull request. False when all pull requests are merged or closed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: List<PullRequestStackPullRequest>
-)
+    data class PullRequestStacksGetResponse(
+        val id: Long,
+        val number: Long,
+        @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+        val url: String,
+        val base: PullRequestStacksGetResponseBase,
+        /**
+         * Whether the stack has any open pull request. False when all pull requests are merged or
+         * closed.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
+        @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+        @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
+        val pullRequests: List<PullRequestStackPullRequest>,
+    )
 
-data class PullRequestStacksAddResponseBase(
-    val ref: String
-)
+    data class PullRequestStacksAddResponseBase(val ref: String)
 
-data class PullRequestStacksAddResponse(
-    val id: Long,
-    val number: Long,
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    val url: String,
-    val base: PullRequestStacksAddResponseBase,
-    /**
-     * Whether the stack has any open pull request. False when all pull requests are merged or closed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: List<PullRequestStackPullRequest>
-)
+    data class PullRequestStacksAddResponse(
+        val id: Long,
+        val number: Long,
+        @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+        val url: String,
+        val base: PullRequestStacksAddResponseBase,
+        /**
+         * Whether the stack has any open pull request. False when all pull requests are merged or
+         * closed.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
+        @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+        @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
+        val pullRequests: List<PullRequestStackPullRequest>,
+    )
 
-data class PullRequestStacksUnstackResponseBase(
-    val ref: String
-)
+    data class PullRequestStacksUnstackResponseBase(val ref: String)
 
-data class PullRequestStacksUnstackResponse(
-    val id: Long,
-    val number: Long,
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    val url: String,
-    val base: PullRequestStacksUnstackResponseBase,
-    /**
-     * Whether the stack has any open pull request. False when all pull requests are merged or closed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: List<PullRequestStackPullRequest>
-)
+    data class PullRequestStacksUnstackResponse(
+        val id: Long,
+        val number: Long,
+        @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+        val url: String,
+        val base: PullRequestStacksUnstackResponseBase,
+        /**
+         * Whether the stack has any open pull request. False when all pull requests are merged or
+         * closed.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
+        @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+        @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
+        val pullRequests: List<PullRequestStackPullRequest>,
+    )
 
     /** Parameters for [pullsList]. */
     data class PullsListRequest(
@@ -143,7 +144,7 @@ data class PullRequestStacksUnstackResponse(
         val sort: PullsListParameterEnum365eb0a0? = null,
         val direction: PullsListParameterEnumf37e00f7? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [pullsCreate]. */
@@ -157,7 +158,7 @@ data class PullRequestStacksUnstackResponse(
         val body: String? = null,
         val maintainerCanModify: Boolean? = null,
         val draft: Boolean? = null,
-        val issue: Long? = null
+        val issue: Long? = null,
     )
 
     /** Parameters for [pullsListReviewCommentsForRepo]. */
@@ -168,7 +169,7 @@ data class PullRequestStacksUnstackResponse(
         val direction: PullsListReviewCommentsForRepoParameterEnum7977536e? = null,
         val since: OffsetDateTime? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [pullsUpdate]. */
@@ -180,7 +181,7 @@ data class PullRequestStacksUnstackResponse(
         val body: String? = null,
         val state: PullsUpdateStateEnum? = null,
         val base: String? = null,
-        val maintainerCanModify: Boolean? = null
+        val maintainerCanModify: Boolean? = null,
     )
 
     /** Parameters for [pullsListReviewComments]. */
@@ -192,7 +193,7 @@ data class PullRequestStacksUnstackResponse(
         val direction: PullsListReviewCommentsParameterEnum? = null,
         val since: OffsetDateTime? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [pullsCreateReviewComment]. */
@@ -209,7 +210,7 @@ data class PullRequestStacksUnstackResponse(
         val startLine: Long? = null,
         val startSide: PullsCreateReviewCommentStartSideEnum? = null,
         val inReplyTo: Long? = null,
-        val subjectType: PullsCreateReviewCommentSubjectTypeEnum? = null
+        val subjectType: PullsCreateReviewCommentSubjectTypeEnum? = null,
     )
 
     /** Parameters for [pullsMerge]. */
@@ -220,7 +221,7 @@ data class PullRequestStacksUnstackResponse(
         val commitTitle: String? = null,
         val commitMessage: String? = null,
         val sha: String? = null,
-        val mergeMethod: PullsMergeMergeMethodEnum? = null
+        val mergeMethod: PullsMergeMergeMethodEnum? = null,
     )
 
     /** Parameters for [pullsMergeAsync]. */
@@ -233,7 +234,7 @@ data class PullRequestStacksUnstackResponse(
         val sha: String? = null,
         val mergeMethod: PullsMergeAsyncMergeMethodEnum? = null,
         val mergeAction: PullsMergeAsyncMergeActionEnum? = null,
-        val bypassRules: Boolean? = null
+        val bypassRules: Boolean? = null,
     )
 
     /** Parameters for [pullsCreateReview]. */
@@ -244,7 +245,7 @@ data class PullRequestStacksUnstackResponse(
         val commitId: String? = null,
         val body: String? = null,
         val event: PullsCreateReviewEventEnum? = null,
-        val comments: List<PullsCreateReviewCommentsItem>? = null
+        val comments: List<PullsCreateReviewCommentsItem>? = null,
     )
 
     /** Parameters for [pullsListCommentsForReview]. */
@@ -254,7 +255,7 @@ data class PullRequestStacksUnstackResponse(
         val pullNumber: Long,
         val reviewId: Long,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [pullsDismissReview]. */
@@ -264,7 +265,7 @@ data class PullRequestStacksUnstackResponse(
         val pullNumber: Long,
         val reviewId: Long,
         val message: String,
-        val event: PullsDismissReviewEventEnum? = null
+        val event: PullsDismissReviewEventEnum? = null,
     )
 
     /** Parameters for [pullsSubmitReview]. */
@@ -274,13 +275,31 @@ data class PullRequestStacksUnstackResponse(
         val pullNumber: Long,
         val reviewId: Long,
         val event: PullsSubmitReviewEventEnum,
-        val body: String? = null
+        val body: String? = null,
     )
 
     /**
-     * Lists pull requests in a specified repository. Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists pull requests in a specified repository. Draft pull requests are available in public
+     * repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy
+     * per-repository billing plans, and in public and private repositories with GitHub Team and
+     * GitHub Enterprise Cloud. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. This endpoint supports the following custom media types.
+     * For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
+     * body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns
+     * HTML rendered from the body's markdown. Response will include `body_html`. -
+     * **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response
+     * will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsList(clientConfig: ClientConfig, request: PullsListRequest, options: RequestOptions? = null): List<PullRequestSimple> =
+    fun pullsList(
+        clientConfig: ClientConfig,
+        request: PullsListRequest,
+        options: RequestOptions? = null,
+    ): List<PullRequestSimple> =
         dev.octri.showcase.github.methods.PullsListOperation.pullsList(
             clientConfig,
             request,
@@ -288,9 +307,35 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. To open or update a pull request in a public repository, you must have write access to the head or the source branch. For organization-owned repositories, you must be a member of the organization that owns the repository to open or update a pull request. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
+     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. To open or update a pull request in a public repository,
+     * you must have write access to the head or the source branch. For organization-owned
+     * repositories, you must be a member of the organization that owns the repository to open or
+     * update a pull request. This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This
+     * endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
+     * body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns
+     * HTML rendered from the body's markdown. Response will include `body_html`. -
+     * **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response
+     * will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsCreate(clientConfig: ClientConfig, request: PullsCreateRequest, options: RequestOptions? = null): PullRequest =
+    fun pullsCreate(
+        clientConfig: ClientConfig,
+        request: PullsCreateRequest,
+        options: RequestOptions? = null,
+    ): PullRequest =
         dev.octri.showcase.github.methods.PullsCreateOperation.pullsCreate(
             clientConfig,
             request,
@@ -298,19 +343,43 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Lists review comments across all pull requests in a repository, ordered by ID in ascending order by default. Use `sort`, `direction`, and `since` to control the results, and select a custom media type to receive the comment body as raw Markdown, plain text, rendered HTML, or all three. Use `page` and `per_page` to paginate the results.
+     * Lists review comments across all pull requests in a repository, ordered by ID in ascending
+     * order by default. Use `sort`, `direction`, and `since` to control the results, and select a
+     * custom media type to receive the comment body as raw Markdown, plain text, rendered HTML, or
+     * all three. Use `page` and `per_page` to paginate the results.
      */
-    fun pullsListReviewCommentsForRepo(clientConfig: ClientConfig, request: PullsListReviewCommentsForRepoRequest, options: RequestOptions? = null): List<PullRequestReviewComment> =
-        dev.octri.showcase.github.methods.PullsListReviewCommentsForRepoOperation.pullsListReviewCommentsForRepo(
-            clientConfig,
-            request,
-            options,
-        )
+    fun pullsListReviewCommentsForRepo(
+        clientConfig: ClientConfig,
+        request: PullsListReviewCommentsForRepoRequest,
+        options: RequestOptions? = null,
+    ): List<PullRequestReviewComment> =
+        dev.octri.showcase.github.methods.PullsListReviewCommentsForRepoOperation
+            .pullsListReviewCommentsForRepo(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Provides details for a specified review comment. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Provides details for a specified review comment. This endpoint supports the following custom
+     * media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsGetReviewComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): PullRequestReviewComment =
+    fun pullsGetReviewComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): PullRequestReviewComment =
         dev.octri.showcase.github.methods.PullsGetReviewCommentOperation.pullsGetReviewComment(
             clientConfig,
             owner,
@@ -320,34 +389,109 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Edits the content of a specified review comment. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Edits the content of a specified review comment. This endpoint supports the following custom
+     * media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsUpdateReviewComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, body: String, options: RequestOptions? = null): PullRequestReviewComment =
-        dev.octri.showcase.github.methods.PullsUpdateReviewCommentOperation.pullsUpdateReviewComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            body,
-            options,
-        )
+    fun pullsUpdateReviewComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        body: String,
+        options: RequestOptions? = null,
+    ): PullRequestReviewComment =
+        dev.octri.showcase.github.methods.PullsUpdateReviewCommentOperation
+            .pullsUpdateReviewComment(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                body,
+                options,
+            )
 
     /**
-     * Deletes a review comment from a pull request in a repository. Supply `owner` and `repo` to identify the repository and `comment_id` to select the comment. A 204 response confirms deletion without returning a response body.
+     * Deletes a review comment from a pull request in a repository. Supply `owner` and `repo` to
+     * identify the repository and `comment_id` to select the comment. A 204 response confirms
+     * deletion without returning a response body.
      */
-    fun pullsDeleteReviewComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.PullsDeleteReviewCommentOperation.pullsDeleteReviewComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            options,
-        )
+    fun pullsDeleteReviewComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.PullsDeleteReviewCommentOperation
+            .pullsDeleteReviewComment(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                options,
+            )
 
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists details of a pull request by providing its number. When you get, [create](https://docs.github.com/rest/pulls/pulls/#create-a-pull-request), or [edit](https://docs.github.com/rest/pulls/pulls#update-a-pull-request) a pull request, GitHub creates a merge commit to test whether the pull request can be automatically merged into the base branch. This test commit is not added to the base branch or the head branch. You can review the status of the test commit using the `mergeable` key. For more information, see "[Checking mergeability of pull requests](https://docs.github.com/rest/guides/getting-started-with-the-git-database-api#checking-mergeability-of-pull-requests)". The value of the `mergeable` attribute can be `true`, `false`, or `null`. If the value is `null`, then GitHub has started a background job to compute the mergeability. After giving the job time to complete, resubmit the request. When the job finishes, you will see a non-`null` value for the `mergeable` attribute in the response. If `mergeable` is `true`, then `merge_commit_sha` will be the SHA of the _test_ merge commit. The value of the `merge_commit_sha` attribute changes depending on the state of the pull request. Before merging a pull request, the `merge_commit_sha` attribute holds the SHA of the _test_ merge commit. After merging a pull request, the `merge_commit_sha` attribute changes depending on how you merged the pull request: * If merged as a [merge commit](https://docs.github.com/articles/about-merge-methods-on-github/), `merge_commit_sha` represents the SHA of the merge commit. * If merged via a [squash](https://docs.github.com/articles/about-merge-methods-on-github/#squashing-your-merge-commits), `merge_commit_sha` represents the SHA of the squashed commit on the base branch. * If [rebased](https://docs.github.com/articles/about-merge-methods-on-github/#rebasing-and-merging-your-commits), `merge_commit_sha` represents the commit that the base branch was updated to. Pass the appropriate [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types) to fetch diff and patch formats. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`. - **`application/vnd.github.diff`**: For more information, see "[git-diff](https://git-scm.com/docs/git-diff)" in the Git documentation. If a diff is corrupt, contact us through the [GitHub Support portal](https://support.github.com/). Include the repository name and pull request ID in your message.
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
+     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists details of a pull request by providing its number.
+     * When you get, [create](https://docs.github.com/rest/pulls/pulls/#create-a-pull-request), or
+     * [edit](https://docs.github.com/rest/pulls/pulls#update-a-pull-request) a pull request, GitHub
+     * creates a merge commit to test whether the pull request can be automatically merged into the
+     * base branch. This test commit is not added to the base branch or the head branch. You can
+     * review the status of the test commit using the `mergeable` key. For more information, see
+     * "[Checking mergeability of pull
+     * requests](https://docs.github.com/rest/guides/getting-started-with-the-git-database-api#checking-mergeability-of-pull-requests)".
+     * The value of the `mergeable` attribute can be `true`, `false`, or `null`. If the value is
+     * `null`, then GitHub has started a background job to compute the mergeability. After giving
+     * the job time to complete, resubmit the request. When the job finishes, you will see a
+     * non-`null` value for the `mergeable` attribute in the response. If `mergeable` is `true`,
+     * then `merge_commit_sha` will be the SHA of the _test_ merge commit. The value of the
+     * `merge_commit_sha` attribute changes depending on the state of the pull request. Before
+     * merging a pull request, the `merge_commit_sha` attribute holds the SHA of the _test_ merge
+     * commit. After merging a pull request, the `merge_commit_sha` attribute changes depending on
+     * how you merged the pull request: * If merged as a
+     * [merge commit](https://docs.github.com/articles/about-merge-methods-on-github/),
+     * `merge_commit_sha` represents the SHA of the merge commit. * If merged via a
+     * [squash](https://docs.github.com/articles/about-merge-methods-on-github/#squashing-your-merge-commits),
+     * `merge_commit_sha` represents the SHA of the squashed commit on the base branch. * If
+     * [rebased](https://docs.github.com/articles/about-merge-methods-on-github/#rebasing-and-merging-your-commits),
+     * `merge_commit_sha` represents the commit that the base branch was updated to. Pass the
+     * appropriate
+     * [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)
+     * to fetch diff and patch formats. This endpoint supports the following custom media types. For
+     * more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
+     * body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns
+     * HTML rendered from the body's markdown. Response will include `body_html`. -
+     * **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response
+     * will include `body`, `body_text`, and `body_html`. - **`application/vnd.github.diff`**: For
+     * more information, see "[git-diff](https://git-scm.com/docs/git-diff)" in the Git
+     * documentation. If a diff is corrupt, contact us through the
+     * [GitHub Support portal](https://support.github.com/). Include the repository name and pull
+     * request ID in your message.
      */
-    fun pullsGet(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): PullRequest =
+    fun pullsGet(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        options: RequestOptions? = null,
+    ): PullRequest =
         dev.octri.showcase.github.methods.PullsGetOperation.pullsGet(
             clientConfig,
             owner,
@@ -357,9 +501,29 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. To open or update a pull request in a public repository, you must have write access to the head or the source branch. For organization-owned repositories, you must be a member of the organization that owns the repository to open or update a pull request. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
+     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. To open or update a pull request in a public repository,
+     * you must have write access to the head or the source branch. For organization-owned
+     * repositories, you must be a member of the organization that owns the repository to open or
+     * update a pull request. This endpoint supports the following custom media types. For more
+     * information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
+     * body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns
+     * HTML rendered from the body's markdown. Response will include `body_html`. -
+     * **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response
+     * will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsUpdate(clientConfig: ClientConfig, request: PullsUpdateRequest, options: RequestOptions? = null): PullRequest =
+    fun pullsUpdate(
+        clientConfig: ClientConfig,
+        request: PullsUpdateRequest,
+        options: RequestOptions? = null,
+    ): PullRequest =
         dev.octri.showcase.github.methods.PullsUpdateOperation.pullsUpdate(
             clientConfig,
             request,
@@ -367,9 +531,24 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Lists all review comments for a specified pull request. By default, review comments are in ascending order by ID. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists all review comments for a specified pull request. By default, review comments are in
+     * ascending order by ID. This endpoint supports the following custom media types. For more
+     * information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsListReviewComments(clientConfig: ClientConfig, request: PullsListReviewCommentsRequest, options: RequestOptions? = null): List<PullRequestReviewComment> =
+    fun pullsListReviewComments(
+        clientConfig: ClientConfig,
+        request: PullsListReviewCommentsRequest,
+        options: RequestOptions? = null,
+    ): List<PullRequestReviewComment> =
         dev.octri.showcase.github.methods.PullsListReviewCommentsOperation.pullsListReviewComments(
             clientConfig,
             request,
@@ -377,33 +556,107 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Creates a review comment on the diff of a specified pull request. To add a regular comment to a pull request timeline, see "[Create an issue comment](https://docs.github.com/rest/issues/comments#create-an-issue-comment)." If your comment applies to more than one line in the pull request diff, you should use the parameters `line`, `side`, and optionally `start_line` and `start_side` in your request. The `position` parameter is closing down. If you use `position`, the `line`, `side`, `start_line`, and `start_side` parameters are not required. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Creates a review comment on the diff of a specified pull request. To add a regular comment to
+     * a pull request timeline, see "[Create an issue
+     * comment](https://docs.github.com/rest/issues/comments#create-an-issue-comment)." If your
+     * comment applies to more than one line in the pull request diff, you should use the parameters
+     * `line`, `side`, and optionally `start_line` and `start_side` in your request. The `position`
+     * parameter is closing down. If you use `position`, the `line`, `side`, `start_line`, and
+     * `start_side` parameters are not required. This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This
+     * endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsCreateReviewComment(clientConfig: ClientConfig, request: PullsCreateReviewCommentRequest, options: RequestOptions? = null): PullRequestReviewComment =
-        dev.octri.showcase.github.methods.PullsCreateReviewCommentOperation.pullsCreateReviewComment(
-            clientConfig,
-            request,
-            options,
-        )
+    fun pullsCreateReviewComment(
+        clientConfig: ClientConfig,
+        request: PullsCreateReviewCommentRequest,
+        options: RequestOptions? = null,
+    ): PullRequestReviewComment =
+        dev.octri.showcase.github.methods.PullsCreateReviewCommentOperation
+            .pullsCreateReviewComment(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a reply to a review comment for a pull request. For the `comment_id`, provide the ID of the review comment you are replying to. This must be the ID of a _top-level review comment_, not a reply to that comment. Replies to replies are not supported. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Creates a reply to a review comment for a pull request. For the `comment_id`, provide the ID
+     * of the review comment you are replying to. This must be the ID of a _top-level review
+     * comment_, not a reply to that comment. Replies to replies are not supported. This endpoint
+     * triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This
+     * endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsCreateReplyForReviewComment(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, commentId: Long, body: String, options: RequestOptions? = null): PullRequestReviewComment =
-        dev.octri.showcase.github.methods.PullsCreateReplyForReviewCommentOperation.pullsCreateReplyForReviewComment(
-            clientConfig,
-            owner,
-            repo,
-            pullNumber,
-            commentId,
-            body,
-            options,
-        )
+    fun pullsCreateReplyForReviewComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        commentId: Long,
+        body: String,
+        options: RequestOptions? = null,
+    ): PullRequestReviewComment =
+        dev.octri.showcase.github.methods.PullsCreateReplyForReviewCommentOperation
+            .pullsCreateReplyForReviewComment(
+                clientConfig,
+                owner,
+                repo,
+                pullNumber,
+                commentId,
+                body,
+                options,
+            )
 
     /**
-     * Lists a maximum of 250 commits for a pull request. To receive a complete commit list for pull requests with more than 250 commits, use the [List commits](https://docs.github.com/rest/commits/commits#list-commits) endpoint. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists a maximum of 250 commits for a pull request. To receive a complete commit list for pull
+     * requests with more than 250 commits, use the
+     * [List commits](https://docs.github.com/rest/commits/commits#list-commits) endpoint. This
+     * endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
+     * body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns
+     * HTML rendered from the body's markdown. Response will include `body_html`. -
+     * **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response
+     * will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsListCommits(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Commit> =
+    fun pullsListCommits(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Commit> =
         dev.octri.showcase.github.methods.PullsListCommitsOperation.pullsListCommits(
             clientConfig,
             owner,
@@ -415,9 +668,27 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Lists the files in a specified pull request. > [!NOTE] > Responses include a maximum of 3000 files. The paginated response returns 30 files per page by default. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists the files in a specified pull request. > [!NOTE] > Responses include a maximum of 3000
+     * files. The paginated response returns 30 files per page by default. This endpoint supports
+     * the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
+     * body. Response will include `body_text`. - **`application/vnd.github.html+json`**: Returns
+     * HTML rendered from the body's markdown. Response will include `body_html`. -
+     * **`application/vnd.github.full+json`**: Returns raw, text, and HTML representations. Response
+     * will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsListFiles(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<DiffEntry> =
+    fun pullsListFiles(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<DiffEntry> =
         dev.octri.showcase.github.methods.PullsListFilesOperation.pullsListFiles(
             clientConfig,
             owner,
@@ -429,9 +700,17 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Checks if a pull request has been merged into the base branch. The HTTP status of the response indicates whether or not the pull request has been merged; the response body is empty.
+     * Checks if a pull request has been merged into the base branch. The HTTP status of the
+     * response indicates whether or not the pull request has been merged; the response body is
+     * empty.
      */
-    fun pullsCheckIfMerged(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): Unit =
+    fun pullsCheckIfMerged(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.PullsCheckIfMergedOperation.pullsCheckIfMerged(
             clientConfig,
             owner,
@@ -441,9 +720,22 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * > [!NOTE] > We recommend using the [asynchronous merge API](https://docs.github.com/rest/pulls/pulls#merge-a-pull-request-asynchronously) instead. This endpoint does not support stacked pull requests or merging with a merge queue. Merges a pull request into the base branch. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
+     * > [!NOTE] > We recommend using the
+     * > [asynchronous merge API](https://docs.github.com/rest/pulls/pulls#merge-a-pull-request-asynchronously)
+     * > instead. This endpoint does not support stacked pull requests or merging with a merge
+     * > queue. Merges a pull request into the base branch. This endpoint triggers
+     * > [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * > Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * > more information, see "[Rate limits for the
+     * > API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * > and "[Best practices for using the REST
+     * > API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
      */
-    fun pullsMerge(clientConfig: ClientConfig, request: PullsMergeRequest, options: RequestOptions? = null): PullRequestMergeResult =
+    fun pullsMerge(
+        clientConfig: ClientConfig,
+        request: PullsMergeRequest,
+        options: RequestOptions? = null,
+    ): PullRequestMergeResult =
         dev.octri.showcase.github.methods.PullsMergeOperation.pullsMerge(
             clientConfig,
             request,
@@ -451,9 +743,26 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Merges a pull request into the base branch in the background or adds it to a merge queue. Background processing allows certain types of errors to be retried and reduces the risk of timeouts for complex merges. This is the required API for merging stacked pull requests. For a stacked pull request, the operation includes all open downstack pull requests. A new asynchronous merge request returns a `202` response with a UUID that can be used to [fetch the result of the merge](https://docs.github.com/rest/pulls/pulls#get-the-result-of-an-asynchronous-merge). If another asynchronous merge request is already pending for this pull request, a `409` response returns that request's UUID and merge options instead. If the pull request is already merged or already in a merge queue, a `200` response is returned immediately. A `merged` result includes the merge commit OID. An `enqueued` result means the pull request was added to the merge queue, not that it has merged. If the pull request cannot be merged (e.g. because it is closed, or still a draft) this result will be returned immediately with a `400` response status. Branch protection rules and repository rules are not run at this stage, only basic pull request state checks are performed.
+     * Merges a pull request into the base branch in the background or adds it to a merge queue.
+     * Background processing allows certain types of errors to be retried and reduces the risk of
+     * timeouts for complex merges. This is the required API for merging stacked pull requests. For
+     * a stacked pull request, the operation includes all open downstack pull requests. A new
+     * asynchronous merge request returns a `202` response with a UUID that can be used to
+     * [fetch the result of the merge](https://docs.github.com/rest/pulls/pulls#get-the-result-of-an-asynchronous-merge).
+     * If another asynchronous merge request is already pending for this pull request, a `409`
+     * response returns that request's UUID and merge options instead. If the pull request is
+     * already merged or already in a merge queue, a `200` response is returned immediately. A
+     * `merged` result includes the merge commit OID. An `enqueued` result means the pull request
+     * was added to the merge queue, not that it has merged. If the pull request cannot be merged
+     * (e.g. because it is closed, or still a draft) this result will be returned immediately with a
+     * `400` response status. Branch protection rules and repository rules are not run at this
+     * stage, only basic pull request state checks are performed.
      */
-    fun pullsMergeAsync(clientConfig: ClientConfig, request: PullsMergeAsyncRequest, options: RequestOptions? = null): PullRequestMergeAsyncResult =
+    fun pullsMergeAsync(
+        clientConfig: ClientConfig,
+        request: PullsMergeAsyncRequest,
+        options: RequestOptions? = null,
+    ): PullRequestMergeAsyncResult =
         dev.octri.showcase.github.methods.PullsMergeAsyncOperation.pullsMergeAsync(
             clientConfig,
             request,
@@ -461,34 +770,80 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Fetches the current result of an asynchronous merge request, identified by the UUID that was returned when the merge was requested. While the request's status is `pending`, the response includes the UUID, merge method, merge action, and expected head SHA of the request. Once the asynchronous request completes, its status is one of: - `merged`: The pull request was merged into the base branch. The response includes the merge commit OID. - `enqueued`: The pull request was added to a merge queue. - `failed`: The request failed. The response includes a message describing the failure. An `enqueued` result is final for the merge queue requests and does not mean the pull request has merged. This result does not change when the merge queue later merges the pull request. To get the eventual merge status, [check if a pull request has been merged](https://docs.github.com/rest/pulls/pulls#check-if-a-pull-request-has-been-merged). The result of an asynchronous merge request is retained for 24 hours after its most recent update. After this window the request expires and this endpoint returns a `404` response for its UUID.
+     * Fetches the current result of an asynchronous merge request, identified by the UUID that was
+     * returned when the merge was requested. While the request's status is `pending`, the response
+     * includes the UUID, merge method, merge action, and expected head SHA of the request. Once the
+     * asynchronous request completes, its status is one of: - `merged`: The pull request was merged
+     * into the base branch. The response includes the merge commit OID. - `enqueued`: The pull
+     * request was added to a merge queue. - `failed`: The request failed. The response includes a
+     * message describing the failure. An `enqueued` result is final for the merge queue requests
+     * and does not mean the pull request has merged. This result does not change when the merge
+     * queue later merges the pull request. To get the eventual merge status,
+     * [check if a pull request has been merged](https://docs.github.com/rest/pulls/pulls#check-if-a-pull-request-has-been-merged).
+     * The result of an asynchronous merge request is retained for 24 hours after its most recent
+     * update. After this window the request expires and this endpoint returns a `404` response for
+     * its UUID.
      */
-    fun pullsGetMergeAsyncResult(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, uuid: String, options: RequestOptions? = null): PullRequestMergeAsyncResult =
-        dev.octri.showcase.github.methods.PullsGetMergeAsyncResultOperation.pullsGetMergeAsyncResult(
-            clientConfig,
-            owner,
-            repo,
-            pullNumber,
-            uuid,
-            options,
-        )
+    fun pullsGetMergeAsyncResult(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        uuid: String,
+        options: RequestOptions? = null,
+    ): PullRequestMergeAsyncResult =
+        dev.octri.showcase.github.methods.PullsGetMergeAsyncResultOperation
+            .pullsGetMergeAsyncResult(
+                clientConfig,
+                owner,
+                repo,
+                pullNumber,
+                uuid,
+                options,
+            )
 
     /**
-     * Gets the users or teams whose review is requested for a pull request. Once a requested reviewer submits a review, they are no longer considered a requested reviewer. Their review will instead be returned by the [List reviews for a pull request](https://docs.github.com/rest/pulls/reviews#list-reviews-for-a-pull-request) operation.
+     * Gets the users or teams whose review is requested for a pull request. Once a requested
+     * reviewer submits a review, they are no longer considered a requested reviewer. Their review
+     * will instead be returned by the
+     * [List reviews for a pull request](https://docs.github.com/rest/pulls/reviews#list-reviews-for-a-pull-request)
+     * operation.
      */
-    fun pullsListRequestedReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): PullRequestReviewRequest =
-        dev.octri.showcase.github.methods.PullsListRequestedReviewersOperation.pullsListRequestedReviewers(
-            clientConfig,
-            owner,
-            repo,
-            pullNumber,
-            options,
-        )
+    fun pullsListRequestedReviewers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        options: RequestOptions? = null,
+    ): PullRequestReviewRequest =
+        dev.octri.showcase.github.methods.PullsListRequestedReviewersOperation
+            .pullsListRequestedReviewers(
+                clientConfig,
+                owner,
+                repo,
+                pullNumber,
+                options,
+            )
 
     /**
-     * Requests reviews for a pull request from a given set of users and/or teams. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
+     * Requests reviews for a pull request from a given set of users and/or teams. This endpoint
+     * triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
      */
-    fun pullsRequestReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>? = null, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple =
+    fun pullsRequestReviewers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewers: List<String>? = null,
+        teamReviewers: List<String>? = null,
+        options: RequestOptions? = null,
+    ): PullRequestSimple =
         dev.octri.showcase.github.methods.PullsRequestReviewersOperation.pullsRequestReviewers(
             clientConfig,
             owner,
@@ -499,24 +854,46 @@ data class PullRequestStacksUnstackResponse(
             options,
         )
 
-    /**
-     * Removes review requests from a pull request for a given set of users and/or teams.
-     */
-    fun pullsRemoveRequestedReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple =
-        dev.octri.showcase.github.methods.PullsRemoveRequestedReviewersOperation.pullsRemoveRequestedReviewers(
-            clientConfig,
-            owner,
-            repo,
-            pullNumber,
-            reviewers,
-            teamReviewers,
-            options,
-        )
+    /** Removes review requests from a pull request for a given set of users and/or teams. */
+    fun pullsRemoveRequestedReviewers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewers: List<String>,
+        teamReviewers: List<String>? = null,
+        options: RequestOptions? = null,
+    ): PullRequestSimple =
+        dev.octri.showcase.github.methods.PullsRemoveRequestedReviewersOperation
+            .pullsRemoveRequestedReviewers(
+                clientConfig,
+                owner,
+                repo,
+                pullNumber,
+                reviewers,
+                teamReviewers,
+                options,
+            )
 
     /**
-     * Rerequests reviews for a pull request from a given set of users and/or teams. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
+     * Rerequests reviews for a pull request from a given set of users and/or teams. This endpoint
+     * triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
      */
-    fun pullsRerequestReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>? = null, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple =
+    fun pullsRerequestReviewers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewers: List<String>? = null,
+        teamReviewers: List<String>? = null,
+        options: RequestOptions? = null,
+    ): PullRequestSimple =
         dev.octri.showcase.github.methods.PullsRerequestReviewersOperation.pullsRerequestReviewers(
             clientConfig,
             owner,
@@ -528,9 +905,28 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Lists all reviews for a specified pull request. The list of reviews returns in chronological order. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists all reviews for a specified pull request. The list of reviews returns in chronological
+     * order. This endpoint supports the following custom media types. For more information, see
+     * "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsListReviews(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PullRequestReview> =
+    fun pullsListReviews(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<PullRequestReview> =
         dev.octri.showcase.github.methods.PullsListReviewsOperation.pullsListReviews(
             clientConfig,
             owner,
@@ -542,9 +938,42 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Creates a review on a specified pull request. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." Pull request reviews created in the `PENDING` state are not submitted and therefore do not include the `submitted_at` property in the response. To create a pending review for a pull request, leave the `event` parameter blank. For more information about submitting a `PENDING` review, see "[Submit a review for a pull request](https://docs.github.com/rest/pulls/reviews#submit-a-review-for-a-pull-request)." > [!NOTE] > To comment on a specific line in a file, you need to first determine the position of that line in the diff. To see a pull request diff, add the `application/vnd.github.v3.diff` media type to the `Accept` header of a call to the [Get a pull request](https://docs.github.com/rest/pulls/pulls#get-a-pull-request) endpoint. The `position` value equals the number of lines down from the first "@@" hunk header in the file you want to add a comment. The line just below the "@@" line is position 1, the next line is position 2, and so on. The position in the diff continues to increase through lines of whitespace and additional hunks until the beginning of a new file. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Creates a review on a specified pull request. This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." Pull
+     * request reviews created in the `PENDING` state are not submitted and therefore do not include
+     * the `submitted_at` property in the response. To create a pending review for a pull request,
+     * leave the `event` parameter blank. For more information about submitting a `PENDING` review,
+     * see "[Submit a review for a pull
+     * request](https://docs.github.com/rest/pulls/reviews#submit-a-review-for-a-pull-request)." > [!NOTE] >
+     * To comment on a specific line in a file, you need to first determine the position of that
+     * line in the diff. To see a pull request diff, add the `application/vnd.github.v3.diff` media
+     * type to the `Accept` header of a call to the
+     * [Get a pull request](https://docs.github.com/rest/pulls/pulls#get-a-pull-request) endpoint.
+     * The `position` value equals the number of lines down from the first "@@" hunk header in the
+     * file you want to add a comment. The line just below the "@@" line is position 1, the next
+     * line is position 2, and so on. The position in the diff continues to increase through lines
+     * of whitespace and additional hunks until the beginning of a new file. This endpoint supports
+     * the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsCreateReview(clientConfig: ClientConfig, request: PullsCreateReviewRequest, options: RequestOptions? = null): PullRequestReview =
+    fun pullsCreateReview(
+        clientConfig: ClientConfig,
+        request: PullsCreateReviewRequest,
+        options: RequestOptions? = null,
+    ): PullRequestReview =
         dev.octri.showcase.github.methods.PullsCreateReviewOperation.pullsCreateReview(
             clientConfig,
             request,
@@ -552,9 +981,26 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Retrieves a pull request review by its ID. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Retrieves a pull request review by its ID. This endpoint supports the following custom media
+     * types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsGetReview(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewId: Long, options: RequestOptions? = null): PullRequestReview =
+    fun pullsGetReview(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewId: Long,
+        options: RequestOptions? = null,
+    ): PullRequestReview =
         dev.octri.showcase.github.methods.PullsGetReviewOperation.pullsGetReview(
             clientConfig,
             owner,
@@ -565,9 +1011,27 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Updates the contents of a specified review summary comment. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Updates the contents of a specified review summary comment. This endpoint supports the
+     * following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsUpdateReview(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewId: Long, body: String, options: RequestOptions? = null): PullRequestReview =
+    fun pullsUpdateReview(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewId: Long,
+        body: String,
+        options: RequestOptions? = null,
+    ): PullRequestReview =
         dev.octri.showcase.github.methods.PullsUpdateReviewOperation.pullsUpdateReview(
             clientConfig,
             owner,
@@ -579,32 +1043,73 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Deletes a pull request review that has not been submitted. Submitted reviews cannot be deleted. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Deletes a pull request review that has not been submitted. Submitted reviews cannot be
+     * deleted. This endpoint supports the following custom media types. For more information, see
+     * "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsDeletePendingReview(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewId: Long, options: RequestOptions? = null): PullRequestReview =
-        dev.octri.showcase.github.methods.PullsDeletePendingReviewOperation.pullsDeletePendingReview(
-            clientConfig,
-            owner,
-            repo,
-            pullNumber,
-            reviewId,
-            options,
-        )
+    fun pullsDeletePendingReview(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewId: Long,
+        options: RequestOptions? = null,
+    ): PullRequestReview =
+        dev.octri.showcase.github.methods.PullsDeletePendingReviewOperation
+            .pullsDeletePendingReview(
+                clientConfig,
+                owner,
+                repo,
+                pullNumber,
+                reviewId,
+                options,
+            )
 
     /**
-     * Lists comments for a specific pull request review. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists comments for a specific pull request review. This endpoint supports the following
+     * custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsListCommentsForReview(clientConfig: ClientConfig, request: PullsListCommentsForReviewRequest, options: RequestOptions? = null): List<ReviewComment> =
-        dev.octri.showcase.github.methods.PullsListCommentsForReviewOperation.pullsListCommentsForReview(
-            clientConfig,
-            request,
-            options,
-        )
+    fun pullsListCommentsForReview(
+        clientConfig: ClientConfig,
+        request: PullsListCommentsForReviewRequest,
+        options: RequestOptions? = null,
+    ): List<ReviewComment> =
+        dev.octri.showcase.github.methods.PullsListCommentsForReviewOperation
+            .pullsListCommentsForReview(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Submits a dismissal for a specified review on a pull request in a repository. Provide the required `message`; `event` can only be `DISMISS` and is optional. For protected branches, you must be a repository administrator or be included in the people or teams allowed to dismiss reviews; a successful response returns the dismissed review.
+     * Submits a dismissal for a specified review on a pull request in a repository. Provide the
+     * required `message`; `event` can only be `DISMISS` and is optional. For protected branches,
+     * you must be a repository administrator or be included in the people or teams allowed to
+     * dismiss reviews; a successful response returns the dismissed review.
      */
-    fun pullsDismissReview(clientConfig: ClientConfig, request: PullsDismissReviewRequest, options: RequestOptions? = null): PullRequestReview =
+    fun pullsDismissReview(
+        clientConfig: ClientConfig,
+        request: PullsDismissReviewRequest,
+        options: RequestOptions? = null,
+    ): PullRequestReview =
         dev.octri.showcase.github.methods.PullsDismissReviewOperation.pullsDismissReview(
             clientConfig,
             request,
@@ -612,9 +1117,25 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Submits a pending review for a pull request. For more information about creating a pending review for a pull request, see "[Create a review for a pull request](https://docs.github.com/rest/pulls/reviews#create-a-review-for-a-pull-request)." This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Submits a pending review for a pull request. For more information about creating a pending
+     * review for a pull request, see "[Create a review for a pull
+     * request](https://docs.github.com/rest/pulls/reviews#create-a-review-for-a-pull-request)."
+     * This endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun pullsSubmitReview(clientConfig: ClientConfig, request: PullsSubmitReviewRequest, options: RequestOptions? = null): PullRequestReview =
+    fun pullsSubmitReview(
+        clientConfig: ClientConfig,
+        request: PullsSubmitReviewRequest,
+        options: RequestOptions? = null,
+    ): PullRequestReview =
         dev.octri.showcase.github.methods.PullsSubmitReviewOperation.pullsSubmitReview(
             clientConfig,
             request,
@@ -622,9 +1143,18 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Updates the pull request branch with the latest upstream changes by merging HEAD from the base branch into the pull request branch. Note: If making a request on behalf of a GitHub App you must also have permissions to write the contents of the head repository.
+     * Updates the pull request branch with the latest upstream changes by merging HEAD from the
+     * base branch into the pull request branch. Note: If making a request on behalf of a GitHub App
+     * you must also have permissions to write the contents of the head repository.
      */
-    fun pullsUpdateBranch(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, expectedHeadSha: String? = null, options: RequestOptions? = null): PullsUpdateBranchResponse =
+    fun pullsUpdateBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        expectedHeadSha: String? = null,
+        options: RequestOptions? = null,
+    ): PullsUpdateBranchResponse =
         dev.octri.showcase.github.methods.PullsUpdateBranchOperation.pullsUpdateBranch(
             clientConfig,
             owner,
@@ -635,9 +1165,18 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Lists pull request stacks in a repository. Use `pull_request` to filter for the stack containing a specific pull request, and use `page` and `per_page` to paginate the results.
+     * Lists pull request stacks in a repository. Use `pull_request` to filter for the stack
+     * containing a specific pull request, and use `page` and `per_page` to paginate the results.
      */
-    fun pullRequestStacksList(clientConfig: ClientConfig, owner: String, repo: String, pullRequest: Long? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PullRequestStackMinimal> =
+    fun pullRequestStacksList(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullRequest: Long? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<PullRequestStackMinimal> =
         dev.octri.showcase.github.methods.PullsPullRequestStacksListOperation.pullRequestStacksList(
             clientConfig,
             owner,
@@ -649,21 +1188,34 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Creates a stack from an ordered list of pull request numbers. Provide the pull request numbers from the bottom of the stack to the top. Each pull request's base ref must match the previous pull request's head ref.
+     * Creates a stack from an ordered list of pull request numbers. Provide the pull request
+     * numbers from the bottom of the stack to the top. Each pull request's base ref must match the
+     * previous pull request's head ref.
      */
-    fun pullRequestStacksCreate(clientConfig: ClientConfig, owner: String, repo: String, pullRequests: List<Long>, options: RequestOptions? = null): PullRequestStacksCreateResponse =
-        dev.octri.showcase.github.methods.PullsPullRequestStacksCreateOperation.pullRequestStacksCreate(
-            clientConfig,
-            owner,
-            repo,
-            pullRequests,
-            options,
-        )
+    fun pullRequestStacksCreate(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullRequests: List<Long>,
+        options: RequestOptions? = null,
+    ): PullRequestStacksCreateResponse =
+        dev.octri.showcase.github.methods.PullsPullRequestStacksCreateOperation
+            .pullRequestStacksCreate(
+                clientConfig,
+                owner,
+                repo,
+                pullRequests,
+                options,
+            )
 
-    /**
-     * Gets a pull request stack by providing its stack number.
-     */
-    fun pullRequestStacksGet(clientConfig: ClientConfig, owner: String, repo: String, stackNumber: Long, options: RequestOptions? = null): PullRequestStacksGetResponse =
+    /** Gets a pull request stack by providing its stack number. */
+    fun pullRequestStacksGet(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        stackNumber: Long,
+        options: RequestOptions? = null,
+    ): PullRequestStacksGetResponse =
         dev.octri.showcase.github.methods.PullsPullRequestStacksGetOperation.pullRequestStacksGet(
             clientConfig,
             owner,
@@ -673,9 +1225,18 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Appends an ordered list of pull request numbers onto the top of an existing stack. Provide only the pull requests you want to add, from the current top of the stack upward. The first new pull request's base ref must match the current top pull request's head ref.
+     * Appends an ordered list of pull request numbers onto the top of an existing stack. Provide
+     * only the pull requests you want to add, from the current top of the stack upward. The first
+     * new pull request's base ref must match the current top pull request's head ref.
      */
-    fun pullRequestStacksAdd(clientConfig: ClientConfig, owner: String, repo: String, stackNumber: Long, pullRequests: List<Long>, options: RequestOptions? = null): PullRequestStacksAddResponse =
+    fun pullRequestStacksAdd(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        stackNumber: Long,
+        pullRequests: List<Long>,
+        options: RequestOptions? = null,
+    ): PullRequestStacksAddResponse =
         dev.octri.showcase.github.methods.PullsPullRequestStacksAddOperation.pullRequestStacksAdd(
             clientConfig,
             owner,
@@ -686,14 +1247,24 @@ data class PullRequestStacksUnstackResponse(
         )
 
     /**
-     * Removes the unmerged pull requests from a stack. Pull requests that cannot be unstacked (for example, those that are queued for merge) are left in place. When pull requests remain in the stack, the updated stack is returned with a `200`. When no pull requests remain, the stack is dissolved and a `204` is returned.
+     * Removes the unmerged pull requests from a stack. Pull requests that cannot be unstacked (for
+     * example, those that are queued for merge) are left in place. When pull requests remain in the
+     * stack, the updated stack is returned with a `200`. When no pull requests remain, the stack is
+     * dissolved and a `204` is returned.
      */
-    fun pullRequestStacksUnstack(clientConfig: ClientConfig, owner: String, repo: String, stackNumber: Long, options: RequestOptions? = null): PullRequestStacksUnstackResponse =
-        dev.octri.showcase.github.methods.PullsPullRequestStacksUnstackOperation.pullRequestStacksUnstack(
-            clientConfig,
-            owner,
-            repo,
-            stackNumber,
-            options,
-        )
+    fun pullRequestStacksUnstack(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        stackNumber: Long,
+        options: RequestOptions? = null,
+    ): PullRequestStacksUnstackResponse =
+        dev.octri.showcase.github.methods.PullsPullRequestStacksUnstackOperation
+            .pullRequestStacksUnstack(
+                clientConfig,
+                owner,
+                repo,
+                stackNumber,
+                options,
+            )
 }

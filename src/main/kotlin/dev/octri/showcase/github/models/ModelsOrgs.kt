@@ -6,24 +6,20 @@ package dev.octri.showcase.github.models
 import java.time.OffsetDateTime
 
 data class ApiInsightsRouteStatsItem(
-    /**
-     * The HTTP method
-     */
+    /** The HTTP method */
     @com.fasterxml.jackson.annotation.JsonProperty("http_method") val httpMethod: String? = null,
-    /**
-     * The API path's route template
-     */
+    /** The API path's route template */
     @com.fasterxml.jackson.annotation.JsonProperty("api_route") val apiRoute: String? = null,
-    /**
-     * The total number of requests within the queried time period
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
-    /**
-     * The total number of requests that were rate limited within the queried time period
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp") val lastRateLimitedTimestamp: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp") val lastRequestTimestamp: String? = null
+    /** The total number of requests within the queried time period */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
+    val totalRequestCount: Long? = null,
+    /** The total number of requests that were rate limited within the queried time period */
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
+    val rateLimitedRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp")
+    val lastRateLimitedTimestamp: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp")
+    val lastRequestTimestamp: String? = null,
 )
 
 typealias ApiInsightsRouteStats = List<ApiInsightsRouteStatsItem>
@@ -32,32 +28,34 @@ data class ApiInsightsSubjectStatsItem(
     @com.fasterxml.jackson.annotation.JsonProperty("subject_type") val subjectType: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("subject_name") val subjectName: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("subject_id") val subjectId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp") val lastRateLimitedTimestamp: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp") val lastRequestTimestamp: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
+    val totalRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
+    val rateLimitedRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp")
+    val lastRateLimitedTimestamp: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp")
+    val lastRequestTimestamp: String? = null,
 )
 
 typealias ApiInsightsSubjectStats = List<ApiInsightsSubjectStatsItem>
 
-/**
- * API Insights usage summary stats for an organization
- */
+/** API Insights usage summary stats for an organization */
 data class ApiInsightsSummaryStats(
-    /**
-     * The total number of requests within the queried time period
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
-    /**
-     * The total number of requests that were rate limited within the queried time period
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null
+    /** The total number of requests within the queried time period */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
+    val totalRequestCount: Long? = null,
+    /** The total number of requests that were rate limited within the queried time period */
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
+    val rateLimitedRequestCount: Long? = null,
 )
 
 data class ApiInsightsTimeStatsItem(
     val timestamp: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
+    val totalRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
+    val rateLimitedRequestCount: Long? = null,
 )
 
 typealias ApiInsightsTimeStats = List<ApiInsightsTimeStatsItem>
@@ -66,362 +64,253 @@ data class ApiInsightsUserStatsItem(
     @com.fasterxml.jackson.annotation.JsonProperty("actor_type") val actorType: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("actor_name") val actorName: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("actor_id") val actorId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("integration_id") val integrationId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("oauth_application_id") val oauthApplicationId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp") val lastRateLimitedTimestamp: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp") val lastRequestTimestamp: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("integration_id")
+    val integrationId: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("oauth_application_id")
+    val oauthApplicationId: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
+    val totalRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
+    val rateLimitedRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp")
+    val lastRateLimitedTimestamp: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp")
+    val lastRequestTimestamp: String? = null,
 )
 
 typealias ApiInsightsUserStats = List<ApiInsightsUserStatsItem>
 
-/**
- * Artifact Metadata Deployment Record
- */
+/** Artifact Metadata Deployment Record */
 data class ArtifactDeploymentRecord(
-    /**
-     * Optional `integer` value serialized in the `id` wire field.
-     */
+    /** Optional `integer` value serialized in the `id` wire field. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `digest` wire field.
-     */
+    /** Optional `string` value serialized in the `digest` wire field. */
     val digest: String? = null,
-    /**
-     * Optional `string` value serialized in the `logical_environment` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("logical_environment") val logicalEnvironment: String? = null,
-    /**
-     * Optional `string` value serialized in the `physical_environment` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("physical_environment") val physicalEnvironment: String? = null,
-    /**
-     * Optional `string` value serialized in the `cluster` wire field.
-     */
+    /** Optional `string` value serialized in the `logical_environment` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("logical_environment")
+    val logicalEnvironment: String? = null,
+    /** Optional `string` value serialized in the `physical_environment` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("physical_environment")
+    val physicalEnvironment: String? = null,
+    /** Optional `string` value serialized in the `cluster` wire field. */
     val cluster: String? = null,
-    /**
-     * Optional `string` value serialized in the `deployment_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("deployment_name") val deploymentName: String? = null,
-    /**
-     * Optional object value serialized in the `tags` wire field.
-     */
+    /** Optional `string` value serialized in the `deployment_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("deployment_name")
+    val deploymentName: String? = null,
+    /** Optional object value serialized in the `tags` wire field. */
     val tags: Map<String, String>? = null,
-    /**
-     * A list of runtime risks associated with the deployment.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("runtime_risks") val runtimeRisks: List<ArtifactDeploymentRecordRuntimeRisksItemEnum>? = null,
-    /**
-     * Optional `string` value serialized in the `created_at` wire field.
-     */
+    /** A list of runtime risks associated with the deployment. */
+    @com.fasterxml.jackson.annotation.JsonProperty("runtime_risks")
+    val runtimeRisks: List<ArtifactDeploymentRecordRuntimeRisksItemEnum>? = null,
+    /** Optional `string` value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String? = null,
-    /**
-     * Optional `string` value serialized in the `updated_at` wire field.
-     */
+    /** Optional `string` value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String? = null,
-    /**
-     * The ID of the provenance attestation associated with the deployment record.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("attestation_id") val attestationId: Long? = null
+    /** The ID of the provenance attestation associated with the deployment record. */
+    @com.fasterxml.jackson.annotation.JsonProperty("attestation_id")
+    val attestationId: Long? = null,
 )
 
-/**
- * Custom property defined on an organization
- */
+/** Custom property defined on an organization */
 data class CustomProperty(
-    /**
-     * The name of the property
-     */
+    /** The name of the property */
     @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String,
-    /**
-     * The type of the value for the property
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value_type") val valueType: CustomPropertyValueTypeEnum,
+    /** The type of the value for the property */
+    @com.fasterxml.jackson.annotation.JsonProperty("value_type")
+    val valueType: CustomPropertyValueTypeEnum,
     /**
      * The URL that can be used to fetch, update, or delete info about this property via the API.
      */
     val url: String? = null,
-    /**
-     * The source type of the property
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("source_type") val sourceType: CustomPropertySourceTypeEnum? = null,
-    /**
-     * Whether the property is required.
-     */
+    /** The source type of the property */
+    @com.fasterxml.jackson.annotation.JsonProperty("source_type")
+    val sourceType: CustomPropertySourceTypeEnum? = null,
+    /** Whether the property is required. */
     val required: Boolean? = null,
-    /**
-     * Default value of the property
-     */
+    /** Default value of the property */
     @com.fasterxml.jackson.annotation.JsonProperty("default_value") val defaultValue: Any? = null,
-    /**
-     * Short description of the property
-     */
+    /** Short description of the property */
     val description: String? = null,
     /**
-     * An ordered list of the allowed values of the property. The property can have up to 200 allowed values.
+     * An ordered list of the allowed values of the property. The property can have up to 200
+     * allowed values.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_values") val allowedValues: List<String>? = null,
-    /**
-     * Who can edit the values of the property
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("values_editable_by") val valuesEditableBy: CustomPropertyValuesEditableByEnum? = null,
-    /**
-     * Whether setting properties values is mandatory
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_explicit_values") val requireExplicitValues: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_values")
+    val allowedValues: List<String>? = null,
+    /** Who can edit the values of the property */
+    @com.fasterxml.jackson.annotation.JsonProperty("values_editable_by")
+    val valuesEditableBy: CustomPropertyValuesEditableByEnum? = null,
+    /** Whether setting properties values is mandatory */
+    @com.fasterxml.jackson.annotation.JsonProperty("require_explicit_values")
+    val requireExplicitValues: Boolean? = null,
 )
 
-/**
- * Custom property set payload
- */
+/** Custom property set payload */
 data class CustomPropertySetPayload(
-    /**
-     * The type of the value for the property
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value_type") val valueType: CustomPropertySetPayloadValueTypeEnum,
-    /**
-     * Whether the property is required.
-     */
+    /** The type of the value for the property */
+    @com.fasterxml.jackson.annotation.JsonProperty("value_type")
+    val valueType: CustomPropertySetPayloadValueTypeEnum,
+    /** Whether the property is required. */
     val required: Boolean? = null,
-    /**
-     * Default value of the property
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_value") val defaultValue: List<String>? = null,
-    /**
-     * Short description of the property
-     */
+    /** Default value of the property */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_value")
+    val defaultValue: List<String>? = null,
+    /** Short description of the property */
     val description: String? = null,
     /**
-     * An ordered list of the allowed values of the property. The property can have up to 200 allowed values.
+     * An ordered list of the allowed values of the property. The property can have up to 200
+     * allowed values.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_values") val allowedValues: List<String>? = null,
-    /**
-     * Who can edit the values of the property
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("values_editable_by") val valuesEditableBy: CustomPropertySetPayloadValuesEditableByEnum? = null,
-    /**
-     * Whether setting properties values is mandatory
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_explicit_values") val requireExplicitValues: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_values")
+    val allowedValues: List<String>? = null,
+    /** Who can edit the values of the property */
+    @com.fasterxml.jackson.annotation.JsonProperty("values_editable_by")
+    val valuesEditableBy: CustomPropertySetPayloadValuesEditableByEnum? = null,
+    /** Whether setting properties values is mandatory */
+    @com.fasterxml.jackson.annotation.JsonProperty("require_explicit_values")
+    val requireExplicitValues: Boolean? = null,
 )
 
-/**
- * External custom property defined for a GitHub App installation
- */
+/** External custom property defined for a GitHub App installation */
 data class ExternalProperty(
-    /**
-     * The name of the external property
-     */
+    /** The name of the external property */
     @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String
 )
 
-/**
- * Check immutable releases settings for an organization.
- */
+/** Check immutable releases settings for an organization. */
 data class ImmutableReleasesOrganizationSettings(
+    /** The policy that controls how immutable releases are enforced in the organization. */
+    @com.fasterxml.jackson.annotation.JsonProperty("enforced_repositories")
+    val enforcedRepositories: ImmutableReleasesOrganizationSettingsEnforcedRepositoriesEnum,
     /**
-     * The policy that controls how immutable releases are enforced in the organization.
+     * The API URL to use to get or set the selected repositories for immutable releases
+     * enforcement, when `enforced_repositories` is set to `selected`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("enforced_repositories") val enforcedRepositories: ImmutableReleasesOrganizationSettingsEnforcedRepositoriesEnum,
-    /**
-     * The API URL to use to get or set the selected repositories for immutable releases enforcement, when `enforced_repositories` is set to `selected`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("selected_repositories_url") val selectedRepositoriesUrl: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("selected_repositories_url")
+    val selectedRepositoriesUrl: String? = null,
 )
 
-/**
- * Required object value serialized in the `options[]` wire field.
- */
+/** Required object value serialized in the `options[]` wire field. */
 data class IssueFieldOptionsItem(
-    /**
-     * The unique identifier of the option.
-     */
+    /** The unique identifier of the option. */
     val id: Long,
-    /**
-     * The name of the option.
-     */
+    /** The name of the option. */
     val name: String,
-    /**
-     * The description of the option.
-     */
+    /** The description of the option. */
     val description: String? = null,
-    /**
-     * The color of the option.
-     */
+    /** The color of the option. */
     val color: IssueFieldOptionsItemColorEnum? = null,
-    /**
-     * The priority of the option for ordering.
-     */
+    /** The priority of the option for ordering. */
     val priority: Long? = null,
-    /**
-     * The time the option was created.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
-    /**
-     * The time the option was last updated.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null
+    /** The time the option was created. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
+    val createdAt: OffsetDateTime? = null,
+    /** The time the option was last updated. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: OffsetDateTime? = null,
 )
 
-/**
- * A custom attribute defined at the organization level for attaching structured data to issues.
- */
+/** A custom attribute defined at the organization level for attaching structured data to issues. */
 data class IssueField(
-    /**
-     * The unique identifier of the issue field.
-     */
+    /** The unique identifier of the issue field. */
     val id: Long,
-    /**
-     * The node identifier of the issue field.
-     */
+    /** The node identifier of the issue field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * The name of the issue field.
-     */
+    /** The name of the issue field. */
     val name: String,
-    /**
-     * The data type of the issue field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data_type") val dataType: IssueFieldDataTypeEnum,
-    /**
-     * The description of the issue field.
-     */
+    /** The data type of the issue field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data_type")
+    val dataType: IssueFieldDataTypeEnum,
+    /** The description of the issue field. */
     val description: String? = null,
     /**
-     * The visibility of the issue field. Can be `organization_members_only` (visible only within the organization) or `all` (visible to all users who can see issues).
+     * The visibility of the issue field. Can be `organization_members_only` (visible only within
+     * the organization) or `all` (visible to all users who can see issues).
      */
     val visibility: IssueFieldVisibilityEnum? = null,
-    /**
-     * Available options for single select and multi select fields.
-     */
+    /** Available options for single select and multi select fields. */
     val options: List<IssueFieldOptionsItem>? = null,
-    /**
-     * The time the issue field was created.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
-    /**
-     * The time the issue field was last updated.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null
+    /** The time the issue field was created. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
+    val createdAt: OffsetDateTime? = null,
+    /** The time the issue field was last updated. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: OffsetDateTime? = null,
 )
 
-/**
- * Required object value serialized in the `options[]` wire field.
- */
+/** Required object value serialized in the `options[]` wire field. */
 data class OrganizationCreateIssueFieldOptionsItem(
-    /**
-     * Name of the option.
-     */
+    /** Name of the option. */
     val name: String,
-    /**
-     * Color for the option.
-     */
+    /** Color for the option. */
     val color: OrganizationCreateIssueFieldOptionsItemColorEnum,
-    /**
-     * Priority of the option for ordering.
-     */
+    /** Priority of the option for ordering. */
     val priority: Long,
-    /**
-     * Description of the option.
-     */
-    val description: String? = null
+    /** Description of the option. */
+    val description: String? = null,
 )
 
-/**
- * Typed representation of the `OrganizationCreateIssueField` API schema.
- */
+/** Typed representation of the `OrganizationCreateIssueField` API schema. */
 data class OrganizationCreateIssueField(
-    /**
-     * Name of the issue field.
-     */
+    /** Name of the issue field. */
     val name: String,
-    /**
-     * The data type of the issue field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("data_type") val dataType: OrganizationCreateIssueFieldDataTypeEnum,
-    /**
-     * Description of the issue field.
-     */
+    /** The data type of the issue field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("data_type")
+    val dataType: OrganizationCreateIssueFieldDataTypeEnum,
+    /** Description of the issue field. */
     val description: String? = null,
     /**
-     * The visibility of the issue field. Can be `organization_members_only` (visible only within the organization) or `all` (visible to all users who can see issues). Only used when the visibility settings feature is enabled. Defaults to `organization_members_only`.
+     * The visibility of the issue field. Can be `organization_members_only` (visible only within
+     * the organization) or `all` (visible to all users who can see issues). Only used when the
+     * visibility settings feature is enabled. Defaults to `organization_members_only`.
      */
     val visibility: OrganizationCreateIssueFieldVisibilityEnum? = null,
-    /**
-     * Options for select fields. Required when data_type is 'single_select' or 'multi_select'.
-     */
-    val options: List<OrganizationCreateIssueFieldOptionsItem>? = null
+    /** Options for select fields. Required when data_type is 'single_select' or 'multi_select'. */
+    val options: List<OrganizationCreateIssueFieldOptionsItem>? = null,
 )
 
-/**
- * Typed representation of the `OrganizationCreateIssueType` API schema.
- */
+/** Typed representation of the `OrganizationCreateIssueType` API schema. */
 data class OrganizationCreateIssueType(
-    /**
-     * Name of the issue type.
-     */
+    /** Name of the issue type. */
     val name: String,
-    /**
-     * Whether or not the issue type is enabled at the organization level.
-     */
+    /** Whether or not the issue type is enabled at the organization level. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_enabled") val isEnabled: Boolean,
-    /**
-     * Description of the issue type.
-     */
+    /** Description of the issue type. */
     val description: String? = null,
-    /**
-     * Color for the issue type.
-     */
-    val color: OrganizationCreateIssueTypeColorEnum? = null
+    /** Color for the issue type. */
+    val color: OrganizationCreateIssueTypeColorEnum? = null,
 )
 
-/**
- * The GitHub App installation that was registered.
- */
+/** The GitHub App installation that was registered. */
 data class OrganizationExternalPropertyInstallationInstallation(
-    /**
-     * The unique identifier of the GitHub App installation.
-     */
+    /** The unique identifier of the GitHub App installation. */
     val id: Long
 )
 
 /**
- * A GitHub App installation that has been registered to read and write an organization's external custom properties, together with the display name assigned to it.
+ * A GitHub App installation that has been registered to read and write an organization's external
+ * custom properties, together with the display name assigned to it.
  */
 data class OrganizationExternalPropertyInstallation(
     /**
-     * The display name assigned to the app installation's external custom properties in the organization.
+     * The display name assigned to the app installation's external custom properties in the
+     * organization.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String,
-    /**
-     * The GitHub App installation that was registered.
-     */
-    val installation: OrganizationExternalPropertyInstallationInstallation
+    /** The GitHub App installation that was registered. */
+    val installation: OrganizationExternalPropertyInstallationInstallation,
 )
 
-/**
- * Optional object value serialized in the `plan` wire field.
- */
+/** Optional object value serialized in the `plan` wire field. */
 data class OrganizationFullPlan(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `integer` value serialized in the `space` wire field.
-     */
+    /** Required `integer` value serialized in the `space` wire field. */
     val space: Long,
-    /**
-     * Required `integer` value serialized in the `private_repos` wire field.
-     */
+    /** Required `integer` value serialized in the `private_repos` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("private_repos") val privateRepos: Long,
-    /**
-     * Optional `integer` value serialized in the `filled_seats` wire field.
-     */
+    /** Optional `integer` value serialized in the `filled_seats` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("filled_seats") val filledSeats: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `seats` wire field.
-     */
-    val seats: Long? = null
+    /** Optional `integer` value serialized in the `seats` wire field. */
+    val seats: Long? = null,
 )

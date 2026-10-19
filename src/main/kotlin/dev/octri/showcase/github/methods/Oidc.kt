@@ -13,140 +13,238 @@ import dev.octri.showcase.github.SdkClient
 
 object Oidc {
 
-
     /**
-     * Lists the repository custom properties that are included in the OIDC token for repository actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Lists the repository custom properties that are included in the OIDC token for repository
+     * actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration"
+     * fine-grained permission is not available to callers. To use this API, you must use an OAuth
+     * app token or a personal access token (classic).
      *
      * @param enterprise The slug version of the enterprise name.
      */
-    fun oidcListOidcCustomPropertyInclusionsForEnterprise(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): List<OidcCustomPropertyInclusion> {
-        return SdkClient.request<List<OidcCustomPropertyInclusion>>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/oidc/customization/properties/repo", config = clientConfig, operationId = "oidcListOidcCustomPropertyInclusionsForEnterprise", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun oidcListOidcCustomPropertyInclusionsForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        options: RequestOptions? = null,
+    ): List<OidcCustomPropertyInclusion> {
+        return SdkClient.request<List<OidcCustomPropertyInclusion>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/oidc/customization/properties/repo",
+                    config = clientConfig,
+                    operationId = "oidcListOidcCustomPropertyInclusionsForEnterprise",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Adds a repository custom property to be included in the OIDC token for repository actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Adds a repository custom property to be included in the OIDC token for repository actions in
+     * an enterprise. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration"
+     * fine-grained permission is not available to callers. To use this API, you must use an OAuth
+     * app token or a personal access token (classic).
      *
      * @param enterprise The slug version of the enterprise name.
-     * @param customPropertyName The name of the custom property to include in the
-     *   OIDC token
+     * @param customPropertyName The name of the custom property to include in the OIDC token
      */
-    fun oidcCreateOidcCustomPropertyInclusionForEnterprise(clientConfig: ClientConfig, enterprise: String, customPropertyName: String, options: RequestOptions? = null): OidcCustomPropertyInclusion {
-        return SdkClient.request<OidcCustomPropertyInclusion>(SdkClient.RequestSpec("POST", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/oidc/customization/properties/repo", config = clientConfig, body = SdkClient.bodyMap("custom_property_name" to (customPropertyName)), operationId = "oidcCreateOidcCustomPropertyInclusionForEnterprise", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
+    fun oidcCreateOidcCustomPropertyInclusionForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        customPropertyName: String,
+        options: RequestOptions? = null,
+    ): OidcCustomPropertyInclusion {
+        return SdkClient.request<OidcCustomPropertyInclusion>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/oidc/customization/properties/repo",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("custom_property_name" to (customPropertyName)),
+                    operationId = "oidcCreateOidcCustomPropertyInclusionForEnterprise",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Removes a repository custom property from being included in the OIDC token for repository actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Removes a repository custom property from being included in the OIDC token for repository
+     * actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration"
+     * fine-grained permission is not available to callers. To use this API, you must use an OAuth
+     * app token or a personal access token (classic).
      *
      * @param enterprise The slug version of the enterprise name.
-     * @param customPropertyName The name of the custom property to remove from OIDC
-     *   token inclusion
+     * @param customPropertyName The name of the custom property to remove from OIDC token inclusion
      */
-    fun oidcDeleteOidcCustomPropertyInclusionForEnterprise(clientConfig: ClientConfig, enterprise: String, customPropertyName: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/oidc/customization/properties/repo/${SdkClient.encodePathSegment(customPropertyName)}", config = clientConfig, operationId = "oidcDeleteOidcCustomPropertyInclusionForEnterprise", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
+    fun oidcDeleteOidcCustomPropertyInclusionForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        customPropertyName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/oidc/customization/properties/repo/${SdkClient.encodePathSegment(customPropertyName)}",
+                config = clientConfig,
+                operationId = "oidcDeleteOidcCustomPropertyInclusionForEnterprise",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 
-
-
-
-
-
-
     /**
-     * Lists the repository custom properties that are included in the OIDC token for repository actions in an organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Lists the repository custom properties that are included in the OIDC token for repository
+     * actions in an organization. OAuth app tokens and personal access tokens (classic) need the
+     * `read:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun oidcListOidcCustomPropertyInclusionsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<OidcCustomPropertyInclusion> {
-        return SdkClient.request<List<OidcCustomPropertyInclusion>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/properties/repo", config = clientConfig, operationId = "oidcListOidcCustomPropertyInclusionsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun oidcListOidcCustomPropertyInclusionsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): List<OidcCustomPropertyInclusion> {
+        return SdkClient.request<List<OidcCustomPropertyInclusion>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/properties/repo",
+                    config = clientConfig,
+                    operationId = "oidcListOidcCustomPropertyInclusionsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * Adds a repository custom property to be included in the OIDC token for repository actions in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Adds a repository custom property to be included in the OIDC token for repository actions in
+     * an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org`
+     * scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param customPropertyName The name of the custom property to include in the
-     *   OIDC token
+     * @param customPropertyName The name of the custom property to include in the OIDC token
      */
-    fun oidcCreateOidcCustomPropertyInclusionForOrg(clientConfig: ClientConfig, org: String, customPropertyName: String, options: RequestOptions? = null): OidcCustomPropertyInclusion {
-        return SdkClient.request<OidcCustomPropertyInclusion>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/properties/repo", config = clientConfig, body = SdkClient.bodyMap("custom_property_name" to (customPropertyName)), operationId = "oidcCreateOidcCustomPropertyInclusionForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
+    fun oidcCreateOidcCustomPropertyInclusionForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        customPropertyName: String,
+        options: RequestOptions? = null,
+    ): OidcCustomPropertyInclusion {
+        return SdkClient.request<OidcCustomPropertyInclusion>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/properties/repo",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("custom_property_name" to (customPropertyName)),
+                    operationId = "oidcCreateOidcCustomPropertyInclusionForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("403" to BasicError::class.java),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * Removes a repository custom property from being included in the OIDC token for repository actions in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Removes a repository custom property from being included in the OIDC token for repository
+     * actions in an organization. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param customPropertyName The name of the custom property to remove from OIDC
-     *   token inclusion
+     * @param customPropertyName The name of the custom property to remove from OIDC token inclusion
      */
-    fun oidcDeleteOidcCustomPropertyInclusionForOrg(clientConfig: ClientConfig, org: String, customPropertyName: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/properties/repo/${SdkClient.encodePathSegment(customPropertyName)}", config = clientConfig, operationId = "oidcDeleteOidcCustomPropertyInclusionForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
+    fun oidcDeleteOidcCustomPropertyInclusionForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        customPropertyName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/properties/repo/${SdkClient.encodePathSegment(customPropertyName)}",
+                config = clientConfig,
+                operationId = "oidcDeleteOidcCustomPropertyInclusionForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
-
-
-
-
-
-
 
     /**
-     * Gets the customization template for an OpenID Connect (OIDC) subject claim. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Gets the customization template for an OpenID Connect (OIDC) subject claim. OAuth app tokens
+     * and personal access tokens (classic) need the `read:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun oidcGetOidcCustomSubTemplateForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): OidcCustomSub {
-        return SdkClient.request<OidcCustomSub>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/sub", config = clientConfig, operationId = "oidcGetOidcCustomSubTemplateForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun oidcGetOidcCustomSubTemplateForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): OidcCustomSub {
+        return SdkClient.request<OidcCustomSub>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/sub",
+                    config = clientConfig,
+                    operationId = "oidcGetOidcCustomSubTemplateForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * Creates or updates the customization template for an OpenID Connect (OIDC) subject claim. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Creates or updates the customization template for an OpenID Connect (OIDC) subject claim.
+     * OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param includeClaimKeys Array of unique strings. Each claim key can only
-     *   contain alphanumeric characters and underscores.
-     * @param useImmutableSubject Whether to opt in to the immutable OIDC subject
-     *   claim format for the organization. When `true`, new OIDC tokens will use a
-     *   stable, repository-ID-based `sub` claim instead of the name-based format.
+     * @param includeClaimKeys Array of unique strings. Each claim key can only contain alphanumeric
+     *   characters and underscores.
+     * @param useImmutableSubject Whether to opt in to the immutable OIDC subject claim format for
+     *   the organization. When `true`, new OIDC tokens will use a stable, repository-ID-based `sub`
+     *   claim instead of the name-based format.
      */
-    fun oidcUpdateOidcCustomSubTemplateForOrg(clientConfig: ClientConfig, org: String, includeClaimKeys: List<String>? = null, useImmutableSubject: Boolean? = null, options: RequestOptions? = null): EmptyObject {
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/sub", config = clientConfig, body = SdkClient.bodyMap("include_claim_keys" to
-    (SdkClient.omitIfNull(includeClaimKeys)), "use_immutable_subject" to
-    (SdkClient.omitIfNull(useImmutableSubject))), operationId = "oidcUpdateOidcCustomSubTemplateForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun oidcUpdateOidcCustomSubTemplateForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        includeClaimKeys: List<String>? = null,
+        useImmutableSubject: Boolean? = null,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return SdkClient.request<EmptyObject>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/oidc/customization/sub",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "include_claim_keys" to (SdkClient.omitIfNull(includeClaimKeys)),
+                            "use_immutable_subject" to (SdkClient.omitIfNull(useImmutableSubject)),
+                        ),
+                    operationId = "oidcUpdateOidcCustomSubTemplateForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

@@ -3,28 +3,24 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `WebhookProjectsV2ProjectClosed` API schema.
- */
+/** Typed representation of the `WebhookProjectsV2ProjectClosed` API schema. */
 data class WebhookProjectsV2ProjectClosed(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookProjectsV2ProjectClosedActionEnum,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks,
-    /**
-     * A projects v2 project
-     */
+    /** A projects v2 project */
     @com.fasterxml.jackson.annotation.JsonProperty("projects_v2") val projectsV2: ProjectsV2,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
-    val installation: SimpleInstallation? = null
+    val installation: SimpleInstallation? = null,
 )

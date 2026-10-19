@@ -3,7 +3,6 @@
 
 package dev.octri.showcase.github
 
-
 class GitHubV3REST(private val clientConfig: ClientConfig) {
     val meta: MetaNamespace
     val securityAdvisories: SecurityAdvisoriesNamespace
@@ -50,6 +49,7 @@ class GitHubV3REST(private val clientConfig: ClientConfig) {
     val pulls: PullsNamespace
     val search: SearchNamespace
     val users: UsersNamespace
+
     init {
         meta = MetaNamespace(clientConfig)
         securityAdvisories = SecurityAdvisoriesNamespace(clientConfig)
@@ -97,17 +97,16 @@ class GitHubV3REST(private val clientConfig: ClientConfig) {
         search = SearchNamespace(clientConfig)
         users = UsersNamespace(clientConfig)
     }
+
     /**
-     * Turns SDK logging on and configures it. Logging is OFF by default — this
-     * SDK reports nothing until you call this (or construct the client with
-     * logging enabled). Reports go to the endpoint this build was generated with,
-     * or to the endpoint you set; with neither, nothing is sent. Set
-     * enabled = false in the block to turn it off.
+     * Turns SDK logging on and configures it. Logging is OFF by default — this SDK reports nothing
+     * until you call this (or construct the client with logging enabled). Reports go to the
+     * endpoint this build was generated with, or to the endpoint you set; with neither, nothing is
+     * sent. Set enabled = false in the block to turn it off.
      */
     fun setLoggingConfig(block: LoggingConfig.() -> Unit = {}): LoggingConfig {
         clientConfig.logging.enabled = true
         clientConfig.logging.block()
         return clientConfig.logging
     }
-
 }

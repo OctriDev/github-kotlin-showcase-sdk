@@ -5,379 +5,283 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Optional object value serialized in the `rule_source` wire field.
- */
+/** Optional object value serialized in the `rule_source` wire field. */
 data class RuleSuiteRuleEvaluationsItemRuleSource(
-    /**
-     * The type of rule source.
-     */
+    /** The type of rule source. */
     val type: String? = null,
-    /**
-     * The ID of the rule source.
-     */
+    /** The ID of the rule source. */
     val id: Long? = null,
-    /**
-     * The name of the rule source.
-     */
-    val name: String? = null
+    /** The name of the rule source. */
+    val name: String? = null,
 )
 
-/**
- * Required object value serialized in the `rule_evaluations[]` wire field.
- */
+/** Required object value serialized in the `rule_evaluations[]` wire field. */
 data class RuleSuiteRuleEvaluationsItem(
-    /**
-     * Optional object value serialized in the `rule_source` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("rule_source") val ruleSource: RuleSuiteRuleEvaluationsItemRuleSource? = null,
-    /**
-     * The enforcement level of this rule source.
-     */
+    /** Optional object value serialized in the `rule_source` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("rule_source")
+    val ruleSource: RuleSuiteRuleEvaluationsItemRuleSource? = null,
+    /** The enforcement level of this rule source. */
     val enforcement: RuleSuiteRuleEvaluationsItemEnforcementEnum? = null,
-    /**
-     * The result of the evaluation of the individual rule.
-     */
+    /** The result of the evaluation of the individual rule. */
     val result: RuleSuiteRuleEvaluationsItemResultEnum? = null,
-    /**
-     * The type of rule.
-     */
+    /** The type of rule. */
     @com.fasterxml.jackson.annotation.JsonProperty("rule_type") val ruleType: String? = null,
-    /**
-     * Additional metadata about the rule evaluation.
-     */
+    /** Additional metadata about the rule evaluation. */
     val metadata: RuleSuiteRuleEvaluationsItemMetadata? = null,
-    /**
-     * The detailed failure message for the rule. Null if the rule passed.
-     */
-    val details: String? = null
+    /** The detailed failure message for the rule. Null if the rule passed. */
+    val details: String? = null,
 )
 
-/**
- * Response
- */
+/** Response */
 data class RuleSuite(
-    /**
-     * The unique identifier of the rule insight.
-     */
+    /** The unique identifier of the rule insight. */
     val id: Long? = null,
-    /**
-     * The number that identifies the user.
-     */
+    /** The number that identifies the user. */
     @com.fasterxml.jackson.annotation.JsonProperty("actor_id") val actorId: Long? = null,
-    /**
-     * The handle for the GitHub user account.
-     */
+    /** The handle for the GitHub user account. */
     @com.fasterxml.jackson.annotation.JsonProperty("actor_name") val actorName: String? = null,
-    /**
-     * The previous commit SHA of the ref.
-     */
+    /** The previous commit SHA of the ref. */
     @com.fasterxml.jackson.annotation.JsonProperty("before_sha") val beforeSha: String? = null,
-    /**
-     * The new commit SHA of the ref.
-     */
+    /** The new commit SHA of the ref. */
     @com.fasterxml.jackson.annotation.JsonProperty("after_sha") val afterSha: String? = null,
-    /**
-     * The ref name that the evaluation ran on.
-     */
+    /** The ref name that the evaluation ran on. */
     val ref: String? = null,
-    /**
-     * The ID of the repository associated with the rule evaluation.
-     */
+    /** The ID of the repository associated with the rule evaluation. */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
-    /**
-     * The name of the repository without the `.git` extension.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: String? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `pushed_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at") val pushedAt: OffsetDateTime? = null,
-    /**
-     * The result of the rule evaluations for rules with the `active` enforcement status.
-     */
+    /** The name of the repository without the `.git` extension. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_name")
+    val repositoryName: String? = null,
+    /** Optional `date-time`-formatted value serialized in the `pushed_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at")
+    val pushedAt: OffsetDateTime? = null,
+    /** The result of the rule evaluations for rules with the `active` enforcement status. */
     val result: RuleSuiteResultEnum? = null,
     /**
-     * The result of the rule evaluations for rules with the `active` and `evaluate` enforcement statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were `active`. Null if no rules with `evaluate` enforcement status were run.
+     * The result of the rule evaluations for rules with the `active` and `evaluate` enforcement
+     * statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were
+     * `active`. Null if no rules with `evaluate` enforcement status were run.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("evaluation_result") val evaluationResult: RuleSuiteEvaluationResultEnum? = null,
-    /**
-     * Details on the evaluated rules.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("rule_evaluations") val ruleEvaluations: List<RuleSuiteRuleEvaluationsItem>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("evaluation_result")
+    val evaluationResult: RuleSuiteEvaluationResultEnum? = null,
+    /** Details on the evaluated rules. */
+    @com.fasterxml.jackson.annotation.JsonProperty("rule_evaluations")
+    val ruleEvaluations: List<RuleSuiteRuleEvaluationsItem>? = null,
 )
 
-/**
- * The user who created the pull request.
- */
+/** The user who created the pull request. */
 data class RuleSuitePullRequestPullRequestUser(
-    /**
-     * The unique identifier of the user.
-     */
+    /** The unique identifier of the user. */
     val id: Long? = null,
-    /**
-     * The handle for the GitHub user account.
-     */
+    /** The handle for the GitHub user account. */
     val login: String? = null,
-    /**
-     * The type of the user.
-     */
-    val type: String? = null
+    /** The type of the user. */
+    val type: String? = null,
 )
 
-/**
- * The user who submitted the review.
- */
+/** The user who submitted the review. */
 data class RuleSuitePullRequestPullRequestReviewsItemUser(
-    /**
-     * The unique identifier of the user.
-     */
+    /** The unique identifier of the user. */
     val id: Long? = null,
-    /**
-     * The handle for the GitHub user account.
-     */
+    /** The handle for the GitHub user account. */
     val login: String? = null,
-    /**
-     * The type of the user.
-     */
-    val type: String? = null
+    /** The type of the user. */
+    val type: String? = null,
 )
 
-/**
- * Required object value serialized in the `reviews[]` wire field.
- */
+/** Required object value serialized in the `reviews[]` wire field. */
 data class RuleSuitePullRequestPullRequestReviewsItem(
-    /**
-     * The unique identifier of the review.
-     */
+    /** The unique identifier of the review. */
     val id: Long? = null,
-    /**
-     * The user who submitted the review.
-     */
+    /** The user who submitted the review. */
     val user: RuleSuitePullRequestPullRequestReviewsItemUser? = null,
-    /**
-     * The state of the review.
-     */
-    val state: String? = null
+    /** The state of the review. */
+    val state: String? = null,
 )
 
-/**
- * The user who provided proof of presence. Null if no proof of presence was recorded.
- */
+/** The user who provided proof of presence. Null if no proof of presence was recorded. */
 data class RuleSuitePullRequestPullRequestProofOfPresenceVerifier(
-    /**
-     * The unique identifier of the user.
-     */
+    /** The unique identifier of the user. */
     val id: Long? = null,
-    /**
-     * The handle for the GitHub user account.
-     */
+    /** The handle for the GitHub user account. */
     val login: String? = null,
-    /**
-     * The type of the user.
-     */
-    val type: String? = null
+    /** The type of the user. */
+    val type: String? = null,
 )
 
 /**
- * The proof of presence evaluation for the pull request. Null if proof of presence was not evaluated.
+ * The proof of presence evaluation for the pull request. Null if proof of presence was not
+ * evaluated.
  */
 data class RuleSuitePullRequestPullRequestProofOfPresence(
-    /**
-     * The state of the proof of presence evaluation.
-     */
+    /** The state of the proof of presence evaluation. */
     val state: String? = null,
-    /**
-     * A code describing the reason for the proof of presence state.
-     */
+    /** A code describing the reason for the proof of presence state. */
     val code: String? = null,
-    /**
-     * The base commit SHA the proof of presence evaluation applies to. Empty if unavailable.
-     */
+    /** The base commit SHA the proof of presence evaluation applies to. Empty if unavailable. */
     @com.fasterxml.jackson.annotation.JsonProperty("base_sha") val baseSha: String? = null,
-    /**
-     * The head commit SHA the proof of presence evaluation applies to. Empty if unavailable.
-     */
+    /** The head commit SHA the proof of presence evaluation applies to. Empty if unavailable. */
     @com.fasterxml.jackson.annotation.JsonProperty("head_sha") val headSha: String? = null,
+    /** The authentication level required by the rule. Empty if unavailable. */
+    @com.fasterxml.jackson.annotation.JsonProperty("required_level")
+    val requiredLevel: String? = null,
     /**
-     * The authentication level required by the rule. Empty if unavailable.
+     * The authentication level that was verified. Empty if proof of presence has not been
+     * completed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_level") val requiredLevel: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("verified_level")
+    val verifiedLevel: String? = null,
     /**
-     * The authentication level that was verified. Empty if proof of presence has not been completed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("verified_level") val verifiedLevel: String? = null,
-    /**
-     * The time proof of presence was verified, in ISO 8601 format. Empty if proof of presence has not been completed.
+     * The time proof of presence was verified, in ISO 8601 format. Empty if proof of presence has
+     * not been completed.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("verified_at") val verifiedAt: String? = null,
-    /**
-     * The user who provided proof of presence. Null if no proof of presence was recorded.
-     */
-    val verifier: RuleSuitePullRequestPullRequestProofOfPresenceVerifier? = null
+    /** The user who provided proof of presence. Null if no proof of presence was recorded. */
+    val verifier: RuleSuitePullRequestPullRequestProofOfPresenceVerifier? = null,
 )
 
-/**
- * The pull request associated with the rule evaluation.
- */
+/** The pull request associated with the rule evaluation. */
 data class RuleSuitePullRequestPullRequest(
-    /**
-     * The unique identifier of the pull request.
-     */
+    /** The unique identifier of the pull request. */
     val id: Long? = null,
-    /**
-     * The number of the pull request.
-     */
+    /** The number of the pull request. */
     val number: Long? = null,
-    /**
-     * The user who created the pull request.
-     */
+    /** The user who created the pull request. */
     val user: RuleSuitePullRequestPullRequestUser? = null,
-    /**
-     * The reviews associated with the pull request.
-     */
+    /** The reviews associated with the pull request. */
     val reviews: List<RuleSuitePullRequestPullRequestReviewsItem>? = null,
     /**
-     * The proof of presence evaluation for the pull request. Null if proof of presence was not evaluated.
+     * The proof of presence evaluation for the pull request. Null if proof of presence was not
+     * evaluated.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("proof_of_presence") val proofOfPresence: RuleSuitePullRequestPullRequestProofOfPresence? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("proof_of_presence")
+    val proofOfPresence: RuleSuitePullRequestPullRequestProofOfPresence? = null,
 )
 
-/**
- * Metadata for a pull request rule evaluation result.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Metadata for a pull request rule evaluation result. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RuleSuitePullRequest(
-    /**
-     * The pull request associated with the rule evaluation.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request") val pullRequest: RuleSuitePullRequestPullRequest? = null,
-    /**
-     * Optional enumerated value serialized in the `rule_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("rule_type") val ruleType: RuleSuitePullRequestRuleTypeEnum? = null
+    /** The pull request associated with the rule evaluation. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request")
+    val pullRequest: RuleSuitePullRequestPullRequest? = null,
+    /** Optional enumerated value serialized in the `rule_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("rule_type")
+    val ruleType: RuleSuitePullRequestRuleTypeEnum? = null,
 ) : RuleSuiteRuleEvaluationsItemMetadata
 
-/**
- * The GitHub App associated with the status check.
- */
+/** The GitHub App associated with the status check. */
 data class RuleSuiteRequiredStatusChecksChecksItemApp(
-    /**
-     * The unique identifier of the GitHub App.
-     */
+    /** The unique identifier of the GitHub App. */
     val id: Long? = null,
-    /**
-     * The slug of the GitHub App.
-     */
+    /** The slug of the GitHub App. */
     val slug: String? = null,
-    /**
-     * The name of the GitHub App.
-     */
-    val name: String? = null
+    /** The name of the GitHub App. */
+    val name: String? = null,
 )
 
-/**
- * Required object value serialized in the `checks[]` wire field.
- */
+/** Required object value serialized in the `checks[]` wire field. */
 data class RuleSuiteRequiredStatusChecksChecksItem(
-    /**
-     * The unique identifier of the status check.
-     */
+    /** The unique identifier of the status check. */
     val id: Long? = null,
-    /**
-     * The context name of the status check.
-     */
+    /** The context name of the status check. */
     val context: String? = null,
-    /**
-     * The state of the status check.
-     */
+    /** The state of the status check. */
     val state: String? = null,
-    /**
-     * The type of the status check.
-     */
+    /** The type of the status check. */
     val type: String? = null,
-    /**
-     * The GitHub App associated with the status check.
-     */
-    val app: RuleSuiteRequiredStatusChecksChecksItemApp? = null
+    /** The GitHub App associated with the status check. */
+    val app: RuleSuiteRequiredStatusChecksChecksItemApp? = null,
 )
 
-/**
- * Metadata for a required status checks rule evaluation result.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Metadata for a required status checks rule evaluation result. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class RuleSuiteRequiredStatusChecks(
-    /**
-     * The status checks associated with the rule evaluation.
-     */
+    /** The status checks associated with the rule evaluation. */
     val checks: List<RuleSuiteRequiredStatusChecksChecksItem>? = null,
-    /**
-     * Optional enumerated value serialized in the `rule_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("rule_type") val ruleType: RuleSuiteRequiredStatusChecksRuleTypeEnum? = null
+    /** Optional enumerated value serialized in the `rule_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("rule_type")
+    val ruleType: RuleSuiteRequiredStatusChecksRuleTypeEnum? = null,
 ) : RuleSuiteRuleEvaluationsItemMetadata
 
-/**
- * Additional metadata about the rule evaluation.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "rule_type", visible = true, defaultImpl = UnknownRuleSuiteRuleEvaluationsItemMetadata::class)
+/** Additional metadata about the rule evaluation. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+    property = "rule_type",
+    visible = true,
+    defaultImpl = UnknownRuleSuiteRuleEvaluationsItemMetadata::class,
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RuleSuitePullRequest::class, name = "pull_request"),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RuleSuiteRequiredStatusChecks::class, name = "required_status_checks")
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RuleSuitePullRequest::class,
+        name = "pull_request",
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = RuleSuiteRequiredStatusChecks::class,
+        name = "required_status_checks",
+    ),
 )
 sealed interface RuleSuiteRuleEvaluationsItemMetadata
 
-/** A [RuleSuiteRuleEvaluationsItemMetadata] whose `rule_type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class UnknownRuleSuiteRuleEvaluationsItemMetadata @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
+/**
+ * A [RuleSuiteRuleEvaluationsItemMetadata] whose `rule_type` names no branch this SDK knows, kept
+ * as received.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class UnknownRuleSuiteRuleEvaluationsItemMetadata
+@com.fasterxml.jackson.annotation.JsonCreator(
+    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+)
+constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
 ) : RuleSuiteRuleEvaluationsItemMetadata {
     /** The tag the server sent. */
-    val tag: String get() = raw.path("rule_type").asText()
+    val tag: String
+        get() = raw.path("rule_type").asText()
 }
 
 data class RuleSuitesItem(
-    /**
-     * The unique identifier of the rule insight.
-     */
+    /** The unique identifier of the rule insight. */
     val id: Long? = null,
-    /**
-     * The number that identifies the user.
-     */
+    /** The number that identifies the user. */
     @com.fasterxml.jackson.annotation.JsonProperty("actor_id") val actorId: Long? = null,
-    /**
-     * The handle for the GitHub user account.
-     */
+    /** The handle for the GitHub user account. */
     @com.fasterxml.jackson.annotation.JsonProperty("actor_name") val actorName: String? = null,
-    /**
-     * The first commit sha before the push evaluation.
-     */
+    /** The first commit sha before the push evaluation. */
     @com.fasterxml.jackson.annotation.JsonProperty("before_sha") val beforeSha: String? = null,
-    /**
-     * The last commit sha in the push evaluation.
-     */
+    /** The last commit sha in the push evaluation. */
     @com.fasterxml.jackson.annotation.JsonProperty("after_sha") val afterSha: String? = null,
-    /**
-     * The ref name that the evaluation ran on.
-     */
+    /** The ref name that the evaluation ran on. */
     val ref: String? = null,
-    /**
-     * The ID of the repository associated with the rule evaluation.
-     */
+    /** The ID of the repository associated with the rule evaluation. */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
-    /**
-     * The name of the repository without the `.git` extension.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at") val pushedAt: OffsetDateTime? = null,
-    /**
-     * The result of the rule evaluations for rules with the `active` enforcement status.
-     */
+    /** The name of the repository without the `.git` extension. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_name")
+    val repositoryName: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at")
+    val pushedAt: OffsetDateTime? = null,
+    /** The result of the rule evaluations for rules with the `active` enforcement status. */
     val result: RuleSuitesItemResultEnum? = null,
     /**
-     * The result of the rule evaluations for rules with the `active` and `evaluate` enforcement statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were `active`.
+     * The result of the rule evaluations for rules with the `active` and `evaluate` enforcement
+     * statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were
+     * `active`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("evaluation_result") val evaluationResult: RuleSuitesItemEvaluationResultEnum? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("evaluation_result")
+    val evaluationResult: RuleSuitesItemEvaluationResultEnum? = null,
 )
 
 typealias RuleSuites = List<RuleSuitesItem>

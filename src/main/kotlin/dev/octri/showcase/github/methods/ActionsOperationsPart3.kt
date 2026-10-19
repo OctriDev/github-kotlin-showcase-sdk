@@ -24,374 +24,882 @@ internal object ActionsGetOrgActionsPolicyOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param policyId The ID of the policy.
      */
-    fun actionsGetOrgActionsPolicy(clientConfig: ClientConfig, org: String, policyId: Long, options: RequestOptions? = null): ActionsPolicy {
-        return SdkClient.request<ActionsPolicy>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies/${SdkClient.encodePathSegment(policyId)}", config = clientConfig, operationId = "actionsGetOrgActionsPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java))).data
+    fun actionsGetOrgActionsPolicy(
+        clientConfig: ClientConfig,
+        org: String,
+        policyId: Long,
+        options: RequestOptions? = null,
+    ): ActionsPolicy {
+        return SdkClient.request<ActionsPolicy>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies/${SdkClient.encodePathSegment(policyId)}",
+                    config = clientConfig,
+                    operationId = "actionsGetOrgActionsPolicy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsUpdateOrgActionsPolicyOperation {
     /**
-     * Update an Actions policy for an organization. Omitting `workflow_path` preserves the policy's existing workflow targeting.
+     * Update an Actions policy for an organization. Omitting `workflow_path` preserves the policy's
+     * existing workflow targeting.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param policyId The ID of the policy.
      * @param name The name of the policy.
-     * @param enforcement The enforcement level of the ruleset. `evaluate` allows
-     *   admins to test rules before enforcing them. Admins can view insights on the
-     *   Rule Insights page (`evaluate` is only available with GitHub Enterprise).
-     * @param conditions Conditions for an organization Actions policy. The
-     *   conditions object should contain one of `repository_name`, `repository_id`, or
-     *   `repository_property`, and may also contain `workflow_path`.
+     * @param enforcement The enforcement level of the ruleset. `evaluate` allows admins to test
+     *   rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate`
+     *   is only available with GitHub Enterprise).
+     * @param conditions Conditions for an organization Actions policy. The conditions object should
+     *   contain one of `repository_name`, `repository_id`, or `repository_property`, and may also
+     *   contain `workflow_path`.
      * @param rules An array of rules within the policy.
      */
-    fun actionsUpdateOrgActionsPolicy(clientConfig: ClientConfig, request: Actions.ActionsUpdateOrgActionsPolicyRequest, options: RequestOptions? = null): ActionsPolicy {
-        return SdkClient.request<ActionsPolicy>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/policies/${SdkClient.encodePathSegment(request.policyId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "enforcement" to (SdkClient.omitIfNull(request.enforcement)), "conditions" to (SdkClient.omitIfNull(request.conditions)), "rules" to (SdkClient.omitIfNull(request.rules))), operationId = "actionsUpdateOrgActionsPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
+    fun actionsUpdateOrgActionsPolicy(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsUpdateOrgActionsPolicyRequest,
+        options: RequestOptions? = null,
+    ): ActionsPolicy {
+        return SdkClient.request<ActionsPolicy>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/policies/${SdkClient.encodePathSegment(request.policyId)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (SdkClient.omitIfNull(request.name)),
+                            "enforcement" to (SdkClient.omitIfNull(request.enforcement)),
+                            "conditions" to (SdkClient.omitIfNull(request.conditions)),
+                            "rules" to (SdkClient.omitIfNull(request.rules)),
+                        ),
+                    operationId = "actionsUpdateOrgActionsPolicy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsDeleteOrgActionsPolicyOperation {
     /**
-     * Deletes an organization-level Actions policy. Use `org` and `policy_id` to identify the organization and policy to remove; the policy must belong to that organization.
+     * Deletes an organization-level Actions policy. Use `org` and `policy_id` to identify the
+     * organization and policy to remove; the policy must belong to that organization.
      *
      * Delete an Actions policy for an organization.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param policyId The ID of the policy.
      */
-    fun actionsDeleteOrgActionsPolicy(clientConfig: ClientConfig, org: String, policyId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies/${SdkClient.encodePathSegment(policyId)}", config = clientConfig, operationId = "actionsDeleteOrgActionsPolicy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java)))
+    fun actionsDeleteOrgActionsPolicy(
+        clientConfig: ClientConfig,
+        org: String,
+        policyId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies/${SdkClient.encodePathSegment(policyId)}",
+                config = clientConfig,
+                operationId = "actionsDeleteOrgActionsPolicy",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsListSelfHostedRunnerGroupsForOrgOperation {
     /**
-     * Lists all self-hosted runner groups configured in an organization and inherited from an enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists all self-hosted runner groups configured in an organization and inherited from an
+     * enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
+     * to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param visibleToRepository Only return runner groups that are allowed to be
-     *   used by this repository.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param visibleToRepository Only return runner groups that are allowed to be used by this
+     *   repository.
      */
-    fun actionsListSelfHostedRunnerGroupsForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, visibleToRepository: String? = null, options: RequestOptions? = null): Actions.ActionsListSelfHostedRunnerGroupsForOrgResponse {
-        return SdkClient.request<Actions.ActionsListSelfHostedRunnerGroupsForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "visible_to_repository" to
-    SdkClient.queryValue(visibleToRepository, "form", true)), operationId = "actionsListSelfHostedRunnerGroupsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListSelfHostedRunnerGroupsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        visibleToRepository: String? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListSelfHostedRunnerGroupsForOrgResponse {
+        return SdkClient.request<Actions.ActionsListSelfHostedRunnerGroupsForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "visible_to_repository" to
+                                SdkClient.queryValue(visibleToRepository, "form", true),
+                        ),
+                    operationId = "actionsListSelfHostedRunnerGroupsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsCreateSelfHostedRunnerGroupForOrgOperation {
     /**
-     * Creates a new self-hosted runner group for an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Creates a new self-hosted runner group for an organization. OAuth tokens and personal access
+     * tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name Name of the runner group.
-     * @param visibility Visibility of a runner group. You can select all
-     *   repositories, select individual repositories, or limit access to private
-     *   repositories.
-     * @param selectedRepositoryIds List of repository IDs that can access the runner
-     *   group.
+     * @param visibility Visibility of a runner group. You can select all repositories, select
+     *   individual repositories, or limit access to private repositories.
+     * @param selectedRepositoryIds List of repository IDs that can access the runner group.
      * @param runners List of runner IDs to add to the runner group.
-     * @param allowsPublicRepositories Whether the runner group can be used by
-     *   `public` repositories.
-     * @param restrictedToWorkflows If `true`, the runner group will be restricted to
-     *   running only the workflows specified in the `selected_workflows` array.
-     * @param selectedWorkflows List of workflows the runner group should be allowed
-     *   to run. This setting will be ignored unless `restricted_to_workflows` is set
-     *   to `true`.
-     * @param networkConfigurationId The identifier of a hosted compute network
-     *   configuration.
+     * @param allowsPublicRepositories Whether the runner group can be used by `public`
+     *   repositories.
+     * @param restrictedToWorkflows If `true`, the runner group will be restricted to running only
+     *   the workflows specified in the `selected_workflows` array.
+     * @param selectedWorkflows List of workflows the runner group should be allowed to run. This
+     *   setting will be ignored unless `restricted_to_workflows` is set to `true`.
+     * @param networkConfigurationId The identifier of a hosted compute network configuration.
      */
-    fun actionsCreateSelfHostedRunnerGroupForOrg(clientConfig: ClientConfig, request: Actions.ActionsCreateSelfHostedRunnerGroupForOrgRequest, options: RequestOptions? = null): RunnerGroupsOrg {
-        return SdkClient.request<RunnerGroupsOrg>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/runner-groups", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "visibility" to (SdkClient.omitIfNull(request.visibility)), "selected_repository_ids" to
-    (SdkClient.omitIfNull(request.selectedRepositoryIds)), "runners" to (SdkClient.omitIfNull(request.runners)), "allows_public_repositories" to
-    (SdkClient.omitIfNull(request.allowsPublicRepositories)), "restricted_to_workflows" to
-    (SdkClient.omitIfNull(request.restrictedToWorkflows)), "selected_workflows" to
-    (SdkClient.omitIfNull(request.selectedWorkflows)), "network_configuration_id" to
-    (SdkClient.omitIfNull(request.networkConfigurationId))), operationId = "actionsCreateSelfHostedRunnerGroupForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsCreateSelfHostedRunnerGroupForOrg(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsCreateSelfHostedRunnerGroupForOrgRequest,
+        options: RequestOptions? = null,
+    ): RunnerGroupsOrg {
+        return SdkClient.request<RunnerGroupsOrg>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/runner-groups",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (request.name),
+                            "visibility" to (SdkClient.omitIfNull(request.visibility)),
+                            "selected_repository_ids" to
+                                (SdkClient.omitIfNull(request.selectedRepositoryIds)),
+                            "runners" to (SdkClient.omitIfNull(request.runners)),
+                            "allows_public_repositories" to
+                                (SdkClient.omitIfNull(request.allowsPublicRepositories)),
+                            "restricted_to_workflows" to
+                                (SdkClient.omitIfNull(request.restrictedToWorkflows)),
+                            "selected_workflows" to
+                                (SdkClient.omitIfNull(request.selectedWorkflows)),
+                            "network_configuration_id" to
+                                (SdkClient.omitIfNull(request.networkConfigurationId)),
+                        ),
+                    operationId = "actionsCreateSelfHostedRunnerGroupForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetSelfHostedRunnerGroupForOrgOperation {
     /**
-     * Gets a specific self-hosted runner group for an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets a specific self-hosted runner group for an organization. OAuth app tokens and personal
+     * access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
      */
-    fun actionsGetSelfHostedRunnerGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, options: RequestOptions? = null): RunnerGroupsOrg {
-        return SdkClient.request<RunnerGroupsOrg>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}", config = clientConfig, operationId = "actionsGetSelfHostedRunnerGroupForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetSelfHostedRunnerGroupForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        options: RequestOptions? = null,
+    ): RunnerGroupsOrg {
+        return SdkClient.request<RunnerGroupsOrg>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}",
+                    config = clientConfig,
+                    operationId = "actionsGetSelfHostedRunnerGroupForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsUpdateSelfHostedRunnerGroupForOrgOperation {
     /**
-     * Updates the `name` and `visibility` of a self-hosted runner group in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Updates the `name` and `visibility` of a self-hosted runner group in an organization. OAuth
+     * app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
      * @param name Name of the runner group.
-     * @param visibility Visibility of a runner group. You can select all
-     *   repositories, select individual repositories, or all private repositories.
-     * @param allowsPublicRepositories Whether the runner group can be used by
-     *   `public` repositories.
-     * @param restrictedToWorkflows If `true`, the runner group will be restricted to
-     *   running only the workflows specified in the `selected_workflows` array.
-     * @param selectedWorkflows List of workflows the runner group should be allowed
-     *   to run. This setting will be ignored unless `restricted_to_workflows` is set
-     *   to `true`.
-     * @param networkConfigurationId The identifier of a hosted compute network
-     *   configuration.
+     * @param visibility Visibility of a runner group. You can select all repositories, select
+     *   individual repositories, or all private repositories.
+     * @param allowsPublicRepositories Whether the runner group can be used by `public`
+     *   repositories.
+     * @param restrictedToWorkflows If `true`, the runner group will be restricted to running only
+     *   the workflows specified in the `selected_workflows` array.
+     * @param selectedWorkflows List of workflows the runner group should be allowed to run. This
+     *   setting will be ignored unless `restricted_to_workflows` is set to `true`.
+     * @param networkConfigurationId The identifier of a hosted compute network configuration.
      */
-    fun actionsUpdateSelfHostedRunnerGroupForOrg(clientConfig: ClientConfig, request: Actions.ActionsUpdateSelfHostedRunnerGroupForOrgRequest, options: RequestOptions? = null): RunnerGroupsOrg {
-        return SdkClient.request<RunnerGroupsOrg>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/runner-groups/${SdkClient.encodePathSegment(request.runnerGroupId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "visibility" to (SdkClient.omitIfNull(request.visibility)), "allows_public_repositories" to
-    (SdkClient.omitIfNull(request.allowsPublicRepositories)), "restricted_to_workflows" to
-    (SdkClient.omitIfNull(request.restrictedToWorkflows)), "selected_workflows" to
-    (SdkClient.omitIfNull(request.selectedWorkflows)), "network_configuration_id" to
-    (request.networkConfigurationId ?: SdkClient.SdkOptional.Omitted)), operationId = "actionsUpdateSelfHostedRunnerGroupForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsUpdateSelfHostedRunnerGroupForOrg(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsUpdateSelfHostedRunnerGroupForOrgRequest,
+        options: RequestOptions? = null,
+    ): RunnerGroupsOrg {
+        return SdkClient.request<RunnerGroupsOrg>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/runner-groups/${SdkClient.encodePathSegment(request.runnerGroupId)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (request.name),
+                            "visibility" to (SdkClient.omitIfNull(request.visibility)),
+                            "allows_public_repositories" to
+                                (SdkClient.omitIfNull(request.allowsPublicRepositories)),
+                            "restricted_to_workflows" to
+                                (SdkClient.omitIfNull(request.restrictedToWorkflows)),
+                            "selected_workflows" to
+                                (SdkClient.omitIfNull(request.selectedWorkflows)),
+                            "network_configuration_id" to
+                                (request.networkConfigurationId ?: SdkClient.SdkOptional.Omitted),
+                        ),
+                    operationId = "actionsUpdateSelfHostedRunnerGroupForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsDeleteSelfHostedRunnerGroupFromOrgOperation {
     /**
-     * Deletes a self-hosted runner group for an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Deletes a self-hosted runner group for an organization. OAuth tokens and personal access
+     * tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
      */
-    fun actionsDeleteSelfHostedRunnerGroupFromOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}", config = clientConfig, operationId = "actionsDeleteSelfHostedRunnerGroupFromOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsDeleteSelfHostedRunnerGroupFromOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}",
+                config = clientConfig,
+                operationId = "actionsDeleteSelfHostedRunnerGroupFromOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListGithubHostedRunnersInGroupForOrgOperation {
     /**
-     * Lists the GitHub-hosted runners in an organization group. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists the GitHub-hosted runners in an organization group. OAuth app tokens and personal
+     * access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListGithubHostedRunnersInGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListGithubHostedRunnersInGroupForOrgResponse {
-        return SdkClient.request<Actions.ActionsListGithubHostedRunnersInGroupForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/hosted-runners", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListGithubHostedRunnersInGroupForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListGithubHostedRunnersInGroupForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListGithubHostedRunnersInGroupForOrgResponse {
+        return SdkClient.request<Actions.ActionsListGithubHostedRunnersInGroupForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/hosted-runners",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsListGithubHostedRunnersInGroupForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsListRepoAccessToSelfHostedRunnerGroupInOrgOperation {
     /**
-     * Lists the repositories with access to a self-hosted runner group configured in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists the repositories with access to a self-hosted runner group configured in an
+     * organization. OAuth app tokens and personal access tokens (classic) need the `admin:org`
+     * scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListRepoAccessToSelfHostedRunnerGroupInOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Actions.ActionsListRepoAccessToSelfHostedRunnerGroupInOrgResponse {
-        return SdkClient.request<Actions.ActionsListRepoAccessToSelfHostedRunnerGroupInOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/repositories", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "actionsListRepoAccessToSelfHostedRunnerGroupInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListRepoAccessToSelfHostedRunnerGroupInOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListRepoAccessToSelfHostedRunnerGroupInOrgResponse {
+        return SdkClient.request<Actions.ActionsListRepoAccessToSelfHostedRunnerGroupInOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/repositories",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "actionsListRepoAccessToSelfHostedRunnerGroupInOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetRepoAccessToSelfHostedRunnerGroupInOrgOperation {
     /**
-     * Replaces the list of repositories that have access to a self-hosted runner group configured in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Replaces the list of repositories that have access to a self-hosted runner group configured
+     * in an organization. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
-     * @param selectedRepositoryIds List of repository IDs that can access the runner
-     *   group.
+     * @param selectedRepositoryIds List of repository IDs that can access the runner group.
      */
-    fun actionsSetRepoAccessToSelfHostedRunnerGroupInOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/repositories", config = clientConfig, body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)), operationId = "actionsSetRepoAccessToSelfHostedRunnerGroupInOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsSetRepoAccessToSelfHostedRunnerGroupInOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/repositories",
+                config = clientConfig,
+                body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)),
+                operationId = "actionsSetRepoAccessToSelfHostedRunnerGroupInOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsAddRepoAccessToSelfHostedRunnerGroupInOrgOperation {
     /**
-     * Adds a repository to the list of repositories that can access a self-hosted runner group. The runner group must have `visibility` set to `selected`. For more information, see "Create a self-hosted runner group for an organization." OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Adds a repository to the list of repositories that can access a self-hosted runner group. The
+     * runner group must have `visibility` set to `selected`. For more information, see "Create a
+     * self-hosted runner group for an organization." OAuth tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
      * @param repositoryId The unique identifier of the repository.
      */
-    fun actionsAddRepoAccessToSelfHostedRunnerGroupInOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "actionsAddRepoAccessToSelfHostedRunnerGroupInOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsAddRepoAccessToSelfHostedRunnerGroupInOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "actionsAddRepoAccessToSelfHostedRunnerGroupInOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsRemoveRepoAccessToSelfHostedRunnerGroupInOrgOperation {
     /**
-     * Removes a repository from the list of selected repositories that can access a self-hosted runner group. The runner group must have `visibility` set to `selected`. For more information, see "Create a self-hosted runner group for an organization." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Removes a repository from the list of selected repositories that can access a self-hosted
+     * runner group. The runner group must have `visibility` set to `selected`. For more
+     * information, see "Create a self-hosted runner group for an organization." OAuth app tokens
+     * and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
      * @param repositoryId The unique identifier of the repository.
      */
-    fun actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListSelfHostedRunnersInGroupForOrgOperation {
     /**
-     * Lists self-hosted runners that are in a specific organization group. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists self-hosted runners that are in a specific organization group. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListSelfHostedRunnersInGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListSelfHostedRunnersInGroupForOrgResponse {
-        return SdkClient.request<Actions.ActionsListSelfHostedRunnersInGroupForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/runners", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListSelfHostedRunnersInGroupForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListSelfHostedRunnersInGroupForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListSelfHostedRunnersInGroupForOrgResponse {
+        return SdkClient.request<Actions.ActionsListSelfHostedRunnersInGroupForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/runners",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsListSelfHostedRunnersInGroupForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetSelfHostedRunnersInGroupForOrgOperation {
     /**
-     * Replaces the list of self-hosted runners that are part of an organization runner group. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Replaces the list of self-hosted runners that are part of an organization runner group. OAuth
+     * app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
      * @param runners List of runner IDs to add to the runner group.
      */
-    fun actionsSetSelfHostedRunnersInGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, runners: List<Long>, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/runners", config = clientConfig, body = SdkClient.bodyMap("runners" to (runners)), operationId = "actionsSetSelfHostedRunnersInGroupForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsSetSelfHostedRunnersInGroupForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        runners: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/runners",
+                config = clientConfig,
+                body = SdkClient.bodyMap("runners" to (runners)),
+                operationId = "actionsSetSelfHostedRunnersInGroupForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsAddSelfHostedRunnerToGroupForOrgOperation {
     /**
-     * Adds a self-hosted runner to a runner group configured in an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Adds a self-hosted runner to a runner group configured in an organization. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
      * @param runnerId Unique identifier of the self-hosted runner.
      */
-    fun actionsAddSelfHostedRunnerToGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, runnerId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/runners/${SdkClient.encodePathSegment(runnerId)}", config = clientConfig, operationId = "actionsAddSelfHostedRunnerToGroupForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsAddSelfHostedRunnerToGroupForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        runnerId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/runners/${SdkClient.encodePathSegment(runnerId)}",
+                config = clientConfig,
+                operationId = "actionsAddSelfHostedRunnerToGroupForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsRemoveSelfHostedRunnerFromGroupForOrgOperation {
     /**
-     * Removes a self-hosted runner from a group configured in an organization. The runner is then returned to the default group. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Removes a self-hosted runner from a group configured in an organization. The runner is then
+     * returned to the default group. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerGroupId Unique identifier of the self-hosted runner group.
      * @param runnerId Unique identifier of the self-hosted runner.
      */
-    fun actionsRemoveSelfHostedRunnerFromGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, runnerId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/runners/${SdkClient.encodePathSegment(runnerId)}", config = clientConfig, operationId = "actionsRemoveSelfHostedRunnerFromGroupForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsRemoveSelfHostedRunnerFromGroupForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerGroupId: Long,
+        runnerId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/runner-groups/${SdkClient.encodePathSegment(runnerGroupId)}/runners/${SdkClient.encodePathSegment(runnerId)}",
+                config = clientConfig,
+                operationId = "actionsRemoveSelfHostedRunnerFromGroupForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListSelfHostedRunnersForOrgOperation {
     /**
-     * Lists all self-hosted runners configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all self-hosted runners configured in an organization. Authenticated users must have
+     * admin access to the organization to use this endpoint. OAuth app tokens and personal access
+     * tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is
+     * private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of a self-hosted runner.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListSelfHostedRunnersForOrg(clientConfig: ClientConfig, org: String, name: String? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListSelfHostedRunnersForOrgResponse {
-        return SdkClient.request<Actions.ActionsListSelfHostedRunnersForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners", config = clientConfig, query = mapOf("name" to SdkClient.queryValue(name, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListSelfHostedRunnersForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListSelfHostedRunnersForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListSelfHostedRunnersForOrgResponse {
+        return SdkClient.request<Actions.ActionsListSelfHostedRunnersForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "name" to SdkClient.queryValue(name, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsListSelfHostedRunnersForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetRunnerVersionDeprecationForOrgOperation {
     /**
-     * Gets the end-of-life schedule for a specific runner version in an organization. Returns the runner version and the dates when registration and runtime support will end. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets the end-of-life schedule for a specific runner version in an organization. Returns the
+     * runner version and the dates when registration and runtime support will end. Authenticated
+     * users must have admin access to the organization to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param version The runner version to look up.
      */
-    fun actionsGetRunnerVersionDeprecationForOrg(clientConfig: ClientConfig, org: String, version: String, options: RequestOptions? = null): Actions.ActionsGetRunnerVersionDeprecationForOrgResponse {
-        return SdkClient.request<Actions.ActionsGetRunnerVersionDeprecationForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/deprecations/${SdkClient.encodePathSegment(version)}", config = clientConfig, operationId = "actionsGetRunnerVersionDeprecationForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetRunnerVersionDeprecationForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        version: String,
+        options: RequestOptions? = null,
+    ): Actions.ActionsGetRunnerVersionDeprecationForOrgResponse {
+        return SdkClient.request<Actions.ActionsGetRunnerVersionDeprecationForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/deprecations/${SdkClient.encodePathSegment(version)}",
+                    config = clientConfig,
+                    operationId = "actionsGetRunnerVersionDeprecationForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsListRunnerApplicationsForOrgOperation {
     /**
-     * Lists binaries for the runner application that you can download and run. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists binaries for the runner application that you can download and run. Authenticated users
+     * must have admin access to the organization to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
+     * repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsListRunnerApplicationsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<RunnerApplication> {
-        return SdkClient.request<List<RunnerApplication>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/downloads", config = clientConfig, operationId = "actionsListRunnerApplicationsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListRunnerApplicationsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): List<RunnerApplication> {
+        return SdkClient.request<List<RunnerApplication>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/downloads",
+                    config = clientConfig,
+                    operationId = "actionsListRunnerApplicationsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGenerateRunnerJitconfigForOrgOperation {
     /**
-     * Generates a configuration that can be passed to the runner application at startup. The authenticated user must have admin access to the organization. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Generates a configuration that can be passed to the runner application at startup. The
+     * authenticated user must have admin access to the organization. OAuth tokens and personal
+     * access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is
+     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the new runner.
      * @param runnerGroupId The ID of the runner group to register the runner to.
-     * @param labels The names of the custom labels to add to the runner. **Minimum
-     *   items**: 1. **Maximum items**: 100.
-     * @param workFolder The working directory to be used for job execution, relative
-     *   to the runner install directory.
+     * @param labels The names of the custom labels to add to the runner. **Minimum items**: 1.
+     *   **Maximum items**: 100.
+     * @param workFolder The working directory to be used for job execution, relative to the runner
+     *   install directory.
      */
-    fun actionsGenerateRunnerJitconfigForOrg(clientConfig: ClientConfig, org: String, name: String, runnerGroupId: Long, labels: List<String>, workFolder: String? = null, options: RequestOptions? = null): ActionsRunnerJitconfig {
+    fun actionsGenerateRunnerJitconfigForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        runnerGroupId: Long,
+        labels: List<String>,
+        workFolder: String? = null,
+        options: RequestOptions? = null,
+    ): ActionsRunnerJitconfig {
         Validation.validateItems("labels", labels, Validation.LengthOpts(min = 1, max = 100))
 
-        return SdkClient.request<ActionsRunnerJitconfig>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/generate-jitconfig", config = clientConfig, body = SdkClient.bodyMap("name" to (name), "runner_group_id" to (runnerGroupId), "labels" to (labels), "work_folder" to (SdkClient.omitIfNull(workFolder))), operationId = "actionsGenerateRunnerJitconfigForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
+        return SdkClient.request<ActionsRunnerJitconfig>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/generate-jitconfig",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (name),
+                            "runner_group_id" to (runnerGroupId),
+                            "labels" to (labels),
+                            "work_folder" to (SdkClient.omitIfNull(workFolder)),
+                        ),
+                    operationId = "actionsGenerateRunnerJitconfigForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationErrorSimple::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsCreateRegistrationTokenForOrgOperation {
     /**
-     * Returns a token that you can pass to the `config` script. The token expires after one hour. For example, you can replace `TOKEN` in the following example with the registration token provided by this endpoint to configure your self-hosted runner: ``` ./config.sh --url github.com --token TOKEN ``` Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint.…
+     * Returns a token that you can pass to the `config` script. The token expires after one hour.
+     * For example, you can replace `TOKEN` in the following example with the registration token
+     * provided by this endpoint to configure your self-hosted runner: ``` ./config.sh --url
+     * github.com --token TOKEN ``` Authenticated users must have admin access to the organization
+     * to use this endpoint. OAuth tokens and personal access tokens (classic) need the`admin:org`
+     * scope to use this endpoint.…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsCreateRegistrationTokenForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): AuthenticationToken {
-        return SdkClient.request<AuthenticationToken>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/registration-token", config = clientConfig, operationId = "actionsCreateRegistrationTokenForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsCreateRegistrationTokenForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): AuthenticationToken {
+        return SdkClient.request<AuthenticationToken>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/registration-token",
+                    config = clientConfig,
+                    operationId = "actionsCreateRegistrationTokenForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsCreateRemoveTokenForOrgOperation {
     /**
-     * Returns a token that you can pass to the `config` script to remove a self-hosted runner from an organization. The token expires after one hour. For example, you can replace `TOKEN` in the following example with the registration token provided by this endpoint to remove your self-hosted runner from an organization: ``` ./config.sh remove --token TOKEN ``` Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access…
+     * Returns a token that you can pass to the `config` script to remove a self-hosted runner from
+     * an organization. The token expires after one hour. For example, you can replace `TOKEN` in
+     * the following example with the registration token provided by this endpoint to remove your
+     * self-hosted runner from an organization: ``` ./config.sh remove --token TOKEN ```
+     * Authenticated users must have admin access to the organization to use this endpoint. OAuth
+     * tokens and personal access…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsCreateRemoveTokenForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): AuthenticationToken {
-        return SdkClient.request<AuthenticationToken>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/remove-token", config = clientConfig, operationId = "actionsCreateRemoveTokenForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsCreateRemoveTokenForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): AuthenticationToken {
+        return SdkClient.request<AuthenticationToken>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/remove-token",
+                    config = clientConfig,
+                    operationId = "actionsCreateRemoveTokenForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetSelfHostedRunnerForOrgOperation {
     /**
-     * Gets a specific self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Gets a specific self-hosted runner configured in an organization. Authenticated users must
+     * have admin access to the organization to use this endpoint. OAuth app tokens and personal
+     * access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is
+     * private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerId Unique identifier of the self-hosted runner.
      */
-    fun actionsGetSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, options: RequestOptions? = null): Runner {
-        return SdkClient.request<Runner>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}", config = clientConfig, operationId = "actionsGetSelfHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetSelfHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerId: Long,
+        options: RequestOptions? = null,
+    ): Runner {
+        return SdkClient.request<Runner>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}",
+                    config = clientConfig,
+                    operationId = "actionsGetSelfHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsDeleteSelfHostedRunnerFromOrgOperation {
     /**
-     * Forces the removal of a self-hosted runner from an organization. You can use this endpoint to completely remove the runner when the machine you were using no longer exists. Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Forces the removal of a self-hosted runner from an organization. You can use this endpoint to
+     * completely remove the runner when the machine you were using no longer exists. Authenticated
+     * users must have admin access to the organization to use this endpoint. OAuth tokens and
+     * personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param runnerId Unique identifier of the self-hosted runner.
      */
-    fun actionsDeleteSelfHostedRunnerFromOrg(clientConfig: ClientConfig, org: String, runnerId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}", config = clientConfig, operationId = "actionsDeleteSelfHostedRunnerFromOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("422" to ValidationErrorSimple::class.java)))
+    fun actionsDeleteSelfHostedRunnerFromOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        runnerId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}",
+                config = clientConfig,
+                operationId = "actionsDeleteSelfHostedRunnerFromOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("422" to ValidationErrorSimple::class.java),
+            )
+        )
     }
 }

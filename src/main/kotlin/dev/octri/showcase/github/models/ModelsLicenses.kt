@@ -3,166 +3,91 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * License
- */
+/** License */
 data class License(
-    /**
-     * Required `string` value serialized in the `key` wire field.
-     */
+    /** Required `string` value serialized in the `key` wire field. */
     val key: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `spdx_id` wire field.
-     */
+    /** Required `string` value serialized in the `spdx_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("spdx_id", required = true) val spdxId: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("url", required = true) val url: String?,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
+    /** Required `string` value serialized in the `description` wire field. */
     val description: String,
-    /**
-     * Required `string` value serialized in the `implementation` wire field.
-     */
+    /** Required `string` value serialized in the `implementation` wire field. */
     val implementation: String,
-    /**
-     * Required array value serialized in the `permissions` wire field.
-     */
+    /** Required array value serialized in the `permissions` wire field. */
     val permissions: List<String>,
-    /**
-     * Required array value serialized in the `conditions` wire field.
-     */
+    /** Required array value serialized in the `conditions` wire field. */
     val conditions: List<String>,
-    /**
-     * Required array value serialized in the `limitations` wire field.
-     */
+    /** Required array value serialized in the `limitations` wire field. */
     val limitations: List<String>,
-    /**
-     * Required `string` value serialized in the `body` wire field.
-     */
+    /** Required `string` value serialized in the `body` wire field. */
     val body: String,
-    /**
-     * Required `boolean` value serialized in the `featured` wire field.
-     */
-    val featured: Boolean
+    /** Required `boolean` value serialized in the `featured` wire field. */
+    val featured: Boolean,
 )
 
-/**
- * Required object value serialized in the `_links` wire field.
- */
+/** Required object value serialized in the `_links` wire field. */
 data class LicenseContentLinks(
-    /**
-     * Required `uri`-formatted value serialized in the `git` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `git` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("git", required = true) val git: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `html` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html", required = true) val html: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `self` wire field.
-     */
-    val self: String
+    /** Required `uri`-formatted value serialized in the `self` wire field. */
+    val self: String,
 )
 
-/**
- * License Content
- */
+/** License Content */
 data class LicenseContent(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `path` wire field.
-     */
+    /** Required `string` value serialized in the `path` wire field. */
     val path: String,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `integer` value serialized in the `size` wire field.
-     */
+    /** Required `integer` value serialized in the `size` wire field. */
     val size: Long,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `git_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
+    val htmlUrl: String?,
+    /** Required `uri`-formatted value serialized in the `git_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("git_url", required = true) val gitUrl: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `download_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true) val downloadUrl: String?,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `download_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("download_url", required = true)
+    val downloadUrl: String?,
+    /** Required `string` value serialized in the `type` wire field. */
     val type: String,
-    /**
-     * Required `string` value serialized in the `content` wire field.
-     */
+    /** Required `string` value serialized in the `content` wire field. */
     val content: String,
-    /**
-     * Required `string` value serialized in the `encoding` wire field.
-     */
+    /** Required `string` value serialized in the `encoding` wire field. */
     val encoding: String,
-    /**
-     * Required object value serialized in the `_links` wire field.
-     */
+    /** Required object value serialized in the `_links` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: LicenseContentLinks,
-    /**
-     * License Simple
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("license", required = true) val license: NullableLicenseSimple?
+    /** License Simple */
+    @com.fasterxml.jackson.annotation.JsonProperty("license", required = true)
+    val license: NullableLicenseSimple?,
 )
 
-/**
- * License Simple
- */
+/** License Simple */
 data class LicenseSimple(
-    /**
-     * Required `string` value serialized in the `key` wire field.
-     */
+    /** Required `string` value serialized in the `key` wire field. */
     val key: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("url", required = true) val url: String?,
-    /**
-     * Required `string` value serialized in the `spdx_id` wire field.
-     */
+    /** Required `string` value serialized in the `spdx_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("spdx_id", required = true) val spdxId: String?,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Optional `uri`-formatted value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
+    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
 )

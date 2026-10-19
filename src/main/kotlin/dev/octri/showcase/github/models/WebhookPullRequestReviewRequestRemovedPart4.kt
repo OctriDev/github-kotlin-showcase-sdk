@@ -5,101 +5,70 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Groups of organization members that gives permissions on specified repositories.
- */
+/** Groups of organization members that gives permissions on specified repositories. */
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequXf899adbc58(
-    /**
-     * Description of the team
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /** Description of the team */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Unique identifier of the team
-     */
+    /** Unique identifier of the team */
     val id: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /**
-     * Name of the team
-     */
+    /** Name of the team */
     val name: String,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Permission that the team will have for its repositories
-     */
+    /** Permission that the team will have for its repositories */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequXc7592c6630,
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /**
-     * URL for the team
-     */
+    /** URL for the team */
     val url: String,
     val deleted: Boolean? = null,
-    val parent: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX497214deaf? = null
+    val parent: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX497214deaf? = null,
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX02ea3666cd(
-    /**
-     * Description of the team
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /** Description of the team */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Unique identifier of the team
-     */
+    /** Unique identifier of the team */
     val id: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /**
-     * Name of the team
-     */
+    /** Name of the team */
     val name: String,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Permission that the team will have for its repositories
-     */
+    /** Permission that the team will have for its repositories */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX388c522d4a,
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /**
-     * URL for the team
-     */
-    val url: String
+    /** URL for the team */
+    val url: String,
 )
 
-/**
- * Groups of organization members that gives permissions on specified repositories.
- */
+/** Groups of organization members that gives permissions on specified repositories. */
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequXdcc9c9326f(
-    /**
-     * Description of the team
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /** Description of the team */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Unique identifier of the team
-     */
+    /** Unique identifier of the team */
     val id: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /**
-     * Name of the team
-     */
+    /** Name of the team */
     val name: String,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Permission that the team will have for its repositories
-     */
+    /** Permission that the team will have for its repositories */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX733b0f1158,
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /**
-     * URL for the team
-     */
+    /** URL for the team */
     val url: String,
     val deleted: Boolean? = null,
-    val parent: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX02ea3666cd? = null
+    val parent: WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequX02ea3666cd? = null,
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestUser(
@@ -109,22 +78,28 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestUser(
     val deleted: Boolean? = null,
     val email: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
+    val followersUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
+    val followingUrl: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
     val name: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
+    val organizationsUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
+    val receivedEventsUrl: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
+    val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestRemovedVariant1PullRequestUserTypeEnum? = null,
     val url: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
+    val userViewType: String? = null,
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestMergedBy(
@@ -134,47 +109,53 @@ data class WebhookPullRequestReviewRequestRemovedVariant1PullRequestMergedBy(
     val deleted: Boolean? = null,
     val email: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
+    val followersUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
+    val followingUrl: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
     val name: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
+    val organizationsUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
+    val receivedEventsUrl: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
+    val subscriptionsUrl: String? = null,
     val type: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMergXd7e6df2b46? = null,
     val url: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
+    val userViewType: String? = null,
 )
 
 class WebhookPullRequestReviewRequestRemovedVariant1PullRequest(
-    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: WebhookPullRequestReviewRequestRemovedVariant1PullRequestLinks,
-    @com.fasterxml.jackson.annotation.JsonProperty("active_lock_reason", required = true) val activeLockReason: WebhookPullRequestReviewRequestRemovedVariant1PullRequestActiX920e2486d4?,
-    @com.fasterxml.jackson.annotation.JsonProperty("assignee", required = true) val assignee: WebhookPullRequestReviewRequestRemovedVariant1PullRequestAssignee?,
+    @com.fasterxml.jackson.annotation.JsonProperty("_links")
+    val links: WebhookPullRequestReviewRequestRemovedVariant1PullRequestLinks,
+    @com.fasterxml.jackson.annotation.JsonProperty("active_lock_reason", required = true)
+    val activeLockReason: WebhookPullRequestReviewRequestRemovedVariant1PullRequestActiX920e2486d4?,
+    @com.fasterxml.jackson.annotation.JsonProperty("assignee", required = true)
+    val assignee: WebhookPullRequestReviewRequestRemovedVariant1PullRequestAssignee?,
     val assignees: List<WebhookPullRequestReviewRequestRemovedVariant1PullRequestAssigneesItem?>,
-    /**
-     * How the author is associated with the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: WebhookPullRequestReviewRequestRemovedVariant1PullRequestAuthXe2e28b4ad6,
-    /**
-     * The status of auto merging a pull request.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_merge", required = true) val autoMerge: WebhookPullRequestReviewRequestRemovedVariant1PullRequestAutoMerge?,
+    /** How the author is associated with the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
+    val authorAssociation: WebhookPullRequestReviewRequestRemovedVariant1PullRequestAuthXe2e28b4ad6,
+    /** The status of auto merging a pull request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_merge", required = true)
+    val autoMerge: WebhookPullRequestReviewRequestRemovedVariant1PullRequestAutoMerge?,
     val base: WebhookPullRequestReviewRequestRemovedVariant1PullRequestBase,
     @com.fasterxml.jackson.annotation.JsonProperty("body", required = true) val body: String?,
-    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true) val closedAt: OffsetDateTime?,
+    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true)
+    val closedAt: OffsetDateTime?,
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
     @com.fasterxml.jackson.annotation.JsonProperty("diff_url") val diffUrl: String,
-    /**
-     * Indicates whether or not the pull request is a draft.
-     */
+    /** Indicates whether or not the pull request is a draft. */
     val draft: Boolean,
     val head: WebhookPullRequestReviewRequestRemovedVariant1PullRequestHead,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
@@ -182,158 +163,151 @@ class WebhookPullRequestReviewRequestRemovedVariant1PullRequest(
     @com.fasterxml.jackson.annotation.JsonProperty("issue_url") val issueUrl: String,
     val labels: List<WebhookPullRequestReviewRequestRemovedVariant1PullRequestLabelsItem>,
     val locked: Boolean,
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_sha", required = true) val mergeCommitSha: String?,
-    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true) val mergedAt: OffsetDateTime?,
-    /**
-     * A collection of related issues and pull requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("milestone", required = true) val milestone: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMilestone?,
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_sha", required = true)
+    val mergeCommitSha: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true)
+    val mergedAt: OffsetDateTime?,
+    /** A collection of related issues and pull requests. */
+    @com.fasterxml.jackson.annotation.JsonProperty("milestone", required = true)
+    val milestone: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMilestone?,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Number uniquely identifying the pull request within its repository.
-     */
+    /** Number uniquely identifying the pull request within its repository. */
     val number: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("patch_url") val patchUrl: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_reviewers") val requestedReviewers: List<Any?>,
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_teams") val requestedTeams: List<WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequXdcc9c9326f>,
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comment_url") val reviewCommentUrl: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comments_url") val reviewCommentsUrl: String,
-    /**
-     * State of this Pull Request. Either `open` or `closed`.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_reviewers")
+    val requestedReviewers: List<Any?>,
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_teams")
+    val requestedTeams:
+        List<WebhookPullRequestReviewRequestRemovedVariant1PullRequestRequXdcc9c9326f>,
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comment_url")
+    val reviewCommentUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comments_url")
+    val reviewCommentsUrl: String,
+    /** State of this Pull Request. Either `open` or `closed`. */
     val state: WebhookPullRequestReviewRequestRemovedVariant1PullRequestStateEnum,
     @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String,
-    /**
-     * The title of the pull request.
-     */
+    /** The title of the pull request. */
     val title: String,
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
     val url: String,
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: WebhookPullRequestReviewRequestRemovedVariant1PullRequestUser?,
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: WebhookPullRequestReviewRequestRemovedVariant1PullRequestUser?,
     val additions: Long? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("changed_files") val changedFiles: Long? = null,
     val comments: Long? = null,
     val commits: Long? = null,
     val deletions: Long? = null,
-    /**
-     * Indicates whether maintainers can modify the pull request.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("maintainer_can_modify") val maintainerCanModify: Boolean? = null,
+    /** Indicates whether maintainers can modify the pull request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("maintainer_can_modify")
+    val maintainerCanModify: Boolean? = null,
     val mergeable: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("mergeable_state") val mergeableState: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("mergeable_state")
+    val mergeableState: String? = null,
     val merged: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("merged_by") val mergedBy: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMergedBy? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("merged_by")
+    val mergedBy: WebhookPullRequestReviewRequestRemovedVariant1PullRequestMergedBy? = null,
     val rebaseable: Boolean? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comments") val reviewComments: Long? = null,
-    /**
-     * The stack information associated with a pull request.
-     */
-    val stack: PullRequestStack? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comments")
+    val reviewComments: Long? = null,
+    /** The stack information associated with a pull request. */
+    val stack: PullRequestStack? = null,
 )
 
 data class WebhookPullRequestReviewRequestRemovedVariant1RequestedTeamParent(
-    /**
-     * Description of the team
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /** Description of the team */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Unique identifier of the team
-     */
+    /** Unique identifier of the team */
     val id: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /**
-     * Name of the team
-     */
+    /** Name of the team */
     val name: String,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Permission that the team will have for its repositories
-     */
+    /** Permission that the team will have for its repositories */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestRemovedVariant1RequestedTeamPaX54c3a5100c,
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /**
-     * URL for the team
-     */
-    val url: String
+    /** URL for the team */
+    val url: String,
 )
 
-/**
- * Groups of organization members that gives permissions on specified repositories.
- */
+/** Groups of organization members that gives permissions on specified repositories. */
 data class WebhookPullRequestReviewRequestRemovedVariant1RequestedTeam(
-    /**
-     * Description of the team
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /** Description of the team */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Unique identifier of the team
-     */
+    /** Unique identifier of the team */
     val id: Long,
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /**
-     * Name of the team
-     */
+    /** Name of the team */
     val name: String,
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Permission that the team will have for its repositories
-     */
+    /** Permission that the team will have for its repositories */
     val permission: String,
     val privacy: WebhookPullRequestReviewRequestRemovedVariant1RequestedTeamPrivacyEnum,
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
     val slug: String,
-    /**
-     * URL for the team
-     */
+    /** URL for the team */
     val url: String,
     val deleted: Boolean? = null,
-    val parent: WebhookPullRequestReviewRequestRemovedVariant1RequestedTeamParent? = null
+    val parent: WebhookPullRequestReviewRequestRemovedVariant1RequestedTeamParent? = null,
 )
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class WebhookPullRequestReviewRequestRemovedVariant1(
     val action: WebhookPullRequestReviewRequestRemovedVariant1ActionEnum,
-    /**
-     * The pull request number.
-     */
+    /** The pull request number. */
     val number: Long,
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request") val pullRequest: WebhookPullRequestReviewRequestRemovedVariant1PullRequest,
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request")
+    val pullRequest: WebhookPullRequestReviewRequestRemovedVariant1PullRequest,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /**
-     * Groups of organization members that gives permissions on specified repositories.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_team") val requestedTeam: WebhookPullRequestReviewRequestRemovedVariant1RequestedTeam,
-    /**
-     * A GitHub user.
-     */
+    /** Groups of organization members that gives permissions on specified repositories. */
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_team")
+    val requestedTeam: WebhookPullRequestReviewRequestRemovedVariant1RequestedTeam,
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
+     * is configured on an enterprise account or an organization that's part of an enterprise
+     * account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null
+    val organization: OrganizationSimpleWebhooks? = null,
 ) : WebhookPullRequestReviewRequestRemoved
 
-/**
- * Typed representation of the `WebhookPullRequestReviewRequestRemoved` API schema.
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+/** Typed representation of the `WebhookPullRequestReviewRequestRemoved` API schema. */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = WebhookPullRequestReviewRequestRemovedVariant0::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = WebhookPullRequestReviewRequestRemovedVariant1::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = WebhookPullRequestReviewRequestRemovedVariant0::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = WebhookPullRequestReviewRequestRemovedVariant1::class
+    ),
 )
 sealed interface WebhookPullRequestReviewRequestRemoved
