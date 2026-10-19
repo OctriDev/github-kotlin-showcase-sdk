@@ -91244,8 +91244,8 @@
           },
           {
             "wireName": "default_value",
-            "repeated": false,
-            "partKind": "json",
+            "repeated": true,
+            "partKind": "scalar",
             "contentType": null
           },
           {
@@ -91276,7 +91276,9 @@
         "example": {
           "value_type": "single_select",
           "required": true,
-          "default_value": "production",
+          "default_value": [
+            "default_value"
+          ],
           "description": "Prod or dev environment",
           "allowed_values": [
             "production",

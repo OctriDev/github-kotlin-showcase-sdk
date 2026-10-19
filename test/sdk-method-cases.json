@@ -61340,7 +61340,9 @@
         "customPropertyName": "Example Name",
         "valueType": "single_select",
         "required": true,
-        "defaultValue": "production",
+        "defaultValue": [
+          "default_value"
+        ],
         "description": "Prod or dev environment",
         "allowedValues": [
           "production",
@@ -61403,7 +61405,9 @@
         "customPropertyName": "Example Name",
         "valueType": "single_select",
         "required": true,
-        "defaultValue": "production",
+        "defaultValue": [
+          "default_value"
+        ],
         "description": "Prod or dev environment",
         "allowedValues": [
           "production",
