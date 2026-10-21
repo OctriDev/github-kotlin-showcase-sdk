@@ -5,479 +5,634 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** API Insights usage summary stats for an organization */
+/**
+ * API Insights usage summary stats for an organization
+ */
 data class ApiInsightsSummaryStats(
-    /** The total number of requests within the queried time period */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
-    val totalRequestCount: Long? = null,
-    /** The total number of requests that were rate limited within the queried time period */
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
-    val rateLimitedRequestCount: Long? = null,
+    /**
+     * The total number of requests within the queried time period
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
+    /**
+     * The total number of requests that were rate limited within the queried time period
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null
 )
 
 data class ApiInsightsTimeStatsItem(
     val timestamp: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
-    val totalRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
-    val rateLimitedRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null
 )
 
 typealias ApiInsightsTimeStats = List<ApiInsightsTimeStatsItem>
 
-/** Artifact Metadata Deployment Record */
+/**
+ * Artifact Metadata Deployment Record
+ */
 data class ArtifactDeploymentRecord(
-    /** Optional `integer` value serialized in the `id` wire field. */
+    /**
+     * Optional `integer` value serialized in the `id` wire field.
+     */
     val id: Long? = null,
-    /** Optional `string` value serialized in the `digest` wire field. */
+    /**
+     * Optional `string` value serialized in the `digest` wire field.
+     */
     val digest: String? = null,
-    /** Optional `string` value serialized in the `logical_environment` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("logical_environment")
-    val logicalEnvironment: String? = null,
-    /** Optional `string` value serialized in the `physical_environment` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("physical_environment")
-    val physicalEnvironment: String? = null,
-    /** Optional `string` value serialized in the `cluster` wire field. */
+    /**
+     * Optional `string` value serialized in the `logical_environment` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("logical_environment") val logicalEnvironment: String? = null,
+    /**
+     * Optional `string` value serialized in the `physical_environment` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("physical_environment") val physicalEnvironment: String? = null,
+    /**
+     * Optional `string` value serialized in the `cluster` wire field.
+     */
     val cluster: String? = null,
-    /** Optional `string` value serialized in the `deployment_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("deployment_name")
-    val deploymentName: String? = null,
-    /** Optional object value serialized in the `tags` wire field. */
+    /**
+     * Optional `string` value serialized in the `deployment_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("deployment_name") val deploymentName: String? = null,
+    /**
+     * Optional object value serialized in the `tags` wire field.
+     */
     val tags: Map<String, String>? = null,
-    /** A list of runtime risks associated with the deployment. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runtime_risks")
-    val runtimeRisks: List<ArtifactDeploymentRecordRuntimeRisksItemEnum>? = null,
-    /** Optional `string` value serialized in the `created_at` wire field. */
+    /**
+     * A list of runtime risks associated with the deployment.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runtime_risks") val runtimeRisks: List<ArtifactDeploymentRecordRuntimeRisksItemEnum>? = null,
+    /**
+     * Optional `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String? = null,
-    /** Optional `string` value serialized in the `updated_at` wire field. */
+    /**
+     * Optional `string` value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String? = null,
-    /** The ID of the provenance attestation associated with the deployment record. */
-    @com.fasterxml.jackson.annotation.JsonProperty("attestation_id")
-    val attestationId: Long? = null,
+    /**
+     * The ID of the provenance attestation associated with the deployment record.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("attestation_id") val attestationId: Long? = null
 )
 
-/** Custom property defined on an organization */
+/**
+ * Custom property defined on an organization
+ */
 data class CustomProperty(
-    /** The name of the property */
+    /**
+     * The name of the property
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String,
-    /** The type of the value for the property */
-    @com.fasterxml.jackson.annotation.JsonProperty("value_type")
-    val valueType: CustomPropertyValueTypeEnum,
+    /**
+     * The type of the value for the property
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("value_type") val valueType: CustomPropertyValueTypeEnum,
     /**
      * The URL that can be used to fetch, update, or delete info about this property via the API.
      */
     val url: String? = null,
-    /** The source type of the property */
-    @com.fasterxml.jackson.annotation.JsonProperty("source_type")
-    val sourceType: CustomPropertySourceTypeEnum? = null,
-    /** Whether the property is required. */
-    val required: Boolean? = null,
-    /** Default value of the property */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_value") val defaultValue: Any? = null,
-    /** Short description of the property */
-    val description: String? = null,
     /**
-     * An ordered list of the allowed values of the property. The property can have up to 200
-     * allowed values.
+     * The source type of the property
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_values")
-    val allowedValues: List<String>? = null,
-    /** Who can edit the values of the property */
-    @com.fasterxml.jackson.annotation.JsonProperty("values_editable_by")
-    val valuesEditableBy: CustomPropertyValuesEditableByEnum? = null,
-    /** Whether setting properties values is mandatory */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_explicit_values")
-    val requireExplicitValues: Boolean? = null,
-)
-
-/** Required object value serialized in the `options[]` wire field. */
-data class IssueFieldOptionsItem(
-    /** The unique identifier of the option. */
-    val id: Long,
-    /** The name of the option. */
-    val name: String,
-    /** The description of the option. */
-    val description: String? = null,
-    /** The color of the option. */
-    val color: IssueFieldOptionsItemColorEnum? = null,
-    /** The priority of the option for ordering. */
-    val priority: Long? = null,
-    /** The time the option was created. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: OffsetDateTime? = null,
-    /** The time the option was last updated. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
-    val updatedAt: OffsetDateTime? = null,
-)
-
-/** A custom attribute defined at the organization level for attaching structured data to issues. */
-data class IssueField(
-    /** The unique identifier of the issue field. */
-    val id: Long,
-    /** The node identifier of the issue field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** The name of the issue field. */
-    val name: String,
-    /** The data type of the issue field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("data_type")
-    val dataType: IssueFieldDataTypeEnum,
-    /** The description of the issue field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("source_type") val sourceType: CustomPropertySourceTypeEnum? = null,
+    /**
+     * Whether the property is required.
+     */
+    val required: Boolean? = null,
+    /**
+     * Default value of the property
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_value") val defaultValue: Any? = null,
+    /**
+     * Short description of the property
+     */
     val description: String? = null,
     /**
-     * The visibility of the issue field. Can be `organization_members_only` (visible only within
-     * the organization) or `all` (visible to all users who can see issues).
+     * An ordered list of the allowed values of the property. The property can have up to 200 allowed values.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_values") val allowedValues: List<String>? = null,
+    /**
+     * Who can edit the values of the property
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("values_editable_by") val valuesEditableBy: CustomPropertyValuesEditableByEnum? = null,
+    /**
+     * Whether setting properties values is mandatory
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("require_explicit_values") val requireExplicitValues: Boolean? = null
+)
+
+/**
+ * Required object value serialized in the `options[]` wire field.
+ */
+data class IssueFieldOptionsItem(
+    /**
+     * The unique identifier of the option.
+     */
+    val id: Long,
+    /**
+     * The name of the option.
+     */
+    val name: String,
+    /**
+     * The description of the option.
+     */
+    val description: String? = null,
+    /**
+     * The color of the option.
+     */
+    val color: IssueFieldOptionsItemColorEnum? = null,
+    /**
+     * The priority of the option for ordering.
+     */
+    val priority: Long? = null,
+    /**
+     * The time the option was created.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
+    /**
+     * The time the option was last updated.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null
+)
+
+/**
+ * A custom attribute defined at the organization level for attaching structured data to issues.
+ */
+data class IssueField(
+    /**
+     * The unique identifier of the issue field.
+     */
+    val id: Long,
+    /**
+     * The node identifier of the issue field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+    /**
+     * The name of the issue field.
+     */
+    val name: String,
+    /**
+     * The data type of the issue field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data_type") val dataType: IssueFieldDataTypeEnum,
+    /**
+     * The description of the issue field.
+     */
+    val description: String? = null,
+    /**
+     * The visibility of the issue field. Can be `organization_members_only` (visible only within the organization) or `all` (visible to all users who can see issues).
      */
     val visibility: IssueFieldVisibilityEnum? = null,
-    /** Available options for single select and multi select fields. */
+    /**
+     * Available options for single select and multi select fields.
+     */
     val options: List<IssueFieldOptionsItem>? = null,
-    /** The time the issue field was created. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: OffsetDateTime? = null,
-    /** The time the issue field was last updated. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
-    val updatedAt: OffsetDateTime? = null,
+    /**
+     * The time the issue field was created.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
+    /**
+     * The time the issue field was last updated.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null
 )
 
-/** The GitHub App installation that was registered. */
+/**
+ * The GitHub App installation that was registered.
+ */
 data class OrganizationExternalPropertyInstallationInstallation(
-    /** The unique identifier of the GitHub App installation. */
+    /**
+     * The unique identifier of the GitHub App installation.
+     */
     val id: Long
 )
 
 /**
- * A GitHub App installation that has been registered to read and write an organization's external
- * custom properties, together with the display name assigned to it.
+ * A GitHub App installation that has been registered to read and write an organization's external custom properties, together with the display name assigned to it.
  */
 data class OrganizationExternalPropertyInstallation(
     /**
-     * The display name assigned to the app installation's external custom properties in the
-     * organization.
+     * The display name assigned to the app installation's external custom properties in the organization.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("display_name") val displayName: String,
-    /** The GitHub App installation that was registered. */
-    val installation: OrganizationExternalPropertyInstallationInstallation,
+    /**
+     * The GitHub App installation that was registered.
+     */
+    val installation: OrganizationExternalPropertyInstallationInstallation
 )
 
-/** Optional object value serialized in the `plan` wire field. */
+/**
+ * Optional object value serialized in the `plan` wire field.
+ */
 data class OrganizationFullPlan(
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `integer` value serialized in the `space` wire field. */
+    /**
+     * Required `integer` value serialized in the `space` wire field.
+     */
     val space: Long,
-    /** Required `integer` value serialized in the `private_repos` wire field. */
+    /**
+     * Required `integer` value serialized in the `private_repos` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("private_repos") val privateRepos: Long,
-    /** Optional `integer` value serialized in the `filled_seats` wire field. */
+    /**
+     * Optional `integer` value serialized in the `filled_seats` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("filled_seats") val filledSeats: Long? = null,
-    /** Optional `integer` value serialized in the `seats` wire field. */
-    val seats: Long? = null,
+    /**
+     * Optional `integer` value serialized in the `seats` wire field.
+     */
+    val seats: Long? = null
 )
 
-/** Organization Full */
+/**
+ * Organization Full
+ */
 class OrganizationFull(
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String,
-    /** Required `uri`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String,
-    /** Required `string` value serialized in the `hooks_url` wire field. */
+    /**
+     * Required `string` value serialized in the `hooks_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String,
-    /** Required `string` value serialized in the `issues_url` wire field. */
+    /**
+     * Required `string` value serialized in the `issues_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issues_url") val issuesUrl: String,
-    /** Required `string` value serialized in the `members_url` wire field. */
+    /**
+     * Required `string` value serialized in the `members_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /** Required `string` value serialized in the `public_members_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("public_members_url")
-    val publicMembersUrl: String,
-    /** Required `string` value serialized in the `avatar_url` wire field. */
+    /**
+     * Required `string` value serialized in the `public_members_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("public_members_url") val publicMembersUrl: String,
+    /**
+     * Required `string` value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String,
-    /** Required `string` value serialized in the `description` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `boolean` value serialized in the `has_organization_projects` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_organization_projects")
-    val hasOrganizationProjects: Boolean,
-    /** Required `boolean` value serialized in the `has_repository_projects` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_repository_projects")
-    val hasRepositoryProjects: Boolean,
-    /** Required `integer` value serialized in the `public_repos` wire field. */
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `boolean` value serialized in the `has_organization_projects` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_organization_projects") val hasOrganizationProjects: Boolean,
+    /**
+     * Required `boolean` value serialized in the `has_repository_projects` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_repository_projects") val hasRepositoryProjects: Boolean,
+    /**
+     * Required `integer` value serialized in the `public_repos` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("public_repos") val publicRepos: Long,
-    /** Required `integer` value serialized in the `public_gists` wire field. */
+    /**
+     * Required `integer` value serialized in the `public_gists` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("public_gists") val publicGists: Long,
-    /** Required `integer` value serialized in the `followers` wire field. */
+    /**
+     * Required `integer` value serialized in the `followers` wire field.
+     */
     val followers: Long,
-    /** Required `integer` value serialized in the `following` wire field. */
+    /**
+     * Required `integer` value serialized in the `following` wire field.
+     */
     val following: Long,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `archived_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
-    val archivedAt: OffsetDateTime?,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `archived_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: OffsetDateTime?,
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `company` wire field. */
+    /**
+     * Optional `string` value serialized in the `company` wire field.
+     */
     val company: String? = null,
-    /** Optional `uri`-formatted value serialized in the `blog` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `blog` wire field.
+     */
     val blog: String? = null,
-    /** Optional `string` value serialized in the `location` wire field. */
+    /**
+     * Optional `string` value serialized in the `location` wire field.
+     */
     val location: String? = null,
-    /** Optional `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Optional `email`-formatted value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `string` value serialized in the `twitter_username` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("twitter_username")
-    val twitterUsername: String? = null,
-    /** Optional `boolean` value serialized in the `is_verified` wire field. */
+    /**
+     * Optional `string` value serialized in the `twitter_username` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("twitter_username") val twitterUsername: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `is_verified` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("is_verified") val isVerified: Boolean? = null,
-    /** Optional `integer` value serialized in the `total_private_repos` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_private_repos")
-    val totalPrivateRepos: Long? = null,
-    /** Optional `integer` value serialized in the `owned_private_repos` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("owned_private_repos")
-    val ownedPrivateRepos: Long? = null,
-    /** Optional `integer` value serialized in the `private_gists` wire field. */
+    /**
+     * Optional `integer` value serialized in the `total_private_repos` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_private_repos") val totalPrivateRepos: Long? = null,
+    /**
+     * Optional `integer` value serialized in the `owned_private_repos` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("owned_private_repos") val ownedPrivateRepos: Long? = null,
+    /**
+     * Optional `integer` value serialized in the `private_gists` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("private_gists") val privateGists: Long? = null,
-    /** Optional `integer` value serialized in the `disk_usage` wire field. */
+    /**
+     * Optional `integer` value serialized in the `disk_usage` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("disk_usage") val diskUsage: Long? = null,
     /**
-     * The number of collaborators on private repositories. This field may be null if the number of
-     * private repositories is over 50,000.
+     * The number of collaborators on private repositories. This field may be null if the number of private repositories is over 50,000.
      */
     val collaborators: Long? = null,
-    /** Optional `email`-formatted value serialized in the `billing_email` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("billing_email")
-    val billingEmail: String? = null,
-    /** Optional object value serialized in the `plan` wire field. */
+    /**
+     * Optional `email`-formatted value serialized in the `billing_email` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("billing_email") val billingEmail: String? = null,
+    /**
+     * Optional object value serialized in the `plan` wire field.
+     */
     val plan: OrganizationFullPlan? = null,
-    /** Optional `string` value serialized in the `default_repository_permission` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_repository_permission")
-    val defaultRepositoryPermission: String? = null,
-    /** The default branch for repositories created in this organization. */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_repository_branch")
-    val defaultRepositoryBranch: String? = null,
-    /** Optional `boolean` value serialized in the `members_can_create_repositories` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_repositories")
-    val membersCanCreateRepositories: Boolean? = null,
-    /** Optional `boolean` value serialized in the `two_factor_requirement_enabled` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("two_factor_requirement_enabled")
-    val twoFactorRequirementEnabled: Boolean? = null,
     /**
-     * Optional `string` value serialized in the `members_allowed_repository_creation_type` wire
-     * field.
+     * Optional `string` value serialized in the `default_repository_permission` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_allowed_repository_creation_type")
-    val membersAllowedRepositoryCreationType: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("default_repository_permission") val defaultRepositoryPermission: String? = null,
     /**
-     * Optional `boolean` value serialized in the `members_can_create_public_repositories` wire
-     * field.
+     * The default branch for repositories created in this organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_public_repositories")
-    val membersCanCreatePublicRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("default_repository_branch") val defaultRepositoryBranch: String? = null,
     /**
-     * Optional `boolean` value serialized in the `members_can_create_private_repositories` wire
-     * field.
+     * Optional `boolean` value serialized in the `members_can_create_repositories` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_private_repositories")
-    val membersCanCreatePrivateRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_repositories") val membersCanCreateRepositories: Boolean? = null,
     /**
-     * Optional `boolean` value serialized in the `members_can_create_internal_repositories` wire
-     * field.
+     * Optional `boolean` value serialized in the `two_factor_requirement_enabled` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_internal_repositories")
-    val membersCanCreateInternalRepositories: Boolean? = null,
-    /** Optional `boolean` value serialized in the `members_can_create_pages` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_pages")
-    val membersCanCreatePages: Boolean? = null,
-    /** Optional `boolean` value serialized in the `members_can_create_public_pages` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_public_pages")
-    val membersCanCreatePublicPages: Boolean? = null,
-    /** Optional `boolean` value serialized in the `members_can_create_private_pages` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_private_pages")
-    val membersCanCreatePrivatePages: Boolean? = null,
-    /** Optional `boolean` value serialized in the `members_can_delete_repositories` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_delete_repositories")
-    val membersCanDeleteRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("two_factor_requirement_enabled") val twoFactorRequirementEnabled: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `members_allowed_repository_creation_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_allowed_repository_creation_type") val membersAllowedRepositoryCreationType: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `members_can_create_public_repositories` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_public_repositories") val membersCanCreatePublicRepositories: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `members_can_create_private_repositories` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_private_repositories") val membersCanCreatePrivateRepositories: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `members_can_create_internal_repositories` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_internal_repositories") val membersCanCreateInternalRepositories: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `members_can_create_pages` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_pages") val membersCanCreatePages: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `members_can_create_public_pages` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_public_pages") val membersCanCreatePublicPages: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `members_can_create_private_pages` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_private_pages") val membersCanCreatePrivatePages: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `members_can_delete_repositories` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_delete_repositories") val membersCanDeleteRepositories: Boolean? = null,
     /**
      * Optional `boolean` value serialized in the `members_can_change_repo_visibility` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_change_repo_visibility")
-    val membersCanChangeRepoVisibility: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_change_repo_visibility") val membersCanChangeRepoVisibility: Boolean? = null,
     /**
-     * Optional `boolean` value serialized in the `members_can_invite_outside_collaborators` wire
-     * field.
+     * Optional `boolean` value serialized in the `members_can_invite_outside_collaborators` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_invite_outside_collaborators")
-    val membersCanInviteOutsideCollaborators: Boolean? = null,
-    /** Optional `boolean` value serialized in the `members_can_delete_issues` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_delete_issues")
-    val membersCanDeleteIssues: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_invite_outside_collaborators") val membersCanInviteOutsideCollaborators: Boolean? = null,
     /**
-     * Optional `boolean` value serialized in the `display_commenter_full_name_setting_enabled` wire
-     * field.
+     * Optional `boolean` value serialized in the `members_can_delete_issues` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_commenter_full_name_setting_enabled")
-    val displayCommenterFullNameSettingEnabled: Boolean? = null,
-    /** Optional `boolean` value serialized in the `readers_can_create_discussions` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("readers_can_create_discussions")
-    val readersCanCreateDiscussions: Boolean? = null,
-    /** Optional `boolean` value serialized in the `members_can_create_teams` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_teams")
-    val membersCanCreateTeams: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_delete_issues") val membersCanDeleteIssues: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `display_commenter_full_name_setting_enabled` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_commenter_full_name_setting_enabled") val displayCommenterFullNameSettingEnabled: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `readers_can_create_discussions` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("readers_can_create_discussions") val readersCanCreateDiscussions: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `members_can_create_teams` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_create_teams") val membersCanCreateTeams: Boolean? = null,
     /**
      * Optional `boolean` value serialized in the `members_can_view_dependency_insights` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_view_dependency_insights")
-    val membersCanViewDependencyInsights: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_view_dependency_insights") val membersCanViewDependencyInsights: Boolean? = null,
     /**
-     * Optional `boolean` value serialized in the `members_can_fork_private_repositories` wire
-     * field.
+     * Optional `boolean` value serialized in the `members_can_fork_private_repositories` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("members_can_fork_private_repositories")
-    val membersCanForkPrivateRepositories: Boolean? = null,
-    /** Optional `boolean` value serialized in the `web_commit_signoff_required` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("web_commit_signoff_required")
-    val webCommitSignoffRequired: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("members_can_fork_private_repositories") val membersCanForkPrivateRepositories: Boolean? = null,
     /**
-     * **Endpoint closing down notice.** Please use code security configurations instead. Whether
-     * GitHub Advanced Security is enabled for new repositories and repositories transferred to this
-     * organization. This field is only visible to organization owners or members of a team with the
-     * security manager role.
+     * Optional `boolean` value serialized in the `web_commit_signoff_required` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("advanced_security_enabled_for_new_repositories")
-    val advancedSecurityEnabledForNewRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("web_commit_signoff_required") val webCommitSignoffRequired: Boolean? = null,
     /**
-     * **Endpoint closing down notice.** Please use code security configurations instead. Whether
-     * Dependabot alerts are automatically enabled for new repositories and repositories transferred
-     * to this organization. This field is only visible to organization owners or members of a team
-     * with the security manager role.
+     * **Endpoint closing down notice.** Please use code security configurations instead. Whether GitHub Advanced Security is enabled for new repositories and repositories transferred to this organization. This field is only visible to organization owners or members of a team with the security manager role.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("dependabot_alerts_enabled_for_new_repositories")
-    val dependabotAlertsEnabledForNewRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("advanced_security_enabled_for_new_repositories") val advancedSecurityEnabledForNewRepositories: Boolean? = null,
     /**
-     * **Endpoint closing down notice.** Please use code security configurations instead. Whether
-     * Dependabot security updates are automatically enabled for new repositories and repositories
-     * transferred to this organization. This field is only visible to organization owners or
-     * members of a team with the security manager role.
+     * **Endpoint closing down notice.** Please use code security configurations instead. Whether Dependabot alerts are automatically enabled for new repositories and repositories transferred to this organization. This field is only visible to organization owners or members of a team with the security manager role.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty(
-        "dependabot_security_updates_enabled_for_new_repositories"
-    )
-    val dependabotSecurityUpdatesEnabledForNewRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("dependabot_alerts_enabled_for_new_repositories") val dependabotAlertsEnabledForNewRepositories: Boolean? = null,
     /**
-     * **Endpoint closing down notice.** Please use code security configurations instead. Whether
-     * dependency graph is automatically enabled for new repositories and repositories transferred
-     * to this organization. This field is only visible to organization owners or members of a team
-     * with the security manager role.
+     * **Endpoint closing down notice.** Please use code security configurations instead. Whether Dependabot security updates are automatically enabled for new repositories and repositories transferred to this organization. This field is only visible to organization owners or members of a team with the security manager role.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("dependency_graph_enabled_for_new_repositories")
-    val dependencyGraphEnabledForNewRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("dependabot_security_updates_enabled_for_new_repositories") val dependabotSecurityUpdatesEnabledForNewRepositories: Boolean? = null,
     /**
-     * **Endpoint closing down notice.** Please use code security configurations instead. Whether
-     * secret scanning is automatically enabled for new repositories and repositories transferred to
-     * this organization. This field is only visible to organization owners or members of a team
-     * with the security manager role.
+     * **Endpoint closing down notice.** Please use code security configurations instead. Whether dependency graph is automatically enabled for new repositories and repositories transferred to this organization. This field is only visible to organization owners or members of a team with the security manager role.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_enabled_for_new_repositories")
-    val secretScanningEnabledForNewRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("dependency_graph_enabled_for_new_repositories") val dependencyGraphEnabledForNewRepositories: Boolean? = null,
     /**
-     * **Endpoint closing down notice.** Please use code security configurations instead. Whether
-     * secret scanning push protection is automatically enabled for new repositories and
-     * repositories transferred to this organization. This field is only visible to organization
-     * owners or members of a team with the security manager role.
+     * **Endpoint closing down notice.** Please use code security configurations instead. Whether secret scanning is automatically enabled for new repositories and repositories transferred to this organization. This field is only visible to organization owners or members of a team with the security manager role.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty(
-        "secret_scanning_push_protection_enabled_for_new_repositories"
-    )
-    val secretScanningPushProtectionEnabledForNewRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_enabled_for_new_repositories") val secretScanningEnabledForNewRepositories: Boolean? = null,
     /**
-     * Whether a custom link is shown to contributors who are blocked from pushing a secret by push
-     * protection.
+     * **Endpoint closing down notice.** Please use code security configurations instead. Whether secret scanning push protection is automatically enabled for new repositories and repositories transferred to this organization. This field is only visible to organization owners or members of a team with the security manager role.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty(
-        "secret_scanning_push_protection_custom_link_enabled"
-    )
-    val secretScanningPushProtectionCustomLinkEnabled: Boolean? = null,
-    /** An optional URL string to display to contributors who are blocked from pushing a secret. */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_push_protection_custom_link")
-    val secretScanningPushProtectionCustomLink: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_push_protection_enabled_for_new_repositories") val secretScanningPushProtectionEnabledForNewRepositories: Boolean? = null,
     /**
-     * Controls whether or not deploy keys may be added and used for repositories in the
-     * organization.
+     * Whether a custom link is shown to contributors who are blocked from pushing a secret by push protection.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("deploy_keys_enabled_for_repositories")
-    val deployKeysEnabledForRepositories: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_push_protection_custom_link_enabled") val secretScanningPushProtectionCustomLinkEnabled: Boolean? = null,
+    /**
+     * An optional URL string to display to contributors who are blocked from pushing a secret.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_push_protection_custom_link") val secretScanningPushProtectionCustomLink: String? = null,
+    /**
+     * Controls whether or not deploy keys may be added and used for repositories in the organization.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("deploy_keys_enabled_for_repositories") val deployKeysEnabledForRepositories: Boolean? = null
 )
 
-/** Organization roles */
+/**
+ * Organization roles
+ */
 data class OrganizationRole(
-    /** The unique identifier of the role. */
+    /**
+     * The unique identifier of the role.
+     */
     val id: Long,
-    /** The name of the role. */
+    /**
+     * The name of the role.
+     */
     val name: String,
-    /** A list of permissions included in this role. */
+    /**
+     * A list of permissions included in this role.
+     */
     val permissions: List<String>,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization", required = true)
-    val organization: NullableSimpleUser?,
-    /** The date and time the role was created. */
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization", required = true) val organization: NullableSimpleUser?,
+    /**
+     * The date and time the role was created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** The date and time the role was last updated. */
+    /**
+     * The date and time the role was last updated.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** A short description about who this role is for or what permissions it grants. */
+    /**
+     * A short description about who this role is for or what permissions it grants.
+     */
     val description: String? = null,
-    /** The system role from which this role inherits permissions. */
-    @com.fasterxml.jackson.annotation.JsonProperty("base_role")
-    val baseRole: OrganizationRoleBaseRoleEnum? = null,
-    /** Source answers the question, "where did this role come from?" */
-    val source: OrganizationRoleSourceEnum? = null,
+    /**
+     * The system role from which this role inherits permissions.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("base_role") val baseRole: OrganizationRoleBaseRoleEnum? = null,
+    /**
+     * Source answers the question, "where did this role come from?"
+     */
+    val source: OrganizationRoleSourceEnum? = null
 )
 
-/** Required object value serialized in the `config` wire field. */
+/**
+ * Required object value serialized in the `config` wire field.
+ */
 data class OrgHookConfig(
-    /** Optional `string` value serialized in the `url` wire field. */
+    /**
+     * Optional `string` value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `insecure_ssl` wire field. */
+    /**
+     * Optional `string` value serialized in the `insecure_ssl` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("insecure_ssl") val insecureSsl: String? = null,
-    /** Optional `string` value serialized in the `content_type` wire field. */
+    /**
+     * Optional `string` value serialized in the `content_type` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("content_type") val contentType: String? = null,
-    /** Optional `string` value serialized in the `secret` wire field. */
-    val secret: String? = null,
+    /**
+     * Optional `string` value serialized in the `secret` wire field.
+     */
+    val secret: String? = null
 )
 
-/** Org Hook */
+/**
+ * Org Hook
+ */
 data class OrgHook(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `ping_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `ping_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("ping_url") val pingUrl: String,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required array value serialized in the `events` wire field. */
+    /**
+     * Required array value serialized in the `events` wire field.
+     */
     val events: List<String>,
-    /** Required `boolean` value serialized in the `active` wire field. */
+    /**
+     * Required `boolean` value serialized in the `active` wire field.
+     */
     val active: Boolean,
-    /** Required object value serialized in the `config` wire field. */
+    /**
+     * Required object value serialized in the `config` wire field.
+     */
     val config: OrgHookConfig,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Optional `uri`-formatted value serialized in the `deliveries_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("deliveries_url")
-    val deliveriesUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `deliveries_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("deliveries_url") val deliveriesUrl: String? = null
 )

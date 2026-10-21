@@ -5,18 +5,30 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** The set of permissions for the GitHub app */
+/**
+ * The set of permissions for the GitHub app
+ */
 data class IntegrationPermissions(
-    /** Optional `string` value serialized in the `issues` wire field. */
+    /**
+     * Optional `string` value serialized in the `issues` wire field.
+     */
     val issues: String? = null,
-    /** Optional `string` value serialized in the `checks` wire field. */
+    /**
+     * Optional `string` value serialized in the `checks` wire field.
+     */
     val checks: String? = null,
-    /** Optional `string` value serialized in the `metadata` wire field. */
+    /**
+     * Optional `string` value serialized in the `metadata` wire field.
+     */
     val metadata: String? = null,
-    /** Optional `string` value serialized in the `contents` wire field. */
+    /**
+     * Optional `string` value serialized in the `contents` wire field.
+     */
     val contents: String? = null,
-    /** Optional `string` value serialized in the `deployments` wire field. */
-    val deployments: String? = null,
+    /**
+     * Optional `string` value serialized in the `deployments` wire field.
+     */
+    val deployments: String? = null
 ) {
     @field:com.fasterxml.jackson.annotation.JsonAnySetter
     @get:com.fasterxml.jackson.annotation.JsonAnyGetter
@@ -24,56 +36,73 @@ data class IntegrationPermissions(
 }
 
 /**
- * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and
- * user accounts and granted access to specific repositories. They come with granular permissions
- * and built-in webhooks. GitHub apps are first class actors within GitHub.
+ * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
  */
 data class Integration(
-    /** Unique identifier of the GitHub app */
+    /**
+     * Unique identifier of the GitHub app
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required API value serialized in the `owner` wire field. */
+    /**
+     * Required API value serialized in the `owner` wire field.
+     */
     val owner: IntegrationOwner,
-    /** The name of the GitHub app */
+    /**
+     * The name of the GitHub app
+     */
     val name: String,
-    /** Required `string` value serialized in the `description` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `uri`-formatted value serialized in the `external_url` wire field. */
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `external_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("external_url") val externalUrl: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** The set of permissions for the GitHub app */
+    /**
+     * The set of permissions for the GitHub app
+     */
     val permissions: IntegrationPermissions,
     /**
-     * The list of events for the GitHub app. Note that the `installation_target`,
-     * `security_advisory`, and `meta` events are not included because they are global events and
-     * not specific to an installation.
+     * The list of events for the GitHub app. Note that the `installation_target`, `security_advisory`, and `meta` events are not included because they are global events and not specific to an installation.
      */
     val events: List<String>,
-    /** The slug name of the GitHub app */
+    /**
+     * The slug name of the GitHub app
+     */
     val slug: String? = null,
-    /** Optional `string` value serialized in the `client_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `client_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null,
     /**
-     * The number of installations associated with the GitHub app. Only returned when the
-     * integration is requesting details about itself.
+     * The number of installations associated with the GitHub app. Only returned when the integration is requesting details about itself.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("installations_count")
-    val installationsCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("installations_count") val installationsCount: Long? = null
 )
 
-/** Required API value serialized in the `owner` wire field. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
-)
+/**
+ * Required API value serialized in the `owner` wire field.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SimpleUser::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = Enterprise::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = Enterprise::class)
 )
 sealed interface IntegrationOwner

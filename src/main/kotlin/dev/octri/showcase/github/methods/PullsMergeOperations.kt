@@ -12,80 +12,37 @@ import dev.octri.showcase.github.ValidationError
 
 internal object PullsCheckIfMergedOperation {
     /**
-     * Checks if a pull request has been merged into the base branch. The HTTP status of the
-     * response indicates whether or not the pull request has been merged; the response body is
-     * empty.
+     * Checks if a pull request has been merged into the base branch. The HTTP status of the response indicates whether or not the pull request has been merged; the response body is empty.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      */
-    fun pullsCheckIfMerged(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "GET",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/merge",
-                config = clientConfig,
-                operationId = "pullsCheckIfMerged",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun pullsCheckIfMerged(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/merge", config = clientConfig, operationId = "pullsCheckIfMerged", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object PullsMergeOperation {
     /**
-     * > !NOTE] > We recommend using the \[asynchronous merge API instead. This endpoint does not
-     * > support stacked pull requests or merging with a merge queue. Merges a pull request into the
-     * > base branch. This endpoint triggers notifications. Creating content too quickly using this
-     * > endpoint may result in secondary rate limiting. For more information, see "Rate limits for
-     * > the API" and "Best practices for using the REST API."
+     * > !NOTE] > We recommend using the \[asynchronous merge API instead. This endpoint does not support stacked pull requests or merging with a merge queue. Merges a pull request into the base branch. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API."
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param commitTitle Title for the automatic commit message.
      * @param commitMessage Extra detail to append to automatic commit message.
      * @param sha SHA that pull request head must match to allow merge.
      * @param mergeMethod The merge method to use.
      */
-    fun pullsMerge(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsMergeRequest,
-        options: RequestOptions? = null,
-    ): PullRequestMergeResult {
-        return SdkClient.request<PullRequestMergeResult>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/merge",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "commit_title" to (SdkClient.omitIfNull(request.commitTitle)),
-                            "commit_message" to (SdkClient.omitIfNull(request.commitMessage)),
-                            "sha" to (SdkClient.omitIfNull(request.sha)),
-                            "merge_method" to (SdkClient.omitIfNull(request.mergeMethod)),
-                        ),
-                    operationId = "pullsMerge",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsMerge(clientConfig: ClientConfig, request: Pulls.PullsMergeRequest, options: RequestOptions? = null): PullRequestMergeResult {
+        return SdkClient.request<PullRequestMergeResult>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/merge", config = clientConfig, body = SdkClient.bodyMap("commit_title" to
+    (SdkClient.omitIfNull(request.commitTitle)), "commit_message" to
+    (SdkClient.omitIfNull(request.commitMessage)), "sha" to (SdkClient.omitIfNull(request.sha)), "merge_method" to
+    (SdkClient.omitIfNull(request.mergeMethod))), operationId = "pullsMerge", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }

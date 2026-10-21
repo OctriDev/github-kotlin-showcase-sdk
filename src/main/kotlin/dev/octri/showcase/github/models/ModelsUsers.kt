@@ -5,287 +5,500 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Email */
+/**
+ * Email
+ */
 data class Email(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     val email: String,
-    /** Required `boolean` value serialized in the `primary` wire field. */
+    /**
+     * Required `boolean` value serialized in the `primary` wire field.
+     */
     val primary: Boolean,
-    /** Required `boolean` value serialized in the `verified` wire field. */
+    /**
+     * Required `boolean` value serialized in the `verified` wire field.
+     */
     val verified: Boolean,
-    /** Required `string` value serialized in the `visibility` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("visibility", required = true)
-    val visibility: String?,
+    /**
+     * Required `string` value serialized in the `visibility` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("visibility", required = true) val visibility: String?
 )
 
-/** Required object value serialized in the `emails[]` wire field. */
+/**
+ * Required object value serialized in the `emails[]` wire field.
+ */
 data class GpgKeyEmailsItem(
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `boolean` value serialized in the `verified` wire field. */
-    val verified: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `verified` wire field.
+     */
+    val verified: Boolean? = null
 )
 
-/** Required object value serialized in the `emails[]` wire field. */
+/**
+ * Required object value serialized in the `emails[]` wire field.
+ */
 data class GpgKeySubkeysItemEmailsItem(
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `boolean` value serialized in the `verified` wire field. */
-    val verified: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `verified` wire field.
+     */
+    val verified: Boolean? = null
 )
 
-/** Required object value serialized in the `subkeys[]` wire field. */
+/**
+ * Required object value serialized in the `subkeys[]` wire field.
+ */
 data class GpgKeySubkeysItem(
-    /** Optional `int64`-formatted value serialized in the `id` wire field. */
+    /**
+     * Optional `int64`-formatted value serialized in the `id` wire field.
+     */
     val id: Long? = null,
-    /** Optional `integer` value serialized in the `primary_key_id` wire field. */
+    /**
+     * Optional `integer` value serialized in the `primary_key_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("primary_key_id") val primaryKeyId: Long? = null,
-    /** Optional `string` value serialized in the `key_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `key_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("key_id") val keyId: String? = null,
-    /** Optional `string` value serialized in the `public_key` wire field. */
+    /**
+     * Optional `string` value serialized in the `public_key` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("public_key") val publicKey: String? = null,
-    /** Optional array value serialized in the `emails` wire field. */
+    /**
+     * Optional array value serialized in the `emails` wire field.
+     */
     val emails: List<GpgKeySubkeysItemEmailsItem>? = null,
-    /** Optional array value serialized in the `subkeys` wire field. */
+    /**
+     * Optional array value serialized in the `subkeys` wire field.
+     */
     val subkeys: List<Any>? = null,
-    /** Optional `boolean` value serialized in the `can_sign` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `can_sign` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("can_sign") val canSign: Boolean? = null,
-    /** Optional `boolean` value serialized in the `can_encrypt_comms` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("can_encrypt_comms")
-    val canEncryptComms: Boolean? = null,
-    /** Optional `boolean` value serialized in the `can_encrypt_storage` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("can_encrypt_storage")
-    val canEncryptStorage: Boolean? = null,
-    /** Optional `boolean` value serialized in the `can_certify` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `can_encrypt_comms` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("can_encrypt_comms") val canEncryptComms: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `can_encrypt_storage` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("can_encrypt_storage") val canEncryptStorage: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `can_certify` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("can_certify") val canCertify: Boolean? = null,
-    /** Optional `string` value serialized in the `created_at` wire field. */
+    /**
+     * Optional `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String? = null,
-    /** Optional `string` value serialized in the `expires_at` wire field. */
+    /**
+     * Optional `string` value serialized in the `expires_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: String? = null,
-    /** Optional `string` value serialized in the `raw_key` wire field. */
+    /**
+     * Optional `string` value serialized in the `raw_key` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("raw_key") val rawKey: String? = null,
-    /** Optional `boolean` value serialized in the `revoked` wire field. */
-    val revoked: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `revoked` wire field.
+     */
+    val revoked: Boolean? = null
 )
 
-/** A unique encryption key */
+/**
+ * A unique encryption key
+ */
 data class GpgKey(
-    /** Required `int64`-formatted value serialized in the `id` wire field. */
+    /**
+     * Required `int64`-formatted value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `integer` value serialized in the `primary_key_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("primary_key_id", required = true)
-    val primaryKeyId: Long?,
-    /** Required `string` value serialized in the `key_id` wire field. */
+    /**
+     * Required `integer` value serialized in the `primary_key_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("primary_key_id", required = true) val primaryKeyId: Long?,
+    /**
+     * Required `string` value serialized in the `key_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("key_id") val keyId: String,
-    /** Required `string` value serialized in the `public_key` wire field. */
+    /**
+     * Required `string` value serialized in the `public_key` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("public_key") val publicKey: String,
-    /** Required array value serialized in the `emails` wire field. */
+    /**
+     * Required array value serialized in the `emails` wire field.
+     */
     val emails: List<GpgKeyEmailsItem>,
-    /** Required array value serialized in the `subkeys` wire field. */
+    /**
+     * Required array value serialized in the `subkeys` wire field.
+     */
     val subkeys: List<GpgKeySubkeysItem>,
-    /** Required `boolean` value serialized in the `can_sign` wire field. */
+    /**
+     * Required `boolean` value serialized in the `can_sign` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("can_sign") val canSign: Boolean,
-    /** Required `boolean` value serialized in the `can_encrypt_comms` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("can_encrypt_comms")
-    val canEncryptComms: Boolean,
-    /** Required `boolean` value serialized in the `can_encrypt_storage` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("can_encrypt_storage")
-    val canEncryptStorage: Boolean,
-    /** Required `boolean` value serialized in the `can_certify` wire field. */
+    /**
+     * Required `boolean` value serialized in the `can_encrypt_comms` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("can_encrypt_comms") val canEncryptComms: Boolean,
+    /**
+     * Required `boolean` value serialized in the `can_encrypt_storage` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("can_encrypt_storage") val canEncryptStorage: Boolean,
+    /**
+     * Required `boolean` value serialized in the `can_certify` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("can_certify") val canCertify: Boolean,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `expires_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("expires_at", required = true)
-    val expiresAt: OffsetDateTime?,
-    /** Required `boolean` value serialized in the `revoked` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `expires_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("expires_at", required = true) val expiresAt: OffsetDateTime?,
+    /**
+     * Required `boolean` value serialized in the `revoked` wire field.
+     */
     val revoked: Boolean,
-    /** Required `string` value serialized in the `raw_key` wire field. */
+    /**
+     * Required `string` value serialized in the `raw_key` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("raw_key", required = true) val rawKey: String?,
-    /** Optional `string` value serialized in the `name` wire field. */
-    val name: String? = null,
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
+    val name: String? = null
 )
 
-/** Required object value serialized in the `contexts[]` wire field. */
+/**
+ * Required object value serialized in the `contexts[]` wire field.
+ */
 data class HovercardContextsItem(
-    /** Required `string` value serialized in the `message` wire field. */
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
     val message: String,
-    /** Required `string` value serialized in the `octicon` wire field. */
-    val octicon: String,
+    /**
+     * Required `string` value serialized in the `octicon` wire field.
+     */
+    val octicon: String
 )
 
-/** Hovercard */
+/**
+ * Hovercard
+ */
 data class Hovercard(
-    /** Required array value serialized in the `contexts` wire field. */
+    /**
+     * Required array value serialized in the `contexts` wire field.
+     */
     val contexts: List<HovercardContextsItem>
 )
 
-/** Key */
+/**
+ * Key
+ */
 data class Key(
-    /** Required `string` value serialized in the `key` wire field. */
+    /**
+     * Required `string` value serialized in the `key` wire field.
+     */
     val key: String,
-    /** Required `int64`-formatted value serialized in the `id` wire field. */
+    /**
+     * Required `int64`-formatted value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `string` value serialized in the `title` wire field. */
+    /**
+     * Required `string` value serialized in the `title` wire field.
+     */
     val title: String,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `boolean` value serialized in the `verified` wire field. */
+    /**
+     * Required `boolean` value serialized in the `verified` wire field.
+     */
     val verified: Boolean,
-    /** Required `boolean` value serialized in the `read_only` wire field. */
+    /**
+     * Required `boolean` value serialized in the `read_only` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("read_only") val readOnly: Boolean,
-    /** Optional `date-time`-formatted value serialized in the `last_used` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_used")
-    val lastUsed: OffsetDateTime? = null,
+    /**
+     * Optional `date-time`-formatted value serialized in the `last_used` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_used") val lastUsed: OffsetDateTime? = null
 )
 
-/** Key Simple */
+/**
+ * Key Simple
+ */
 data class KeySimple(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `key` wire field. */
+    /**
+     * Required `string` value serialized in the `key` wire field.
+     */
     val key: String,
-    /** Optional `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: OffsetDateTime? = null,
-    /** Optional `date-time`-formatted value serialized in the `last_used` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_used")
-    val lastUsed: OffsetDateTime? = null,
+    /**
+     * Optional `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
+    /**
+     * Optional `date-time`-formatted value serialized in the `last_used` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_used") val lastUsed: OffsetDateTime? = null
 )
 
-/** Optional object value serialized in the `plan` wire field. */
+/**
+ * Optional object value serialized in the `plan` wire field.
+ */
 data class PrivateUserPlan(
-    /** Required `integer` value serialized in the `collaborators` wire field. */
+    /**
+     * Required `integer` value serialized in the `collaborators` wire field.
+     */
     val collaborators: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `integer` value serialized in the `space` wire field. */
+    /**
+     * Required `integer` value serialized in the `space` wire field.
+     */
     val space: Long,
-    /** Required `integer` value serialized in the `private_repos` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("private_repos") val privateRepos: Long,
+    /**
+     * Required `integer` value serialized in the `private_repos` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("private_repos") val privateRepos: Long
 )
 
-/** Private User */
+/**
+ * Private User
+ */
 class PrivateUser(
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Required `int64`-formatted value serialized in the `id` wire field. */
+    /**
+     * Required `int64`-formatted value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String,
-    /** Required `string` value serialized in the `gravatar_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id", required = true)
-    val gravatarId: String?,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `string` value serialized in the `gravatar_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id", required = true) val gravatarId: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Required `uri`-formatted value serialized in the `followers_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `followers_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String,
-    /** Required `string` value serialized in the `following_url` wire field. */
+    /**
+     * Required `string` value serialized in the `following_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String,
-    /** Required `string` value serialized in the `gists_url` wire field. */
+    /**
+     * Required `string` value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String,
-    /** Required `string` value serialized in the `starred_url` wire field. */
+    /**
+     * Required `string` value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String,
-    /** Required `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String,
-    /** Required `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String,
-    /** Required `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String,
+    /**
+     * Required `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String,
-    /** Required `string` value serialized in the `events_url` wire field. */
+    /**
+     * Required `string` value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String,
-    /** Required `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String,
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Required `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Required `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?,
-    /** Required `string` value serialized in the `company` wire field. */
+    /**
+     * Required `string` value serialized in the `company` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("company", required = true) val company: String?,
-    /** Required `string` value serialized in the `blog` wire field. */
+    /**
+     * Required `string` value serialized in the `blog` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("blog", required = true) val blog: String?,
-    /** Required `string` value serialized in the `location` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("location", required = true)
-    val location: String?,
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `string` value serialized in the `location` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("location", required = true) val location: String?,
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** Required `boolean` value serialized in the `hireable` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("hireable", required = true)
-    val hireable: Boolean?,
-    /** Required `string` value serialized in the `bio` wire field. */
+    /**
+     * Required `boolean` value serialized in the `hireable` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("hireable", required = true) val hireable: Boolean?,
+    /**
+     * Required `string` value serialized in the `bio` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("bio", required = true) val bio: String?,
-    /** Required `integer` value serialized in the `public_repos` wire field. */
+    /**
+     * Required `integer` value serialized in the `public_repos` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("public_repos") val publicRepos: Long,
-    /** Required `integer` value serialized in the `public_gists` wire field. */
+    /**
+     * Required `integer` value serialized in the `public_gists` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("public_gists") val publicGists: Long,
-    /** Required `integer` value serialized in the `followers` wire field. */
+    /**
+     * Required `integer` value serialized in the `followers` wire field.
+     */
     val followers: Long,
-    /** Required `integer` value serialized in the `following` wire field. */
+    /**
+     * Required `integer` value serialized in the `following` wire field.
+     */
     val following: Long,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Required `integer` value serialized in the `private_gists` wire field. */
+    /**
+     * Required `integer` value serialized in the `private_gists` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("private_gists") val privateGists: Long,
-    /** Required `integer` value serialized in the `total_private_repos` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_private_repos")
-    val totalPrivateRepos: Long,
-    /** Required `integer` value serialized in the `owned_private_repos` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("owned_private_repos")
-    val ownedPrivateRepos: Long,
-    /** Required `integer` value serialized in the `disk_usage` wire field. */
+    /**
+     * Required `integer` value serialized in the `total_private_repos` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_private_repos") val totalPrivateRepos: Long,
+    /**
+     * Required `integer` value serialized in the `owned_private_repos` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("owned_private_repos") val ownedPrivateRepos: Long,
+    /**
+     * Required `integer` value serialized in the `disk_usage` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("disk_usage") val diskUsage: Long,
-    /** Required `integer` value serialized in the `collaborators` wire field. */
+    /**
+     * Required `integer` value serialized in the `collaborators` wire field.
+     */
     val collaborators: Long,
-    /** Required `boolean` value serialized in the `two_factor_authentication` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("two_factor_authentication")
-    val twoFactorAuthentication: Boolean,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
-    /** Optional `email`-formatted value serialized in the `notification_email` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("notification_email")
-    val notificationEmail: String? = null,
-    /** Optional `string` value serialized in the `twitter_username` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("twitter_username")
-    val twitterUsername: String? = null,
-    /** Optional object value serialized in the `plan` wire field. */
+    /**
+     * Required `boolean` value serialized in the `two_factor_authentication` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("two_factor_authentication") val twoFactorAuthentication: Boolean,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null,
+    /**
+     * Optional `email`-formatted value serialized in the `notification_email` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("notification_email") val notificationEmail: String? = null,
+    /**
+     * Optional `string` value serialized in the `twitter_username` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("twitter_username") val twitterUsername: String? = null,
+    /**
+     * Optional object value serialized in the `plan` wire field.
+     */
     val plan: PrivateUserPlan? = null,
-    /** Optional `boolean` value serialized in the `business_plus` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("business_plus")
-    val businessPlus: Boolean? = null,
-    /** Optional `string` value serialized in the `ldap_dn` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ldap_dn") val ldapDn: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `business_plus` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("business_plus") val businessPlus: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `ldap_dn` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ldap_dn") val ldapDn: String? = null
 )
 
-/** Social media account */
+/**
+ * Social media account
+ */
 data class SocialAccount(
-    /** Required `string` value serialized in the `provider` wire field. */
+    /**
+     * Required `string` value serialized in the `provider` wire field.
+     */
     val provider: String,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** A public SSH key used to sign Git commits */
+/**
+ * A public SSH key used to sign Git commits
+ */
 data class SshSigningKey(
-    /** Required `string` value serialized in the `key` wire field. */
+    /**
+     * Required `string` value serialized in the `key` wire field.
+     */
     val key: String,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `title` wire field. */
+    /**
+     * Required `string` value serialized in the `title` wire field.
+     */
     val title: String,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime
 )

@@ -11,70 +11,24 @@ import dev.octri.showcase.github.SdkClient
 
 internal object CodespacesStopInOrganizationOperation {
     /**
-     * Stops a user's codespace. OAuth app tokens and personal access tokens (classic) need the
-     * `admin:org` scope to use this endpoint.
+     * Stops a user's codespace. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      * @param codespaceName The name of the codespace.
      */
-    fun codespacesStopInOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        codespaceName: String,
-        options: RequestOptions? = null,
-    ): Codespace {
-        return SdkClient.request<Codespace>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}/codespaces/${SdkClient.encodePathSegment(codespaceName)}/stop",
-                    config = clientConfig,
-                    operationId = "codespacesStopInOrganization",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun codespacesStopInOrganization(clientConfig: ClientConfig, org: String, username: String, codespaceName: String, options: RequestOptions? = null): Codespace {
+        return SdkClient.request<Codespace>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}/codespaces/${SdkClient.encodePathSegment(codespaceName)}/stop", config = clientConfig, operationId = "codespacesStopInOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CodespacesStopForAuthenticatedUserOperation {
     /**
-     * Stops a user's codespace. OAuth app tokens and personal access tokens (classic) need the
-     * `codespace` scope to use this endpoint.
+     * Stops a user's codespace. OAuth app tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
      *
      * @param codespaceName The name of the codespace.
      */
-    fun codespacesStopForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        codespaceName: String,
-        options: RequestOptions? = null,
-    ): Codespace {
-        return SdkClient.request<Codespace>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/stop",
-                    config = clientConfig,
-                    operationId = "codespacesStopForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun codespacesStopForAuthenticatedUser(clientConfig: ClientConfig, codespaceName: String, options: RequestOptions? = null): Codespace {
+        return SdkClient.request<Codespace>(SdkClient.RequestSpec("POST", "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/stop", config = clientConfig, operationId = "codespacesStopForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }

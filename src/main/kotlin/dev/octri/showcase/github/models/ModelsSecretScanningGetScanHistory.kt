@@ -5,68 +5,80 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Information on a single scan performed by secret scanning on the repository */
+/**
+ * Information on a single scan performed by secret scanning on the repository
+ */
 data class SecretScanningScan(
-    /** The type of scan */
+    /**
+     * The type of scan
+     */
     val type: String? = null,
     /**
-     * The state of the scan. Either "completed", "running", "pending", "failed", or "unknown".
-     * "failed": this scan type has hit its retry limit and has been marked permanently failed. This
-     * usually resolves on its own at the next scheduled scan attempt. If "failed" persists, contact
-     * Support. "unknown": the scan is in an unrecognized or currently unhandled state.
+     * The state of the scan. Either "completed", "running", "pending", "failed", or "unknown". "failed": this scan type has hit its retry limit and has been marked permanently failed. This usually resolves on its own at the next scheduled scan attempt. If "failed" persists, contact Support. "unknown": the scan is in an unrecognized or currently unhandled state.
      */
     val status: String? = null,
-    /** The time that the scan was completed. Empty if the scan is running */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at")
-    val completedAt: OffsetDateTime? = null,
-    /** The time that the scan was started. Empty if the scan is pending */
-    @com.fasterxml.jackson.annotation.JsonProperty("started_at")
-    val startedAt: OffsetDateTime? = null,
+    /**
+     * The time that the scan was completed. Empty if the scan is running
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at") val completedAt: OffsetDateTime? = null,
+    /**
+     * The time that the scan was started. Empty if the scan is pending
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("started_at") val startedAt: OffsetDateTime? = null
 )
 
-/** Required object value serialized in the `custom_pattern_backfill_scans[]` wire field. */
+/**
+ * Required object value serialized in the `custom_pattern_backfill_scans[]` wire field.
+ */
 data class SecretScanningScanHistoryCustomPatternBackfillScansItem(
-    /** The type of scan */
+    /**
+     * The type of scan
+     */
     val type: String? = null,
     /**
-     * The state of the scan. Either "completed", "running", "pending", "failed", or "unknown".
-     * "failed": this scan type has hit its retry limit and has been marked permanently failed. This
-     * usually resolves on its own at the next scheduled scan attempt. If "failed" persists, contact
-     * Support. "unknown": the scan is in an unrecognized or currently unhandled state.
+     * The state of the scan. Either "completed", "running", "pending", "failed", or "unknown". "failed": this scan type has hit its retry limit and has been marked permanently failed. This usually resolves on its own at the next scheduled scan attempt. If "failed" persists, contact Support. "unknown": the scan is in an unrecognized or currently unhandled state.
      */
     val status: String? = null,
-    /** The time that the scan was completed. Empty if the scan is running */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at")
-    val completedAt: OffsetDateTime? = null,
-    /** The time that the scan was started. Empty if the scan is pending */
-    @com.fasterxml.jackson.annotation.JsonProperty("started_at")
-    val startedAt: OffsetDateTime? = null,
-    /** Name of the custom pattern for custom pattern scans */
+    /**
+     * The time that the scan was completed. Empty if the scan is running
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at") val completedAt: OffsetDateTime? = null,
+    /**
+     * The time that the scan was started. Empty if the scan is pending
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("started_at") val startedAt: OffsetDateTime? = null,
+    /**
+     * Name of the custom pattern for custom pattern scans
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("pattern_name") val patternName: String? = null,
     /**
-     * Level at which the custom pattern is defined, one of "repository", "organization", or
-     * "enterprise"
+     * Level at which the custom pattern is defined, one of "repository", "organization", or "enterprise"
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pattern_scope")
-    val patternScope: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pattern_scope") val patternScope: String? = null
 )
 
-/** Typed representation of the `SecretScanningScanHistory` API schema. */
+/**
+ * Typed representation of the `SecretScanningScanHistory` API schema.
+ */
 data class SecretScanningScanHistory(
-    /** Optional array value serialized in the `incremental_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("incremental_scans")
-    val incrementalScans: List<SecretScanningScan>? = null,
-    /** Optional array value serialized in the `pattern_update_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pattern_update_scans")
-    val patternUpdateScans: List<SecretScanningScan>? = null,
-    /** Optional array value serialized in the `backfill_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("backfill_scans")
-    val backfillScans: List<SecretScanningScan>? = null,
-    /** Optional array value serialized in the `custom_pattern_backfill_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_backfill_scans")
-    val customPatternBackfillScans: List<SecretScanningScanHistoryCustomPatternBackfillScansItem>? =
-        null,
-    /** Optional array value serialized in the `generic_secrets_backfill_scans` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("generic_secrets_backfill_scans")
-    val genericSecretsBackfillScans: List<SecretScanningScan>? = null,
+    /**
+     * Optional array value serialized in the `incremental_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("incremental_scans") val incrementalScans: List<SecretScanningScan>? = null,
+    /**
+     * Optional array value serialized in the `pattern_update_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pattern_update_scans") val patternUpdateScans: List<SecretScanningScan>? = null,
+    /**
+     * Optional array value serialized in the `backfill_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("backfill_scans") val backfillScans: List<SecretScanningScan>? = null,
+    /**
+     * Optional array value serialized in the `custom_pattern_backfill_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_pattern_backfill_scans") val customPatternBackfillScans: List<SecretScanningScanHistoryCustomPatternBackfillScansItem>? = null,
+    /**
+     * Optional array value serialized in the `generic_secrets_backfill_scans` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("generic_secrets_backfill_scans") val genericSecretsBackfillScans: List<SecretScanningScan>? = null
 )

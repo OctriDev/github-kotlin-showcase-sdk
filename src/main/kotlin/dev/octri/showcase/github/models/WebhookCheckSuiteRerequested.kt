@@ -5,425 +5,608 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required object value serialized in the `owner` wire field. */
+/**
+ * Required object value serialized in the `owner` wire field.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuiteAppOwner(
-    /** Required `integer` value serialized in the `id` wire field. */
-    val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
-    val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
-    val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
-    val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
-    val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
-    val type: WebhookCheckSuiteRerequestedCheckSuiteAppOwnerTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
-    val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
-)
-
-/** The set of permissions for the GitHub app */
-class WebhookCheckSuiteRerequestedCheckSuiteAppPermissions(
-    /** Optional enumerated value serialized in the `actions` wire field. */
-    val actions: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsActionsEnum? = null,
-    /** Optional enumerated value serialized in the `administration` wire field. */
-    val administration: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsAdministrationEnum? =
-        null,
-    /** Optional enumerated value serialized in the `artifact_metadata` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("artifact_metadata")
-    val artifactMetadata:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsArtifactMetadataEnum? =
-        null,
-    /** Optional enumerated value serialized in the `attestations` wire field. */
-    val attestations: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsAttestationsEnum? = null,
-    /** Optional enumerated value serialized in the `checks` wire field. */
-    val checks: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsChecksEnum? = null,
-    /** Optional enumerated value serialized in the `code_quality` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("code_quality")
-    val codeQuality: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsCodeQualityEnum? = null,
-    /** Optional enumerated value serialized in the `content_references` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_references")
-    val contentReferences:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsContentReX60e9d3a330? =
-        null,
-    /** Optional enumerated value serialized in the `contents` wire field. */
-    val contents: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsContentsEnum? = null,
-    /** Optional enumerated value serialized in the `copilot_requests` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("copilot_requests")
-    val copilotRequests: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsCopilotRequestsEnum? =
-        null,
-    /** Optional enumerated value serialized in the `deployments` wire field. */
-    val deployments: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsDeploymentsEnum? = null,
-    /** Optional enumerated value serialized in the `discussions` wire field. */
-    val discussions: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsDiscussionsEnum? = null,
-    /** Optional enumerated value serialized in the `drives` wire field. */
-    val drives: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsDrivesEnum? = null,
-    /** Optional enumerated value serialized in the `emails` wire field. */
-    val emails: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsEmailsEnum? = null,
-    /** Optional enumerated value serialized in the `environments` wire field. */
-    val environments: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsEnvironmentsEnum? = null,
-    /** Optional enumerated value serialized in the `issues` wire field. */
-    val issues: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsIssuesEnum? = null,
-    /** Optional enumerated value serialized in the `keys` wire field. */
-    val keys: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsKeysEnum? = null,
-    /** Optional enumerated value serialized in the `members` wire field. */
-    val members: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsMembersEnum? = null,
-    /** Optional enumerated value serialized in the `merge_queues` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_queues")
-    val mergeQueues: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsMergeQueuesEnum? = null,
-    /** Optional enumerated value serialized in the `metadata` wire field. */
-    val metadata: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsMetadataEnum? = null,
-    /** Optional enumerated value serialized in the `models` wire field. */
-    val models: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsModelsEnum? = null,
-    /** Optional enumerated value serialized in the `organization_administration` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_administration")
-    val organizationAdministration:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX28da7d5349? =
-        null,
-    /** Optional enumerated value serialized in the `organization_hooks` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_hooks")
-    val organizationHooks:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX51fbbb203a? =
-        null,
-    /** Optional enumerated value serialized in the `organization_packages` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_packages")
-    val organizationPackages:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX925455223a? =
-        null,
-    /** Optional enumerated value serialized in the `organization_plan` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_plan")
-    val organizationPlan:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizationPlanEnum? =
-        null,
-    /** Optional enumerated value serialized in the `organization_projects` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_projects")
-    val organizationProjects:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatXb7e818d42b? =
-        null,
-    /** Optional enumerated value serialized in the `organization_secrets` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_secrets")
-    val organizationSecrets:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX41421c2ae3? =
-        null,
     /**
-     * Optional enumerated value serialized in the `organization_self_hosted_runners` wire field.
+     * Required `integer` value serialized in the `id` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_self_hosted_runners")
-    val organizationSelfHostedRunners:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX730a2d63a6? =
-        null,
-    /** Optional enumerated value serialized in the `organization_user_blocking` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_user_blocking")
-    val organizationUserBlocking:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX04ef636c2e? =
-        null,
-    /** Optional enumerated value serialized in the `packages` wire field. */
-    val packages: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsPackagesEnum? = null,
-    /** Optional enumerated value serialized in the `pages` wire field. */
-    val pages: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsPagesEnum? = null,
-    /** Optional enumerated value serialized in the `pull_requests` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
-    val pullRequests: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsPullRequestsEnum? = null,
-    /** Optional enumerated value serialized in the `repository_hooks` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_hooks")
-    val repositoryHooks: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsRepositoryHooksEnum? =
-        null,
-    /** Optional enumerated value serialized in the `repository_projects` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_projects")
-    val repositoryProjects:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsRepositorXd14833ddb9? =
-        null,
-    /** Optional enumerated value serialized in the `secret_scanning_alerts` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_alerts")
-    val secretScanningAlerts:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSecretScaXdb878d68f2? =
-        null,
-    /** Optional enumerated value serialized in the `secrets` wire field. */
-    val secrets: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSecretsEnum? = null,
-    /** Optional enumerated value serialized in the `security_events` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_events")
-    val securityEvents: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSecurityEventsEnum? =
-        null,
-    /** Optional enumerated value serialized in the `security_scanning_alert` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_scanning_alert")
-    val securityScanningAlert:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSecuritySXce34577402? =
-        null,
-    /** Optional enumerated value serialized in the `single_file` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("single_file")
-    val singleFile: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSingleFileEnum? = null,
-    /** Optional enumerated value serialized in the `statuses` wire field. */
-    val statuses: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsStatusesEnum? = null,
-    /** Optional enumerated value serialized in the `vulnerability_alerts` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerability_alerts")
-    val vulnerabilityAlerts:
-        WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsVulnerabiXfe1d61bb84? =
-        null,
-    /** Optional enumerated value serialized in the `workflows` wire field. */
-    val workflows: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsWorkflowsEnum? = null,
+    val id: Long,
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
+    val login: String,
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
+    val deleted: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
+    val email: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
+    val name: String? = null,
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
+    val type: WebhookCheckSuiteRerequestedCheckSuiteAppOwnerTypeEnum? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
 /**
- * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and
- * user accounts and granted access to specific repositories. They come with granular permissions
- * and built-in webhooks. GitHub apps are first class actors within GitHub.
+ * The set of permissions for the GitHub app
+ */
+class WebhookCheckSuiteRerequestedCheckSuiteAppPermissions(
+    /**
+     * Optional enumerated value serialized in the `actions` wire field.
+     */
+    val actions: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsActionsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `administration` wire field.
+     */
+    val administration: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsAdministrationEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `artifact_metadata` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("artifact_metadata") val artifactMetadata: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsArtifactMetadataEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `attestations` wire field.
+     */
+    val attestations: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsAttestationsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `checks` wire field.
+     */
+    val checks: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsChecksEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `code_quality` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("code_quality") val codeQuality: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsCodeQualityEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `content_references` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("content_references") val contentReferences: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsContentReX60e9d3a330? = null,
+    /**
+     * Optional enumerated value serialized in the `contents` wire field.
+     */
+    val contents: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsContentsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `copilot_requests` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("copilot_requests") val copilotRequests: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsCopilotRequestsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `deployments` wire field.
+     */
+    val deployments: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsDeploymentsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `discussions` wire field.
+     */
+    val discussions: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsDiscussionsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `drives` wire field.
+     */
+    val drives: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsDrivesEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `emails` wire field.
+     */
+    val emails: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsEmailsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `environments` wire field.
+     */
+    val environments: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsEnvironmentsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `issues` wire field.
+     */
+    val issues: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsIssuesEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `keys` wire field.
+     */
+    val keys: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsKeysEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `members` wire field.
+     */
+    val members: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsMembersEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `merge_queues` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_queues") val mergeQueues: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsMergeQueuesEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `metadata` wire field.
+     */
+    val metadata: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsMetadataEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `models` wire field.
+     */
+    val models: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsModelsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_administration` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_administration") val organizationAdministration: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX28da7d5349? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_hooks` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_hooks") val organizationHooks: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX51fbbb203a? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_packages` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_packages") val organizationPackages: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX925455223a? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_plan` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_plan") val organizationPlan: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizationPlanEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_projects` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_projects") val organizationProjects: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatXb7e818d42b? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_secrets` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_secrets") val organizationSecrets: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX41421c2ae3? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_self_hosted_runners` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_self_hosted_runners") val organizationSelfHostedRunners: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX730a2d63a6? = null,
+    /**
+     * Optional enumerated value serialized in the `organization_user_blocking` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_user_blocking") val organizationUserBlocking: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsOrganizatX04ef636c2e? = null,
+    /**
+     * Optional enumerated value serialized in the `packages` wire field.
+     */
+    val packages: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsPackagesEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `pages` wire field.
+     */
+    val pages: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsPagesEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `pull_requests` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsPullRequestsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `repository_hooks` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_hooks") val repositoryHooks: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsRepositoryHooksEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `repository_projects` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_projects") val repositoryProjects: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsRepositorXd14833ddb9? = null,
+    /**
+     * Optional enumerated value serialized in the `secret_scanning_alerts` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_alerts") val secretScanningAlerts: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSecretScaXdb878d68f2? = null,
+    /**
+     * Optional enumerated value serialized in the `secrets` wire field.
+     */
+    val secrets: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSecretsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `security_events` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_events") val securityEvents: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSecurityEventsEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `security_scanning_alert` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_scanning_alert") val securityScanningAlert: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSecuritySXce34577402? = null,
+    /**
+     * Optional enumerated value serialized in the `single_file` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("single_file") val singleFile: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsSingleFileEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `statuses` wire field.
+     */
+    val statuses: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsStatusesEnum? = null,
+    /**
+     * Optional enumerated value serialized in the `vulnerability_alerts` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerability_alerts") val vulnerabilityAlerts: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsVulnerabiXfe1d61bb84? = null,
+    /**
+     * Optional enumerated value serialized in the `workflows` wire field.
+     */
+    val workflows: WebhookCheckSuiteRerequestedCheckSuiteAppPermissionsWorkflowsEnum? = null
+)
+
+/**
+ * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
  */
 data class WebhookCheckSuiteRerequestedCheckSuiteApp(
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true)
-    val createdAt: OffsetDateTime?,
-    /** Required `string` value serialized in the `description` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `uri`-formatted value serialized in the `external_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_url", required = true)
-    val externalUrl: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `external_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("external_url", required = true) val externalUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the GitHub app */
+    /**
+     * Unique identifier of the GitHub app
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("id", required = true) val id: Long?,
-    /** The name of the GitHub app */
+    /**
+     * The name of the GitHub app
+     */
     val name: String,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required object value serialized in the `owner` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("owner", required = true)
-    val owner: WebhookCheckSuiteRerequestedCheckSuiteAppOwner?,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true)
-    val updatedAt: OffsetDateTime?,
-    /** The list of events for the GitHub app */
+    /**
+     * Required object value serialized in the `owner` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("owner", required = true) val owner: WebhookCheckSuiteRerequestedCheckSuiteAppOwner?,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
+    /**
+     * The list of events for the GitHub app
+     */
     val events: List<WebhookCheckSuiteRerequestedCheckSuiteAppEventsItemEnum>? = null,
-    /** The Client ID for the GitHub app */
+    /**
+     * The Client ID for the GitHub app
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null,
-    /** The set of permissions for the GitHub app */
+    /**
+     * The set of permissions for the GitHub app
+     */
     val permissions: WebhookCheckSuiteRerequestedCheckSuiteAppPermissions? = null,
-    /** The slug name of the GitHub app */
-    val slug: String? = null,
+    /**
+     * The slug name of the GitHub app
+     */
+    val slug: String? = null
 )
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuiteHeadCommitAuthor(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Metaproperties for Git author/committer information. */
+/**
+ * Metaproperties for Git author/committer information.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuiteHeadCommitCommitter(
-    /** Required `email`-formatted value serialized in the `email` wire field. */
+    /**
+     * Required `email`-formatted value serialized in the `email` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("email", required = true) val email: String?,
-    /** The git author's name. */
+    /**
+     * The git author's name.
+     */
     val name: String,
-    /** Optional `date-time`-formatted value serialized in the `date` wire field. */
+    /**
+     * Optional `date-time`-formatted value serialized in the `date` wire field.
+     */
     val date: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `username` wire field. */
-    val username: String? = null,
+    /**
+     * Optional `string` value serialized in the `username` wire field.
+     */
+    val username: String? = null
 )
 
-/** Required object value serialized in the `head_commit` wire field. */
+/**
+ * Required object value serialized in the `head_commit` wire field.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuiteHeadCommit(
-    /** Metaproperties for Git author/committer information. */
+    /**
+     * Metaproperties for Git author/committer information.
+     */
     val author: WebhookCheckSuiteRerequestedCheckSuiteHeadCommitAuthor,
-    /** Metaproperties for Git author/committer information. */
+    /**
+     * Metaproperties for Git author/committer information.
+     */
     val committer: WebhookCheckSuiteRerequestedCheckSuiteHeadCommitCommitter,
-    /** Required `string` value serialized in the `id` wire field. */
+    /**
+     * Required `string` value serialized in the `id` wire field.
+     */
     val id: String,
-    /** Required `string` value serialized in the `message` wire field. */
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
     val message: String,
-    /** Required `string` value serialized in the `timestamp` wire field. */
+    /**
+     * Required `string` value serialized in the `timestamp` wire field.
+     */
     val timestamp: String,
-    /** Required `string` value serialized in the `tree_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tree_id") val treeId: String,
+    /**
+     * Required `string` value serialized in the `tree_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("tree_id") val treeId: String
 )
 
-/** Required object value serialized in the `repo` wire field. */
+/**
+ * Required object value serialized in the `repo` wire field.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuitePullRequestsItemBaseRepo(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Required object value serialized in the `base` wire field. */
+/**
+ * Required object value serialized in the `base` wire field.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuitePullRequestsItemBase(
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String,
-    /** Required object value serialized in the `repo` wire field. */
+    /**
+     * Required object value serialized in the `repo` wire field.
+     */
     val repo: WebhookCheckSuiteRerequestedCheckSuitePullRequestsItemBaseRepo,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String
 )
 
-/** Required object value serialized in the `repo` wire field. */
+/**
+ * Required object value serialized in the `repo` wire field.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuitePullRequestsItemHeadRepo(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `name` wire field. */
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
     val name: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Required object value serialized in the `head` wire field. */
+/**
+ * Required object value serialized in the `head` wire field.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuitePullRequestsItemHead(
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String,
-    /** Required object value serialized in the `repo` wire field. */
+    /**
+     * Required object value serialized in the `repo` wire field.
+     */
     val repo: WebhookCheckSuiteRerequestedCheckSuitePullRequestsItemHeadRepo,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String
 )
 
-/** Required object value serialized in the `pull_requests[]` wire field. */
+/**
+ * Required object value serialized in the `pull_requests[]` wire field.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuitePullRequestsItem(
-    /** Required object value serialized in the `base` wire field. */
+    /**
+     * Required object value serialized in the `base` wire field.
+     */
     val base: WebhookCheckSuiteRerequestedCheckSuitePullRequestsItemBase,
-    /** Required object value serialized in the `head` wire field. */
+    /**
+     * Required object value serialized in the `head` wire field.
+     */
     val head: WebhookCheckSuiteRerequestedCheckSuitePullRequestsItemHead,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `integer` value serialized in the `number` wire field. */
+    /**
+     * Required `integer` value serialized in the `number` wire field.
+     */
     val number: Long,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** The check_suite. */
+/**
+ * The check_suite.
+ */
 data class WebhookCheckSuiteRerequestedCheckSuite(
-    /** Required `string` value serialized in the `after` wire field. */
+    /**
+     * Required `string` value serialized in the `after` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("after", required = true) val after: String?,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
     val app: WebhookCheckSuiteRerequestedCheckSuiteApp,
-    /** Required `string` value serialized in the `before` wire field. */
+    /**
+     * Required `string` value serialized in the `before` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("before", required = true) val before: String?,
-    /** Required `uri`-formatted value serialized in the `check_runs_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `check_runs_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("check_runs_url") val checkRunsUrl: String,
     /**
-     * The summary conclusion for all check runs that are part of the check suite. This value will
-     * be `null` until the check run has completed.
+     * The summary conclusion for all check runs that are part of the check suite. This value will be `null` until the check run has completed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true)
-    val conclusion: WebhookCheckSuiteRerequestedCheckSuiteConclusionEnum?,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true) val conclusion: WebhookCheckSuiteRerequestedCheckSuiteConclusionEnum?,
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** The head branch name the changes are on. */
-    @com.fasterxml.jackson.annotation.JsonProperty("head_branch", required = true)
-    val headBranch: String?,
-    /** Required object value serialized in the `head_commit` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("head_commit")
-    val headCommit: WebhookCheckSuiteRerequestedCheckSuiteHeadCommit,
-    /** The SHA of the head commit that is being checked. */
+    /**
+     * The head branch name the changes are on.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("head_branch", required = true) val headBranch: String?,
+    /**
+     * Required object value serialized in the `head_commit` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("head_commit") val headCommit: WebhookCheckSuiteRerequestedCheckSuiteHeadCommit,
+    /**
+     * The SHA of the head commit that is being checked.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("head_sha") val headSha: String,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `integer` value serialized in the `latest_check_runs_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("latest_check_runs_count")
-    val latestCheckRunsCount: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `integer` value serialized in the `latest_check_runs_count` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("latest_check_runs_count") val latestCheckRunsCount: Long,
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
     /**
-     * An array of pull requests that match this check suite. A pull request matches a check suite
-     * if they have the same `head_sha` and `head_branch`. When the check suite's `head_branch` is
-     * in a forked repository it will be `null` and the `pull_requests` array will be empty.
+     * An array of pull requests that match this check suite. A pull request matches a check suite if they have the same `head_sha` and `head_branch`. When the check suite's `head_branch` is in a forked repository it will be `null` and the `pull_requests` array will be empty.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
-    val pullRequests: List<WebhookCheckSuiteRerequestedCheckSuitePullRequestsItem>,
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: List<WebhookCheckSuiteRerequestedCheckSuitePullRequestsItem>,
     /**
-     * The summary status for all check runs that are part of the check suite. Can be `requested`,
-     * `in_progress`, or `completed`.
+     * The summary status for all check runs that are part of the check suite. Can be `requested`, `in_progress`, or `completed`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("status", required = true)
-    val status: WebhookCheckSuiteRerequestedCheckSuiteStatusEnum?,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("status", required = true) val status: WebhookCheckSuiteRerequestedCheckSuiteStatusEnum?,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** URL that points to the check suite API resource. */
+    /**
+     * URL that points to the check suite API resource.
+     */
     val url: String,
-    /** Optional `boolean` value serialized in the `rerequestable` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `rerequestable` wire field.
+     */
     val rerequestable: Boolean? = null,
-    /** Optional `boolean` value serialized in the `runs_rerequestable` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runs_rerequestable")
-    val runsRerequestable: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `runs_rerequestable` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runs_rerequestable") val runsRerequestable: Boolean? = null
 )
 
-/** Typed representation of the `WebhookCheckSuiteRerequested` API schema. */
+/**
+ * Typed representation of the `WebhookCheckSuiteRerequested` API schema.
+ */
 data class WebhookCheckSuiteRerequested(
-    /** Required enumerated value serialized in the `action` wire field. */
-    val action: WebhookCheckSuiteRerequestedActionEnum,
-    /** The check_suite. */
-    @com.fasterxml.jackson.annotation.JsonProperty("check_suite")
-    val checkSuite: WebhookCheckSuiteRerequestedCheckSuite,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * Required enumerated value serialized in the `action` wire field.
+     */
+    val action: WebhookCheckSuiteRerequestedActionEnum,
+    /**
+     * The check_suite.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("check_suite") val checkSuite: WebhookCheckSuiteRerequestedCheckSuite,
+    /**
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null,
+    val organization: OrganizationSimpleWebhooks? = null
 )

@@ -3,54 +3,62 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `budget_alerting` wire field. */
+/**
+ * Required object value serialized in the `budget_alerting` wire field.
+ */
 data class GetBudgetBudgetAlerting(
     /**
-     * Whether alerts are enabled for this budget. Present but not applicable for user-scope as
-     * alerting is always disabled for them.
+     * Whether alerts are enabled for this budget. Present but not applicable for user-scope as alerting is always disabled for them.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("will_alert") val willAlert: Boolean? = null,
     /**
-     * Array of user login names who will receive alerts. Present but not applicable for user-scope
-     * as alerting is always disabled for them.
+     * Array of user login names who will receive alerts. Present but not applicable for user-scope as alerting is always disabled for them.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("alert_recipients")
-    val alertRecipients: List<String>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("alert_recipients") val alertRecipients: List<String>? = null
 )
 
-/** Typed representation of the `GetBudget` API schema. */
+/**
+ * Typed representation of the `GetBudget` API schema.
+ */
 data class GetBudget(
-    /** ID of the budget. */
-    val id: String,
-    /** The type of scope for the budget */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_scope")
-    val budgetScope: GetBudgetBudgetScopeEnum,
-    /** The name of the entity to apply the budget to */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_entity_name")
-    val budgetEntityName: String,
     /**
-     * The budget amount in whole dollars. For license-based products, this represents the number of
-     * licenses.
+     * ID of the budget.
+     */
+    val id: String,
+    /**
+     * The type of scope for the budget
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_scope") val budgetScope: GetBudgetBudgetScopeEnum,
+    /**
+     * The name of the entity to apply the budget to
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_entity_name") val budgetEntityName: String,
+    /**
+     * The budget amount in whole dollars. For license-based products, this represents the number of licenses.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("budget_amount") val budgetAmount: Long,
-    /** Whether to prevent additional spending once the budget is exceeded */
-    @com.fasterxml.jackson.annotation.JsonProperty("prevent_further_usage")
-    val preventFurtherUsage: Boolean,
-    /** A single product or sku to apply the budget to. */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_product_sku")
-    val budgetProductSku: String,
-    /** The type of pricing for the budget */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_type")
-    val budgetType: GetBudgetBudgetTypeVariant0Enum,
-    /** Required object value serialized in the `budget_alerting` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_alerting")
-    val budgetAlerting: GetBudgetBudgetAlerting,
-    /** The user login when the budget is scoped to a single user (`user` scope). */
+    /**
+     * Whether to prevent additional spending once the budget is exceeded
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("prevent_further_usage") val preventFurtherUsage: Boolean,
+    /**
+     * A single product or sku to apply the budget to.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_product_sku") val budgetProductSku: String,
+    /**
+     * The type of pricing for the budget
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_type") val budgetType: GetBudgetBudgetTypeVariant0Enum,
+    /**
+     * Required object value serialized in the `budget_alerting` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_alerting") val budgetAlerting: GetBudgetBudgetAlerting,
+    /**
+     * The user login when the budget is scoped to a single user (`user` scope).
+     */
     val user: String? = null,
     /**
-     * The current usage amount counted toward the budget. How usage is calculated may vary by
-     * budget type.
+     * The current usage amount counted toward the budget. How usage is calculated may vary by budget type.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("consumed_amount")
-    val consumedAmount: Double? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("consumed_amount") val consumedAmount: Double? = null
 )

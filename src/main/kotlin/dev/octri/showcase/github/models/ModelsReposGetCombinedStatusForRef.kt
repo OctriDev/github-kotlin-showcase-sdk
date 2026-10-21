@@ -5,49 +5,86 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Combined Commit Status */
+/**
+ * Combined Commit Status
+ */
 data class CombinedCommitStatus(
-    /** Required `string` value serialized in the `state` wire field. */
+    /**
+     * Required `string` value serialized in the `state` wire field.
+     */
     val state: String,
-    /** Required array value serialized in the `statuses` wire field. */
+    /**
+     * Required array value serialized in the `statuses` wire field.
+     */
     val statuses: List<SimpleCommitStatus>,
-    /** Required `string` value serialized in the `sha` wire field. */
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
     val sha: String,
-    /** Required `integer` value serialized in the `total_count` wire field. */
+    /**
+     * Required `integer` value serialized in the `total_count` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    /** Minimal Repository */
+    /**
+     * Minimal Repository
+     */
     val repository: MinimalRepository,
-    /** Required `uri`-formatted value serialized in the `commit_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `commit_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_url") val commitUrl: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
-    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
+    val url: String
 )
 
-/** Typed representation of the `SimpleCommitStatus` API schema. */
+/**
+ * Typed representation of the `SimpleCommitStatus` API schema.
+ */
 data class SimpleCommitStatus(
-    /** Required `string` value serialized in the `description` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `string` value serialized in the `state` wire field. */
+    /**
+     * Required `string` value serialized in the `state` wire field.
+     */
     val state: String,
-    /** Required `string` value serialized in the `context` wire field. */
+    /**
+     * Required `string` value serialized in the `context` wire field.
+     */
     val context: String,
-    /** Required `uri`-formatted value serialized in the `target_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("target_url", required = true)
-    val targetUrl: String?,
-    /** Required `uri`-formatted value serialized in the `avatar_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url", required = true)
-    val avatarUrl: String?,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `target_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("target_url", required = true) val targetUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url", required = true) val avatarUrl: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Optional `boolean` value serialized in the `required` wire field. */
-    val required: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `required` wire field.
+     */
+    val required: Boolean? = null
 )

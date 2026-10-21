@@ -13,111 +13,78 @@ import java.time.LocalDate
 
 object Meta {
 
-    /** Get Hypermedia links to resources accessible in GitHub's REST API */
-    fun metaRoot(clientConfig: ClientConfig, options: RequestOptions? = null): Root {
-        return SdkClient.request<Root>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/",
-                    config = clientConfig,
-                    operationId = "metaRoot",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
-    }
 
     /**
-     * Returns meta information about GitHub, including a list of GitHub's IP addresses. For more
-     * information, see "About GitHub's IP addresses." The API's response also includes a list of
-     * GitHub's domain names, and the public keys used by GitHub to sign commits made through the
-     * web UI. The values shown in the documentation's response are example values. You must always
-     * query the API directly to get the latest values. > \[!NOTE\] > This endpoint returns both
-     * IPv4 and IPv6 addresses.…
+     * Get Hypermedia links to resources accessible in GitHub's REST API
+     */
+    fun metaRoot(clientConfig: ClientConfig, options: RequestOptions? = null): Root {
+        return SdkClient.request<Root>(SdkClient.RequestSpec("GET", "/", config = clientConfig, operationId = "metaRoot", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    }
+
+
+
+
+
+
+
+    /**
+     * Returns meta information about GitHub, including a list of GitHub's IP addresses. For more information, see "About GitHub's IP addresses." The API's response also includes a list of GitHub's domain names, and the public keys used by GitHub to sign commits made through the web UI. The values shown in the documentation's response are example values. You must always query the API directly to get the latest values. > \[!NOTE\] > This endpoint returns both IPv4 and IPv6 addresses.…
      */
     fun metaGet(clientConfig: ClientConfig, options: RequestOptions? = null): ApiOverview {
-        return SdkClient.request<ApiOverview>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/meta",
-                    config = clientConfig,
-                    operationId = "metaGet",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ApiOverview>(SdkClient.RequestSpec("GET", "/meta", config = clientConfig, operationId = "metaGet", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Returns Octocat as ASCII art. Supply the optional `s` query parameter to set the words in
-     * Octocat's speech bubble.
+     * Returns Octocat as ASCII art. Supply the optional `s` query parameter to set the words in Octocat's speech bubble.
      *
      * Get the octocat as ASCII art
      *
      * @param s The words to show in Octocat's speech bubble
      */
-    fun metaGetOctocat(
-        clientConfig: ClientConfig,
-        s: String? = null,
-        options: RequestOptions? = null,
-    ): String {
-        return SdkClient.request<String>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/octocat",
-                    config = clientConfig,
-                    query = mapOf("s" to SdkClient.queryValue(s, "form", true)),
-                    operationId = "metaGetOctocat",
-                    decoder = SdkClient.ResponseDecoder.TEXT,
-                    options = options,
-                )
-            )
-            .data
+    fun metaGetOctocat(clientConfig: ClientConfig, s: String? = null, options: RequestOptions? = null): String {
+        return SdkClient.request<String>(SdkClient.RequestSpec("GET", "/octocat", config = clientConfig, query = mapOf("s" to SdkClient.queryValue(s, "form", true)), operationId = "metaGetOctocat", decoder = SdkClient.ResponseDecoder.TEXT, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Lists the API versions supported by the service. Use this endpoint to discover the version
-     * strings available for API requests; each value is formatted as a date.
+     * Lists the API versions supported by the service. Use this endpoint to discover the version strings available for API requests; each value is formatted as a date.
      *
      * Get all supported GitHub API versions.
      */
-    fun metaGetAllVersions(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): List<LocalDate> {
-        return SdkClient.request<List<LocalDate>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/versions",
-                    config = clientConfig,
-                    operationId = "metaGetAllVersions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun metaGetAllVersions(clientConfig: ClientConfig, options: RequestOptions? = null): List<LocalDate> {
+        return SdkClient.request<List<LocalDate>>(SdkClient.RequestSpec("GET", "/versions", config = clientConfig, operationId = "metaGetAllVersions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Returns a random sentence from the Zen of GitHub. Use it when you want a brief, randomly
-     * selected phrase; the response is plain text.
+     * Returns a random sentence from the Zen of GitHub. Use it when you want a brief, randomly selected phrase; the response is plain text.
      *
      * Get a random sentence from the Zen of GitHub
      */
     fun metaGetZen(clientConfig: ClientConfig, options: RequestOptions? = null): String {
-        return SdkClient.request<String>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/zen",
-                    config = clientConfig,
-                    operationId = "metaGetZen",
-                    decoder = SdkClient.ResponseDecoder.TEXT,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<String>(SdkClient.RequestSpec("GET", "/zen", config = clientConfig, operationId = "metaGetZen", decoder = SdkClient.ResponseDecoder.TEXT, options = options)).data
     }
+
+
+
+
+
+
+
 }

@@ -5,7 +5,9 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required API value serialized in the `payload` wire field. */
+/**
+ * Required API value serialized in the `payload` wire field.
+ */
 @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = EventPayload.Deserializer::class)
 sealed interface EventPayload {
     /** Chooses the branch this payload is shaped like. */
@@ -16,8 +18,7 @@ sealed interface EventPayload {
         ): EventPayload {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType =
-                EventPayloadOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
+            val ownedType = EventPayloadOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -25,434 +26,618 @@ sealed interface EventPayload {
                     // Tried with the other branches below.
                 }
             }
-            val objectTypes: List<Class<out EventPayload>> =
-                listOf(
-                    CreateEvent::class.java,
-                    DeleteEvent::class.java,
-                    DiscussionEvent::class.java,
-                    IssuesEvent::class.java,
-                    IssueCommentEvent::class.java,
-                    ForkEvent::class.java,
-                    GollumEvent::class.java,
-                    MemberEvent::class.java,
-                    PublicEvent::class.java,
-                    PushEvent::class.java,
-                    PullRequestEvent::class.java,
-                    PullRequestReviewCommentEvent::class.java,
-                    PullRequestReviewEvent::class.java,
-                    CommitCommentEvent::class.java,
-                    ReleaseEvent::class.java,
-                    WatchEvent::class.java,
-                )
-            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let {
-                return it
-            }
+            val objectTypes: List<Class<out EventPayload>> = listOf(CreateEvent::class.java, DeleteEvent::class.java, DiscussionEvent::class.java, IssuesEvent::class.java, IssueCommentEvent::class.java, ForkEvent::class.java, GollumEvent::class.java, MemberEvent::class.java, PublicEvent::class.java, PushEvent::class.java, PullRequestEvent::class.java, PullRequestReviewCommentEvent::class.java, PullRequestReviewEvent::class.java, CommitCommentEvent::class.java, ReleaseEvent::class.java, WatchEvent::class.java)
+            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
             return when {
-                else ->
-                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                        parser,
-                        EventPayload::class.java,
-                        "no EventPayload branch accepts this payload",
-                    )
+                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                    parser, EventPayload::class.java, "no EventPayload branch accepts this payload")
             }
         }
     }
 }
 
-internal val EventPayloadOwnedTypes: List<Pair<List<String>, Class<out EventPayload>>> =
-    listOf(
-        listOf("master_branch", "description") to CreateEvent::class.java,
-        listOf("discussion") to DiscussionEvent::class.java,
-        listOf("forkee") to ForkEvent::class.java,
-        listOf("pages") to GollumEvent::class.java,
-        listOf("member") to MemberEvent::class.java,
-        listOf("repository_id", "push_id", "head", "before") to PushEvent::class.java,
-        listOf("number") to PullRequestEvent::class.java,
-        listOf("review") to PullRequestReviewEvent::class.java,
-        listOf("release") to ReleaseEvent::class.java,
-    )
+internal val EventPayloadOwnedTypes: List<Pair<List<String>, Class<out EventPayload>>> = listOf(
+    listOf("master_branch", "description") to CreateEvent::class.java,
+    listOf("discussion") to DiscussionEvent::class.java,
+    listOf("forkee") to ForkEvent::class.java,
+    listOf("pages") to GollumEvent::class.java,
+    listOf("member") to MemberEvent::class.java,
+    listOf("repository_id", "push_id", "head", "before") to PushEvent::class.java,
+    listOf("number") to PullRequestEvent::class.java,
+    listOf("review") to PullRequestReviewEvent::class.java,
+    listOf("release") to ReleaseEvent::class.java,
+)
 
-/** Required object value serialized in the `forkee` wire field. */
+/**
+ * Required object value serialized in the `forkee` wire field.
+ */
 class ForkEventForkee(
-    /** Optional `integer` value serialized in the `id` wire field. */
+    /**
+     * Optional `integer` value serialized in the `id` wire field.
+     */
     val id: Long? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `full_name` wire field. */
+    /**
+     * Optional `string` value serialized in the `full_name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("full_name") val fullName: String? = null,
-    /** Optional `boolean` value serialized in the `private` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `private` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean? = null,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val owner: SimpleUser? = null,
-    /** Optional `string` value serialized in the `html_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `description` wire field. */
+    /**
+     * Optional `string` value serialized in the `description` wire field.
+     */
     val description: String? = null,
-    /** Optional `boolean` value serialized in the `fork` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `fork` wire field.
+     */
     val fork: Boolean? = null,
-    /** Optional `string` value serialized in the `url` wire field. */
+    /**
+     * Optional `string` value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `forks_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `forks_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("forks_url") val forksUrl: String? = null,
-    /** Optional `string` value serialized in the `keys_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `keys_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("keys_url") val keysUrl: String? = null,
-    /** Optional `string` value serialized in the `collaborators_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url")
-    val collaboratorsUrl: String? = null,
-    /** Optional `string` value serialized in the `teams_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `collaborators_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url") val collaboratorsUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `teams_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("teams_url") val teamsUrl: String? = null,
-    /** Optional `string` value serialized in the `hooks_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `hooks_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String? = null,
-    /** Optional `string` value serialized in the `issue_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_events_url")
-    val issueEventsUrl: String? = null,
-    /** Optional `string` value serialized in the `events_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `issue_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_events_url") val issueEventsUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `string` value serialized in the `assignees_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("assignees_url")
-    val assigneesUrl: String? = null,
-    /** Optional `string` value serialized in the `branches_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `assignees_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("assignees_url") val assigneesUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `branches_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("branches_url") val branchesUrl: String? = null,
-    /** Optional `string` value serialized in the `tags_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `tags_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tags_url") val tagsUrl: String? = null,
-    /** Optional `string` value serialized in the `blobs_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `blobs_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("blobs_url") val blobsUrl: String? = null,
-    /** Optional `string` value serialized in the `git_tags_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `git_tags_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_tags_url") val gitTagsUrl: String? = null,
-    /** Optional `string` value serialized in the `git_refs_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `git_refs_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_refs_url") val gitRefsUrl: String? = null,
-    /** Optional `string` value serialized in the `trees_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `trees_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("trees_url") val treesUrl: String? = null,
-    /** Optional `string` value serialized in the `statuses_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `statuses_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String? = null,
-    /** Optional `string` value serialized in the `languages_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("languages_url")
-    val languagesUrl: String? = null,
-    /** Optional `string` value serialized in the `stargazers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("stargazers_url")
-    val stargazersUrl: String? = null,
-    /** Optional `string` value serialized in the `contributors_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("contributors_url")
-    val contributorsUrl: String? = null,
-    /** Optional `string` value serialized in the `subscribers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscribers_url")
-    val subscribersUrl: String? = null,
-    /** Optional `string` value serialized in the `subscription_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscription_url")
-    val subscriptionUrl: String? = null,
-    /** Optional `string` value serialized in the `commits_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `languages_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("languages_url") val languagesUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `stargazers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("stargazers_url") val stargazersUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `contributors_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("contributors_url") val contributorsUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `subscribers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscribers_url") val subscribersUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `subscription_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscription_url") val subscriptionUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `commits_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String? = null,
-    /** Optional `string` value serialized in the `git_commits_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("git_commits_url")
-    val gitCommitsUrl: String? = null,
-    /** Optional `string` value serialized in the `comments_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `git_commits_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("git_commits_url") val gitCommitsUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `comments_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String? = null,
-    /** Optional `string` value serialized in the `issue_comment_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_comment_url")
-    val issueCommentUrl: String? = null,
-    /** Optional `string` value serialized in the `contents_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `issue_comment_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_comment_url") val issueCommentUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `contents_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("contents_url") val contentsUrl: String? = null,
-    /** Optional `string` value serialized in the `compare_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `compare_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("compare_url") val compareUrl: String? = null,
-    /** Optional `string` value serialized in the `merges_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `merges_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("merges_url") val mergesUrl: String? = null,
-    /** Optional `string` value serialized in the `archive_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `archive_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("archive_url") val archiveUrl: String? = null,
-    /** Optional `string` value serialized in the `downloads_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("downloads_url")
-    val downloadsUrl: String? = null,
-    /** Optional `string` value serialized in the `issues_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `downloads_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("downloads_url") val downloadsUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `issues_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("issues_url") val issuesUrl: String? = null,
-    /** Optional `string` value serialized in the `pulls_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `pulls_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("pulls_url") val pullsUrl: String? = null,
-    /** Optional `string` value serialized in the `milestones_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("milestones_url")
-    val milestonesUrl: String? = null,
-    /** Optional `string` value serialized in the `notifications_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("notifications_url")
-    val notificationsUrl: String? = null,
-    /** Optional `string` value serialized in the `labels_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `milestones_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("milestones_url") val milestonesUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `notifications_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("notifications_url") val notificationsUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `labels_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("labels_url") val labelsUrl: String? = null,
-    /** Optional `string` value serialized in the `releases_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `releases_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("releases_url") val releasesUrl: String? = null,
-    /** Optional `string` value serialized in the `deployments_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("deployments_url")
-    val deploymentsUrl: String? = null,
-    /** Optional `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: OffsetDateTime? = null,
-    /** Optional `date-time`-formatted value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
-    val updatedAt: OffsetDateTime? = null,
-    /** Optional `date-time`-formatted value serialized in the `pushed_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at")
-    val pushedAt: OffsetDateTime? = null,
-    /** Optional `string` value serialized in the `git_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `deployments_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("deployments_url") val deploymentsUrl: String? = null,
+    /**
+     * Optional `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
+    /**
+     * Optional `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
+    /**
+     * Optional `date-time`-formatted value serialized in the `pushed_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at") val pushedAt: OffsetDateTime? = null,
+    /**
+     * Optional `string` value serialized in the `git_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("git_url") val gitUrl: String? = null,
-    /** Optional `string` value serialized in the `ssh_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `ssh_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("ssh_url") val sshUrl: String? = null,
-    /** Optional `string` value serialized in the `clone_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `clone_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("clone_url") val cloneUrl: String? = null,
-    /** Optional `string` value serialized in the `svn_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `svn_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("svn_url") val svnUrl: String? = null,
-    /** Optional `string` value serialized in the `homepage` wire field. */
+    /**
+     * Optional `string` value serialized in the `homepage` wire field.
+     */
     val homepage: String? = null,
-    /** Optional `integer` value serialized in the `size` wire field. */
+    /**
+     * Optional `integer` value serialized in the `size` wire field.
+     */
     val size: Long? = null,
-    /** Optional `integer` value serialized in the `stargazers_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("stargazers_count")
-    val stargazersCount: Long? = null,
-    /** Optional `integer` value serialized in the `watchers_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("watchers_count")
-    val watchersCount: Long? = null,
-    /** Optional `string` value serialized in the `language` wire field. */
+    /**
+     * Optional `integer` value serialized in the `stargazers_count` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("stargazers_count") val stargazersCount: Long? = null,
+    /**
+     * Optional `integer` value serialized in the `watchers_count` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("watchers_count") val watchersCount: Long? = null,
+    /**
+     * Optional `string` value serialized in the `language` wire field.
+     */
     val language: String? = null,
-    /** Optional `boolean` value serialized in the `has_issues` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `has_issues` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("has_issues") val hasIssues: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_projects` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `has_projects` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("has_projects") val hasProjects: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_downloads` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_downloads")
-    val hasDownloads: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_wiki` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `has_downloads` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_downloads") val hasDownloads: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `has_wiki` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("has_wiki") val hasWiki: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_pages` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `has_pages` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("has_pages") val hasPages: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_discussions` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_discussions")
-    val hasDiscussions: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_pull_requests` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_pull_requests")
-    val hasPullRequests: Boolean? = null,
-    /** The policy controlling who can create pull requests: all or collaborators_only. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_creation_policy")
-    val pullRequestCreationPolicy: ForkEventForkeePullRequestCreationPolicyEnum? = null,
-    /** Optional `integer` value serialized in the `forks_count` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `has_discussions` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_discussions") val hasDiscussions: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `has_pull_requests` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
+    /**
+     * The policy controlling who can create pull requests: all or collaborators_only.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_creation_policy") val pullRequestCreationPolicy: ForkEventForkeePullRequestCreationPolicyEnum? = null,
+    /**
+     * Optional `integer` value serialized in the `forks_count` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("forks_count") val forksCount: Long? = null,
-    /** Optional `string` value serialized in the `mirror_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `mirror_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("mirror_url") val mirrorUrl: String? = null,
-    /** Optional `boolean` value serialized in the `archived` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `archived` wire field.
+     */
     val archived: Boolean? = null,
-    /** Optional `boolean` value serialized in the `disabled` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `disabled` wire field.
+     */
     val disabled: Boolean? = null,
-    /** Optional `integer` value serialized in the `open_issues_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("open_issues_count")
-    val openIssuesCount: Long? = null,
-    /** License Simple */
+    /**
+     * Optional `integer` value serialized in the `open_issues_count` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("open_issues_count") val openIssuesCount: Long? = null,
+    /**
+     * License Simple
+     */
     val license: NullableLicenseSimple? = null,
-    /** Optional `boolean` value serialized in the `allow_forking` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("allow_forking")
-    val allowForking: Boolean? = null,
-    /** Optional `boolean` value serialized in the `is_template` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `allow_forking` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_forking") val allowForking: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `is_template` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("is_template") val isTemplate: Boolean? = null,
-    /** Optional `boolean` value serialized in the `web_commit_signoff_required` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("web_commit_signoff_required")
-    val webCommitSignoffRequired: Boolean? = null,
-    /** Optional array value serialized in the `topics` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `web_commit_signoff_required` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("web_commit_signoff_required") val webCommitSignoffRequired: Boolean? = null,
+    /**
+     * Optional array value serialized in the `topics` wire field.
+     */
     val topics: List<String>? = null,
-    /** Optional `string` value serialized in the `visibility` wire field. */
+    /**
+     * Optional `string` value serialized in the `visibility` wire field.
+     */
     val visibility: String? = null,
-    /** Optional `integer` value serialized in the `forks` wire field. */
+    /**
+     * Optional `integer` value serialized in the `forks` wire field.
+     */
     val forks: Long? = null,
-    /** Optional `integer` value serialized in the `open_issues` wire field. */
+    /**
+     * Optional `integer` value serialized in the `open_issues` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("open_issues") val openIssues: Long? = null,
-    /** Optional `integer` value serialized in the `watchers` wire field. */
+    /**
+     * Optional `integer` value serialized in the `watchers` wire field.
+     */
     val watchers: Long? = null,
-    /** Optional `string` value serialized in the `default_branch` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_branch")
-    val defaultBranch: String? = null,
-    /** Optional `boolean` value serialized in the `public` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("public") val `public`: Boolean? = null,
+    /**
+     * Optional `string` value serialized in the `default_branch` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_branch") val defaultBranch: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `public` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("public") val `public`: Boolean? = null
 )
 
-/** Typed representation of the `ForkEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `ForkEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class ForkEvent(
-    /** Required `string` value serialized in the `action` wire field. */
+    /**
+     * Required `string` value serialized in the `action` wire field.
+     */
     val action: String,
-    /** Required object value serialized in the `forkee` wire field. */
-    val forkee: ForkEventForkee,
+    /**
+     * Required object value serialized in the `forkee` wire field.
+     */
+    val forkee: ForkEventForkee
 ) : EventPayload
 
-/** Required object value serialized in the `pages[]` wire field. */
+/**
+ * Required object value serialized in the `pages[]` wire field.
+ */
 data class GollumEventPagesItem(
-    /** Optional `string` value serialized in the `page_name` wire field. */
+    /**
+     * Optional `string` value serialized in the `page_name` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("page_name") val pageName: String? = null,
-    /** Optional `string` value serialized in the `title` wire field. */
+    /**
+     * Optional `string` value serialized in the `title` wire field.
+     */
     val title: String? = null,
-    /** Optional `string` value serialized in the `summary` wire field. */
+    /**
+     * Optional `string` value serialized in the `summary` wire field.
+     */
     val summary: String? = null,
-    /** Optional `string` value serialized in the `action` wire field. */
+    /**
+     * Optional `string` value serialized in the `action` wire field.
+     */
     val action: String? = null,
-    /** Optional `string` value serialized in the `sha` wire field. */
+    /**
+     * Optional `string` value serialized in the `sha` wire field.
+     */
     val sha: String? = null,
-    /** Optional `string` value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
 )
 
-/** Typed representation of the `GollumEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `GollumEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class GollumEvent(
-    /** Required array value serialized in the `pages` wire field. */
+    /**
+     * Required array value serialized in the `pages` wire field.
+     */
     val pages: List<GollumEventPagesItem>
 ) : EventPayload
 
-/** Typed representation of the `IssueCommentEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `IssueCommentEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class IssueCommentEvent(
-    /** Required `string` value serialized in the `action` wire field. */
+    /**
+     * Required `string` value serialized in the `action` wire field.
+     */
     val action: String,
-    /** Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. */
+    /**
+     * Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
+     */
     val issue: Issue,
-    /** Comments provide a way for people to collaborate on an issue. */
-    val comment: IssueComment,
+    /**
+     * Comments provide a way for people to collaborate on an issue.
+     */
+    val comment: IssueComment
 ) : EventPayload
 
-/** Typed representation of the `IssuesEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `IssuesEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class IssuesEvent(
-    /** Required `string` value serialized in the `action` wire field. */
+    /**
+     * Required `string` value serialized in the `action` wire field.
+     */
     val action: String,
-    /** Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. */
+    /**
+     * Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
+     */
     val issue: Issue,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val assignee: SimpleUser? = null,
-    /** Optional array value serialized in the `assignees` wire field. */
+    /**
+     * Optional array value serialized in the `assignees` wire field.
+     */
     val assignees: List<SimpleUser>? = null,
     /**
      * Color-coded labels help you categorize and filter your issues (just like labels in Gmail).
      */
     val label: Label? = null,
-    /** Optional array value serialized in the `labels` wire field. */
-    val labels: List<Label>? = null,
+    /**
+     * Optional array value serialized in the `labels` wire field.
+     */
+    val labels: List<Label>? = null
 ) : EventPayload
 
-/** Typed representation of the `MemberEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `MemberEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class MemberEvent(
-    /** Required `string` value serialized in the `action` wire field. */
+    /**
+     * Required `string` value serialized in the `action` wire field.
+     */
     val action: String,
-    /** A GitHub user. */
-    val member: SimpleUser,
+    /**
+     * A GitHub user.
+     */
+    val member: SimpleUser
 ) : EventPayload
 
-/** Typed representation of the `PublicEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `PublicEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 class PublicEvent : EventPayload {
     @field:com.fasterxml.jackson.annotation.JsonAnySetter
     @get:com.fasterxml.jackson.annotation.JsonAnyGetter
     val additionalProperties: MutableMap<String, Any?> = linkedMapOf()
 }
 
-/** Typed representation of the `PullRequestEvent` API schema. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Typed representation of the `PullRequestEvent` API schema.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class PullRequestEvent(
-    /** Required `string` value serialized in the `action` wire field. */
+    /**
+     * Required `string` value serialized in the `action` wire field.
+     */
     val action: String,
-    /** Required `integer` value serialized in the `number` wire field. */
+    /**
+     * Required `integer` value serialized in the `number` wire field.
+     */
     val number: Long,
-    /** Required object value serialized in the `pull_request` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request")
-    val pullRequest: PullRequestMinimal,
-    /** A GitHub user. */
+    /**
+     * Required object value serialized in the `pull_request` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request") val pullRequest: PullRequestMinimal,
+    /**
+     * A GitHub user.
+     */
     val assignee: SimpleUser? = null,
-    /** Optional array value serialized in the `assignees` wire field. */
+    /**
+     * Optional array value serialized in the `assignees` wire field.
+     */
     val assignees: List<SimpleUser>? = null,
     /**
      * Color-coded labels help you categorize and filter your issues (just like labels in Gmail).
      */
     val label: Label? = null,
-    /** Optional array value serialized in the `labels` wire field. */
-    val labels: List<Label>? = null,
+    /**
+     * Optional array value serialized in the `labels` wire field.
+     */
+    val labels: List<Label>? = null
 ) : EventPayload
 
-/** Required object value serialized in the `user` wire field. */
+/**
+ * Required object value serialized in the `user` wire field.
+ */
 data class PullRequestReviewCommentEventCommentUser(
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `int64`-formatted value serialized in the `id` wire field. */
+    /**
+     * Optional `int64`-formatted value serialized in the `id` wire field.
+     */
     val id: Long? = null,
-    /** Optional `string` value serialized in the `login` wire field. */
+    /**
+     * Optional `string` value serialized in the `login` wire field.
+     */
     val login: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: PullRequestReviewCommentEventCommentUserTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )

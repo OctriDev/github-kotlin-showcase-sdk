@@ -13,280 +13,112 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ActivityMethodsActivityListEventsForAuthenticatedUserOperation {
     /**
-     * If you are authenticated as the given user, you will see your private events. Otherwise,
-     * you'll only see public events. _Optional_: use the fine-grained token with following
-     * permission set to view private events: "Events" user permissions (read). > \[!NOTE\] > This
-     * API is not built to serve real-time use cases. Depending on the time of day, event latency
-     * can be anywhere from 30s to 6h.
+     * If you are authenticated as the given user, you will see your private events. Otherwise, you'll only see public events. _Optional_: use the fine-grained token with following permission set to view private events: "Events" user permissions (read). > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      *
      * @param username The handle for the GitHub user account.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListEventsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return SdkClient.request<List<Event>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/events",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListEventsForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListEventsForAuthenticatedUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return SdkClient.request<List<Event>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/events", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListEventsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActivityMethodsActivityListOrgEventsForAuthenticatedUserOperation {
     /**
-     * This is the user's organization dashboard. You must be authenticated as the user to view
-     * this. > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time
-     * of day, event latency can be anywhere from 30s to 6h.
+     * This is the user's organization dashboard. You must be authenticated as the user to view this. > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      *
      * @param username The handle for the GitHub user account.
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListOrgEventsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        username: String,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return SdkClient.request<List<Event>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/events/orgs/${SdkClient.encodePathSegment(org)}",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListOrgEventsForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListOrgEventsForAuthenticatedUser(clientConfig: ClientConfig, username: String, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return SdkClient.request<List<Event>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/events/orgs/${SdkClient.encodePathSegment(org)}", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListOrgEventsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActivityMethodsActivityListPublicEventsForUserOperation {
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      *
      * @param username The handle for the GitHub user account.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListPublicEventsForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return SdkClient.request<List<Event>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/events/public",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListPublicEventsForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListPublicEventsForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return SdkClient.request<List<Event>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/events/public", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListPublicEventsForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActivityMethodsActivityListReceivedEventsForUserOperation {
     /**
-     * These are events that you've received by watching repositories and following users. If you
-     * are authenticated as the given user, you will see private events. Otherwise, you'll only see
-     * public events. > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on
-     * the time of day, event latency can be anywhere from 30s to 6h.
+     * These are events that you've received by watching repositories and following users. If you are authenticated as the given user, you will see private events. Otherwise, you'll only see public events. > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      *
      * @param username The handle for the GitHub user account.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListReceivedEventsForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return SdkClient.request<List<Event>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/received_events",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListReceivedEventsForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListReceivedEventsForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return SdkClient.request<List<Event>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/received_events", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListReceivedEventsForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActivityMethodsActivityListReceivedPublicEventsForUserOperation {
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      *
      * @param username The handle for the GitHub user account.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListReceivedPublicEventsForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return SdkClient.request<List<Event>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/received_events/public",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListReceivedPublicEventsForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListReceivedPublicEventsForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return SdkClient.request<List<Event>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/received_events/public", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListReceivedPublicEventsForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActivityMethodsActivityListReposStarredByUserOperation {
     /**
-     * Lists repositories a user has starred. If the specified user has a private profile, this
-     * endpoint returns an empty list unless the request is authenticated as that user. A request
-     * authenticated as the specified user returns starred repositories visible to the token even if
-     * the token has no OAuth scopes. This endpoint supports the following custom media types. For
-     * more information, see "Media types." - **`application/vnd.github.star+json`**: Includes a
-     * timestamp of when the…
+     * Lists repositories a user has starred. If the specified user has a private profile, this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns starred repositories visible to the token even if the token has no OAuth scopes. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.star+json`**: Includes a timestamp of when the…
      *
      * @param username The handle for the GitHub user account.
-     * @param sort The property to sort the results by. `created` means when the repository was
-     *   starred. `updated` means when the repository was last pushed to.
+     * @param sort The property to sort the results by. `created` means when the
+     *   repository was starred. `updated` means when the repository was last pushed
+     *   to.
      * @param direction The direction to sort the results by.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListReposStarredByUser(
-        clientConfig: ClientConfig,
-        username: String,
-        sort: SchemaSchemaEnum00c9f324? = null,
-        direction: SchemaSchemaEnum0df64690? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Any {
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/starred",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "sort" to SdkClient.queryValue(sort, "form", true),
-                            "direction" to SdkClient.queryValue(direction, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListReposStarredByUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListReposStarredByUser(clientConfig: ClientConfig, username: String, sort: SchemaSchemaEnum00c9f324? = null, direction: SchemaSchemaEnum0df64690? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Any {
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/starred", config = clientConfig, query = mapOf("sort" to SdkClient.queryValue(sort, "form", true), "direction" to SdkClient.queryValue(direction, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListReposStarredByUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActivityMethodsActivityListReposWatchedByUserOperation {
     /**
-     * Lists repositories that a specified GitHub user is watching. Use `page` and `per_page` to
-     * paginate the results.
+     * Lists repositories that a specified GitHub user is watching. Use `page` and `per_page` to paginate the results.
      *
      * Lists repositories a user is watching.
      *
      * @param username The handle for the GitHub user account.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListReposWatchedByUser(
-        clientConfig: ClientConfig,
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/subscriptions",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListReposWatchedByUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListReposWatchedByUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/subscriptions", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListReposWatchedByUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }

@@ -14,472 +14,156 @@ import java.time.LocalDate
 
 internal object CopilotCopilotEnterpriseOneDayUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise usage metrics report
-     * for a specific day. The report provides comprehensive usage data for Copilot features across
-     * the enterprise. The report contains aggregated metrics for the specified day, including usage
-     * statistics for various Copilot features, user engagement data, and feature adoption metrics.
-     * Reports are generated daily and made available for download through signed URLs with a
-     * limited expiration…
+     * Use this endpoint to retrieve download links for the Copilot enterprise usage metrics report for a specific day. The report provides comprehensive usage data for Copilot features across the enterprise. The report contains aggregated metrics for the specified day, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration…
      *
      * @param enterprise The slug version of the enterprise name.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotEnterpriseOneDayUsageMetrics(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotEnterpriseOneDayUsageMetrics(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/enterprise-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotEnterpriseOneDayUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/enterprise-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotEnterpriseOneDayUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotEnterpriseUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day enterprise Copilot usage
-     * metrics report. The report provides comprehensive usage data for Copilot features across the
-     * enterprise. The report contains aggregated metrics for the previous 28 days, including usage
-     * statistics for various Copilot features, user engagement data, and feature adoption metrics.
-     * Reports are generated daily and made available for download through signed URLs with a
-     * limited expiration…
+     * Use this endpoint to retrieve download links for the latest 28-day enterprise Copilot usage metrics report. The report provides comprehensive usage data for Copilot features across the enterprise. The report contains aggregated metrics for the previous 28 days, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration…
      *
      * @param enterprise The slug version of the enterprise name.
      */
-    fun copilotCopilotEnterpriseUsageMetrics(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics28DayReport {
-        return SdkClient.request<CopilotUsageMetrics28DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/enterprise-28-day/latest",
-                    config = clientConfig,
-                    operationId = "copilotCopilotEnterpriseUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotCopilotEnterpriseUsageMetrics(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport {
+        return SdkClient.request<CopilotUsageMetrics28DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/enterprise-28-day/latest", config = clientConfig, operationId = "copilotCopilotEnterpriseUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotEnterpriseReposOneDayReportOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise repository report for
-     * a specific day. The report provides per-repository pull request metrics for Copilot across
-     * the enterprise, with one entry per repository. The report contains repository-level pull
-     * request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot
-     * Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are
-     * included. Reports are…
+     * Use this endpoint to retrieve download links for the Copilot enterprise repository report for a specific day. The report provides per-repository pull request metrics for Copilot across the enterprise, with one entry per repository. The report contains repository-level pull request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are included. Reports are…
      *
      * @param enterprise The slug version of the enterprise name.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotEnterpriseReposOneDayReport(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotEnterpriseReposOneDayReport(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/repos-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotEnterpriseReposOneDayReport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/repos-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotEnterpriseReposOneDayReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotEnterpriseUserTeamsOneDayReportOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot enterprise user-teams report for
-     * a specific day. The report provides user-team join data for Copilot across the enterprise,
-     * with one entry per user-team pair. The report contains user-team membership data for the
-     * specified day, enabling consumers to join with the existing enterprise user reports to
-     * compute team-level usage metrics. Reports are generated daily and made available for download
-     * through signed URLs with…
+     * Use this endpoint to retrieve download links for the Copilot enterprise user-teams report for a specific day. The report provides user-team join data for Copilot across the enterprise, with one entry per user-team pair. The report contains user-team membership data for the specified day, enabling consumers to join with the existing enterprise user reports to compute team-level usage metrics. Reports are generated daily and made available for download through signed URLs with…
      *
      * @param enterprise The slug version of the enterprise name.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotEnterpriseUserTeamsOneDayReport(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotEnterpriseUserTeamsOneDayReport(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/user-teams-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotEnterpriseUserTeamsOneDayReport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/user-teams-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotEnterpriseUserTeamsOneDayReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotUsersOneDayUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot user usage metrics report for a
-     * specific day. The report provides detailed user-level usage data and engagement metrics for
-     * Copilot features across the enterprise. The report contains user-specific metrics for the
-     * specified day, including individual user engagement statistics, feature usage patterns, and
-     * adoption metrics broken down by user. This report allows authorized users to analyze Copilot
-     * usage at the user…
+     * Use this endpoint to retrieve download links for the Copilot user usage metrics report for a specific day. The report provides detailed user-level usage data and engagement metrics for Copilot features across the enterprise. The report contains user-specific metrics for the specified day, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user…
      *
      * @param enterprise The slug version of the enterprise name.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotUsersOneDayUsageMetrics(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotUsersOneDayUsageMetrics(clientConfig: ClientConfig, enterprise: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/users-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotUsersOneDayUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/users-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotUsersOneDayUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotUsersUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day enterprise users Copilot
-     * usage metrics report. The report provides detailed user-level usage data and engagement
-     * metrics for Copilot features across the enterprise. The report contains user-specific metrics
-     * for the previous 28 days, including individual user engagement statistics, feature usage
-     * patterns, and adoption metrics broken down by user. This report allows authorized users to
-     * analyze Copilot usage at…
+     * Use this endpoint to retrieve download links for the latest 28-day enterprise users Copilot usage metrics report. The report provides detailed user-level usage data and engagement metrics for Copilot features across the enterprise. The report contains user-specific metrics for the previous 28 days, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at…
      *
      * @param enterprise The slug version of the enterprise name.
      */
-    fun copilotCopilotUsersUsageMetrics(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics28DayReport {
-        return SdkClient.request<CopilotUsageMetrics28DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/users-28-day/latest",
-                    config = clientConfig,
-                    operationId = "copilotCopilotUsersUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotCopilotUsersUsageMetrics(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport {
+        return SdkClient.request<CopilotUsageMetrics28DayReport>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/copilot/metrics/reports/users-28-day/latest", config = clientConfig, operationId = "copilotCopilotUsersUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotOrganizationOneDayUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization usage metrics
-     * report for a specific day. The report provides comprehensive usage data for Copilot features
-     * across the organization. The report contains aggregated metrics for the specified day,
-     * including usage statistics for various Copilot features, user engagement data, and feature
-     * adoption metrics. Reports are generated daily and made available for download through signed
-     * URLs with a limited…
+     * Use this endpoint to retrieve download links for the Copilot organization usage metrics report for a specific day. The report provides comprehensive usage data for Copilot features across the organization. The report contains aggregated metrics for the specified day, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotOrganizationOneDayUsageMetrics(
-        clientConfig: ClientConfig,
-        org: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotOrganizationOneDayUsageMetrics(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/organization-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotOrganizationOneDayUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/organization-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotOrganizationOneDayUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotOrganizationUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day organization Copilot usage
-     * metrics report. The report provides comprehensive usage data for Copilot features across the
-     * organization. The report contains aggregated metrics for the previous 28 days, including
-     * usage statistics for various Copilot features, user engagement data, and feature adoption
-     * metrics. Reports are generated daily and made available for download through signed URLs with
-     * a limited…
+     * Use this endpoint to retrieve download links for the latest 28-day organization Copilot usage metrics report. The report provides comprehensive usage data for Copilot features across the organization. The report contains aggregated metrics for the previous 28 days, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun copilotCopilotOrganizationUsageMetrics(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics28DayReport {
-        return SdkClient.request<CopilotUsageMetrics28DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/organization-28-day/latest",
-                    config = clientConfig,
-                    operationId = "copilotCopilotOrganizationUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotCopilotOrganizationUsageMetrics(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport {
+        return SdkClient.request<CopilotUsageMetrics28DayReport>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/organization-28-day/latest", config = clientConfig, operationId = "copilotCopilotOrganizationUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotOrganizationReposOneDayReportOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization repository report
-     * for a specific day. The report provides per-repository pull request metrics for Copilot
-     * across the organization, with one entry per repository. The report contains repository-level
-     * pull request activity for the specified day, including the Copilot Coding Agent (CCA) and
-     * Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified
-     * day are included. Reports…
+     * Use this endpoint to retrieve download links for the Copilot organization repository report for a specific day. The report provides per-repository pull request metrics for Copilot across the organization, with one entry per repository. The report contains repository-level pull request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are included. Reports…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotOrganizationReposOneDayReport(
-        clientConfig: ClientConfig,
-        org: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotOrganizationReposOneDayReport(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/repos-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotOrganizationReposOneDayReport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/repos-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotOrganizationReposOneDayReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotOrganizationUserTeamsOneDayReportOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization user-teams report
-     * for a specific day. The report provides user-team join data for Copilot across the
-     * organization, with one entry per user-team pair. The report contains user-team membership
-     * data for the specified day, enabling consumers to join with the existing organization user
-     * reports to compute team-level usage metrics. Reports are generated daily and made available
-     * for download through signed…
+     * Use this endpoint to retrieve download links for the Copilot organization user-teams report for a specific day. The report provides user-team join data for Copilot across the organization, with one entry per user-team pair. The report contains user-team membership data for the specified day, enabling consumers to join with the existing organization user reports to compute team-level usage metrics. Reports are generated daily and made available for download through signed…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotOrganizationUserTeamsOneDayReport(
-        clientConfig: ClientConfig,
-        org: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotOrganizationUserTeamsOneDayReport(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/user-teams-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotOrganizationUserTeamsOneDayReport",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/user-teams-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotOrganizationUserTeamsOneDayReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotOrganizationUsersOneDayUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the Copilot organization user usage metrics
-     * report for a specific day. The report provides detailed user-level usage data and engagement
-     * metrics for Copilot features across the organization. The report contains user-specific
-     * metrics for the specified day, including individual user engagement statistics, feature usage
-     * patterns, and adoption metrics broken down by user. This report allows authorized users to
-     * analyze Copilot…
+     * Use this endpoint to retrieve download links for the Copilot organization user usage metrics report for a specific day. The report provides detailed user-level usage data and engagement metrics for Copilot features across the organization. The report contains user-specific metrics for the specified day, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param day The day to request data for, in `YYYY-MM-DD` format.
      */
-    fun copilotCopilotOrganizationUsersOneDayUsageMetrics(
-        clientConfig: ClientConfig,
-        org: String,
-        day: LocalDate,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics1DayReport {
+    fun copilotCopilotOrganizationUsersOneDayUsageMetrics(clientConfig: ClientConfig, org: String, day: LocalDate, options: RequestOptions? = null): CopilotUsageMetrics1DayReport {
         Validation.validateDate("day", day)
 
-        return SdkClient.request<CopilotUsageMetrics1DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/users-1-day",
-                    config = clientConfig,
-                    query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")),
-                    operationId = "copilotCopilotOrganizationUsersOneDayUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CopilotUsageMetrics1DayReport>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/users-1-day", config = clientConfig, query = mapOf("day" to SdkClient.queryValue(day, "form", true, "date")), operationId = "copilotCopilotOrganizationUsersOneDayUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotCopilotOrganizationUsersUsageMetricsOperation {
     /**
-     * Use this endpoint to retrieve download links for the latest 28-day organization users Copilot
-     * usage metrics report. The report provides detailed user-level usage data and engagement
-     * metrics for Copilot features across the organization. The report contains user-specific
-     * metrics for the previous 28 days, including individual user engagement statistics, feature
-     * usage patterns, and adoption metrics broken down by user. This report allows authorized users
-     * to analyze Copilot usage…
+     * Use this endpoint to retrieve download links for the latest 28-day organization users Copilot usage metrics report. The report provides detailed user-level usage data and engagement metrics for Copilot features across the organization. The report contains user-specific metrics for the previous 28 days, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun copilotCopilotOrganizationUsersUsageMetrics(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): CopilotUsageMetrics28DayReport {
-        return SdkClient.request<CopilotUsageMetrics28DayReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/users-28-day/latest",
-                    config = clientConfig,
-                    operationId = "copilotCopilotOrganizationUsersUsageMetrics",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotCopilotOrganizationUsersUsageMetrics(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotUsageMetrics28DayReport {
+        return SdkClient.request<CopilotUsageMetrics28DayReport>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/metrics/reports/users-28-day/latest", config = clientConfig, operationId = "copilotCopilotOrganizationUsersUsageMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }

@@ -5,198 +5,302 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required object value serialized in the `dismissed_by` wire field. */
+/**
+ * Required object value serialized in the `dismissed_by` wire field.
+ */
 data class WebhookCodeScanningAlertUpdatedAssignmentAlertDismissedBy(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: WebhookCodeScanningAlertUpdatedAssignmentAlertDismissedByTypeEnum? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 )
 
-/** Required object value serialized in the `rule` wire field. */
+/**
+ * Required object value serialized in the `rule` wire field.
+ */
 data class WebhookCodeScanningAlertUpdatedAssignmentAlertRule(
-    /** A short description of the rule used to detect the alert. */
+    /**
+     * A short description of the rule used to detect the alert.
+     */
     val description: String,
-    /** A unique identifier for the rule used to detect the alert. */
+    /**
+     * A unique identifier for the rule used to detect the alert.
+     */
     val id: String,
-    /** The severity of the alert. */
-    @com.fasterxml.jackson.annotation.JsonProperty("severity", required = true)
-    val severity: WebhookCodeScanningAlertUpdatedAssignmentAlertRuleSeverityEnum?,
+    /**
+     * The severity of the alert.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("severity", required = true) val severity: WebhookCodeScanningAlertUpdatedAssignmentAlertRuleSeverityEnum?
 )
 
-/** Required object value serialized in the `tool` wire field. */
+/**
+ * Required object value serialized in the `tool` wire field.
+ */
 data class WebhookCodeScanningAlertUpdatedAssignmentAlertTool(
-    /** The name of the tool used to generate the code scanning analysis alert. */
+    /**
+     * The name of the tool used to generate the code scanning analysis alert.
+     */
     val name: String,
-    /** The version of the tool used to detect the alert. */
-    @com.fasterxml.jackson.annotation.JsonProperty("version", required = true) val version: String?,
+    /**
+     * The version of the tool used to detect the alert.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("version", required = true) val version: String?
 )
 
-/** Optional object value serialized in the `location` wire field. */
+/**
+ * Optional object value serialized in the `location` wire field.
+ */
 data class WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstanceLocation(
-    /** Optional `integer` value serialized in the `end_column` wire field. */
+    /**
+     * Optional `integer` value serialized in the `end_column` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("end_column") val endColumn: Long? = null,
-    /** Optional `integer` value serialized in the `end_line` wire field. */
+    /**
+     * Optional `integer` value serialized in the `end_line` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("end_line") val endLine: Long? = null,
-    /** Optional `string` value serialized in the `path` wire field. */
+    /**
+     * Optional `string` value serialized in the `path` wire field.
+     */
     val path: String? = null,
-    /** Optional `integer` value serialized in the `start_column` wire field. */
+    /**
+     * Optional `integer` value serialized in the `start_column` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("start_column") val startColumn: Long? = null,
-    /** Optional `integer` value serialized in the `start_line` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
+    /**
+     * Optional `integer` value serialized in the `start_line` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null
 )
 
-/** Optional object value serialized in the `message` wire field. */
+/**
+ * Optional object value serialized in the `message` wire field.
+ */
 data class WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstanceMessage(
-    /** Optional `string` value serialized in the `text` wire field. */
+    /**
+     * Optional `string` value serialized in the `text` wire field.
+     */
     val text: String? = null
 )
 
-/** Optional object value serialized in the `most_recent_instance` wire field. */
+/**
+ * Optional object value serialized in the `most_recent_instance` wire field.
+ */
 data class WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstance(
     /**
-     * Identifies the configuration under which the analysis was executed. For example, in GitHub
-     * Actions this includes the workflow filename and job name.
+     * Identifies the configuration under which the analysis was executed. For example, in GitHub Actions this includes the workflow filename and job name.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("analysis_key") val analysisKey: String,
     /**
-     * Identifies the variable values associated with the environment in which the analysis that
-     * generated this alert instance was performed, such as the language that was analyzed.
+     * Identifies the variable values associated with the environment in which the analysis that generated this alert instance was performed, such as the language that was analyzed.
      */
     val environment: String,
-    /** The full Git reference, formatted as `refs/heads/<branch name>`. */
+    /**
+     * The full Git reference, formatted as `refs/heads/<branch name>`.
+     */
     val ref: String,
-    /** State of a code scanning alert. */
+    /**
+     * State of a code scanning alert.
+     */
     val state: WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstaX6aa6c7fdaa,
-    /** Identifies the configuration under which the analysis was executed. */
+    /**
+     * Identifies the configuration under which the analysis was executed.
+     */
     val category: String? = null,
-    /** Optional array value serialized in the `classifications` wire field. */
+    /**
+     * Optional array value serialized in the `classifications` wire field.
+     */
     val classifications: List<String>? = null,
-    /** Optional `string` value serialized in the `commit_sha` wire field. */
+    /**
+     * Optional `string` value serialized in the `commit_sha` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_sha") val commitSha: String? = null,
-    /** Optional object value serialized in the `location` wire field. */
+    /**
+     * Optional object value serialized in the `location` wire field.
+     */
     val location: WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstanceLocation? = null,
-    /** Optional object value serialized in the `message` wire field. */
-    val message: WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstanceMessage? = null,
+    /**
+     * Optional object value serialized in the `message` wire field.
+     */
+    val message: WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstanceMessage? = null
 )
 
-/** The code scanning alert involved in the event. */
+/**
+ * The code scanning alert involved in the event.
+ */
 data class WebhookCodeScanningAlertUpdatedAssignmentAlert(
-    /** The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ.` */
+    /**
+     * The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ.`
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** The time that the alert was dismissed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_at", required = true)
-    val dismissedAt: OffsetDateTime?,
-    /** Required object value serialized in the `dismissed_by` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_by", required = true)
-    val dismissedBy: WebhookCodeScanningAlertUpdatedAssignmentAlertDismissedBy?,
-    /** The reason for dismissing or closing the alert. */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_reason", required = true)
-    val dismissedReason: WebhookCodeScanningAlertUpdatedAssignmentAlertDismissedReasonEnum?,
-    /** The GitHub URL of the alert resource. */
+    /**
+     * The time that the alert was dismissed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_at", required = true) val dismissedAt: OffsetDateTime?,
+    /**
+     * Required object value serialized in the `dismissed_by` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_by", required = true) val dismissedBy: WebhookCodeScanningAlertUpdatedAssignmentAlertDismissedBy?,
+    /**
+     * The reason for dismissing or closing the alert.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_reason", required = true) val dismissedReason: WebhookCodeScanningAlertUpdatedAssignmentAlertDismissedReasonEnum?,
+    /**
+     * The GitHub URL of the alert resource.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** The code scanning alert number. */
+    /**
+     * The code scanning alert number.
+     */
     val number: Long,
-    /** Required object value serialized in the `rule` wire field. */
+    /**
+     * Required object value serialized in the `rule` wire field.
+     */
     val rule: WebhookCodeScanningAlertUpdatedAssignmentAlertRule,
     /**
-     * State of a code scanning alert. Events for alerts found outside the default branch will
-     * return a `null` value until they are dismissed or fixed.
+     * State of a code scanning alert. Events for alerts found outside the default branch will return a `null` value until they are dismissed or fixed.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("state", required = true)
-    val state: WebhookCodeScanningAlertUpdatedAssignmentAlertStateEnum?,
-    /** Required object value serialized in the `tool` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("state", required = true) val state: WebhookCodeScanningAlertUpdatedAssignmentAlertStateEnum?,
+    /**
+     * Required object value serialized in the `tool` wire field.
+     */
     val tool: WebhookCodeScanningAlertUpdatedAssignmentAlertTool,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Optional array value serialized in the `assignees` wire field. */
+    /**
+     * Optional array value serialized in the `assignees` wire field.
+     */
     val assignees: List<SimpleUser>? = null,
-    /** The dismissal comment associated with the dismissal of the alert. */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_comment")
-    val dismissedComment: CodeScanningAlertDismissedComment? = null,
-    /** The time that the alert was fixed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    /**
+     * The dismissal comment associated with the dismissal of the alert.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissed_comment") val dismissedComment: CodeScanningAlertDismissedComment? = null,
+    /**
+     * The time that the alert was fixed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("fixed_at") val fixedAt: Any? = null,
-    /** Optional object value serialized in the `most_recent_instance` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("most_recent_instance")
-    val mostRecentInstance: WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstance? =
-        null,
+    /**
+     * Optional object value serialized in the `most_recent_instance` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("most_recent_instance") val mostRecentInstance: WebhookCodeScanningAlertUpdatedAssignmentAlertMostRecentInstance? = null
 )
 
-/** Typed representation of the `WebhookCodeScanningAlertUpdatedAssignment` API schema. */
+/**
+ * Typed representation of the `WebhookCodeScanningAlertUpdatedAssignment` API schema.
+ */
 data class WebhookCodeScanningAlertUpdatedAssignment(
-    /** Required enumerated value serialized in the `action` wire field. */
+    /**
+     * Required enumerated value serialized in the `action` wire field.
+     */
     val action: WebhookCodeScanningAlertUpdatedAssignmentActionEnum,
-    /** The code scanning alert involved in the event. */
+    /**
+     * The code scanning alert involved in the event.
+     */
     val alert: WebhookCodeScanningAlertUpdatedAssignmentAlert,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null,
+    val organization: OrganizationSimpleWebhooks? = null
 )

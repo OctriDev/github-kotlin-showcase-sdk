@@ -3,19 +3,13 @@
 
 package dev.octri.showcase.github
 
+
 class RateLimitNamespace(private val clientConfig: ClientConfig) {
     /**
-     * > !NOTE] > Accessing this endpoint does not count against your REST API rate limit. Rate
-     * > limit status reflects the applicable limits for the requester and resource category, not
-     * > the hostname used for the request. Requests authenticated as a user share the user's rate
-     * > limit across credentials. Requests without authentication use the requesting IP address.
-     * > API requests routed through either an API hostname or a web hostname can count against the
-     * > same applicable limit. Some…
+     * > !NOTE] > Accessing this endpoint does not count against your REST API rate limit. Rate limit status reflects the applicable limits for the requester and resource category, not the hostname used for the request. Requests authenticated as a user share the user's rate limit across credentials. Requests without authentication use the requesting IP address. API requests routed through either an API hostname or a web hostname can count against the same applicable limit. Some…
      */
     fun get(options: RequestOptions? = null): RateLimitOverview {
-        return dev.octri.showcase.github.methods.RateLimitMethods.rateLimitGet(
-            clientConfig,
-            options,
-        )
+        return dev.octri.showcase.github.methods.RateLimitMethods.rateLimitGet(clientConfig, options)
     }
+
 }

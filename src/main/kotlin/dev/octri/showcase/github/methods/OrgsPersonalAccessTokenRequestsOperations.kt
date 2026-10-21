@@ -16,248 +16,119 @@ import dev.octri.showcase.github.ValidationError
 
 internal object OrgsListPatGrantRequestsOperation {
     /**
-     * Lists requests from organization members to access organization resources with a fine-grained
-     * personal access token. Only GitHub Apps can use this endpoint.
+     * Lists requests from organization members to access organization resources with a fine-grained personal access token. Only GitHub Apps can use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      * @param sort The property by which to sort the results.
      * @param direction The direction to sort the results by.
      * @param owner A list of owner usernames to use to filter the results.
      * @param repository The name of the repository to use to filter the results.
      * @param permission The permission to use to filter the results.
-     * @param lastUsedBefore Only show fine-grained personal access tokens used before the given
-     *   time. This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param lastUsedAfter Only show fine-grained personal access tokens used after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param lastUsedBefore Only show fine-grained personal access tokens used
+     *   before the given time. This is a timestamp in ISO 8601 format:
+     *   `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param lastUsedAfter Only show fine-grained personal access tokens used after
+     *   the given time. This is a timestamp in ISO 8601 format:
+     *   `YYYY-MM-DDTHH:MM:SSZ`.
      * @param tokenId The ID of the token
      */
-    fun orgsListPatGrantRequests(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsListPatGrantRequestsRequest,
-        options: RequestOptions? = null,
-    ): List<OrganizationProgrammaticAccessGrantRequest> {
+    fun orgsListPatGrantRequests(clientConfig: ClientConfig, request: Orgs.OrgsListPatGrantRequestsRequest, options: RequestOptions? = null): List<OrganizationProgrammaticAccessGrantRequest> {
         validateOrgsListPatGrantRequestsRequest(request)
 
-        return SdkClient.request<List<OrganizationProgrammaticAccessGrantRequest>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/personal-access-token-requests",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "owner" to SdkClient.queryValue(request.owner, "form", true),
-                            "repository" to SdkClient.queryValue(request.repository, "form", true),
-                            "permission" to SdkClient.queryValue(request.permission, "form", true),
-                            "last_used_before" to
-                                SdkClient.queryValue(
-                                    request.lastUsedBefore,
-                                    "form",
-                                    true,
-                                    "date-time",
-                                ),
-                            "last_used_after" to
-                                SdkClient.queryValue(
-                                    request.lastUsedAfter,
-                                    "form",
-                                    true,
-                                    "date-time",
-                                ),
-                            "token_id" to SdkClient.queryValue(request.tokenId, "form", true),
-                        ),
-                    operationId = "orgsListPatGrantRequests",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<List<OrganizationProgrammaticAccessGrantRequest>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/personal-access-token-requests", config = clientConfig, query = mapOf("per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "owner" to SdkClient.queryValue(request.owner, "form", true), "repository" to
+    SdkClient.queryValue(request.repository, "form", true), "permission" to
+    SdkClient.queryValue(request.permission, "form", true), "last_used_before" to
+    SdkClient.queryValue(request.lastUsedBefore, "form", true, "date-time"), "last_used_after" to
+    SdkClient.queryValue(request.lastUsedAfter, "form", true, "date-time"), "token_id" to
+    SdkClient.queryValue(request.tokenId, "form", true)), operationId = "orgsListPatGrantRequests", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 
-    private fun validateOrgsListPatGrantRequestsRequest(
-        request: Orgs.OrgsListPatGrantRequestsRequest
-    ) {
+
+    private fun validateOrgsListPatGrantRequestsRequest(request: Orgs.OrgsListPatGrantRequestsRequest) {
         if (request.owner != null) {
             Validation.validateItems("owner", request.owner, Validation.LengthOpts(max = 10))
-        }
+}
 
         if (request.lastUsedBefore != null) {
             Validation.validateDateTime("last_used_before", request.lastUsedBefore)
-        }
+}
 
         if (request.lastUsedAfter != null) {
             Validation.validateDateTime("last_used_after", request.lastUsedAfter)
-        }
+}
 
         if (request.tokenId != null) {
             Validation.validateItems("token_id", request.tokenId, Validation.LengthOpts(max = 50))
-        }
+}
     }
 }
 
 internal object OrgsReviewPatGrantRequestsInBulkOperation {
     /**
-     * Approves or denies multiple pending requests to access organization resources via a
-     * fine-grained personal access token. Only GitHub Apps can use this endpoint.
+     * Approves or denies multiple pending requests to access organization resources via a fine-grained personal access token. Only GitHub Apps can use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param action Action to apply to the requests.
-     * @param patRequestIds Unique identifiers of the requests for access via fine-grained personal
-     *   access token. Must be formed of between 1 and 100 `pat_request_id` values.
-     * @param reason Reason for approving or denying the requests. Max 1024 characters.
+     * @param patRequestIds Unique identifiers of the requests for access via
+     *   fine-grained personal access token. Must be formed of between 1 and 100
+     *   `pat_request_id` values.
+     * @param reason Reason for approving or denying the requests. Max 1024
+     *   characters.
      */
-    fun orgsReviewPatGrantRequestsInBulk(
-        clientConfig: ClientConfig,
-        org: String,
-        action: OrgsReviewPatGrantRequestsInBulkActionEnum,
-        patRequestIds: List<Long>? = null,
-        reason: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): Map<String, Any> {
+    fun orgsReviewPatGrantRequestsInBulk(clientConfig: ClientConfig, org: String, action: OrgsReviewPatGrantRequestsInBulkActionEnum, patRequestIds: List<Long>? = null, reason: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): Map<String, Any> {
         if (patRequestIds != null) {
-            Validation.validateItems(
-                "pat_request_ids",
-                patRequestIds,
-                Validation.LengthOpts(min = 1, max = 100),
-            )
-        }
+            Validation.validateItems("pat_request_ids", patRequestIds, Validation.LengthOpts(min = 1, max = 100))
+}
 
         val reasonValue = reason?.getOrNull()
-        if (reasonValue != null) {
+if (reasonValue != null) {
             Validation.validateLength("reason", reasonValue, Validation.LengthOpts(max = 1024))
-        }
+}
 
-        return SdkClient.request<Map<String, Any>>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/personal-access-token-requests",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "action" to (action),
-                            "pat_request_ids" to (SdkClient.omitIfNull(patRequestIds)),
-                            "reason" to (reason ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "orgsReviewPatGrantRequestsInBulk",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<Map<String, Any>>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/personal-access-token-requests", config = clientConfig, body = SdkClient.bodyMap("action" to (action), "pat_request_ids" to (SdkClient.omitIfNull(patRequestIds)), "reason" to (reason ?: SdkClient.SdkOptional.Omitted)), operationId = "orgsReviewPatGrantRequestsInBulk", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsReviewPatGrantRequestOperation {
     /**
-     * Approves or denies a pending request to access organization resources via a fine-grained
-     * personal access token. Only GitHub Apps can use this endpoint.
+     * Approves or denies a pending request to access organization resources via a fine-grained personal access token. Only GitHub Apps can use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param patRequestId Unique identifier of the request for access via fine-grained personal
-     *   access token.
+     * @param patRequestId Unique identifier of the request for access via
+     *   fine-grained personal access token.
      * @param action Action to apply to the request.
-     * @param reason Reason for approving or denying the request. Max 1024 characters.
+     * @param reason Reason for approving or denying the request. Max 1024
+     *   characters.
      */
-    fun orgsReviewPatGrantRequest(
-        clientConfig: ClientConfig,
-        org: String,
-        patRequestId: Long,
-        action: OrgsReviewPatGrantRequestActionEnum,
-        reason: SdkClient.SdkOptional<String?>? = null,
-        options: RequestOptions? = null,
-    ): Unit {
+    fun orgsReviewPatGrantRequest(clientConfig: ClientConfig, org: String, patRequestId: Long, action: OrgsReviewPatGrantRequestActionEnum, reason: SdkClient.SdkOptional<String?>? = null, options: RequestOptions? = null): Unit {
         val reasonValue = reason?.getOrNull()
-        if (reasonValue != null) {
+if (reasonValue != null) {
             Validation.validateLength("reason", reasonValue, Validation.LengthOpts(max = 1024))
-        }
+}
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "POST",
-                "/orgs/${SdkClient.encodePathSegment(org)}/personal-access-token-requests/${SdkClient.encodePathSegment(patRequestId)}",
-                config = clientConfig,
-                body =
-                    SdkClient.bodyMap(
-                        "action" to (action),
-                        "reason" to (reason ?: SdkClient.SdkOptional.Omitted),
-                    ),
-                operationId = "orgsReviewPatGrantRequest",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                        "500" to BasicError::class.java,
-                    ),
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/personal-access-token-requests/${SdkClient.encodePathSegment(patRequestId)}", config = clientConfig, body = SdkClient.bodyMap("action" to (action), "reason" to (reason ?: SdkClient.SdkOptional.Omitted)), operationId = "orgsReviewPatGrantRequest", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java)))
     }
 }
 
 internal object OrgsListPatGrantRequestRepositoriesOperation {
     /**
-     * Lists the repositories a fine-grained personal access token request is requesting access to.
-     * Only GitHub Apps can use this endpoint.
+     * Lists the repositories a fine-grained personal access token request is requesting access to. Only GitHub Apps can use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param patRequestId Unique identifier of the request for access via fine-grained personal
-     *   access token.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param patRequestId Unique identifier of the request for access via
+     *   fine-grained personal access token.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsListPatGrantRequestRepositories(
-        clientConfig: ClientConfig,
-        org: String,
-        patRequestId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/personal-access-token-requests/${SdkClient.encodePathSegment(patRequestId)}/repositories",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsListPatGrantRequestRepositories",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsListPatGrantRequestRepositories(clientConfig: ClientConfig, org: String, patRequestId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/personal-access-token-requests/${SdkClient.encodePathSegment(patRequestId)}/repositories", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListPatGrantRequestRepositories", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }

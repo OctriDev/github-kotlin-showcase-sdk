@@ -17,91 +17,37 @@ internal object OrgsListBlockedUsersOperation {
      * List the users blocked by an organization.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsListBlockedUsers(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/blocks",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsListBlockedUsers",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun orgsListBlockedUsers(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/blocks", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListBlockedUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object OrgsCheckBlockedUserOperation {
     /**
-     * Returns a 204 if the given user is blocked by the given organization. Returns a 404 if the
-     * organization is not blocking the user, or if the user account has been identified as spam by
-     * GitHub.
+     * Returns a 204 if the given user is blocked by the given organization. Returns a 404 if the organization is not blocking the user, or if the user account has been identified as spam by GitHub.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsCheckBlockedUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "GET",
-                "/orgs/${SdkClient.encodePathSegment(org)}/blocks/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsCheckBlockedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun orgsCheckBlockedUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/blocks/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsCheckBlockedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }
 
 internal object OrgsBlockUserOperation {
     /**
-     * Blocks the given user on behalf of the specified organization and returns a 204. If the
-     * organization cannot block the given user a 422 is returned.
+     * Blocks the given user on behalf of the specified organization and returns a 204. If the organization cannot block the given user a 422 is returned.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsBlockUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/orgs/${SdkClient.encodePathSegment(org)}/blocks/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsBlockUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("422" to ValidationError::class.java),
-            )
-        )
+    fun orgsBlockUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/blocks/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsBlockUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("422" to ValidationError::class.java)))
     }
 }
 
@@ -112,21 +58,7 @@ internal object OrgsUnblockUserOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsUnblockUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/blocks/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsUnblockUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun orgsUnblockUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/blocks/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsUnblockUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }

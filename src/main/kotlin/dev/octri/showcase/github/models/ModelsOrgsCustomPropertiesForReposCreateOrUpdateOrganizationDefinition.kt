@@ -3,28 +3,36 @@
 
 package dev.octri.showcase.github.models
 
-/** Custom property set payload */
+/**
+ * Custom property set payload
+ */
 data class CustomPropertySetPayload(
-    /** The type of the value for the property */
-    @com.fasterxml.jackson.annotation.JsonProperty("value_type")
-    val valueType: CustomPropertySetPayloadValueTypeEnum,
-    /** Whether the property is required. */
+    /**
+     * The type of the value for the property
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("value_type") val valueType: CustomPropertySetPayloadValueTypeEnum,
+    /**
+     * Whether the property is required.
+     */
     val required: Boolean? = null,
-    /** Default value of the property */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_value")
-    val defaultValue: List<String>? = null,
-    /** Short description of the property */
+    /**
+     * Default value of the property
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_value") val defaultValue: List<String>? = null,
+    /**
+     * Short description of the property
+     */
     val description: String? = null,
     /**
-     * An ordered list of the allowed values of the property. The property can have up to 200
-     * allowed values.
+     * An ordered list of the allowed values of the property. The property can have up to 200 allowed values.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_values")
-    val allowedValues: List<String>? = null,
-    /** Who can edit the values of the property */
-    @com.fasterxml.jackson.annotation.JsonProperty("values_editable_by")
-    val valuesEditableBy: CustomPropertySetPayloadValuesEditableByEnum? = null,
-    /** Whether setting properties values is mandatory */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_explicit_values")
-    val requireExplicitValues: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_values") val allowedValues: List<String>? = null,
+    /**
+     * Who can edit the values of the property
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("values_editable_by") val valuesEditableBy: CustomPropertySetPayloadValuesEditableByEnum? = null,
+    /**
+     * Whether setting properties values is mandatory
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("require_explicit_values") val requireExplicitValues: Boolean? = null
 )

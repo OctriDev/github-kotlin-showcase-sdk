@@ -3,41 +3,48 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `WebhookIssueDependenciesBlockingRemoved` API schema. */
+/**
+ * Typed representation of the `WebhookIssueDependenciesBlockingRemoved` API schema.
+ */
 data class WebhookIssueDependenciesBlockingRemoved(
-    /** Required enumerated value serialized in the `action` wire field. */
+    /**
+     * Required enumerated value serialized in the `action` wire field.
+     */
     val action: WebhookIssueDependenciesBlockingRemovedActionEnum,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /** A GitHub user. */
-    val sender: SimpleUser,
-    /** The ID of the blocked issue. */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_issue_id")
-    val blockedIssueId: Double? = null,
-    /** Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_issue") val blockedIssue: Issue? = null,
-    /** A repository on GitHub. */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_issue_repo")
-    val blockedIssueRepo: Repository? = null,
-    /** The ID of the blocking issue. */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocking_issue_id")
-    val blockingIssueId: Double? = null,
-    /** Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocking_issue")
-    val blockingIssue: Issue? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * A GitHub user.
      */
-    val installation: SimpleInstallation? = null,
+    val sender: SimpleUser,
+    /**
+     * The ID of the blocked issue.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_issue_id") val blockedIssueId: Double? = null,
+    /**
+     * Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_issue") val blockedIssue: Issue? = null,
+    /**
+     * A repository on GitHub.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_issue_repo") val blockedIssueRepo: Repository? = null,
+    /**
+     * The ID of the blocking issue.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocking_issue_id") val blockingIssueId: Double? = null,
+    /**
+     * Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocking_issue") val blockingIssue: Issue? = null,
+    /**
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     */
+    val installation: SimpleInstallation? = null
 )

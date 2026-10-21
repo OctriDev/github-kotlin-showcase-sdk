@@ -3,1414 +3,509 @@
 
 package dev.octri.showcase.github
 
+
 class IssuesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists issues assigned to the authenticated user across repositories the user can access,
-     * including owned, member, and organization repositories. Use `filter`, `state`, and `labels`
-     * to narrow the results, and use `page` and `per_page` to paginate the results. Responses can
-     * include pull requests; identify them by the `pull_request` key, and use the pull requests
-     * endpoint to retrieve a pull request ID.
+     * Lists issues assigned to the authenticated user across repositories the user can access, including owned, member, and organization repositories. Use `filter`, `state`, and `labels` to narrow the results, and use `page` and `per_page` to paginate the results. Responses can include pull requests; identify them by the `pull_request` key, and use the pull requests endpoint to retrieve a pull request ID.
      *
-     * List issues assigned to the authenticated user across all visible repositories including
-     * owned repositories, member repositories, and organization repositories. You can use the
-     * `filter` query parameter to fetch issues that are not necessarily assigned to you. > !NOTE] >
-     * GitHub's REST API considers every pull request an issue, but not every issue is a pull
-     * request. For this reason, "Issues" endpoints may return both issues and pull requests in the
-     * response. You can identify…
+     * List issues assigned to the authenticated user across all visible repositories including owned repositories, member repositories, and organization repositories. You can use the `filter` query parameter to fetch issues that are not necessarily assigned to you. > !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, "Issues" endpoints may return both issues and pull requests in the response. You can identify…
      */
-    fun list(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListRequest,
-        options: RequestOptions? = null,
-    ): List<Issue> {
+    fun list(request: dev.octri.showcase.github.methods.Issues.IssuesListRequest, options: RequestOptions? = null): List<Issue> {
         return dev.octri.showcase.github.methods.Issues.issuesList(clientConfig, request, options)
     }
 
     /**
-     * List issues in an organization assigned to the authenticated user. > !NOTE] > GitHub's REST
-     * API considers every pull request an issue, but not every issue is a pull request. For this
-     * reason, "Issues" endpoints may return both issues and pull requests in the response. You can
-     * identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request
-     * returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use
-     * the "\[List pull…
+     * List issues in an organization assigned to the authenticated user. > !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, "Issues" endpoints may return both issues and pull requests in the response. You can identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use the "\[List pull…
      */
-    fun listForOrg(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListForOrgRequest,
-        options: RequestOptions? = null,
-    ): List<Issue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListForOrg(
-            clientConfig,
-            request,
-            options,
-        )
-    }
-
-    /** Lists the available assignees for issues in a repository. */
-    fun listAssignees(
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SimpleUser> {
-        return dev.octri.showcase.github.methods.Issues.issuesListAssignees(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun listForOrg(request: dev.octri.showcase.github.methods.Issues.IssuesListForOrgRequest, options: RequestOptions? = null): List<Issue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListForOrg(clientConfig, request, options)
     }
 
     /**
-     * Checks whether a user can be assigned to issues in a repository. Use `owner` and `repo` to
-     * identify the repository and `assignee` to identify the user; a 204 response has no body when
-     * assignment is allowed.
+     * Lists the available assignees for issues in a repository.
+     */
+    fun listAssignees(owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
+        return dev.octri.showcase.github.methods.Issues.issuesListAssignees(clientConfig, owner, repo, perPage, page, options)
+    }
+
+    /**
+     * Checks whether a user can be assigned to issues in a repository. Use `owner` and `repo` to identify the repository and `assignee` to identify the user; a 204 response has no body when assignment is allowed.
      *
-     * Checks if a user has permission to be assigned to an issue in this repository. If the
-     * `assignee` can be assigned to issues in the repository, a `204` header with no content is
-     * returned. Otherwise a `404` status code is returned.
+     * Checks if a user has permission to be assigned to an issue in this repository. If the `assignee` can be assigned to issues in the repository, a `204` header with no content is returned. Otherwise a `404` status code is returned.
      */
-    fun checkUserCanBeAssigned(
-        owner: String,
-        repo: String,
-        assignee: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesCheckUserCanBeAssigned(
-            clientConfig,
-            owner,
-            repo,
-            assignee,
-            options,
-        )
+    fun checkUserCanBeAssigned(owner: String, repo: String, assignee: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesCheckUserCanBeAssigned(clientConfig, owner, repo, assignee, options)
     }
 
     /**
-     * List issues in a repository. Only open issues will be listed. > !NOTE] > GitHub's REST API
-     * considers every pull request an issue, but not every issue is a pull request. For this
-     * reason, "Issues" endpoints may return both issues and pull requests in the response. You can
-     * identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request
-     * returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use
-     * the "\[List pull…
+     * List issues in a repository. Only open issues will be listed. > !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, "Issues" endpoints may return both issues and pull requests in the response. You can identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use the "\[List pull…
      */
-    fun listForRepo(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListForRepoRequest,
-        options: RequestOptions? = null,
-    ): List<Issue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListForRepo(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listForRepo(request: dev.octri.showcase.github.methods.Issues.IssuesListForRepoRequest, options: RequestOptions? = null): List<Issue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListForRepo(clientConfig, request, options)
     }
 
     /**
-     * Creates an issue in a repository. Provide a `title`; you can also include a body, labels,
-     * assignees, milestone, issue type, parent issue, or issue field values. Creating an issue
-     * triggers notifications, and creating content too quickly may result in secondary rate
-     * limiting.
+     * Creates an issue in a repository. Provide a `title`; you can also include a body, labels, assignees, milestone, issue type, parent issue, or issue field values. Creating an issue triggers notifications, and creating content too quickly may result in secondary rate limiting.
      *
-     * Any user with pull access to a repository can create an issue. If issues are disabled in the
-     * repository, the API returns a `410 Gone` status. This endpoint triggers notifications.
-     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
-     * more information, see "Rate limits for the API" and "Best practices for using the REST API."
-     * This endpoint supports the following custom media types. For more information, see "Media
-     * types." -…
+     * Any user with pull access to a repository can create an issue. If issues are disabled in the repository, the API returns a `410 Gone` status. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." -…
      */
-    fun create(
-        request: dev.octri.showcase.github.methods.Issues.IssuesCreateRequest,
-        options: RequestOptions? = null,
-    ): Issue {
+    fun create(request: dev.octri.showcase.github.methods.Issues.IssuesCreateRequest, options: RequestOptions? = null): Issue {
         return dev.octri.showcase.github.methods.Issues.issuesCreate(clientConfig, request, options)
     }
 
     /**
-     * You can use the REST API to list comments on issues and pull requests for a repository. Every
-     * pull request is an issue, but not every issue is a pull request. By default, issue comments
-     * are ordered by ascending ID. This endpoint supports the following custom media types. For
-     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
-     * markdown body. Response will include `body`. This is the default if you do not pass any
-     * specific media type.…
+     * You can use the REST API to list comments on issues and pull requests for a repository. Every pull request is an issue, but not every issue is a pull request. By default, issue comments are ordered by ascending ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type.…
      */
-    fun listCommentsForRepo(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListCommentsForRepoRequest,
-        options: RequestOptions? = null,
-    ): List<IssueComment> {
-        return dev.octri.showcase.github.methods.Issues.issuesListCommentsForRepo(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listCommentsForRepo(request: dev.octri.showcase.github.methods.Issues.IssuesListCommentsForRepoRequest, options: RequestOptions? = null): List<IssueComment> {
+        return dev.octri.showcase.github.methods.Issues.issuesListCommentsForRepo(clientConfig, request, options)
     }
 
     /**
-     * You can use the REST API to get comments on issues and pull requests. Every pull request is
-     * an issue, but not every issue is a pull request. This endpoint supports the following custom
-     * media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only…
+     * You can use the REST API to get comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only…
      */
-    fun getComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): IssueComment {
-        return dev.octri.showcase.github.methods.Issues.issuesGetComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            options,
-        )
+    fun getComment(owner: String, repo: String, commentId: Long, options: RequestOptions? = null): IssueComment {
+        return dev.octri.showcase.github.methods.Issues.issuesGetComment(clientConfig, owner, repo, commentId, options)
     }
 
     /**
-     * You can use the REST API to update comments on issues and pull requests. Every pull request
-     * is an issue, but not every issue is a pull request. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only…
+     * You can use the REST API to update comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only…
      */
-    fun updateComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): IssueComment {
-        return dev.octri.showcase.github.methods.Issues.issuesUpdateComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            body,
-            options,
-        )
+    fun updateComment(owner: String, repo: String, commentId: Long, body: String, options: RequestOptions? = null): IssueComment {
+        return dev.octri.showcase.github.methods.Issues.issuesUpdateComment(clientConfig, owner, repo, commentId, body, options)
     }
 
     /**
-     * You can use the REST API to delete comments on issues and pull requests. Every pull request
-     * is an issue, but not every issue is a pull request.
+     * You can use the REST API to delete comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request.
      */
-    fun deleteComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesDeleteComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            options,
-        )
+    fun deleteComment(owner: String, repo: String, commentId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesDeleteComment(clientConfig, owner, repo, commentId, options)
     }
 
     /**
-     * Pins an issue comment in the specified repository. Use `owner`, `repo`, and `comment_id` to
-     * identify the comment to pin. The response includes the comment and details about who pinned
-     * it and when.
+     * Pins an issue comment in the specified repository. Use `owner`, `repo`, and `comment_id` to identify the comment to pin. The response includes the comment and details about who pinned it and when.
      *
-     * You can use the REST API to pin comments on issues. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
-     * body. Response will include `body_text`. -…
+     * You can use the REST API to pin comments on issues. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      */
-    fun pinComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): IssueComment {
-        return dev.octri.showcase.github.methods.Issues.issuesPinComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            options,
-        )
+    fun pinComment(owner: String, repo: String, commentId: Long, options: RequestOptions? = null): IssueComment {
+        return dev.octri.showcase.github.methods.Issues.issuesPinComment(clientConfig, owner, repo, commentId, options)
     }
 
     /**
-     * Removes the pin from an issue comment in the specified repository. Use `owner`, `repo`, and
-     * `comment_id` to identify the comment whose pin you want to remove.
+     * Removes the pin from an issue comment in the specified repository. Use `owner`, `repo`, and `comment_id` to identify the comment whose pin you want to remove.
      *
      * You can use the REST API to unpin comments on issues.
      */
-    fun unpinComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesUnpinComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            options,
-        )
+    fun unpinComment(owner: String, repo: String, commentId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesUnpinComment(clientConfig, owner, repo, commentId, options)
     }
 
     /**
-     * Lists issue events for a repository, including event details and associated issue
-     * information. Use `page` and `per_page` to paginate the results.
+     * Lists issue events for a repository, including event details and associated issue information. Use `page` and `per_page` to paginate the results.
      *
      * Lists events for a repository.
      */
-    fun listEventsForRepo(
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<IssueEvent> {
-        return dev.octri.showcase.github.methods.Issues.issuesListEventsForRepo(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun listEventsForRepo(owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IssueEvent> {
+        return dev.octri.showcase.github.methods.Issues.issuesListEventsForRepo(clientConfig, owner, repo, perPage, page, options)
     }
 
     /**
-     * Retrieves a single issue event from a repository by its event identifier. Use `event_id` to
-     * select the event and `owner` and `repo` to identify the repository.
+     * Retrieves a single issue event from a repository by its event identifier. Use `event_id` to select the event and `owner` and `repo` to identify the repository.
      *
      * Gets a single event by the event id.
      */
-    fun getEvent(
-        owner: String,
-        repo: String,
-        eventId: Long,
-        options: RequestOptions? = null,
-    ): IssueEvent {
-        return dev.octri.showcase.github.methods.Issues.issuesGetEvent(
-            clientConfig,
-            owner,
-            repo,
-            eventId,
-            options,
-        )
+    fun getEvent(owner: String, repo: String, eventId: Long, options: RequestOptions? = null): IssueEvent {
+        return dev.octri.showcase.github.methods.Issues.issuesGetEvent(clientConfig, owner, repo, eventId, options)
     }
 
     /**
-     * Retrieves an issue from a repository by its issue number. Use `owner`, `repo`, and
-     * `issue_number` to identify the repository and issue; the response may also represent a pull
-     * request. Transferred issues return a 301 redirect, while deleted issues return 404 or 410
-     * depending on the authenticated user's read access.
+     * Retrieves an issue from a repository by its issue number. Use `owner`, `repo`, and `issue_number` to identify the repository and issue; the response may also represent a pull request. Transferred issues return a 301 redirect, while deleted issues return 404 or 410 depending on the authenticated user's read access.
      *
-     * The API returns a `301 Moved Permanently` status if the issue was transferred to another
-     * repository. If the issue was transferred to or deleted from a repository where the
-     * authenticated user lacks read access, the API returns a `404 Not Found` status. If the issue
-     * was deleted from a repository where the authenticated user has read access, the API returns a
-     * `410 Gone` status. To receive webhook events for transferred and deleted issues, subscribe to
-     * the `issues` webhook. >…
+     * The API returns a `301 Moved Permanently` status if the issue was transferred to another repository. If the issue was transferred to or deleted from a repository where the authenticated user lacks read access, the API returns a `404 Not Found` status. If the issue was deleted from a repository where the authenticated user has read access, the API returns a `410 Gone` status. To receive webhook events for transferred and deleted issues, subscribe to the `issues` webhook. >…
      */
-    fun get(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesGet(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            options,
-        )
+    fun get(owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesGet(clientConfig, owner, repo, issueNumber, options)
     }
 
     /**
-     * Updates the title, body, state, assignees, labels, milestone, type, or field values of an
-     * issue. Supply only the properties you want to change; `state_reason` applies only when you
-     * change `state`, and `duplicate_issue_id` applies only when `state_reason` is `duplicate`.
-     * Users with push access or the Triage role can edit issues, but milestone, label, type, and
-     * field-value changes require push access.
+     * Updates the title, body, state, assignees, labels, milestone, type, or field values of an issue. Supply only the properties you want to change; `state_reason` applies only when you change `state`, and `duplicate_issue_id` applies only when `state_reason` is `duplicate`. Users with push access or the Triage role can edit issues, but milestone, label, type, and field-value changes require push access.
      *
-     * Issue owners and users with push access or Triage role can edit an issue. This endpoint
-     * supports the following custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
-     * body. Response will include `body_text`. -…
+     * Issue owners and users with push access or Triage role can edit an issue. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      */
-    fun update(
-        request: dev.octri.showcase.github.methods.Issues.IssuesUpdateRequest,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.Issues.IssuesUpdateResponse {
+    fun update(request: dev.octri.showcase.github.methods.Issues.IssuesUpdateRequest, options: RequestOptions? = null): dev.octri.showcase.github.methods.Issues.IssuesUpdateResponse {
         return dev.octri.showcase.github.methods.Issues.issuesUpdate(clientConfig, request, options)
     }
 
-    /** Adds up to 10 assignees to an issue. Users already assigned to an issue are not replaced. */
-    fun addAssignees(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        assignees: List<IssuesAddAssigneesRequestAssigneesItem>? = null,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesAddAssignees(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            assignees,
-            options,
-        )
+    /**
+     * Adds up to 10 assignees to an issue. Users already assigned to an issue are not replaced.
+     */
+    fun addAssignees(owner: String, repo: String, issueNumber: Long, assignees: List<IssuesAddAssigneesRequestAssigneesItem>? = null, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesAddAssignees(clientConfig, owner, repo, issueNumber, assignees, options)
     }
 
     /**
-     * Removes specified assignees from an issue in a repository. Use `assignees` to identify the
-     * usernames to remove; users without push access cannot remove assignees, and those changes are
-     * silently ignored.
+     * Removes specified assignees from an issue in a repository. Use `assignees` to identify the usernames to remove; users without push access cannot remove assignees, and those changes are silently ignored.
      *
      * Removes one or more assignees from an issue.
      */
-    fun removeAssignees(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        assignees: List<String>? = null,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesRemoveAssignees(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            assignees,
-            options,
-        )
+    fun removeAssignees(owner: String, repo: String, issueNumber: Long, assignees: List<String>? = null, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesRemoveAssignees(clientConfig, owner, repo, issueNumber, assignees, options)
     }
 
     /**
-     * Checks whether a user can be assigned to a specific issue in a repository. Use `assignee` to
-     * identify the user and the repository and issue parameters to specify where you want to assign
-     * them.
+     * Checks whether a user can be assigned to a specific issue in a repository. Use `assignee` to identify the user and the repository and issue parameters to specify where you want to assign them.
      *
-     * Checks if a user has permission to be assigned to a specific issue. If the `assignee` can be
-     * assigned to this issue, a `204` status code with no content is returned. Otherwise a `404`
-     * status code is returned.
+     * Checks if a user has permission to be assigned to a specific issue. If the `assignee` can be assigned to this issue, a `204` status code with no content is returned. Otherwise a `404` status code is returned.
      */
-    fun checkUserCanBeAssignedToIssue(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        assignee: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesCheckUserCanBeAssignedToIssue(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            assignee,
-            options,
-        )
+    fun checkUserCanBeAssignedToIssue(owner: String, repo: String, issueNumber: Long, assignee: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesCheckUserCanBeAssignedToIssue(clientConfig, owner, repo, issueNumber, assignee, options)
     }
 
     /**
-     * Lists comments on an issue or pull request in a repository, ordered by ascending comment ID.
-     * Use `since` to filter by update time and `page` with `per_page` to paginate results; the
-     * response can include raw Markdown, plain text, or rendered HTML according to the requested
-     * media type.
+     * Lists comments on an issue or pull request in a repository, ordered by ascending comment ID. Use `since` to filter by update time and `page` with `per_page` to paginate results; the response can include raw Markdown, plain text, or rendered HTML according to the requested media type.
      *
-     * You can use the REST API to list comments on issues and pull requests. Every pull request is
-     * an issue, but not every issue is a pull request. Issue comments are ordered by ascending ID.
-     * This endpoint supports the following custom media types. For more information, see "Media
-     * types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will
-     * include `body`. This is the default if you do not pass any specific media type. -…
+     * You can use the REST API to list comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request. Issue comments are ordered by ascending ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. -…
      */
-    fun listComments(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListCommentsRequest,
-        options: RequestOptions? = null,
-    ): List<IssueComment> {
-        return dev.octri.showcase.github.methods.Issues.issuesListComments(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listComments(request: dev.octri.showcase.github.methods.Issues.IssuesListCommentsRequest, options: RequestOptions? = null): List<IssueComment> {
+        return dev.octri.showcase.github.methods.Issues.issuesListComments(clientConfig, request, options)
     }
 
     /**
-     * Creates a comment on an issue or pull request in a repository. Provide the comment contents
-     * in `body`; creating a comment triggers notifications, and creating content too quickly may
-     * result in secondary rate limiting. The response can include raw Markdown, plain text, or
-     * rendered HTML according to the requested media type.
+     * Creates a comment on an issue or pull request in a repository. Provide the comment contents in `body`; creating a comment triggers notifications, and creating content too quickly may result in secondary rate limiting. The response can include raw Markdown, plain text, or rendered HTML according to the requested media type.
      *
-     * You can use the REST API to create comments on issues and pull requests. Every pull request
-     * is an issue, but not every issue is a pull request. This endpoint triggers notifications.
-     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
-     * more information, see "Rate limits for the API" and "Best practices for using the REST API."
-     * This endpoint supports the following custom media types. For more information, see "Media
-     * types." -…
+     * You can use the REST API to create comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." -…
      */
-    fun createComment(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): IssueComment {
-        return dev.octri.showcase.github.methods.Issues.issuesCreateComment(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            body,
-            options,
-        )
+    fun createComment(owner: String, repo: String, issueNumber: Long, body: String, options: RequestOptions? = null): IssueComment {
+        return dev.octri.showcase.github.methods.Issues.issuesCreateComment(clientConfig, owner, repo, issueNumber, body, options)
     }
 
     /**
-     * Lists the issues that block a specified issue in a repository. Use `page` and `per_page` to
-     * paginate the results; returned issues include their issue details.
+     * Lists the issues that block a specified issue in a repository. Use `page` and `per_page` to paginate the results; returned issues include their issue details.
      *
-     * You can use the REST API to list the dependencies an issue is blocked by. This endpoint
-     * supports the following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
-     * body. Response will include `body_text`. -…
+     * You can use the REST API to list the dependencies an issue is blocked by. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
      */
-    fun listDependenciesBlockedBy(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Issue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListDependenciesBlockedBy(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            perPage,
-            page,
-            options,
-        )
+    fun listDependenciesBlockedBy(owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListDependenciesBlockedBy(clientConfig, owner, repo, issueNumber, perPage, page, options)
     }
 
     /**
-     * Adds a “blocked by” dependency between an issue and another issue in a repository. Provide
-     * the blocking issue's ID in `issue_id`; creating content too quickly may result in secondary
-     * rate limiting.
+     * Adds a “blocked by” dependency between an issue and another issue in a repository. Provide the blocking issue's ID in `issue_id`; creating content too quickly may result in secondary rate limiting.
      *
-     * You can use the REST API to add a 'blocked by' relationship to an issue. Creating content too
-     * quickly using this endpoint may result in secondary rate limiting. For more information, see
-     * Rate limits for the API and Best practices for using the REST API. This endpoint supports the
-     * following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
-     * `body`. This is the default if you…
+     * You can use the REST API to add a 'blocked by' relationship to an issue. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see Rate limits for the API and Best practices for using the REST API. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you…
      */
-    fun addBlockedByDependency(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueId: Long,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesAddBlockedByDependency(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            issueId,
-            options,
-        )
+    fun addBlockedByDependency(owner: String, repo: String, issueNumber: Long, issueId: Long, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesAddBlockedByDependency(clientConfig, owner, repo, issueNumber, issueId, options)
     }
 
     /**
-     * Removes a blocking dependency from an issue in a repository. Specify the issue being blocked
-     * with `issue_number` and the blocking issue with `issue_id`; removing content too quickly may
-     * result in secondary rate limiting.
+     * Removes a blocking dependency from an issue in a repository. Specify the issue being blocked with `issue_number` and the blocking issue with `issue_id`; removing content too quickly may result in secondary rate limiting.
      *
-     * You can use the REST API to remove a dependency that an issue is blocked by. Removing content
-     * too quickly using this endpoint may result in secondary rate limiting. For more information,
-     * see Rate limits for the API and Best practices for using the REST API. This endpoint supports
-     * the following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
-     * `body`. This is the default if…
+     * You can use the REST API to remove a dependency that an issue is blocked by. Removing content too quickly using this endpoint may result in secondary rate limiting. For more information, see Rate limits for the API and Best practices for using the REST API. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if…
      */
-    fun removeDependencyBlockedBy(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueId: Long,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesRemoveDependencyBlockedBy(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            issueId,
-            options,
-        )
+    fun removeDependencyBlockedBy(owner: String, repo: String, issueNumber: Long, issueId: Long, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesRemoveDependencyBlockedBy(clientConfig, owner, repo, issueNumber, issueId, options)
     }
 
     /**
-     * Lists the issues that a specified issue blocks in a repository. Use `page` and `per_page` to
-     * paginate the results; returned issues include their issue details.
+     * Lists the issues that a specified issue blocks in a repository. Use `page` and `per_page` to paginate the results; returned issues include their issue details.
      *
-     * You can use the REST API to list the dependencies an issue is blocking. This endpoint
-     * supports the following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
-     * body. Response will include `body_text`. -…
+     * You can use the REST API to list the dependencies an issue is blocking. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
      */
-    fun listDependenciesBlocking(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Issue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListDependenciesBlocking(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            perPage,
-            page,
-            options,
-        )
+    fun listDependenciesBlocking(owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListDependenciesBlocking(clientConfig, owner, repo, issueNumber, perPage, page, options)
     }
 
     /**
-     * Lists events recorded for an issue in a repository. Use `owner`, `repo`, and `issue_number`
-     * to identify the issue, and paginate the results with `page` and `per_page`.
+     * Lists events recorded for an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
      *
      * Lists all events for an issue.
      */
-    fun listEvents(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<IssueEventForIssue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListEvents(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            perPage,
-            page,
-            options,
-        )
+    fun listEvents(owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IssueEventForIssue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListEvents(clientConfig, owner, repo, issueNumber, perPage, page, options)
     }
 
     /**
-     * Lists the field values assigned to an issue in a repository. Use `owner`, `repo`, and
-     * `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
+     * Lists the field values assigned to an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
      *
      * Lists all issue field values for an issue.
      */
-    fun listIssueFieldValuesForIssue(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<IssueFieldValue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListIssueFieldValuesForIssue(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            perPage,
-            page,
-            options,
-        )
+    fun listIssueFieldValuesForIssue(owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IssueFieldValue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListIssueFieldValuesForIssue(clientConfig, owner, repo, issueNumber, perPage, page, options)
     }
 
     /**
-     * Add custom field values to an issue. You can set values for organization-level issue fields
-     * that have been defined for the repository's organization. Adding an empty array will clear
-     * all existing field values for the issue. This endpoint supports the following field data
-     * types: - **`text`**: String values for text fields - **`single_select`**: Option names for
-     * single-select fields (must match an existing option name) - **`number`**: Numeric values for
-     * number fields -…
+     * Add custom field values to an issue. You can set values for organization-level issue fields that have been defined for the repository's organization. Adding an empty array will clear all existing field values for the issue. This endpoint supports the following field data types: - **`text`**: String values for text fields - **`single_select`**: Option names for single-select fields (must match an existing option name) - **`number`**: Numeric values for number fields -…
      */
-    fun addIssueFieldValues(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueFieldValues:
-            List<
-                dev.octri.showcase.github.methods.Issues.IssuesAddIssueFieldValuesIssueFieldValuesItem
-            >? =
-            null,
-        options: RequestOptions? = null,
-    ): List<IssueFieldValue> {
-        return dev.octri.showcase.github.methods.Issues.issuesAddIssueFieldValues(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            issueFieldValues,
-            options,
-        )
+    fun addIssueFieldValues(owner: String, repo: String, issueNumber: Long, issueFieldValues: List<dev.octri.showcase.github.methods.Issues.IssuesAddIssueFieldValuesIssueFieldValuesItem>? = null, options: RequestOptions? = null): List<IssueFieldValue> {
+        return dev.octri.showcase.github.methods.Issues.issuesAddIssueFieldValues(clientConfig, owner, repo, issueNumber, issueFieldValues, options)
     }
 
     /**
-     * Set custom field values for an issue, replacing any existing values. You can set values for
-     * organization-level issue fields that have been defined for the repository's organization.
-     * This endpoint supports the following field data types: - **`text`**: String values for text
-     * fields - **`single_select`**: Option names for single-select fields (must match an existing
-     * option name) - **`number`**: Numeric values for number fields - **`date`**: ISO 8601 date
-     * strings for date fields…
+     * Set custom field values for an issue, replacing any existing values. You can set values for organization-level issue fields that have been defined for the repository's organization. This endpoint supports the following field data types: - **`text`**: String values for text fields - **`single_select`**: Option names for single-select fields (must match an existing option name) - **`number`**: Numeric values for number fields - **`date`**: ISO 8601 date strings for date fields…
      */
-    fun setIssueFieldValues(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueFieldValues:
-            List<
-                dev.octri.showcase.github.methods.Issues.IssuesSetIssueFieldValuesIssueFieldValuesItem
-            >? =
-            null,
-        options: RequestOptions? = null,
-    ): List<IssueFieldValue> {
-        return dev.octri.showcase.github.methods.Issues.issuesSetIssueFieldValues(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            issueFieldValues,
-            options,
-        )
+    fun setIssueFieldValues(owner: String, repo: String, issueNumber: Long, issueFieldValues: List<dev.octri.showcase.github.methods.Issues.IssuesSetIssueFieldValuesIssueFieldValuesItem>? = null, options: RequestOptions? = null): List<IssueFieldValue> {
+        return dev.octri.showcase.github.methods.Issues.issuesSetIssueFieldValues(clientConfig, owner, repo, issueNumber, issueFieldValues, options)
     }
 
     /**
-     * Remove a specific custom field value from an issue. Only users with push access to the
-     * repository can delete issue field values. If you don't have the proper permissions, you'll
-     * receive a `403 Forbidden` response. If the specified field does not have a value set on the
-     * issue, this operation will return a `404` error. This endpoint triggers notifications.
-     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
-     * more information, see "Rate…
+     * Remove a specific custom field value from an issue. Only users with push access to the repository can delete issue field values. If you don't have the proper permissions, you'll receive a `403 Forbidden` response. If the specified field does not have a value set on the issue, this operation will return a `404` error. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate…
      */
-    fun deleteIssueFieldValue(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueFieldId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesDeleteIssueFieldValue(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            issueFieldId,
-            options,
-        )
+    fun deleteIssueFieldValue(owner: String, repo: String, issueNumber: Long, issueFieldId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesDeleteIssueFieldValue(clientConfig, owner, repo, issueNumber, issueFieldId, options)
     }
 
     /**
-     * Lists the labels applied to an issue in a repository. Use `owner`, `repo`, and `issue_number`
-     * to identify the issue, and paginate the results with `page` and `per_page`.
+     * Lists the labels applied to an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
      *
      * Lists all labels for an issue.
      */
-    fun listLabelsOnIssue(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Label> {
-        return dev.octri.showcase.github.methods.Issues.issuesListLabelsOnIssue(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            perPage,
-            page,
-            options,
-        )
+    fun listLabelsOnIssue(owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Label> {
+        return dev.octri.showcase.github.methods.Issues.issuesListLabelsOnIssue(clientConfig, owner, repo, issueNumber, perPage, page, options)
     }
 
     /**
-     * Adds labels to an issue without removing its existing labels. Supply label names directly or
-     * use an object payload with a `labels` array; label objects can include `rationale`,
-     * `suggest`, and `confidence`. A suggested label is stored for human review rather than applied
-     * directly.
+     * Adds labels to an issue without removing its existing labels. Supply label names directly or use an object payload with a `labels` array; label objects can include `rationale`, `suggest`, and `confidence`. A suggested label is stored for human review rather than applied directly.
      *
      * Adds labels to an issue.
      */
-    fun addLabels(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        body: Any? = null,
-        options: RequestOptions? = null,
-    ): List<Label> {
-        return dev.octri.showcase.github.methods.Issues.issuesAddLabels(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            body,
-            options,
-        )
+    fun addLabels(owner: String, repo: String, issueNumber: Long, body: Any? = null, options: RequestOptions? = null): List<Label> {
+        return dev.octri.showcase.github.methods.Issues.issuesAddLabels(clientConfig, owner, repo, issueNumber, body, options)
     }
 
     /**
-     * Replaces all labels on an issue with the labels in your request. Supply the label names in a
-     * `labels` array or as a direct array; unlike adding labels, this operation removes labels that
-     * are not included in the request.
+     * Replaces all labels on an issue with the labels in your request. Supply the label names in a `labels` array or as a direct array; unlike adding labels, this operation removes labels that are not included in the request.
      *
      * Removes any previous labels and sets the new labels for an issue.
      */
-    fun setLabels(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        body: Any? = null,
-        options: RequestOptions? = null,
-    ): List<Label> {
-        return dev.octri.showcase.github.methods.Issues.issuesSetLabels(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            body,
-            options,
-        )
+    fun setLabels(owner: String, repo: String, issueNumber: Long, body: Any? = null, options: RequestOptions? = null): List<Label> {
+        return dev.octri.showcase.github.methods.Issues.issuesSetLabels(clientConfig, owner, repo, issueNumber, body, options)
     }
 
     /**
-     * Removes all labels from an issue in a repository. Use `owner`, `repo`, and `issue_number` to
-     * identify the issue whose labels you want to clear.
+     * Removes all labels from an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue whose labels you want to clear.
      *
      * Removes all labels from an issue.
      */
-    fun removeAllLabels(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesRemoveAllLabels(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            options,
-        )
+    fun removeAllLabels(owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesRemoveAllLabels(clientConfig, owner, repo, issueNumber, options)
     }
 
     /**
-     * Removes a specified label from an issue and returns the labels that remain. Use `owner`,
-     * `repo`, and `issue_number` to identify the issue, and `name` to select the label to remove.
+     * Removes a specified label from an issue and returns the labels that remain. Use `owner`, `repo`, and `issue_number` to identify the issue, and `name` to select the label to remove.
      *
-     * Removes the specified label from the issue, and returns the remaining labels on the issue.
-     * This endpoint returns a `404 Not Found` status if the label does not exist.
+     * Removes the specified label from the issue, and returns the remaining labels on the issue. This endpoint returns a `404 Not Found` status if the label does not exist.
      */
-    fun removeLabel(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        name: String,
-        options: RequestOptions? = null,
-    ): List<Label> {
-        return dev.octri.showcase.github.methods.Issues.issuesRemoveLabel(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            name,
-            options,
-        )
+    fun removeLabel(owner: String, repo: String, issueNumber: Long, name: String, options: RequestOptions? = null): List<Label> {
+        return dev.octri.showcase.github.methods.Issues.issuesRemoveLabel(clientConfig, owner, repo, issueNumber, name, options)
     }
 
     /**
-     * Locks the conversation on an issue or pull request in a repository. Use `owner`, `repo`, and
-     * `issue_number` to identify the conversation, and set `lock_reason` to explain the lock. Users
-     * with push access can lock conversations; if you omit the request body, send a
-     * `Content-Length` header with a value of zero.
+     * Locks the conversation on an issue or pull request in a repository. Use `owner`, `repo`, and `issue_number` to identify the conversation, and set `lock_reason` to explain the lock. Users with push access can lock conversations; if you omit the request body, send a `Content-Length` header with a value of zero.
      *
-     * Users with push access can lock an issue or pull request's conversation. Note that, if you
-     * choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling
-     * out to this endpoint. For more information, see "HTTP method."
+     * Users with push access can lock an issue or pull request's conversation. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "HTTP method."
      */
-    fun lock(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        lockReason: IssuesLockLockReasonEnum? = null,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesLock(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            lockReason,
-            options,
-        )
-    }
-
-    /** Users with push access can unlock an issue's conversation. */
-    fun unlock(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesUnlock(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            options,
-        )
+    fun lock(owner: String, repo: String, issueNumber: Long, lockReason: IssuesLockLockReasonEnum? = null, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesLock(clientConfig, owner, repo, issueNumber, lockReason, options)
     }
 
     /**
-     * Retrieves the parent issue of a sub-issue in a repository. Use `owner`, `repo`, and
-     * `issue_number` to identify the sub-issue; the selected media type controls which
-     * representation of the parent's Markdown body is included.
+     * Users with push access can unlock an issue's conversation.
+     */
+    fun unlock(owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesUnlock(clientConfig, owner, repo, issueNumber, options)
+    }
+
+    /**
+     * Retrieves the parent issue of a sub-issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the sub-issue; the selected media type controls which representation of the parent's Markdown body is included.
      *
-     * You can use the REST API to get the parent issue of a sub-issue. This endpoint supports the
-     * following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
-     * body. Response will include `body_text`. -…
+     * You can use the REST API to get the parent issue of a sub-issue. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      */
-    fun getParent(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesGetParent(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            options,
-        )
+    fun getParent(owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesGetParent(clientConfig, owner, repo, issueNumber, options)
     }
 
     /**
-     * Lists issues related to an issue in a repository. Use `owner`, `repo`, and `issue_number` to
-     * identify the issue, then use `page` and `per_page` to paginate the results.
+     * Lists issues related to an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, then use `page` and `per_page` to paginate the results.
      *
-     * You can use the REST API to list the issues that are related to an issue. This endpoint
-     * supports the following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
-     * body. Response will include `body_text`. -…
+     * You can use the REST API to list the issues that are related to an issue. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
      */
-    fun listRelatesTo(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Issue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListRelatesTo(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            perPage,
-            page,
-            options,
-        )
+    fun listRelatesTo(owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListRelatesTo(clientConfig, owner, repo, issueNumber, perPage, page, options)
     }
 
     /**
-     * Adds a relationship marking one issue as related to another issue in a repository. Identify
-     * the issue with `owner`, `repo`, and `issue_number`, and provide the related issue's
-     * `issue_id` in the request body. Creating content too quickly with this operation may result
-     * in secondary rate limiting.
+     * Adds a relationship marking one issue as related to another issue in a repository. Identify the issue with `owner`, `repo`, and `issue_number`, and provide the related issue's `issue_id` in the request body. Creating content too quickly with this operation may result in secondary rate limiting.
      *
-     * You can use the REST API to mark an issue as related to another issue. Creating content too
-     * quickly using this endpoint may result in secondary rate limiting. For more information, see
-     * Rate limits for the API and Best practices for using the REST API. This endpoint supports the
-     * following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
-     * `body`. This is the default if you do…
+     * You can use the REST API to mark an issue as related to another issue. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see Rate limits for the API and Best practices for using the REST API. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do…
      */
-    fun addRelatesTo(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueId: Long,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesAddRelatesTo(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            issueId,
-            options,
-        )
+    fun addRelatesTo(owner: String, repo: String, issueNumber: Long, issueId: Long, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesAddRelatesTo(clientConfig, owner, repo, issueNumber, issueId, options)
     }
 
     /**
-     * Removes the related-issue relationship between two issues in a repository. Use `owner`,
-     * `repo`, `issue_number`, and `issue_id` to identify the issue pair whose relationship you want
-     * to remove.
+     * Removes the related-issue relationship between two issues in a repository. Use `owner`, `repo`, `issue_number`, and `issue_id` to identify the issue pair whose relationship you want to remove.
      *
-     * You can use the REST API to remove a 'relates to' relationship between two issues. Removing
-     * content too quickly using this endpoint may result in secondary rate limiting. For more
-     * information, see Rate limits for the API and Best practices for using the REST API. This
-     * endpoint supports the following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
-     * `body`. This is the…
+     * You can use the REST API to remove a 'relates to' relationship between two issues. Removing content too quickly using this endpoint may result in secondary rate limiting. For more information, see Rate limits for the API and Best practices for using the REST API. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the…
      */
-    fun removeRelatesTo(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueId: Long,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesRemoveRelatesTo(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            issueId,
-            options,
-        )
+    fun removeRelatesTo(owner: String, repo: String, issueNumber: Long, issueId: Long, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesRemoveRelatesTo(clientConfig, owner, repo, issueNumber, issueId, options)
     }
 
     /**
-     * You can use the REST API to remove a sub-issue from an issue. Removing content too quickly
-     * using this endpoint may result in secondary rate limiting. For more information, see "Rate
-     * limits for the API" and "Best practices for using the REST API." This endpoint supports the
-     * following custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do…
+     * You can use the REST API to remove a sub-issue from an issue. Removing content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do…
      */
-    fun removeSubIssue(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        subIssueId: Long,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesRemoveSubIssue(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            subIssueId,
-            options,
-        )
+    fun removeSubIssue(owner: String, repo: String, issueNumber: Long, subIssueId: Long, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesRemoveSubIssue(clientConfig, owner, repo, issueNumber, subIssueId, options)
     }
 
     /**
-     * Lists the sub-issues attached to an issue in a repository. Use `owner`, `repo`, and
-     * `issue_number` to select the parent issue, and `page` and `per_page` to paginate the results.
+     * Lists the sub-issues attached to an issue in a repository. Use `owner`, `repo`, and `issue_number` to select the parent issue, and `page` and `per_page` to paginate the results.
      *
-     * You can use the REST API to list the sub-issues on an issue. This endpoint supports the
-     * following custom media types. For more information, see Media types. -
-     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
-     * body. Response will include `body_text`. -…
+     * You can use the REST API to list the sub-issues on an issue. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
      */
-    fun listSubIssues(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Issue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListSubIssues(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            perPage,
-            page,
-            options,
-        )
+    fun listSubIssues(owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListSubIssues(clientConfig, owner, repo, issueNumber, perPage, page, options)
     }
 
     /**
-     * Adds an existing issue as a sub-issue of a parent issue in a repository. Provide the
-     * sub-issue's `sub_issue_id`; it must belong to the same repository owner as the parent, and
-     * `replace_parent` transfers it from its current parent when true. A 201 response returns the
-     * added sub-issue.
+     * Adds an existing issue as a sub-issue of a parent issue in a repository. Provide the sub-issue's `sub_issue_id`; it must belong to the same repository owner as the parent, and `replace_parent` transfers it from its current parent when true. A 201 response returns the added sub-issue.
      *
-     * You can use the REST API to add sub-issues to issues. Creating content too quickly using this
-     * endpoint may result in secondary rate limiting. For more information, see "Rate limits for
-     * the API" and "Best practices for using the REST API." This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass…
+     * You can use the REST API to add sub-issues to issues. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass…
      */
-    fun addSubIssue(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        subIssueId: Long,
-        replaceParent: Boolean? = null,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesAddSubIssue(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            subIssueId,
-            replaceParent,
-            options,
-        )
+    fun addSubIssue(owner: String, repo: String, issueNumber: Long, subIssueId: Long, replaceParent: Boolean? = null, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesAddSubIssue(clientConfig, owner, repo, issueNumber, subIssueId, replaceParent, options)
     }
 
     /**
-     * You can use the REST API to reprioritize a sub-issue to a different position in the parent
-     * list.
+     * You can use the REST API to reprioritize a sub-issue to a different position in the parent list.
      */
-    fun reprioritizeSubIssue(
-        request: dev.octri.showcase.github.methods.Issues.IssuesReprioritizeSubIssueRequest,
-        options: RequestOptions? = null,
-    ): Issue {
-        return dev.octri.showcase.github.methods.Issues.issuesReprioritizeSubIssue(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reprioritizeSubIssue(request: dev.octri.showcase.github.methods.Issues.IssuesReprioritizeSubIssueRequest, options: RequestOptions? = null): Issue {
+        return dev.octri.showcase.github.methods.Issues.issuesReprioritizeSubIssue(clientConfig, request, options)
     }
 
     /**
-     * Lists the suggestions on an issue. A suggestion is an agent-proposed change to an issue's
-     * type, labels, fields, assignees, or closed state that a maintainer can approve or dismiss. By
-     * default only pending suggestions are returned. Use `state=all` to return suggestions in every
-     * state, or `state=<state>` to filter to a single state. Use `action=<action>` to return only
-     * suggestions for a specific change. This endpoint is only available while the issue
-     * suggestions feature is…
+     * Lists the suggestions on an issue. A suggestion is an agent-proposed change to an issue's type, labels, fields, assignees, or closed state that a maintainer can approve or dismiss. By default only pending suggestions are returned. Use `state=all` to return suggestions in every state, or `state=<state>` to filter to a single state. Use `action=<action>` to return only suggestions for a specific change. This endpoint is only available while the issue suggestions feature is…
      */
-    fun listSuggestions(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListSuggestionsRequest,
-        options: RequestOptions? = null,
-    ): List<IssueSuggestion> {
-        return dev.octri.showcase.github.methods.Issues.issuesListSuggestions(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listSuggestions(request: dev.octri.showcase.github.methods.Issues.IssuesListSuggestionsRequest, options: RequestOptions? = null): List<IssueSuggestion> {
+        return dev.octri.showcase.github.methods.Issues.issuesListSuggestions(clientConfig, request, options)
     }
 
     /**
-     * Approves a pending suggestion on an issue. Applies the proposed change (creating the
-     * corresponding timeline event), transitions the suggestion to `approved`, and dismisses any
-     * competing pending suggestions for the same change. Requires triage access to the repository.
-     * Approving a suggestion also requires permission to perform the change it applies (for
-     * example, setting the issue type, adding a label or assignee, or closing the issue); this only
-     * affects fine-grained access…
+     * Approves a pending suggestion on an issue. Applies the proposed change (creating the corresponding timeline event), transitions the suggestion to `approved`, and dismisses any competing pending suggestions for the same change. Requires triage access to the repository. Approving a suggestion also requires permission to perform the change it applies (for example, setting the issue type, adding a label or assignee, or closing the issue); this only affects fine-grained access…
      */
-    fun approveSuggestion(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        suggestionId: Long,
-        options: RequestOptions? = null,
-    ): IssueSuggestion {
-        return dev.octri.showcase.github.methods.Issues.issuesApproveSuggestion(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            suggestionId,
-            options,
-        )
+    fun approveSuggestion(owner: String, repo: String, issueNumber: Long, suggestionId: Long, options: RequestOptions? = null): IssueSuggestion {
+        return dev.octri.showcase.github.methods.Issues.issuesApproveSuggestion(clientConfig, owner, repo, issueNumber, suggestionId, options)
     }
 
     /**
-     * Dismisses a pending suggestion on an issue. Transitions the suggestion to `dismissed` without
-     * applying any change or creating a timeline event. Requires triage access to the repository.
-     * This endpoint only supports issues, not pull requests.
+     * Dismisses a pending suggestion on an issue. Transitions the suggestion to `dismissed` without applying any change or creating a timeline event. Requires triage access to the repository. This endpoint only supports issues, not pull requests.
      */
-    fun dismissSuggestion(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        suggestionId: Long,
-        options: RequestOptions? = null,
-    ): IssueSuggestion {
-        return dev.octri.showcase.github.methods.Issues.issuesDismissSuggestion(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            suggestionId,
-            options,
-        )
+    fun dismissSuggestion(owner: String, repo: String, issueNumber: Long, suggestionId: Long, options: RequestOptions? = null): IssueSuggestion {
+        return dev.octri.showcase.github.methods.Issues.issuesDismissSuggestion(clientConfig, owner, repo, issueNumber, suggestionId, options)
     }
 
     /**
-     * Lists timeline events recorded for a repository issue. Use `exclude` to omit selected event
-     * types, and `page` and `per_page` to paginate the results.
+     * Lists timeline events recorded for a repository issue. Use `exclude` to omit selected event types, and `page` and `per_page` to paginate the results.
      *
      * List all timeline events for an issue.
      */
-    fun listEventsForTimeline(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListEventsForTimelineRequest,
-        options: RequestOptions? = null,
-    ): List<TimelineIssueEvents> {
-        return dev.octri.showcase.github.methods.Issues.issuesListEventsForTimeline(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listEventsForTimeline(request: dev.octri.showcase.github.methods.Issues.IssuesListEventsForTimelineRequest, options: RequestOptions? = null): List<TimelineIssueEvents> {
+        return dev.octri.showcase.github.methods.Issues.issuesListEventsForTimeline(clientConfig, request, options)
     }
 
     /**
-     * Lists labels in a repository. Use `owner` and `repo` to identify the repository, and use
-     * `page` and `per_page` to paginate the results.
+     * Lists labels in a repository. Use `owner` and `repo` to identify the repository, and use `page` and `per_page` to paginate the results.
      *
      * Lists all labels for a repository.
      */
-    fun listLabelsForRepo(
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Label> {
-        return dev.octri.showcase.github.methods.Issues.issuesListLabelsForRepo(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun listLabelsForRepo(owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Label> {
+        return dev.octri.showcase.github.methods.Issues.issuesListLabelsForRepo(clientConfig, owner, repo, perPage, page, options)
     }
 
     /**
-     * Creates a label for the specified repository with the given name and color. The name and
-     * color parameters are required. The color must be a valid hexadecimal color code.
+     * Creates a label for the specified repository with the given name and color. The name and color parameters are required. The color must be a valid hexadecimal color code.
      */
-    fun createLabel(
-        owner: String,
-        repo: String,
-        name: String,
-        color: String? = null,
-        description: String? = null,
-        options: RequestOptions? = null,
-    ): Label {
-        return dev.octri.showcase.github.methods.Issues.issuesCreateLabel(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            color,
-            description,
-            options,
-        )
+    fun createLabel(owner: String, repo: String, name: String, color: String? = null, description: String? = null, options: RequestOptions? = null): Label {
+        return dev.octri.showcase.github.methods.Issues.issuesCreateLabel(clientConfig, owner, repo, name, color, description, options)
     }
 
     /**
-     * Retrieves a label from a repository by its name. Use `owner` and `repo` to identify the
-     * repository and `name` to specify the label.
+     * Retrieves a label from a repository by its name. Use `owner` and `repo` to identify the repository and `name` to specify the label.
      *
      * Gets a label using the given name.
      */
-    fun getLabel(
-        owner: String,
-        repo: String,
-        name: String,
-        options: RequestOptions? = null,
-    ): Label {
-        return dev.octri.showcase.github.methods.Issues.issuesGetLabel(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            options,
-        )
+    fun getLabel(owner: String, repo: String, name: String, options: RequestOptions? = null): Label {
+        return dev.octri.showcase.github.methods.Issues.issuesGetLabel(clientConfig, owner, repo, name, options)
     }
 
     /**
-     * Updates a label in a repository using its current name. Supply any fields you want to change;
-     * all body fields are optional, and `description` can contain at most 100 characters. Set
-     * `archived` to archive or unarchive the label.
+     * Updates a label in a repository using its current name. Supply any fields you want to change; all body fields are optional, and `description` can contain at most 100 characters. Set `archived` to archive or unarchive the label.
      *
      * Updates a label using the given label name.
      */
-    fun updateLabel(
-        request: dev.octri.showcase.github.methods.Issues.IssuesUpdateLabelRequest,
-        options: RequestOptions? = null,
-    ): Label {
-        return dev.octri.showcase.github.methods.Issues.issuesUpdateLabel(
-            clientConfig,
-            request,
-            options,
-        )
+    fun updateLabel(request: dev.octri.showcase.github.methods.Issues.IssuesUpdateLabelRequest, options: RequestOptions? = null): Label {
+        return dev.octri.showcase.github.methods.Issues.issuesUpdateLabel(clientConfig, request, options)
     }
 
     /**
-     * Deletes a label from a repository using its name. Identify the repository with `owner` and
-     * `repo`, and specify the label to remove with `name`.
+     * Deletes a label from a repository using its name. Identify the repository with `owner` and `repo`, and specify the label to remove with `name`.
      *
      * Deletes a label using the given label name.
      */
-    fun deleteLabel(
-        owner: String,
-        repo: String,
-        name: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesDeleteLabel(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            options,
-        )
+    fun deleteLabel(owner: String, repo: String, name: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesDeleteLabel(clientConfig, owner, repo, name, options)
     }
 
     /**
-     * Lists milestones for a repository. Filter by `state` and control ordering with `sort` and
-     * `direction`; use `page` and `per_page` to paginate the results.
+     * Lists milestones for a repository. Filter by `state` and control ordering with `sort` and `direction`; use `page` and `per_page` to paginate the results.
      *
      * Lists milestones for a repository.
      */
-    fun listMilestones(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListMilestonesRequest,
-        options: RequestOptions? = null,
-    ): List<Milestone> {
-        return dev.octri.showcase.github.methods.Issues.issuesListMilestones(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listMilestones(request: dev.octri.showcase.github.methods.Issues.IssuesListMilestonesRequest, options: RequestOptions? = null): List<Milestone> {
+        return dev.octri.showcase.github.methods.Issues.issuesListMilestones(clientConfig, request, options)
     }
 
     /**
-     * Creates a milestone in a repository. Provide a `title` and optionally set its `state`,
-     * `description`, and `due_on` date. A 201 response returns the created milestone with its
-     * generated identifier and milestone details.
+     * Creates a milestone in a repository. Provide a `title` and optionally set its `state`, `description`, and `due_on` date. A 201 response returns the created milestone with its generated identifier and milestone details.
      *
      * Creates a milestone.
      */
-    fun createMilestone(
-        request: dev.octri.showcase.github.methods.Issues.IssuesCreateMilestoneRequest,
-        options: RequestOptions? = null,
-    ): Milestone {
-        return dev.octri.showcase.github.methods.Issues.issuesCreateMilestone(
-            clientConfig,
-            request,
-            options,
-        )
-    }
-
-    /** Gets a milestone using the given milestone number. */
-    fun getMilestone(
-        owner: String,
-        repo: String,
-        milestoneNumber: Long,
-        options: RequestOptions? = null,
-    ): Milestone {
-        return dev.octri.showcase.github.methods.Issues.issuesGetMilestone(
-            clientConfig,
-            owner,
-            repo,
-            milestoneNumber,
-            options,
-        )
+    fun createMilestone(request: dev.octri.showcase.github.methods.Issues.IssuesCreateMilestoneRequest, options: RequestOptions? = null): Milestone {
+        return dev.octri.showcase.github.methods.Issues.issuesCreateMilestone(clientConfig, request, options)
     }
 
     /**
-     * Updates an existing milestone in a repository. Identify it with `milestone_number` and
-     * provide only the milestone properties you want to change; `state` can be `open` or `closed`.
+     * Gets a milestone using the given milestone number.
      */
-    fun updateMilestone(
-        request: dev.octri.showcase.github.methods.Issues.IssuesUpdateMilestoneRequest,
-        options: RequestOptions? = null,
-    ): Milestone {
-        return dev.octri.showcase.github.methods.Issues.issuesUpdateMilestone(
-            clientConfig,
-            request,
-            options,
-        )
-    }
-
-    /** Deletes a milestone using the given milestone number. */
-    fun deleteMilestone(
-        owner: String,
-        repo: String,
-        milestoneNumber: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Issues.issuesDeleteMilestone(
-            clientConfig,
-            owner,
-            repo,
-            milestoneNumber,
-            options,
-        )
-    }
-
-    /** Lists labels for issues in a milestone. */
-    fun listLabelsForMilestone(
-        owner: String,
-        repo: String,
-        milestoneNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Label> {
-        return dev.octri.showcase.github.methods.Issues.issuesListLabelsForMilestone(
-            clientConfig,
-            owner,
-            repo,
-            milestoneNumber,
-            perPage,
-            page,
-            options,
-        )
+    fun getMilestone(owner: String, repo: String, milestoneNumber: Long, options: RequestOptions? = null): Milestone {
+        return dev.octri.showcase.github.methods.Issues.issuesGetMilestone(clientConfig, owner, repo, milestoneNumber, options)
     }
 
     /**
-     * List issues across owned and member repositories assigned to the authenticated user. >
-     * !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a
-     * pull request. For this reason, "Issues" endpoints may return both issues and pull requests in
-     * the response. You can identify pull requests by the `pull_request` key. Be aware that the
-     * `id` of a pull request returned from "Issues" endpoints will be an _issue id_. To find out
-     * the pull request id, use…
+     * Updates an existing milestone in a repository. Identify it with `milestone_number` and provide only the milestone properties you want to change; `state` can be `open` or `closed`.
      */
-    fun listForAuthenticatedUser(
-        request: dev.octri.showcase.github.methods.Issues.IssuesListForAuthenticatedUserRequest,
-        options: RequestOptions? = null,
-    ): List<Issue> {
-        return dev.octri.showcase.github.methods.Issues.issuesListForAuthenticatedUser(
-            clientConfig,
-            request,
-            options,
-        )
+    fun updateMilestone(request: dev.octri.showcase.github.methods.Issues.IssuesUpdateMilestoneRequest, options: RequestOptions? = null): Milestone {
+        return dev.octri.showcase.github.methods.Issues.issuesUpdateMilestone(clientConfig, request, options)
     }
+
+    /**
+     * Deletes a milestone using the given milestone number.
+     */
+    fun deleteMilestone(owner: String, repo: String, milestoneNumber: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Issues.issuesDeleteMilestone(clientConfig, owner, repo, milestoneNumber, options)
+    }
+
+    /**
+     * Lists labels for issues in a milestone.
+     */
+    fun listLabelsForMilestone(owner: String, repo: String, milestoneNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Label> {
+        return dev.octri.showcase.github.methods.Issues.issuesListLabelsForMilestone(clientConfig, owner, repo, milestoneNumber, perPage, page, options)
+    }
+
+    /**
+     * List issues across owned and member repositories assigned to the authenticated user. > !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, "Issues" endpoints may return both issues and pull requests in the response. You can identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use…
+     */
+    fun listForAuthenticatedUser(request: dev.octri.showcase.github.methods.Issues.IssuesListForAuthenticatedUserRequest, options: RequestOptions? = null): List<Issue> {
+        return dev.octri.showcase.github.methods.Issues.issuesListForAuthenticatedUser(clientConfig, request, options)
+    }
+
 }

@@ -14,220 +14,105 @@ import dev.octri.showcase.github.ValidationError
 
 internal object PullsListOperation {
     /**
-     * Lists pull requests in a specified repository. Draft pull requests are available in public
-     * repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy
-     * per-repository billing plans, and in public and private repositories with GitHub Team and
-     * GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help
-     * documentation. This endpoint supports the following custom media types. For more information,
-     * see "Media types." -…
+     * Lists pull requests in a specified repository. Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. This endpoint supports the following custom media types. For more information, see "Media types." -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param state Either `open`, `closed`, or `all` to filter by state.
-     * @param head Filter pulls by head user or head organization and branch name in the format of
-     *   `user:ref-name` or `organization:ref-name`. For example: `github:new-script-format` or
-     *   `octocat:test-branch`.
+     * @param head Filter pulls by head user or head organization and branch name in
+     *   the format of `user:ref-name` or `organization:ref-name`. For example:
+     *   `github:new-script-format` or `octocat:test-branch`.
      * @param base Filter pulls by base branch name. Example: `gh-pages`.
-     * @param sort What to sort results by. `popularity` will sort by the number of comments.
-     *   `long-running` will sort by date created and will limit the results to pull requests that
-     *   have been open for more than a month and have had activity within the past month.
-     * @param direction The direction of the sort. Default: `desc` when sort is `created` or sort is
-     *   not specified, otherwise `asc`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param sort What to sort results by. `popularity` will sort by the number of
+     *   comments. `long-running` will sort by date created and will limit the results
+     *   to pull requests that have been open for more than a month and have had
+     *   activity within the past month.
+     * @param direction The direction of the sort. Default: `desc` when sort is
+     *   `created` or sort is not specified, otherwise `asc`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsList(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsListRequest,
-        options: RequestOptions? = null,
-    ): List<PullRequestSimple> {
-        return SdkClient.request<List<PullRequestSimple>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "state" to SdkClient.queryValue(request.state, "form", true),
-                            "head" to SdkClient.queryValue(request.head, "form", true),
-                            "base" to SdkClient.queryValue(request.base, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "pullsList",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+    fun pullsList(clientConfig: ClientConfig, request: Pulls.PullsListRequest, options: RequestOptions? = null): List<PullRequestSimple> {
+        return SdkClient.request<List<PullRequestSimple>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls", config = clientConfig, query = mapOf("state" to SdkClient.queryValue(request.state, "form", true), "head" to SdkClient.queryValue(request.head, "form", true), "base" to SdkClient.queryValue(request.base, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "pullsList", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsCreateOperation {
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
-     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
-     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's
-     * products in the GitHub Help documentation. To open or update a pull request in a public
-     * repository, you must have write access to the head or the source branch. For
-     * organization-owned repositories,…
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To open or update a pull request in a public repository, you must have write access to the head or the source branch. For organization-owned repositories,…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param head The name of the branch where your changes are implemented. For cross-repository
-     *   pull requests in the same network, namespace `head` with a user like this:
-     *   `username:branch`.
-     * @param base The name of the branch you want the changes pulled into. This should be an
-     *   existing branch on the current repository. You cannot submit a pull request to one
-     *   repository that requests a merge to a base of another repository.
-     * @param title The title of the new pull request. Required unless `issue` is specified.
-     * @param headRepo The name of the repository where the changes in the pull request were made.
-     *   This field is required for cross-repository pull requests if both repositories are owned by
-     *   the same organization.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param head The name of the branch where your changes are implemented. For
+     *   cross-repository pull requests in the same network, namespace `head` with a
+     *   user like this: `username:branch`.
+     * @param base The name of the branch you want the changes pulled into. This
+     *   should be an existing branch on the current repository. You cannot submit a
+     *   pull request to one repository that requests a merge to a base of another
+     *   repository.
+     * @param title The title of the new pull request. Required unless `issue` is
+     *   specified.
+     * @param headRepo The name of the repository where the changes in the pull
+     *   request were made. This field is required for cross-repository pull requests
+     *   if both repositories are owned by the same organization.
      * @param body The contents of the pull request.
-     * @param maintainerCanModify Indicates whether maintainers can modify the pull request.
-     * @param draft Indicates whether the pull request is a draft. See "Draft Pull Requests" in the
-     *   GitHub Help documentation to learn more.
-     * @param issue An issue in the repository to convert to a pull request. The issue title, body,
-     *   and comments will become the title, body, and comments on the new pull request. Required
-     *   unless `title` is specified.
+     * @param maintainerCanModify Indicates whether maintainers can modify the pull
+     *   request.
+     * @param draft Indicates whether the pull request is a draft. See "Draft Pull
+     *   Requests" in the GitHub Help documentation to learn more.
+     * @param issue An issue in the repository to convert to a pull request. The
+     *   issue title, body, and comments will become the title, body, and comments on
+     *   the new pull request. Required unless `title` is specified.
      */
-    fun pullsCreate(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsCreateRequest,
-        options: RequestOptions? = null,
-    ): PullRequest {
-        return SdkClient.request<PullRequest>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "head" to (request.head),
-                            "base" to (request.base),
-                            "title" to (SdkClient.omitIfNull(request.title)),
-                            "head_repo" to (SdkClient.omitIfNull(request.headRepo)),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                            "maintainer_can_modify" to
-                                (SdkClient.omitIfNull(request.maintainerCanModify)),
-                            "draft" to (SdkClient.omitIfNull(request.draft)),
-                            "issue" to (SdkClient.omitIfNull(request.issue)),
-                        ),
-                    operationId = "pullsCreate",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsCreate(clientConfig: ClientConfig, request: Pulls.PullsCreateRequest, options: RequestOptions? = null): PullRequest {
+        return SdkClient.request<PullRequest>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls", config = clientConfig, body = SdkClient.bodyMap("head" to (request.head), "base" to (request.base), "title" to (SdkClient.omitIfNull(request.title)), "head_repo" to (SdkClient.omitIfNull(request.headRepo)), "body" to (SdkClient.omitIfNull(request.body)), "maintainer_can_modify" to
+    (SdkClient.omitIfNull(request.maintainerCanModify)), "draft" to (SdkClient.omitIfNull(request.draft)), "issue" to (SdkClient.omitIfNull(request.issue))), operationId = "pullsCreate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object PullsGetOperation {
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
-     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
-     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's
-     * products in the GitHub Help documentation. Lists details of a pull request by providing its
-     * number. When you get, create, or edit a pull request, GitHub creates a merge commit to test
-     * whether the…
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. Lists details of a pull request by providing its number. When you get, create, or edit a pull request, GitHub creates a merge commit to test whether the…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      */
-    fun pullsGet(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        options: RequestOptions? = null,
-    ): PullRequest {
-        return SdkClient.request<PullRequest>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}",
-                    config = clientConfig,
-                    operationId = "pullsGet",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "406" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsGet(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): PullRequest {
+        return SdkClient.request<PullRequest>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}", config = clientConfig, operationId = "pullsGet", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "406" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object PullsUpdateOperation {
     /**
-     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for
-     * organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private
-     * repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's
-     * products in the GitHub Help documentation. To open or update a pull request in a public
-     * repository, you must have write access to the head or the source branch. For
-     * organization-owned repositories,…
+     * Draft pull requests are available in public repositories with GitHub Free and GitHub Free for organizations, GitHub Pro, and legacy per-repository billing plans, and in public and private repositories with GitHub Team and GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To open or update a pull request in a public repository, you must have write access to the head or the source branch. For organization-owned repositories,…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param title The title of the pull request.
      * @param body The contents of the pull request.
      * @param state State of this Pull Request. Either `open` or `closed`.
-     * @param base The name of the branch you want your changes pulled into. This should be an
-     *   existing branch on the current repository. You cannot update the base branch on a pull
-     *   request to point to another repository.
-     * @param maintainerCanModify Indicates whether maintainers can modify the pull request.
+     * @param base The name of the branch you want your changes pulled into. This
+     *   should be an existing branch on the current repository. You cannot update the
+     *   base branch on a pull request to point to another repository.
+     * @param maintainerCanModify Indicates whether maintainers can modify the pull
+     *   request.
      */
-    fun pullsUpdate(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsUpdateRequest,
-        options: RequestOptions? = null,
-    ): PullRequest {
-        return SdkClient.request<PullRequest>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "title" to (SdkClient.omitIfNull(request.title)),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                            "state" to (SdkClient.omitIfNull(request.state)),
-                            "base" to (SdkClient.omitIfNull(request.base)),
-                            "maintainer_can_modify" to
-                                (SdkClient.omitIfNull(request.maintainerCanModify)),
-                        ),
-                    operationId = "pullsUpdate",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsUpdate(clientConfig: ClientConfig, request: Pulls.PullsUpdateRequest, options: RequestOptions? = null): PullRequest {
+        return SdkClient.request<PullRequest>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}", config = clientConfig, body = SdkClient.bodyMap("title" to (SdkClient.omitIfNull(request.title)), "body" to (SdkClient.omitIfNull(request.body)), "state" to (SdkClient.omitIfNull(request.state)), "base" to (SdkClient.omitIfNull(request.base)), "maintainer_can_modify" to
+    (SdkClient.omitIfNull(request.maintainerCanModify))), operationId = "pullsUpdate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }

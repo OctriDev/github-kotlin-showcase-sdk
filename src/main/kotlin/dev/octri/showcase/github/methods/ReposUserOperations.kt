@@ -11,105 +11,36 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ReposListInvitationsForAuthenticatedUserOperation {
     /**
-     * When authenticating as a user, this endpoint will list all currently open repository
-     * invitations for that user.
+     * When authenticating as a user, this endpoint will list all currently open repository invitations for that user.
      *
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun reposListInvitationsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<RepositoryInvitation> {
-        return SdkClient.request<List<RepositoryInvitation>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/repository_invitations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "reposListInvitationsForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun reposListInvitationsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<RepositoryInvitation> {
+        return SdkClient.request<List<RepositoryInvitation>>(SdkClient.RequestSpec("GET", "/user/repository_invitations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListInvitationsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object ReposAcceptInvitationForAuthenticatedUserOperation {
     /**
-     * Accepts a repository invitation for the authenticated user. Use `invitation_id` to identify
-     * the invitation to accept. A 204 response confirms acceptance without returning a response
-     * body.
+     * Accepts a repository invitation for the authenticated user. Use `invitation_id` to identify the invitation to accept. A 204 response confirms acceptance without returning a response body.
      *
      * @param invitationId The unique identifier of the invitation.
      */
-    fun reposAcceptInvitationForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        invitationId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PATCH",
-                "/user/repository_invitations/${SdkClient.encodePathSegment(invitationId)}",
-                config = clientConfig,
-                operationId = "reposAcceptInvitationForAuthenticatedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "409" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun reposAcceptInvitationForAuthenticatedUser(clientConfig: ClientConfig, invitationId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PATCH", "/user/repository_invitations/${SdkClient.encodePathSegment(invitationId)}", config = clientConfig, operationId = "reposAcceptInvitationForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java)))
     }
 }
 
 internal object ReposDeclineInvitationForAuthenticatedUserOperation {
     /**
-     * Declines a repository invitation for the authenticated user. Use `invitation_id` to identify
-     * the invitation to decline. A 204 response confirms the invitation was declined without
-     * returning a response body.
+     * Declines a repository invitation for the authenticated user. Use `invitation_id` to identify the invitation to decline. A 204 response confirms the invitation was declined without returning a response body.
      *
      * @param invitationId The unique identifier of the invitation.
      */
-    fun reposDeclineInvitationForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        invitationId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/user/repository_invitations/${SdkClient.encodePathSegment(invitationId)}",
-                config = clientConfig,
-                operationId = "reposDeclineInvitationForAuthenticatedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "409" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun reposDeclineInvitationForAuthenticatedUser(clientConfig: ClientConfig, invitationId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/repository_invitations/${SdkClient.encodePathSegment(invitationId)}", config = clientConfig, operationId = "reposDeclineInvitationForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java)))
     }
 }

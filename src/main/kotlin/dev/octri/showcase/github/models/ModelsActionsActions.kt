@@ -7,86 +7,88 @@ typealias ActionsCanApprovePullRequestReviews = Boolean
 
 typealias ActionsEnabled = Boolean
 
-/** Typed representation of the `ActionsGetDefaultWorkflowPermissions` API schema. */
+/**
+ * Typed representation of the `ActionsGetDefaultWorkflowPermissions` API schema.
+ */
 data class ActionsGetDefaultWorkflowPermissions(
-    /** The default workflow permissions granted to the GITHUB_TOKEN when running workflows. */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_workflow_permissions")
-    val defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions,
-    /** Whether GitHub Actions can approve pull requests. Enabling this can be a security risk. */
-    @com.fasterxml.jackson.annotation.JsonProperty("can_approve_pull_request_reviews")
-    val canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews,
+    /**
+     * The default workflow permissions granted to the GITHUB_TOKEN when running workflows.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_workflow_permissions") val defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions,
+    /**
+     * Whether GitHub Actions can approve pull requests. Enabling this can be a security risk.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("can_approve_pull_request_reviews") val canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews
 )
 
-/** Typed representation of the `ActionsOrganizationPermissions` API schema. */
+/**
+ * Typed representation of the `ActionsOrganizationPermissions` API schema.
+ */
 data class ActionsOrganizationPermissions(
     /**
-     * The policy that controls the repositories in the organization that are allowed to run GitHub
-     * Actions.
+     * The policy that controls the repositories in the organization that are allowed to run GitHub Actions.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("enabled_repositories")
-    val enabledRepositories: EnabledRepositories,
+    @com.fasterxml.jackson.annotation.JsonProperty("enabled_repositories") val enabledRepositories: EnabledRepositories,
     /**
-     * The API URL to use to get or set the selected repositories that are allowed to run GitHub
-     * Actions, when `enabled_repositories` is set to `selected`.
+     * The API URL to use to get or set the selected repositories that are allowed to run GitHub Actions, when `enabled_repositories` is set to `selected`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("selected_repositories_url")
-    val selectedRepositoriesUrl: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("selected_repositories_url") val selectedRepositoriesUrl: String? = null,
     /**
-     * The permissions policy that controls the actions and reusable workflows that are allowed to
-     * run.
+     * The permissions policy that controls the actions and reusable workflows that are allowed to run.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_actions")
-    val allowedActions: AllowedActions? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_actions") val allowedActions: AllowedActions? = null,
     /**
-     * The API URL to use to get or set the actions and reusable workflows that are allowed to run,
-     * when `allowed_actions` is set to `selected`.
+     * The API URL to use to get or set the actions and reusable workflows that are allowed to run, when `allowed_actions` is set to `selected`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("selected_actions_url")
-    val selectedActionsUrl: SelectedActionsUrl? = null,
-    /** Whether actions must be pinned to a full-length commit SHA. */
-    @com.fasterxml.jackson.annotation.JsonProperty("sha_pinning_required")
-    val shaPinningRequired: ShaPinningRequired? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("selected_actions_url") val selectedActionsUrl: SelectedActionsUrl? = null,
+    /**
+     * Whether actions must be pinned to a full-length commit SHA.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sha_pinning_required") val shaPinningRequired: ShaPinningRequired? = null
 )
 
-/** Typed representation of the `ActionsRepositoryPermissions` API schema. */
+/**
+ * Typed representation of the `ActionsRepositoryPermissions` API schema.
+ */
 data class ActionsRepositoryPermissions(
-    /** Whether GitHub Actions is enabled on the repository. */
+    /**
+     * Whether GitHub Actions is enabled on the repository.
+     */
     val enabled: ActionsEnabled,
     /**
-     * The permissions policy that controls the actions and reusable workflows that are allowed to
-     * run.
+     * The permissions policy that controls the actions and reusable workflows that are allowed to run.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_actions")
-    val allowedActions: AllowedActions? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_actions") val allowedActions: AllowedActions? = null,
     /**
-     * The API URL to use to get or set the actions and reusable workflows that are allowed to run,
-     * when `allowed_actions` is set to `selected`.
+     * The API URL to use to get or set the actions and reusable workflows that are allowed to run, when `allowed_actions` is set to `selected`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("selected_actions_url")
-    val selectedActionsUrl: SelectedActionsUrl? = null,
-    /** Whether actions must be pinned to a full-length commit SHA. */
-    @com.fasterxml.jackson.annotation.JsonProperty("sha_pinning_required")
-    val shaPinningRequired: ShaPinningRequired? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("selected_actions_url") val selectedActionsUrl: SelectedActionsUrl? = null,
+    /**
+     * Whether actions must be pinned to a full-length commit SHA.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("sha_pinning_required") val shaPinningRequired: ShaPinningRequired? = null
 )
 
-/** Typed representation of the `ActionsSetDefaultWorkflowPermissions` API schema. */
+/**
+ * Typed representation of the `ActionsSetDefaultWorkflowPermissions` API schema.
+ */
 data class ActionsSetDefaultWorkflowPermissions(
-    /** The default workflow permissions granted to the GITHUB_TOKEN when running workflows. */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_workflow_permissions")
-    val defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions? = null,
-    /** Whether GitHub Actions can approve pull requests. Enabling this can be a security risk. */
-    @com.fasterxml.jackson.annotation.JsonProperty("can_approve_pull_request_reviews")
-    val canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews? = null,
+    /**
+     * The default workflow permissions granted to the GITHUB_TOKEN when running workflows.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("default_workflow_permissions") val defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions? = null,
+    /**
+     * Whether GitHub Actions can approve pull requests. Enabling this can be a security risk.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("can_approve_pull_request_reviews") val canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews? = null
 )
 
-/** Typed representation of the `ActionsWorkflowAccessToRepository` API schema. */
+/**
+ * Typed representation of the `ActionsWorkflowAccessToRepository` API schema.
+ */
 data class ActionsWorkflowAccessToRepository(
     /**
-     * Defines the level of access that workflows outside of the repository have to actions and
-     * reusable workflows within the repository. `none` means the access is only possible from
-     * workflows in this repository. `user` level access allows sharing across user owned private
-     * repositories only. `organization` level access allows sharing across the organization.
+     * Defines the level of access that workflows outside of the repository have to actions and reusable workflows within the repository. `none` means the access is only possible from workflows in this repository. `user` level access allows sharing across user owned private repositories only. `organization` level access allows sharing across the organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("access_level")
-    val accessLevel: ActionsWorkflowAccessToRepositoryAccessLevelEnum
+    @com.fasterxml.jackson.annotation.JsonProperty("access_level") val accessLevel: ActionsWorkflowAccessToRepositoryAccessLevelEnum
 )

@@ -11,253 +11,124 @@ import dev.octri.showcase.github.Validation
 
 internal object OrgsListAttestationsBulkOperation {
     /**
-     * List a collection of artifact attestations associated with any entry in a list of subject
-     * digests owned by an organization. The collection of attestations returned by this endpoint is
-     * filtered according to the authenticated user's permissions; if the authenticated user cannot
-     * read a repository, the attestations associated with that repository will not be included in
-     * the response. In addition, when using a fine-grained access token the `attestations:read`
-     * permission is…
+     * List a collection of artifact attestations associated with any entry in a list of subject digests owned by an organization. The collection of attestations returned by this endpoint is filtered according to the authenticated user's permissions; if the authenticated user cannot read a repository, the attestations associated with that repository will not be included in the response. In addition, when using a fine-grained access token the `attestations:read` permission is…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param subjectDigests List of subject digests to fetch attestations for.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
      *   pagination in the REST API."
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
-     * @param predicateType Optional filter for fetching attestations with a given predicate type.
-     *   This option accepts `provenance`, `sbom`, `release`, or freeform text for custom predicate
-     *   types.
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param predicateType Optional filter for fetching attestations with a given
+     *   predicate type. This option accepts `provenance`, `sbom`, `release`, or
+     *   freeform text for custom predicate types.
      */
-    fun orgsListAttestationsBulk(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsListAttestationsBulkRequest,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsListAttestationsBulkResponse {
+    fun orgsListAttestationsBulk(clientConfig: ClientConfig, request: Orgs.OrgsListAttestationsBulkRequest, options: RequestOptions? = null): Orgs.OrgsListAttestationsBulkResponse {
         validateOrgsListAttestationsBulkRequest(request)
 
-        return SdkClient.request<Orgs.OrgsListAttestationsBulkResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/attestations/bulk-list",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "before" to SdkClient.queryValue(request.before, "form", true),
-                            "after" to SdkClient.queryValue(request.after, "form", true),
-                        ),
-                    body =
-                        SdkClient.bodyMap(
-                            "subject_digests" to (request.subjectDigests),
-                            "predicate_type" to (SdkClient.omitIfNull(request.predicateType)),
-                        ),
-                    operationId = "orgsListAttestationsBulk",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<Orgs.OrgsListAttestationsBulkResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/attestations/bulk-list", config = clientConfig, query = mapOf("per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "before" to
+    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true)), body = SdkClient.bodyMap("subject_digests" to (request.subjectDigests), "predicate_type" to
+    (SdkClient.omitIfNull(request.predicateType))), operationId = "orgsListAttestationsBulk", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateOrgsListAttestationsBulkRequest(
-        request: Orgs.OrgsListAttestationsBulkRequest
-    ) {
-        Validation.validateItems(
-            "subject_digests",
-            request.subjectDigests,
-            Validation.LengthOpts(min = 1, max = 1024),
-        )
+
+    private fun validateOrgsListAttestationsBulkRequest(request: Orgs.OrgsListAttestationsBulkRequest) {
+        Validation.validateItems("subject_digests", request.subjectDigests, Validation.LengthOpts(min = 1, max = 1024))
     }
 }
 
 internal object OrgsDeleteAttestationsBulkOperation {
     /**
-     * Deletes artifact attestations in bulk by subject digest or unique attestation ID. Provide one
-     * of `subject_digests` or `attestation_ids` to identify the attestations to remove, but not
-     * both. A 200 response confirms the bulk deletion request was processed.
+     * Deletes artifact attestations in bulk by subject digest or unique attestation ID. Provide one of `subject_digests` or `attestation_ids` to identify the attestations to remove, but not both. A 200 response confirms the bulk deletion request was processed.
      *
      * Delete artifact attestations in bulk by either subject digests or unique ID.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param body The request body must include either `subject_digests` or `attestation_ids`, but
-     *   not both.
+     * @param body The request body must include either `subject_digests` or
+     *   `attestation_ids`, but not both.
      */
-    fun orgsDeleteAttestationsBulk(
-        clientConfig: ClientConfig,
-        org: String,
-        body: Map<String, Any>,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "POST",
-                "/orgs/${SdkClient.encodePathSegment(org)}/attestations/delete-request",
-                config = clientConfig,
-                body = body,
-                operationId = "orgsDeleteAttestationsBulk",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun orgsDeleteAttestationsBulk(clientConfig: ClientConfig, org: String, body: Map<String, Any>, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/attestations/delete-request", config = clientConfig, body = body, operationId = "orgsDeleteAttestationsBulk", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }
 
 internal object OrgsDeleteAttestationsBySubjectDigestOperation {
     /**
-     * Deletes artifact attestations associated with a subject digest. Use `org` and
-     * `subject_digest` to identify the organization and the artifact whose attestations you want to
-     * remove.
+     * Deletes artifact attestations associated with a subject digest. Use `org` and `subject_digest` to identify the organization and the artifact whose attestations you want to remove.
      *
      * Delete an artifact attestation by subject digest.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param subjectDigest Subject Digest
      */
-    fun orgsDeleteAttestationsBySubjectDigest(
-        clientConfig: ClientConfig,
-        org: String,
-        subjectDigest: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/attestations/digest/${SdkClient.encodePathSegment(subjectDigest)}",
-                config = clientConfig,
-                operationId = "orgsDeleteAttestationsBySubjectDigest",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun orgsDeleteAttestationsBySubjectDigest(clientConfig: ClientConfig, org: String, subjectDigest: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/attestations/digest/${SdkClient.encodePathSegment(subjectDigest)}", config = clientConfig, operationId = "orgsDeleteAttestationsBySubjectDigest", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }
 
 internal object OrgsListAttestationRepositoriesOperation {
     /**
-     * List repositories owned by the provided organization that have created at least one attested
-     * artifact Results will be sorted in ascending order by repository ID
+     * List repositories owned by the provided organization that have created at least one attested artifact Results will be sorted in ascending order by repository ID
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
      *   pagination in the REST API."
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
-     * @param predicateType Optional filter for fetching attestations with a given predicate type.
-     *   This option accepts `provenance`, `sbom`, `release`, or freeform text for custom predicate
-     *   types.
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param predicateType Optional filter for fetching attestations with a given
+     *   predicate type. This option accepts `provenance`, `sbom`, `release`, or
+     *   freeform text for custom predicate types.
      */
-    fun orgsListAttestationRepositories(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        before: String? = null,
-        after: String? = null,
-        predicateType: String? = null,
-        options: RequestOptions? = null,
-    ): List<Orgs.OrgsListAttestationRepositoriesResponseItem> {
-        return SdkClient.request<List<Orgs.OrgsListAttestationRepositoriesResponseItem>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/attestations/repositories",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "before" to SdkClient.queryValue(before, "form", true),
-                            "after" to SdkClient.queryValue(after, "form", true),
-                            "predicate_type" to SdkClient.queryValue(predicateType, "form", true),
-                        ),
-                    operationId = "orgsListAttestationRepositories",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun orgsListAttestationRepositories(clientConfig: ClientConfig, org: String, perPage: Long? = null, before: String? = null, after: String? = null, predicateType: String? = null, options: RequestOptions? = null): List<Orgs.OrgsListAttestationRepositoriesResponseItem> {
+        return SdkClient.request<List<Orgs.OrgsListAttestationRepositoriesResponseItem>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/attestations/repositories", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "before" to SdkClient.queryValue(before, "form", true), "after" to SdkClient.queryValue(after, "form", true), "predicate_type" to
+    SdkClient.queryValue(predicateType, "form", true)), operationId = "orgsListAttestationRepositories", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object OrgsDeleteAttestationsByIdOperation {
     /**
-     * Delete an artifact attestation by unique ID that is associated with a repository owned by an
-     * org.
+     * Delete an artifact attestation by unique ID that is associated with a repository owned by an org.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param attestationId Attestation ID
      */
-    fun orgsDeleteAttestationsById(
-        clientConfig: ClientConfig,
-        org: String,
-        attestationId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/attestations/${SdkClient.encodePathSegment(attestationId)}",
-                config = clientConfig,
-                operationId = "orgsDeleteAttestationsById",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-            )
-        )
+    fun orgsDeleteAttestationsById(clientConfig: ClientConfig, org: String, attestationId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/attestations/${SdkClient.encodePathSegment(attestationId)}", config = clientConfig, operationId = "orgsDeleteAttestationsById", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }
 
 internal object OrgsListAttestationsOperation {
     /**
-     * List a collection of artifact attestations with a given subject digest that are associated
-     * with repositories owned by an organization. The collection of attestations returned by this
-     * endpoint is filtered according to the authenticated user's permissions; if the authenticated
-     * user cannot read a repository, the attestations associated with that repository will not be
-     * included in the response. In addition, when using a fine-grained access token the
-     * `attestations:read`…
+     * List a collection of artifact attestations with a given subject digest that are associated with repositories owned by an organization. The collection of attestations returned by this endpoint is filtered according to the authenticated user's permissions; if the authenticated user cannot read a repository, the attestations associated with that repository will not be included in the response. In addition, when using a fine-grained access token the `attestations:read`…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param subjectDigest The parameter should be set to the attestation's subject's SHA256
-     *   digest, in the form `sha256:HEX_DIGEST`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
+     * @param subjectDigest The parameter should be set to the attestation's
+     *   subject's SHA256 digest, in the form `sha256:HEX_DIGEST`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
      *   pagination in the REST API."
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
-     * @param predicateType Optional filter for fetching attestations with a given predicate type.
-     *   This option accepts `provenance`, `sbom`, `release`, or freeform text for custom predicate
-     *   types.
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param predicateType Optional filter for fetching attestations with a given
+     *   predicate type. This option accepts `provenance`, `sbom`, `release`, or
+     *   freeform text for custom predicate types.
      */
-    fun orgsListAttestations(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsListAttestationsRequest,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsListAttestationsResponse {
-        return SdkClient.request<Orgs.OrgsListAttestationsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/attestations/${SdkClient.encodePathSegment(request.subjectDigest)}",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "before" to SdkClient.queryValue(request.before, "form", true),
-                            "after" to SdkClient.queryValue(request.after, "form", true),
-                            "predicate_type" to
-                                SdkClient.queryValue(request.predicateType, "form", true),
-                        ),
-                    operationId = "orgsListAttestations",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun orgsListAttestations(clientConfig: ClientConfig, request: Orgs.OrgsListAttestationsRequest, options: RequestOptions? = null): Orgs.OrgsListAttestationsResponse {
+        return SdkClient.request<Orgs.OrgsListAttestationsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/attestations/${SdkClient.encodePathSegment(request.subjectDigest)}", config = clientConfig, query = mapOf("per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "before" to
+    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true), "predicate_type" to
+    SdkClient.queryValue(request.predicateType, "form", true)), operationId = "orgsListAttestations", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }

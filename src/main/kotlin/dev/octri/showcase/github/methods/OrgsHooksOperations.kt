@@ -17,468 +17,187 @@ import dev.octri.showcase.github.WebhookConfig
 
 internal object OrgsListWebhooksOperation {
     /**
-     * List webhooks for an organization. The authenticated user must be an organization owner to
-     * use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not
-     * create and users cannot list, view, or edit webhooks that were created by OAuth apps.
+     * List webhooks for an organization. The authenticated user must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsListWebhooks(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<OrgHook> {
-        return SdkClient.request<List<OrgHook>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/hooks",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsListWebhooks",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsListWebhooks(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<OrgHook> {
+        return SdkClient.request<List<OrgHook>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/hooks", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListWebhooks", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsCreateWebhookOperation {
     /**
-     * Create a hook that posts payloads in JSON format. You must be an organization owner to use
-     * this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook`
-     * scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users
-     * cannot list, view, or edit webhooks that were created by OAuth apps.
+     * Create a hook that posts payloads in JSON format. You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name Must be passed as "web".
      * @param config Key/value pairs to provide settings for this webhook.
-     * @param events Determines what events the hook is triggered for. Set to `["*"]` to receive all
-     *   possible events.
-     * @param active Determines if notifications are sent when the webhook is triggered. Set to
-     *   `true` to send notifications.
+     * @param events Determines what events the hook is triggered for. Set to `["*"]`
+     *   to receive all possible events.
+     * @param active Determines if notifications are sent when the webhook is
+     *   triggered. Set to `true` to send notifications.
      */
-    fun orgsCreateWebhook(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        config: Orgs.OrgsCreateWebhookConfig,
-        events: List<String>? = null,
-        active: Boolean? = null,
-        options: RequestOptions? = null,
-    ): OrgHook {
-        return SdkClient.request<OrgHook>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/hooks",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (name),
-                            "config" to (config),
-                            "events" to (SdkClient.omitIfNull(events)),
-                            "active" to (SdkClient.omitIfNull(active)),
-                        ),
-                    operationId = "orgsCreateWebhook",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsCreateWebhook(clientConfig: ClientConfig, org: String, name: String, config: Orgs.OrgsCreateWebhookConfig, events: List<String>? = null, active: Boolean? = null, options: RequestOptions? = null): OrgHook {
+        return SdkClient.request<OrgHook>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/hooks", config = clientConfig, body = SdkClient.bodyMap("name" to (name), "config" to (config), "events" to (SdkClient.omitIfNull(events)), "active" to (SdkClient.omitIfNull(active))), operationId = "orgsCreateWebhook", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsGetWebhookOperation {
     /**
-     * Returns a webhook configured in an organization. To get only the webhook `config` properties,
-     * see "Get a webhook configuration for an organization. You must be an organization owner to
-     * use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not
-     * create and users cannot list, view, or edit webhooks that were created by OAuth apps.
+     * Returns a webhook configured in an organization. To get only the webhook `config` properties, see "Get a webhook configuration for an organization. You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun orgsGetWebhook(
-        clientConfig: ClientConfig,
-        org: String,
-        hookId: Long,
-        options: RequestOptions? = null,
-    ): OrgHook {
-        return SdkClient.request<OrgHook>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}",
-                    config = clientConfig,
-                    operationId = "orgsGetWebhook",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsGetWebhook(clientConfig: ClientConfig, org: String, hookId: Long, options: RequestOptions? = null): OrgHook {
+        return SdkClient.request<OrgHook>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}", config = clientConfig, operationId = "orgsGetWebhook", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsUpdateWebhookOperation {
     /**
-     * Updates an organization webhook, including its delivery URL, subscribed events, active state,
-     * and configuration. If you previously set a `secret`, provide the same secret or a new one;
-     * otherwise, the secret is removed. You must be an organization owner, and OAuth app tokens and
-     * personal access tokens (classic) need the `admin:org_hook` scope.
+     * Updates an organization webhook, including its delivery URL, subscribed events, active state, and configuration. If you previously set a `secret`, provide the same secret or a new one; otherwise, the secret is removed. You must be an organization owner, and OAuth app tokens and personal access tokens (classic) need the `admin:org_hook` scope.
      *
-     * Updates a webhook configured in an organization. When you update a webhook, the `secret` will
-     * be overwritten. If you previously had a `secret` set, you must provide the same `secret` or
-     * set a new `secret` or the secret will be removed. If you are only updating individual webhook
-     * `config` properties, use "Update a webhook configuration for an organization". You must be an
-     * organization owner to use this endpoint. OAuth app tokens and personal access tokens
-     * (classic) need…
+     * Updates a webhook configured in an organization. When you update a webhook, the `secret` will be overwritten. If you previously had a `secret` set, you must provide the same `secret` or set a new `secret` or the secret will be removed. If you are only updating individual webhook `config` properties, use "Update a webhook configuration for an organization". You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
      * @param config Key/value pairs to provide settings for this webhook.
      * @param events Determines what events the hook is triggered for.
-     * @param active Determines if notifications are sent when the webhook is triggered. Set to
-     *   `true` to send notifications.
+     * @param active Determines if notifications are sent when the webhook is
+     *   triggered. Set to `true` to send notifications.
      */
-    fun orgsUpdateWebhook(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsUpdateWebhookRequest,
-        options: RequestOptions? = null,
-    ): OrgHook {
-        return SdkClient.request<OrgHook>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/hooks/${SdkClient.encodePathSegment(request.hookId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "config" to (SdkClient.omitIfNull(request.config)),
-                            "events" to (SdkClient.omitIfNull(request.events)),
-                            "active" to (SdkClient.omitIfNull(request.active)),
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                        ),
-                    operationId = "orgsUpdateWebhook",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsUpdateWebhook(clientConfig: ClientConfig, request: Orgs.OrgsUpdateWebhookRequest, options: RequestOptions? = null): OrgHook {
+        return SdkClient.request<OrgHook>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}/hooks/${SdkClient.encodePathSegment(request.hookId)}", config = clientConfig, body = SdkClient.bodyMap("config" to (SdkClient.omitIfNull(request.config)), "events" to (SdkClient.omitIfNull(request.events)), "active" to (SdkClient.omitIfNull(request.active)), "name" to (SdkClient.omitIfNull(request.name))), operationId = "orgsUpdateWebhook", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsDeleteWebhookOperation {
     /**
-     * Delete a webhook for an organization. The authenticated user must be an organization owner to
-     * use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not
-     * create and users cannot list, view, or edit webhooks that were created by OAuth apps.
+     * Delete a webhook for an organization. The authenticated user must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun orgsDeleteWebhook(
-        clientConfig: ClientConfig,
-        org: String,
-        hookId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}",
-                config = clientConfig,
-                operationId = "orgsDeleteWebhook",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun orgsDeleteWebhook(clientConfig: ClientConfig, org: String, hookId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}", config = clientConfig, operationId = "orgsDeleteWebhook", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }
 
 internal object OrgsGetWebhookConfigForOrgOperation {
     /**
-     * Returns the webhook configuration for an organization. To get more information about the
-     * webhook, including the `active` state and `events`, use "Get an organization webhook ." You
-     * must be an organization owner to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks
-     * that they did not create and users cannot list, view, or edit webhooks that were created by
-     * OAuth apps.
+     * Returns the webhook configuration for an organization. To get more information about the webhook, including the `active` state and `events`, use "Get an organization webhook ." You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun orgsGetWebhookConfigForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        hookId: Long,
-        options: RequestOptions? = null,
-    ): WebhookConfig {
-        return SdkClient.request<WebhookConfig>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/config",
-                    config = clientConfig,
-                    operationId = "orgsGetWebhookConfigForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun orgsGetWebhookConfigForOrg(clientConfig: ClientConfig, org: String, hookId: Long, options: RequestOptions? = null): WebhookConfig {
+        return SdkClient.request<WebhookConfig>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/config", config = clientConfig, operationId = "orgsGetWebhookConfigForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object OrgsUpdateWebhookConfigForOrgOperation {
     /**
-     * Updates the configuration used to deliver an organization webhook's payloads. Set `url`,
-     * `content_type`, `secret`, or `insecure_ssl` without changing the webhook's active state or
-     * subscribed events. You must be an organization owner, and OAuth app tokens and personal
-     * access tokens (classic) need the `admin:org_hook` scope.
+     * Updates the configuration used to deliver an organization webhook's payloads. Set `url`, `content_type`, `secret`, or `insecure_ssl` without changing the webhook's active state or subscribed events. You must be an organization owner, and OAuth app tokens and personal access tokens (classic) need the `admin:org_hook` scope.
      *
-     * Updates the webhook configuration for an organization. To update more information about the
-     * webhook, including the `active` state and `events`, use "Update an organization webhook ."
-     * You must be an organization owner to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks
-     * that they did not create and users cannot list, view, or edit webhooks that were created by
-     * OAuth apps.
+     * Updates the webhook configuration for an organization. To update more information about the webhook, including the `active` state and `events`, use "Update an organization webhook ." You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
      * @param url The URL to which the payloads will be delivered.
-     * @param contentType The media type used to serialize the payloads. Supported values include
-     *   `json` and `form`. The default is `form`.
-     * @param secret If provided, the `secret` will be used as the `key` to generate the HMAC hex
-     *   digest value for delivery signature headers.
+     * @param contentType The media type used to serialize the payloads. Supported
+     *   values include `json` and `form`. The default is `form`.
+     * @param secret If provided, the `secret` will be used as the `key` to generate
+     *   the HMAC hex digest value for delivery signature headers.
      */
-    fun orgsUpdateWebhookConfigForOrg(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsUpdateWebhookConfigForOrgRequest,
-        options: RequestOptions? = null,
-    ): WebhookConfig {
+    fun orgsUpdateWebhookConfigForOrg(clientConfig: ClientConfig, request: Orgs.OrgsUpdateWebhookConfigForOrgRequest, options: RequestOptions? = null): WebhookConfig {
         validateOrgsUpdateWebhookConfigForOrgRequest(request)
 
-        return SdkClient.request<WebhookConfig>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/hooks/${SdkClient.encodePathSegment(request.hookId)}/config",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "url" to (SdkClient.omitIfNull(request.url)),
-                            "content_type" to (SdkClient.omitIfNull(request.contentType)),
-                            "secret" to (SdkClient.omitIfNull(request.secret)),
-                            "insecure_ssl" to (SdkClient.omitIfNull(request.insecureSsl)),
-                        ),
-                    operationId = "orgsUpdateWebhookConfigForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<WebhookConfig>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}/hooks/${SdkClient.encodePathSegment(request.hookId)}/config", config = clientConfig, body = SdkClient.bodyMap("url" to (SdkClient.omitIfNull(request.url)), "content_type" to
+    (SdkClient.omitIfNull(request.contentType)), "secret" to (SdkClient.omitIfNull(request.secret)), "insecure_ssl" to
+    (SdkClient.omitIfNull(request.insecureSsl))), operationId = "orgsUpdateWebhookConfigForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateOrgsUpdateWebhookConfigForOrgRequest(
-        request: Orgs.OrgsUpdateWebhookConfigForOrgRequest
-    ) {
+
+    private fun validateOrgsUpdateWebhookConfigForOrgRequest(request: Orgs.OrgsUpdateWebhookConfigForOrgRequest) {
         if (request.url != null) {
             Validation.validateUri("url", request.url)
-        }
+}
     }
 }
 
 internal object OrgsListWebhookDeliveriesOperation {
     /**
-     * Returns a list of webhook deliveries for a webhook configured in an organization. You must be
-     * an organization owner to use this endpoint. OAuth app tokens and personal access tokens
-     * (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that
-     * they did not create and users cannot list, view, or edit webhooks that were created by OAuth
-     * apps.
+     * Returns a list of webhook deliveries for a webhook configured in an organization. You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param cursor Used for pagination: the starting delivery from which the page of deliveries is
-     *   fetched. Refer to the `link` header for the next and previous page cursors.
-     * @param status Returns webhook deliveries filtered by delivery outcome classification based on
-     *   `status_code` range. A `status` of `success` returns deliveries with a `status_code` in the
-     *   200-399 range (inclusive). A `status` of `failure` returns deliveries with a `status_code`
-     *   in the 400-599 range (inclusive).
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param cursor Used for pagination: the starting delivery from which the page
+     *   of deliveries is fetched. Refer to the `link` header for the next and previous
+     *   page cursors.
+     * @param status Returns webhook deliveries filtered by delivery outcome
+     *   classification based on `status_code` range. A `status` of `success` returns
+     *   deliveries with a `status_code` in the 200-399 range (inclusive). A `status`
+     *   of `failure` returns deliveries with a `status_code` in the 400-599 range
+     *   (inclusive).
      */
-    fun orgsListWebhookDeliveries(
-        clientConfig: ClientConfig,
-        org: String,
-        hookId: Long,
-        perPage: Long? = null,
-        cursor: String? = null,
-        status: SchemaSchemaEnume81e966c? = null,
-        options: RequestOptions? = null,
-    ): List<HookDeliveryItem> {
-        return SdkClient.request<List<HookDeliveryItem>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "cursor" to SdkClient.queryValue(cursor, "form", true),
-                            "status" to SdkClient.queryValue(status, "form", true),
-                        ),
-                    operationId = "orgsListWebhookDeliveries",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsListWebhookDeliveries(clientConfig: ClientConfig, org: String, hookId: Long, perPage: Long? = null, cursor: String? = null, status: SchemaSchemaEnume81e966c? = null, options: RequestOptions? = null): List<HookDeliveryItem> {
+        return SdkClient.request<List<HookDeliveryItem>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "cursor" to SdkClient.queryValue(cursor, "form", true), "status" to SdkClient.queryValue(status, "form", true)), operationId = "orgsListWebhookDeliveries", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsGetWebhookDeliveryOperation {
     /**
-     * Retrieves a delivery for a webhook configured in an organization. Use `hook_id` and
-     * `delivery_id` to identify the webhook and delivery whose details you need. You must be an
-     * organization owner, and OAuth app tokens and personal access tokens (classic) need the
-     * `admin:org_hook` scope.
+     * Retrieves a delivery for a webhook configured in an organization. Use `hook_id` and `delivery_id` to identify the webhook and delivery whose details you need. You must be an organization owner, and OAuth app tokens and personal access tokens (classic) need the `admin:org_hook` scope.
      *
-     * Returns a delivery for a webhook configured in an organization. You must be an organization
-     * owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not
-     * create and users cannot list, view, or edit webhooks that were created by OAuth apps.
+     * Returns a delivery for a webhook configured in an organization. You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun orgsGetWebhookDelivery(
-        clientConfig: ClientConfig,
-        org: String,
-        hookId: Long,
-        deliveryId: Long,
-        options: RequestOptions? = null,
-    ): HookDelivery {
-        return SdkClient.request<HookDelivery>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries/${SdkClient.encodePathSegment(deliveryId)}",
-                    config = clientConfig,
-                    operationId = "orgsGetWebhookDelivery",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsGetWebhookDelivery(clientConfig: ClientConfig, org: String, hookId: Long, deliveryId: Long, options: RequestOptions? = null): HookDelivery {
+        return SdkClient.request<HookDelivery>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries/${SdkClient.encodePathSegment(deliveryId)}", config = clientConfig, operationId = "orgsGetWebhookDelivery", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsRedeliverWebhookDeliveryOperation {
     /**
-     * Triggers a redelivery attempt for a delivery made by a webhook configured in an organization.
-     * Use `hook_id` and `delivery_id` to identify the webhook and delivery to redeliver. You must
-     * be an organization owner, and OAuth app tokens and personal access tokens (classic) need the
-     * `admin:org_hook` scope.
+     * Triggers a redelivery attempt for a delivery made by a webhook configured in an organization. Use `hook_id` and `delivery_id` to identify the webhook and delivery to redeliver. You must be an organization owner, and OAuth app tokens and personal access tokens (classic) need the `admin:org_hook` scope.
      *
-     * Redeliver a delivery for a webhook configured in an organization. You must be an organization
-     * owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not
-     * create and users cannot list, view, or edit webhooks that were created by OAuth apps.
+     * Redeliver a delivery for a webhook configured in an organization. You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun orgsRedeliverWebhookDelivery(
-        clientConfig: ClientConfig,
-        org: String,
-        hookId: Long,
-        deliveryId: Long,
-        options: RequestOptions? = null,
-    ): Map<String, Any> {
-        return SdkClient.request<Map<String, Any>>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries/${SdkClient.encodePathSegment(deliveryId)}/attempts",
-                    config = clientConfig,
-                    operationId = "orgsRedeliverWebhookDelivery",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsRedeliverWebhookDelivery(clientConfig: ClientConfig, org: String, hookId: Long, deliveryId: Long, options: RequestOptions? = null): Map<String, Any> {
+        return SdkClient.request<Map<String, Any>>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/deliveries/${SdkClient.encodePathSegment(deliveryId)}/attempts", config = clientConfig, operationId = "orgsRedeliverWebhookDelivery", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsPingWebhookOperation {
     /**
-     * This will trigger a ping event to be sent to the hook. You must be an organization owner to
-     * use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not
-     * create and users cannot list, view, or edit webhooks that were created by OAuth apps.
+     * This will trigger a ping event to be sent to the hook. You must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit webhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param hookId The unique identifier of the hook. You can find this value in the
-     *   `X-GitHub-Hook-ID` header of a webhook delivery.
+     * @param hookId The unique identifier of the hook. You can find this value in
+     *   the `X-GitHub-Hook-ID` header of a webhook delivery.
      */
-    fun orgsPingWebhook(
-        clientConfig: ClientConfig,
-        org: String,
-        hookId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "POST",
-                "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/pings",
-                config = clientConfig,
-                operationId = "orgsPingWebhook",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun orgsPingWebhook(clientConfig: ClientConfig, org: String, hookId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/hooks/${SdkClient.encodePathSegment(hookId)}/pings", config = clientConfig, operationId = "orgsPingWebhook", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }

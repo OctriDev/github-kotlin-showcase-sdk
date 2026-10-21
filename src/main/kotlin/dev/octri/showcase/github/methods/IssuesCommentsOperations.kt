@@ -14,366 +14,166 @@ import dev.octri.showcase.github.ValidationError
 
 internal object IssuesListCommentsForRepoOperation {
     /**
-     * You can use the REST API to list comments on issues and pull requests for a repository. Every
-     * pull request is an issue, but not every issue is a pull request. By default, issue comments
-     * are ordered by ascending ID. This endpoint supports the following custom media types. For
-     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
-     * markdown body. Response will include `body`. This is the default if you do not pass any
-     * specific media type.…
+     * You can use the REST API to list comments on issues and pull requests for a repository. Every pull request is an issue, but not every issue is a pull request. By default, issue comments are ordered by ascending ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type.…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param sort The property to sort the results by.
      * @param direction Either `asc` or `desc`. Ignored without the `sort` parameter.
-     * @param since Only show results that were last updated after the given time. This is a
-     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param since Only show results that were last updated after the given time.
+     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun issuesListCommentsForRepo(
-        clientConfig: ClientConfig,
-        request: Issues.IssuesListCommentsForRepoRequest,
-        options: RequestOptions? = null,
-    ): List<IssueComment> {
+    fun issuesListCommentsForRepo(clientConfig: ClientConfig, request: Issues.IssuesListCommentsForRepoRequest, options: RequestOptions? = null): List<IssueComment> {
         validateIssuesListCommentsForRepoRequest(request)
 
-        return SdkClient.request<List<IssueComment>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/comments",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "since" to
-                                SdkClient.queryValue(request.since, "form", true, "date-time"),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "issuesListCommentsForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<List<IssueComment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/comments", config = clientConfig, query = mapOf("sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "since" to
+    SdkClient.queryValue(request.since, "form", true, "date-time"), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "issuesListCommentsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 
-    private fun validateIssuesListCommentsForRepoRequest(
-        request: Issues.IssuesListCommentsForRepoRequest
-    ) {
+
+    private fun validateIssuesListCommentsForRepoRequest(request: Issues.IssuesListCommentsForRepoRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-        }
+}
     }
 }
 
 internal object IssuesGetCommentOperation {
     /**
-     * You can use the REST API to get comments on issues and pull requests. Every pull request is
-     * an issue, but not every issue is a pull request. This endpoint supports the following custom
-     * media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only…
+     * You can use the REST API to get comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      */
-    fun issuesGetComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): IssueComment {
-        return SdkClient.request<IssueComment>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}",
-                    config = clientConfig,
-                    operationId = "issuesGetComment",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun issuesGetComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): IssueComment {
+        return SdkClient.request<IssueComment>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, operationId = "issuesGetComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object IssuesUpdateCommentOperation {
     /**
-     * You can use the REST API to update comments on issues and pull requests. Every pull request
-     * is an issue, but not every issue is a pull request. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only…
+     * You can use the REST API to update comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param body The contents of the comment.
      */
-    fun issuesUpdateComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        commentId: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): IssueComment {
-        return SdkClient.request<IssueComment>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("body" to (body)),
-                    operationId = "issuesUpdateComment",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+    fun issuesUpdateComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, body: String, options: RequestOptions? = null): IssueComment {
+        return SdkClient.request<IssueComment>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "issuesUpdateComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }
 
 internal object IssuesDeleteCommentOperation {
     /**
-     * You can use the REST API to delete comments on issues and pull requests. Every pull request
-     * is an issue, but not every issue is a pull request.
+     * You can use the REST API to delete comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      */
-    fun issuesDeleteComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}",
-                config = clientConfig,
-                operationId = "issuesDeleteComment",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun issuesDeleteComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, operationId = "issuesDeleteComment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object IssuesPinCommentOperation {
     /**
-     * Pins an issue comment in the specified repository. Use `owner`, `repo`, and `comment_id` to
-     * identify the comment to pin. The response includes the comment and details about who pinned
-     * it and when.
+     * Pins an issue comment in the specified repository. Use `owner`, `repo`, and `comment_id` to identify the comment to pin. The response includes the comment and details about who pinned it and when.
      *
-     * You can use the REST API to pin comments on issues. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
-     * `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
-     * body. Response will include `body_text`. -…
+     * You can use the REST API to pin comments on issues. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      */
-    fun issuesPinComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): IssueComment {
-        return SdkClient.request<IssueComment>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}/pin",
-                    config = clientConfig,
-                    operationId = "issuesPinComment",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "410" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun issuesPinComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): IssueComment {
+        return SdkClient.request<IssueComment>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}/pin", config = clientConfig, operationId = "issuesPinComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object IssuesUnpinCommentOperation {
     /**
-     * Removes the pin from an issue comment in the specified repository. Use `owner`, `repo`, and
-     * `comment_id` to identify the comment whose pin you want to remove.
+     * Removes the pin from an issue comment in the specified repository. Use `owner`, `repo`, and `comment_id` to identify the comment whose pin you want to remove.
      *
      * You can use the REST API to unpin comments on issues.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      */
-    fun issuesUnpinComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        commentId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}/pin",
-                config = clientConfig,
-                operationId = "issuesUnpinComment",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "410" to BasicError::class.java,
-                        "503" to ServiceUnavailable::class.java,
-                    ),
-            )
-        )
+    fun issuesUnpinComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}/pin", config = clientConfig, operationId = "issuesUnpinComment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "503" to ServiceUnavailable::class.java)))
     }
 }
 
 internal object IssuesListCommentsOperation {
     /**
-     * Lists comments on an issue or pull request in a repository, ordered by ascending comment ID.
-     * Use `since` to filter by update time and `page` with `per_page` to paginate results; the
-     * response can include raw Markdown, plain text, or rendered HTML according to the requested
-     * media type.
+     * Lists comments on an issue or pull request in a repository, ordered by ascending comment ID. Use `since` to filter by update time and `page` with `per_page` to paginate results; the response can include raw Markdown, plain text, or rendered HTML according to the requested media type.
      *
-     * You can use the REST API to list comments on issues and pull requests. Every pull request is
-     * an issue, but not every issue is a pull request. Issue comments are ordered by ascending ID.
-     * This endpoint supports the following custom media types. For more information, see "Media
-     * types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will
-     * include `body`. This is the default if you do not pass any specific media type. -…
+     * You can use the REST API to list comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request. Issue comments are ordered by ascending ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param since Only show results that were last updated after the given time. This is a
-     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param since Only show results that were last updated after the given time.
+     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun issuesListComments(
-        clientConfig: ClientConfig,
-        request: Issues.IssuesListCommentsRequest,
-        options: RequestOptions? = null,
-    ): List<IssueComment> {
+    fun issuesListComments(clientConfig: ClientConfig, request: Issues.IssuesListCommentsRequest, options: RequestOptions? = null): List<IssueComment> {
         validateIssuesListCommentsRequest(request)
 
-        return SdkClient.request<List<IssueComment>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/comments",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "since" to
-                                SdkClient.queryValue(request.since, "form", true, "date-time"),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "issuesListComments",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "410" to BasicError::class.java),
-                )
-            )
-            .data
+        return SdkClient.request<List<IssueComment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/comments", config = clientConfig, query = mapOf("since" to
+    SdkClient.queryValue(request.since, "form", true, "date-time"), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "issuesListComments", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "410" to BasicError::class.java))).data
     }
+
 
     private fun validateIssuesListCommentsRequest(request: Issues.IssuesListCommentsRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-        }
+}
     }
 }
 
 internal object IssuesCreateCommentOperation {
     /**
-     * Creates a comment on an issue or pull request in a repository. Provide the comment contents
-     * in `body`; creating a comment triggers notifications, and creating content too quickly may
-     * result in secondary rate limiting. The response can include raw Markdown, plain text, or
-     * rendered HTML according to the requested media type.
+     * Creates a comment on an issue or pull request in a repository. Provide the comment contents in `body`; creating a comment triggers notifications, and creating content too quickly may result in secondary rate limiting. The response can include raw Markdown, plain text, or rendered HTML according to the requested media type.
      *
-     * You can use the REST API to create comments on issues and pull requests. Every pull request
-     * is an issue, but not every issue is a pull request. This endpoint triggers notifications.
-     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
-     * more information, see "Rate limits for the API" and "Best practices for using the REST API."
-     * This endpoint supports the following custom media types. For more information, see "Media
-     * types." -…
+     * You can use the REST API to create comments on issues and pull requests. Every pull request is an issue, but not every issue is a pull request. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param body The contents of the comment.
      */
-    fun issuesCreateComment(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): IssueComment {
-        return SdkClient.request<IssueComment>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/comments",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("body" to (body)),
-                    operationId = "issuesCreateComment",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "410" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun issuesCreateComment(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, body: String, options: RequestOptions? = null): IssueComment {
+        return SdkClient.request<IssueComment>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/comments", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "issuesCreateComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }

@@ -14,210 +14,82 @@ import dev.octri.showcase.github.ValidationError
 
 internal object IssuesListIssueFieldValuesForIssueOperation {
     /**
-     * Lists the field values assigned to an issue in a repository. Use `owner`, `repo`, and
-     * `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
+     * Lists the field values assigned to an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
      *
      * Lists all issue field values for an issue.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun issuesListIssueFieldValuesForIssue(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<IssueFieldValue> {
-        return SdkClient.request<List<IssueFieldValue>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "issuesListIssueFieldValuesForIssue",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "301" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "410" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun issuesListIssueFieldValuesForIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IssueFieldValue> {
+        return SdkClient.request<List<IssueFieldValue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListIssueFieldValuesForIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
     }
 }
 
 internal object IssuesAddIssueFieldValuesOperation {
     /**
-     * Add custom field values to an issue. You can set values for organization-level issue fields
-     * that have been defined for the repository's organization. Adding an empty array will clear
-     * all existing field values for the issue. This endpoint supports the following field data
-     * types: - **`text`**: String values for text fields - **`single_select`**: Option names for
-     * single-select fields (must match an existing option name) - **`number`**: Numeric values for
-     * number fields -…
+     * Add custom field values to an issue. You can set values for organization-level issue fields that have been defined for the repository's organization. Adding an empty array will clear all existing field values for the issue. This endpoint supports the following field data types: - **`text`**: String values for text fields - **`single_select`**: Option names for single-select fields (must match an existing option name) - **`number`**: Numeric values for number fields -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param issueFieldValues An array of issue field values to add to this issue. Each field value
-     *   must include the field ID and the value to set.
+     * @param issueFieldValues An array of issue field values to add to this issue.
+     *   Each field value must include the field ID and the value to set.
      */
-    fun issuesAddIssueFieldValues(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueFieldValues: List<Issues.IssuesAddIssueFieldValuesIssueFieldValuesItem>? = null,
-        options: RequestOptions? = null,
-    ): List<IssueFieldValue> {
+    fun issuesAddIssueFieldValues(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueFieldValues: List<Issues.IssuesAddIssueFieldValuesIssueFieldValuesItem>? = null, options: RequestOptions? = null): List<IssueFieldValue> {
         if (issueFieldValues != null) {
-            Validation.validateItems(
-                "issue_field_values",
-                issueFieldValues,
-                Validation.LengthOpts(max = 25),
-            )
-        }
+            Validation.validateItems("issue_field_values", issueFieldValues, Validation.LengthOpts(max = 25))
+}
 
-        return SdkClient.request<List<IssueFieldValue>>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "issue_field_values" to (SdkClient.omitIfNull(issueFieldValues))
-                        ),
-                    operationId = "issuesAddIssueFieldValues",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<List<IssueFieldValue>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values", config = clientConfig, body = SdkClient.bodyMap("issue_field_values" to
+    (SdkClient.omitIfNull(issueFieldValues))), operationId = "issuesAddIssueFieldValues", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object IssuesSetIssueFieldValuesOperation {
     /**
-     * Set custom field values for an issue, replacing any existing values. You can set values for
-     * organization-level issue fields that have been defined for the repository's organization.
-     * This endpoint supports the following field data types: - **`text`**: String values for text
-     * fields - **`single_select`**: Option names for single-select fields (must match an existing
-     * option name) - **`number`**: Numeric values for number fields - **`date`**: ISO 8601 date
-     * strings for date fields…
+     * Set custom field values for an issue, replacing any existing values. You can set values for organization-level issue fields that have been defined for the repository's organization. This endpoint supports the following field data types: - **`text`**: String values for text fields - **`single_select`**: Option names for single-select fields (must match an existing option name) - **`number`**: Numeric values for number fields - **`date`**: ISO 8601 date strings for date fields…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param issueFieldValues An array of issue field values to set for this issue. Each field
-     *   value must include the field ID and the value to set. All existing field values will be
-     *   replaced.
+     * @param issueFieldValues An array of issue field values to set for this issue.
+     *   Each field value must include the field ID and the value to set. All existing
+     *   field values will be replaced.
      */
-    fun issuesSetIssueFieldValues(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueFieldValues: List<Issues.IssuesSetIssueFieldValuesIssueFieldValuesItem>? = null,
-        options: RequestOptions? = null,
-    ): List<IssueFieldValue> {
+    fun issuesSetIssueFieldValues(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueFieldValues: List<Issues.IssuesSetIssueFieldValuesIssueFieldValuesItem>? = null, options: RequestOptions? = null): List<IssueFieldValue> {
         if (issueFieldValues != null) {
-            Validation.validateItems(
-                "issue_field_values",
-                issueFieldValues,
-                Validation.LengthOpts(max = 25),
-            )
-        }
+            Validation.validateItems("issue_field_values", issueFieldValues, Validation.LengthOpts(max = 25))
+}
 
-        return SdkClient.request<List<IssueFieldValue>>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "issue_field_values" to (SdkClient.omitIfNull(issueFieldValues))
-                        ),
-                    operationId = "issuesSetIssueFieldValues",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<List<IssueFieldValue>>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values", config = clientConfig, body = SdkClient.bodyMap("issue_field_values" to
+    (SdkClient.omitIfNull(issueFieldValues))), operationId = "issuesSetIssueFieldValues", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object IssuesDeleteIssueFieldValueOperation {
     /**
-     * Remove a specific custom field value from an issue. Only users with push access to the
-     * repository can delete issue field values. If you don't have the proper permissions, you'll
-     * receive a `403 Forbidden` response. If the specified field does not have a value set on the
-     * issue, this operation will return a `404` error. This endpoint triggers notifications.
-     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
-     * more information, see "Rate…
+     * Remove a specific custom field value from an issue. Only users with push access to the repository can delete issue field values. If you don't have the proper permissions, you'll receive a `403 Forbidden` response. If the specified field does not have a value set on the issue, this operation will return a `404` error. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param issueFieldId The unique identifier of the issue field.
      */
-    fun issuesDeleteIssueFieldValue(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        issueFieldId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values/${SdkClient.encodePathSegment(issueFieldId)}",
-                config = clientConfig,
-                operationId = "issuesDeleteIssueFieldValue",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                        "503" to ServiceUnavailable::class.java,
-                    ),
-            )
-        )
+    fun issuesDeleteIssueFieldValue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueFieldId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/issue-field-values/${SdkClient.encodePathSegment(issueFieldId)}", config = clientConfig, operationId = "issuesDeleteIssueFieldValue", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java)))
     }
 }

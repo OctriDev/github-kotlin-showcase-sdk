@@ -11,51 +11,35 @@ import dev.octri.showcase.github.SdkClient
 
 object CodesOfConduct {
 
+
     /**
-     * Lists all codes of conduct available on GitHub. Use the response's `key`, `name`, and URL
-     * fields to identify a code and retrieve its details.
+     * Lists all codes of conduct available on GitHub. Use the response's `key`, `name`, and URL fields to identify a code and retrieve its details.
      *
      * Returns array of all GitHub's codes of conduct.
      */
-    fun codesOfConductGetAllCodesOfConduct(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): List<CodeOfConduct> {
-        return SdkClient.request<List<CodeOfConduct>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/codes_of_conduct",
-                    config = clientConfig,
-                    operationId = "codesOfConductGetAllCodesOfConduct",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun codesOfConductGetAllCodesOfConduct(clientConfig: ClientConfig, options: RequestOptions? = null): List<CodeOfConduct> {
+        return SdkClient.request<List<CodeOfConduct>>(SdkClient.RequestSpec("GET", "/codes_of_conduct", config = clientConfig, operationId = "codesOfConductGetAllCodesOfConduct", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
+
+
+
+
+
+
     /**
-     * Retrieves information about a specific code of conduct. Supply the code's `key` to select the
-     * code whose details you need.
+     * Retrieves information about a specific code of conduct. Supply the code's `key` to select the code whose details you need.
      *
      * Returns information about the specified GitHub code of conduct.
      */
-    fun codesOfConductGetConductCode(
-        clientConfig: ClientConfig,
-        key: String,
-        options: RequestOptions? = null,
-    ): CodeOfConduct {
-        return SdkClient.request<CodeOfConduct>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/codes_of_conduct/${SdkClient.encodePathSegment(key)}",
-                    config = clientConfig,
-                    operationId = "codesOfConductGetConductCode",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun codesOfConductGetConductCode(clientConfig: ClientConfig, key: String, options: RequestOptions? = null): CodeOfConduct {
+        return SdkClient.request<CodeOfConduct>(SdkClient.RequestSpec("GET", "/codes_of_conduct/${SdkClient.encodePathSegment(key)}", config = clientConfig, operationId = "codesOfConductGetConductCode", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
+
+
+
+
+
+
+
 }

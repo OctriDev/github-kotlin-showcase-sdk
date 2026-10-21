@@ -5,202 +5,206 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class OrgRulesetConditionsVariant0(
-    /** Required object value serialized in the `repository_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_name")
-    val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
-    /** Optional object value serialized in the `ref_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ref_name")
-    val refName: RepositoryRulesetConditionsRefName? = null,
+    /**
+     * Required object value serialized in the `repository_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: RepositoryRulesetConditionsRepositoryNameTargetRepositoryName,
+    /**
+     * Optional object value serialized in the `ref_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ref_name") val refName: RepositoryRulesetConditionsRefName? = null
 ) : OrgRulesetConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class OrgRulesetConditionsVariant1(
-    /** Required object value serialized in the `repository_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
-    val repositoryId: RepositoryRulesetConditionsRepositoryIdTargetRepositoryId,
-    /** Optional object value serialized in the `ref_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ref_name")
-    val refName: RepositoryRulesetConditionsRefName? = null,
+    /**
+     * Required object value serialized in the `repository_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: RepositoryRulesetConditionsRepositoryIdTargetRepositoryId,
+    /**
+     * Optional object value serialized in the `ref_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ref_name") val refName: RepositoryRulesetConditionsRefName? = null
 ) : OrgRulesetConditions
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class OrgRulesetConditionsVariant2(
-    /** Required object value serialized in the `repository_property` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_property")
-    val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
-    /** Optional object value serialized in the `ref_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ref_name")
-    val refName: RepositoryRulesetConditionsRefName? = null,
+    /**
+     * Required object value serialized in the `repository_property` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_property") val repositoryProperty: RepositoryRulesetConditionsRepositoryPropertyTargetRepositoryProperty,
+    /**
+     * Optional object value serialized in the `ref_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ref_name") val refName: RepositoryRulesetConditionsRefName? = null
 ) : OrgRulesetConditions
 
 /**
- * Conditions for an organization ruleset. The branch and tag rulesets conditions object should
- * contain both `repository_name` and `ref_name` properties, or both `repository_id` and `ref_name`
- * properties, or both `repository_property` and `ref_name` properties. The push rulesets conditions
- * object does not require the `ref_name` property. For repository policy rulesets, the conditions
- * object should only contain the `repository_name`, the `repository_id`, or the…
+ * Conditions for an organization ruleset. The branch and tag rulesets conditions object should contain both `repository_name` and `ref_name` properties, or both `repository_id` and `ref_name` properties, or both `repository_property` and `ref_name` properties. The push rulesets conditions object does not require the `ref_name` property. For repository policy rulesets, the conditions object should only contain the `repository_name`, the `repository_id`, or the…
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
-)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = OrgRulesetConditionsVariant0::class),
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = OrgRulesetConditionsVariant1::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = OrgRulesetConditionsVariant2::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = OrgRulesetConditionsVariant2::class)
 )
 sealed interface OrgRulesetConditions : RepositoryRulesetConditions2
 
-/** Optional object value serialized in the `self` wire field. */
+/**
+ * Optional object value serialized in the `self` wire field.
+ */
 data class RepositoryRulesetLinksSelf(
-    /** The URL of the ruleset */
+    /**
+     * The URL of the ruleset
+     */
     val href: String? = null
 )
 
-/** Optional object value serialized in the `html` wire field. */
+/**
+ * Optional object value serialized in the `html` wire field.
+ */
 data class RepositoryRulesetLinksHtml(
-    /** The html URL of the ruleset */
+    /**
+     * The html URL of the ruleset
+     */
     val href: String? = null
 )
 
-/** Optional object value serialized in the `_links` wire field. */
+/**
+ * Optional object value serialized in the `_links` wire field.
+ */
 data class RepositoryRulesetLinks(
-    /** Optional object value serialized in the `self` wire field. */
+    /**
+     * Optional object value serialized in the `self` wire field.
+     */
     val self: RepositoryRulesetLinksSelf? = null,
-    /** Optional object value serialized in the `html` wire field. */
-    val html: RepositoryRulesetLinksHtml? = null,
+    /**
+     * Optional object value serialized in the `html` wire field.
+     */
+    val html: RepositoryRulesetLinksHtml? = null
 )
 
-/** A set of rules to apply when specified conditions are met. */
+/**
+ * A set of rules to apply when specified conditions are met.
+ */
 data class RepositoryRuleset(
-    /** The ID of the ruleset */
+    /**
+     * The ID of the ruleset
+     */
     val id: Long,
-    /** The name of the ruleset */
+    /**
+     * The name of the ruleset
+     */
     val name: String,
-    /** The name of the source */
+    /**
+     * The name of the source
+     */
     val source: String,
     /**
-     * The enforcement level of the ruleset. `evaluate` allows admins to test rules before enforcing
-     * them. Admins can view insights on the Rule Insights page (`evaluate` is only available with
-     * GitHub Enterprise).
+     * The enforcement level of the ruleset. `evaluate` allows admins to test rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate` is only available with GitHub Enterprise).
      */
     val enforcement: RepositoryRuleEnforcement,
-    /** The target of the ruleset */
-    val target: RepositoryRulesetTargetEnum? = null,
-    /** The type of the source of the ruleset */
-    @com.fasterxml.jackson.annotation.JsonProperty("source_type")
-    val sourceType: RepositoryRulesetSourceTypeEnum? = null,
-    /** The actors that can bypass the rules in this ruleset */
-    @com.fasterxml.jackson.annotation.JsonProperty("bypass_actors")
-    val bypassActors: List<RepositoryRulesetBypassActor>? = null,
     /**
-     * The bypass type of the user making the API request for this ruleset. This field is only
-     * returned when querying the repository-level endpoint.
+     * The target of the ruleset
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_can_bypass")
-    val currentUserCanBypass: RepositoryRulesetCurrentUserCanBypassEnum? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    val target: RepositoryRulesetTargetEnum? = null,
+    /**
+     * The type of the source of the ruleset
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("source_type") val sourceType: RepositoryRulesetSourceTypeEnum? = null,
+    /**
+     * The actors that can bypass the rules in this ruleset
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("bypass_actors") val bypassActors: List<RepositoryRulesetBypassActor>? = null,
+    /**
+     * The bypass type of the user making the API request for this ruleset. This field is only returned when querying the repository-level endpoint.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_can_bypass") val currentUserCanBypass: RepositoryRulesetCurrentUserCanBypassEnum? = null,
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional object value serialized in the `_links` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("_links")
-    val links: RepositoryRulesetLinks? = null,
-    /** Optional API value serialized in the `conditions` wire field. */
+    /**
+     * Optional object value serialized in the `_links` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: RepositoryRulesetLinks? = null,
+    /**
+     * Optional API value serialized in the `conditions` wire field.
+     */
     val conditions: RepositoryRulesetConditions2? = null,
-    /** Optional array value serialized in the `rules` wire field. */
+    /**
+     * Optional array value serialized in the `rules` wire field.
+     */
     val rules: List<RepositoryRule>? = null,
-    /** Optional `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: OffsetDateTime? = null,
-    /** Optional `date-time`-formatted value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
-    val updatedAt: OffsetDateTime? = null,
+    /**
+     * Optional `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
+    /**
+     * Optional `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null
 )
 
-/** An actor that can bypass rules in a ruleset */
+/**
+ * An actor that can bypass rules in a ruleset
+ */
 data class RepositoryRulesetBypassActor(
-    /** The type of actor that can bypass a ruleset. */
-    @com.fasterxml.jackson.annotation.JsonProperty("actor_type")
-    val actorType: RepositoryRulesetBypassActorActorTypeEnum,
     /**
-     * The ID of the actor that can bypass a ruleset. Required for `Integration`, `RepositoryRole`,
-     * `Team`, and `User` actor types. If `actor_type` is `OrganizationAdmin`, `actor_id` is
-     * ignored. If `actor_type` is `DeployKey`, this should be null. `OrganizationAdmin` is not
-     * applicable for personal repositories.
+     * The type of actor that can bypass a ruleset.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("actor_type") val actorType: RepositoryRulesetBypassActorActorTypeEnum,
+    /**
+     * The ID of the actor that can bypass a ruleset. Required for `Integration`, `RepositoryRole`, `Team`, and `User` actor types. If `actor_type` is `OrganizationAdmin`, `actor_id` is ignored. If `actor_type` is `DeployKey`, this should be null. `OrganizationAdmin` is not applicable for personal repositories.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("actor_id") val actorId: Long? = null,
     /**
-     * When the specified actor can bypass the ruleset. `pull_request` means that an actor can only
-     * bypass rules on pull requests. `pull_request` is not applicable for the `DeployKey` actor
-     * type. Also, `pull_request` is only applicable to branch rulesets. When `bypass_mode` is
-     * `exempt`, rules will not be run for that actor and a bypass audit entry will not be created.
+     * When the specified actor can bypass the ruleset. `pull_request` means that an actor can only bypass rules on pull requests. `pull_request` is not applicable for the `DeployKey` actor type. Also, `pull_request` is only applicable to branch rulesets. When `bypass_mode` is `exempt`, rules will not be run for that actor and a bypass audit entry will not be created.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("bypass_mode")
-    val bypassMode: RepositoryRulesetBypassActorBypassModeEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("bypass_mode") val bypassMode: RepositoryRulesetBypassActorBypassModeEnum? = null
 )
 
-/** Optional object value serialized in the `ref_name` wire field. */
+/**
+ * Optional object value serialized in the `ref_name` wire field.
+ */
 data class RepositoryRulesetConditionsRefName(
     /**
-     * Array of ref names or patterns to include. One of these patterns must match for the condition
-     * to pass. Also accepts `~DEFAULT_BRANCH` to include the default branch or `~ALL` to include
-     * all branches.
+     * Array of ref names or patterns to include. One of these patterns must match for the condition to pass. Also accepts `~DEFAULT_BRANCH` to include the default branch or `~ALL` to include all branches.
      */
     val include: List<String>? = null,
     /**
-     * Array of ref names or patterns to exclude. The condition will not pass if any of these
-     * patterns match.
+     * Array of ref names or patterns to exclude. The condition will not pass if any of these patterns match.
      */
-    val exclude: List<String>? = null,
+    val exclude: List<String>? = null
 )
 
-/** Parameters for a repository ruleset ref name condition */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Parameters for a repository ruleset ref name condition
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRulesetConditions(
-    /** Optional object value serialized in the `ref_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ref_name")
-    val refName: RepositoryRulesetConditionsRefName? = null
+    /**
+     * Optional object value serialized in the `ref_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ref_name") val refName: RepositoryRulesetConditionsRefName? = null
 ) : RepositoryRulesetConditions2
 
-/** Optional API value serialized in the `conditions` wire field. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = RepositoryRulesetConditions2.Deserializer::class
-)
+/**
+ * Optional API value serialized in the `conditions` wire field.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = RepositoryRulesetConditions2.Deserializer::class)
 sealed interface RepositoryRulesetConditions2 {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer :
-        com.fasterxml.jackson.databind.JsonDeserializer<RepositoryRulesetConditions2>() {
+    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<RepositoryRulesetConditions2>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
         ): RepositoryRulesetConditions2 {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType =
-                RepositoryRulesetConditions2OwnedTypes.firstOrNull { (keys, _) ->
-                        keys.any(node::has)
-                    }
-                    ?.second
+            val ownedType = RepositoryRulesetConditions2OwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -208,23 +212,16 @@ sealed interface RepositoryRulesetConditions2 {
                     // Tried with the other branches below.
                 }
             }
-            val objectTypes: List<Class<out RepositoryRulesetConditions2>> =
-                listOf(RepositoryRulesetConditions::class.java, OrgRulesetConditions::class.java)
-            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let {
-                return it
-            }
+            val objectTypes: List<Class<out RepositoryRulesetConditions2>> = listOf(RepositoryRulesetConditions::class.java, OrgRulesetConditions::class.java)
+            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
             return when {
-                else ->
-                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                        parser,
-                        RepositoryRulesetConditions2::class.java,
-                        "no RepositoryRulesetConditions2 branch accepts this payload",
-                    )
+                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                    parser, RepositoryRulesetConditions2::class.java, "no RepositoryRulesetConditions2 branch accepts this payload")
             }
         }
     }
 }
 
-internal val RepositoryRulesetConditions2OwnedTypes:
-    List<Pair<List<String>, Class<out RepositoryRulesetConditions2>>> =
-    listOf(listOf("ref_name") to RepositoryRulesetConditions::class.java)
+internal val RepositoryRulesetConditions2OwnedTypes: List<Pair<List<String>, Class<out RepositoryRulesetConditions2>>> = listOf(
+    listOf("ref_name") to RepositoryRulesetConditions::class.java,
+)

@@ -11,47 +11,21 @@ import dev.octri.showcase.github.ValidationError
 
 internal object PullsUpdateBranchOperation {
     /**
-     * Updates the pull request branch with the latest upstream changes by merging HEAD from the
-     * base branch into the pull request branch. Note: If making a request on behalf of a GitHub App
-     * you must also have permissions to write the contents of the head repository.
+     * Updates the pull request branch with the latest upstream changes by merging HEAD from the base branch into the pull request branch. Note: If making a request on behalf of a GitHub App you must also have permissions to write the contents of the head repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param expectedHeadSha The expected SHA of the pull request's HEAD ref. This is the most
-     *   recent commit on the pull request's branch. If the expected SHA does not match the pull
-     *   request's HEAD, you will receive a `422 Unprocessable Entity` status. You can use the "List
-     *   commits" endpoint to find the most recent commit SHA. Default: SHA of the pull request's
-     *   current HEAD ref.
+     * @param expectedHeadSha The expected SHA of the pull request's HEAD ref. This
+     *   is the most recent commit on the pull request's branch. If the expected SHA
+     *   does not match the pull request's HEAD, you will receive a `422 Unprocessable
+     *   Entity` status. You can use the "List commits" endpoint to find the most
+     *   recent commit SHA. Default: SHA of the pull request's current HEAD ref.
      */
-    fun pullsUpdateBranch(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        expectedHeadSha: String? = null,
-        options: RequestOptions? = null,
-    ): Pulls.PullsUpdateBranchResponse {
-        return SdkClient.request<Pulls.PullsUpdateBranchResponse>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/update-branch",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "expected_head_sha" to (SdkClient.omitIfNull(expectedHeadSha))
-                        ),
-                    operationId = "pullsUpdateBranch",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsUpdateBranch(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, expectedHeadSha: String? = null, options: RequestOptions? = null): Pulls.PullsUpdateBranchResponse {
+        return SdkClient.request<Pulls.PullsUpdateBranchResponse>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/update-branch", config = clientConfig, body = SdkClient.bodyMap("expected_head_sha" to
+    (SdkClient.omitIfNull(expectedHeadSha))), operationId = "pullsUpdateBranch", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }

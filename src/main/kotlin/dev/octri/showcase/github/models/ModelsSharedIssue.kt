@@ -5,133 +5,208 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Comments provide a way for people to collaborate on an issue. */
+/**
+ * Comments provide a way for people to collaborate on an issue.
+ */
 data class IssueComment(
-    /** Unique identifier of the issue comment */
-    val id: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** URL for the issue comment */
-    val url: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
-    val user: NullableSimpleUser?,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Required `uri`-formatted value serialized in the `issue_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_url") val issueUrl: String,
-    /** Contents of the issue comment */
-    val body: String? = null,
-    /** Optional `string` value serialized in the `body_text` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("body_text") val bodyText: String? = null,
-    /** Optional `string` value serialized in the `body_html` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("body_html") val bodyHtml: String? = null,
-    /** How the author is associated with the repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
-    val authorAssociation: AuthorAssociation? = null,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
-     * and user accounts and granted access to specific repositories. They come with granular
-     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * Unique identifier of the issue comment
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app")
-    val performedViaGithubApp: NullableIntegration? = null,
-    /** Optional object value serialized in the `reactions` wire field. */
-    val reactions: ReactionRollup? = null,
-    /** Context around who pinned an issue comment and when it was pinned. */
-    val pin: NullablePinnedIssueComment? = null,
-    /** Details about why an issue comment was minimized. */
-    val minimized: NullableIssueCommentMinimized? = null,
-)
-
-/** Typed representation of the `IssueDependenciesSummary` API schema. */
-data class IssueDependenciesSummary(
-    /** Required `integer` value serialized in the `blocked_by` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("blocked_by") val blockedBy: Long,
-    /** Required `integer` value serialized in the `blocking` wire field. */
-    val blocking: Long,
-    /** Required `integer` value serialized in the `total_blocked_by` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_blocked_by") val totalBlockedBy: Long,
-    /** Required `integer` value serialized in the `total_blocking` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_blocking") val totalBlocking: Long,
-)
-
-/** Details about the selected option (only present for single_select fields) */
-data class IssueFieldValueSingleSelectOption(
-    /** Unique identifier for the option. */
     val id: Long,
-    /** The name of the option */
-    val name: String,
-    /** The color of the option */
-    val color: String,
-)
-
-/** Required object value serialized in the `multi_select_options[]` wire field. */
-data class IssueFieldValueMultiSelectOptionsItem(
-    /** Unique identifier for the option. */
-    val id: Long,
-    /** The name of the option */
-    val name: String,
-    /** The color of the option */
-    val color: String,
-)
-
-/** A value assigned to an issue field */
-data class IssueFieldValue(
-    /** Unique identifier for the issue field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_field_id") val issueFieldId: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** The data type of the issue field */
-    @com.fasterxml.jackson.annotation.JsonProperty("data_type")
-    val dataType: IssueFieldValueDataTypeEnum,
-    /** The value of the issue field */
-    @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: Any?,
-    /** The human-readable name of the issue field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_field_name")
-    val issueFieldName: String? = null,
-    /** Details about the selected option (only present for single_select fields) */
-    @com.fasterxml.jackson.annotation.JsonProperty("single_select_option")
-    val singleSelectOption: IssueFieldValueSingleSelectOption? = null,
-    /** Details about the selected options */
-    @com.fasterxml.jackson.annotation.JsonProperty("multi_select_options")
-    val multiSelectOptions: List<IssueFieldValueMultiSelectOptionsItem>? = null,
+    /**
+     * URL for the issue comment
+     */
+    val url: String,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: NullableSimpleUser?,
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * Required `uri`-formatted value serialized in the `issue_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_url") val issueUrl: String,
+    /**
+     * Contents of the issue comment
+     */
+    val body: String? = null,
+    /**
+     * Optional `string` value serialized in the `body_text` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("body_text") val bodyText: String? = null,
+    /**
+     * Optional `string` value serialized in the `body_html` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("body_html") val bodyHtml: String? = null,
+    /**
+     * How the author is associated with the repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: AuthorAssociation? = null,
+    /**
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app") val performedViaGithubApp: NullableIntegration? = null,
+    /**
+     * Optional object value serialized in the `reactions` wire field.
+     */
+    val reactions: ReactionRollup? = null,
+    /**
+     * Context around who pinned an issue comment and when it was pinned.
+     */
+    val pin: NullablePinnedIssueComment? = null,
+    /**
+     * Details about why an issue comment was minimized.
+     */
+    val minimized: NullableIssueCommentMinimized? = null
 )
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+/**
+ * Typed representation of the `IssueDependenciesSummary` API schema.
+ */
+data class IssueDependenciesSummary(
+    /**
+     * Required `integer` value serialized in the `blocked_by` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("blocked_by") val blockedBy: Long,
+    /**
+     * Required `integer` value serialized in the `blocking` wire field.
+     */
+    val blocking: Long,
+    /**
+     * Required `integer` value serialized in the `total_blocked_by` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_blocked_by") val totalBlockedBy: Long,
+    /**
+     * Required `integer` value serialized in the `total_blocking` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_blocking") val totalBlocking: Long
 )
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+
+/**
+ * Details about the selected option (only present for single_select fields)
+ */
+data class IssueFieldValueSingleSelectOption(
+    /**
+     * Unique identifier for the option.
+     */
+    val id: Long,
+    /**
+     * The name of the option
+     */
+    val name: String,
+    /**
+     * The color of the option
+     */
+    val color: String
 )
+
+/**
+ * Required object value serialized in the `multi_select_options[]` wire field.
+ */
+data class IssueFieldValueMultiSelectOptionsItem(
+    /**
+     * Unique identifier for the option.
+     */
+    val id: Long,
+    /**
+     * The name of the option
+     */
+    val name: String,
+    /**
+     * The color of the option
+     */
+    val color: String
+)
+
+/**
+ * A value assigned to an issue field
+ */
+data class IssueFieldValue(
+    /**
+     * Unique identifier for the issue field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_field_id") val issueFieldId: Long,
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+    /**
+     * The data type of the issue field
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data_type") val dataType: IssueFieldValueDataTypeEnum,
+    /**
+     * The value of the issue field
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: Any?,
+    /**
+     * The human-readable name of the issue field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_field_name") val issueFieldName: String? = null,
+    /**
+     * Details about the selected option (only present for single_select fields)
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("single_select_option") val singleSelectOption: IssueFieldValueSingleSelectOption? = null,
+    /**
+     * Details about the selected options
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("multi_select_options") val multiSelectOptions: List<IssueFieldValueMultiSelectOptionsItem>? = null
+)
+
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class IssueLabelsItemVariant1(
-    /** Optional `int64`-formatted value serialized in the `id` wire field. */
+    /**
+     * Optional `int64`-formatted value serialized in the `id` wire field.
+     */
     val id: Long? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `description` wire field. */
+    /**
+     * Optional `string` value serialized in the `description` wire field.
+     */
     val description: String? = null,
-    /** Optional `string` value serialized in the `color` wire field. */
+    /**
+     * Optional `string` value serialized in the `color` wire field.
+     */
     val color: String? = null,
-    /** Optional `boolean` value serialized in the `default` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `default` wire field.
+     */
     val default: Boolean? = null,
-    /** The user who archived the label, or `null` if it has not been archived. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_by")
-    val archivedBy: SimpleUser? = null,
+    /**
+     * The user who archived the label, or `null` if it has not been archived.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_by") val archivedBy: SimpleUser? = null
 ) : IssueLabelsItem
 
-/** Required API value serialized in the `labels[]` wire field. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = IssueLabelsItem.Deserializer::class
-)
+/**
+ * Required API value serialized in the `labels[]` wire field.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = IssueLabelsItem.Deserializer::class)
 sealed interface IssueLabelsItem {
     /** Chooses the branch this payload is shaped like. */
     class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<IssueLabelsItem>() {
@@ -141,8 +216,7 @@ sealed interface IssueLabelsItem {
         ): IssueLabelsItem {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val objectTypes: List<Class<out IssueLabelsItem>> =
-                listOf(IssueLabelsItemVariant1::class.java)
+            val objectTypes: List<Class<out IssueLabelsItem>> = listOf(IssueLabelsItemVariant1::class.java)
             for (objectType in objectTypes) {
                 try {
                     return mapper.convertValue(node, objectType)
@@ -151,56 +225,51 @@ sealed interface IssueLabelsItem {
                 }
             }
             return when {
-                node.isTextual ->
-                    StringIssueLabelsItem(
-                        mapper.convertValue(
-                            node,
-                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
-                        )
-                    )
-                else ->
-                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                        parser,
-                        IssueLabelsItem::class.java,
-                        "no IssueLabelsItem branch accepts this payload",
-                    )
+                node.isTextual -> StringIssueLabelsItem(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
+                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                    parser, IssueLabelsItem::class.java, "no IssueLabelsItem branch accepts this payload")
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class StringIssueLabelsItem(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
-) : IssueLabelsItem
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class StringIssueLabelsItem(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : IssueLabelsItem
 
 /**
- * The type assigned to the issue. This is only present for issues in repositories where issue types
- * are supported.
+ * The type assigned to the issue. This is only present for issues in repositories where issue types are supported.
  */
 data class IssueType(
-    /** The unique identifier of the issue type. */
+    /**
+     * The unique identifier of the issue type.
+     */
     val id: Long,
-    /** The node identifier of the issue type. */
+    /**
+     * The node identifier of the issue type.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** The name of the issue type. */
+    /**
+     * The name of the issue type.
+     */
     val name: String,
-    /** The description of the issue type. */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** The color of the issue type. */
+    /**
+     * The description of the issue type.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * The color of the issue type.
+     */
     val color: IssueTypeColorEnum? = null,
-    /** The time the issue type created. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: OffsetDateTime? = null,
-    /** The time the issue type last updated. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
-    val updatedAt: OffsetDateTime? = null,
-    /** The enabled state of the issue type. */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_enabled") val isEnabled: Boolean? = null,
+    /**
+     * The time the issue type created.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null,
+    /**
+     * The time the issue type last updated.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
+    /**
+     * The enabled state of the issue type.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_enabled") val isEnabled: Boolean? = null
 )

@@ -10,84 +10,30 @@ import dev.octri.showcase.github.SdkClient
 
 internal object CodespacesRepoMachinesForAuthenticatedUserOperation {
     /**
-     * List the machine types available for a given repository based on its configuration. OAuth app
-     * tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
+     * List the machine types available for a given repository based on its configuration. OAuth app tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param location The location to check for available machines. Assigned by IP if not provided.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param location The location to check for available machines. Assigned by IP
+     *   if not provided.
      * @param clientIp IP for location auto-detection when proxying a request
-     * @param ref The branch or commit to check for prebuild availability and devcontainer
-     *   restrictions.
+     * @param ref The branch or commit to check for prebuild availability and
+     *   devcontainer restrictions.
      */
-    fun codespacesRepoMachinesForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        location: String? = null,
-        clientIp: String? = null,
-        ref: String? = null,
-        options: RequestOptions? = null,
-    ): Codespaces.CodespacesRepoMachinesForAuthenticatedUserResponse {
-        return SdkClient.request<Codespaces.CodespacesRepoMachinesForAuthenticatedUserResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codespaces/machines",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "location" to SdkClient.queryValue(location, "form", true),
-                            "client_ip" to SdkClient.queryValue(clientIp, "form", true),
-                            "ref" to SdkClient.queryValue(ref, "form", true),
-                        ),
-                    operationId = "codespacesRepoMachinesForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun codespacesRepoMachinesForAuthenticatedUser(clientConfig: ClientConfig, owner: String, repo: String, location: String? = null, clientIp: String? = null, ref: String? = null, options: RequestOptions? = null): Codespaces.CodespacesRepoMachinesForAuthenticatedUserResponse {
+        return SdkClient.request<Codespaces.CodespacesRepoMachinesForAuthenticatedUserResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codespaces/machines", config = clientConfig, query = mapOf("location" to SdkClient.queryValue(location, "form", true), "client_ip" to SdkClient.queryValue(clientIp, "form", true), "ref" to SdkClient.queryValue(ref, "form", true)), operationId = "codespacesRepoMachinesForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CodespacesCodespaceMachinesForAuthenticatedUserOperation {
     /**
-     * List the machine types a codespace can transition to use. OAuth app tokens and personal
-     * access tokens (classic) need the `codespace` scope to use this endpoint.
+     * List the machine types a codespace can transition to use. OAuth app tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
      *
      * @param codespaceName The name of the codespace.
      */
-    fun codespacesCodespaceMachinesForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        codespaceName: String,
-        options: RequestOptions? = null,
-    ): Codespaces.CodespacesCodespaceMachinesForAuthenticatedUserResponse {
-        return SdkClient.request<
-                Codespaces.CodespacesCodespaceMachinesForAuthenticatedUserResponse
-            >(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/machines",
-                    config = clientConfig,
-                    operationId = "codespacesCodespaceMachinesForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun codespacesCodespaceMachinesForAuthenticatedUser(clientConfig: ClientConfig, codespaceName: String, options: RequestOptions? = null): Codespaces.CodespacesCodespaceMachinesForAuthenticatedUserResponse {
+        return SdkClient.request<Codespaces.CodespacesCodespaceMachinesForAuthenticatedUserResponse>(SdkClient.RequestSpec("GET", "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/machines", config = clientConfig, operationId = "codespacesCodespaceMachinesForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }

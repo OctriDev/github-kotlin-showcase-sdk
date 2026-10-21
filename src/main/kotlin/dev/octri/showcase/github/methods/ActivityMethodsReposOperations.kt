@@ -18,41 +18,19 @@ import java.time.OffsetDateTime
 
 internal object ActivityMethodsActivityListRepoEventsOperation {
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListRepoEvents(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return SdkClient.request<List<Event>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/events",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListRepoEvents",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListRepoEvents(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return SdkClient.request<List<Event>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/events", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListRepoEvents", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
@@ -60,233 +38,121 @@ internal object ActivityMethodsActivityListRepoNotificationsForAuthenticatedUX04
     /**
      * Lists all notifications for the current user in the specified repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param all If `true`, show notifications marked as read.
-     * @param participating If `true`, only shows notifications in which the user is directly
-     *   participating or mentioned.
-     * @param since Only show results that were last updated after the given time. This is a
+     * @param participating If `true`, only shows notifications in which the user is
+     *   directly participating or mentioned.
+     * @param since Only show results that were last updated after the given time.
+     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param before Only show notifications updated before the given time. This is a
      *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param before Only show notifications updated before the given time. This is a timestamp in
-     *   ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListRepoNotificationsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        request: ActivityMethods.ActivityListRepoNotificationsForAuthenticatedUserRequest,
-        options: RequestOptions? = null,
-    ): List<Thread> {
+    fun activityListRepoNotificationsForAuthenticatedUser(clientConfig: ClientConfig, request: ActivityMethods.ActivityListRepoNotificationsForAuthenticatedUserRequest, options: RequestOptions? = null): List<Thread> {
         validateActivityListRepoNotificationsForAuthenticatedUserRequest(request)
 
-        return SdkClient.request<List<Thread>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/notifications",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "all" to SdkClient.queryValue(request.all, "form", true),
-                            "participating" to
-                                SdkClient.queryValue(request.participating, "form", true),
-                            "since" to
-                                SdkClient.queryValue(request.since, "form", true, "date-time"),
-                            "before" to
-                                SdkClient.queryValue(request.before, "form", true, "date-time"),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "activityListRepoNotificationsForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<List<Thread>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/notifications", config = clientConfig, query = mapOf("all" to SdkClient.queryValue(request.all, "form", true), "participating" to
+    SdkClient.queryValue(request.participating, "form", true), "since" to
+    SdkClient.queryValue(request.since, "form", true, "date-time"), "before" to
+    SdkClient.queryValue(request.before, "form", true, "date-time"), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "activityListRepoNotificationsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateActivityListRepoNotificationsForAuthenticatedUserRequest(
-        request: ActivityMethods.ActivityListRepoNotificationsForAuthenticatedUserRequest
-    ) {
+
+    private fun validateActivityListRepoNotificationsForAuthenticatedUserRequest(request: ActivityMethods.ActivityListRepoNotificationsForAuthenticatedUserRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-        }
+}
 
         if (request.before != null) {
             Validation.validateDateTime("before", request.before)
-        }
+}
     }
 }
 
 internal object ActivityMethodsActivityMarkRepoNotificationsAsReadOperation {
     /**
-     * Marks all notifications in a repository as "read" for the current user. If the number of
-     * notifications is too large to complete in one request, you will receive a `202 Accepted`
-     * status and GitHub will run an asynchronous process to mark notifications as "read." To check
-     * whether any "unread" notifications remain, you can use the List repository notifications for
-     * the authenticated user endpoint and pass the query parameter `all=false`.
+     * Marks all notifications in a repository as "read" for the current user. If the number of notifications is too large to complete in one request, you will receive a `202 Accepted` status and GitHub will run an asynchronous process to mark notifications as "read." To check whether any "unread" notifications remain, you can use the List repository notifications for the authenticated user endpoint and pass the query parameter `all=false`.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param lastReadAt Describes the last point that notifications were checked. Anything updated
-     *   since this time will not be marked as read. If you omit this parameter, all notifications
-     *   are marked as read. This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     *   Default: The current timestamp.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param lastReadAt Describes the last point that notifications were checked.
+     *   Anything updated since this time will not be marked as read. If you omit this
+     *   parameter, all notifications are marked as read. This is a timestamp in ISO
+     *   8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Default: The current timestamp.
      */
-    fun activityMarkRepoNotificationsAsRead(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        lastReadAt: OffsetDateTime? = null,
-        options: RequestOptions? = null,
-    ): ActivityMethods.ActivityMarkRepoNotificationsAsReadResponse {
+    fun activityMarkRepoNotificationsAsRead(clientConfig: ClientConfig, owner: String, repo: String, lastReadAt: OffsetDateTime? = null, options: RequestOptions? = null): ActivityMethods.ActivityMarkRepoNotificationsAsReadResponse {
         if (lastReadAt != null) {
             Validation.validateDateTime("last_read_at", lastReadAt)
-        }
+}
 
-        return SdkClient.request<ActivityMethods.ActivityMarkRepoNotificationsAsReadResponse>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/notifications",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("last_read_at" to (SdkClient.omitIfNull(lastReadAt))),
-                    operationId = "activityMarkRepoNotificationsAsRead",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<ActivityMethods.ActivityMarkRepoNotificationsAsReadResponse>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/notifications", config = clientConfig, body = SdkClient.bodyMap("last_read_at" to (SdkClient.omitIfNull(lastReadAt))), operationId = "activityMarkRepoNotificationsAsRead", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActivityMethodsActivityListStargazersForRepoOperation {
     /**
-     * Lists the people that have starred the repository. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created.
+     * Lists the people that have starred the repository. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListStargazersForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Any {
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stargazers",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListStargazersForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+    fun activityListStargazersForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Any {
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stargazers", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListStargazersForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }
 
 internal object ActivityMethodsActivityGetStargazerCountForRepoOperation {
     /**
-     * Gets the current number of users who have starred the repository. Users who previously
-     * starred the repository but later removed their star are not included.
+     * Gets the current number of users who have starred the repository. Users who previously starred the repository but later removed their star are not included.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun activityGetStargazerCountForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActivityMethods.ActivityGetStargazerCountForRepoResponse {
-        return SdkClient.request<ActivityMethods.ActivityGetStargazerCountForRepoResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stargazers/count",
-                    config = clientConfig,
-                    operationId = "activityGetStargazerCountForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun activityGetStargazerCountForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActivityMethods.ActivityGetStargazerCountForRepoResponse {
+        return SdkClient.request<ActivityMethods.ActivityGetStargazerCountForRepoResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stargazers/count", config = clientConfig, operationId = "activityGetStargazerCountForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object ActivityMethodsActivityGetStargazerHistoryForRepoOperation {
     /**
-     * Returns repository stars grouped by calendar weeks, most recent first. Pages move backward
-     * toward the repository's creation week, and weeks within a page are ordered newest to oldest,
-     * so concatenating pages produces one continuous series. Weeks without stars contain zero
-     * counts. Week and day boundaries are not guaranteed to align with UTC. The `days` array
-     * contains the number of stars created on each day of the week, starting on Sunday.
+     * Returns repository stars grouped by calendar weeks, most recent first. Pages move backward toward the repository's creation week, and weeks within a page are ordered newest to oldest, so concatenating pages produces one continuous series. Weeks without stars contain zero counts. Week and day boundaries are not guaranteed to align with UTC. The `days` array contains the number of stars created on each day of the week, starting on Sunday.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param perPage The number of results per page (max 30). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch (max 100). For more information, see
-     *   "Using pagination in the REST API."
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param perPage The number of results per page (max 30). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch (max 100). For more
+     *   information, see "Using pagination in the REST API."
      */
-    fun activityGetStargazerHistoryForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<StargazerHistory> {
+    fun activityGetStargazerHistoryForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<StargazerHistory> {
         if (perPage != null) {
-            Validation.validateRange(
-                "per_page",
-                perPage,
-                Validation.RangeOpts(min = 1.0, max = 30.0),
-            )
-        }
+            Validation.validateRange("per_page", perPage, Validation.RangeOpts(min = 1.0, max = 30.0))
+}
 
         if (page != null) {
             Validation.validateRange("page", page, Validation.RangeOpts(min = 1.0, max = 100.0))
-        }
+}
 
-        return SdkClient.request<List<StargazerHistory>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stargazers/history",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityGetStargazerHistoryForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+        return SdkClient.request<List<StargazerHistory>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/stargazers/history", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityGetStargazerHistoryForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }
 
@@ -294,38 +160,17 @@ internal object ActivityMethodsActivityListWatchersForRepoOperation {
     /**
      * Lists the people watching the specified repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun activityListWatchersForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/subscribers",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "activityListWatchersForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activityListWatchersForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/subscribers", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListWatchersForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
@@ -333,95 +178,44 @@ internal object ActivityMethodsActivityGetRepoSubscriptionOperation {
     /**
      * Gets information about whether the authenticated user is subscribed to the repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun activityGetRepoSubscription(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): RepositorySubscription {
-        return SdkClient.request<RepositorySubscription>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/subscription",
-                    config = clientConfig,
-                    operationId = "activityGetRepoSubscription",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun activityGetRepoSubscription(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): RepositorySubscription {
+        return SdkClient.request<RepositorySubscription>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/subscription", config = clientConfig, operationId = "activityGetRepoSubscription", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
     }
 }
 
 internal object ActivityMethodsActivitySetRepoSubscriptionOperation {
     /**
-     * If you would like to watch a repository, set `subscribed` to `true`. If you would like to
-     * ignore notifications made within a repository, set `ignored` to `true`. If you would like to
-     * stop watching a repository, delete the repository's subscription completely.
+     * If you would like to watch a repository, set `subscribed` to `true`. If you would like to ignore notifications made within a repository, set `ignored` to `true`. If you would like to stop watching a repository, delete the repository's subscription completely.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param subscribed Determines if notifications should be received from this repository.
-     * @param ignored Determines if all notifications should be blocked from this repository.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param subscribed Determines if notifications should be received from this
+     *   repository.
+     * @param ignored Determines if all notifications should be blocked from this
+     *   repository.
      */
-    fun activitySetRepoSubscription(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        subscribed: Boolean? = null,
-        ignored: Boolean? = null,
-        options: RequestOptions? = null,
-    ): RepositorySubscription {
-        return SdkClient.request<RepositorySubscription>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/subscription",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "subscribed" to (SdkClient.omitIfNull(subscribed)),
-                            "ignored" to (SdkClient.omitIfNull(ignored)),
-                        ),
-                    operationId = "activitySetRepoSubscription",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun activitySetRepoSubscription(clientConfig: ClientConfig, owner: String, repo: String, subscribed: Boolean? = null, ignored: Boolean? = null, options: RequestOptions? = null): RepositorySubscription {
+        return SdkClient.request<RepositorySubscription>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/subscription", config = clientConfig, body = SdkClient.bodyMap("subscribed" to (SdkClient.omitIfNull(subscribed)), "ignored" to (SdkClient.omitIfNull(ignored))), operationId = "activitySetRepoSubscription", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActivityMethodsActivityDeleteRepoSubscriptionOperation {
     /**
-     * This endpoint should only be used to stop watching a repository. To control whether or not
-     * you wish to receive notifications from a repository, set the repository's subscription
-     * manually.
+     * This endpoint should only be used to stop watching a repository. To control whether or not you wish to receive notifications from a repository, set the repository's subscription manually.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun activityDeleteRepoSubscription(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/subscription",
-                config = clientConfig,
-                operationId = "activityDeleteRepoSubscription",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun activityDeleteRepoSubscription(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/subscription", config = clientConfig, operationId = "activityDeleteRepoSubscription", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }

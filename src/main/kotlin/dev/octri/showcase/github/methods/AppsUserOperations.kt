@@ -11,140 +11,54 @@ import dev.octri.showcase.github.UserMarketplacePurchase
 
 internal object AppsListInstallationsForAuthenticatedUserOperation {
     /**
-     * Lists installations of your GitHub App that the authenticated user has explicit permission
-     * (`:read`, `:write`, or `:admin`) to access. The authenticated user has explicit permission to
-     * access repositories they own, repositories where they are a collaborator, and repositories
-     * that they can access through an organization membership. You can find the permissions for the
-     * installation under the `permissions` key.
+     * Lists installations of your GitHub App that the authenticated user has explicit permission (`:read`, `:write`, or `:admin`) to access. The authenticated user has explicit permission to access repositories they own, repositories where they are a collaborator, and repositories that they can access through an organization membership. You can find the permissions for the installation under the `permissions` key.
      *
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun appsListInstallationsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Apps.AppsListInstallationsForAuthenticatedUserResponse {
-        return SdkClient.request<Apps.AppsListInstallationsForAuthenticatedUserResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/installations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "appsListInstallationsForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun appsListInstallationsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Apps.AppsListInstallationsForAuthenticatedUserResponse {
+        return SdkClient.request<Apps.AppsListInstallationsForAuthenticatedUserResponse>(SdkClient.RequestSpec("GET", "/user/installations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListInstallationsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
 internal object AppsListInstallationReposForAuthenticatedUserOperation {
     /**
-     * List repositories that the authenticated user has explicit permission (`:read`, `:write`, or
-     * `:admin`) to access for an installation. The authenticated user has explicit permission to
-     * access repositories they own, repositories where they are a collaborator, and repositories
-     * that they can access through an organization membership. The access the user has to each
-     * repository is included in the hash under the `permissions` key.
+     * List repositories that the authenticated user has explicit permission (`:read`, `:write`, or `:admin`) to access for an installation. The authenticated user has explicit permission to access repositories they own, repositories where they are a collaborator, and repositories that they can access through an organization membership. The access the user has to each repository is included in the hash under the `permissions` key.
      *
      * @param installationId The unique identifier of the installation.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun appsListInstallationReposForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Apps.AppsListInstallationReposForAuthenticatedUserResponse {
-        return SdkClient.request<Apps.AppsListInstallationReposForAuthenticatedUserResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/installations/${SdkClient.encodePathSegment(installationId)}/repositories",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "appsListInstallationReposForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun appsListInstallationReposForAuthenticatedUser(clientConfig: ClientConfig, installationId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Apps.AppsListInstallationReposForAuthenticatedUserResponse {
+        return SdkClient.request<Apps.AppsListInstallationReposForAuthenticatedUserResponse>(SdkClient.RequestSpec("GET", "/user/installations/${SdkClient.encodePathSegment(installationId)}/repositories", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListInstallationReposForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object AppsAddRepoToInstallationForAuthenticatedUserOperation {
     /**
-     * Add a single repository to an installation. The authenticated user must have admin access to
-     * the repository.
+     * Add a single repository to an installation. The authenticated user must have admin access to the repository.
      *
      * @param installationId The unique identifier of the installation.
      * @param repositoryId The unique identifier of the repository.
      */
-    fun appsAddRepoToInstallationForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PUT",
-                "/user/installations/${SdkClient.encodePathSegment(installationId)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
-                config = clientConfig,
-                operationId = "appsAddRepoToInstallationForAuthenticatedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-            )
-        )
+    fun appsAddRepoToInstallationForAuthenticatedUser(clientConfig: ClientConfig, installationId: Long, repositoryId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/user/installations/${SdkClient.encodePathSegment(installationId)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "appsAddRepoToInstallationForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }
 
 internal object AppsRemoveRepoFromInstallationForAuthenticatedUserOperation {
     /**
-     * Remove a single repository from an installation. The authenticated user must have admin
-     * access to the repository. The installation must have the `repository_selection` of
-     * `selected`. To use a PAT (classic) with this endpoint, the `repo` scope is required
+     * Remove a single repository from an installation. The authenticated user must have admin access to the repository. The installation must have the `repository_selection` of `selected`. To use a PAT (classic) with this endpoint, the `repo` scope is required
      *
      * @param installationId The unique identifier of the installation.
      * @param repositoryId The unique identifier of the repository.
      */
-    fun appsRemoveRepoFromInstallationForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        installationId: Long,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/user/installations/${SdkClient.encodePathSegment(installationId)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
-                config = clientConfig,
-                operationId = "appsRemoveRepoFromInstallationForAuthenticatedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-            )
-        )
+    fun appsRemoveRepoFromInstallationForAuthenticatedUser(clientConfig: ClientConfig, installationId: Long, repositoryId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/installations/${SdkClient.encodePathSegment(installationId)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "appsRemoveRepoFromInstallationForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }
 
@@ -152,35 +66,13 @@ internal object AppsListSubscriptionsForAuthenticatedUserOperation {
     /**
      * Lists the active subscriptions for the authenticated user.
      *
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun appsListSubscriptionsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<UserMarketplacePurchase> {
-        return SdkClient.request<List<UserMarketplacePurchase>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/marketplace_purchases",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "appsListSubscriptionsForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun appsListSubscriptionsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<UserMarketplacePurchase> {
+        return SdkClient.request<List<UserMarketplacePurchase>>(SdkClient.RequestSpec("GET", "/user/marketplace_purchases", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListSubscriptionsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
@@ -188,33 +80,12 @@ internal object AppsListSubscriptionsForAuthenticatedUserStubbedOperation {
     /**
      * Lists the active subscriptions for the authenticated user.
      *
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun appsListSubscriptionsForAuthenticatedUserStubbed(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<UserMarketplacePurchase> {
-        return SdkClient.request<List<UserMarketplacePurchase>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/marketplace_purchases/stubbed",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "appsListSubscriptionsForAuthenticatedUserStubbed",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("401" to BasicError::class.java),
-                )
-            )
-            .data
+    fun appsListSubscriptionsForAuthenticatedUserStubbed(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<UserMarketplacePurchase> {
+        return SdkClient.request<List<UserMarketplacePurchase>>(SdkClient.RequestSpec("GET", "/user/marketplace_purchases/stubbed", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListSubscriptionsForAuthenticatedUserStubbed", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java))).data
     }
 }

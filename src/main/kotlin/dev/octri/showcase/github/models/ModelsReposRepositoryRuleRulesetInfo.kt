@@ -7,12 +7,16 @@ package dev.octri.showcase.github.models
  * User-defined metadata to store domain-specific information limited to 8 keys with scalar values.
  */
 data class RepositoryRuleRulesetInfo(
-    /** The type of source for the ruleset that includes this rule. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ruleset_source_type")
-    val rulesetSourceType: RepositoryRuleRulesetInfoRulesetSourceTypeEnum? = null,
-    /** The name of the source of the ruleset that includes this rule. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ruleset_source")
-    val rulesetSource: String? = null,
-    /** The ID of the ruleset that includes this rule. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ruleset_id") val rulesetId: Long? = null,
+    /**
+     * The type of source for the ruleset that includes this rule.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ruleset_source_type") val rulesetSourceType: RepositoryRuleRulesetInfoRulesetSourceTypeEnum? = null,
+    /**
+     * The name of the source of the ruleset that includes this rule.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ruleset_source") val rulesetSource: String? = null,
+    /**
+     * The ID of the ruleset that includes this rule.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ruleset_id") val rulesetId: Long? = null
 )

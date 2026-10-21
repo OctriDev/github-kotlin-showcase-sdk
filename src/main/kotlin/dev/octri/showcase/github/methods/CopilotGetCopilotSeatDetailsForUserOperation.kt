@@ -11,39 +11,12 @@ import dev.octri.showcase.github.SdkClient
 
 internal object CopilotGetCopilotSeatDetailsForUserOperation {
     /**
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Gets the GitHub
-     * > Copilot seat details for a member of an organization who currently has access to GitHub
-     * > Copilot. The seat object contains information about the user's most recent Copilot
-     * > activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to
-     * > be reflected in `last_activity_at`. For more information about activity data, see \[Metrics
-     * > data properties for GitHub Copilot.…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Gets the GitHub Copilot seat details for a member of an organization who currently has access to GitHub Copilot. The seat object contains information about the user's most recent Copilot activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in `last_activity_at`. For more information about activity data, see \[Metrics data properties for GitHub Copilot.…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun copilotGetCopilotSeatDetailsForUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): CopilotSeatDetails {
-        return SdkClient.request<CopilotSeatDetails>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}/copilot",
-                    config = clientConfig,
-                    operationId = "copilotGetCopilotSeatDetailsForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotGetCopilotSeatDetailsForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): CopilotSeatDetails {
+        return SdkClient.request<CopilotSeatDetails>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}/copilot", config = clientConfig, operationId = "copilotGetCopilotSeatDetailsForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }

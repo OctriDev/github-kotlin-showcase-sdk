@@ -5,32 +5,56 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** The actor who updated the ruleset */
+/**
+ * The actor who updated the ruleset
+ */
 data class RulesetVersionActor(
-    /** Optional `integer` value serialized in the `id` wire field. */
+    /**
+     * Optional `integer` value serialized in the `id` wire field.
+     */
     val id: Long? = null,
-    /** Optional `string` value serialized in the `type` wire field. */
-    val type: String? = null,
+    /**
+     * Optional `string` value serialized in the `type` wire field.
+     */
+    val type: String? = null
 )
 
-/** The historical version of a ruleset */
+/**
+ * The historical version of a ruleset
+ */
 data class RulesetVersion(
-    /** The ID of the previous version of the ruleset */
+    /**
+     * The ID of the previous version of the ruleset
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("version_id") val versionId: Long,
-    /** The actor who updated the ruleset */
+    /**
+     * The actor who updated the ruleset
+     */
     val actor: RulesetVersionActor,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
 )
 
-/** Typed representation of the `RulesetVersionWithState` API schema. */
+/**
+ * Typed representation of the `RulesetVersionWithState` API schema.
+ */
 data class RulesetVersionWithState(
-    /** The ID of the previous version of the ruleset */
+    /**
+     * The ID of the previous version of the ruleset
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("version_id") val versionId: Long,
-    /** The actor who updated the ruleset */
+    /**
+     * The actor who updated the ruleset
+     */
     val actor: RulesetVersionActor,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** The state of the ruleset version */
-    val state: Map<String, Any>,
+    /**
+     * The state of the ruleset version
+     */
+    val state: Map<String, Any>
 )

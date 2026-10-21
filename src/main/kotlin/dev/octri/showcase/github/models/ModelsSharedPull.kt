@@ -5,196 +5,310 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required object value serialized in the `repo` wire field. */
+/**
+ * Required object value serialized in the `repo` wire field.
+ */
 data class PullRequestMinimalHeadRepo(
-    /** Required `int64`-formatted value serialized in the `id` wire field. */
-    val id: Long,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
-    /** Required `string` value serialized in the `name` wire field. */
-    val name: String,
-)
-
-/** Required object value serialized in the `head` wire field. */
-data class PullRequestMinimalHead(
-    /** Required `string` value serialized in the `ref` wire field. */
-    val ref: String,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
-    /** Required object value serialized in the `repo` wire field. */
-    val repo: PullRequestMinimalHeadRepo,
-)
-
-/** Required object value serialized in the `repo` wire field. */
-data class PullRequestMinimalBaseRepo(
-    /** Required `int64`-formatted value serialized in the `id` wire field. */
-    val id: Long,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
-    /** Required `string` value serialized in the `name` wire field. */
-    val name: String,
-)
-
-/** Required object value serialized in the `base` wire field. */
-data class PullRequestMinimalBase(
-    /** Required `string` value serialized in the `ref` wire field. */
-    val ref: String,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
-    /** Required object value serialized in the `repo` wire field. */
-    val repo: PullRequestMinimalBaseRepo,
-)
-
-/** Typed representation of the `PullRequestMinimal` API schema. */
-data class PullRequestMinimal(
-    /** Required `int64`-formatted value serialized in the `id` wire field. */
-    val id: Long,
-    /** Required `integer` value serialized in the `number` wire field. */
-    val number: Long,
-    /** Required `string` value serialized in the `url` wire field. */
-    val url: String,
-    /** Required object value serialized in the `head` wire field. */
-    val head: PullRequestMinimalHead,
-    /** Required object value serialized in the `base` wire field. */
-    val base: PullRequestMinimalBase,
-)
-
-/** Required object value serialized in the `self` wire field. */
-data class PullRequestReviewCommentLinksSelf(
-    /** Required `uri`-formatted value serialized in the `href` wire field. */
-    val href: String
-)
-
-/** Required object value serialized in the `html` wire field. */
-data class PullRequestReviewCommentLinksHtml(
-    /** Required `uri`-formatted value serialized in the `href` wire field. */
-    val href: String
-)
-
-/** Required object value serialized in the `pull_request` wire field. */
-data class PullRequestReviewCommentLinksPullRequest(
-    /** Required `uri`-formatted value serialized in the `href` wire field. */
-    val href: String
-)
-
-/** Required object value serialized in the `_links` wire field. */
-data class PullRequestReviewCommentLinks(
-    /** Required object value serialized in the `self` wire field. */
-    val self: PullRequestReviewCommentLinksSelf,
-    /** Required object value serialized in the `html` wire field. */
-    val html: PullRequestReviewCommentLinksHtml,
-    /** Required object value serialized in the `pull_request` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request")
-    val pullRequest: PullRequestReviewCommentLinksPullRequest,
-)
-
-/** Pull Request Review Comments are comments on a portion of the Pull Request's diff. */
-data class PullRequestReviewComment(
-    /** URL for the pull request review comment */
-    val url: String,
-    /** The ID of the pull request review to which the comment belongs. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_review_id", required = true)
-    val pullRequestReviewId: Long?,
-    /** The ID of the pull request review comment. */
-    val id: Long,
-    /** The node ID of the pull request review comment. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** The diff of the line that the comment refers to. */
-    @com.fasterxml.jackson.annotation.JsonProperty("diff_hunk") val diffHunk: String,
-    /** The relative path of the file to which the comment applies. */
-    val path: String,
-    /** The SHA of the commit to which the comment applies. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id") val commitId: String,
-    /** The SHA of the original commit to which the comment applies. */
-    @com.fasterxml.jackson.annotation.JsonProperty("original_commit_id")
-    val originalCommitId: String,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
-    val user: NullableSimpleUser?,
-    /** The text of the comment. */
-    val body: String,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** HTML URL for the pull request review comment. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** URL for the pull request that the review comment belongs to. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_url") val pullRequestUrl: String,
-    /** How the author is associated with the repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
-    val authorAssociation: AuthorAssociation,
-    /** Required object value serialized in the `_links` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("_links")
-    val links: PullRequestReviewCommentLinks,
     /**
-     * The line index in the diff to which the comment applies. This field is closing down; use
-     * `line` instead.
+     * Required `int64`-formatted value serialized in the `id` wire field.
+     */
+    val id: Long,
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
+    val url: String,
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
+    val name: String
+)
+
+/**
+ * Required object value serialized in the `head` wire field.
+ */
+data class PullRequestMinimalHead(
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
+    val ref: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String,
+    /**
+     * Required object value serialized in the `repo` wire field.
+     */
+    val repo: PullRequestMinimalHeadRepo
+)
+
+/**
+ * Required object value serialized in the `repo` wire field.
+ */
+data class PullRequestMinimalBaseRepo(
+    /**
+     * Required `int64`-formatted value serialized in the `id` wire field.
+     */
+    val id: Long,
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
+    val url: String,
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
+    val name: String
+)
+
+/**
+ * Required object value serialized in the `base` wire field.
+ */
+data class PullRequestMinimalBase(
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
+    val ref: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String,
+    /**
+     * Required object value serialized in the `repo` wire field.
+     */
+    val repo: PullRequestMinimalBaseRepo
+)
+
+/**
+ * Typed representation of the `PullRequestMinimal` API schema.
+ */
+data class PullRequestMinimal(
+    /**
+     * Required `int64`-formatted value serialized in the `id` wire field.
+     */
+    val id: Long,
+    /**
+     * Required `integer` value serialized in the `number` wire field.
+     */
+    val number: Long,
+    /**
+     * Required `string` value serialized in the `url` wire field.
+     */
+    val url: String,
+    /**
+     * Required object value serialized in the `head` wire field.
+     */
+    val head: PullRequestMinimalHead,
+    /**
+     * Required object value serialized in the `base` wire field.
+     */
+    val base: PullRequestMinimalBase
+)
+
+/**
+ * Required object value serialized in the `self` wire field.
+ */
+data class PullRequestReviewCommentLinksSelf(
+    /**
+     * Required `uri`-formatted value serialized in the `href` wire field.
+     */
+    val href: String
+)
+
+/**
+ * Required object value serialized in the `html` wire field.
+ */
+data class PullRequestReviewCommentLinksHtml(
+    /**
+     * Required `uri`-formatted value serialized in the `href` wire field.
+     */
+    val href: String
+)
+
+/**
+ * Required object value serialized in the `pull_request` wire field.
+ */
+data class PullRequestReviewCommentLinksPullRequest(
+    /**
+     * Required `uri`-formatted value serialized in the `href` wire field.
+     */
+    val href: String
+)
+
+/**
+ * Required object value serialized in the `_links` wire field.
+ */
+data class PullRequestReviewCommentLinks(
+    /**
+     * Required object value serialized in the `self` wire field.
+     */
+    val self: PullRequestReviewCommentLinksSelf,
+    /**
+     * Required object value serialized in the `html` wire field.
+     */
+    val html: PullRequestReviewCommentLinksHtml,
+    /**
+     * Required object value serialized in the `pull_request` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request") val pullRequest: PullRequestReviewCommentLinksPullRequest
+)
+
+/**
+ * Pull Request Review Comments are comments on a portion of the Pull Request's diff.
+ */
+data class PullRequestReviewComment(
+    /**
+     * URL for the pull request review comment
+     */
+    val url: String,
+    /**
+     * The ID of the pull request review to which the comment belongs.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_review_id", required = true) val pullRequestReviewId: Long?,
+    /**
+     * The ID of the pull request review comment.
+     */
+    val id: Long,
+    /**
+     * The node ID of the pull request review comment.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+    /**
+     * The diff of the line that the comment refers to.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("diff_hunk") val diffHunk: String,
+    /**
+     * The relative path of the file to which the comment applies.
+     */
+    val path: String,
+    /**
+     * The SHA of the commit to which the comment applies.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id") val commitId: String,
+    /**
+     * The SHA of the original commit to which the comment applies.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("original_commit_id") val originalCommitId: String,
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: NullableSimpleUser?,
+    /**
+     * The text of the comment.
+     */
+    val body: String,
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * HTML URL for the pull request review comment.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
+    /**
+     * URL for the pull request that the review comment belongs to.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_url") val pullRequestUrl: String,
+    /**
+     * How the author is associated with the repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: AuthorAssociation,
+    /**
+     * Required object value serialized in the `_links` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: PullRequestReviewCommentLinks,
+    /**
+     * The line index in the diff to which the comment applies. This field is closing down; use `line` instead.
      */
     val position: Long? = null,
     /**
-     * The index of the original line in the diff to which the comment applies. This field is
-     * closing down; use `original_line` instead.
+     * The index of the original line in the diff to which the comment applies. This field is closing down; use `original_line` instead.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("original_position")
-    val originalPosition: Long? = null,
-    /** The comment ID to reply to. */
-    @com.fasterxml.jackson.annotation.JsonProperty("in_reply_to_id") val inReplyToId: Long? = null,
-    /** The first line of the range for a multi-line comment. */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
-    /** The first line of the range for a multi-line comment. */
-    @com.fasterxml.jackson.annotation.JsonProperty("original_start_line")
-    val originalStartLine: Long? = null,
-    /** The side of the first line of the range for a multi-line comment. */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_side")
-    val startSide: PullRequestReviewCommentStartSideEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("original_position") val originalPosition: Long? = null,
     /**
-     * The line of the blob to which the comment applies. The last line of the range for a
-     * multi-line comment
+     * The comment ID to reply to.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("in_reply_to_id") val inReplyToId: Long? = null,
+    /**
+     * The first line of the range for a multi-line comment.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
+    /**
+     * The first line of the range for a multi-line comment.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("original_start_line") val originalStartLine: Long? = null,
+    /**
+     * The side of the first line of the range for a multi-line comment.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_side") val startSide: PullRequestReviewCommentStartSideEnum? = null,
+    /**
+     * The line of the blob to which the comment applies. The last line of the range for a multi-line comment
      */
     val line: Long? = null,
     /**
-     * The line of the blob to which the comment applies. The last line of the range for a
-     * multi-line comment
+     * The line of the blob to which the comment applies. The last line of the range for a multi-line comment
      */
     @com.fasterxml.jackson.annotation.JsonProperty("original_line") val originalLine: Long? = null,
     /**
-     * The side of the diff to which the comment applies. The side of the last line of the range for
-     * a multi-line comment
+     * The side of the diff to which the comment applies. The side of the last line of the range for a multi-line comment
      */
     val side: PullRequestReviewCommentSideEnum? = null,
-    /** The level at which the comment is targeted, can be a diff line or a file. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subject_type")
-    val subjectType: PullRequestReviewCommentSubjectTypeEnum? = null,
-    /** Optional object value serialized in the `reactions` wire field. */
+    /**
+     * The level at which the comment is targeted, can be a diff line or a file.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subject_type") val subjectType: PullRequestReviewCommentSubjectTypeEnum? = null,
+    /**
+     * Optional object value serialized in the `reactions` wire field.
+     */
     val reactions: ReactionRollup? = null,
-    /** Optional `string` value serialized in the `body_html` wire field. */
+    /**
+     * Optional `string` value serialized in the `body_html` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("body_html") val bodyHtml: String? = null,
-    /** Optional `string` value serialized in the `body_text` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("body_text") val bodyText: String? = null,
+    /**
+     * Optional `string` value serialized in the `body_text` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("body_text") val bodyText: String? = null
 )
 
-/** Required object value serialized in the `base` wire field. */
+/**
+ * Required object value serialized in the `base` wire field.
+ */
 data class PullRequestStackBase(
-    /** The base ref of the stack this pull request belongs to. */
+    /**
+     * The base ref of the stack this pull request belongs to.
+     */
     val ref: String,
-    /** The base SHA of the stack this pull request belongs to. */
-    val sha: String,
+    /**
+     * The base SHA of the stack this pull request belongs to.
+     */
+    val sha: String
 )
 
-/** The stack information associated with a pull request. */
+/**
+ * The stack information associated with a pull request.
+ */
 data class PullRequestStack(
-    /** Required object value serialized in the `base` wire field. */
+    /**
+     * Required object value serialized in the `base` wire field.
+     */
     val base: PullRequestStackBase,
-    /** The total number of pull requests in the stack. */
+    /**
+     * The total number of pull requests in the stack.
+     */
     val size: Long? = null,
     /**
-     * The one-based position of this pull request within the stack, where 1 is the bottom of the
-     * stack.
+     * The one-based position of this pull request within the stack, where 1 is the bottom of the stack.
      */
     val position: Long? = null,
-    /** The ID of the stack that this pull request belongs to. */
+    /**
+     * The ID of the stack that this pull request belongs to.
+     */
     val id: Long? = null,
-    /** The number of the stack that this pull request belongs to. */
-    val number: Long? = null,
+    /**
+     * The number of the stack that this pull request belongs to.
+     */
+    val number: Long? = null
 )

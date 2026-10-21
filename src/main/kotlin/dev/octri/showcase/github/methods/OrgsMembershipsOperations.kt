@@ -13,105 +13,39 @@ import dev.octri.showcase.github.ValidationError
 
 internal object OrgsGetMembershipForUserOperation {
     /**
-     * In order to get a user's membership with an organization, the authenticated user must be an
-     * organization member. The `state` parameter in the response can be used to identify the user's
-     * membership status.
+     * In order to get a user's membership with an organization, the authenticated user must be an organization member. The `state` parameter in the response can be used to identify the user's membership status.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsGetMembershipForUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): OrgMembership {
-        return SdkClient.request<OrgMembership>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    operationId = "orgsGetMembershipForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsGetMembershipForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): OrgMembership {
+        return SdkClient.request<OrgMembership>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsGetMembershipForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsSetMembershipForUserOperation {
     /**
-     * Only authenticated organization owners can add a member to the organization or update the
-     * member's role. * If the authenticated user is _adding_ a member to the organization, the
-     * invited user will receive an email inviting them to the organization. The user's membership
-     * status will be `pending` until they accept the invitation. * Authenticated users can _update_
-     * a user's membership by passing the `role` parameter. If the authenticated user changes a
-     * member's role to `admin`,…
+     * Only authenticated organization owners can add a member to the organization or update the member's role. * If the authenticated user is _adding_ a member to the organization, the invited user will receive an email inviting them to the organization. The user's membership status will be `pending` until they accept the invitation. * Authenticated users can _update_ a user's membership by passing the `role` parameter. If the authenticated user changes a member's role to `admin`,…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
-     * @param role The role to give the user in the organization. Can be one of: * `admin` - The
-     *   user will become an owner of the organization. * `member` - The user will become a
-     *   non-owner member of the organization.
+     * @param role The role to give the user in the organization. Can be one of: *
+     *   `admin` - The user will become an owner of the organization. * `member` - The
+     *   user will become a non-owner member of the organization.
      */
-    fun orgsSetMembershipForUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        role: OrgsSetMembershipForUserRoleEnum? = null,
-        options: RequestOptions? = null,
-    ): OrgMembership {
-        return SdkClient.request<OrgMembership>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))),
-                    operationId = "orgsSetMembershipForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsSetMembershipForUser(clientConfig: ClientConfig, org: String, username: String, role: OrgsSetMembershipForUserRoleEnum? = null, options: RequestOptions? = null): OrgMembership {
+        return SdkClient.request<OrgMembership>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))), operationId = "orgsSetMembershipForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsRemoveMembershipForUserOperation {
     /**
-     * In order to remove a user's membership with an organization, the authenticated user must be
-     * an organization owner. If the specified user is an active member of the organization, this
-     * will remove them from the organization. If the specified user has been invited to the
-     * organization, this will cancel their invitation. The specified user will receive an email
-     * notification in both cases. > \[!NOTE\] > If a user has both direct membership in the
-     * organization as well as indirect…
+     * In order to remove a user's membership with an organization, the authenticated user must be an organization owner. If the specified user is an active member of the organization, this will remove them from the organization. If the specified user has been invited to the organization, this will cancel their invitation. The specified user will receive an email notification in both cases. > \[!NOTE\] > If a user has both direct membership in the organization as well as indirect…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsRemoveMembershipForUser(
-        clientConfig: ClientConfig,
-        org: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}",
-                config = clientConfig,
-                operationId = "orgsRemoveMembershipForUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-            )
-        )
+    fun orgsRemoveMembershipForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsRemoveMembershipForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }

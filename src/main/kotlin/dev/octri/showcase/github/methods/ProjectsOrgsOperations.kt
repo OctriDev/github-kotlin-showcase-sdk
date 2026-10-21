@@ -21,76 +21,31 @@ internal object ProjectsListForOrgOperation {
      *
      * @param org The organization name. The name is not case sensitive.
      * @param q Limit results to projects of the specified type.
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information, see "Using
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
      *   pagination in the REST API."
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
      */
-    fun projectsListForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        q: String? = null,
-        before: String? = null,
-        after: String? = null,
-        perPage: Long? = null,
-        options: RequestOptions? = null,
-    ): List<ProjectsV2> {
-        return SdkClient.request<List<ProjectsV2>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "q" to SdkClient.queryValue(q, "form", true),
-                            "before" to SdkClient.queryValue(before, "form", true),
-                            "after" to SdkClient.queryValue(after, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                        ),
-                    operationId = "projectsListForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsListForOrg(clientConfig: ClientConfig, org: String, q: String? = null, before: String? = null, after: String? = null, perPage: Long? = null, options: RequestOptions? = null): List<ProjectsV2> {
+        return SdkClient.request<List<ProjectsV2>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2", config = clientConfig, query = mapOf("q" to SdkClient.queryValue(q, "form", true), "before" to SdkClient.queryValue(before, "form", true), "after" to SdkClient.queryValue(after, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "projectsListForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
 internal object ProjectsGetForOrgOperation {
     /**
-     * Retrieves a specific project owned by an organization. Use `org` and `project_number` to
-     * identify the organization and project. The response includes project details such as its
-     * title, owner, visibility, and state.
+     * Retrieves a specific project owned by an organization. Use `org` and `project_number` to identify the organization and project. The response includes project details such as its title, owner, visibility, and state.
      *
      * Get a specific organization-owned project.
      *
      * @param projectNumber The project's number.
      * @param org The organization name. The name is not case sensitive.
      */
-    fun projectsGetForOrg(
-        clientConfig: ClientConfig,
-        projectNumber: Long,
-        org: String,
-        options: RequestOptions? = null,
-    ): ProjectsV2 {
-        return SdkClient.request<ProjectsV2>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}",
-                    config = clientConfig,
-                    operationId = "projectsGetForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsGetForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, options: RequestOptions? = null): ProjectsV2 {
+        return SdkClient.request<ProjectsV2>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}", config = clientConfig, operationId = "projectsGetForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
@@ -103,32 +58,8 @@ internal object ProjectsCreateDraftItemForOrgOperation {
      * @param title The title of the draft issue item to create in the project.
      * @param body The body content of the draft issue item to create in the project.
      */
-    fun projectsCreateDraftItemForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        projectNumber: Long,
-        title: String,
-        body: String? = null,
-        options: RequestOptions? = null,
-    ): ProjectsV2ItemSimple {
-        return SdkClient.request<ProjectsV2ItemSimple>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/drafts",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "title" to (title),
-                            "body" to (SdkClient.omitIfNull(body)),
-                        ),
-                    operationId = "projectsCreateDraftItemForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsCreateDraftItemForOrg(clientConfig: ClientConfig, org: String, projectNumber: Long, title: String, body: String? = null, options: RequestOptions? = null): ProjectsV2ItemSimple {
+        return SdkClient.request<ProjectsV2ItemSimple>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/drafts", config = clientConfig, body = SdkClient.bodyMap("title" to (title), "body" to (SdkClient.omitIfNull(body))), operationId = "projectsCreateDraftItemForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
@@ -138,81 +69,31 @@ internal object ProjectsListFieldsForOrgOperation {
      *
      * @param projectNumber The project's number.
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
      *   pagination in the REST API."
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun projectsListFieldsForOrg(
-        clientConfig: ClientConfig,
-        projectNumber: Long,
-        org: String,
-        perPage: Long? = null,
-        before: String? = null,
-        after: String? = null,
-        options: RequestOptions? = null,
-    ): List<ProjectsV2Field> {
-        return SdkClient.request<List<ProjectsV2Field>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/fields",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "before" to SdkClient.queryValue(before, "form", true),
-                            "after" to SdkClient.queryValue(after, "form", true),
-                        ),
-                    operationId = "projectsListFieldsForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsListFieldsForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): List<ProjectsV2Field> {
+        return SdkClient.request<List<ProjectsV2Field>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/fields", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "before" to SdkClient.queryValue(before, "form", true), "after" to SdkClient.queryValue(after, "form", true)), operationId = "projectsListFieldsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
 internal object ProjectsAddFieldForOrgOperation {
     /**
-     * Creates a field in an organization-owned project. Supply a request body matching a supported
-     * field configuration, such as an issue field reference or a named field with its data type. A
-     * single-select field configuration includes its available options.
+     * Creates a field in an organization-owned project. Supply a request body matching a supported field configuration, such as an issue field reference or a named field with its data type. A single-select field configuration includes its available options.
      *
      * Add a field to an organization-owned project.
      *
      * @param projectNumber The project's number.
      * @param org The organization name. The name is not case sensitive.
      */
-    fun projectsAddFieldForOrg(
-        clientConfig: ClientConfig,
-        projectNumber: Long,
-        org: String,
-        body: Map<String, Any>,
-        options: RequestOptions? = null,
-    ): ProjectsV2Field {
-        return SdkClient.request<ProjectsV2Field>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/fields",
-                    config = clientConfig,
-                    body = body,
-                    operationId = "projectsAddFieldForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun projectsAddFieldForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, body: Map<String, Any>, options: RequestOptions? = null): ProjectsV2Field {
+        return SdkClient.request<ProjectsV2Field>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/fields", config = clientConfig, body = body, operationId = "projectsAddFieldForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
@@ -224,74 +105,36 @@ internal object ProjectsGetFieldForOrgOperation {
      * @param fieldId The unique identifier of the field.
      * @param org The organization name. The name is not case sensitive.
      */
-    fun projectsGetFieldForOrg(
-        clientConfig: ClientConfig,
-        projectNumber: Long,
-        fieldId: Long,
-        org: String,
-        options: RequestOptions? = null,
-    ): ProjectsV2Field {
-        return SdkClient.request<ProjectsV2Field>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/fields/${SdkClient.encodePathSegment(fieldId)}",
-                    config = clientConfig,
-                    operationId = "projectsGetFieldForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsGetFieldForOrg(clientConfig: ClientConfig, projectNumber: Long, fieldId: Long, org: String, options: RequestOptions? = null): ProjectsV2Field {
+        return SdkClient.request<ProjectsV2Field>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/fields/${SdkClient.encodePathSegment(fieldId)}", config = clientConfig, operationId = "projectsGetFieldForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
 internal object ProjectsListItemsForOrgOperation {
     /**
-     * List all items for a specific organization-owned project accessible by the authenticated
-     * user.
+     * List all items for a specific organization-owned project accessible by the authenticated user.
      *
      * @param projectNumber The project's number.
      * @param org The organization name. The name is not case sensitive.
-     * @param q Search query to filter items, see Filtering projects for more information.
-     * @param fields Limit results to specific fields, by their IDs. If not specified, the title
-     *   field will be returned. Example: `fields[]=123&fields[]=456&fields[]=789` or
-     *   `fields=123,456,789`
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information, see "Using
+     * @param q Search query to filter items, see Filtering projects for more
+     *   information.
+     * @param fields Limit results to specific fields, by their IDs. If not
+     *   specified, the title field will be returned. Example:
+     *   `fields[]=123&fields[]=456&fields[]=789` or `fields=123,456,789`
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
      *   pagination in the REST API."
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
      */
-    fun projectsListItemsForOrg(
-        clientConfig: ClientConfig,
-        request: Projects.ProjectsListItemsForOrgRequest,
-        options: RequestOptions? = null,
-    ): List<ProjectsV2ItemWithContent> {
-        return SdkClient.request<List<ProjectsV2ItemWithContent>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/projectsV2/${SdkClient.encodePathSegment(request.projectNumber)}/items",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "q" to SdkClient.queryValue(request.q, "form", true),
-                            "fields" to SdkClient.queryValue(request.fields, "form", true),
-                            "before" to SdkClient.queryValue(request.before, "form", true),
-                            "after" to SdkClient.queryValue(request.after, "form", true),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                        ),
-                    operationId = "projectsListItemsForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsListItemsForOrg(clientConfig: ClientConfig, request: Projects.ProjectsListItemsForOrgRequest, options: RequestOptions? = null): List<ProjectsV2ItemWithContent> {
+        return SdkClient.request<List<ProjectsV2ItemWithContent>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/projectsV2/${SdkClient.encodePathSegment(request.projectNumber)}/items", config = clientConfig, query = mapOf("q" to SdkClient.queryValue(request.q, "form", true), "fields" to
+    SdkClient.queryValue(request.fields, "form", true), "before" to
+    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true)), operationId = "projectsListItemsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
@@ -301,38 +144,16 @@ internal object ProjectsAddItemForOrgOperation {
      *
      * @param org The organization name. The name is not case sensitive.
      * @param projectNumber The project's number.
-     * @param type The type of item to add to the project. Must be either Issue or PullRequest.
-     * @param id The unique identifier of the issue or pull request to add to the project.
+     * @param type The type of item to add to the project. Must be either Issue or
+     *   PullRequest.
+     * @param id The unique identifier of the issue or pull request to add to the
+     *   project.
      * @param owner The repository owner login.
      * @param repo The repository name.
      * @param number The issue or pull request number.
      */
-    fun projectsAddItemForOrg(
-        clientConfig: ClientConfig,
-        request: Projects.ProjectsAddItemForOrgRequest,
-        options: RequestOptions? = null,
-    ): ProjectsV2ItemSimple {
-        return SdkClient.request<ProjectsV2ItemSimple>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/projectsV2/${SdkClient.encodePathSegment(request.projectNumber)}/items",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "type" to (request.type),
-                            "id" to (SdkClient.omitIfNull(request.id)),
-                            "owner" to (SdkClient.omitIfNull(request.owner)),
-                            "repo" to (SdkClient.omitIfNull(request.repo)),
-                            "number" to (SdkClient.omitIfNull(request.number)),
-                        ),
-                    operationId = "projectsAddItemForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsAddItemForOrg(clientConfig: ClientConfig, request: Projects.ProjectsAddItemForOrgRequest, options: RequestOptions? = null): ProjectsV2ItemSimple {
+        return SdkClient.request<ProjectsV2ItemSimple>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/projectsV2/${SdkClient.encodePathSegment(request.projectNumber)}/items", config = clientConfig, body = SdkClient.bodyMap("type" to (request.type), "id" to (SdkClient.omitIfNull(request.id)), "owner" to (SdkClient.omitIfNull(request.owner)), "repo" to (SdkClient.omitIfNull(request.repo)), "number" to (SdkClient.omitIfNull(request.number))), operationId = "projectsAddItemForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
@@ -343,32 +164,12 @@ internal object ProjectsGetOrgItemOperation {
      * @param projectNumber The project's number.
      * @param org The organization name. The name is not case sensitive.
      * @param itemId The unique identifier of the project item.
-     * @param fields Limit results to specific fields, by their IDs. If not specified, the title
-     *   field will be returned. Example: fields\[\]=123&fields\[\]=456&fields\[\]=789 or
-     *   fields=123,456,789
+     * @param fields Limit results to specific fields, by their IDs. If not
+     *   specified, the title field will be returned. Example:
+     *   fields\[\]=123&fields\[\]=456&fields\[\]=789 or fields=123,456,789
      */
-    fun projectsGetOrgItem(
-        clientConfig: ClientConfig,
-        projectNumber: Long,
-        org: String,
-        itemId: Long,
-        fields: Any? = null,
-        options: RequestOptions? = null,
-    ): ProjectsV2ItemWithContent {
-        return SdkClient.request<ProjectsV2ItemWithContent>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/items/${SdkClient.encodePathSegment(itemId)}",
-                    config = clientConfig,
-                    query = mapOf("fields" to SdkClient.queryValue(fields, "form", true)),
-                    operationId = "projectsGetOrgItem",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsGetOrgItem(clientConfig: ClientConfig, projectNumber: Long, org: String, itemId: Long, fields: Any? = null, options: RequestOptions? = null): ProjectsV2ItemWithContent {
+        return SdkClient.request<ProjectsV2ItemWithContent>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/items/${SdkClient.encodePathSegment(itemId)}", config = clientConfig, query = mapOf("fields" to SdkClient.queryValue(fields, "form", true)), operationId = "projectsGetOrgItem", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }
 
@@ -381,33 +182,8 @@ internal object ProjectsUpdateItemForOrgOperation {
      * @param itemId The unique identifier of the project item.
      * @param fields A list of field updates to apply.
      */
-    fun projectsUpdateItemForOrg(
-        clientConfig: ClientConfig,
-        projectNumber: Long,
-        org: String,
-        itemId: Long,
-        fields: List<Projects.ProjectsUpdateItemForOrgFieldsItem>,
-        options: RequestOptions? = null,
-    ): ProjectsV2ItemWithContent {
-        return SdkClient.request<ProjectsV2ItemWithContent>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/items/${SdkClient.encodePathSegment(itemId)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("fields" to (fields)),
-                    operationId = "projectsUpdateItemForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun projectsUpdateItemForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, itemId: Long, fields: List<Projects.ProjectsUpdateItemForOrgFieldsItem>, options: RequestOptions? = null): ProjectsV2ItemWithContent {
+        return SdkClient.request<ProjectsV2ItemWithContent>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/items/${SdkClient.encodePathSegment(itemId)}", config = clientConfig, body = SdkClient.bodyMap("fields" to (fields)), operationId = "projectsUpdateItemForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
@@ -419,103 +195,54 @@ internal object ProjectsDeleteItemForOrgOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param itemId The unique identifier of the project item.
      */
-    fun projectsDeleteItemForOrg(
-        clientConfig: ClientConfig,
-        projectNumber: Long,
-        org: String,
-        itemId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/items/${SdkClient.encodePathSegment(itemId)}",
-                config = clientConfig,
-                operationId = "projectsDeleteItemForOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-            )
-        )
+    fun projectsDeleteItemForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, itemId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/items/${SdkClient.encodePathSegment(itemId)}", config = clientConfig, operationId = "projectsDeleteItemForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java)))
     }
 }
 
 internal object ProjectsCreateViewForOrgOperation {
     /**
-     * Create a new view in an organization-owned project. Views allow you to customize how items in
-     * a project are displayed and filtered.
+     * Create a new view in an organization-owned project. Views allow you to customize how items in a project are displayed and filtered.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param projectNumber The project's number.
      * @param name The name of the view.
      * @param layout The layout of the view.
-     * @param filter The filter query for the view. See Filtering projects for more information.
-     * @param visibleFields `visible_fields` is not applicable to `roadmap` layout views. For
-     *   `table` and `board` layouts, this represents the field IDs that should be visible in the
-     *   view. If not provided, the default visible fields will be used.
-     * @param sortBy Sorting configuration for the view. Each element is a two-element array of
-     *   `[field_id, direction]` where `direction` is `"asc"` or `"desc"`. Supports multiple sort
-     *   criteria applied in order.
-     * @param groupBy The field IDs to group items by (horizontal grouping). Supports a single
-     *   field. The field must support grouping; fields such as `Title`, `Reviewers`, `Linked pull
-     *   requests`, `Sub-issues progress`, `Tracked by`, and `Tracks` cannot be grouped on.
-     * @param verticalGroupBy The field IDs to use as columns in `board` layout (vertical grouping).
-     *   Supports a single field. The field must support grouping; fields such as `Title`,
-     *   `Reviewers`, `Linked pull requests`, `Sub-issues progress`, `Tracked by`, and `Tracks`
-     *   cannot be grouped on.
+     * @param filter The filter query for the view. See Filtering projects for more
+     *   information.
+     * @param visibleFields `visible_fields` is not applicable to `roadmap` layout
+     *   views. For `table` and `board` layouts, this represents the field IDs that
+     *   should be visible in the view. If not provided, the default visible fields
+     *   will be used.
+     * @param sortBy Sorting configuration for the view. Each element is a
+     *   two-element array of `[field_id, direction]` where `direction` is `"asc"` or
+     *   `"desc"`. Supports multiple sort criteria applied in order.
+     * @param groupBy The field IDs to group items by (horizontal grouping). Supports
+     *   a single field. The field must support grouping; fields such as `Title`,
+     *   `Reviewers`, `Linked pull requests`, `Sub-issues progress`, `Tracked by`, and
+     *   `Tracks` cannot be grouped on.
+     * @param verticalGroupBy The field IDs to use as columns in `board` layout
+     *   (vertical grouping). Supports a single field. The field must support grouping;
+     *   fields such as `Title`, `Reviewers`, `Linked pull requests`, `Sub-issues
+     *   progress`, `Tracked by`, and `Tracks` cannot be grouped on.
      */
-    fun projectsCreateViewForOrg(
-        clientConfig: ClientConfig,
-        request: Projects.ProjectsCreateViewForOrgRequest,
-        options: RequestOptions? = null,
-    ): ProjectsV2View {
+    fun projectsCreateViewForOrg(clientConfig: ClientConfig, request: Projects.ProjectsCreateViewForOrgRequest, options: RequestOptions? = null): ProjectsV2View {
         validateProjectsCreateViewForOrgRequest(request)
 
-        return SdkClient.request<ProjectsV2View>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/projectsV2/${SdkClient.encodePathSegment(request.projectNumber)}/views",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (request.name),
-                            "layout" to (request.layout),
-                            "filter" to (SdkClient.omitIfNull(request.filter)),
-                            "visible_fields" to (SdkClient.omitIfNull(request.visibleFields)),
-                            "sort_by" to (SdkClient.omitIfNull(request.sortBy)),
-                            "group_by" to (SdkClient.omitIfNull(request.groupBy)),
-                            "vertical_group_by" to (SdkClient.omitIfNull(request.verticalGroupBy)),
-                        ),
-                    operationId = "projectsCreateViewForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "503" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<ProjectsV2View>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/projectsV2/${SdkClient.encodePathSegment(request.projectNumber)}/views", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "layout" to (request.layout), "filter" to (SdkClient.omitIfNull(request.filter)), "visible_fields" to
+    (SdkClient.omitIfNull(request.visibleFields)), "sort_by" to (SdkClient.omitIfNull(request.sortBy)), "group_by" to (SdkClient.omitIfNull(request.groupBy)), "vertical_group_by" to
+    (SdkClient.omitIfNull(request.verticalGroupBy))), operationId = "projectsCreateViewForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to BasicError::class.java))).data
     }
 
-    private fun validateProjectsCreateViewForOrgRequest(
-        request: Projects.ProjectsCreateViewForOrgRequest
-    ) {
+
+    private fun validateProjectsCreateViewForOrgRequest(request: Projects.ProjectsCreateViewForOrgRequest) {
         if (request.groupBy != null) {
             Validation.validateItems("group_by", request.groupBy, Validation.LengthOpts(max = 1))
-        }
+}
 
         if (request.verticalGroupBy != null) {
-            Validation.validateItems(
-                "vertical_group_by",
-                request.verticalGroupBy,
-                Validation.LengthOpts(max = 1),
-            )
-        }
+            Validation.validateItems("vertical_group_by", request.verticalGroupBy, Validation.LengthOpts(max = 1))
+}
     }
 }
 
@@ -526,45 +253,22 @@ internal object ProjectsListViewItemsForOrgOperation {
      * @param projectNumber The project's number.
      * @param org The organization name. The name is not case sensitive.
      * @param viewNumber The number that identifies the project view.
-     * @param fields Limit results to specific fields, by their IDs. If not specified, the title
-     *   field will be returned. Example: `fields[]=123&fields[]=456&fields[]=789` or
-     *   `fields=123,456,789`
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information, see "Using
+     * @param fields Limit results to specific fields, by their IDs. If not
+     *   specified, the title field will be returned. Example:
+     *   `fields[]=123&fields[]=456&fields[]=789` or `fields=123,456,789`
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
      *   pagination in the REST API."
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
      */
-    fun projectsListViewItemsForOrg(
-        clientConfig: ClientConfig,
-        request: Projects.ProjectsListViewItemsForOrgRequest,
-        options: RequestOptions? = null,
-    ): List<ProjectsV2ItemWithContent> {
-        return SdkClient.request<List<ProjectsV2ItemWithContent>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/projectsV2/${SdkClient.encodePathSegment(request.projectNumber)}/views/${SdkClient.encodePathSegment(request.viewNumber)}/items",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "fields" to SdkClient.queryValue(request.fields, "form", true),
-                            "before" to SdkClient.queryValue(request.before, "form", true),
-                            "after" to SdkClient.queryValue(request.after, "form", true),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                        ),
-                    operationId = "projectsListViewItemsForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun projectsListViewItemsForOrg(clientConfig: ClientConfig, request: Projects.ProjectsListViewItemsForOrgRequest, options: RequestOptions? = null): List<ProjectsV2ItemWithContent> {
+        return SdkClient.request<List<ProjectsV2ItemWithContent>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/projectsV2/${SdkClient.encodePathSegment(request.projectNumber)}/views/${SdkClient.encodePathSegment(request.viewNumber)}/items", config = clientConfig, query = mapOf("fields" to
+    SdkClient.queryValue(request.fields, "form", true), "before" to
+    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true)), operationId = "projectsListViewItemsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }

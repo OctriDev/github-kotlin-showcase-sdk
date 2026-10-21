@@ -3,76 +3,112 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `_links` wire field. */
+/**
+ * Required object value serialized in the `_links` wire field.
+ */
 data class FeedLinks(
-    /** Hypermedia Link with Type */
+    /**
+     * Hypermedia Link with Type
+     */
     val timeline: LinkWithType,
-    /** Hypermedia Link with Type */
+    /**
+     * Hypermedia Link with Type
+     */
     val user: LinkWithType,
-    /** Hypermedia Link with Type */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_advisories")
-    val securityAdvisories: LinkWithType? = null,
-    /** Hypermedia Link with Type */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user")
-    val currentUser: LinkWithType? = null,
-    /** Hypermedia Link with Type */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_public")
-    val currentUserPublic: LinkWithType? = null,
-    /** Hypermedia Link with Type */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_actor")
-    val currentUserActor: LinkWithType? = null,
-    /** Hypermedia Link with Type */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_organization")
-    val currentUserOrganization: LinkWithType? = null,
-    /** Optional array value serialized in the `current_user_organizations` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_organizations")
-    val currentUserOrganizations: List<LinkWithType>? = null,
-    /** Hypermedia Link with Type */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_discussions")
-    val repositoryDiscussions: LinkWithType? = null,
-    /** Hypermedia Link with Type */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_discussions_category")
-    val repositoryDiscussionsCategory: LinkWithType? = null,
+    /**
+     * Hypermedia Link with Type
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_advisories") val securityAdvisories: LinkWithType? = null,
+    /**
+     * Hypermedia Link with Type
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user") val currentUser: LinkWithType? = null,
+    /**
+     * Hypermedia Link with Type
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_public") val currentUserPublic: LinkWithType? = null,
+    /**
+     * Hypermedia Link with Type
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_actor") val currentUserActor: LinkWithType? = null,
+    /**
+     * Hypermedia Link with Type
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_organization") val currentUserOrganization: LinkWithType? = null,
+    /**
+     * Optional array value serialized in the `current_user_organizations` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_organizations") val currentUserOrganizations: List<LinkWithType>? = null,
+    /**
+     * Hypermedia Link with Type
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_discussions") val repositoryDiscussions: LinkWithType? = null,
+    /**
+     * Hypermedia Link with Type
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_discussions_category") val repositoryDiscussionsCategory: LinkWithType? = null
 )
 
-/** Feed */
+/**
+ * Feed
+ */
 data class Feed(
-    /** Required `string` value serialized in the `timeline_url` wire field. */
+    /**
+     * Required `string` value serialized in the `timeline_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("timeline_url") val timelineUrl: String,
-    /** Required `string` value serialized in the `user_url` wire field. */
+    /**
+     * Required `string` value serialized in the `user_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("user_url") val userUrl: String,
-    /** Required object value serialized in the `_links` wire field. */
+    /**
+     * Required object value serialized in the `_links` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: FeedLinks,
-    /** Optional `string` value serialized in the `current_user_public_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_public_url")
-    val currentUserPublicUrl: String? = null,
-    /** Optional `string` value serialized in the `current_user_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_url")
-    val currentUserUrl: String? = null,
-    /** Optional `string` value serialized in the `current_user_actor_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_actor_url")
-    val currentUserActorUrl: String? = null,
-    /** Optional `string` value serialized in the `current_user_organization_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_organization_url")
-    val currentUserOrganizationUrl: String? = null,
-    /** Optional array value serialized in the `current_user_organization_urls` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("current_user_organization_urls")
-    val currentUserOrganizationUrls: List<String>? = null,
-    /** Optional `string` value serialized in the `security_advisories_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_advisories_url")
-    val securityAdvisoriesUrl: String? = null,
-    /** A feed of discussions for a given repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_discussions_url")
-    val repositoryDiscussionsUrl: String? = null,
-    /** A feed of discussions for a given repository and category. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_discussions_category_url")
-    val repositoryDiscussionsCategoryUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `current_user_public_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_public_url") val currentUserPublicUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `current_user_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_url") val currentUserUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `current_user_actor_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_actor_url") val currentUserActorUrl: String? = null,
+    /**
+     * Optional `string` value serialized in the `current_user_organization_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_organization_url") val currentUserOrganizationUrl: String? = null,
+    /**
+     * Optional array value serialized in the `current_user_organization_urls` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("current_user_organization_urls") val currentUserOrganizationUrls: List<String>? = null,
+    /**
+     * Optional `string` value serialized in the `security_advisories_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_advisories_url") val securityAdvisoriesUrl: String? = null,
+    /**
+     * A feed of discussions for a given repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_discussions_url") val repositoryDiscussionsUrl: String? = null,
+    /**
+     * A feed of discussions for a given repository and category.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_discussions_category_url") val repositoryDiscussionsCategoryUrl: String? = null
 )
 
-/** Hypermedia Link with Type */
+/**
+ * Hypermedia Link with Type
+ */
 data class LinkWithType(
-    /** Required `string` value serialized in the `href` wire field. */
+    /**
+     * Required `string` value serialized in the `href` wire field.
+     */
     val href: String,
-    /** Required `string` value serialized in the `type` wire field. */
-    val type: String,
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
+    val type: String
 )

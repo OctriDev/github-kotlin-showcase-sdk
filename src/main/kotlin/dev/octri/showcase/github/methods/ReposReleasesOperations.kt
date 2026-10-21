@@ -14,437 +14,222 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposListReleasesOperation {
     /**
-     * This returns a list of releases, which does not include regular Git tags that have not been
-     * associated with a release. To get a list of Git tags, use the Repository Tags API.
-     * Information about published releases are available to everyone. Only users with push access
-     * will receive listings for draft releases.
+     * This returns a list of releases, which does not include regular Git tags that have not been associated with a release. To get a list of Git tags, use the Repository Tags API. Information about published releases are available to everyone. Only users with push access will receive listings for draft releases.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun reposListReleases(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Release> {
-        return SdkClient.request<List<Release>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "reposListReleases",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun reposListReleases(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Release> {
+        return SdkClient.request<List<Release>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListReleases", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object ReposCreateReleaseOperation {
     /**
-     * Users with push access to the repository can create a release. > !NOTE] > If the commit
-     * identified by `target_commitish` (or, when `target_commitish` is omitted, the latest commit
-     * on the default branch) adds or modifies any file under `.github/workflows/` relative to the
-     * repository's default branch, the authenticating token must be authorized to modify workflows.
-     * Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403
-     * Resource not accessible…
+     * Users with push access to the repository can create a release. > !NOTE] > If the commit identified by `target_commitish` (or, when `target_commitish` is omitted, the latest commit on the default branch) adds or modifies any file under `.github/workflows/` relative to the repository's default branch, the authenticating token must be authorized to modify workflows. Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403 Resource not accessible…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param tagName The name of the tag.
-     * @param targetCommitish Specifies the commitish value that determines where the Git tag is
-     *   created from. Can be any branch or commit SHA. Unused if the Git tag already exists.
-     *   Default: the repository's default branch.
+     * @param targetCommitish Specifies the commitish value that determines where the
+     *   Git tag is created from. Can be any branch or commit SHA. Unused if the Git
+     *   tag already exists. Default: the repository's default branch.
      * @param name The name of the release.
      * @param body Text describing the contents of the tag.
-     * @param draft `true` to create a draft (unpublished) release, `false` to create a published
-     *   one.
-     * @param prerelease `true` to identify the release as a prerelease. `false` to identify the
-     *   release as a full release.
-     * @param discussionCategoryName If specified, a discussion of the specified category is created
-     *   and linked to the release. The value must be a category that already exists in the
-     *   repository. For more information, see "Managing categories for discussions in your
-     *   repository."
-     * @param generateReleaseNotes Whether to automatically generate the name and body for this
-     *   release. If `name` is specified, the specified name will be used; otherwise, a name will be
-     *   automatically generated. If `body` is specified, the body will be pre-pended to the
-     *   automatically generated notes.
-     * @param makeLatest Specifies whether this release should be set as the latest release for the
-     *   repository. Drafts and prereleases cannot be set as latest. Defaults to `true` for newly
-     *   published releases. `legacy` specifies that the latest release should be determined based
-     *   on the release creation date and higher semantic version.
+     * @param draft `true` to create a draft (unpublished) release, `false` to create
+     *   a published one.
+     * @param prerelease `true` to identify the release as a prerelease. `false` to
+     *   identify the release as a full release.
+     * @param discussionCategoryName If specified, a discussion of the specified
+     *   category is created and linked to the release. The value must be a category
+     *   that already exists in the repository. For more information, see "Managing
+     *   categories for discussions in your repository."
+     * @param generateReleaseNotes Whether to automatically generate the name and
+     *   body for this release. If `name` is specified, the specified name will be
+     *   used; otherwise, a name will be automatically generated. If `body` is
+     *   specified, the body will be pre-pended to the automatically generated notes.
+     * @param makeLatest Specifies whether this release should be set as the latest
+     *   release for the repository. Drafts and prereleases cannot be set as latest.
+     *   Defaults to `true` for newly published releases. `legacy` specifies that the
+     *   latest release should be determined based on the release creation date and
+     *   higher semantic version.
      */
-    fun reposCreateRelease(
-        clientConfig: ClientConfig,
-        request: Repos.ReposCreateReleaseRequest,
-        options: RequestOptions? = null,
-    ): Release {
-        return SdkClient.request<Release>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "tag_name" to (request.tagName),
-                            "target_commitish" to (SdkClient.omitIfNull(request.targetCommitish)),
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                            "draft" to (SdkClient.omitIfNull(request.draft)),
-                            "prerelease" to (SdkClient.omitIfNull(request.prerelease)),
-                            "discussion_category_name" to
-                                (SdkClient.omitIfNull(request.discussionCategoryName)),
-                            "generate_release_notes" to
-                                (SdkClient.omitIfNull(request.generateReleaseNotes)),
-                            "make_latest" to (SdkClient.omitIfNull(request.makeLatest)),
-                        ),
-                    operationId = "reposCreateRelease",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun reposCreateRelease(clientConfig: ClientConfig, request: Repos.ReposCreateReleaseRequest, options: RequestOptions? = null): Release {
+        return SdkClient.request<Release>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases", config = clientConfig, body = SdkClient.bodyMap("tag_name" to (request.tagName), "target_commitish" to
+    (SdkClient.omitIfNull(request.targetCommitish)), "name" to (SdkClient.omitIfNull(request.name)), "body" to (SdkClient.omitIfNull(request.body)), "draft" to (SdkClient.omitIfNull(request.draft)), "prerelease" to (SdkClient.omitIfNull(request.prerelease)), "discussion_category_name" to
+    (SdkClient.omitIfNull(request.discussionCategoryName)), "generate_release_notes" to
+    (SdkClient.omitIfNull(request.generateReleaseNotes)), "make_latest" to (SdkClient.omitIfNull(request.makeLatest))), operationId = "reposCreateRelease", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object ReposGetReleaseAssetOperation {
     /**
-     * To download the asset's binary content: - If within a browser, fetch the location specified
-     * in the `browser_download_url` key provided in the response. - Alternatively, set the `Accept`
-     * header of the request to `application/octet-stream`. The API will either redirect the client
-     * to the location, or stream it directly if possible. API clients should handle both a `200` or
-     * `302` response.
+     * To download the asset's binary content: - If within a browser, fetch the location specified in the `browser_download_url` key provided in the response. - Alternatively, set the `Accept` header of the request to `application/octet-stream`. The API will either redirect the client to the location, or stream it directly if possible. API clients should handle both a `200` or `302` response.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param assetId The unique identifier of the asset.
      */
-    fun reposGetReleaseAsset(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        assetId: Long,
-        options: RequestOptions? = null,
-    ): ReleaseAsset {
-        return SdkClient.request<ReleaseAsset>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/assets/${SdkClient.encodePathSegment(assetId)}",
-                    config = clientConfig,
-                    operationId = "reposGetReleaseAsset",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun reposGetReleaseAsset(clientConfig: ClientConfig, owner: String, repo: String, assetId: Long, options: RequestOptions? = null): ReleaseAsset {
+        return SdkClient.request<ReleaseAsset>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/assets/${SdkClient.encodePathSegment(assetId)}", config = clientConfig, operationId = "reposGetReleaseAsset", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object ReposUpdateReleaseAssetOperation {
     /**
-     * Updates the name, label, or state of a release asset in a repository. The authenticated user
-     * must have push access to the repository; supply any of `name`, `label`, or `state` that you
-     * want to change. The response includes the updated release asset details.
+     * Updates the name, label, or state of a release asset in a repository. The authenticated user must have push access to the repository; supply any of `name`, `label`, or `state` that you want to change. The response includes the updated release asset details.
      *
      * Users with push access to the repository can edit a release asset.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param assetId The unique identifier of the asset.
      * @param name The file name of the asset.
-     * @param label An alternate short description of the asset. Used in place of the filename.
+     * @param label An alternate short description of the asset. Used in place of the
+     *   filename.
      */
-    fun reposUpdateReleaseAsset(
-        clientConfig: ClientConfig,
-        request: Repos.ReposUpdateReleaseAssetRequest,
-        options: RequestOptions? = null,
-    ): ReleaseAsset {
-        return SdkClient.request<ReleaseAsset>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/assets/${SdkClient.encodePathSegment(request.assetId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                            "label" to (SdkClient.omitIfNull(request.label)),
-                            "state" to (SdkClient.omitIfNull(request.state)),
-                        ),
-                    operationId = "reposUpdateReleaseAsset",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun reposUpdateReleaseAsset(clientConfig: ClientConfig, request: Repos.ReposUpdateReleaseAssetRequest, options: RequestOptions? = null): ReleaseAsset {
+        return SdkClient.request<ReleaseAsset>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/assets/${SdkClient.encodePathSegment(request.assetId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "label" to (SdkClient.omitIfNull(request.label)), "state" to (SdkClient.omitIfNull(request.state))), operationId = "reposUpdateReleaseAsset", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ReposDeleteReleaseAssetOperation {
     /**
-     * Deletes a release asset from a repository. Use this operation when you no longer want the
-     * asset associated with the repository's release. The authenticated user must have permission
-     * to modify the repository.
+     * Deletes a release asset from a repository. Use this operation when you no longer want the asset associated with the repository's release. The authenticated user must have permission to modify the repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param assetId The unique identifier of the asset.
      */
-    fun reposDeleteReleaseAsset(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        assetId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/assets/${SdkClient.encodePathSegment(assetId)}",
-                config = clientConfig,
-                operationId = "reposDeleteReleaseAsset",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun reposDeleteReleaseAsset(clientConfig: ClientConfig, owner: String, repo: String, assetId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/assets/${SdkClient.encodePathSegment(assetId)}", config = clientConfig, operationId = "reposDeleteReleaseAsset", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }
 
 internal object ReposGenerateReleaseNotesOperation {
     /**
-     * Generate a name and body describing a release. The body content will be markdown formatted
-     * and contain information like the changes since last release and users who contributed. The
-     * generated release notes are not saved anywhere. They are intended to be generated and used
-     * when creating a new release.
+     * Generate a name and body describing a release. The body content will be markdown formatted and contain information like the changes since last release and users who contributed. The generated release notes are not saved anywhere. They are intended to be generated and used when creating a new release.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param tagName The tag name for the release. This can be an existing tag or a new one.
-     * @param targetCommitish Specifies the commitish value that will be the target for the
-     *   release's tag. Required if the supplied tag_name does not reference an existing tag.
-     *   Ignored if the tag_name already exists.
-     * @param previousTagName The name of the previous tag to use as the starting point for the
-     *   release notes. Use to manually specify the range for the set of changes considered as part
-     *   this release.
-     * @param configurationFilePath Specifies a path to a file in the repository containing
-     *   configuration settings used for generating the release notes. If unspecified, the
-     *   configuration file located in the repository at '.github/release.yml' or
-     *   '.github/release.yaml' will be used. If that is not present, the default configuration will
-     *   be used.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param tagName The tag name for the release. This can be an existing tag or a
+     *   new one.
+     * @param targetCommitish Specifies the commitish value that will be the target
+     *   for the release's tag. Required if the supplied tag_name does not reference an
+     *   existing tag. Ignored if the tag_name already exists.
+     * @param previousTagName The name of the previous tag to use as the starting
+     *   point for the release notes. Use to manually specify the range for the set of
+     *   changes considered as part this release.
+     * @param configurationFilePath Specifies a path to a file in the repository
+     *   containing configuration settings used for generating the release notes. If
+     *   unspecified, the configuration file located in the repository at
+     *   '.github/release.yml' or '.github/release.yaml' will be used. If that is not
+     *   present, the default configuration will be used.
      */
-    fun reposGenerateReleaseNotes(
-        clientConfig: ClientConfig,
-        request: Repos.ReposGenerateReleaseNotesRequest,
-        options: RequestOptions? = null,
-    ): ReleaseNotesContent {
-        return SdkClient.request<ReleaseNotesContent>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/generate-notes",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "tag_name" to (request.tagName),
-                            "target_commitish" to (SdkClient.omitIfNull(request.targetCommitish)),
-                            "previous_tag_name" to (SdkClient.omitIfNull(request.previousTagName)),
-                            "configuration_file_path" to
-                                (SdkClient.omitIfNull(request.configurationFilePath)),
-                        ),
-                    operationId = "reposGenerateReleaseNotes",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun reposGenerateReleaseNotes(clientConfig: ClientConfig, request: Repos.ReposGenerateReleaseNotesRequest, options: RequestOptions? = null): ReleaseNotesContent {
+        return SdkClient.request<ReleaseNotesContent>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/generate-notes", config = clientConfig, body = SdkClient.bodyMap("tag_name" to (request.tagName), "target_commitish" to
+    (SdkClient.omitIfNull(request.targetCommitish)), "previous_tag_name" to
+    (SdkClient.omitIfNull(request.previousTagName)), "configuration_file_path" to
+    (SdkClient.omitIfNull(request.configurationFilePath))), operationId = "reposGenerateReleaseNotes", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object ReposGetLatestReleaseOperation {
     /**
-     * View the latest published full release for the repository. The latest release is the most
-     * recent non-prerelease, non-draft release, sorted by the `created_at` attribute. The
-     * `created_at` attribute is the date of the commit used for the release, and not the date when
-     * the release was drafted or published.
+     * View the latest published full release for the repository. The latest release is the most recent non-prerelease, non-draft release, sorted by the `created_at` attribute. The `created_at` attribute is the date of the commit used for the release, and not the date when the release was drafted or published.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun reposGetLatestRelease(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Release {
-        return SdkClient.request<Release>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/latest",
-                    config = clientConfig,
-                    operationId = "reposGetLatestRelease",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun reposGetLatestRelease(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Release {
+        return SdkClient.request<Release>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/latest", config = clientConfig, operationId = "reposGetLatestRelease", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object ReposGetReleaseByTagOperation {
     /**
-     * Retrieves a published release from a repository by its tag name. Use `tag` to identify the
-     * release you want to retrieve.
+     * Retrieves a published release from a repository by its tag name. Use `tag` to identify the release you want to retrieve.
      *
      * Get a published release with the specified tag.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param tag tag parameter
      */
-    fun reposGetReleaseByTag(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        tag: String,
-        options: RequestOptions? = null,
-    ): Release {
-        return SdkClient.request<Release>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/tags/${SdkClient.encodePathSegment(tag)}",
-                    config = clientConfig,
-                    operationId = "reposGetReleaseByTag",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun reposGetReleaseByTag(clientConfig: ClientConfig, owner: String, repo: String, tag: String, options: RequestOptions? = null): Release {
+        return SdkClient.request<Release>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/tags/${SdkClient.encodePathSegment(tag)}", config = clientConfig, operationId = "reposGetReleaseByTag", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object ReposGetReleaseOperation {
     /**
-     * Gets a public release with the specified release ID. > !NOTE] > This returns an `upload_url`
-     * key corresponding to the endpoint for uploading release assets. This key is a hypermedia
-     * resource. For more information, see "\[Getting started with the REST API."
+     * Gets a public release with the specified release ID. > !NOTE] > This returns an `upload_url` key corresponding to the endpoint for uploading release assets. This key is a hypermedia resource. For more information, see "\[Getting started with the REST API."
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param releaseId The unique identifier of the release.
      */
-    fun reposGetRelease(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        releaseId: Long,
-        options: RequestOptions? = null,
-    ): Release {
-        return SdkClient.request<Release>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}",
-                    config = clientConfig,
-                    operationId = "reposGetRelease",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun reposGetRelease(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, options: RequestOptions? = null): Release {
+        return SdkClient.request<Release>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}", config = clientConfig, operationId = "reposGetRelease", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ReposUpdateReleaseOperation {
     /**
-     * Users with push access to the repository can edit a release. > !NOTE] > If the resolved
-     * target commit (the new value of `target_commitish` if you are changing it, otherwise the
-     * existing target) adds or modifies any file under `.github/workflows/` relative to the
-     * repository's default branch, the authenticating token must be authorized to modify workflows.
-     * Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403
-     * Resource not accessible by…
+     * Users with push access to the repository can edit a release. > !NOTE] > If the resolved target commit (the new value of `target_commitish` if you are changing it, otherwise the existing target) adds or modifies any file under `.github/workflows/` relative to the repository's default branch, the authenticating token must be authorized to modify workflows. Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403 Resource not accessible by…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param releaseId The unique identifier of the release.
      * @param tagName The name of the tag.
-     * @param targetCommitish Specifies the commitish value that determines where the Git tag is
-     *   created from. Can be any branch or commit SHA. Unused if the Git tag already exists.
-     *   Default: the repository's default branch.
+     * @param targetCommitish Specifies the commitish value that determines where the
+     *   Git tag is created from. Can be any branch or commit SHA. Unused if the Git
+     *   tag already exists. Default: the repository's default branch.
      * @param name The name of the release.
      * @param body Text describing the contents of the tag.
-     * @param draft `true` makes the release a draft, and `false` publishes the release.
-     * @param prerelease `true` to identify the release as a prerelease, `false` to identify the
-     *   release as a full release.
-     * @param makeLatest Specifies whether this release should be set as the latest release for the
-     *   repository. Drafts and prereleases cannot be set as latest. Defaults to `true` for newly
-     *   published releases. `legacy` specifies that the latest release should be determined based
-     *   on the release creation date and higher semantic version.
-     * @param discussionCategoryName If specified, a discussion of the specified category is created
-     *   and linked to the release. The value must be a category that already exists in the
-     *   repository. If there is already a discussion linked to the release, this parameter is
-     *   ignored. For more information, see "Managing categories for discussions in your
-     *   repository."
+     * @param draft `true` makes the release a draft, and `false` publishes the
+     *   release.
+     * @param prerelease `true` to identify the release as a prerelease, `false` to
+     *   identify the release as a full release.
+     * @param makeLatest Specifies whether this release should be set as the latest
+     *   release for the repository. Drafts and prereleases cannot be set as latest.
+     *   Defaults to `true` for newly published releases. `legacy` specifies that the
+     *   latest release should be determined based on the release creation date and
+     *   higher semantic version.
+     * @param discussionCategoryName If specified, a discussion of the specified
+     *   category is created and linked to the release. The value must be a category
+     *   that already exists in the repository. If there is already a discussion linked
+     *   to the release, this parameter is ignored. For more information, see "Managing
+     *   categories for discussions in your repository."
      */
-    fun reposUpdateRelease(
-        clientConfig: ClientConfig,
-        request: Repos.ReposUpdateReleaseRequest,
-        options: RequestOptions? = null,
-    ): Release {
-        return SdkClient.request<Release>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/${SdkClient.encodePathSegment(request.releaseId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "tag_name" to (SdkClient.omitIfNull(request.tagName)),
-                            "target_commitish" to (SdkClient.omitIfNull(request.targetCommitish)),
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                            "draft" to (SdkClient.omitIfNull(request.draft)),
-                            "prerelease" to (SdkClient.omitIfNull(request.prerelease)),
-                            "make_latest" to (SdkClient.omitIfNull(request.makeLatest)),
-                            "discussion_category_name" to
-                                (SdkClient.omitIfNull(request.discussionCategoryName)),
-                        ),
-                    operationId = "reposUpdateRelease",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun reposUpdateRelease(clientConfig: ClientConfig, request: Repos.ReposUpdateReleaseRequest, options: RequestOptions? = null): Release {
+        return SdkClient.request<Release>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/${SdkClient.encodePathSegment(request.releaseId)}", config = clientConfig, body = SdkClient.bodyMap("tag_name" to (SdkClient.omitIfNull(request.tagName)), "target_commitish" to
+    (SdkClient.omitIfNull(request.targetCommitish)), "name" to (SdkClient.omitIfNull(request.name)), "body" to (SdkClient.omitIfNull(request.body)), "draft" to (SdkClient.omitIfNull(request.draft)), "prerelease" to (SdkClient.omitIfNull(request.prerelease)), "make_latest" to (SdkClient.omitIfNull(request.makeLatest)), "discussion_category_name" to
+    (SdkClient.omitIfNull(request.discussionCategoryName))), operationId = "reposUpdateRelease", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
@@ -452,115 +237,49 @@ internal object ReposDeleteReleaseOperation {
     /**
      * Users with push access to the repository can delete a release.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param releaseId The unique identifier of the release.
      */
-    fun reposDeleteRelease(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        releaseId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}",
-                config = clientConfig,
-                operationId = "reposDeleteRelease",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun reposDeleteRelease(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}", config = clientConfig, operationId = "reposDeleteRelease", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }
 
 internal object ReposListReleaseAssetsOperation {
     /**
-     * Lists the assets attached to a specific release in a repository. Use `page` and `per_page` to
-     * paginate the results.
+     * Lists the assets attached to a specific release in a repository. Use `page` and `per_page` to paginate the results.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param releaseId The unique identifier of the release.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun reposListReleaseAssets(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        releaseId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<ReleaseAsset> {
-        return SdkClient.request<List<ReleaseAsset>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}/assets",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "reposListReleaseAssets",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun reposListReleaseAssets(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<ReleaseAsset> {
+        return SdkClient.request<List<ReleaseAsset>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}/assets", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListReleaseAssets", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ReposUploadReleaseAssetOperation {
     /**
-     * Uploads a binary asset to a specific release in a repository. Use the release-specific
-     * `upload_url` returned when creating the release, provide the asset filename in `name`, and
-     * send the raw file data with a media-type `Content-Type` header. The API may rename filenames
-     * containing special characters or leading or trailing periods.
+     * Uploads a binary asset to a specific release in a repository. Use the release-specific `upload_url` returned when creating the release, provide the asset filename in `name`, and send the raw file data with a media-type `Content-Type` header. The API may rename filenames containing special characters or leading or trailing periods.
      *
-     * This endpoint makes use of a Hypermedia relation to determine which URL to access. The
-     * endpoint you call to upload release assets is specific to your release. Use the `upload_url`
-     * returned in the response of the Create a release endpoint to upload a release asset. You need
-     * to use an HTTP client which supports SNI to make calls to this endpoint. Most libraries will
-     * set the required `Content-Length` header automatically. Use the required `Content-Type`
-     * header to provide the…
+     * This endpoint makes use of a Hypermedia relation to determine which URL to access. The endpoint you call to upload release assets is specific to your release. Use the `upload_url` returned in the response of the Create a release endpoint to upload a release asset. You need to use an HTTP client which supports SNI to make calls to this endpoint. Most libraries will set the required `Content-Length` header automatically. Use the required `Content-Type` header to provide the…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param releaseId The unique identifier of the release.
      */
-    fun reposUploadReleaseAsset(
-        clientConfig: ClientConfig,
-        request: Repos.ReposUploadReleaseAssetRequest,
-        options: RequestOptions? = null,
-    ): ReleaseAsset {
-        return SdkClient.request<ReleaseAsset>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/${SdkClient.encodePathSegment(request.releaseId)}/assets",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "name" to SdkClient.queryValue(request.name, "form", true),
-                            "label" to SdkClient.queryValue(request.label, "form", true),
-                        ),
-                    body = request.body,
-                    contentType = "application/octet-stream",
-                    operationId = "reposUploadReleaseAsset",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun reposUploadReleaseAsset(clientConfig: ClientConfig, request: Repos.ReposUploadReleaseAssetRequest, options: RequestOptions? = null): ReleaseAsset {
+        return SdkClient.request<ReleaseAsset>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/${SdkClient.encodePathSegment(request.releaseId)}/assets", config = clientConfig, query = mapOf("name" to SdkClient.queryValue(request.name, "form", true), "label" to SdkClient.queryValue(request.label, "form", true)), body = request.body, contentType = "application/octet-stream", operationId = "reposUploadReleaseAsset", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }

@@ -5,151 +5,210 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Private registry configuration for an organization */
+/**
+ * Private registry configuration for an organization
+ */
 data class OrgPrivateRegistryConfiguration(
-    /** The name of the private registry configuration. */
+    /**
+     * The name of the private registry configuration.
+     */
     val name: String,
-    /** The registry type. */
-    @com.fasterxml.jackson.annotation.JsonProperty("registry_type")
-    val registryType: OrgPrivateRegistryConfigurationRegistryTypeEnum,
-    /** Which type of organization repositories have access to the private registry. */
+    /**
+     * The registry type.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("registry_type") val registryType: OrgPrivateRegistryConfigurationRegistryTypeEnum,
+    /**
+     * Which type of organization repositories have access to the private registry.
+     */
     val visibility: OrgPrivateRegistryConfigurationVisibilityEnum,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** The authentication type for the private registry. */
-    @com.fasterxml.jackson.annotation.JsonProperty("auth_type")
-    val authType: OrgPrivateRegistryConfigurationAuthTypeEnum? = null,
-    /** The URL of the private registry. */
+    /**
+     * The authentication type for the private registry.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("auth_type") val authType: OrgPrivateRegistryConfigurationAuthTypeEnum? = null,
+    /**
+     * The URL of the private registry.
+     */
     val url: String? = null,
-    /** The username to use when authenticating with the private registry. */
+    /**
+     * The username to use when authenticating with the private registry.
+     */
     val username: String? = null,
     /**
-     * Whether this private registry replaces the base registry (e.g., npmjs.org for npm,
-     * rubygems.org for rubygems). When `true`, Dependabot will only use this registry and will not
-     * fall back to the public registry. When `false` (default), Dependabot will use this registry
-     * for scoped packages but may fall back to the public registry for other packages.
+     * Whether this private registry replaces the base registry (e.g., npmjs.org for npm, rubygems.org for rubygems). When `true`, Dependabot will only use this registry and will not fall back to the public registry. When `false` (default), Dependabot will use this registry for scoped packages but may fall back to the public registry for other packages.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("replaces_base")
-    val replacesBase: Boolean? = null,
-    /** The tenant ID of the Azure AD application. */
+    @com.fasterxml.jackson.annotation.JsonProperty("replaces_base") val replacesBase: Boolean? = null,
+    /**
+     * The tenant ID of the Azure AD application.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tenant_id") val tenantId: String? = null,
-    /** The client ID of the Azure AD application. */
+    /**
+     * The client ID of the Azure AD application.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null,
-    /** The AWS region. */
+    /**
+     * The AWS region.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("aws_region") val awsRegion: String? = null,
-    /** The AWS account ID. */
+    /**
+     * The AWS account ID.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_id") val accountId: String? = null,
-    /** The AWS IAM role name. */
+    /**
+     * The AWS IAM role name.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("role_name") val roleName: String? = null,
-    /** The CodeArtifact domain. */
+    /**
+     * The CodeArtifact domain.
+     */
     val domain: String? = null,
-    /** The CodeArtifact domain owner. */
+    /**
+     * The CodeArtifact domain owner.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("domain_owner") val domainOwner: String? = null,
-    /** The JFrog OIDC provider name. */
-    @com.fasterxml.jackson.annotation.JsonProperty("jfrog_oidc_provider_name")
-    val jfrogOidcProviderName: String? = null,
-    /** The OIDC audience. */
+    /**
+     * The JFrog OIDC provider name.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("jfrog_oidc_provider_name") val jfrogOidcProviderName: String? = null,
+    /**
+     * The OIDC audience.
+     */
     val audience: String? = null,
-    /** The JFrog identity mapping name. */
-    @com.fasterxml.jackson.annotation.JsonProperty("identity_mapping_name")
-    val identityMappingName: String? = null,
-    /** The Cloudsmith organization namespace. */
+    /**
+     * The JFrog identity mapping name.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("identity_mapping_name") val identityMappingName: String? = null,
+    /**
+     * The Cloudsmith organization namespace.
+     */
     val namespace: String? = null,
-    /** The Cloudsmith service account slug. */
+    /**
+     * The Cloudsmith service account slug.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("service_slug") val serviceSlug: String? = null,
-    /** The Cloudsmith API host. */
+    /**
+     * The Cloudsmith API host.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("api_host") val apiHost: String? = null,
     /**
-     * The full resource name of the GCP Workload Identity Provider (e.g.
-     * `projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROVIDER>`).
+     * The full resource name of the GCP Workload Identity Provider (e.g. `projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROVIDER>`).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("workload_identity_provider")
-    val workloadIdentityProvider: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("workload_identity_provider") val workloadIdentityProvider: String? = null,
     /**
-     * The GCP service account email to impersonate. If omitted, the federated token is used
-     * directly (direct WIF).
+     * The GCP service account email to impersonate. If omitted, the federated token is used directly (direct WIF).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("service_account")
-    val serviceAccount: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("service_account") val serviceAccount: String? = null
 )
 
-/** Private registry configuration for an organization */
+/**
+ * Private registry configuration for an organization
+ */
 data class OrgPrivateRegistryConfigurationWithSelectedRepositories(
-    /** The name of the private registry configuration. */
-    val name: String,
-    /** The registry type. */
-    @com.fasterxml.jackson.annotation.JsonProperty("registry_type")
-    val registryType: OrgPrivateRegistryConfigurationWithSelectedRepositoriesRegistryTypeEnum,
     /**
-     * Which type of organization repositories have access to the private registry. `selected` means
-     * only the repositories specified by `selected_repository_ids` can access the private registry.
+     * The name of the private registry configuration.
+     */
+    val name: String,
+    /**
+     * The registry type.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("registry_type") val registryType: OrgPrivateRegistryConfigurationWithSelectedRepositoriesRegistryTypeEnum,
+    /**
+     * Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry.
      */
     val visibility: OrgPrivateRegistryConfigurationWithSelectedRepositoriesVisibilityEnum,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** The authentication type for the private registry. */
-    @com.fasterxml.jackson.annotation.JsonProperty("auth_type")
-    val authType: OrgPrivateRegistryConfigurationWithSelectedRepositoriesAuthTypeEnum? = null,
-    /** The URL of the private registry. */
+    /**
+     * The authentication type for the private registry.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("auth_type") val authType: OrgPrivateRegistryConfigurationWithSelectedRepositoriesAuthTypeEnum? = null,
+    /**
+     * The URL of the private registry.
+     */
     val url: String? = null,
-    /** The username to use when authenticating with the private registry. */
+    /**
+     * The username to use when authenticating with the private registry.
+     */
     val username: String? = null,
     /**
-     * Whether this private registry replaces the base registry (e.g., npmjs.org for npm,
-     * rubygems.org for rubygems). When `true`, Dependabot will only use this registry and will not
-     * fall back to the public registry. When `false` (default), Dependabot will use this registry
-     * for scoped packages but may fall back to the public registry for other packages.
+     * Whether this private registry replaces the base registry (e.g., npmjs.org for npm, rubygems.org for rubygems). When `true`, Dependabot will only use this registry and will not fall back to the public registry. When `false` (default), Dependabot will use this registry for scoped packages but may fall back to the public registry for other packages.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("replaces_base")
-    val replacesBase: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("replaces_base") val replacesBase: Boolean? = null,
     /**
-     * An array of repository IDs that can access the organization private registry when
-     * `visibility` is set to `selected`.
+     * An array of repository IDs that can access the organization private registry when `visibility` is set to `selected`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("selected_repository_ids")
-    val selectedRepositoryIds: List<Long>? = null,
-    /** The tenant ID of the Azure AD application. */
+    @com.fasterxml.jackson.annotation.JsonProperty("selected_repository_ids") val selectedRepositoryIds: List<Long>? = null,
+    /**
+     * The tenant ID of the Azure AD application.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("tenant_id") val tenantId: String? = null,
-    /** The client ID of the Azure AD application. */
+    /**
+     * The client ID of the Azure AD application.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null,
-    /** The AWS region. */
+    /**
+     * The AWS region.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("aws_region") val awsRegion: String? = null,
-    /** The AWS account ID. */
+    /**
+     * The AWS account ID.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("account_id") val accountId: String? = null,
-    /** The AWS IAM role name. */
+    /**
+     * The AWS IAM role name.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("role_name") val roleName: String? = null,
-    /** The CodeArtifact domain. */
+    /**
+     * The CodeArtifact domain.
+     */
     val domain: String? = null,
-    /** The CodeArtifact domain owner. */
+    /**
+     * The CodeArtifact domain owner.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("domain_owner") val domainOwner: String? = null,
-    /** The JFrog OIDC provider name. */
-    @com.fasterxml.jackson.annotation.JsonProperty("jfrog_oidc_provider_name")
-    val jfrogOidcProviderName: String? = null,
-    /** The OIDC audience. */
+    /**
+     * The JFrog OIDC provider name.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("jfrog_oidc_provider_name") val jfrogOidcProviderName: String? = null,
+    /**
+     * The OIDC audience.
+     */
     val audience: String? = null,
-    /** The JFrog identity mapping name. */
-    @com.fasterxml.jackson.annotation.JsonProperty("identity_mapping_name")
-    val identityMappingName: String? = null,
-    /** The Cloudsmith organization namespace. */
+    /**
+     * The JFrog identity mapping name.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("identity_mapping_name") val identityMappingName: String? = null,
+    /**
+     * The Cloudsmith organization namespace.
+     */
     val namespace: String? = null,
-    /** The Cloudsmith service account slug. */
+    /**
+     * The Cloudsmith service account slug.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("service_slug") val serviceSlug: String? = null,
-    /** The Cloudsmith API host. */
+    /**
+     * The Cloudsmith API host.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("api_host") val apiHost: String? = null,
     /**
-     * The full resource name of the GCP Workload Identity Provider (e.g.
-     * `projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROVIDER>`).
+     * The full resource name of the GCP Workload Identity Provider (e.g. `projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROVIDER>`).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("workload_identity_provider")
-    val workloadIdentityProvider: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("workload_identity_provider") val workloadIdentityProvider: String? = null,
     /**
-     * The GCP service account email to impersonate. If omitted, the federated token is used
-     * directly (direct WIF).
+     * The GCP service account email to impersonate. If omitted, the federated token is used directly (direct WIF).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("service_account")
-    val serviceAccount: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("service_account") val serviceAccount: String? = null
 )

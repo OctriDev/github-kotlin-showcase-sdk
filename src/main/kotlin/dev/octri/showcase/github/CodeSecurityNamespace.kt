@@ -3,386 +3,146 @@
 
 package dev.octri.showcase.github
 
+
 class CodeSecurityNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists all code security configurations available in an enterprise. The authenticated user
-     * must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens
-     * and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
+     * Lists all code security configurations available in an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
      */
-    fun getConfigurationsForEnterprise(
-        enterprise: String,
-        perPage: Long? = null,
-        before: String? = null,
-        after: String? = null,
-        options: RequestOptions? = null,
-    ): List<CodeSecurityConfiguration> {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityGetConfigurationsForEnterprise(
-                clientConfig,
-                enterprise,
-                perPage,
-                before,
-                after,
-                options,
-            )
+    fun getConfigurationsForEnterprise(enterprise: String, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): List<CodeSecurityConfiguration> {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetConfigurationsForEnterprise(clientConfig, enterprise, perPage, before, after, options)
     }
 
     /**
-     * Creates a code security configuration in an enterprise. The authenticated user must be an
-     * administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal
-     * access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
+     * Creates a code security configuration in an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
      */
-    fun createConfigurationForEnterprise(
-        request:
-            dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityCreateConfigurationForEnterpriseRequest,
-        options: RequestOptions? = null,
-    ): CodeSecurityConfiguration {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityCreateConfigurationForEnterprise(clientConfig, request, options)
+    fun createConfigurationForEnterprise(request: dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityCreateConfigurationForEnterpriseRequest, options: RequestOptions? = null): CodeSecurityConfiguration {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityCreateConfigurationForEnterprise(clientConfig, request, options)
     }
 
     /**
-     * Lists the default code security configurations for an enterprise. The authenticated user must
-     * be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
+     * Lists the default code security configurations for an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
      */
-    fun getDefaultConfigurationsForEnterprise(
-        enterprise: String,
-        options: RequestOptions? = null,
-    ): CodeSecurityDefaultConfigurations {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityGetDefaultConfigurationsForEnterprise(clientConfig, enterprise, options)
+    fun getDefaultConfigurationsForEnterprise(enterprise: String, options: RequestOptions? = null): CodeSecurityDefaultConfigurations {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetDefaultConfigurationsForEnterprise(clientConfig, enterprise, options)
     }
 
     /**
-     * Gets a code security configuration available in an enterprise. The authenticated user must be
-     * an administrator of the enterprise in order to use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
+     * Gets a code security configuration available in an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
      */
-    fun getSingleConfigurationForEnterprise(
-        enterprise: String,
-        configurationId: Long,
-        options: RequestOptions? = null,
-    ): CodeSecurityConfiguration {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityGetSingleConfigurationForEnterprise(
-                clientConfig,
-                enterprise,
-                configurationId,
-                options,
-            )
+    fun getSingleConfigurationForEnterprise(enterprise: String, configurationId: Long, options: RequestOptions? = null): CodeSecurityConfiguration {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetSingleConfigurationForEnterprise(clientConfig, enterprise, configurationId, options)
     }
 
     /**
-     * Updates a code security configuration in an enterprise. The authenticated user must be an
-     * administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal
-     * access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
+     * Updates a code security configuration in an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
      */
-    fun updateEnterpriseConfiguration(
-        request:
-            dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityUpdateEnterpriseConfigurationRequest,
-        options: RequestOptions? = null,
-    ): CodeSecurityConfiguration {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityUpdateEnterpriseConfiguration(clientConfig, request, options)
+    fun updateEnterpriseConfiguration(request: dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityUpdateEnterpriseConfigurationRequest, options: RequestOptions? = null): CodeSecurityConfiguration {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityUpdateEnterpriseConfiguration(clientConfig, request, options)
     }
 
     /**
-     * Deletes a code security configuration from an enterprise. Repositories attached to the
-     * configuration will retain their settings but will no longer be associated with the
-     * configuration. The authenticated user must be an administrator for the enterprise to use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise`
-     * scope to use this endpoint.
+     * Deletes a code security configuration from an enterprise. Repositories attached to the configuration will retain their settings but will no longer be associated with the configuration. The authenticated user must be an administrator for the enterprise to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
      */
-    fun deleteConfigurationForEnterprise(
-        enterprise: String,
-        configurationId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityDeleteConfigurationForEnterprise(
-                clientConfig,
-                enterprise,
-                configurationId,
-                options,
-            )
+    fun deleteConfigurationForEnterprise(enterprise: String, configurationId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityDeleteConfigurationForEnterprise(clientConfig, enterprise, configurationId, options)
     }
 
     /**
-     * Attaches an enterprise code security configuration to repositories. If the repositories
-     * specified are already attached to a configuration, they will be re-attached to the provided
-     * configuration. If insufficient GHAS licenses are available to attach the configuration to a
-     * repository, only free features will be enabled. The authenticated user must be an
-     * administrator for the enterprise to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the…
+     * Attaches an enterprise code security configuration to repositories. If the repositories specified are already attached to a configuration, they will be re-attached to the provided configuration. If insufficient GHAS licenses are available to attach the configuration to a repository, only free features will be enabled. The authenticated user must be an administrator for the enterprise to use this endpoint. OAuth app tokens and personal access tokens (classic) need the…
      */
-    fun attachEnterpriseConfiguration(
-        enterprise: String,
-        configurationId: Long,
-        scope: CodeSecurityAttachEnterpriseConfigurationScopeEnum,
-        options: RequestOptions? = null,
-    ): Map<String, Any> {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityAttachEnterpriseConfiguration(
-                clientConfig,
-                enterprise,
-                configurationId,
-                scope,
-                options,
-            )
+    fun attachEnterpriseConfiguration(enterprise: String, configurationId: Long, scope: CodeSecurityAttachEnterpriseConfigurationScopeEnum, options: RequestOptions? = null): Map<String, Any> {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityAttachEnterpriseConfiguration(clientConfig, enterprise, configurationId, scope, options)
     }
 
     /**
-     * Sets a code security configuration as a default to be applied to new repositories in your
-     * enterprise. This configuration will be applied by default to the matching repository type
-     * when created, but only for organizations within the enterprise that do not already have a
-     * default code security configuration set. The authenticated user must be an administrator for
-     * the enterprise to use this endpoint. OAuth app tokens and personal access tokens (classic)
-     * need the…
+     * Sets a code security configuration as a default to be applied to new repositories in your enterprise. This configuration will be applied by default to the matching repository type when created, but only for organizations within the enterprise that do not already have a default code security configuration set. The authenticated user must be an administrator for the enterprise to use this endpoint. OAuth app tokens and personal access tokens (classic) need the…
      */
-    fun setConfigurationAsDefaultForEnterprise(
-        enterprise: String,
-        configurationId: Long,
-        defaultForNewRepos:
-            CodeSecuritySetConfigurationAsDefaultForEnterpriseDefaultForNewReposEnum? =
-            null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.CodeSecurity.CodeSecuritySetConfigurationAsDefaultForEnterpriseResponse {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecuritySetConfigurationAsDefaultForEnterprise(
-                clientConfig,
-                enterprise,
-                configurationId,
-                defaultForNewRepos,
-                options,
-            )
+    fun setConfigurationAsDefaultForEnterprise(enterprise: String, configurationId: Long, defaultForNewRepos: CodeSecuritySetConfigurationAsDefaultForEnterpriseDefaultForNewReposEnum? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.CodeSecurity.CodeSecuritySetConfigurationAsDefaultForEnterpriseResponse {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecuritySetConfigurationAsDefaultForEnterprise(clientConfig, enterprise, configurationId, defaultForNewRepos, options)
     }
 
     /**
-     * Lists the repositories associated with an enterprise code security configuration in an
-     * organization. The authenticated user must be an administrator of the enterprise in order to
-     * use this endpoint. OAuth app tokens and personal access tokens (classic) need the
-     * `read:enterprise` scope to use this endpoint.
+     * Lists the repositories associated with an enterprise code security configuration in an organization. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
      */
-    fun getRepositoriesForEnterpriseConfiguration(
-        request:
-            dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityGetRepositoriesForEnterpriseConfigurationRequest,
-        options: RequestOptions? = null,
-    ): List<CodeSecurityConfigurationRepositories> {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityGetRepositoriesForEnterpriseConfiguration(clientConfig, request, options)
+    fun getRepositoriesForEnterpriseConfiguration(request: dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityGetRepositoriesForEnterpriseConfigurationRequest, options: RequestOptions? = null): List<CodeSecurityConfigurationRepositories> {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetRepositoriesForEnterpriseConfiguration(clientConfig, request, options)
     }
 
     /**
-     * Lists all code security configurations available in an organization. The authenticated user
-     * must be an administrator or security manager for the organization to use this endpoint. OAuth
-     * app tokens and personal access tokens (classic) need the `read:org` scope to use this
-     * endpoint.
+     * Lists all code security configurations available in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
      */
-    fun getConfigurationsForOrg(
-        org: String,
-        targetType: CodeSecurityGetConfigurationsForOrgParameterEnum? = null,
-        perPage: Long? = null,
-        before: String? = null,
-        after: String? = null,
-        options: RequestOptions? = null,
-    ): List<CodeSecurityConfiguration> {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetConfigurationsForOrg(
-            clientConfig,
-            org,
-            targetType,
-            perPage,
-            before,
-            after,
-            options,
-        )
+    fun getConfigurationsForOrg(org: String, targetType: CodeSecurityGetConfigurationsForOrgParameterEnum? = null, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): List<CodeSecurityConfiguration> {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetConfigurationsForOrg(clientConfig, org, targetType, perPage, before, after, options)
     }
 
     /**
-     * Creates a code security configuration in an organization. The authenticated user must be an
-     * administrator or security manager for the organization to use this endpoint. OAuth app tokens
-     * and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Creates a code security configuration in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun createConfiguration(
-        request:
-            dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityCreateConfigurationRequest,
-        options: RequestOptions? = null,
-    ): CodeSecurityConfiguration {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityCreateConfiguration(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createConfiguration(request: dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityCreateConfigurationRequest, options: RequestOptions? = null): CodeSecurityConfiguration {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityCreateConfiguration(clientConfig, request, options)
     }
 
     /**
-     * Lists the default code security configurations for an organization. The authenticated user
-     * must be an administrator or security manager for the organization to use this endpoint. OAuth
-     * app tokens and personal access tokens (classic) need the `read:org` scope to use this
-     * endpoint.
+     * Lists the default code security configurations for an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
      */
-    fun getDefaultConfigurations(
-        org: String,
-        options: RequestOptions? = null,
-    ): CodeSecurityDefaultConfigurations {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetDefaultConfigurations(
-            clientConfig,
-            org,
-            options,
-        )
+    fun getDefaultConfigurations(org: String, options: RequestOptions? = null): CodeSecurityDefaultConfigurations {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetDefaultConfigurations(clientConfig, org, options)
     }
 
     /**
-     * Detach code security configuration(s) from a set of repositories. Repositories will retain
-     * their settings but will no longer be associated with the configuration. The authenticated
-     * user must be an administrator or security manager for the organization to use this endpoint.
-     * Repositories with active enterprise-enforced attachments are skipped unless the authenticated
-     * user can manage the enterprise's code security settings; the rest are detached. Inactive
-     * enterprise-enforced…
+     * Detach code security configuration(s) from a set of repositories. Repositories will retain their settings but will no longer be associated with the configuration. The authenticated user must be an administrator or security manager for the organization to use this endpoint. Repositories with active enterprise-enforced attachments are skipped unless the authenticated user can manage the enterprise's code security settings; the rest are detached. Inactive enterprise-enforced…
      */
-    fun detachConfiguration(
-        org: String,
-        selectedRepositoryIds: List<Long>,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityDetachConfiguration(
-            clientConfig,
-            org,
-            selectedRepositoryIds,
-            options,
-        )
+    fun detachConfiguration(org: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityDetachConfiguration(clientConfig, org, selectedRepositoryIds, options)
     }
 
     /**
-     * Gets a code security configuration available in an organization. The authenticated user must
-     * be an administrator or security manager for the organization to use this endpoint. OAuth app
-     * tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Gets a code security configuration available in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun getConfiguration(
-        org: String,
-        configurationId: Long,
-        options: RequestOptions? = null,
-    ): CodeSecurityConfiguration {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetConfiguration(
-            clientConfig,
-            org,
-            configurationId,
-            options,
-        )
+    fun getConfiguration(org: String, configurationId: Long, options: RequestOptions? = null): CodeSecurityConfiguration {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetConfiguration(clientConfig, org, configurationId, options)
     }
 
     /**
-     * Updates a code security configuration in an organization. The authenticated user must be an
-     * administrator or security manager for the organization to use this endpoint. OAuth app tokens
-     * and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Updates a code security configuration in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun updateConfiguration(
-        request:
-            dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityUpdateConfigurationRequest,
-        options: RequestOptions? = null,
-    ): CodeSecurityConfiguration {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityUpdateConfiguration(
-            clientConfig,
-            request,
-            options,
-        )
+    fun updateConfiguration(request: dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityUpdateConfigurationRequest, options: RequestOptions? = null): CodeSecurityConfiguration {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityUpdateConfiguration(clientConfig, request, options)
     }
 
     /**
-     * Deletes the desired code security configuration from an organization. Repositories attached
-     * to the configuration will retain their settings but will no longer be associated with the
-     * configuration. The authenticated user must be an administrator or security manager for the
-     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `write:org` scope to use this endpoint.
+     * Deletes the desired code security configuration from an organization. Repositories attached to the configuration will retain their settings but will no longer be associated with the configuration. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun deleteConfiguration(
-        org: String,
-        configurationId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityDeleteConfiguration(
-            clientConfig,
-            org,
-            configurationId,
-            options,
-        )
+    fun deleteConfiguration(org: String, configurationId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityDeleteConfiguration(clientConfig, org, configurationId, options)
     }
 
     /**
-     * Attach a code security configuration to a set of repositories. If the repositories specified
-     * are already attached to a configuration, they will be re-attached to the provided
-     * configuration. If insufficient GHAS licenses are available to attach the configuration to a
-     * repository, only free features will be enabled. The authenticated user must be an
-     * administrator or security manager for the organization to use this endpoint. Directly
-     * applying an enterprise-enforced…
+     * Attach a code security configuration to a set of repositories. If the repositories specified are already attached to a configuration, they will be re-attached to the provided configuration. If insufficient GHAS licenses are available to attach the configuration to a repository, only free features will be enabled. The authenticated user must be an administrator or security manager for the organization to use this endpoint. Directly applying an enterprise-enforced…
      */
-    fun attachConfiguration(
-        org: String,
-        configurationId: Long,
-        scope: CodeSecurityAttachConfigurationScopeEnum,
-        selectedRepositoryIds: List<Long>? = null,
-        options: RequestOptions? = null,
-    ): Map<String, Any> {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityAttachConfiguration(
-            clientConfig,
-            org,
-            configurationId,
-            scope,
-            selectedRepositoryIds,
-            options,
-        )
+    fun attachConfiguration(org: String, configurationId: Long, scope: CodeSecurityAttachConfigurationScopeEnum, selectedRepositoryIds: List<Long>? = null, options: RequestOptions? = null): Map<String, Any> {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityAttachConfiguration(clientConfig, org, configurationId, scope, selectedRepositoryIds, options)
     }
 
     /**
-     * Sets a code security configuration as a default to be applied to new repositories in your
-     * organization. This configuration will be applied to the matching repository type (all, none,
-     * public, private and internal) by default when they are created. The authenticated user must
-     * be an administrator or security manager for the organization to use this endpoint. Setting an
-     * enterprise-enforced configuration as the default also requires permission to manage the
-     * enterprise's code…
+     * Sets a code security configuration as a default to be applied to new repositories in your organization. This configuration will be applied to the matching repository type (all, none, public, private and internal) by default when they are created. The authenticated user must be an administrator or security manager for the organization to use this endpoint. Setting an enterprise-enforced configuration as the default also requires permission to manage the enterprise's code…
      */
-    fun setConfigurationAsDefault(
-        org: String,
-        configurationId: Long,
-        defaultForNewRepos: CodeSecuritySetConfigurationAsDefaultDefaultForNewReposEnum? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.CodeSecurity.CodeSecuritySetConfigurationAsDefaultResponse {
-        return dev.octri.showcase.github.methods.CodeSecurity.codeSecuritySetConfigurationAsDefault(
-            clientConfig,
-            org,
-            configurationId,
-            defaultForNewRepos,
-            options,
-        )
+    fun setConfigurationAsDefault(org: String, configurationId: Long, defaultForNewRepos: CodeSecuritySetConfigurationAsDefaultDefaultForNewReposEnum? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.CodeSecurity.CodeSecuritySetConfigurationAsDefaultResponse {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecuritySetConfigurationAsDefault(clientConfig, org, configurationId, defaultForNewRepos, options)
     }
 
     /**
-     * Lists the repositories associated with a code security configuration in an organization. The
-     * authenticated user must be an administrator or security manager for the organization to use
-     * this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org`
-     * scope to use this endpoint.
+     * Lists the repositories associated with a code security configuration in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
      */
-    fun getRepositoriesForConfiguration(
-        request:
-            dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityGetRepositoriesForConfigurationRequest,
-        options: RequestOptions? = null,
-    ): List<CodeSecurityConfigurationRepositories> {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityGetRepositoriesForConfiguration(clientConfig, request, options)
+    fun getRepositoriesForConfiguration(request: dev.octri.showcase.github.methods.CodeSecurity.CodeSecurityGetRepositoriesForConfigurationRequest, options: RequestOptions? = null): List<CodeSecurityConfigurationRepositories> {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetRepositoriesForConfiguration(clientConfig, request, options)
     }
 
     /**
-     * Get the code security configuration that manages a repository's code security settings. The
-     * authenticated user must be an administrator or security manager for the organization to use
-     * this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
-     * use this endpoint.
+     * Get the code security configuration that manages a repository's code security settings. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun getConfigurationForRepository(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): CodeSecurityConfigurationForRepository {
-        return dev.octri.showcase.github.methods.CodeSecurity
-            .codeSecurityGetConfigurationForRepository(clientConfig, owner, repo, options)
+    fun getConfigurationForRepository(owner: String, repo: String, options: RequestOptions? = null): CodeSecurityConfigurationForRepository {
+        return dev.octri.showcase.github.methods.CodeSecurity.codeSecurityGetConfigurationForRepository(clientConfig, owner, repo, options)
     }
+
 }

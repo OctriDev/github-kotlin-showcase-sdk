@@ -3,626 +3,599 @@
 
 package dev.octri.showcase.github.models
 
-/** A repository rule. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
-    property = "type",
-    visible = true,
-    defaultImpl = UnknownOrgRules::class,
-)
+/**
+ * A repository rule.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME, property = "type", visible = true, defaultImpl = UnknownOrgRules::class)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleCreation::class,
-        name = "creation",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleUpdate::class,
-        name = "update",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleDeletion::class,
-        name = "deletion",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleRequiredLinearHistory::class,
-        name = "required_linear_history",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleRequiredDeployments::class,
-        name = "required_deployments",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleRequiredSignatures::class,
-        name = "required_signatures",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRulePullRequest::class,
-        name = "pull_request",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleRequiredStatusChecks::class,
-        name = "required_status_checks",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleNonFastForward::class,
-        name = "non_fast_forward",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleCommitMessagePattern::class,
-        name = "commit_message_pattern",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleCommitAuthorEmailPattern::class,
-        name = "commit_author_email_pattern",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleCommitterEmailPattern::class,
-        name = "committer_email_pattern",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleBranchNamePattern::class,
-        name = "branch_name_pattern",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleTagNamePattern::class,
-        name = "tag_name_pattern",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleFilePathRestriction::class,
-        name = "file_path_restriction",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleMaxFilePathLength::class,
-        name = "max_file_path_length",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleFileExtensionRestriction::class,
-        name = "file_extension_restriction",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleMaxFileSize::class,
-        name = "max_file_size",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleWorkflows::class,
-        name = "workflows",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleCodeScanning::class,
-        name = "code_scanning",
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = RepositoryRuleCopilotCodeReview::class,
-        name = "copilot_code_review",
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleCreation::class, name = "creation"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleUpdate::class, name = "update"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleDeletion::class, name = "deletion"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleRequiredLinearHistory::class, name = "required_linear_history"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleRequiredDeployments::class, name = "required_deployments"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleRequiredSignatures::class, name = "required_signatures"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRulePullRequest::class, name = "pull_request"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleRequiredStatusChecks::class, name = "required_status_checks"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleNonFastForward::class, name = "non_fast_forward"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleCommitMessagePattern::class, name = "commit_message_pattern"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleCommitAuthorEmailPattern::class, name = "commit_author_email_pattern"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleCommitterEmailPattern::class, name = "committer_email_pattern"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleBranchNamePattern::class, name = "branch_name_pattern"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleTagNamePattern::class, name = "tag_name_pattern"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleFilePathRestriction::class, name = "file_path_restriction"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleMaxFilePathLength::class, name = "max_file_path_length"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleFileExtensionRestriction::class, name = "file_extension_restriction"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleMaxFileSize::class, name = "max_file_size"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleWorkflows::class, name = "workflows"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleCodeScanning::class, name = "code_scanning"),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = RepositoryRuleCopilotCodeReview::class, name = "copilot_code_review")
 )
 sealed interface OrgRules
 
 /** A [OrgRules] whose `type` names no branch this SDK knows, kept as received. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class UnknownOrgRules
-@com.fasterxml.jackson.annotation.JsonCreator(
-    mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-)
-constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class UnknownOrgRules @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING) constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val raw: com.fasterxml.jackson.databind.JsonNode,
 ) : OrgRules {
     /** The tag the server sent. */
-    val tag: String
-        get() = raw.path("type").asText()
+    val tag: String get() = raw.path("type").asText()
 }
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleBranchNamePatternParameters(
-    /** The operator to use for matching. */
-    @com.fasterxml.jackson.annotation.JsonProperty("operator")
-    val `operator`: RepositoryRuleBranchNamePatternParametersOperatorEnum,
-    /** The pattern to match with. */
+    /**
+     * The operator to use for matching.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("operator") val `operator`: RepositoryRuleBranchNamePatternParametersOperatorEnum,
+    /**
+     * The pattern to match with.
+     */
     val pattern: String,
-    /** How this rule appears when configuring it. */
+    /**
+     * How this rule appears when configuring it.
+     */
     val name: String? = null,
-    /** If true, the rule will fail if the pattern matches. */
-    val negate: Boolean? = null,
-)
-
-/** Parameters to be used for the branch_name_pattern rule */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RepositoryRuleBranchNamePattern(
-    /** Required enumerated value serialized in the `type` wire field. */
-    val type: RepositoryRuleBranchNamePatternTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleBranchNamePatternParameters? = null,
-) : RepositoryRule, OrgRules
-
-/** Optional object value serialized in the `parameters` wire field. */
-data class RepositoryRuleCodeScanningParameters(
-    /** Tools that must provide code scanning results for this rule to pass. */
-    @com.fasterxml.jackson.annotation.JsonProperty("code_scanning_tools")
-    val codeScanningTools: List<RepositoryRuleParamsCodeScanningTool>
+    /**
+     * If true, the rule will fail if the pattern matches.
+     */
+    val negate: Boolean? = null
 )
 
 /**
- * Choose which tools must provide code scanning results before the reference is updated. When
- * configured, code scanning must be enabled and have results for both the commit and the reference
- * being updated.
+ * Parameters to be used for the branch_name_pattern rule
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class RepositoryRuleBranchNamePattern(
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
+    val type: RepositoryRuleBranchNamePatternTypeEnum,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleBranchNamePatternParameters? = null
+) : RepositoryRule, OrgRules
+
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
+data class RepositoryRuleCodeScanningParameters(
+    /**
+     * Tools that must provide code scanning results for this rule to pass.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("code_scanning_tools") val codeScanningTools: List<RepositoryRuleParamsCodeScanningTool>
 )
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+
+/**
+ * Choose which tools must provide code scanning results before the reference is updated. When configured, code scanning must be enabled and have results for both the commit and the reference being updated.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleCodeScanning(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleCodeScanningTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleCodeScanningParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleCodeScanningParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleCommitAuthorEmailPatternParameters(
-    /** The operator to use for matching. */
-    @com.fasterxml.jackson.annotation.JsonProperty("operator")
-    val `operator`: RepositoryRuleCommitAuthorEmailPatternParametersOperatorEnum,
-    /** The pattern to match with. */
+    /**
+     * The operator to use for matching.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("operator") val `operator`: RepositoryRuleCommitAuthorEmailPatternParametersOperatorEnum,
+    /**
+     * The pattern to match with.
+     */
     val pattern: String,
-    /** How this rule appears when configuring it. */
+    /**
+     * How this rule appears when configuring it.
+     */
     val name: String? = null,
-    /** If true, the rule will fail if the pattern matches. */
-    val negate: Boolean? = null,
+    /**
+     * If true, the rule will fail if the pattern matches.
+     */
+    val negate: Boolean? = null
 )
 
-/** Parameters to be used for the commit_author_email_pattern rule */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Parameters to be used for the commit_author_email_pattern rule
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleCommitAuthorEmailPattern(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleCommitAuthorEmailPatternTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleCommitAuthorEmailPatternParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleCommitAuthorEmailPatternParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleCommitMessagePatternParameters(
-    /** The operator to use for matching. */
-    @com.fasterxml.jackson.annotation.JsonProperty("operator")
-    val `operator`: RepositoryRuleCommitMessagePatternParametersOperatorEnum,
-    /** The pattern to match with. */
+    /**
+     * The operator to use for matching.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("operator") val `operator`: RepositoryRuleCommitMessagePatternParametersOperatorEnum,
+    /**
+     * The pattern to match with.
+     */
     val pattern: String,
-    /** How this rule appears when configuring it. */
+    /**
+     * How this rule appears when configuring it.
+     */
     val name: String? = null,
-    /** If true, the rule will fail if the pattern matches. */
-    val negate: Boolean? = null,
+    /**
+     * If true, the rule will fail if the pattern matches.
+     */
+    val negate: Boolean? = null
 )
 
-/** Parameters to be used for the commit_message_pattern rule */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Parameters to be used for the commit_message_pattern rule
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleCommitMessagePattern(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleCommitMessagePatternTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleCommitMessagePatternParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleCommitMessagePatternParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleCommitterEmailPatternParameters(
-    /** The operator to use for matching. */
-    @com.fasterxml.jackson.annotation.JsonProperty("operator")
-    val `operator`: RepositoryRuleCommitterEmailPatternParametersOperatorEnum,
-    /** The pattern to match with. */
+    /**
+     * The operator to use for matching.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("operator") val `operator`: RepositoryRuleCommitterEmailPatternParametersOperatorEnum,
+    /**
+     * The pattern to match with.
+     */
     val pattern: String,
-    /** How this rule appears when configuring it. */
+    /**
+     * How this rule appears when configuring it.
+     */
     val name: String? = null,
-    /** If true, the rule will fail if the pattern matches. */
-    val negate: Boolean? = null,
+    /**
+     * If true, the rule will fail if the pattern matches.
+     */
+    val negate: Boolean? = null
 )
 
-/** Parameters to be used for the committer_email_pattern rule */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Parameters to be used for the committer_email_pattern rule
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleCommitterEmailPattern(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleCommitterEmailPatternTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleCommitterEmailPatternParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleCommitterEmailPatternParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleCopilotCodeReviewParameters(
     /**
      * Copilot automatically reviews draft pull requests before they are marked as ready for review.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_draft_pull_requests")
-    val reviewDraftPullRequests: Boolean? = null,
-    /** Copilot automatically reviews each new push to the pull request. */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_on_push")
-    val reviewOnPush: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("review_draft_pull_requests") val reviewDraftPullRequests: Boolean? = null,
+    /**
+     * Copilot automatically reviews each new push to the pull request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("review_on_push") val reviewOnPush: Boolean? = null
 )
 
 /**
- * Request Copilot code review for new pull requests automatically if the author has access to
- * Copilot code review and AI credits.
+ * Request Copilot code review for new pull requests automatically if the author has access to Copilot code review and AI credits.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleCopilotCodeReview(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleCopilotCodeReviewTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleCopilotCodeReviewParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleCopilotCodeReviewParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Only allow users with bypass permission to create matching refs. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Only allow users with bypass permission to create matching refs.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleCreation(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleCreationTypeEnum
 ) : RepositoryRule, OrgRules
 
-/** Only allow users with bypass permissions to delete matching refs. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Only allow users with bypass permissions to delete matching refs.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleDeletion(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleDeletionTypeEnum
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleFileExtensionRestrictionParameters(
-    /** The file extensions that are restricted from being pushed to the commit graph. */
-    @com.fasterxml.jackson.annotation.JsonProperty("restricted_file_extensions")
-    val restrictedFileExtensions: List<String>
+    /**
+     * The file extensions that are restricted from being pushed to the commit graph.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("restricted_file_extensions") val restrictedFileExtensions: List<String>
 )
 
 /**
- * Prevent commits that include files with specified file extensions from being pushed to the commit
- * graph.
+ * Prevent commits that include files with specified file extensions from being pushed to the commit graph.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleFileExtensionRestriction(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleFileExtensionRestrictionTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleFileExtensionRestrictionParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleFileExtensionRestrictionParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleFilePathRestrictionParameters(
-    /** The file paths that are restricted from being pushed to the commit graph. */
-    @com.fasterxml.jackson.annotation.JsonProperty("restricted_file_paths")
-    val restrictedFilePaths: List<String>
+    /**
+     * The file paths that are restricted from being pushed to the commit graph.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("restricted_file_paths") val restrictedFilePaths: List<String>
 )
 
 /**
- * Prevent commits that include changes in specified file and folder paths from being pushed to the
- * commit graph. This includes absolute paths that contain file names.
+ * Prevent commits that include changes in specified file and folder paths from being pushed to the commit graph. This includes absolute paths that contain file names.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleFilePathRestriction(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleFilePathRestrictionTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleFilePathRestrictionParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleFilePathRestrictionParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleMaxFilePathLengthParameters(
-    /** The maximum amount of characters allowed in file paths. */
-    @com.fasterxml.jackson.annotation.JsonProperty("max_file_path_length")
-    val maxFilePathLength: Long
+    /**
+     * The maximum amount of characters allowed in file paths.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("max_file_path_length") val maxFilePathLength: Long
 )
 
 /**
- * Prevent commits that include file paths that exceed the specified character limit from being
- * pushed to the commit graph.
+ * Prevent commits that include file paths that exceed the specified character limit from being pushed to the commit graph.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleMaxFilePathLength(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleMaxFilePathLengthTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleMaxFilePathLengthParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleMaxFilePathLengthParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleMaxFileSizeParameters(
     /**
-     * The maximum file size allowed in megabytes. This limit does not apply to Git Large File
-     * Storage (Git LFS).
+     * The maximum file size allowed in megabytes. This limit does not apply to Git Large File Storage (Git LFS).
      */
     @com.fasterxml.jackson.annotation.JsonProperty("max_file_size") val maxFileSize: Long
 )
 
 /**
- * Prevent commits with individual files that exceed the specified limit from being pushed to the
- * commit graph.
+ * Prevent commits with individual files that exceed the specified limit from being pushed to the commit graph.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleMaxFileSize(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleMaxFileSizeTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleMaxFileSizeParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleMaxFileSizeParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Prevent users with push access from force pushing to refs. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Prevent users with push access from force pushing to refs.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleNonFastForward(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleNonFastForwardTypeEnum
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRulePullRequestParameters(
-    /** New, reviewable commits pushed will dismiss previous pull request review approvals. */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismiss_stale_reviews_on_push")
-    val dismissStaleReviewsOnPush: Boolean,
     /**
-     * Require an approving review in pull requests that modify files that have a designated code
-     * owner.
+     * New, reviewable commits pushed will dismiss previous pull request review approvals.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_code_owner_review")
-    val requireCodeOwnerReview: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("dismiss_stale_reviews_on_push") val dismissStaleReviewsOnPush: Boolean,
     /**
-     * Whether the most recent reviewable push must be approved by someone other than the person who
-     * pushed it.
+     * Require an approving review in pull requests that modify files that have a designated code owner.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_last_push_approval")
-    val requireLastPushApproval: Boolean,
-    /** The number of approving reviews that are required before a pull request can be merged. */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_approving_review_count")
-    val requiredApprovingReviewCount: Long,
-    /** All conversations on code must be resolved before a pull request can be merged. */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_review_thread_resolution")
-    val requiredReviewThreadResolution: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("require_code_owner_review") val requireCodeOwnerReview: Boolean,
     /**
-     * Array of allowed merge methods. Allowed values include `merge`, `squash`, and `rebase`. At
-     * least one option must be enabled.
+     * Whether the most recent reviewable push must be approved by someone other than the person who pushed it.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("allowed_merge_methods")
-    val allowedMergeMethods: List<RepositoryRulePullRequestParametersAllowedMergeMethodsItemEnum>? =
-        null,
-    /** Specify people, teams, or apps allowed to dismiss pull request reviews. */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissal_restriction")
-    val dismissalRestriction: RepositoryRuleParamsDismissalRestriction? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("require_last_push_approval") val requireLastPushApproval: Boolean,
     /**
-     * > \[!NOTE\] > `required_reviewers` is in beta and subject to change. A collection of
-     * > reviewers and associated file patterns. Each reviewer has a list of file patterns which
-     * > determine the files that reviewer is required to review.
+     * The number of approving reviews that are required before a pull request can be merged.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_reviewers")
-    val requiredReviewers: List<RepositoryRuleParamsRequiredReviewerConfiguration>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("required_approving_review_count") val requiredApprovingReviewCount: Long,
+    /**
+     * All conversations on code must be resolved before a pull request can be merged.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("required_review_thread_resolution") val requiredReviewThreadResolution: Boolean,
+    /**
+     * Array of allowed merge methods. Allowed values include `merge`, `squash`, and `rebase`. At least one option must be enabled.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("allowed_merge_methods") val allowedMergeMethods: List<RepositoryRulePullRequestParametersAllowedMergeMethodsItemEnum>? = null,
+    /**
+     * Specify people, teams, or apps allowed to dismiss pull request reviews.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("dismissal_restriction") val dismissalRestriction: RepositoryRuleParamsDismissalRestriction? = null,
+    /**
+     * > \[!NOTE\] > `required_reviewers` is in beta and subject to change. A collection of reviewers and associated file patterns. Each reviewer has a list of file patterns which determine the files that reviewer is required to review.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("required_reviewers") val requiredReviewers: List<RepositoryRuleParamsRequiredReviewerConfiguration>? = null
 )
 
 /**
- * Require all commits be made to a non-target branch and submitted via a pull request before they
- * can be merged.
+ * Require all commits be made to a non-target branch and submitted via a pull request before they can be merged.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRulePullRequest(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRulePullRequestTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRulePullRequestParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRulePullRequestParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleRequiredDeploymentsParameters(
-    /** The environments that must be successfully deployed to before branches can be merged. */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_deployment_environments")
-    val requiredDeploymentEnvironments: List<String>
+    /**
+     * The environments that must be successfully deployed to before branches can be merged.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("required_deployment_environments") val requiredDeploymentEnvironments: List<String>
 )
 
 /**
- * Choose which environments must be successfully deployed to before refs can be pushed into a ref
- * that matches this rule.
+ * Choose which environments must be successfully deployed to before refs can be pushed into a ref that matches this rule.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleRequiredDeployments(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleRequiredDeploymentsTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleRequiredDeploymentsParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleRequiredDeploymentsParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Prevent merge commits from being pushed to matching refs. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Prevent merge commits from being pushed to matching refs.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleRequiredLinearHistory(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleRequiredLinearHistoryTypeEnum
 ) : RepositoryRule, OrgRules
 
-/** Commits pushed to matching refs must have verified signatures. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+/**
+ * Commits pushed to matching refs must have verified signatures.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleRequiredSignatures(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleRequiredSignaturesTypeEnum
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleRequiredStatusChecksParameters(
-    /** Status checks that are required. */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_status_checks")
-    val requiredStatusChecks: List<RepositoryRuleParamsStatusCheckConfiguration>,
     /**
-     * Whether pull requests targeting a matching branch must be tested with the latest code. This
-     * setting will not take effect unless at least one status check is enabled.
+     * Status checks that are required.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("strict_required_status_checks_policy")
-    val strictRequiredStatusChecksPolicy: Boolean,
-    /** Allow repositories and branches to be created if a check would otherwise prohibit it. */
-    @com.fasterxml.jackson.annotation.JsonProperty("do_not_enforce_on_create")
-    val doNotEnforceOnCreate: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("required_status_checks") val requiredStatusChecks: List<RepositoryRuleParamsStatusCheckConfiguration>,
+    /**
+     * Whether pull requests targeting a matching branch must be tested with the latest code. This setting will not take effect unless at least one status check is enabled.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("strict_required_status_checks_policy") val strictRequiredStatusChecksPolicy: Boolean,
+    /**
+     * Allow repositories and branches to be created if a check would otherwise prohibit it.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("do_not_enforce_on_create") val doNotEnforceOnCreate: Boolean? = null
 )
 
 /**
- * Choose which status checks must pass before the ref is updated. When enabled, commits must first
- * be pushed to another ref where the checks pass.
+ * Choose which status checks must pass before the ref is updated. When enabled, commits must first be pushed to another ref where the checks pass.
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleRequiredStatusChecks(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleRequiredStatusChecksTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleRequiredStatusChecksParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleRequiredStatusChecksParameters? = null
 ) : RepositoryRule, OrgRules
 
-/** Optional object value serialized in the `parameters` wire field. */
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
 data class RepositoryRuleTagNamePatternParameters(
-    /** The operator to use for matching. */
-    @com.fasterxml.jackson.annotation.JsonProperty("operator")
-    val `operator`: RepositoryRuleTagNamePatternParametersOperatorEnum,
-    /** The pattern to match with. */
+    /**
+     * The operator to use for matching.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("operator") val `operator`: RepositoryRuleTagNamePatternParametersOperatorEnum,
+    /**
+     * The pattern to match with.
+     */
     val pattern: String,
-    /** How this rule appears when configuring it. */
+    /**
+     * How this rule appears when configuring it.
+     */
     val name: String? = null,
-    /** If true, the rule will fail if the pattern matches. */
-    val negate: Boolean? = null,
-)
-
-/** Parameters to be used for the tag_name_pattern rule */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RepositoryRuleTagNamePattern(
-    /** Required enumerated value serialized in the `type` wire field. */
-    val type: RepositoryRuleTagNamePatternTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleTagNamePatternParameters? = null,
-) : RepositoryRule, OrgRules
-
-/** Optional object value serialized in the `parameters` wire field. */
-data class RepositoryRuleUpdateParameters(
-    /** Branch can pull changes from its upstream repository */
-    @com.fasterxml.jackson.annotation.JsonProperty("update_allows_fetch_and_merge")
-    val updateAllowsFetchAndMerge: Boolean
-)
-
-/** Only allow users with bypass permission to update matching refs. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class RepositoryRuleUpdate(
-    /** Required enumerated value serialized in the `type` wire field. */
-    val type: RepositoryRuleUpdateTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleUpdateParameters? = null,
-) : RepositoryRule, OrgRules
-
-/** Optional object value serialized in the `parameters` wire field. */
-data class RepositoryRuleWorkflowsParameters(
-    /** Workflows that must pass for this rule to pass. */
-    val workflows: List<RepositoryRuleParamsWorkflowFileReference>,
-    /** Allow repositories and branches to be created if a check would otherwise prohibit it. */
-    @com.fasterxml.jackson.annotation.JsonProperty("do_not_enforce_on_create")
-    val doNotEnforceOnCreate: Boolean? = null,
+    /**
+     * If true, the rule will fail if the pattern matches.
+     */
+    val negate: Boolean? = null
 )
 
 /**
- * Require all changes made to a targeted branch to pass the specified workflows before they can be
- * merged.
+ * Parameters to be used for the tag_name_pattern rule
  */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class RepositoryRuleTagNamePattern(
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
+    val type: RepositoryRuleTagNamePatternTypeEnum,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleTagNamePatternParameters? = null
+) : RepositoryRule, OrgRules
+
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
+data class RepositoryRuleUpdateParameters(
+    /**
+     * Branch can pull changes from its upstream repository
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("update_allows_fetch_and_merge") val updateAllowsFetchAndMerge: Boolean
 )
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+
+/**
+ * Only allow users with bypass permission to update matching refs.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class RepositoryRuleUpdate(
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
+    val type: RepositoryRuleUpdateTypeEnum,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleUpdateParameters? = null
+) : RepositoryRule, OrgRules
+
+/**
+ * Optional object value serialized in the `parameters` wire field.
+ */
+data class RepositoryRuleWorkflowsParameters(
+    /**
+     * Workflows that must pass for this rule to pass.
+     */
+    val workflows: List<RepositoryRuleParamsWorkflowFileReference>,
+    /**
+     * Allow repositories and branches to be created if a check would otherwise prohibit it.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("do_not_enforce_on_create") val doNotEnforceOnCreate: Boolean? = null
 )
+
+/**
+ * Require all changes made to a targeted branch to pass the specified workflows before they can be merged.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class RepositoryRuleWorkflows(
-    /** Required enumerated value serialized in the `type` wire field. */
+    /**
+     * Required enumerated value serialized in the `type` wire field.
+     */
     val type: RepositoryRuleWorkflowsTypeEnum,
-    /** Optional object value serialized in the `parameters` wire field. */
-    val parameters: RepositoryRuleWorkflowsParameters? = null,
+    /**
+     * Optional object value serialized in the `parameters` wire field.
+     */
+    val parameters: RepositoryRuleWorkflowsParameters? = null
 ) : RepositoryRule, OrgRules

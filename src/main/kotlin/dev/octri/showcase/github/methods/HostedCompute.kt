@@ -14,47 +14,30 @@ import dev.octri.showcase.github.Validation
 
 object HostedCompute {
 
-    data class HostedComputeListNetworkConfigurationsForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("network_configurations")
-        val networkConfigurations: List<NetworkConfiguration>,
-    )
+data class HostedComputeListNetworkConfigurationsForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("network_configurations") val networkConfigurations: List<NetworkConfiguration>
+)
+
 
     /**
-     * Lists all hosted compute network configurations configured in an organization. OAuth app
-     * tokens and personal access tokens (classic) need the `read:network_configurations` scope to
-     * use this endpoint.
+     * Lists all hosted compute network configurations configured in an organization. OAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun hostedComputeListNetworkConfigurationsForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): HostedComputeListNetworkConfigurationsForOrgResponse {
-        return SdkClient.request<HostedComputeListNetworkConfigurationsForOrgResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/settings/network-configurations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "hostedComputeListNetworkConfigurationsForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun hostedComputeListNetworkConfigurationsForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): HostedComputeListNetworkConfigurationsForOrgResponse {
+        return SdkClient.request<HostedComputeListNetworkConfigurationsForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/settings/network-configurations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "hostedComputeListNetworkConfigurationsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
 
     /** Parameters for [hostedComputeCreateNetworkConfigurationForOrg]. */
     data class HostedComputeCreateNetworkConfigurationForOrgRequest(
@@ -63,99 +46,66 @@ object HostedCompute {
         val networkSettingsIds: List<String>,
         val computeService: HostedComputeCreateNetworkConfigurationForOrgComputeServiceEnum? = null,
         val failoverNetworkSettingsIds: List<String>? = null,
-        val failoverNetworkEnabled: Boolean? = null,
+        val failoverNetworkEnabled: Boolean? = null
     )
 
     /**
-     * Creates a hosted compute network configuration for an organization. OAuth app tokens and
-     * personal access tokens (classic) need the `write:network_configurations` scope to use this
-     * endpoint.
+     * Creates a hosted compute network configuration for an organization. OAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param name Name of the network configuration. Must be between 1 and 100 characters and may
-     *   only contain upper and lowercase letters a-z, numbers 0-9, '.', '-', and '_'.
-     * @param networkSettingsIds A list of identifiers of the network settings resources to use for
-     *   the network configuration. Exactly one resource identifier must be specified in the list.
-     * @param computeService The hosted compute service to use for the network configuration.
-     * @param failoverNetworkSettingsIds A list of identifiers of the failover network settings
-     *   resources to use for the network configuration. Exactly one resource identifier must be
-     *   specified in the list.
-     * @param failoverNetworkEnabled Indicates whether the failover network resource is enabled.
+     * @param name Name of the network configuration. Must be between 1 and 100
+     *   characters and may only contain upper and lowercase letters a-z, numbers 0-9,
+     *   '.', '-', and '_'.
+     * @param networkSettingsIds A list of identifiers of the network settings
+     *   resources to use for the network configuration. Exactly one resource
+     *   identifier must be specified in the list.
+     * @param computeService The hosted compute service to use for the network
+     *   configuration.
+     * @param failoverNetworkSettingsIds A list of identifiers of the failover
+     *   network settings resources to use for the network configuration. Exactly one
+     *   resource identifier must be specified in the list.
+     * @param failoverNetworkEnabled Indicates whether the failover network resource
+     *   is enabled.
      */
-    fun hostedComputeCreateNetworkConfigurationForOrg(
-        clientConfig: ClientConfig,
-        request: HostedComputeCreateNetworkConfigurationForOrgRequest,
-        options: RequestOptions? = null,
-    ): NetworkConfiguration {
+    fun hostedComputeCreateNetworkConfigurationForOrg(clientConfig: ClientConfig, request: HostedComputeCreateNetworkConfigurationForOrgRequest, options: RequestOptions? = null): NetworkConfiguration {
         validateHostedComputeCreateNetworkConfigurationForOrgRequest(request)
 
-        return SdkClient.request<NetworkConfiguration>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/settings/network-configurations",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (request.name),
-                            "network_settings_ids" to (request.networkSettingsIds),
-                            "compute_service" to (SdkClient.omitIfNull(request.computeService)),
-                            "failover_network_settings_ids" to
-                                (SdkClient.omitIfNull(request.failoverNetworkSettingsIds)),
-                            "failover_network_enabled" to
-                                (SdkClient.omitIfNull(request.failoverNetworkEnabled)),
-                        ),
-                    operationId = "hostedComputeCreateNetworkConfigurationForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<NetworkConfiguration>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/settings/network-configurations", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "network_settings_ids" to (request.networkSettingsIds), "compute_service" to
+    (SdkClient.omitIfNull(request.computeService)), "failover_network_settings_ids" to
+    (SdkClient.omitIfNull(request.failoverNetworkSettingsIds)), "failover_network_enabled" to
+    (SdkClient.omitIfNull(request.failoverNetworkEnabled))), operationId = "hostedComputeCreateNetworkConfigurationForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateHostedComputeCreateNetworkConfigurationForOrgRequest(
-        request: HostedComputeCreateNetworkConfigurationForOrgRequest
-    ) {
-        Validation.validateItems(
-            "network_settings_ids",
-            request.networkSettingsIds,
-            Validation.LengthOpts(min = 1, max = 1),
-        )
+
+    private fun validateHostedComputeCreateNetworkConfigurationForOrgRequest(request: HostedComputeCreateNetworkConfigurationForOrgRequest) {
+        Validation.validateItems("network_settings_ids", request.networkSettingsIds, Validation.LengthOpts(min = 1, max = 1))
 
         if (request.failoverNetworkSettingsIds != null) {
-            Validation.validateItems(
-                "failover_network_settings_ids",
-                request.failoverNetworkSettingsIds,
-                Validation.LengthOpts(min = 0, max = 1),
-            )
-        }
+            Validation.validateItems("failover_network_settings_ids", request.failoverNetworkSettingsIds, Validation.LengthOpts(min = 0, max = 1))
+}
     }
 
+
+
+
+
+
     /**
-     * Gets a hosted compute network configuration configured in an organization. OAuth app tokens
-     * and personal access tokens (classic) need the `read:network_configurations` scope to use this
-     * endpoint.
+     * Gets a hosted compute network configuration configured in an organization. OAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param networkConfigurationId Unique identifier of the hosted compute network configuration.
+     * @param networkConfigurationId Unique identifier of the hosted compute network
+     *   configuration.
      */
-    fun hostedComputeGetNetworkConfigurationForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        networkConfigurationId: String,
-        options: RequestOptions? = null,
-    ): NetworkConfiguration {
-        return SdkClient.request<NetworkConfiguration>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/settings/network-configurations/${SdkClient.encodePathSegment(networkConfigurationId)}",
-                    config = clientConfig,
-                    operationId = "hostedComputeGetNetworkConfigurationForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun hostedComputeGetNetworkConfigurationForOrg(clientConfig: ClientConfig, org: String, networkConfigurationId: String, options: RequestOptions? = null): NetworkConfiguration {
+        return SdkClient.request<NetworkConfiguration>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/settings/network-configurations/${SdkClient.encodePathSegment(networkConfigurationId)}", config = clientConfig, operationId = "hostedComputeGetNetworkConfigurationForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
+
+
+
+
+
+
 
     /** Parameters for [hostedComputeUpdateNetworkConfigurationForOrg]. */
     data class HostedComputeUpdateNetworkConfigurationForOrgRequest(
@@ -165,127 +115,87 @@ object HostedCompute {
         val computeService: HostedComputeUpdateNetworkConfigurationForOrgComputeServiceEnum? = null,
         val networkSettingsIds: List<String>? = null,
         val failoverNetworkSettingsIds: List<String>? = null,
-        val failoverNetworkEnabled: Boolean? = null,
+        val failoverNetworkEnabled: Boolean? = null
     )
 
     /**
-     * Updates a hosted compute network configuration for an organization. OAuth app tokens and
-     * personal access tokens (classic) need the `write:network_configurations` scope to use this
-     * endpoint.
+     * Updates a hosted compute network configuration for an organization. OAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param networkConfigurationId Unique identifier of the hosted compute network configuration.
-     * @param name Name of the network configuration. Must be between 1 and 100 characters and may
-     *   only contain upper and lowercase letters a-z, numbers 0-9, '.', '-', and '_'.
-     * @param computeService The hosted compute service to use for the network configuration.
-     * @param networkSettingsIds A list of identifiers of the network settings resources to use for
-     *   the network configuration. Exactly one resource identifier must be specified in the list.
-     * @param failoverNetworkSettingsIds A list of identifiers of the failover network settings
-     *   resources to use for the network configuration. Exactly one resource identifier must be
-     *   specified in the list.
-     * @param failoverNetworkEnabled Indicates whether the failover network resource is enabled.
+     * @param networkConfigurationId Unique identifier of the hosted compute network
+     *   configuration.
+     * @param name Name of the network configuration. Must be between 1 and 100
+     *   characters and may only contain upper and lowercase letters a-z, numbers 0-9,
+     *   '.', '-', and '_'.
+     * @param computeService The hosted compute service to use for the network
+     *   configuration.
+     * @param networkSettingsIds A list of identifiers of the network settings
+     *   resources to use for the network configuration. Exactly one resource
+     *   identifier must be specified in the list.
+     * @param failoverNetworkSettingsIds A list of identifiers of the failover
+     *   network settings resources to use for the network configuration. Exactly one
+     *   resource identifier must be specified in the list.
+     * @param failoverNetworkEnabled Indicates whether the failover network resource
+     *   is enabled.
      */
-    fun hostedComputeUpdateNetworkConfigurationForOrg(
-        clientConfig: ClientConfig,
-        request: HostedComputeUpdateNetworkConfigurationForOrgRequest,
-        options: RequestOptions? = null,
-    ): NetworkConfiguration {
+    fun hostedComputeUpdateNetworkConfigurationForOrg(clientConfig: ClientConfig, request: HostedComputeUpdateNetworkConfigurationForOrgRequest, options: RequestOptions? = null): NetworkConfiguration {
         validateHostedComputeUpdateNetworkConfigurationForOrgRequest(request)
 
-        return SdkClient.request<NetworkConfiguration>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/settings/network-configurations/${SdkClient.encodePathSegment(request.networkConfigurationId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                            "compute_service" to (SdkClient.omitIfNull(request.computeService)),
-                            "network_settings_ids" to
-                                (SdkClient.omitIfNull(request.networkSettingsIds)),
-                            "failover_network_settings_ids" to
-                                (SdkClient.omitIfNull(request.failoverNetworkSettingsIds)),
-                            "failover_network_enabled" to
-                                (SdkClient.omitIfNull(request.failoverNetworkEnabled)),
-                        ),
-                    operationId = "hostedComputeUpdateNetworkConfigurationForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<NetworkConfiguration>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}/settings/network-configurations/${SdkClient.encodePathSegment(request.networkConfigurationId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "compute_service" to
+    (SdkClient.omitIfNull(request.computeService)), "network_settings_ids" to
+    (SdkClient.omitIfNull(request.networkSettingsIds)), "failover_network_settings_ids" to
+    (SdkClient.omitIfNull(request.failoverNetworkSettingsIds)), "failover_network_enabled" to
+    (SdkClient.omitIfNull(request.failoverNetworkEnabled))), operationId = "hostedComputeUpdateNetworkConfigurationForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
-    private fun validateHostedComputeUpdateNetworkConfigurationForOrgRequest(
-        request: HostedComputeUpdateNetworkConfigurationForOrgRequest
-    ) {
+
+    private fun validateHostedComputeUpdateNetworkConfigurationForOrgRequest(request: HostedComputeUpdateNetworkConfigurationForOrgRequest) {
         if (request.networkSettingsIds != null) {
-            Validation.validateItems(
-                "network_settings_ids",
-                request.networkSettingsIds,
-                Validation.LengthOpts(min = 0, max = 1),
-            )
-        }
+            Validation.validateItems("network_settings_ids", request.networkSettingsIds, Validation.LengthOpts(min = 0, max = 1))
+}
 
         if (request.failoverNetworkSettingsIds != null) {
-            Validation.validateItems(
-                "failover_network_settings_ids",
-                request.failoverNetworkSettingsIds,
-                Validation.LengthOpts(min = 0, max = 1),
-            )
-        }
+            Validation.validateItems("failover_network_settings_ids", request.failoverNetworkSettingsIds, Validation.LengthOpts(min = 0, max = 1))
+}
     }
 
-    /**
-     * Deletes a hosted compute network configuration from an organization. OAuth app tokens and
-     * personal access tokens (classic) need the `write:network_configurations` scope to use this
-     * endpoint.
-     *
-     * @param org The organization name. The name is not case sensitive.
-     * @param networkConfigurationId Unique identifier of the hosted compute network configuration.
-     */
-    fun hostedComputeDeleteNetworkConfigurationFromOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        networkConfigurationId: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/settings/network-configurations/${SdkClient.encodePathSegment(networkConfigurationId)}",
-                config = clientConfig,
-                operationId = "hostedComputeDeleteNetworkConfigurationFromOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
-    }
+
+
+
+
 
     /**
-     * Gets a hosted compute network settings resource configured for an organization. OAuth app
-     * tokens and personal access tokens (classic) need the `read:network_configurations` scope to
-     * use this endpoint.
+     * Deletes a hosted compute network configuration from an organization. OAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param networkSettingsId Unique identifier of the hosted compute network settings.
+     * @param networkConfigurationId Unique identifier of the hosted compute network
+     *   configuration.
      */
-    fun hostedComputeGetNetworkSettingsForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        networkSettingsId: String,
-        options: RequestOptions? = null,
-    ): NetworkSettings {
-        return SdkClient.request<NetworkSettings>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/settings/network-settings/${SdkClient.encodePathSegment(networkSettingsId)}",
-                    config = clientConfig,
-                    operationId = "hostedComputeGetNetworkSettingsForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun hostedComputeDeleteNetworkConfigurationFromOrg(clientConfig: ClientConfig, org: String, networkConfigurationId: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/settings/network-configurations/${SdkClient.encodePathSegment(networkConfigurationId)}", config = clientConfig, operationId = "hostedComputeDeleteNetworkConfigurationFromOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
+
+
+
+
+
+
+
+    /**
+     * Gets a hosted compute network settings resource configured for an organization. OAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint.
+     *
+     * @param org The organization name. The name is not case sensitive.
+     * @param networkSettingsId Unique identifier of the hosted compute network
+     *   settings.
+     */
+    fun hostedComputeGetNetworkSettingsForOrg(clientConfig: ClientConfig, org: String, networkSettingsId: String, options: RequestOptions? = null): NetworkSettings {
+        return SdkClient.request<NetworkSettings>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/settings/network-settings/${SdkClient.encodePathSegment(networkSettingsId)}", config = clientConfig, operationId = "hostedComputeGetNetworkSettingsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    }
+
+
+
+
+
+
+
 }

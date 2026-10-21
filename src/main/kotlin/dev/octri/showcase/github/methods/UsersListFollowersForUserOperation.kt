@@ -10,39 +10,15 @@ import dev.octri.showcase.github.SimpleUser
 
 internal object UsersListFollowersForUserOperation {
     /**
-     * Lists the people following the specified user. If the specified user has a private profile,
-     * this endpoint returns an empty list unless the request is authenticated as that user. A
-     * request authenticated as the specified user returns the list even if the token has no OAuth
-     * scopes.
+     * Lists the people following the specified user. If the specified user has a private profile, this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns the list even if the token has no OAuth scopes.
      *
      * @param username The handle for the GitHub user account.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun usersListFollowersForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/followers",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "usersListFollowersForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun usersListFollowersForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/followers", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "usersListFollowersForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }

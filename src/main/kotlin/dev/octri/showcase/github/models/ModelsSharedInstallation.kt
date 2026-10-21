@@ -5,64 +5,100 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Installation */
+/**
+ * Installation
+ */
 data class Installation(
-    /** The ID of the installation. */
+    /**
+     * The ID of the installation.
+     */
     val id: Long,
-    /** Required API value serialized in the `account` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("account", required = true)
-    val account: InstallationAccount?,
-    /** Describe whether all repositories have been selected or there's a selection involved */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_selection")
-    val repositorySelection: InstallationRepositorySelectionEnum,
-    /** Required `uri`-formatted value serialized in the `access_tokens_url` wire field. */
+    /**
+     * Required API value serialized in the `account` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("account", required = true) val account: InstallationAccount?,
+    /**
+     * Describe whether all repositories have been selected or there's a selection involved
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_selection") val repositorySelection: InstallationRepositorySelectionEnum,
+    /**
+     * Required `uri`-formatted value serialized in the `access_tokens_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("access_tokens_url") val accessTokensUrl: String,
-    /** Required `uri`-formatted value serialized in the `repositories_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `repositories_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Required `integer` value serialized in the `app_id` wire field. */
+    /**
+     * Required `integer` value serialized in the `app_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("app_id") val appId: Long,
-    /** The ID of the user or organization this token is being scoped to. */
+    /**
+     * The ID of the user or organization this token is being scoped to.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("target_id") val targetId: Long,
-    /** Required `string` value serialized in the `target_type` wire field. */
+    /**
+     * Required `string` value serialized in the `target_type` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("target_type") val targetType: String,
-    /** The permissions granted to the fine-grained access token. */
+    /**
+     * The permissions granted to the fine-grained access token.
+     */
     val permissions: AppPermissions,
-    /** Required array value serialized in the `events` wire field. */
+    /**
+     * Required array value serialized in the `events` wire field.
+     */
     val events: List<String>,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Required `string` value serialized in the `single_file_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("single_file_name", required = true)
-    val singleFileName: String?,
-    /** Required `string` value serialized in the `app_slug` wire field. */
+    /**
+     * Required `string` value serialized in the `single_file_name` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("single_file_name", required = true) val singleFileName: String?,
+    /**
+     * Required `string` value serialized in the `app_slug` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("app_slug") val appSlug: String,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("suspended_by", required = true)
-    val suspendedBy: NullableSimpleUser?,
-    /** Required `date-time`-formatted value serialized in the `suspended_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("suspended_at", required = true)
-    val suspendedAt: OffsetDateTime?,
-    /** Optional `string` value serialized in the `client_id` wire field. */
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("suspended_by", required = true) val suspendedBy: NullableSimpleUser?,
+    /**
+     * Required `date-time`-formatted value serialized in the `suspended_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("suspended_at", required = true) val suspendedAt: OffsetDateTime?,
+    /**
+     * Optional `string` value serialized in the `client_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("client_id") val clientId: String? = null,
-    /** Optional `boolean` value serialized in the `has_multiple_single_files` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_multiple_single_files")
-    val hasMultipleSingleFiles: Boolean? = null,
-    /** Optional array value serialized in the `single_file_paths` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("single_file_paths")
-    val singleFilePaths: List<String>? = null,
-    /** Optional `string` value serialized in the `contact_email` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("contact_email")
-    val contactEmail: String? = null,
+    /**
+     * Optional `boolean` value serialized in the `has_multiple_single_files` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_multiple_single_files") val hasMultipleSingleFiles: Boolean? = null,
+    /**
+     * Optional array value serialized in the `single_file_paths` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("single_file_paths") val singleFilePaths: List<String>? = null,
+    /**
+     * Optional `string` value serialized in the `contact_email` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("contact_email") val contactEmail: String? = null
 )
 
-/** Required API value serialized in the `account` wire field. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = InstallationAccount.Deserializer::class
-)
+/**
+ * Required API value serialized in the `account` wire field.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = InstallationAccount.Deserializer::class)
 sealed interface InstallationAccount {
     /** Chooses the branch this payload is shaped like. */
     class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<InstallationAccount>() {
@@ -72,9 +108,7 @@ sealed interface InstallationAccount {
         ): InstallationAccount {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
-            val ownedType =
-                InstallationAccountOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }
-                    ?.second
+            val ownedType = InstallationAccountOwnedTypes.firstOrNull { (keys, _) -> keys.any(node::has) }?.second
             if (ownedType != null) {
                 try {
                     return mapper.convertValue(node, ownedType)
@@ -82,45 +116,17 @@ sealed interface InstallationAccount {
                     // Tried with the other branches below.
                 }
             }
-            val objectTypes: List<Class<out InstallationAccount>> =
-                listOf(SimpleUser::class.java, Enterprise::class.java)
-            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let {
-                return it
-            }
+            val objectTypes: List<Class<out InstallationAccount>> = listOf(SimpleUser::class.java, Enterprise::class.java)
+            dev.octri.showcase.github.sdkObjectBranch(mapper, node, objectTypes)?.let { return it }
             return when {
-                else ->
-                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                        parser,
-                        InstallationAccount::class.java,
-                        "no InstallationAccount branch accepts this payload",
-                    )
+                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                    parser, InstallationAccount::class.java, "no InstallationAccount branch accepts this payload")
             }
         }
     }
 }
 
-internal val InstallationAccountOwnedTypes:
-    List<Pair<List<String>, Class<out InstallationAccount>>> =
-    listOf(
-        listOf(
-            "email",
-            "login",
-            "gravatar_id",
-            "url",
-            "followers_url",
-            "following_url",
-            "gists_url",
-            "starred_url",
-            "subscriptions_url",
-            "organizations_url",
-            "repos_url",
-            "events_url",
-            "received_events_url",
-            "type",
-            "site_admin",
-            "starred_at",
-            "user_view_type",
-        ) to SimpleUser::class.java,
-        listOf("description", "website_url", "slug", "created_at", "updated_at") to
-            Enterprise::class.java,
-    )
+internal val InstallationAccountOwnedTypes: List<Pair<List<String>, Class<out InstallationAccount>>> = listOf(
+    listOf("email", "login", "gravatar_id", "url", "followers_url", "following_url", "gists_url", "starred_url", "subscriptions_url", "organizations_url", "repos_url", "events_url", "received_events_url", "type", "site_admin", "starred_at", "user_view_type") to SimpleUser::class.java,
+    listOf("description", "website_url", "slug", "created_at", "updated_at") to Enterprise::class.java,
+)

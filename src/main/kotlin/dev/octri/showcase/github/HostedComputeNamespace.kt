@@ -3,99 +3,48 @@
 
 package dev.octri.showcase.github
 
+
 class HostedComputeNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists all hosted compute network configurations configured in an organization. OAuth app
-     * tokens and personal access tokens (classic) need the `read:network_configurations` scope to
-     * use this endpoint.
+     * Lists all hosted compute network configurations configured in an organization. OAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint.
      */
-    fun listNetworkConfigurationsForOrg(
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.HostedCompute.HostedComputeListNetworkConfigurationsForOrgResponse {
-        return dev.octri.showcase.github.methods.HostedCompute
-            .hostedComputeListNetworkConfigurationsForOrg(clientConfig, org, perPage, page, options)
+    fun listNetworkConfigurationsForOrg(org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.HostedCompute.HostedComputeListNetworkConfigurationsForOrgResponse {
+        return dev.octri.showcase.github.methods.HostedCompute.hostedComputeListNetworkConfigurationsForOrg(clientConfig, org, perPage, page, options)
     }
 
     /**
-     * Creates a hosted compute network configuration for an organization. OAuth app tokens and
-     * personal access tokens (classic) need the `write:network_configurations` scope to use this
-     * endpoint.
+     * Creates a hosted compute network configuration for an organization. OAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint.
      */
-    fun createNetworkConfigurationForOrg(
-        request:
-            dev.octri.showcase.github.methods.HostedCompute.HostedComputeCreateNetworkConfigurationForOrgRequest,
-        options: RequestOptions? = null,
-    ): NetworkConfiguration {
-        return dev.octri.showcase.github.methods.HostedCompute
-            .hostedComputeCreateNetworkConfigurationForOrg(clientConfig, request, options)
+    fun createNetworkConfigurationForOrg(request: dev.octri.showcase.github.methods.HostedCompute.HostedComputeCreateNetworkConfigurationForOrgRequest, options: RequestOptions? = null): NetworkConfiguration {
+        return dev.octri.showcase.github.methods.HostedCompute.hostedComputeCreateNetworkConfigurationForOrg(clientConfig, request, options)
     }
 
     /**
-     * Gets a hosted compute network configuration configured in an organization. OAuth app tokens
-     * and personal access tokens (classic) need the `read:network_configurations` scope to use this
-     * endpoint.
+     * Gets a hosted compute network configuration configured in an organization. OAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint.
      */
-    fun getNetworkConfigurationForOrg(
-        org: String,
-        networkConfigurationId: String,
-        options: RequestOptions? = null,
-    ): NetworkConfiguration {
-        return dev.octri.showcase.github.methods.HostedCompute
-            .hostedComputeGetNetworkConfigurationForOrg(
-                clientConfig,
-                org,
-                networkConfigurationId,
-                options,
-            )
+    fun getNetworkConfigurationForOrg(org: String, networkConfigurationId: String, options: RequestOptions? = null): NetworkConfiguration {
+        return dev.octri.showcase.github.methods.HostedCompute.hostedComputeGetNetworkConfigurationForOrg(clientConfig, org, networkConfigurationId, options)
     }
 
     /**
-     * Updates a hosted compute network configuration for an organization. OAuth app tokens and
-     * personal access tokens (classic) need the `write:network_configurations` scope to use this
-     * endpoint.
+     * Updates a hosted compute network configuration for an organization. OAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint.
      */
-    fun updateNetworkConfigurationForOrg(
-        request:
-            dev.octri.showcase.github.methods.HostedCompute.HostedComputeUpdateNetworkConfigurationForOrgRequest,
-        options: RequestOptions? = null,
-    ): NetworkConfiguration {
-        return dev.octri.showcase.github.methods.HostedCompute
-            .hostedComputeUpdateNetworkConfigurationForOrg(clientConfig, request, options)
+    fun updateNetworkConfigurationForOrg(request: dev.octri.showcase.github.methods.HostedCompute.HostedComputeUpdateNetworkConfigurationForOrgRequest, options: RequestOptions? = null): NetworkConfiguration {
+        return dev.octri.showcase.github.methods.HostedCompute.hostedComputeUpdateNetworkConfigurationForOrg(clientConfig, request, options)
     }
 
     /**
-     * Deletes a hosted compute network configuration from an organization. OAuth app tokens and
-     * personal access tokens (classic) need the `write:network_configurations` scope to use this
-     * endpoint.
+     * Deletes a hosted compute network configuration from an organization. OAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint.
      */
-    fun deleteNetworkConfigurationFromOrg(
-        org: String,
-        networkConfigurationId: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.HostedCompute
-            .hostedComputeDeleteNetworkConfigurationFromOrg(
-                clientConfig,
-                org,
-                networkConfigurationId,
-                options,
-            )
+    fun deleteNetworkConfigurationFromOrg(org: String, networkConfigurationId: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.HostedCompute.hostedComputeDeleteNetworkConfigurationFromOrg(clientConfig, org, networkConfigurationId, options)
     }
 
     /**
-     * Gets a hosted compute network settings resource configured for an organization. OAuth app
-     * tokens and personal access tokens (classic) need the `read:network_configurations` scope to
-     * use this endpoint.
+     * Gets a hosted compute network settings resource configured for an organization. OAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint.
      */
-    fun getNetworkSettingsForOrg(
-        org: String,
-        networkSettingsId: String,
-        options: RequestOptions? = null,
-    ): NetworkSettings {
-        return dev.octri.showcase.github.methods.HostedCompute
-            .hostedComputeGetNetworkSettingsForOrg(clientConfig, org, networkSettingsId, options)
+    fun getNetworkSettingsForOrg(org: String, networkSettingsId: String, options: RequestOptions? = null): NetworkSettings {
+        return dev.octri.showcase.github.methods.HostedCompute.hostedComputeGetNetworkSettingsForOrg(clientConfig, org, networkSettingsId, options)
     }
+
 }

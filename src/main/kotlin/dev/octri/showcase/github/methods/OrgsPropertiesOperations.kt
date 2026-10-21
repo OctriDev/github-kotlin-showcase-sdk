@@ -8,8 +8,8 @@ import dev.octri.showcase.github.ClientConfig
 import dev.octri.showcase.github.CustomProperty
 import dev.octri.showcase.github.CustomPropertyValue
 import dev.octri.showcase.github.ExternalProperty
-import dev.octri.showcase.github.OrgRepoCustomPropertyValues
 import dev.octri.showcase.github.OrganizationExternalPropertyInstallation
+import dev.octri.showcase.github.OrgRepoCustomPropertyValues
 import dev.octri.showcase.github.RepositoryExternalPropertyPayload
 import dev.octri.showcase.github.RequestOptions
 import dev.octri.showcase.github.SdkClient
@@ -18,371 +18,134 @@ import dev.octri.showcase.github.ValidationError
 
 internal object OrgsExternalPropertiesForReposGetOrganizationAppInstallationsOperation {
     /**
-     * Gets the registered GitHub App installations used to read and write external custom
-     * properties for an organization. A GitHub App installation token will only be able to see its
-     * own registration info, whereas an authenticated user will be able to see all registrations
-     * for the organization. To use this endpoint, the authenticated caller must have the
-     * `organization_external_properties_for_repos:admin` permission.
+     * Gets the registered GitHub App installations used to read and write external custom properties for an organization. A GitHub App installation token will only be able to see its own registration info, whereas an authenticated user will be able to see all registrations for the organization. To use this endpoint, the authenticated caller must have the `organization_external_properties_for_repos:admin` permission.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsExternalPropertiesForReposGetOrganizationAppInstallations(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): List<OrganizationExternalPropertyInstallation> {
-        return SdkClient.request<List<OrganizationExternalPropertyInstallation>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations",
-                    config = clientConfig,
-                    operationId = "orgsExternalPropertiesForReposGetOrganizationAppInstallations",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsExternalPropertiesForReposGetOrganizationAppInstallations(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<OrganizationExternalPropertyInstallation> {
+        return SdkClient.request<List<OrganizationExternalPropertyInstallation>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations", config = clientConfig, operationId = "orgsExternalPropertiesForReposGetOrganizationAppInstallations", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsExternalPropertiesForReposRegisterOrganizationAppInstallaX1b13dd8929 {
     /**
-     * Registers a GitHub App installation so it can read and write external custom properties for
-     * an organization, and assigns it a display name. The display name must be 1 to 15 characters
-     * and contain only letters and numbers. Capitalization is preserved as entered. An app
-     * installation can only be registered once, and its display name can't be changed afterward.
-     * Calling with an app installation that has already been registered returns a `422` response
-     * with an `already_exists`…
+     * Registers a GitHub App installation so it can read and write external custom properties for an organization, and assigns it a display name. The display name must be 1 to 15 characters and contain only letters and numbers. Capitalization is preserved as entered. An app installation can only be registered once, and its display name can't be changed afterward. Calling with an app installation that has already been registered returns a `422` response with an `already_exists`…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param displayName The display name for this app installation's external custom properties in
-     *   the organization. Must be 1 to 15 characters and contain only letters and numbers.
-     *   Capitalization is preserved as entered. This can't be changed after the app installation is
-     *   registered.
-     * @param installationId The unique identifier of the GitHub App installation to register for
-     *   managing external custom properties. When authenticating as a GitHub App installation, this
-     *   defaults to the authenticated installation and can be omitted. It is required for all other
-     *   callers (users and fine-grained personal access tokens).
+     * @param displayName The display name for this app installation's external
+     *   custom properties in the organization. Must be 1 to 15 characters and contain
+     *   only letters and numbers. Capitalization is preserved as entered. This can't
+     *   be changed after the app installation is registered.
+     * @param installationId The unique identifier of the GitHub App installation to
+     *   register for managing external custom properties. When authenticating as a
+     *   GitHub App installation, this defaults to the authenticated installation and
+     *   can be omitted. It is required for all other callers (users and fine-grained
+     *   personal access tokens).
      */
-    fun orgsExternalPropertiesForReposRegisterOrganizationAppInstallation(
-        clientConfig: ClientConfig,
-        org: String,
-        displayName: String,
-        installationId: Long? = null,
-        options: RequestOptions? = null,
-    ): OrganizationExternalPropertyInstallation {
-        Validation.validateLength(
-            "display_name",
-            displayName,
-            Validation.LengthOpts(min = 1, max = 15),
-        )
+    fun orgsExternalPropertiesForReposRegisterOrganizationAppInstallation(clientConfig: ClientConfig, org: String, displayName: String, installationId: Long? = null, options: RequestOptions? = null): OrganizationExternalPropertyInstallation {
+        Validation.validateLength("display_name", displayName, Validation.LengthOpts(min = 1, max = 15))
         Validation.validatePattern("display_name", displayName, "^[a-zA-Z0-9]+$")
 
-        return SdkClient.request<OrganizationExternalPropertyInstallation>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "display_name" to (displayName),
-                            "installation_id" to (SdkClient.omitIfNull(installationId)),
-                        ),
-                    operationId =
-                        "orgsExternalPropertiesForReposRegisterOrganizationAppInstallation",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<OrganizationExternalPropertyInstallation>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations", config = clientConfig, body = SdkClient.bodyMap("display_name" to (displayName), "installation_id" to (SdkClient.omitIfNull(installationId))), operationId = "orgsExternalPropertiesForReposRegisterOrganizationAppInstallation", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsExternalPropertiesForReposGetOrganizationDefinitionsOperation {
     /**
-     * Gets all external custom properties defined for the authenticated GitHub App installation on
-     * an organization. To use this endpoint, the authenticated GitHub App must have the
-     * `organization_external_properties_for_repos:read` permission.
+     * Gets all external custom properties defined for the authenticated GitHub App installation on an organization. To use this endpoint, the authenticated GitHub App must have the `organization_external_properties_for_repos:read` permission.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsExternalPropertiesForReposGetOrganizationDefinitions(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): List<ExternalProperty> {
-        return SdkClient.request<List<ExternalProperty>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations/schema",
-                    config = clientConfig,
-                    operationId = "orgsExternalPropertiesForReposGetOrganizationDefinitions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun orgsExternalPropertiesForReposGetOrganizationDefinitions(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<ExternalProperty> {
+        return SdkClient.request<List<ExternalProperty>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations/schema", config = clientConfig, operationId = "orgsExternalPropertiesForReposGetOrganizationDefinitions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object OrgsExternalPropertiesForReposCreateOrUpdateOrganizationValuesOperation {
     /**
-     * Create new or update existing external custom property values for repositories in a batch
-     * that belong to an organization. Each target repository will have its external custom property
-     * values updated to match the values provided in the request. A maximum of 30 repositories can
-     * be updated in a single request. Using a value of `null` for an external custom property will
-     * remove or 'unset' the property value from the repository. To use this endpoint, the
-     * authenticated GitHub App…
+     * Create new or update existing external custom property values for repositories in a batch that belong to an organization. Each target repository will have its external custom property values updated to match the values provided in the request. A maximum of 30 repositories can be updated in a single request. Using a value of `null` for an external custom property will remove or 'unset' the property value from the repository. To use this endpoint, the authenticated GitHub App…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param repositoryNames The names of repositories that the external custom property values
-     *   will be applied to.
-     * @param properties List of external custom property names and associated values to apply to
-     *   the repositories.
+     * @param repositoryNames The names of repositories that the external custom
+     *   property values will be applied to.
+     * @param properties List of external custom property names and associated values
+     *   to apply to the repositories.
      */
-    fun orgsExternalPropertiesForReposCreateOrUpdateOrganizationValues(
-        clientConfig: ClientConfig,
-        org: String,
-        repositoryNames: List<String>,
-        properties: List<CustomPropertyValue>,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateItems(
-            "repository_names",
-            repositoryNames,
-            Validation.LengthOpts(min = 1, max = 30),
-        )
+    fun orgsExternalPropertiesForReposCreateOrUpdateOrganizationValues(clientConfig: ClientConfig, org: String, repositoryNames: List<String>, properties: List<CustomPropertyValue>, options: RequestOptions? = null): Unit {
+        Validation.validateItems("repository_names", repositoryNames, Validation.LengthOpts(min = 1, max = 30))
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PATCH",
-                "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations/values",
-                config = clientConfig,
-                body =
-                    SdkClient.bodyMap(
-                        "repository_names" to (repositoryNames),
-                        "properties" to (properties),
-                    ),
-                operationId = "orgsExternalPropertiesForReposCreateOrUpdateOrganizationValues",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                    ),
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations/values", config = clientConfig, body = SdkClient.bodyMap("repository_names" to (repositoryNames), "properties" to (properties)), operationId = "orgsExternalPropertiesForReposCreateOrUpdateOrganizationValues", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
     }
 }
 
 internal object OrgsExternalPropertiesForReposCreateOrUpdateValuesForOrganizaXa3e5e30083 {
     /**
-     * Create new or update existing external custom property values for a single named property
-     * across repositories that belong to an organization. Up to 100 repository values can be
-     * updated in a single request. Repositories not included in the request are left unchanged.
-     * Using a value of `null` for a repository will remove or 'unset' the property value for that
-     * repository. A request that only contains `null` values for a property that does not yet exist
-     * is a no-op. To use this…
+     * Create new or update existing external custom property values for a single named property across repositories that belong to an organization. Up to 100 repository values can be updated in a single request. Repositories not included in the request are left unchanged. Using a value of `null` for a repository will remove or 'unset' the property value for that repository. A request that only contains `null` values for a property that does not yet exist is a no-op. To use this…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param propertyName The name of the external custom property
-     * @param repositoryValues The names of repositories and the values that the named external
-     *   custom property will be set to.
+     * @param repositoryValues The names of repositories and the values that the
+     *   named external custom property will be set to.
      */
-    fun orgsExternalPropertiesForReposCreateOrUpdateValuesForOrganizationProperty(
-        clientConfig: ClientConfig,
-        org: String,
-        propertyName: String,
-        repositoryValues: List<RepositoryExternalPropertyPayload>,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateItems(
-            "repository_values",
-            repositoryValues,
-            Validation.LengthOpts(min = 1, max = 100),
-        )
+    fun orgsExternalPropertiesForReposCreateOrUpdateValuesForOrganizationProperty(clientConfig: ClientConfig, org: String, propertyName: String, repositoryValues: List<RepositoryExternalPropertyPayload>, options: RequestOptions? = null): Unit {
+        Validation.validateItems("repository_values", repositoryValues, Validation.LengthOpts(min = 1, max = 100))
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PATCH",
-                "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations/values/${SdkClient.encodePathSegment(propertyName)}",
-                config = clientConfig,
-                body = SdkClient.bodyMap("repository_values" to (repositoryValues)),
-                operationId =
-                    "orgsExternalPropertiesForReposCreateOrUpdateValuesForOrganizationProperty",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                    ),
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations/values/${SdkClient.encodePathSegment(propertyName)}", config = clientConfig, body = SdkClient.bodyMap("repository_values" to (repositoryValues)), operationId = "orgsExternalPropertiesForReposCreateOrUpdateValuesForOrganizationProperty", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
     }
 }
 
 internal object OrgsExternalPropertiesForReposDeleteOrganizationValuesOperation {
     /**
-     * Removes all external custom property values for a specified property name across all
-     * repositories that belong to an organization. To use this endpoint, the authenticated GitHub
-     * App must have the `organization_external_properties_for_repos:write` permission.
+     * Removes all external custom property values for a specified property name across all repositories that belong to an organization. To use this endpoint, the authenticated GitHub App must have the `organization_external_properties_for_repos:write` permission.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param propertyName The name of the external custom property
      */
-    fun orgsExternalPropertiesForReposDeleteOrganizationValues(
-        clientConfig: ClientConfig,
-        org: String,
-        propertyName: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations/values/${SdkClient.encodePathSegment(propertyName)}",
-                config = clientConfig,
-                operationId = "orgsExternalPropertiesForReposDeleteOrganizationValues",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                    ),
-            )
-        )
+    fun orgsExternalPropertiesForReposDeleteOrganizationValues(clientConfig: ClientConfig, org: String, propertyName: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/properties/installations/values/${SdkClient.encodePathSegment(propertyName)}", config = clientConfig, operationId = "orgsExternalPropertiesForReposDeleteOrganizationValues", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
     }
 }
 
 internal object OrgsCustomPropertiesForReposGetOrganizationDefinitionsOperation {
     /**
-     * Gets all custom properties defined for an organization. Organization members can read these
-     * properties.
+     * Gets all custom properties defined for an organization. Organization members can read these properties.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsCustomPropertiesForReposGetOrganizationDefinitions(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): List<CustomProperty> {
-        return SdkClient.request<List<CustomProperty>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/properties/schema",
-                    config = clientConfig,
-                    operationId = "orgsCustomPropertiesForReposGetOrganizationDefinitions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsCustomPropertiesForReposGetOrganizationDefinitions(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<CustomProperty> {
+        return SdkClient.request<List<CustomProperty>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/properties/schema", config = clientConfig, operationId = "orgsCustomPropertiesForReposGetOrganizationDefinitions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitXef19e15b0f {
     /**
-     * Creates new or updates existing custom properties defined for an organization in a batch. If
-     * the property already exists, the existing property will be replaced with the new values.
-     * Missing optional values will fall back to default values, previous values will be
-     * overwritten. E.g. if a property exists with `values_editable_by: org_and_repo_actors` and
-     * it's updated without specifying `values_editable_by`, it will be updated to default value
-     * `org_actors`. To use this endpoint,…
+     * Creates new or updates existing custom properties defined for an organization in a batch. If the property already exists, the existing property will be replaced with the new values. Missing optional values will fall back to default values, previous values will be overwritten. E.g. if a property exists with `values_editable_by: org_and_repo_actors` and it's updated without specifying `values_editable_by`, it will be updated to default value `org_actors`. To use this endpoint,…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param properties The array of custom properties to create or update.
      */
-    fun orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitions(
-        clientConfig: ClientConfig,
-        org: String,
-        properties: List<CustomProperty>,
-        options: RequestOptions? = null,
-    ): List<CustomProperty> {
-        Validation.validateItems(
-            "properties",
-            properties,
-            Validation.LengthOpts(min = 1, max = 100),
-        )
+    fun orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitions(clientConfig: ClientConfig, org: String, properties: List<CustomProperty>, options: RequestOptions? = null): List<CustomProperty> {
+        Validation.validateItems("properties", properties, Validation.LengthOpts(min = 1, max = 100))
 
-        return SdkClient.request<List<CustomProperty>>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/properties/schema",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("properties" to (properties)),
-                    operationId =
-                        "orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+        return SdkClient.request<List<CustomProperty>>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(org)}/properties/schema", config = clientConfig, body = SdkClient.bodyMap("properties" to (properties)), operationId = "orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsCustomPropertiesForReposGetOrganizationDefinitionOperation {
     /**
-     * Gets a custom property that is defined for an organization. Organization members can read
-     * these properties.
+     * Gets a custom property that is defined for an organization. Organization members can read these properties.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param customPropertyName The custom property name
      */
-    fun orgsCustomPropertiesForReposGetOrganizationDefinition(
-        clientConfig: ClientConfig,
-        org: String,
-        customPropertyName: String,
-        options: RequestOptions? = null,
-    ): CustomProperty {
-        return SdkClient.request<CustomProperty>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/properties/schema/${SdkClient.encodePathSegment(customPropertyName)}",
-                    config = clientConfig,
-                    operationId = "orgsCustomPropertiesForReposGetOrganizationDefinition",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsCustomPropertiesForReposGetOrganizationDefinition(clientConfig: ClientConfig, org: String, customPropertyName: String, options: RequestOptions? = null): CustomProperty {
+        return SdkClient.request<CustomProperty>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/properties/schema/${SdkClient.encodePathSegment(customPropertyName)}", config = clientConfig, operationId = "orgsCustomPropertiesForReposGetOrganizationDefinition", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitXdbaa99ba30 {
     /**
-     * Creates a new or updates an existing custom property that is defined for an organization. To
-     * use this endpoint, the authenticated user must be one of: - An administrator for the
-     * organization. - A user, or a user on a team, with the fine-grained permission of
-     * `custom_properties_org_definitions_manager` in the organization.
+     * Creates a new or updates an existing custom property that is defined for an organization. To use this endpoint, the authenticated user must be one of: - An administrator for the organization. - A user, or a user on a team, with the fine-grained permission of `custom_properties_org_definitions_manager` in the organization.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param customPropertyName The custom property name
@@ -390,172 +153,68 @@ internal object OrgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitXdb
      * @param required Whether the property is required.
      * @param defaultValue Default value of the property
      * @param description Short description of the property
-     * @param allowedValues An ordered list of the allowed values of the property. The property can
-     *   have up to 200 allowed values.
+     * @param allowedValues An ordered list of the allowed values of the property.
+     *   The property can have up to 200 allowed values.
      * @param valuesEditableBy Who can edit the values of the property
      * @param requireExplicitValues Whether setting properties values is mandatory
      */
-    fun orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinition(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitionRequest,
-        options: RequestOptions? = null,
-    ): CustomProperty {
-        return SdkClient.request<CustomProperty>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/properties/schema/${SdkClient.encodePathSegment(request.customPropertyName)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "value_type" to (request.valueType),
-                            "required" to (SdkClient.omitIfNull(request.required)),
-                            "default_value" to
-                                (request.defaultValue ?: SdkClient.SdkOptional.Omitted),
-                            "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
-                            "allowed_values" to
-                                (request.allowedValues ?: SdkClient.SdkOptional.Omitted),
-                            "values_editable_by" to
-                                (request.valuesEditableBy ?: SdkClient.SdkOptional.Omitted),
-                            "require_explicit_values" to
-                                (SdkClient.omitIfNull(request.requireExplicitValues)),
-                        ),
-                    operationId =
-                        "orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinition",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinition(clientConfig: ClientConfig, request: Orgs.OrgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitionRequest, options: RequestOptions? = null): CustomProperty {
+        return SdkClient.request<CustomProperty>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(request.org)}/properties/schema/${SdkClient.encodePathSegment(request.customPropertyName)}", config = clientConfig, body = SdkClient.bodyMap("value_type" to (request.valueType), "required" to (SdkClient.omitIfNull(request.required)), "default_value" to
+    (request.defaultValue ?: SdkClient.SdkOptional.Omitted), "description" to
+    (request.description ?: SdkClient.SdkOptional.Omitted), "allowed_values" to
+    (request.allowedValues ?: SdkClient.SdkOptional.Omitted), "values_editable_by" to
+    (request.valuesEditableBy ?: SdkClient.SdkOptional.Omitted), "require_explicit_values" to
+    (SdkClient.omitIfNull(request.requireExplicitValues))), operationId = "orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinition", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsCustomPropertiesForReposDeleteOrganizationDefinitionOperation {
     /**
-     * Removes a custom property that is defined for an organization. To use this endpoint, the
-     * authenticated user must be one of: - An administrator for the organization. - A user, or a
-     * user on a team, with the fine-grained permission of
-     * `custom_properties_org_definitions_manager` in the organization.
+     * Removes a custom property that is defined for an organization. To use this endpoint, the authenticated user must be one of: - An administrator for the organization. - A user, or a user on a team, with the fine-grained permission of `custom_properties_org_definitions_manager` in the organization.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param customPropertyName The custom property name
      */
-    fun orgsCustomPropertiesForReposDeleteOrganizationDefinition(
-        clientConfig: ClientConfig,
-        org: String,
-        customPropertyName: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/properties/schema/${SdkClient.encodePathSegment(customPropertyName)}",
-                config = clientConfig,
-                operationId = "orgsCustomPropertiesForReposDeleteOrganizationDefinition",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-            )
-        )
+    fun orgsCustomPropertiesForReposDeleteOrganizationDefinition(clientConfig: ClientConfig, org: String, customPropertyName: String, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/properties/schema/${SdkClient.encodePathSegment(customPropertyName)}", config = clientConfig, operationId = "orgsCustomPropertiesForReposDeleteOrganizationDefinition", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }
 
 internal object OrgsCustomPropertiesForReposGetOrganizationValuesOperation {
     /**
-     * Lists organization repositories with all of their custom property values. Organization
-     * members can read these properties.
+     * Lists organization repositories with all of their custom property values. Organization members can read these properties.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param repositoryQuery Finds repositories in the organization with a query containing one or
-     *   more search keywords and qualifiers. Qualifiers allow you to limit your search to specific
-     *   areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub.
-     *   To learn more about the format of the query, see Constructing a search query. See
-     *   "Searching for repositories" for a detailed list of qualifiers.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param repositoryQuery Finds repositories in the organization with a query
+     *   containing one or more search keywords and qualifiers. Qualifiers allow you to
+     *   limit your search to specific areas of GitHub. The REST API supports the same
+     *   qualifiers as the web interface for GitHub. To learn more about the format of
+     *   the query, see Constructing a search query. See "Searching for repositories"
+     *   for a detailed list of qualifiers.
      */
-    fun orgsCustomPropertiesForReposGetOrganizationValues(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        repositoryQuery: String? = null,
-        options: RequestOptions? = null,
-    ): List<OrgRepoCustomPropertyValues> {
-        return SdkClient.request<List<OrgRepoCustomPropertyValues>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/properties/values",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "repository_query" to
-                                SdkClient.queryValue(repositoryQuery, "form", true),
-                        ),
-                    operationId = "orgsCustomPropertiesForReposGetOrganizationValues",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsCustomPropertiesForReposGetOrganizationValues(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, repositoryQuery: String? = null, options: RequestOptions? = null): List<OrgRepoCustomPropertyValues> {
+        return SdkClient.request<List<OrgRepoCustomPropertyValues>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/properties/values", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "repository_query" to
+    SdkClient.queryValue(repositoryQuery, "form", true)), operationId = "orgsCustomPropertiesForReposGetOrganizationValues", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsCustomPropertiesForReposCreateOrUpdateOrganizationValuesOperation {
     /**
-     * Create new or update existing custom property values for repositories in a batch that belong
-     * to an organization. Each target repository will have its custom property values updated to
-     * match the values provided in the request. A maximum of 30 repositories can be updated in a
-     * single request. Using a value of `null` for a custom property will remove or 'unset' the
-     * property value from the repository. To use this endpoint, the authenticated user must be one
-     * of: - An administrator…
+     * Create new or update existing custom property values for repositories in a batch that belong to an organization. Each target repository will have its custom property values updated to match the values provided in the request. A maximum of 30 repositories can be updated in a single request. Using a value of `null` for a custom property will remove or 'unset' the property value from the repository. To use this endpoint, the authenticated user must be one of: - An administrator…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param repositoryNames The names of repositories that the custom property values will be
-     *   applied to.
-     * @param properties List of custom property names and associated values to apply to the
-     *   repositories.
+     * @param repositoryNames The names of repositories that the custom property
+     *   values will be applied to.
+     * @param properties List of custom property names and associated values to apply
+     *   to the repositories.
      */
-    fun orgsCustomPropertiesForReposCreateOrUpdateOrganizationValues(
-        clientConfig: ClientConfig,
-        org: String,
-        repositoryNames: List<String>,
-        properties: List<CustomPropertyValue>,
-        options: RequestOptions? = null,
-    ): Unit {
-        Validation.validateItems(
-            "repository_names",
-            repositoryNames,
-            Validation.LengthOpts(min = 1, max = 30),
-        )
+    fun orgsCustomPropertiesForReposCreateOrUpdateOrganizationValues(clientConfig: ClientConfig, org: String, repositoryNames: List<String>, properties: List<CustomPropertyValue>, options: RequestOptions? = null): Unit {
+        Validation.validateItems("repository_names", repositoryNames, Validation.LengthOpts(min = 1, max = 30))
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "PATCH",
-                "/orgs/${SdkClient.encodePathSegment(org)}/properties/values",
-                config = clientConfig,
-                body =
-                    SdkClient.bodyMap(
-                        "repository_names" to (repositoryNames),
-                        "properties" to (properties),
-                    ),
-                operationId = "orgsCustomPropertiesForReposCreateOrUpdateOrganizationValues",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                    ),
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(org)}/properties/values", config = clientConfig, body = SdkClient.bodyMap("repository_names" to (repositoryNames), "properties" to (properties)), operationId = "orgsCustomPropertiesForReposCreateOrUpdateOrganizationValues", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
     }
 }

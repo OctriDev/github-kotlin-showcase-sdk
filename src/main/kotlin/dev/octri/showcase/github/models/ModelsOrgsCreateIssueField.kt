@@ -3,33 +3,50 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `options[]` wire field. */
+/**
+ * Required object value serialized in the `options[]` wire field.
+ */
 data class OrganizationCreateIssueFieldOptionsItem(
-    /** Name of the option. */
+    /**
+     * Name of the option.
+     */
     val name: String,
-    /** Color for the option. */
+    /**
+     * Color for the option.
+     */
     val color: OrganizationCreateIssueFieldOptionsItemColorEnum,
-    /** Priority of the option for ordering. */
+    /**
+     * Priority of the option for ordering.
+     */
     val priority: Long,
-    /** Description of the option. */
-    val description: String? = null,
+    /**
+     * Description of the option.
+     */
+    val description: String? = null
 )
 
-/** Typed representation of the `OrganizationCreateIssueField` API schema. */
+/**
+ * Typed representation of the `OrganizationCreateIssueField` API schema.
+ */
 data class OrganizationCreateIssueField(
-    /** Name of the issue field. */
+    /**
+     * Name of the issue field.
+     */
     val name: String,
-    /** The data type of the issue field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("data_type")
-    val dataType: OrganizationCreateIssueFieldDataTypeEnum,
-    /** Description of the issue field. */
+    /**
+     * The data type of the issue field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("data_type") val dataType: OrganizationCreateIssueFieldDataTypeEnum,
+    /**
+     * Description of the issue field.
+     */
     val description: String? = null,
     /**
-     * The visibility of the issue field. Can be `organization_members_only` (visible only within
-     * the organization) or `all` (visible to all users who can see issues). Only used when the
-     * visibility settings feature is enabled. Defaults to `organization_members_only`.
+     * The visibility of the issue field. Can be `organization_members_only` (visible only within the organization) or `all` (visible to all users who can see issues). Only used when the visibility settings feature is enabled. Defaults to `organization_members_only`.
      */
     val visibility: OrganizationCreateIssueFieldVisibilityEnum? = null,
-    /** Options for select fields. Required when data_type is 'single_select' or 'multi_select'. */
-    val options: List<OrganizationCreateIssueFieldOptionsItem>? = null,
+    /**
+     * Options for select fields. Required when data_type is 'single_select' or 'multi_select'.
+     */
+    val options: List<OrganizationCreateIssueFieldOptionsItem>? = null
 )

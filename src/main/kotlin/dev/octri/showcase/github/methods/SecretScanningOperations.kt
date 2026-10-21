@@ -29,947 +29,573 @@ import dev.octri.showcase.github.ValidationError
 
 internal object SecretScanningListAlertsForOrgOperation {
     /**
-     * Lists secret scanning alerts for eligible repositories in an organization, from newest to
-     * oldest. The authenticated user must be an administrator or security manager for the
-     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used
-     * with public repositories, the token can use the `public_repo` scope instead.
+     * Lists secret scanning alerts for eligible repositories in an organization, from newest to oldest. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param state Set to `open` or `resolved` to only list secret scanning alerts in a specific
-     *   state.
-     * @param secretType A comma-separated list of secret types to return. All default secret
-     *   patterns are returned. To return generic patterns, pass the token name(s) in the parameter.
-     *   See "Supported secret scanning patterns" for a complete list of secret types.
-     * @param excludeSecretTypes A comma-separated list of secret types to exclude from the results.
-     *   All default secret patterns are returned except those matching the specified types. Cannot
-     *   be combined with the `secret_type` parameter. See "Supported secret scanning patterns" for
-     *   a complete list of secret types.
-     * @param excludeProviders A comma-separated list of provider slugs to exclude from the results.
-     *   Provider slugs use lowercase with underscores (e.g., `github_secret_scanning`, `clojars`).
-     *   You can find the provider slug in the `provider_slug` field of each alert. Cannot be
-     *   combined with the `providers` parameter.
-     * @param providers A comma-separated list of provider slugs to filter by. Provider slugs use
-     *   lowercase with underscores (e.g., `github_secret_scanning`, `clojars`). You can find the
-     *   provider slug in the `provider_slug` field of each alert. Cannot be combined with the
-     *   `exclude_providers` parameter.
-     * @param resolution A comma-separated list of resolutions. Only secret scanning alerts with one
-     *   of these resolutions are listed. Valid resolutions are `false_positive`, `wont_fix`,
-     *   `revoked`, `pattern_edited`, `pattern_deleted` or `used_in_tests`.
-     * @param assignee Filters alerts by assignee. Use `*` to get all assigned alerts, `none` to get
-     *   all unassigned alerts, or a GitHub username to get alerts assigned to a specific user.
-     * @param sort The property to sort the results by. `created` means when the alert was created.
-     *   `updated` means when the alert was updated or resolved.
+     * @param state Set to `open` or `resolved` to only list secret scanning alerts
+     *   in a specific state.
+     * @param secretType A comma-separated list of secret types to return. All
+     *   default secret patterns are returned. To return generic patterns, pass the
+     *   token name(s) in the parameter. See "Supported secret scanning patterns" for a
+     *   complete list of secret types.
+     * @param excludeSecretTypes A comma-separated list of secret types to exclude
+     *   from the results. All default secret patterns are returned except those
+     *   matching the specified types. Cannot be combined with the `secret_type`
+     *   parameter. See "Supported secret scanning patterns" for a complete list of
+     *   secret types.
+     * @param excludeProviders A comma-separated list of provider slugs to exclude
+     *   from the results. Provider slugs use lowercase with underscores (e.g.,
+     *   `github_secret_scanning`, `clojars`). You can find the provider slug in the
+     *   `provider_slug` field of each alert. Cannot be combined with the `providers`
+     *   parameter.
+     * @param providers A comma-separated list of provider slugs to filter by.
+     *   Provider slugs use lowercase with underscores (e.g., `github_secret_scanning`,
+     *   `clojars`). You can find the provider slug in the `provider_slug` field of
+     *   each alert. Cannot be combined with the `exclude_providers` parameter.
+     * @param resolution A comma-separated list of resolutions. Only secret scanning
+     *   alerts with one of these resolutions are listed. Valid resolutions are
+     *   `false_positive`, `wont_fix`, `revoked`, `pattern_edited`, `pattern_deleted`
+     *   or `used_in_tests`.
+     * @param assignee Filters alerts by assignee. Use `*` to get all assigned
+     *   alerts, `none` to get all unassigned alerts, or a GitHub username to get
+     *   alerts assigned to a specific user.
+     * @param sort The property to sort the results by. `created` means when the
+     *   alert was created. `updated` means when the alert was updated or resolved.
      * @param direction The direction to sort the results by.
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for events before this cursor. To receive an initial cursor on your first request, include
-     *   an empty "before" query string.
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   events after this cursor. To receive an initial cursor on your first request, include an
-     *   empty "after" query string.
-     * @param validity A comma-separated list of validities that, when present, will return alerts
-     *   that match the validities in this list. Valid options are `active`, `inactive`, and
-     *   `unknown`.
-     * @param isPubliclyLeaked A boolean value representing whether or not to filter alerts by the
-     *   publicly-leaked tag being present.
-     * @param isMultiRepo A boolean value representing whether or not to filter alerts by the
-     *   multi-repo tag being present.
-     * @param hideSecret A boolean value representing whether or not to hide literal secrets in the
-     *   results.
-     * @param isBypassed A boolean value (`true` or `false`) indicating whether to filter alerts by
-     *   their push protection bypass status. When set to `true`, only alerts that were created
-     *   because a push protection rule was bypassed will be returned. When set to `false`, only
-     *   alerts that were not caused by a push protection bypass will be returned.
-     * @param includedMetadata A comma-separated list of metadata fields to filter alerts by. Only
-     *   alerts that have all of the specified metadata fields attached will be returned. Possible
-     *   values are: `owner-email`, `owner-id`, `owner-name`, `secret-id`, `secret-name`,
-     *   `secret-issued-date`, `secret-expiration-date`, `organization-name`, `organization-id`,
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for events before this cursor. To receive an initial cursor on
+     *   your first request, include an empty "before" query string.
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for events after this cursor. To receive an initial cursor on
+     *   your first request, include an empty "after" query string.
+     * @param validity A comma-separated list of validities that, when present, will
+     *   return alerts that match the validities in this list. Valid options are
+     *   `active`, `inactive`, and `unknown`.
+     * @param isPubliclyLeaked A boolean value representing whether or not to filter
+     *   alerts by the publicly-leaked tag being present.
+     * @param isMultiRepo A boolean value representing whether or not to filter
+     *   alerts by the multi-repo tag being present.
+     * @param hideSecret A boolean value representing whether or not to hide literal
+     *   secrets in the results.
+     * @param isBypassed A boolean value (`true` or `false`) indicating whether to
+     *   filter alerts by their push protection bypass status. When set to `true`, only
+     *   alerts that were created because a push protection rule was bypassed will be
+     *   returned. When set to `false`, only alerts that were not caused by a push
+     *   protection bypass will be returned.
+     * @param includedMetadata A comma-separated list of metadata fields to filter
+     *   alerts by. Only alerts that have all of the specified metadata fields attached
+     *   will be returned. Possible values are: `owner-email`, `owner-id`,
+     *   `owner-name`, `secret-id`, `secret-name`, `secret-issued-date`,
+     *   `secret-expiration-date`, `organization-name`, `organization-id`,
      *   `last-used-date`, and `has-organization-access`.
-     * @param ownerEmailHash Filters alerts to only those whose attached `owner_email` metadata
-     *   field matches the provided value. The value must be the lowercase hex-encoded SHA-256 hash
-     *   of the email address to match (for example, the SHA-256 of `user@example.com`). Only alerts
-     *   that have an `owner_email` metadata value whose SHA-256 hash equals this parameter are
-     *   returned.
+     * @param ownerEmailHash Filters alerts to only those whose attached
+     *   `owner_email` metadata field matches the provided value. The value must be the
+     *   lowercase hex-encoded SHA-256 hash of the email address to match (for example,
+     *   the SHA-256 of `user@example.com`). Only alerts that have an `owner_email`
+     *   metadata value whose SHA-256 hash equals this parameter are returned.
      */
-    fun secretScanningListAlertsForOrg(
-        clientConfig: ClientConfig,
-        request: SecretScanning.SecretScanningListAlertsForOrgRequest,
-        options: RequestOptions? = null,
-    ): List<OrganizationSecretScanningAlert> {
-        return SdkClient.request<List<OrganizationSecretScanningAlert>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/secret-scanning/alerts",
-                    config = clientConfig,
-                    query = buildSecretScanningListAlertsForOrgQuery(request),
-                    operationId = "secretScanningListAlertsForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun secretScanningListAlertsForOrg(clientConfig: ClientConfig, request: SecretScanning.SecretScanningListAlertsForOrgRequest, options: RequestOptions? = null): List<OrganizationSecretScanningAlert> {
+        return SdkClient.request<List<OrganizationSecretScanningAlert>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/secret-scanning/alerts", config = clientConfig, query = buildSecretScanningListAlertsForOrgQuery(request), operationId = "secretScanningListAlertsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 
-    private fun buildSecretScanningListAlertsForOrgQuery(
-        request: SecretScanning.SecretScanningListAlertsForOrgRequest
-    ): Map<String, Any?> = buildMap {
-        putAll(buildSecretScanningListAlertsForOrgQueryPart1(request))
-        putAll(buildSecretScanningListAlertsForOrgQueryPart2(request))
-    }
 
-    private fun buildSecretScanningListAlertsForOrgQueryPart1(
-        request: SecretScanning.SecretScanningListAlertsForOrgRequest
-    ): Map<String, Any?> =
+
+    private fun buildSecretScanningListAlertsForOrgQuery(request: SecretScanning.SecretScanningListAlertsForOrgRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildSecretScanningListAlertsForOrgQueryPart1(request))
+            putAll(buildSecretScanningListAlertsForOrgQueryPart2(request))
+        }
+
+    private fun buildSecretScanningListAlertsForOrgQueryPart1(request: SecretScanning.SecretScanningListAlertsForOrgRequest): Map<String, Any?> =
         mapOf(
             "state" to SdkClient.queryValue(request.state, "form", true),
-            "secret_type" to SdkClient.queryValue(request.secretType, "form", true),
+            "secret_type" to
+    SdkClient.queryValue(request.secretType, "form", true),
             "exclude_secret_types" to
-                SdkClient.queryValue(request.excludeSecretTypes, "form", true),
-            "exclude_providers" to SdkClient.queryValue(request.excludeProviders, "form", true),
-            "providers" to SdkClient.queryValue(request.providers, "form", true),
-            "resolution" to SdkClient.queryValue(request.resolution, "form", true),
-            "assignee" to SdkClient.queryValue(request.assignee, "form", true),
+    SdkClient.queryValue(request.excludeSecretTypes, "form", true),
+            "exclude_providers" to
+    SdkClient.queryValue(request.excludeProviders, "form", true),
+            "providers" to
+    SdkClient.queryValue(request.providers, "form", true),
+            "resolution" to
+    SdkClient.queryValue(request.resolution, "form", true),
+            "assignee" to
+    SdkClient.queryValue(request.assignee, "form", true),
             "sort" to SdkClient.queryValue(request.sort, "form", true),
-            "direction" to SdkClient.queryValue(request.direction, "form", true),
+            "direction" to
+    SdkClient.queryValue(request.direction, "form", true),
             "page" to SdkClient.queryValue(request.page, "form", true),
-            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-            "before" to SdkClient.queryValue(request.before, "form", true),
+            "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true),
+            "before" to
+    SdkClient.queryValue(request.before, "form", true),
         )
 
-    private fun buildSecretScanningListAlertsForOrgQueryPart2(
-        request: SecretScanning.SecretScanningListAlertsForOrgRequest
-    ): Map<String, Any?> =
+    private fun buildSecretScanningListAlertsForOrgQueryPart2(request: SecretScanning.SecretScanningListAlertsForOrgRequest): Map<String, Any?> =
         mapOf(
             "after" to SdkClient.queryValue(request.after, "form", true),
-            "validity" to SdkClient.queryValue(request.validity, "form", true),
-            "is_publicly_leaked" to SdkClient.queryValue(request.isPubliclyLeaked, "form", true),
-            "is_multi_repo" to SdkClient.queryValue(request.isMultiRepo, "form", true),
-            "hide_secret" to SdkClient.queryValue(request.hideSecret, "form", true),
-            "is_bypassed" to SdkClient.queryValue(request.isBypassed, "form", true),
-            "included_metadata" to SdkClient.queryValue(request.includedMetadata, "form", true),
-            "owner_email_hash" to SdkClient.queryValue(request.ownerEmailHash, "form", true),
+            "validity" to
+    SdkClient.queryValue(request.validity, "form", true),
+            "is_publicly_leaked" to
+    SdkClient.queryValue(request.isPubliclyLeaked, "form", true),
+            "is_multi_repo" to
+    SdkClient.queryValue(request.isMultiRepo, "form", true),
+            "hide_secret" to
+    SdkClient.queryValue(request.hideSecret, "form", true),
+            "is_bypassed" to
+    SdkClient.queryValue(request.isBypassed, "form", true),
+            "included_metadata" to
+    SdkClient.queryValue(request.includedMetadata, "form", true),
+            "owner_email_hash" to
+    SdkClient.queryValue(request.ownerEmailHash, "form", true),
         )
 }
 
 internal object SecretScanningListOrgCustomPatternsOperation {
     /**
-     * Lists secret scanning custom patterns for an organization. Personal access tokens (classic)
-     * need the `read:org` scope to use this endpoint.
+     * Lists secret scanning custom patterns for an organization. Personal access tokens (classic) need the `read:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param state Filter custom patterns by state. When absent, returns patterns in all states.
-     * @param pushProtection Filter custom patterns by whether push protection is enabled. When
-     *   absent, returns patterns regardless of push protection status.
+     * @param state Filter custom patterns by state. When absent, returns patterns in
+     *   all states.
+     * @param pushProtection Filter custom patterns by whether push protection is
+     *   enabled. When absent, returns patterns regardless of push protection status.
      * @param sort The property to sort the results by.
      * @param direction The direction to sort the results by.
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun secretScanningListOrgCustomPatterns(
-        clientConfig: ClientConfig,
-        request: SecretScanning.SecretScanningListOrgCustomPatternsRequest,
-        options: RequestOptions? = null,
-    ): List<SecretScanningCustomPattern> {
-        return SdkClient.request<List<SecretScanningCustomPattern>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/secret-scanning/custom-patterns",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "state" to SdkClient.queryValue(request.state, "form", true),
-                            "push_protection" to
-                                SdkClient.queryValue(request.pushProtection, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "before" to SdkClient.queryValue(request.before, "form", true),
-                            "after" to SdkClient.queryValue(request.after, "form", true),
-                        ),
-                    operationId = "secretScanningListOrgCustomPatterns",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun secretScanningListOrgCustomPatterns(clientConfig: ClientConfig, request: SecretScanning.SecretScanningListOrgCustomPatternsRequest, options: RequestOptions? = null): List<SecretScanningCustomPattern> {
+        return SdkClient.request<List<SecretScanningCustomPattern>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/secret-scanning/custom-patterns", config = clientConfig, query = mapOf("state" to SdkClient.queryValue(request.state, "form", true), "push_protection" to
+    SdkClient.queryValue(request.pushProtection, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "before" to
+    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true)), operationId = "secretScanningListOrgCustomPatterns", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object SecretScanningBulkCreateOrgCustomPatternsOperation {
     /**
-     * Bulk creates secret scanning custom patterns for an organization. Personal access tokens
-     * (classic) need the `write:org` scope to use this endpoint.
+     * Bulk creates secret scanning custom patterns for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param patterns The list of custom patterns to create (maximum 100).
      */
-    fun secretScanningBulkCreateOrgCustomPatterns(
-        clientConfig: ClientConfig,
-        org: String,
-        patterns: List<SecretScanningCustomPatternToCreate>,
-        options: RequestOptions? = null,
-    ): SecretScanning.SecretScanningBulkCreateOrgCustomPatternsResponse {
+    fun secretScanningBulkCreateOrgCustomPatterns(clientConfig: ClientConfig, org: String, patterns: List<SecretScanningCustomPatternToCreate>, options: RequestOptions? = null): SecretScanning.SecretScanningBulkCreateOrgCustomPatternsResponse {
         Validation.validateItems("patterns", patterns, Validation.LengthOpts(max = 100))
 
-        return SdkClient.request<SecretScanning.SecretScanningBulkCreateOrgCustomPatternsResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/secret-scanning/custom-patterns",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("patterns" to (patterns)),
-                    operationId = "secretScanningBulkCreateOrgCustomPatterns",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<SecretScanning.SecretScanningBulkCreateOrgCustomPatternsResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/secret-scanning/custom-patterns", config = clientConfig, body = SdkClient.bodyMap("patterns" to (patterns)), operationId = "secretScanningBulkCreateOrgCustomPatterns", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object SecretScanningBulkDeleteOrgCustomPatternsOperation {
     /**
-     * Bulk deletes secret scanning custom patterns for an organization. Personal access tokens
-     * (classic) need the `write:org` scope to use this endpoint.
+     * Bulk deletes secret scanning custom patterns for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param patterns The list of custom patterns to delete.
-     * @param postDeleteAction What to do with alerts associated with the deleted patterns.
-     *   `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as
-     *   "pattern deleted". Defaults to `delete_alerts` when not specified.
+     * @param postDeleteAction What to do with alerts associated with the deleted
+     *   patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts`
+     *   resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not
+     *   specified.
      */
-    fun secretScanningBulkDeleteOrgCustomPatterns(
-        clientConfig: ClientConfig,
-        org: String,
-        patterns: List<SecretScanningCustomPatternToDelete>,
-        postDeleteAction: SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum? = null,
-        options: RequestOptions? = null,
-    ): Unit {
+    fun secretScanningBulkDeleteOrgCustomPatterns(clientConfig: ClientConfig, org: String, patterns: List<SecretScanningCustomPatternToDelete>, postDeleteAction: SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum? = null, options: RequestOptions? = null): Unit {
         Validation.validateItems("patterns", patterns, Validation.LengthOpts(max = 500))
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/secret-scanning/custom-patterns",
-                config = clientConfig,
-                body =
-                    SdkClient.bodyMap(
-                        "patterns" to (patterns),
-                        "post_delete_action" to (SdkClient.omitIfNull(postDeleteAction)),
-                    ),
-                operationId = "secretScanningBulkDeleteOrgCustomPatterns",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "400" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "412" to BasicError::class.java,
-                    ),
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/secret-scanning/custom-patterns", config = clientConfig, body = SdkClient.bodyMap("patterns" to (patterns), "post_delete_action" to
+    (SdkClient.omitIfNull(postDeleteAction))), operationId = "secretScanningBulkDeleteOrgCustomPatterns", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "412" to BasicError::class.java)))
     }
 }
 
 internal object SecretScanningUpdateOrgCustomPatternOperation {
     /**
-     * Updates a secret scanning custom pattern for an organization. Personal access tokens
-     * (classic) need the `write:org` scope to use this endpoint.
+     * Updates a secret scanning custom pattern for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param patternId The ID of the custom pattern.
-     * @param customPatternVersion The version of the entity. This is used to confirm you're
-     *   updating the current version of the entity and mitigate unintentionally overriding someone
-     *   else's update.
+     * @param customPatternVersion The version of the entity. This is used to confirm
+     *   you're updating the current version of the entity and mitigate unintentionally
+     *   overriding someone else's update.
      * @param pattern The updated regular expression of the custom pattern.
-     * @param startDelimiter The updated start delimiter regex for the custom pattern.
+     * @param startDelimiter The updated start delimiter regex for the custom
+     *   pattern.
      * @param endDelimiter The updated end delimiter regex for the custom pattern.
      * @param mustMatch Updated list of regexes that the secret must match.
      * @param mustNotMatch Updated list of regexes that the secret must not match.
      */
-    fun secretScanningUpdateOrgCustomPattern(
-        clientConfig: ClientConfig,
-        request: SecretScanning.SecretScanningUpdateOrgCustomPatternRequest,
-        options: RequestOptions? = null,
-    ): SecretScanningCustomPattern {
-        return SdkClient.request<SecretScanningCustomPattern>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/secret-scanning/custom-patterns/${SdkClient.encodePathSegment(request.patternId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "custom_pattern_version" to (request.customPatternVersion),
-                            "pattern" to (SdkClient.omitIfNull(request.pattern)),
-                            "start_delimiter" to (SdkClient.omitIfNull(request.startDelimiter)),
-                            "end_delimiter" to (SdkClient.omitIfNull(request.endDelimiter)),
-                            "must_match" to (SdkClient.omitIfNull(request.mustMatch)),
-                            "must_not_match" to (SdkClient.omitIfNull(request.mustNotMatch)),
-                        ),
-                    operationId = "secretScanningUpdateOrgCustomPattern",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "412" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun secretScanningUpdateOrgCustomPattern(clientConfig: ClientConfig, request: SecretScanning.SecretScanningUpdateOrgCustomPatternRequest, options: RequestOptions? = null): SecretScanningCustomPattern {
+        return SdkClient.request<SecretScanningCustomPattern>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}/secret-scanning/custom-patterns/${SdkClient.encodePathSegment(request.patternId)}", config = clientConfig, body = SdkClient.bodyMap("custom_pattern_version" to (request.customPatternVersion), "pattern" to (SdkClient.omitIfNull(request.pattern)), "start_delimiter" to
+    (SdkClient.omitIfNull(request.startDelimiter)), "end_delimiter" to
+    (SdkClient.omitIfNull(request.endDelimiter)), "must_match" to (SdkClient.omitIfNull(request.mustMatch)), "must_not_match" to
+    (SdkClient.omitIfNull(request.mustNotMatch))), operationId = "secretScanningUpdateOrgCustomPattern", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "412" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object SecretScanningListOrgPatternConfigsOperation {
     /**
-     * Lists the secret scanning pattern configurations for an organization. Personal access tokens
-     * (classic) need the `read:org` scope to use this endpoint.
+     * Lists the secret scanning pattern configurations for an organization. Personal access tokens (classic) need the `read:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun secretScanningListOrgPatternConfigs(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): SecretScanningPatternConfiguration {
-        return SdkClient.request<SecretScanningPatternConfiguration>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/secret-scanning/pattern-configurations",
-                    config = clientConfig,
-                    operationId = "secretScanningListOrgPatternConfigs",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun secretScanningListOrgPatternConfigs(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SecretScanningPatternConfiguration {
+        return SdkClient.request<SecretScanningPatternConfiguration>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/secret-scanning/pattern-configurations", config = clientConfig, operationId = "secretScanningListOrgPatternConfigs", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object SecretScanningUpdateOrgPatternConfigsOperation {
     /**
-     * Updates the secret scanning pattern configurations for an organization. Personal access
-     * tokens (classic) need the `write:org` scope to use this endpoint.
+     * Updates the secret scanning pattern configurations for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param patternConfigVersion The version of the entity. This is used to confirm you're
-     *   updating the current version of the entity and mitigate unintentionally overriding someone
-     *   else's update.
+     * @param patternConfigVersion The version of the entity. This is used to confirm
+     *   you're updating the current version of the entity and mitigate unintentionally
+     *   overriding someone else's update.
      * @param providerPatternSettings Pattern settings for provider patterns.
      * @param customPatternSettings Pattern settings for custom patterns.
      */
-    fun secretScanningUpdateOrgPatternConfigs(
-        clientConfig: ClientConfig,
-        org: String,
-        patternConfigVersion: SdkClient.SdkOptional<SecretScanningRowVersion?>? = null,
-        providerPatternSettings:
-            List<SecretScanning.SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsItem>? =
-            null,
-        customPatternSettings:
-            List<SecretScanning.SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsItem>? =
-            null,
-        options: RequestOptions? = null,
-    ): SecretScanning.SecretScanningUpdateOrgPatternConfigsResponse {
-        return SdkClient.request<SecretScanning.SecretScanningUpdateOrgPatternConfigsResponse>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/secret-scanning/pattern-configurations",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "pattern_config_version" to
-                                (patternConfigVersion ?: SdkClient.SdkOptional.Omitted),
-                            "provider_pattern_settings" to
-                                (SdkClient.omitIfNull(providerPatternSettings)),
-                            "custom_pattern_settings" to
-                                (SdkClient.omitIfNull(customPatternSettings)),
-                        ),
-                    operationId = "secretScanningUpdateOrgPatternConfigs",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "409" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun secretScanningUpdateOrgPatternConfigs(clientConfig: ClientConfig, org: String, patternConfigVersion: SdkClient.SdkOptional<SecretScanningRowVersion?>? = null, providerPatternSettings: List<SecretScanning.SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsItem>? = null, customPatternSettings: List<SecretScanning.SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsItem>? = null, options: RequestOptions? = null): SecretScanning.SecretScanningUpdateOrgPatternConfigsResponse {
+        return SdkClient.request<SecretScanning.SecretScanningUpdateOrgPatternConfigsResponse>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(org)}/secret-scanning/pattern-configurations", config = clientConfig, body = SdkClient.bodyMap("pattern_config_version" to
+    (patternConfigVersion ?: SdkClient.SdkOptional.Omitted), "provider_pattern_settings" to
+    (SdkClient.omitIfNull(providerPatternSettings)), "custom_pattern_settings" to
+    (SdkClient.omitIfNull(customPatternSettings))), operationId = "secretScanningUpdateOrgPatternConfigs", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object SecretScanningListAlertsForRepoOperation {
     /**
-     * Lists secret scanning alerts for an eligible repository, from newest to oldest. The
-     * authenticated user must be an administrator for the repository or for the organization that
-     * owns the repository to use this endpoint. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint
-     * is only used with public repositories, the token can use the `public_repo` scope instead.
+     * Lists secret scanning alerts for an eligible repository, from newest to oldest. The authenticated user must be an administrator for the repository or for the organization that owns the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param state Set to `open` or `resolved` to only list secret scanning alerts in a specific
-     *   state.
-     * @param secretType A comma-separated list of secret types to return. All default secret
-     *   patterns are returned. To return generic patterns, pass the token name(s) in the parameter.
-     *   See "Supported secret scanning patterns" for a complete list of secret types.
-     * @param excludeSecretTypes A comma-separated list of secret types to exclude from the results.
-     *   All default secret patterns are returned except those matching the specified types. Cannot
-     *   be combined with the `secret_type` parameter. See "Supported secret scanning patterns" for
-     *   a complete list of secret types.
-     * @param excludeProviders A comma-separated list of provider slugs to exclude from the results.
-     *   Provider slugs use lowercase with underscores (e.g., `github_secret_scanning`, `clojars`).
-     *   You can find the provider slug in the `provider_slug` field of each alert. Cannot be
-     *   combined with the `providers` parameter.
-     * @param providers A comma-separated list of provider slugs to filter by. Provider slugs use
-     *   lowercase with underscores (e.g., `github_secret_scanning`, `clojars`). You can find the
-     *   provider slug in the `provider_slug` field of each alert. Cannot be combined with the
-     *   `exclude_providers` parameter.
-     * @param resolution A comma-separated list of resolutions. Only secret scanning alerts with one
-     *   of these resolutions are listed. Valid resolutions are `false_positive`, `wont_fix`,
-     *   `revoked`, `pattern_edited`, `pattern_deleted` or `used_in_tests`.
-     * @param assignee Filters alerts by assignee. Use `*` to get all assigned alerts, `none` to get
-     *   all unassigned alerts, or a GitHub username to get alerts assigned to a specific user.
-     * @param sort The property to sort the results by. `created` means when the alert was created.
-     *   `updated` means when the alert was updated or resolved.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param state Set to `open` or `resolved` to only list secret scanning alerts
+     *   in a specific state.
+     * @param secretType A comma-separated list of secret types to return. All
+     *   default secret patterns are returned. To return generic patterns, pass the
+     *   token name(s) in the parameter. See "Supported secret scanning patterns" for a
+     *   complete list of secret types.
+     * @param excludeSecretTypes A comma-separated list of secret types to exclude
+     *   from the results. All default secret patterns are returned except those
+     *   matching the specified types. Cannot be combined with the `secret_type`
+     *   parameter. See "Supported secret scanning patterns" for a complete list of
+     *   secret types.
+     * @param excludeProviders A comma-separated list of provider slugs to exclude
+     *   from the results. Provider slugs use lowercase with underscores (e.g.,
+     *   `github_secret_scanning`, `clojars`). You can find the provider slug in the
+     *   `provider_slug` field of each alert. Cannot be combined with the `providers`
+     *   parameter.
+     * @param providers A comma-separated list of provider slugs to filter by.
+     *   Provider slugs use lowercase with underscores (e.g., `github_secret_scanning`,
+     *   `clojars`). You can find the provider slug in the `provider_slug` field of
+     *   each alert. Cannot be combined with the `exclude_providers` parameter.
+     * @param resolution A comma-separated list of resolutions. Only secret scanning
+     *   alerts with one of these resolutions are listed. Valid resolutions are
+     *   `false_positive`, `wont_fix`, `revoked`, `pattern_edited`, `pattern_deleted`
+     *   or `used_in_tests`.
+     * @param assignee Filters alerts by assignee. Use `*` to get all assigned
+     *   alerts, `none` to get all unassigned alerts, or a GitHub username to get
+     *   alerts assigned to a specific user.
+     * @param sort The property to sort the results by. `created` means when the
+     *   alert was created. `updated` means when the alert was updated or resolved.
      * @param direction The direction to sort the results by.
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for events before this cursor. To receive an initial cursor on your first request, include
-     *   an empty "before" query string.
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   events after this cursor. To receive an initial cursor on your first request, include an
-     *   empty "after" query string.
-     * @param validity A comma-separated list of validities that, when present, will return alerts
-     *   that match the validities in this list. Valid options are `active`, `inactive`, and
-     *   `unknown`.
-     * @param isPubliclyLeaked A boolean value representing whether or not to filter alerts by the
-     *   publicly-leaked tag being present.
-     * @param isMultiRepo A boolean value representing whether or not to filter alerts by the
-     *   multi-repo tag being present.
-     * @param hideSecret A boolean value representing whether or not to hide literal secrets in the
-     *   results.
-     * @param isBypassed A boolean value (`true` or `false`) indicating whether to filter alerts by
-     *   their push protection bypass status. When set to `true`, only alerts that were created
-     *   because a push protection rule was bypassed will be returned. When set to `false`, only
-     *   alerts that were not caused by a push protection bypass will be returned.
-     * @param includedMetadata A comma-separated list of metadata fields to filter alerts by. Only
-     *   alerts that have all of the specified metadata fields attached will be returned. Possible
-     *   values are: `owner-email`, `owner-id`, `owner-name`, `secret-id`, `secret-name`,
-     *   `secret-issued-date`, `secret-expiration-date`, `organization-name`, `organization-id`,
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for events before this cursor. To receive an initial cursor on
+     *   your first request, include an empty "before" query string.
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for events after this cursor. To receive an initial cursor on
+     *   your first request, include an empty "after" query string.
+     * @param validity A comma-separated list of validities that, when present, will
+     *   return alerts that match the validities in this list. Valid options are
+     *   `active`, `inactive`, and `unknown`.
+     * @param isPubliclyLeaked A boolean value representing whether or not to filter
+     *   alerts by the publicly-leaked tag being present.
+     * @param isMultiRepo A boolean value representing whether or not to filter
+     *   alerts by the multi-repo tag being present.
+     * @param hideSecret A boolean value representing whether or not to hide literal
+     *   secrets in the results.
+     * @param isBypassed A boolean value (`true` or `false`) indicating whether to
+     *   filter alerts by their push protection bypass status. When set to `true`, only
+     *   alerts that were created because a push protection rule was bypassed will be
+     *   returned. When set to `false`, only alerts that were not caused by a push
+     *   protection bypass will be returned.
+     * @param includedMetadata A comma-separated list of metadata fields to filter
+     *   alerts by. Only alerts that have all of the specified metadata fields attached
+     *   will be returned. Possible values are: `owner-email`, `owner-id`,
+     *   `owner-name`, `secret-id`, `secret-name`, `secret-issued-date`,
+     *   `secret-expiration-date`, `organization-name`, `organization-id`,
      *   `last-used-date`, and `has-organization-access`.
-     * @param ownerEmailHash Filters alerts to only those whose attached `owner_email` metadata
-     *   field matches the provided value. The value must be the lowercase hex-encoded SHA-256 hash
-     *   of the email address to match (for example, the SHA-256 of `user@example.com`). Only alerts
-     *   that have an `owner_email` metadata value whose SHA-256 hash equals this parameter are
-     *   returned.
+     * @param ownerEmailHash Filters alerts to only those whose attached
+     *   `owner_email` metadata field matches the provided value. The value must be the
+     *   lowercase hex-encoded SHA-256 hash of the email address to match (for example,
+     *   the SHA-256 of `user@example.com`). Only alerts that have an `owner_email`
+     *   metadata value whose SHA-256 hash equals this parameter are returned.
      */
-    fun secretScanningListAlertsForRepo(
-        clientConfig: ClientConfig,
-        request: SecretScanning.SecretScanningListAlertsForRepoRequest,
-        options: RequestOptions? = null,
-    ): List<SecretScanningAlert> {
-        return SdkClient.request<List<SecretScanningAlert>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/secret-scanning/alerts",
-                    config = clientConfig,
-                    query = buildSecretScanningListAlertsForRepoQuery(request),
-                    operationId = "secretScanningListAlertsForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("503" to ServiceUnavailable::class.java),
-                )
-            )
-            .data
+    fun secretScanningListAlertsForRepo(clientConfig: ClientConfig, request: SecretScanning.SecretScanningListAlertsForRepoRequest, options: RequestOptions? = null): List<SecretScanningAlert> {
+        return SdkClient.request<List<SecretScanningAlert>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/secret-scanning/alerts", config = clientConfig, query = buildSecretScanningListAlertsForRepoQuery(request), operationId = "secretScanningListAlertsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("503" to ServiceUnavailable::class.java))).data
     }
 
-    private fun buildSecretScanningListAlertsForRepoQuery(
-        request: SecretScanning.SecretScanningListAlertsForRepoRequest
-    ): Map<String, Any?> = buildMap {
-        putAll(buildSecretScanningListAlertsForRepoQueryPart1(request))
-        putAll(buildSecretScanningListAlertsForRepoQueryPart2(request))
-    }
 
-    private fun buildSecretScanningListAlertsForRepoQueryPart1(
-        request: SecretScanning.SecretScanningListAlertsForRepoRequest
-    ): Map<String, Any?> =
+
+    private fun buildSecretScanningListAlertsForRepoQuery(request: SecretScanning.SecretScanningListAlertsForRepoRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildSecretScanningListAlertsForRepoQueryPart1(request))
+            putAll(buildSecretScanningListAlertsForRepoQueryPart2(request))
+        }
+
+    private fun buildSecretScanningListAlertsForRepoQueryPart1(request: SecretScanning.SecretScanningListAlertsForRepoRequest): Map<String, Any?> =
         mapOf(
             "state" to SdkClient.queryValue(request.state, "form", true),
-            "secret_type" to SdkClient.queryValue(request.secretType, "form", true),
+            "secret_type" to
+    SdkClient.queryValue(request.secretType, "form", true),
             "exclude_secret_types" to
-                SdkClient.queryValue(request.excludeSecretTypes, "form", true),
-            "exclude_providers" to SdkClient.queryValue(request.excludeProviders, "form", true),
-            "providers" to SdkClient.queryValue(request.providers, "form", true),
-            "resolution" to SdkClient.queryValue(request.resolution, "form", true),
-            "assignee" to SdkClient.queryValue(request.assignee, "form", true),
+    SdkClient.queryValue(request.excludeSecretTypes, "form", true),
+            "exclude_providers" to
+    SdkClient.queryValue(request.excludeProviders, "form", true),
+            "providers" to
+    SdkClient.queryValue(request.providers, "form", true),
+            "resolution" to
+    SdkClient.queryValue(request.resolution, "form", true),
+            "assignee" to
+    SdkClient.queryValue(request.assignee, "form", true),
             "sort" to SdkClient.queryValue(request.sort, "form", true),
-            "direction" to SdkClient.queryValue(request.direction, "form", true),
+            "direction" to
+    SdkClient.queryValue(request.direction, "form", true),
             "page" to SdkClient.queryValue(request.page, "form", true),
-            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-            "before" to SdkClient.queryValue(request.before, "form", true),
+            "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true),
+            "before" to
+    SdkClient.queryValue(request.before, "form", true),
         )
 
-    private fun buildSecretScanningListAlertsForRepoQueryPart2(
-        request: SecretScanning.SecretScanningListAlertsForRepoRequest
-    ): Map<String, Any?> =
+    private fun buildSecretScanningListAlertsForRepoQueryPart2(request: SecretScanning.SecretScanningListAlertsForRepoRequest): Map<String, Any?> =
         mapOf(
             "after" to SdkClient.queryValue(request.after, "form", true),
-            "validity" to SdkClient.queryValue(request.validity, "form", true),
-            "is_publicly_leaked" to SdkClient.queryValue(request.isPubliclyLeaked, "form", true),
-            "is_multi_repo" to SdkClient.queryValue(request.isMultiRepo, "form", true),
-            "hide_secret" to SdkClient.queryValue(request.hideSecret, "form", true),
-            "is_bypassed" to SdkClient.queryValue(request.isBypassed, "form", true),
-            "included_metadata" to SdkClient.queryValue(request.includedMetadata, "form", true),
-            "owner_email_hash" to SdkClient.queryValue(request.ownerEmailHash, "form", true),
+            "validity" to
+    SdkClient.queryValue(request.validity, "form", true),
+            "is_publicly_leaked" to
+    SdkClient.queryValue(request.isPubliclyLeaked, "form", true),
+            "is_multi_repo" to
+    SdkClient.queryValue(request.isMultiRepo, "form", true),
+            "hide_secret" to
+    SdkClient.queryValue(request.hideSecret, "form", true),
+            "is_bypassed" to
+    SdkClient.queryValue(request.isBypassed, "form", true),
+            "included_metadata" to
+    SdkClient.queryValue(request.includedMetadata, "form", true),
+            "owner_email_hash" to
+    SdkClient.queryValue(request.ownerEmailHash, "form", true),
         )
 }
 
 internal object SecretScanningGetAlertOperation {
     /**
-     * Gets a single secret scanning alert detected in an eligible repository. The authenticated
-     * user must be an administrator for the repository or for the organization that owns the
-     * repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used
-     * with public repositories, the token can use the `public_repo` scope instead.
+     * Gets a single secret scanning alert detected in an eligible repository. The authenticated user must be an administrator for the repository or for the organization that owns the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param alertNumber The number that identifies an alert. You can find this at the end of the
-     *   URL for a code scanning alert within GitHub, and in the `number` field in the response from
-     *   the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation.
-     * @param hideSecret A boolean value representing whether or not to hide literal secrets in the
-     *   results.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param alertNumber The number that identifies an alert. You can find this at
+     *   the end of the URL for a code scanning alert within GitHub, and in the
+     *   `number` field in the response from the `GET
+     *   /repos/{owner}/{repo}/code-scanning/alerts` operation.
+     * @param hideSecret A boolean value representing whether or not to hide literal
+     *   secrets in the results.
      */
-    fun secretScanningGetAlert(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        alertNumber: AlertNumber,
-        hideSecret: Boolean? = null,
-        options: RequestOptions? = null,
-    ): SecretScanningAlertWithMetadata {
-        return SdkClient.request<SecretScanningAlertWithMetadata>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/alerts/${SdkClient.encodePathSegment(alertNumber)}",
-                    config = clientConfig,
-                    query = mapOf("hide_secret" to SdkClient.queryValue(hideSecret, "form", true)),
-                    operationId = "secretScanningGetAlert",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("503" to ServiceUnavailable::class.java),
-                )
-            )
-            .data
+    fun secretScanningGetAlert(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, hideSecret: Boolean? = null, options: RequestOptions? = null): SecretScanningAlertWithMetadata {
+        return SdkClient.request<SecretScanningAlertWithMetadata>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/alerts/${SdkClient.encodePathSegment(alertNumber)}", config = clientConfig, query = mapOf("hide_secret" to
+    SdkClient.queryValue(hideSecret, "form", true)), operationId = "secretScanningGetAlert", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object SecretScanningUpdateAlertOperation {
     /**
-     * Updates the status of a secret scanning alert in an eligible repository. You can also use
-     * this endpoint to assign or unassign an alert to a user who has write access to the
-     * repository. The authenticated user must be an administrator for the repository or for the
-     * organization that owns the repository to use this endpoint. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If
-     * this endpoint is only used with…
+     * Updates the status of a secret scanning alert in an eligible repository. You can also use this endpoint to assign or unassign an alert to a user who has write access to the repository. The authenticated user must be an administrator for the repository or for the organization that owns the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param alertNumber The number that identifies an alert. You can find this at the end of the
-     *   URL for a code scanning alert within GitHub, and in the `number` field in the response from
-     *   the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation.
-     * @param state Sets the state of the secret scanning alert. You must provide `resolution` when
-     *   you set the state to `resolved`.
-     * @param resolution **Required when the `state` is `resolved`.** The reason for resolving the
-     *   alert.
-     * @param resolutionComment An optional comment when closing or reopening an alert. Cannot be
-     *   updated or deleted.
-     * @param assignee The username of the user to assign to the alert. Set to `null` to unassign
-     *   the alert.
-     * @param validity Sets the validity of the secret scanning alert. Can be `active`, `inactive`,
-     *   or `null` to clear the override.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param alertNumber The number that identifies an alert. You can find this at
+     *   the end of the URL for a code scanning alert within GitHub, and in the
+     *   `number` field in the response from the `GET
+     *   /repos/{owner}/{repo}/code-scanning/alerts` operation.
+     * @param state Sets the state of the secret scanning alert. You must provide
+     *   `resolution` when you set the state to `resolved`.
+     * @param resolution **Required when the `state` is `resolved`.** The reason for
+     *   resolving the alert.
+     * @param resolutionComment An optional comment when closing or reopening an
+     *   alert. Cannot be updated or deleted.
+     * @param assignee The username of the user to assign to the alert. Set to `null`
+     *   to unassign the alert.
+     * @param validity Sets the validity of the secret scanning alert. Can be
+     *   `active`, `inactive`, or `null` to clear the override.
      */
-    fun secretScanningUpdateAlert(
-        clientConfig: ClientConfig,
-        request: SecretScanning.SecretScanningUpdateAlertRequest,
-        options: RequestOptions? = null,
-    ): SecretScanningAlertWithMetadata {
-        return SdkClient.request<SecretScanningAlertWithMetadata>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/secret-scanning/alerts/${SdkClient.encodePathSegment(request.alertNumber)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "state" to (SdkClient.omitIfNull(request.state)),
-                            "resolution" to (request.resolution ?: SdkClient.SdkOptional.Omitted),
-                            "resolution_comment" to
-                                (request.resolutionComment ?: SdkClient.SdkOptional.Omitted),
-                            "assignee" to (request.assignee ?: SdkClient.SdkOptional.Omitted),
-                            "validity" to (request.validity ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "secretScanningUpdateAlert",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("503" to ServiceUnavailable::class.java),
-                )
-            )
-            .data
+    fun secretScanningUpdateAlert(clientConfig: ClientConfig, request: SecretScanning.SecretScanningUpdateAlertRequest, options: RequestOptions? = null): SecretScanningAlertWithMetadata {
+        return SdkClient.request<SecretScanningAlertWithMetadata>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/secret-scanning/alerts/${SdkClient.encodePathSegment(request.alertNumber)}", config = clientConfig, body = SdkClient.bodyMap("state" to (SdkClient.omitIfNull(request.state)), "resolution" to
+    (request.resolution ?: SdkClient.SdkOptional.Omitted), "resolution_comment" to
+    (request.resolutionComment ?: SdkClient.SdkOptional.Omitted), "assignee" to
+    (request.assignee ?: SdkClient.SdkOptional.Omitted), "validity" to
+    (request.validity ?: SdkClient.SdkOptional.Omitted)), operationId = "secretScanningUpdateAlert", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object SecretScanningListLocationsForAlertOperation {
     /**
-     * Lists all locations for a given secret scanning alert for an eligible repository. The
-     * authenticated user must be an administrator for the repository or for the organization that
-     * owns the repository to use this endpoint. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint
-     * is only used with public repositories, the token can use the `public_repo` scope instead.
+     * Lists all locations for a given secret scanning alert for an eligible repository. The authenticated user must be an administrator for the repository or for the organization that owns the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param alertNumber The number that identifies an alert. You can find this at the end of the
-     *   URL for a code scanning alert within GitHub, and in the `number` field in the response from
-     *   the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation.
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param alertNumber The number that identifies an alert. You can find this at
+     *   the end of the URL for a code scanning alert within GitHub, and in the
+     *   `number` field in the response from the `GET
+     *   /repos/{owner}/{repo}/code-scanning/alerts` operation.
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
      */
-    fun secretScanningListLocationsForAlert(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        alertNumber: AlertNumber,
-        page: Long? = null,
-        perPage: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SecretScanningLocation> {
-        return SdkClient.request<List<SecretScanningLocation>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/alerts/${SdkClient.encodePathSegment(alertNumber)}/locations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                        ),
-                    operationId = "secretScanningListLocationsForAlert",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("503" to ServiceUnavailable::class.java),
-                )
-            )
-            .data
+    fun secretScanningListLocationsForAlert(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): List<SecretScanningLocation> {
+        return SdkClient.request<List<SecretScanningLocation>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/alerts/${SdkClient.encodePathSegment(alertNumber)}/locations", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "secretScanningListLocationsForAlert", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object SecretScanningListRepoCustomPatternsOperation {
     /**
-     * Lists secret scanning custom patterns for a repository. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used
-     * with public repositories, the token can use the `public_repo` scope instead. Fine-grained
-     * access tokens require the `administration:write` repository permission.
+     * Lists secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. Fine-grained access tokens require the `administration:write` repository permission.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param state Filter custom patterns by state. When absent, returns patterns in all states.
-     * @param pushProtection Filter custom patterns by whether push protection is enabled. When
-     *   absent, returns patterns regardless of push protection status.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param state Filter custom patterns by state. When absent, returns patterns in
+     *   all states.
+     * @param pushProtection Filter custom patterns by whether push protection is
+     *   enabled. When absent, returns patterns regardless of push protection status.
      * @param sort The property to sort the results by.
      * @param direction The direction to sort the results by.
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun secretScanningListRepoCustomPatterns(
-        clientConfig: ClientConfig,
-        request: SecretScanning.SecretScanningListRepoCustomPatternsRequest,
-        options: RequestOptions? = null,
-    ): List<SecretScanningCustomPattern> {
-        return SdkClient.request<List<SecretScanningCustomPattern>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/secret-scanning/custom-patterns",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "state" to SdkClient.queryValue(request.state, "form", true),
-                            "push_protection" to
-                                SdkClient.queryValue(request.pushProtection, "form", true),
-                            "sort" to SdkClient.queryValue(request.sort, "form", true),
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "before" to SdkClient.queryValue(request.before, "form", true),
-                            "after" to SdkClient.queryValue(request.after, "form", true),
-                        ),
-                    operationId = "secretScanningListRepoCustomPatterns",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun secretScanningListRepoCustomPatterns(clientConfig: ClientConfig, request: SecretScanning.SecretScanningListRepoCustomPatternsRequest, options: RequestOptions? = null): List<SecretScanningCustomPattern> {
+        return SdkClient.request<List<SecretScanningCustomPattern>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/secret-scanning/custom-patterns", config = clientConfig, query = mapOf("state" to SdkClient.queryValue(request.state, "form", true), "push_protection" to
+    SdkClient.queryValue(request.pushProtection, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
+    SdkClient.queryValue(request.direction, "form", true), "before" to
+    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true)), operationId = "secretScanningListRepoCustomPatterns", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object SecretScanningBulkCreateRepoCustomPatternsOperation {
     /**
-     * Bulk creates secret scanning custom patterns for a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only
-     * used with public repositories, the token can use the `public_repo` scope instead.
-     * Fine-grained access tokens require the `administration:write` repository permission.
+     * Bulk creates secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. Fine-grained access tokens require the `administration:write` repository permission.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param patterns The list of custom patterns to create (maximum 100).
      */
-    fun secretScanningBulkCreateRepoCustomPatterns(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        patterns: List<SecretScanningCustomPatternToCreate>,
-        options: RequestOptions? = null,
-    ): SecretScanning.SecretScanningBulkCreateRepoCustomPatternsResponse {
+    fun secretScanningBulkCreateRepoCustomPatterns(clientConfig: ClientConfig, owner: String, repo: String, patterns: List<SecretScanningCustomPatternToCreate>, options: RequestOptions? = null): SecretScanning.SecretScanningBulkCreateRepoCustomPatternsResponse {
         Validation.validateItems("patterns", patterns, Validation.LengthOpts(max = 100))
 
-        return SdkClient.request<SecretScanning.SecretScanningBulkCreateRepoCustomPatternsResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/custom-patterns",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("patterns" to (patterns)),
-                    operationId = "secretScanningBulkCreateRepoCustomPatterns",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<SecretScanning.SecretScanningBulkCreateRepoCustomPatternsResponse>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/custom-patterns", config = clientConfig, body = SdkClient.bodyMap("patterns" to (patterns)), operationId = "secretScanningBulkCreateRepoCustomPatterns", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object SecretScanningBulkDeleteRepoCustomPatternsOperation {
     /**
-     * Bulk deletes secret scanning custom patterns for a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only
-     * used with public repositories, the token can use the `public_repo` scope instead.
-     * Fine-grained access tokens require the `administration:write` repository permission.
+     * Bulk deletes secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. Fine-grained access tokens require the `administration:write` repository permission.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param patterns The list of custom patterns to delete.
-     * @param postDeleteAction What to do with alerts associated with the deleted patterns.
-     *   `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as
-     *   "pattern deleted". Defaults to `delete_alerts` when not specified.
+     * @param postDeleteAction What to do with alerts associated with the deleted
+     *   patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts`
+     *   resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not
+     *   specified.
      */
-    fun secretScanningBulkDeleteRepoCustomPatterns(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        patterns: List<SecretScanningCustomPatternToDelete>,
-        postDeleteAction: SecretScanningBulkDeleteRepoCustomPatternsPostDeleteActionEnum? = null,
-        options: RequestOptions? = null,
-    ): Unit {
+    fun secretScanningBulkDeleteRepoCustomPatterns(clientConfig: ClientConfig, owner: String, repo: String, patterns: List<SecretScanningCustomPatternToDelete>, postDeleteAction: SecretScanningBulkDeleteRepoCustomPatternsPostDeleteActionEnum? = null, options: RequestOptions? = null): Unit {
         Validation.validateItems("patterns", patterns, Validation.LengthOpts(max = 500))
 
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/custom-patterns",
-                config = clientConfig,
-                body =
-                    SdkClient.bodyMap(
-                        "patterns" to (patterns),
-                        "post_delete_action" to (SdkClient.omitIfNull(postDeleteAction)),
-                    ),
-                operationId = "secretScanningBulkDeleteRepoCustomPatterns",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "400" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "412" to BasicError::class.java,
-                    ),
-            )
-        )
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/custom-patterns", config = clientConfig, body = SdkClient.bodyMap("patterns" to (patterns), "post_delete_action" to
+    (SdkClient.omitIfNull(postDeleteAction))), operationId = "secretScanningBulkDeleteRepoCustomPatterns", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "412" to BasicError::class.java)))
     }
 }
 
 internal object SecretScanningUpdateRepoCustomPatternOperation {
     /**
-     * Updates a secret scanning custom pattern for a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only
-     * used with public repositories, the token can use the `public_repo` scope instead.
-     * Fine-grained access tokens require the `administration:write` repository permission.
+     * Updates a secret scanning custom pattern for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. Fine-grained access tokens require the `administration:write` repository permission.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param patternId The ID of the custom pattern.
-     * @param customPatternVersion The version of the entity. This is used to confirm you're
-     *   updating the current version of the entity and mitigate unintentionally overriding someone
-     *   else's update.
+     * @param customPatternVersion The version of the entity. This is used to confirm
+     *   you're updating the current version of the entity and mitigate unintentionally
+     *   overriding someone else's update.
      * @param pattern The updated regular expression of the custom pattern.
-     * @param startDelimiter The updated start delimiter regex for the custom pattern.
+     * @param startDelimiter The updated start delimiter regex for the custom
+     *   pattern.
      * @param endDelimiter The updated end delimiter regex for the custom pattern.
      * @param mustMatch Updated list of regexes that the secret must match.
      * @param mustNotMatch Updated list of regexes that the secret must not match.
      */
-    fun secretScanningUpdateRepoCustomPattern(
-        clientConfig: ClientConfig,
-        request: SecretScanning.SecretScanningUpdateRepoCustomPatternRequest,
-        options: RequestOptions? = null,
-    ): SecretScanningCustomPattern {
-        return SdkClient.request<SecretScanningCustomPattern>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/secret-scanning/custom-patterns/${SdkClient.encodePathSegment(request.patternId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "custom_pattern_version" to (request.customPatternVersion),
-                            "pattern" to (SdkClient.omitIfNull(request.pattern)),
-                            "start_delimiter" to (SdkClient.omitIfNull(request.startDelimiter)),
-                            "end_delimiter" to (SdkClient.omitIfNull(request.endDelimiter)),
-                            "must_match" to (SdkClient.omitIfNull(request.mustMatch)),
-                            "must_not_match" to (SdkClient.omitIfNull(request.mustNotMatch)),
-                        ),
-                    operationId = "secretScanningUpdateRepoCustomPattern",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "412" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun secretScanningUpdateRepoCustomPattern(clientConfig: ClientConfig, request: SecretScanning.SecretScanningUpdateRepoCustomPatternRequest, options: RequestOptions? = null): SecretScanningCustomPattern {
+        return SdkClient.request<SecretScanningCustomPattern>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/secret-scanning/custom-patterns/${SdkClient.encodePathSegment(request.patternId)}", config = clientConfig, body = SdkClient.bodyMap("custom_pattern_version" to (request.customPatternVersion), "pattern" to (SdkClient.omitIfNull(request.pattern)), "start_delimiter" to
+    (SdkClient.omitIfNull(request.startDelimiter)), "end_delimiter" to
+    (SdkClient.omitIfNull(request.endDelimiter)), "must_match" to (SdkClient.omitIfNull(request.mustMatch)), "must_not_match" to
+    (SdkClient.omitIfNull(request.mustNotMatch))), operationId = "secretScanningUpdateRepoCustomPattern", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "412" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object SecretScanningCreatePushProtectionBypassOperation {
     /**
-     * Creates a bypass for a previously push protected secret. The authenticated user must be the
-     * original author of the committed secret. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Creates a bypass for a previously push protected secret. The authenticated user must be the original author of the committed secret. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param reason The reason for bypassing push protection.
-     * @param placeholderId The ID of the push protection bypass placeholder. This value is returned
-     *   on any push protected routes.
+     * @param placeholderId The ID of the push protection bypass placeholder. This
+     *   value is returned on any push protected routes.
      */
-    fun secretScanningCreatePushProtectionBypass(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        reason: SecretScanningPushProtectionBypassReason,
-        placeholderId: SecretScanningPushProtectionBypassPlaceholderId,
-        options: RequestOptions? = null,
-    ): SecretScanningPushProtectionBypass {
-        return SdkClient.request<SecretScanningPushProtectionBypass>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/push-protection-bypasses",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "reason" to (reason),
-                            "placeholder_id" to (placeholderId),
-                        ),
-                    operationId = "secretScanningCreatePushProtectionBypass",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("503" to ServiceUnavailable::class.java),
-                )
-            )
-            .data
+    fun secretScanningCreatePushProtectionBypass(clientConfig: ClientConfig, owner: String, repo: String, reason: SecretScanningPushProtectionBypassReason, placeholderId: SecretScanningPushProtectionBypassPlaceholderId, options: RequestOptions? = null): SecretScanningPushProtectionBypass {
+        return SdkClient.request<SecretScanningPushProtectionBypass>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/push-protection-bypasses", config = clientConfig, body = SdkClient.bodyMap("reason" to (reason), "placeholder_id" to (placeholderId)), operationId = "secretScanningCreatePushProtectionBypass", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("503" to ServiceUnavailable::class.java))).data
     }
 }
 
 internal object SecretScanningGetScanHistoryOperation {
     /**
-     * Lists the latest default incremental and backfill scans by type for a repository. > !NOTE] >
-     * This endpoint requires \[GitHub Advanced Security. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this
-     * endpoint is only used with public repositories, the token can use the `public_repo` scope
-     * instead.
+     * Lists the latest default incremental and backfill scans by type for a repository. > !NOTE] > This endpoint requires \[GitHub Advanced Security. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun secretScanningGetScanHistory(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): SecretScanningScanHistory {
-        return SdkClient.request<SecretScanningScanHistory>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/scan-history",
-                    config = clientConfig,
-                    operationId = "secretScanningGetScanHistory",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("503" to ServiceUnavailable::class.java),
-                )
-            )
-            .data
+    fun secretScanningGetScanHistory(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SecretScanningScanHistory {
+        return SdkClient.request<SecretScanningScanHistory>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/secret-scanning/scan-history", config = clientConfig, operationId = "secretScanningGetScanHistory", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("503" to ServiceUnavailable::class.java))).data
     }
 }

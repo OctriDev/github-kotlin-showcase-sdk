@@ -3,19 +3,30 @@
 
 package dev.octri.showcase.github.models
 
-/** Check Dependabot security updates */
+/**
+ * Check Dependabot security updates
+ */
 data class CheckAutomatedSecurityFixes(
-    /** Whether Dependabot security updates are enabled for the repository. */
+    /**
+     * Whether Dependabot security updates are enabled for the repository.
+     */
     val enabled: Boolean,
-    /** Whether Dependabot security updates are paused for the repository. */
-    val paused: Boolean,
+    /**
+     * Whether Dependabot security updates are paused for the repository.
+     */
+    val paused: Boolean
 )
 
-/** Check immutable releases */
+/**
+ * Check immutable releases
+ */
 data class CheckImmutableReleases(
-    /** Whether immutable releases are enabled for the repository. */
+    /**
+     * Whether immutable releases are enabled for the repository.
+     */
     val enabled: Boolean,
-    /** Whether immutable releases are enforced by the repository owner. */
-    @com.fasterxml.jackson.annotation.JsonProperty("enforced_by_owner")
-    val enforcedByOwner: Boolean,
+    /**
+     * Whether immutable releases are enforced by the repository owner.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("enforced_by_owner") val enforcedByOwner: Boolean
 )

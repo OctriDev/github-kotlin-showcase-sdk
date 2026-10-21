@@ -5,43 +5,78 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Webhooks for repositories. */
+/**
+ * Webhooks for repositories.
+ */
 data class Hook(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Unique identifier of the webhook. */
+    /**
+     * Unique identifier of the webhook.
+     */
     val id: Long,
-    /** The name of a valid service, use 'web' for a webhook. */
+    /**
+     * The name of a valid service, use 'web' for a webhook.
+     */
     val name: String,
-    /** Determines whether the hook is actually triggered on pushes. */
+    /**
+     * Determines whether the hook is actually triggered on pushes.
+     */
     val active: Boolean,
-    /** Determines what events the hook is triggered for. Default: \['push'\]. */
+    /**
+     * Determines what events the hook is triggered for. Default: \['push'\].
+     */
     val events: List<String>,
-    /** Configuration object of the webhook */
+    /**
+     * Configuration object of the webhook
+     */
     val config: WebhookConfig,
-    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `uri`-formatted value serialized in the `test_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `test_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("test_url") val testUrl: String,
-    /** Required `uri`-formatted value serialized in the `ping_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `ping_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("ping_url") val pingUrl: String,
-    /** Required object value serialized in the `last_response` wire field. */
+    /**
+     * Required object value serialized in the `last_response` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("last_response") val lastResponse: HookResponse,
-    /** Optional `uri`-formatted value serialized in the `deliveries_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("deliveries_url")
-    val deliveriesUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `deliveries_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("deliveries_url") val deliveriesUrl: String? = null
 )
 
-/** Typed representation of the `HookResponse` API schema. */
+/**
+ * Typed representation of the `HookResponse` API schema.
+ */
 data class HookResponse(
-    /** Required `integer` value serialized in the `code` wire field. */
+    /**
+     * Required `integer` value serialized in the `code` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("code", required = true) val code: Long?,
-    /** Required `string` value serialized in the `status` wire field. */
+    /**
+     * Required `string` value serialized in the `status` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("status", required = true) val status: String?,
-    /** Required `string` value serialized in the `message` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("message", required = true) val message: String?,
+    /**
+     * Required `string` value serialized in the `message` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("message", required = true) val message: String?
 )

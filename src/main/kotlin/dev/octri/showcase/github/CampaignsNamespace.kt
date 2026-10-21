@@ -3,86 +3,41 @@
 
 package dev.octri.showcase.github
 
+
 class CampaignsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists campaigns in an organization. The authenticated user must be an owner or security
-     * manager for the organization to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `security_events` scope to use this endpoint.
+     * Lists campaigns in an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint.
      */
-    fun listOrgCampaigns(
-        request: dev.octri.showcase.github.methods.Campaigns.CampaignsListOrgCampaignsRequest,
-        options: RequestOptions? = null,
-    ): List<CampaignSummary> {
-        return dev.octri.showcase.github.methods.Campaigns.campaignsListOrgCampaigns(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listOrgCampaigns(request: dev.octri.showcase.github.methods.Campaigns.CampaignsListOrgCampaignsRequest, options: RequestOptions? = null): List<CampaignSummary> {
+        return dev.octri.showcase.github.methods.Campaigns.campaignsListOrgCampaigns(clientConfig, request, options)
     }
 
     /**
-     * Create a campaign for an organization. The authenticated user must be an owner or security
-     * manager for the organization to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `security_events` scope to use this endpoint. Fine-grained tokens
-     * must have the "Code scanning alerts" repository permissions (read) on all repositories
-     * included in the campaign.
+     * Create a campaign for an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint. Fine-grained tokens must have the "Code scanning alerts" repository permissions (read) on all repositories included in the campaign.
      */
-    fun createCampaign(
-        request: dev.octri.showcase.github.methods.Campaigns.CampaignsCreateCampaignRequest,
-        options: RequestOptions? = null,
-    ): CampaignSummary {
-        return dev.octri.showcase.github.methods.Campaigns.campaignsCreateCampaign(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createCampaign(request: dev.octri.showcase.github.methods.Campaigns.CampaignsCreateCampaignRequest, options: RequestOptions? = null): CampaignSummary {
+        return dev.octri.showcase.github.methods.Campaigns.campaignsCreateCampaign(clientConfig, request, options)
     }
 
     /**
-     * Gets a campaign for an organization. The authenticated user must be an owner or security
-     * manager for the organization to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `security_events` scope to use this endpoint.
+     * Gets a campaign for an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint.
      */
-    fun getCampaignSummary(
-        org: String,
-        campaignNumber: Long,
-        options: RequestOptions? = null,
-    ): CampaignSummary {
-        return dev.octri.showcase.github.methods.Campaigns.campaignsGetCampaignSummary(
-            clientConfig,
-            org,
-            campaignNumber,
-            options,
-        )
+    fun getCampaignSummary(org: String, campaignNumber: Long, options: RequestOptions? = null): CampaignSummary {
+        return dev.octri.showcase.github.methods.Campaigns.campaignsGetCampaignSummary(clientConfig, org, campaignNumber, options)
     }
 
     /**
-     * Updates a campaign in an organization. The authenticated user must be an owner or security
-     * manager for the organization to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `security_events` scope to use this endpoint.
+     * Updates a campaign in an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint.
      */
-    fun updateCampaign(
-        request: dev.octri.showcase.github.methods.Campaigns.CampaignsUpdateCampaignRequest,
-        options: RequestOptions? = null,
-    ): CampaignSummary {
-        return dev.octri.showcase.github.methods.Campaigns.campaignsUpdateCampaign(
-            clientConfig,
-            request,
-            options,
-        )
+    fun updateCampaign(request: dev.octri.showcase.github.methods.Campaigns.CampaignsUpdateCampaignRequest, options: RequestOptions? = null): CampaignSummary {
+        return dev.octri.showcase.github.methods.Campaigns.campaignsUpdateCampaign(clientConfig, request, options)
     }
 
     /**
-     * Deletes a campaign in an organization. The authenticated user must be an owner or security
-     * manager for the organization to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `security_events` scope to use this endpoint.
+     * Deletes a campaign in an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint.
      */
     fun deleteCampaign(org: String, campaignNumber: Long, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.Campaigns.campaignsDeleteCampaign(
-            clientConfig,
-            org,
-            campaignNumber,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Campaigns.campaignsDeleteCampaign(clientConfig, org, campaignNumber, options)
     }
+
 }

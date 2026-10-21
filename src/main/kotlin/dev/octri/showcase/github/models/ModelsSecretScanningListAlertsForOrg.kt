@@ -5,117 +5,144 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Typed representation of the `OrganizationSecretScanningAlert` API schema. */
+/**
+ * Typed representation of the `OrganizationSecretScanningAlert` API schema.
+ */
 class OrganizationSecretScanningAlert(
-    /** The security alert number. */
-    val number: AlertNumber? = null,
-    /** The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: AlertCreatedAt? = null,
-    /** The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
-    val updatedAt: NullableAlertUpdatedAt? = null,
-    /** The REST API URL of the alert resource. */
-    val url: AlertUrl? = null,
-    /** The GitHub URL of the alert resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: AlertHtmlUrl? = null,
-    /** The REST API URL of the code locations for this alert. */
-    @com.fasterxml.jackson.annotation.JsonProperty("locations_url")
-    val locationsUrl: String? = null,
     /**
-     * Sets the state of the secret scanning alert. You must provide `resolution` when you set the
-     * state to `resolved`.
+     * The security alert number.
+     */
+    val number: AlertNumber? = null,
+    /**
+     * The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: AlertCreatedAt? = null,
+    /**
+     * The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: NullableAlertUpdatedAt? = null,
+    /**
+     * The REST API URL of the alert resource.
+     */
+    val url: AlertUrl? = null,
+    /**
+     * The GitHub URL of the alert resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: AlertHtmlUrl? = null,
+    /**
+     * The REST API URL of the code locations for this alert.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("locations_url") val locationsUrl: String? = null,
+    /**
+     * Sets the state of the secret scanning alert. You must provide `resolution` when you set the state to `resolved`.
      */
     val state: SecretScanningAlertState? = null,
-    /** **Required when the `state` is `resolved`.** The reason for resolving the alert. */
+    /**
+     * **Required when the `state` is `resolved`.** The reason for resolving the alert.
+     */
     val resolution: SecretScanningAlertResolution? = null,
-    /** The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("resolved_at")
-    val resolvedAt: OffsetDateTime? = null,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("resolved_by")
-    val resolvedBy: NullableSimpleUser? = null,
-    /** The type of secret that secret scanning detected. */
+    /**
+     * The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("resolved_at") val resolvedAt: OffsetDateTime? = null,
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("resolved_by") val resolvedBy: NullableSimpleUser? = null,
+    /**
+     * The type of secret that secret scanning detected.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("secret_type") val secretType: String? = null,
     /**
-     * User-friendly name for the detected secret, matching the `secret_type`. For a list of
-     * built-in patterns, see "Supported secret scanning patterns."
+     * User-friendly name for the detected secret, matching the `secret_type`. For a list of built-in patterns, see "Supported secret scanning patterns."
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_type_display_name")
-    val secretTypeDisplayName: String? = null,
-    /** The provider of the secret that was detected. */
+    @com.fasterxml.jackson.annotation.JsonProperty("secret_type_display_name") val secretTypeDisplayName: String? = null,
+    /**
+     * The provider of the secret that was detected.
+     */
     val provider: String? = null,
     /**
-     * The slug identifier for the provider of the secret that was detected. Use this value for
-     * filtering by provider with the `providers` or `exclude_providers` parameters.
+     * The slug identifier for the provider of the secret that was detected. Use this value for filtering by provider with the `providers` or `exclude_providers` parameters.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("provider_slug")
-    val providerSlug: String? = null,
-    /** The secret that was detected. */
-    val secret: String? = null,
-    /** A GitHub repository. */
-    val repository: SimpleRepository? = null,
-    /** Whether push protection was bypassed for the detected secret. */
-    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypassed")
-    val pushProtectionBypassed: Boolean? = null,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypassed_by")
-    val pushProtectionBypassedBy: NullableSimpleUser? = null,
-    /** The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
-    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypassed_at")
-    val pushProtectionBypassedAt: OffsetDateTime? = null,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypass_request_reviewer")
-    val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
-    /** An optional comment when reviewing a push protection bypass. */
-    @com.fasterxml.jackson.annotation.JsonProperty(
-        "push_protection_bypass_request_reviewer_comment"
-    )
-    val pushProtectionBypassRequestReviewerComment: String? = null,
-    /** An optional comment when requesting a push protection bypass. */
-    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypass_request_comment")
-    val pushProtectionBypassRequestComment: String? = null,
-    /** The URL to a push protection bypass request. */
-    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypass_request_html_url")
-    val pushProtectionBypassRequestHtmlUrl: String? = null,
-    /** The comment that was optionally added when this alert was closed */
-    @com.fasterxml.jackson.annotation.JsonProperty("resolution_comment")
-    val resolutionComment: String? = null,
-    /** The token status as of the latest validity check. */
-    val validity: OrganizationSecretScanningAlertValidityEnum? = null,
-    /** Whether the secret was publicly leaked. */
-    @com.fasterxml.jackson.annotation.JsonProperty("publicly_leaked")
-    val publiclyLeaked: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("provider_slug") val providerSlug: String? = null,
     /**
-     * Whether the detected secret was found in multiple repositories in the same organization or
-     * enterprise.
+     * The secret that was detected.
+     */
+    val secret: String? = null,
+    /**
+     * A GitHub repository.
+     */
+    val repository: SimpleRepository? = null,
+    /**
+     * Whether push protection was bypassed for the detected secret.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypassed") val pushProtectionBypassed: Boolean? = null,
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypassed_by") val pushProtectionBypassedBy: NullableSimpleUser? = null,
+    /**
+     * The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypassed_at") val pushProtectionBypassedAt: OffsetDateTime? = null,
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypass_request_reviewer") val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
+    /**
+     * An optional comment when reviewing a push protection bypass.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypass_request_reviewer_comment") val pushProtectionBypassRequestReviewerComment: String? = null,
+    /**
+     * An optional comment when requesting a push protection bypass.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypass_request_comment") val pushProtectionBypassRequestComment: String? = null,
+    /**
+     * The URL to a push protection bypass request.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("push_protection_bypass_request_html_url") val pushProtectionBypassRequestHtmlUrl: String? = null,
+    /**
+     * The comment that was optionally added when this alert was closed
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("resolution_comment") val resolutionComment: String? = null,
+    /**
+     * The token status as of the latest validity check.
+     */
+    val validity: OrganizationSecretScanningAlertValidityEnum? = null,
+    /**
+     * Whether the secret was publicly leaked.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("publicly_leaked") val publiclyLeaked: Boolean? = null,
+    /**
+     * Whether the detected secret was found in multiple repositories in the same organization or enterprise.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("multi_repo") val multiRepo: Boolean? = null,
-    /** A boolean value representing whether or not alert is base64 encoded */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_base64_encoded")
-    val isBase64Encoded: Boolean? = null,
     /**
-     * Details on the location where the token was initially detected. This can be a commit, wiki
-     * commit, issue, discussion, pull request.
+     * A boolean value representing whether or not alert is base64 encoded
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("first_location_detected")
-    val firstLocationDetected: NullableSecretScanningFirstDetectedLocation? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("is_base64_encoded") val isBase64Encoded: Boolean? = null,
     /**
-     * A boolean value representing whether or not the token in the alert was detected in more than
-     * one location.
+     * Details on the location where the token was initially detected. This can be a commit, wiki commit, issue, discussion, pull request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_more_locations")
-    val hasMoreLocations: Boolean? = null,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("assigned_to")
-    val assignedTo: NullableSimpleUser? = null,
-    /** An optional comment from the closure request author. */
-    @com.fasterxml.jackson.annotation.JsonProperty("closure_request_comment")
-    val closureRequestComment: String? = null,
-    /** An optional comment from the closure request reviewer. */
-    @com.fasterxml.jackson.annotation.JsonProperty("closure_request_reviewer_comment")
-    val closureRequestReviewerComment: String? = null,
-    /** A GitHub user. */
-    @com.fasterxml.jackson.annotation.JsonProperty("closure_request_reviewer")
-    val closureRequestReviewer: NullableSimpleUser? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("first_location_detected") val firstLocationDetected: NullableSecretScanningFirstDetectedLocation? = null,
+    /**
+     * A boolean value representing whether or not the token in the alert was detected in more than one location.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_more_locations") val hasMoreLocations: Boolean? = null,
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("assigned_to") val assignedTo: NullableSimpleUser? = null,
+    /**
+     * An optional comment from the closure request author.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("closure_request_comment") val closureRequestComment: String? = null,
+    /**
+     * An optional comment from the closure request reviewer.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("closure_request_reviewer_comment") val closureRequestReviewerComment: String? = null,
+    /**
+     * A GitHub user.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("closure_request_reviewer") val closureRequestReviewer: NullableSimpleUser? = null
 )

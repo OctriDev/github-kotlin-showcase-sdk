@@ -12,51 +12,25 @@ import dev.octri.showcase.github.SdkClient
 
 internal object OrgsGetOrgRulesetHistoryOperation {
     /**
-     * Lists the historical versions of an organization ruleset. Use `org` and `ruleset_id` to
-     * identify the ruleset, and use `page` and `per_page` to paginate the results.
+     * Lists the historical versions of an organization ruleset. Use `org` and `ruleset_id` to identify the ruleset, and use `page` and `per_page` to paginate the results.
      *
      * Get the history of an organization ruleset.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param rulesetId The ID of the ruleset.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsGetOrgRulesetHistory(
-        clientConfig: ClientConfig,
-        org: String,
-        rulesetId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<RulesetVersion> {
-        return SdkClient.request<List<RulesetVersion>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/rulesets/${SdkClient.encodePathSegment(rulesetId)}/history",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsGetOrgRulesetHistory",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsGetOrgRulesetHistory(clientConfig: ClientConfig, org: String, rulesetId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<RulesetVersion> {
+        return SdkClient.request<List<RulesetVersion>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/rulesets/${SdkClient.encodePathSegment(rulesetId)}/history", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsGetOrgRulesetHistory", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsGetOrgRulesetVersionOperation {
     /**
-     * Retrieves a specific historical version of an organization ruleset. Use `org`, `ruleset_id`,
-     * and `version_id` to identify the organization, ruleset, and version to retrieve.
+     * Retrieves a specific historical version of an organization ruleset. Use `org`, `ruleset_id`, and `version_id` to identify the organization, ruleset, and version to retrieve.
      *
      * Get a version of an organization ruleset.
      *
@@ -64,25 +38,7 @@ internal object OrgsGetOrgRulesetVersionOperation {
      * @param rulesetId The ID of the ruleset.
      * @param versionId The ID of the version
      */
-    fun orgsGetOrgRulesetVersion(
-        clientConfig: ClientConfig,
-        org: String,
-        rulesetId: Long,
-        versionId: Long,
-        options: RequestOptions? = null,
-    ): RulesetVersionWithState {
-        return SdkClient.request<RulesetVersionWithState>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/rulesets/${SdkClient.encodePathSegment(rulesetId)}/history/${SdkClient.encodePathSegment(versionId)}",
-                    config = clientConfig,
-                    operationId = "orgsGetOrgRulesetVersion",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
-                )
-            )
-            .data
+    fun orgsGetOrgRulesetVersion(clientConfig: ClientConfig, org: String, rulesetId: Long, versionId: Long, options: RequestOptions? = null): RulesetVersionWithState {
+        return SdkClient.request<RulesetVersionWithState>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/rulesets/${SdkClient.encodePathSegment(rulesetId)}/history/${SdkClient.encodePathSegment(versionId)}", config = clientConfig, operationId = "orgsGetOrgRulesetVersion", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }

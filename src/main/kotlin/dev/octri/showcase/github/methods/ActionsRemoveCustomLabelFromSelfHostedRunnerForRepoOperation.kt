@@ -12,41 +12,16 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object ActionsRemoveCustomLabelFromSelfHostedRunnerForRepoOperation {
     /**
-     * Remove a custom label from a self-hosted runner configured in a repository. Returns the
-     * remaining labels from the runner. This endpoint returns a `404 Not Found` status if the
-     * custom label is not present on the runner. Authenticated users must have admin access to the
-     * repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Remove a custom label from a self-hosted runner configured in a repository. Returns the remaining labels from the runner. This endpoint returns a `404 Not Found` status if the custom label is not present on the runner. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param runnerId Unique identifier of the self-hosted runner.
      * @param name The name of a self-hosted runner's custom label.
      */
-    fun actionsRemoveCustomLabelFromSelfHostedRunnerForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runnerId: Long,
-        name: String,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels {
-        return SdkClient.request<ActionsRunnerLabels>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels/${SdkClient.encodePathSegment(name)}",
-                    config = clientConfig,
-                    operationId = "actionsRemoveCustomLabelFromSelfHostedRunnerForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun actionsRemoveCustomLabelFromSelfHostedRunnerForRepo(clientConfig: ClientConfig, owner: String, repo: String, runnerId: Long, name: String, options: RequestOptions? = null): ActionsRunnerLabels {
+        return SdkClient.request<ActionsRunnerLabels>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runners/${SdkClient.encodePathSegment(runnerId)}/labels/${SdkClient.encodePathSegment(name)}", config = clientConfig, operationId = "actionsRemoveCustomLabelFromSelfHostedRunnerForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }

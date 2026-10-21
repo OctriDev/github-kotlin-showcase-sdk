@@ -3,26 +3,44 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `matches[]` wire field. */
+/**
+ * Required object value serialized in the `matches[]` wire field.
+ */
 data class SearchResultTextMatchesItemMatchesItem(
-    /** Optional `string` value serialized in the `text` wire field. */
+    /**
+     * Optional `string` value serialized in the `text` wire field.
+     */
     val text: String? = null,
-    /** Optional array value serialized in the `indices` wire field. */
-    val indices: List<Long>? = null,
+    /**
+     * Optional array value serialized in the `indices` wire field.
+     */
+    val indices: List<Long>? = null
 )
 
-/** Required object value serialized in the `text_matches[]` wire field. */
+/**
+ * Required object value serialized in the `text_matches[]` wire field.
+ */
 data class SearchResultTextMatchesItem(
-    /** Optional `string` value serialized in the `object_url` wire field. */
+    /**
+     * Optional `string` value serialized in the `object_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("object_url") val objectUrl: String? = null,
-    /** Optional `string` value serialized in the `object_type` wire field. */
+    /**
+     * Optional `string` value serialized in the `object_type` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("object_type") val objectType: String? = null,
-    /** Optional `string` value serialized in the `property` wire field. */
+    /**
+     * Optional `string` value serialized in the `property` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("property") val `property`: String? = null,
-    /** Optional `string` value serialized in the `fragment` wire field. */
+    /**
+     * Optional `string` value serialized in the `fragment` wire field.
+     */
     val fragment: String? = null,
-    /** Optional array value serialized in the `matches` wire field. */
-    val matches: List<SearchResultTextMatchesItemMatchesItem>? = null,
+    /**
+     * Optional array value serialized in the `matches` wire field.
+     */
+    val matches: List<SearchResultTextMatchesItemMatchesItem>? = null
 )
 
 typealias SearchResultTextMatches = List<SearchResultTextMatchesItem>

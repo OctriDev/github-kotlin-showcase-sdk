@@ -30,33 +30,28 @@ import java.time.LocalDate
 
 object Billing {
 
-    data class BillingCreateOrganizationBudgetBudgetAlerting(
-        /**
-         * Whether alerts are enabled for this budget. Rejected for user-scope as alerting is always
-         * disabled for them.
-         */
-        @com.fasterxml.jackson.annotation.JsonProperty("will_alert") val willAlert: Boolean? = null,
-        /**
-         * Array of user login names who will receive alerts. Rejected for user-scope as alerting is
-         * always disabled for them.
-         */
-        @com.fasterxml.jackson.annotation.JsonProperty("alert_recipients")
-        val alertRecipients: List<String>? = null,
-    )
+data class BillingCreateOrganizationBudgetBudgetAlerting(
+    /**
+     * Whether alerts are enabled for this budget. Rejected for user-scope as alerting is always disabled for them.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("will_alert") val willAlert: Boolean? = null,
+    /**
+     * Array of user login names who will receive alerts. Rejected for user-scope as alerting is always disabled for them.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("alert_recipients") val alertRecipients: List<String>? = null
+)
 
-    data class BillingUpdateBudgetOrgBudgetAlerting(
-        /**
-         * Whether alerts are enabled for this budget. Ignored for user-scopes as alerting is always
-         * disabled for them.
-         */
-        @com.fasterxml.jackson.annotation.JsonProperty("will_alert") val willAlert: Boolean? = null,
-        /**
-         * Array of user login names who will receive alerts. Ignored for user-scopes as alerting is
-         * always disabled for them.
-         */
-        @com.fasterxml.jackson.annotation.JsonProperty("alert_recipients")
-        val alertRecipients: List<String>? = null,
-    )
+data class BillingUpdateBudgetOrgBudgetAlerting(
+    /**
+     * Whether alerts are enabled for this budget. Ignored for user-scopes as alerting is always disabled for them.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("will_alert") val willAlert: Boolean? = null,
+    /**
+     * Array of user login names who will receive alerts. Ignored for user-scopes as alerting is always disabled for them.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("alert_recipients") val alertRecipients: List<String>? = null
+)
+
 
     /** Parameters for [billingGetGithubBillingAiCreditUsageReportOrg]. */
     data class BillingGetGithubBillingAiCreditUsageReportOrgRequest(
@@ -66,110 +61,61 @@ object Billing {
         val day: Long? = null,
         val user: String? = null,
         val model: String? = null,
-        val product: String? = null,
+        val product: String? = null
     )
 
     /**
-     * Gets a report of AI credit usage for an organization. To use this endpoint, you must be an
-     * administrator of an organization within an enterprise or an organization account. **Note:**
-     * Only data from the past 24 months is accessible via this endpoint.
+     * Gets a report of AI credit usage for an organization. To use this endpoint, you must be an administrator of an organization within an enterprise or an organization account. **Note:** Only data from the past 24 months is accessible via this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param year If specified, only return results for a single year. The value of `year` is an
-     *   integer with four digits representing a year. For example, `2025`. Default value is the
-     *   current year.
-     * @param month If specified, only return results for a single month. The value of `month` is an
-     *   integer between `1` and `12`. Default value is the current month. If no year is specified
-     *   the default `year` is used.
-     * @param day If specified, only return results for a single day. The value of `day` is an
-     *   integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and
-     *   `month` are used.
+     * @param year If specified, only return results for a single year. The value of
+     *   `year` is an integer with four digits representing a year. For example,
+     *   `2025`. Default value is the current year.
+     * @param month If specified, only return results for a single month. The value
+     *   of `month` is an integer between `1` and `12`. Default value is the current
+     *   month. If no year is specified the default `year` is used.
+     * @param day If specified, only return results for a single day. The value of
+     *   `day` is an integer between `1` and `31`. If no `year` or `month` is
+     *   specified, the default `year` and `month` are used.
      * @param user The user name to query usage for. The name is not case sensitive.
-     * @param model The model name to query usage for. The name is not case sensitive.
-     * @param product The product name to query usage for. The name is not case sensitive.
+     * @param model The model name to query usage for. The name is not case
+     *   sensitive.
+     * @param product The product name to query usage for. The name is not case
+     *   sensitive.
      */
-    fun billingGetGithubBillingAiCreditUsageReportOrg(
-        clientConfig: ClientConfig,
-        request: BillingGetGithubBillingAiCreditUsageReportOrgRequest,
-        options: RequestOptions? = null,
-    ): BillingAiCreditUsageReportOrg {
-        return SdkClient.request<BillingAiCreditUsageReportOrg>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/ai_credit/usage",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "year" to SdkClient.queryValue(request.year, "form", true),
-                            "month" to SdkClient.queryValue(request.month, "form", true),
-                            "day" to SdkClient.queryValue(request.day, "form", true),
-                            "user" to SdkClient.queryValue(request.user, "form", true),
-                            "model" to SdkClient.queryValue(request.model, "form", true),
-                            "product" to SdkClient.queryValue(request.product, "form", true),
-                        ),
-                    operationId = "billingGetGithubBillingAiCreditUsageReportOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetGithubBillingAiCreditUsageReportOrg(clientConfig: ClientConfig, request: BillingGetGithubBillingAiCreditUsageReportOrgRequest, options: RequestOptions? = null): BillingAiCreditUsageReportOrg {
+        return SdkClient.request<BillingAiCreditUsageReportOrg>(SdkClient.RequestSpec("GET", "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/ai_credit/usage", config = clientConfig, query = mapOf("year" to SdkClient.queryValue(request.year, "form", true), "month" to SdkClient.queryValue(request.month, "form", true), "day" to SdkClient.queryValue(request.day, "form", true), "user" to SdkClient.queryValue(request.user, "form", true), "model" to SdkClient.queryValue(request.model, "form", true), "product" to
+    SdkClient.queryValue(request.product, "form", true)), operationId = "billingGetGithubBillingAiCreditUsageReportOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Gets all budgets for an organization. The authenticated user must be an organization admin or
-     * billing manager. Each page returns up to 100 budgets.
+     * Gets all budgets for an organization. The authenticated user must be an organization admin or billing manager. Each page returns up to 100 budgets.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param page The page number of the results to fetch.
      * @param perPage The number of results per page (max 100).
-     * @param scope Filter budgets by scope type. - `organization`: Budgets scoped to the
-     *   organization. - `repository`: Budgets scoped to a repository. - `multi_user_customer`:
-     *   Universal budgets that apply to all users in the organization. - `user`: Budgets scoped to
-     *   an individual user.
-     * @param user Filter consumed amount details for budgets by the specified user login.
+     * @param scope Filter budgets by scope type. - `organization`: Budgets scoped to
+     *   the organization. - `repository`: Budgets scoped to a repository. -
+     *   `multi_user_customer`: Universal budgets that apply to all users in the
+     *   organization. - `user`: Budgets scoped to an individual user.
+     * @param user Filter consumed amount details for budgets by the specified user
+     *   login.
      */
-    fun billingGetAllBudgetsOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        page: Long? = null,
-        perPage: Long? = null,
-        scope: BillingGetAllBudgetsOrgParameterEnum? = null,
-        user: String? = null,
-        options: RequestOptions? = null,
-    ): GetAllBudgets {
-        return SdkClient.request<GetAllBudgets>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/organizations/${SdkClient.encodePathSegment(org)}/settings/billing/budgets",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "scope" to SdkClient.queryValue(scope, "form", true),
-                            "user" to SdkClient.queryValue(user, "form", true),
-                        ),
-                    operationId = "billingGetAllBudgetsOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetAllBudgetsOrg(clientConfig: ClientConfig, org: String, page: Long? = null, perPage: Long? = null, scope: BillingGetAllBudgetsOrgParameterEnum? = null, user: String? = null, options: RequestOptions? = null): GetAllBudgets {
+        return SdkClient.request<GetAllBudgets>(SdkClient.RequestSpec("GET", "/organizations/${SdkClient.encodePathSegment(org)}/settings/billing/budgets", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "scope" to SdkClient.queryValue(scope, "form", true), "user" to SdkClient.queryValue(user, "form", true)), operationId = "billingGetAllBudgetsOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [billingCreateOrganizationBudget]. */
     data class BillingCreateOrganizationBudgetRequest(
@@ -182,94 +128,65 @@ object Billing {
         val budgetType: BillingCreateOrganizationBudgetBudgetTypeVariant0Enum? = null,
         val budgetProductSku: String? = null,
         val user: String? = null,
-        val expiresAt: LocalDate? = null,
+        val expiresAt: LocalDate? = null
     )
 
     /**
-     * Creates a budget for an organization. Use `budget_scope`, `budget_amount`, and
-     * `budget_product_sku` to define what the budget covers; `user` is required when the scope is
-     * `user`, and `expires_at` is supported only for user-scoped budgets. The authenticated user
-     * must be an organization admin or billing manager.
+     * Creates a budget for an organization. Use `budget_scope`, `budget_amount`, and `budget_product_sku` to define what the budget covers; `user` is required when the scope is `user`, and `expires_at` is supported only for user-scoped budgets. The authenticated user must be an organization admin or billing manager.
      *
-     * Creates a new budget for an organization. The authenticated user must be an organization
-     * admin or billing manager.
+     * Creates a new budget for an organization. The authenticated user must be an organization admin or billing manager.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param budgetAmount The budget amount in whole dollars. For license-based products, this
-     *   represents the number of licenses.
-     * @param preventFurtherUsage Whether to prevent additional spending once the budget is
-     *   exceeded. For `user` and `multi_user_customer` scopes, this must be `true`.
-     * @param budgetScope The scope of the budget for this organization. - `organization`: Apply the
-     *   budget to the organization. - `repository`: Apply the budget to a specific repository in
-     *   the organization. - `multi_user_customer`: Apply a universal budget to all users in the
-     *   organization. - `user`: Apply the budget to a single user in the organization. `user` and
-     *   `multi_user_customer` scopes are only supported when `budget_product_sku` is `ai_credits`
-     *   or `premium_requests`.
+     * @param budgetAmount The budget amount in whole dollars. For license-based
+     *   products, this represents the number of licenses.
+     * @param preventFurtherUsage Whether to prevent additional spending once the
+     *   budget is exceeded. For `user` and `multi_user_customer` scopes, this must be
+     *   `true`.
+     * @param budgetScope The scope of the budget for this organization. -
+     *   `organization`: Apply the budget to the organization. - `repository`: Apply
+     *   the budget to a specific repository in the organization. -
+     *   `multi_user_customer`: Apply a universal budget to all users in the
+     *   organization. - `user`: Apply the budget to a single user in the organization.
+     *   `user` and `multi_user_customer` scopes are only supported when
+     *   `budget_product_sku` is `ai_credits` or `premium_requests`.
      * @param budgetEntityName The name of the entity to apply the budget to
      * @param budgetType The type of pricing model used by the budget. Determines how
-     *   `budget_product_sku` is interpreted. - `BundlePricing`: Covers all AI credit SKUs. Set
-     *   `budget_product_sku` to `ai_credits`. - `ProductPricing`: Covers all SKUs that belong to a
-     *   product. Set `budget_product_sku` to a product such as `actions` or `packages`. -
-     *   `SkuPricing`: Covers a single, specific SKU. Set `budget_product_sku` to a SKU such as
-     *   `actions_linux`.
-     * @param budgetProductSku A single product or SKU that will be covered in the budget
-     * @param user The username of the user for `user` scope budgets. This field is required when
-     *   `budget_scope` is `user`.
-     * @param expiresAt The date the budget will expire in `YYYY-MM-DD` format. Only dates in the
-     *   future are accepted. If not provided, the budget will not expire. Only supported for
-     *   budgets with `budget_scope` of `user`
+     *   `budget_product_sku` is interpreted. - `BundlePricing`: Covers all AI credit
+     *   SKUs. Set `budget_product_sku` to `ai_credits`. - `ProductPricing`: Covers all
+     *   SKUs that belong to a product. Set `budget_product_sku` to a product such as
+     *   `actions` or `packages`. - `SkuPricing`: Covers a single, specific SKU. Set
+     *   `budget_product_sku` to a SKU such as `actions_linux`.
+     * @param budgetProductSku A single product or SKU that will be covered in the
+     *   budget
+     * @param user The username of the user for `user` scope budgets. This field is
+     *   required when `budget_scope` is `user`.
+     * @param expiresAt The date the budget will expire in `YYYY-MM-DD` format. Only
+     *   dates in the future are accepted. If not provided, the budget will not expire.
+     *   Only supported for budgets with `budget_scope` of `user`
      */
-    fun billingCreateOrganizationBudget(
-        clientConfig: ClientConfig,
-        request: BillingCreateOrganizationBudgetRequest,
-        options: RequestOptions? = null,
-    ): CreateBudget {
+    fun billingCreateOrganizationBudget(clientConfig: ClientConfig, request: BillingCreateOrganizationBudgetRequest, options: RequestOptions? = null): CreateBudget {
         validateBillingCreateOrganizationBudgetRequest(request)
 
-        return SdkClient.request<CreateBudget>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/budgets",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "budget_amount" to (SdkClient.omitIfNull(request.budgetAmount)),
-                            "prevent_further_usage" to
-                                (SdkClient.omitIfNull(request.preventFurtherUsage)),
-                            "budget_alerting" to (SdkClient.omitIfNull(request.budgetAlerting)),
-                            "budget_scope" to (SdkClient.omitIfNull(request.budgetScope)),
-                            "budget_entity_name" to
-                                (SdkClient.omitIfNull(request.budgetEntityName)),
-                            "budget_type" to (SdkClient.omitIfNull(request.budgetType)),
-                            "budget_product_sku" to
-                                (SdkClient.omitIfNull(request.budgetProductSku)),
-                            "user" to (SdkClient.omitIfNull(request.user)),
-                            "expires_at" to (SdkClient.omitIfNull(request.expiresAt)),
-                        ),
-                    operationId = "billingCreateOrganizationBudget",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<CreateBudget>(SdkClient.RequestSpec("POST", "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/budgets", config = clientConfig, body = SdkClient.bodyMap("budget_amount" to
+    (SdkClient.omitIfNull(request.budgetAmount)), "prevent_further_usage" to
+    (SdkClient.omitIfNull(request.preventFurtherUsage)), "budget_alerting" to
+    (SdkClient.omitIfNull(request.budgetAlerting)), "budget_scope" to
+    (SdkClient.omitIfNull(request.budgetScope)), "budget_entity_name" to
+    (SdkClient.omitIfNull(request.budgetEntityName)), "budget_type" to (SdkClient.omitIfNull(request.budgetType)), "budget_product_sku" to
+    (SdkClient.omitIfNull(request.budgetProductSku)), "user" to (SdkClient.omitIfNull(request.user)), "expires_at" to (SdkClient.omitIfNull(request.expiresAt))), operationId = "billingCreateOrganizationBudget", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 
-    private fun validateBillingCreateOrganizationBudgetRequest(
-        request: BillingCreateOrganizationBudgetRequest
-    ) {
+
+    private fun validateBillingCreateOrganizationBudgetRequest(request: BillingCreateOrganizationBudgetRequest) {
         if (request.expiresAt != null) {
             Validation.validateDate("expires_at", request.expiresAt)
-        }
+}
     }
+
+
+
+
+
 
     /**
      * Gets a budget by ID. The authenticated user must be an organization admin or billing manager.
@@ -277,32 +194,15 @@ object Billing {
      * @param org The organization name. The name is not case sensitive.
      * @param budgetId The ID corresponding to the budget.
      */
-    fun billingGetBudgetOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        budgetId: String,
-        options: RequestOptions? = null,
-    ): GetBudget {
-        return SdkClient.request<GetBudget>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/organizations/${SdkClient.encodePathSegment(org)}/settings/billing/budgets/${SdkClient.encodePathSegment(budgetId)}",
-                    config = clientConfig,
-                    operationId = "billingGetBudgetOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetBudgetOrg(clientConfig: ClientConfig, org: String, budgetId: String, options: RequestOptions? = null): GetBudget {
+        return SdkClient.request<GetBudget>(SdkClient.RequestSpec("GET", "/organizations/${SdkClient.encodePathSegment(org)}/settings/billing/budgets/${SdkClient.encodePathSegment(budgetId)}", config = clientConfig, operationId = "billingGetBudgetOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [billingUpdateBudgetOrg]. */
     data class BillingUpdateBudgetOrgRequest(
@@ -311,97 +211,55 @@ object Billing {
         val budgetAmount: Long? = null,
         val preventFurtherUsage: Boolean? = null,
         val budgetAlerting: BillingUpdateBudgetOrgBudgetAlerting? = null,
-        val expiresAt: SdkClient.SdkOptional<Any?>? = null,
+        val expiresAt: SdkClient.SdkOptional<Any?>? = null
     )
 
     /**
-     * Updates an existing budget for an organization. Supply the budget fields you want to change;
-     * expiration updates are supported only for existing user-scoped budgets, and setting
-     * `expires_at` to `0` removes the expiration date. The authenticated user must be an
-     * organization admin or billing manager.
+     * Updates an existing budget for an organization. Supply the budget fields you want to change; expiration updates are supported only for existing user-scoped budgets, and setting `expires_at` to `0` removes the expiration date. The authenticated user must be an organization admin or billing manager.
      *
-     * Updates an existing budget for an organization. The authenticated user must be an
-     * organization admin or billing manager.
+     * Updates an existing budget for an organization. The authenticated user must be an organization admin or billing manager.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param budgetId The ID corresponding to the budget.
-     * @param budgetAmount The budget amount in whole dollars. For license-based products, this
-     *   represents the number of licenses.
-     * @param preventFurtherUsage Whether to prevent additional spending once the budget is
-     *   exceeded. For budgets with `user` or `multi_user_customer` scope, this must remain `true`.
-     * @param expiresAt The date the budget will expire in `YYYY-MM-DD` format. Only dates in the
-     *   future are accepted. If not set, the budget will not expire. Setting to `null` or `0` will
-     *   remove the expiration date from a budget if set. Only supported for existing user-scoped
-     *   budgets.
+     * @param budgetAmount The budget amount in whole dollars. For license-based
+     *   products, this represents the number of licenses.
+     * @param preventFurtherUsage Whether to prevent additional spending once the
+     *   budget is exceeded. For budgets with `user` or `multi_user_customer` scope,
+     *   this must remain `true`.
+     * @param expiresAt The date the budget will expire in `YYYY-MM-DD` format. Only
+     *   dates in the future are accepted. If not set, the budget will not expire.
+     *   Setting to `null` or `0` will remove the expiration date from a budget if set.
+     *   Only supported for existing user-scoped budgets.
      */
-    fun billingUpdateBudgetOrg(
-        clientConfig: ClientConfig,
-        request: BillingUpdateBudgetOrgRequest,
-        options: RequestOptions? = null,
-    ): UpdateBudget {
-        return SdkClient.request<UpdateBudget>(
-                SdkClient.RequestSpec(
-                    "PATCH",
-                    "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/budgets/${SdkClient.encodePathSegment(request.budgetId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "budget_amount" to (SdkClient.omitIfNull(request.budgetAmount)),
-                            "prevent_further_usage" to
-                                (SdkClient.omitIfNull(request.preventFurtherUsage)),
-                            "budget_alerting" to (SdkClient.omitIfNull(request.budgetAlerting)),
-                            "expires_at" to (request.expiresAt ?: SdkClient.SdkOptional.Omitted),
-                        ),
-                    operationId = "billingUpdateBudgetOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingUpdateBudgetOrg(clientConfig: ClientConfig, request: BillingUpdateBudgetOrgRequest, options: RequestOptions? = null): UpdateBudget {
+        return SdkClient.request<UpdateBudget>(SdkClient.RequestSpec("PATCH", "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/budgets/${SdkClient.encodePathSegment(request.budgetId)}", config = clientConfig, body = SdkClient.bodyMap("budget_amount" to
+    (SdkClient.omitIfNull(request.budgetAmount)), "prevent_further_usage" to
+    (SdkClient.omitIfNull(request.preventFurtherUsage)), "budget_alerting" to
+    (SdkClient.omitIfNull(request.budgetAlerting)), "expires_at" to
+    (request.expiresAt ?: SdkClient.SdkOptional.Omitted)), operationId = "billingUpdateBudgetOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Deletes a budget by ID for an organization. The authenticated user must be an organization
-     * admin or billing manager.
+     * Deletes a budget by ID for an organization. The authenticated user must be an organization admin or billing manager.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param budgetId The ID corresponding to the budget.
      */
-    fun billingDeleteBudgetOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        budgetId: String,
-        options: RequestOptions? = null,
-    ): DeleteBudget {
-        return SdkClient.request<DeleteBudget>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/organizations/${SdkClient.encodePathSegment(org)}/settings/billing/budgets/${SdkClient.encodePathSegment(budgetId)}",
-                    config = clientConfig,
-                    operationId = "billingDeleteBudgetOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingDeleteBudgetOrg(clientConfig: ClientConfig, org: String, budgetId: String, options: RequestOptions? = null): DeleteBudget {
+        return SdkClient.request<DeleteBudget>(SdkClient.RequestSpec("DELETE", "/organizations/${SdkClient.encodePathSegment(org)}/settings/billing/budgets/${SdkClient.encodePathSegment(budgetId)}", config = clientConfig, operationId = "billingDeleteBudgetOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [billingGetGithubBillingPremiumRequestUsageReportOrg]. */
     data class BillingGetGithubBillingPremiumRequestUsageReportOrgRequest(
@@ -411,112 +269,62 @@ object Billing {
         val day: Long? = null,
         val user: String? = null,
         val model: String? = null,
-        val product: String? = null,
+        val product: String? = null
     )
 
     /**
-     * Gets a report of premium request usage for an organization. To use this endpoint, you must be
-     * an administrator of an organization within an enterprise or an organization account.
-     * **Note:** Only data from the past 24 months is accessible via this endpoint.
+     * Gets a report of premium request usage for an organization. To use this endpoint, you must be an administrator of an organization within an enterprise or an organization account. **Note:** Only data from the past 24 months is accessible via this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param year If specified, only return results for a single year. The value of `year` is an
-     *   integer with four digits representing a year. For example, `2025`. Default value is the
-     *   current year.
-     * @param month If specified, only return results for a single month. The value of `month` is an
-     *   integer between `1` and `12`. Default value is the current month. If no year is specified
-     *   the default `year` is used.
-     * @param day If specified, only return results for a single day. The value of `day` is an
-     *   integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and
-     *   `month` are used.
+     * @param year If specified, only return results for a single year. The value of
+     *   `year` is an integer with four digits representing a year. For example,
+     *   `2025`. Default value is the current year.
+     * @param month If specified, only return results for a single month. The value
+     *   of `month` is an integer between `1` and `12`. Default value is the current
+     *   month. If no year is specified the default `year` is used.
+     * @param day If specified, only return results for a single day. The value of
+     *   `day` is an integer between `1` and `31`. If no `year` or `month` is
+     *   specified, the default `year` and `month` are used.
      * @param user The user name to query usage for. The name is not case sensitive.
-     * @param model The model name to query usage for. The name is not case sensitive.
-     * @param product The product name to query usage for. The name is not case sensitive.
+     * @param model The model name to query usage for. The name is not case
+     *   sensitive.
+     * @param product The product name to query usage for. The name is not case
+     *   sensitive.
      */
-    fun billingGetGithubBillingPremiumRequestUsageReportOrg(
-        clientConfig: ClientConfig,
-        request: BillingGetGithubBillingPremiumRequestUsageReportOrgRequest,
-        options: RequestOptions? = null,
-    ): BillingPremiumRequestUsageReportOrg {
-        return SdkClient.request<BillingPremiumRequestUsageReportOrg>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/premium_request/usage",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "year" to SdkClient.queryValue(request.year, "form", true),
-                            "month" to SdkClient.queryValue(request.month, "form", true),
-                            "day" to SdkClient.queryValue(request.day, "form", true),
-                            "user" to SdkClient.queryValue(request.user, "form", true),
-                            "model" to SdkClient.queryValue(request.model, "form", true),
-                            "product" to SdkClient.queryValue(request.product, "form", true),
-                        ),
-                    operationId = "billingGetGithubBillingPremiumRequestUsageReportOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetGithubBillingPremiumRequestUsageReportOrg(clientConfig: ClientConfig, request: BillingGetGithubBillingPremiumRequestUsageReportOrgRequest, options: RequestOptions? = null): BillingPremiumRequestUsageReportOrg {
+        return SdkClient.request<BillingPremiumRequestUsageReportOrg>(SdkClient.RequestSpec("GET", "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/premium_request/usage", config = clientConfig, query = mapOf("year" to SdkClient.queryValue(request.year, "form", true), "month" to SdkClient.queryValue(request.month, "form", true), "day" to SdkClient.queryValue(request.day, "form", true), "user" to SdkClient.queryValue(request.user, "form", true), "model" to SdkClient.queryValue(request.model, "form", true), "product" to
+    SdkClient.queryValue(request.product, "form", true)), operationId = "billingGetGithubBillingPremiumRequestUsageReportOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Gets a report of the total usage for an organization. To use this endpoint, you must be an
-     * administrator of an organization within an enterprise or an organization account. **Note:**
-     * This endpoint is only available to organizations with access to the enhanced billing
-     * platform. For more information, see "About the enhanced billing platform."
+     * Gets a report of the total usage for an organization. To use this endpoint, you must be an administrator of an organization within an enterprise or an organization account. **Note:** This endpoint is only available to organizations with access to the enhanced billing platform. For more information, see "About the enhanced billing platform."
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param year If specified, only return results for a single year. The value of `year` is an
-     *   integer with four digits representing a year. For example, `2025`. Default value is the
-     *   current year.
-     * @param month If specified, only return results for a single month. The value of `month` is an
-     *   integer between `1` and `12`. If no year is specified the default `year` is used.
-     * @param day If specified, only return results for a single day. The value of `day` is an
-     *   integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and
-     *   `month` are used.
+     * @param year If specified, only return results for a single year. The value of
+     *   `year` is an integer with four digits representing a year. For example,
+     *   `2025`. Default value is the current year.
+     * @param month If specified, only return results for a single month. The value
+     *   of `month` is an integer between `1` and `12`. If no year is specified the
+     *   default `year` is used.
+     * @param day If specified, only return results for a single day. The value of
+     *   `day` is an integer between `1` and `31`. If no `year` or `month` is
+     *   specified, the default `year` and `month` are used.
      */
-    fun billingGetGithubBillingUsageReportOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        year: Long? = null,
-        month: Long? = null,
-        day: Long? = null,
-        options: RequestOptions? = null,
-    ): BillingUsageReport {
-        return SdkClient.request<BillingUsageReport>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/organizations/${SdkClient.encodePathSegment(org)}/settings/billing/usage",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "year" to SdkClient.queryValue(year, "form", true),
-                            "month" to SdkClient.queryValue(month, "form", true),
-                            "day" to SdkClient.queryValue(day, "form", true),
-                        ),
-                    operationId = "billingGetGithubBillingUsageReportOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetGithubBillingUsageReportOrg(clientConfig: ClientConfig, org: String, year: Long? = null, month: Long? = null, day: Long? = null, options: RequestOptions? = null): BillingUsageReport {
+        return SdkClient.request<BillingUsageReport>(SdkClient.RequestSpec("GET", "/organizations/${SdkClient.encodePathSegment(org)}/settings/billing/usage", config = clientConfig, query = mapOf("year" to SdkClient.queryValue(year, "form", true), "month" to SdkClient.queryValue(month, "form", true), "day" to SdkClient.queryValue(day, "form", true)), operationId = "billingGetGithubBillingUsageReportOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [billingGetGithubBillingUsageSummaryReportOrg]. */
     data class BillingGetGithubBillingUsageSummaryReportOrgRequest(
@@ -526,62 +334,39 @@ object Billing {
         val day: Long? = null,
         val repository: String? = null,
         val product: String? = null,
-        val sku: String? = null,
+        val sku: String? = null
     )
 
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Gets a summary
-     * > report of usage for an organization. To use this endpoint, you must be an administrator of
-     * > an organization within an enterprise or an organization account. **Note:** Only data from
-     * > the past 24 months is accessible via this endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Gets a summary report of usage for an organization. To use this endpoint, you must be an administrator of an organization within an enterprise or an organization account. **Note:** Only data from the past 24 months is accessible via this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param year If specified, only return results for a single year. The value of `year` is an
-     *   integer with four digits representing a year. For example, `2025`. Default value is the
-     *   current year.
-     * @param month If specified, only return results for a single month. The value of `month` is an
-     *   integer between `1` and `12`. Default value is the current month. If no year is specified
-     *   the default `year` is used.
-     * @param day If specified, only return results for a single day. The value of `day` is an
-     *   integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and
-     *   `month` are used.
-     * @param repository The repository name to query for usage in the format owner/repository.
-     * @param product The product name to query usage for. The name is not case sensitive.
+     * @param year If specified, only return results for a single year. The value of
+     *   `year` is an integer with four digits representing a year. For example,
+     *   `2025`. Default value is the current year.
+     * @param month If specified, only return results for a single month. The value
+     *   of `month` is an integer between `1` and `12`. Default value is the current
+     *   month. If no year is specified the default `year` is used.
+     * @param day If specified, only return results for a single day. The value of
+     *   `day` is an integer between `1` and `31`. If no `year` or `month` is
+     *   specified, the default `year` and `month` are used.
+     * @param repository The repository name to query for usage in the format
+     *   owner/repository.
+     * @param product The product name to query usage for. The name is not case
+     *   sensitive.
      * @param sku The SKU to query for usage.
      */
-    fun billingGetGithubBillingUsageSummaryReportOrg(
-        clientConfig: ClientConfig,
-        request: BillingGetGithubBillingUsageSummaryReportOrgRequest,
-        options: RequestOptions? = null,
-    ): BillingUsageSummaryReportOrg {
-        return SdkClient.request<BillingUsageSummaryReportOrg>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/usage/summary",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "year" to SdkClient.queryValue(request.year, "form", true),
-                            "month" to SdkClient.queryValue(request.month, "form", true),
-                            "day" to SdkClient.queryValue(request.day, "form", true),
-                            "repository" to SdkClient.queryValue(request.repository, "form", true),
-                            "product" to SdkClient.queryValue(request.product, "form", true),
-                            "sku" to SdkClient.queryValue(request.sku, "form", true),
-                        ),
-                    operationId = "billingGetGithubBillingUsageSummaryReportOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetGithubBillingUsageSummaryReportOrg(clientConfig: ClientConfig, request: BillingGetGithubBillingUsageSummaryReportOrgRequest, options: RequestOptions? = null): BillingUsageSummaryReportOrg {
+        return SdkClient.request<BillingUsageSummaryReportOrg>(SdkClient.RequestSpec("GET", "/organizations/${SdkClient.encodePathSegment(request.org)}/settings/billing/usage/summary", config = clientConfig, query = mapOf("year" to SdkClient.queryValue(request.year, "form", true), "month" to SdkClient.queryValue(request.month, "form", true), "day" to SdkClient.queryValue(request.day, "form", true), "repository" to
+    SdkClient.queryValue(request.repository, "form", true), "product" to
+    SdkClient.queryValue(request.product, "form", true), "sku" to SdkClient.queryValue(request.sku, "form", true)), operationId = "billingGetGithubBillingUsageSummaryReportOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [billingGetGithubBillingAiCreditUsageReportUser]. */
     data class BillingGetGithubBillingAiCreditUsageReportUserRequest(
@@ -590,59 +375,37 @@ object Billing {
         val month: Long? = null,
         val day: Long? = null,
         val model: String? = null,
-        val product: String? = null,
+        val product: String? = null
     )
 
     /**
-     * Gets a report of AI credit usage for a user. **Note:** Only data from the past 24 months is
-     * accessible via this endpoint.
+     * Gets a report of AI credit usage for a user. **Note:** Only data from the past 24 months is accessible via this endpoint.
      *
      * @param username The handle for the GitHub user account.
-     * @param year If specified, only return results for a single year. The value of `year` is an
-     *   integer with four digits representing a year. For example, `2025`. Default value is the
-     *   current year.
-     * @param month If specified, only return results for a single month. The value of `month` is an
-     *   integer between `1` and `12`. Default value is the current month. If no year is specified
-     *   the default `year` is used.
-     * @param day If specified, only return results for a single day. The value of `day` is an
-     *   integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and
-     *   `month` are used.
-     * @param model The model name to query usage for. The name is not case sensitive.
-     * @param product The product name to query usage for. The name is not case sensitive.
+     * @param year If specified, only return results for a single year. The value of
+     *   `year` is an integer with four digits representing a year. For example,
+     *   `2025`. Default value is the current year.
+     * @param month If specified, only return results for a single month. The value
+     *   of `month` is an integer between `1` and `12`. Default value is the current
+     *   month. If no year is specified the default `year` is used.
+     * @param day If specified, only return results for a single day. The value of
+     *   `day` is an integer between `1` and `31`. If no `year` or `month` is
+     *   specified, the default `year` and `month` are used.
+     * @param model The model name to query usage for. The name is not case
+     *   sensitive.
+     * @param product The product name to query usage for. The name is not case
+     *   sensitive.
      */
-    fun billingGetGithubBillingAiCreditUsageReportUser(
-        clientConfig: ClientConfig,
-        request: BillingGetGithubBillingAiCreditUsageReportUserRequest,
-        options: RequestOptions? = null,
-    ): BillingAiCreditUsageReportUser {
-        return SdkClient.request<BillingAiCreditUsageReportUser>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(request.username)}/settings/billing/ai_credit/usage",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "year" to SdkClient.queryValue(request.year, "form", true),
-                            "month" to SdkClient.queryValue(request.month, "form", true),
-                            "day" to SdkClient.queryValue(request.day, "form", true),
-                            "model" to SdkClient.queryValue(request.model, "form", true),
-                            "product" to SdkClient.queryValue(request.product, "form", true),
-                        ),
-                    operationId = "billingGetGithubBillingAiCreditUsageReportUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetGithubBillingAiCreditUsageReportUser(clientConfig: ClientConfig, request: BillingGetGithubBillingAiCreditUsageReportUserRequest, options: RequestOptions? = null): BillingAiCreditUsageReportUser {
+        return SdkClient.request<BillingAiCreditUsageReportUser>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(request.username)}/settings/billing/ai_credit/usage", config = clientConfig, query = mapOf("year" to SdkClient.queryValue(request.year, "form", true), "month" to SdkClient.queryValue(request.month, "form", true), "day" to SdkClient.queryValue(request.day, "form", true), "model" to SdkClient.queryValue(request.model, "form", true), "product" to
+    SdkClient.queryValue(request.product, "form", true)), operationId = "billingGetGithubBillingAiCreditUsageReportUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [billingGetGithubBillingPremiumRequestUsageReportUser]. */
     data class BillingGetGithubBillingPremiumRequestUsageReportUserRequest(
@@ -651,107 +414,61 @@ object Billing {
         val month: Long? = null,
         val day: Long? = null,
         val model: String? = null,
-        val product: String? = null,
+        val product: String? = null
     )
 
     /**
-     * Gets a report of premium request usage for a user. **Note:** Only data from the past 24
-     * months is accessible via this endpoint.
+     * Gets a report of premium request usage for a user. **Note:** Only data from the past 24 months is accessible via this endpoint.
      *
      * @param username The handle for the GitHub user account.
-     * @param year If specified, only return results for a single year. The value of `year` is an
-     *   integer with four digits representing a year. For example, `2025`. Default value is the
-     *   current year.
-     * @param month If specified, only return results for a single month. The value of `month` is an
-     *   integer between `1` and `12`. Default value is the current month. If no year is specified
-     *   the default `year` is used.
-     * @param day If specified, only return results for a single day. The value of `day` is an
-     *   integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and
-     *   `month` are used.
-     * @param model The model name to query usage for. The name is not case sensitive.
-     * @param product The product name to query usage for. The name is not case sensitive.
+     * @param year If specified, only return results for a single year. The value of
+     *   `year` is an integer with four digits representing a year. For example,
+     *   `2025`. Default value is the current year.
+     * @param month If specified, only return results for a single month. The value
+     *   of `month` is an integer between `1` and `12`. Default value is the current
+     *   month. If no year is specified the default `year` is used.
+     * @param day If specified, only return results for a single day. The value of
+     *   `day` is an integer between `1` and `31`. If no `year` or `month` is
+     *   specified, the default `year` and `month` are used.
+     * @param model The model name to query usage for. The name is not case
+     *   sensitive.
+     * @param product The product name to query usage for. The name is not case
+     *   sensitive.
      */
-    fun billingGetGithubBillingPremiumRequestUsageReportUser(
-        clientConfig: ClientConfig,
-        request: BillingGetGithubBillingPremiumRequestUsageReportUserRequest,
-        options: RequestOptions? = null,
-    ): BillingPremiumRequestUsageReportUser {
-        return SdkClient.request<BillingPremiumRequestUsageReportUser>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(request.username)}/settings/billing/premium_request/usage",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "year" to SdkClient.queryValue(request.year, "form", true),
-                            "month" to SdkClient.queryValue(request.month, "form", true),
-                            "day" to SdkClient.queryValue(request.day, "form", true),
-                            "model" to SdkClient.queryValue(request.model, "form", true),
-                            "product" to SdkClient.queryValue(request.product, "form", true),
-                        ),
-                    operationId = "billingGetGithubBillingPremiumRequestUsageReportUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetGithubBillingPremiumRequestUsageReportUser(clientConfig: ClientConfig, request: BillingGetGithubBillingPremiumRequestUsageReportUserRequest, options: RequestOptions? = null): BillingPremiumRequestUsageReportUser {
+        return SdkClient.request<BillingPremiumRequestUsageReportUser>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(request.username)}/settings/billing/premium_request/usage", config = clientConfig, query = mapOf("year" to SdkClient.queryValue(request.year, "form", true), "month" to SdkClient.queryValue(request.month, "form", true), "day" to SdkClient.queryValue(request.day, "form", true), "model" to SdkClient.queryValue(request.model, "form", true), "product" to
+    SdkClient.queryValue(request.product, "form", true)), operationId = "billingGetGithubBillingPremiumRequestUsageReportUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Gets a report of the total usage for a user. **Note:** This endpoint is only available to
-     * users with access to the enhanced billing platform.
+     * Gets a report of the total usage for a user. **Note:** This endpoint is only available to users with access to the enhanced billing platform.
      *
      * @param username The handle for the GitHub user account.
-     * @param year If specified, only return results for a single year. The value of `year` is an
-     *   integer with four digits representing a year. For example, `2025`. Default value is the
-     *   current year.
-     * @param month If specified, only return results for a single month. The value of `month` is an
-     *   integer between `1` and `12`. If no year is specified the default `year` is used.
-     * @param day If specified, only return results for a single day. The value of `day` is an
-     *   integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and
-     *   `month` are used.
+     * @param year If specified, only return results for a single year. The value of
+     *   `year` is an integer with four digits representing a year. For example,
+     *   `2025`. Default value is the current year.
+     * @param month If specified, only return results for a single month. The value
+     *   of `month` is an integer between `1` and `12`. If no year is specified the
+     *   default `year` is used.
+     * @param day If specified, only return results for a single day. The value of
+     *   `day` is an integer between `1` and `31`. If no `year` or `month` is
+     *   specified, the default `year` and `month` are used.
      */
-    fun billingGetGithubBillingUsageReportUser(
-        clientConfig: ClientConfig,
-        username: String,
-        year: Long? = null,
-        month: Long? = null,
-        day: Long? = null,
-        options: RequestOptions? = null,
-    ): BillingUsageReportUser {
-        return SdkClient.request<BillingUsageReportUser>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/settings/billing/usage",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "year" to SdkClient.queryValue(year, "form", true),
-                            "month" to SdkClient.queryValue(month, "form", true),
-                            "day" to SdkClient.queryValue(day, "form", true),
-                        ),
-                    operationId = "billingGetGithubBillingUsageReportUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetGithubBillingUsageReportUser(clientConfig: ClientConfig, username: String, year: Long? = null, month: Long? = null, day: Long? = null, options: RequestOptions? = null): BillingUsageReportUser {
+        return SdkClient.request<BillingUsageReportUser>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/settings/billing/usage", config = clientConfig, query = mapOf("year" to SdkClient.queryValue(year, "form", true), "month" to SdkClient.queryValue(month, "form", true), "day" to SdkClient.queryValue(day, "form", true)), operationId = "billingGetGithubBillingUsageReportUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
+
+
+
+
+
+
 
     /** Parameters for [billingGetGithubBillingUsageSummaryReportUser]. */
     data class BillingGetGithubBillingUsageSummaryReportUserRequest(
@@ -761,60 +478,38 @@ object Billing {
         val day: Long? = null,
         val repository: String? = null,
         val product: String? = null,
-        val sku: String? = null,
+        val sku: String? = null
     )
 
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Gets a summary
-     * > report of usage for a user. **Note:** Only data from the past 24 months is accessible via
-     * > this endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Gets a summary report of usage for a user. **Note:** Only data from the past 24 months is accessible via this endpoint.
      *
      * @param username The handle for the GitHub user account.
-     * @param year If specified, only return results for a single year. The value of `year` is an
-     *   integer with four digits representing a year. For example, `2025`. Default value is the
-     *   current year.
-     * @param month If specified, only return results for a single month. The value of `month` is an
-     *   integer between `1` and `12`. Default value is the current month. If no year is specified
-     *   the default `year` is used.
-     * @param day If specified, only return results for a single day. The value of `day` is an
-     *   integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and
-     *   `month` are used.
-     * @param repository The repository name to query for usage in the format owner/repository.
-     * @param product The product name to query usage for. The name is not case sensitive.
+     * @param year If specified, only return results for a single year. The value of
+     *   `year` is an integer with four digits representing a year. For example,
+     *   `2025`. Default value is the current year.
+     * @param month If specified, only return results for a single month. The value
+     *   of `month` is an integer between `1` and `12`. Default value is the current
+     *   month. If no year is specified the default `year` is used.
+     * @param day If specified, only return results for a single day. The value of
+     *   `day` is an integer between `1` and `31`. If no `year` or `month` is
+     *   specified, the default `year` and `month` are used.
+     * @param repository The repository name to query for usage in the format
+     *   owner/repository.
+     * @param product The product name to query usage for. The name is not case
+     *   sensitive.
      * @param sku The SKU to query for usage.
      */
-    fun billingGetGithubBillingUsageSummaryReportUser(
-        clientConfig: ClientConfig,
-        request: BillingGetGithubBillingUsageSummaryReportUserRequest,
-        options: RequestOptions? = null,
-    ): BillingUsageSummaryReportUser {
-        return SdkClient.request<BillingUsageSummaryReportUser>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(request.username)}/settings/billing/usage/summary",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "year" to SdkClient.queryValue(request.year, "form", true),
-                            "month" to SdkClient.queryValue(request.month, "form", true),
-                            "day" to SdkClient.queryValue(request.day, "form", true),
-                            "repository" to SdkClient.queryValue(request.repository, "form", true),
-                            "product" to SdkClient.queryValue(request.product, "form", true),
-                            "sku" to SdkClient.queryValue(request.sku, "form", true),
-                        ),
-                    operationId = "billingGetGithubBillingUsageSummaryReportUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun billingGetGithubBillingUsageSummaryReportUser(clientConfig: ClientConfig, request: BillingGetGithubBillingUsageSummaryReportUserRequest, options: RequestOptions? = null): BillingUsageSummaryReportUser {
+        return SdkClient.request<BillingUsageSummaryReportUser>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(request.username)}/settings/billing/usage/summary", config = clientConfig, query = mapOf("year" to SdkClient.queryValue(request.year, "form", true), "month" to SdkClient.queryValue(request.month, "form", true), "day" to SdkClient.queryValue(request.day, "form", true), "repository" to
+    SdkClient.queryValue(request.repository, "form", true), "product" to
+    SdkClient.queryValue(request.product, "form", true), "sku" to SdkClient.queryValue(request.sku, "form", true)), operationId = "billingGetGithubBillingUsageSummaryReportUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
+
+
+
+
+
+
+
 }

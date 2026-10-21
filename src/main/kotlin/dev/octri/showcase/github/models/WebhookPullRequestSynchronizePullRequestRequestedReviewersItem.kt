@@ -3,138 +3,210 @@
 
 package dev.octri.showcase.github.models
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class WebhookPullRequestSynchronizePullRequestRequestedReviewersItemVariant0(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `login` wire field. */
+    /**
+     * Required `string` value serialized in the `login` wire field.
+     */
     val login: String,
-    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional `string` value serialized in the `email` wire field. */
+    /**
+     * Optional `string` value serialized in the `email` wire field.
+     */
     val email: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
+    /**
+     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `gravatar_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
+    /**
+     * Optional `string` value serialized in the `name` wire field.
+     */
     val name: String? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
+    /**
+     * Optional `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
+    /**
+     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `site_admin` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
+    /**
+     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional enumerated value serialized in the `type` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
+    /**
+     * Optional enumerated value serialized in the `type` wire field.
+     */
     val type: WebhookPullRequestSynchronizePullRequestRequestedReviewersIteX44ea683c1d? = null,
-    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Optional `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String? = null,
-    /** Optional `string` value serialized in the `user_view_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
-    val userViewType: String? = null,
+    /**
+     * Optional `string` value serialized in the `user_view_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
 ) : WebhookPullRequestSynchronizePullRequestRequestedReviewersItem
 
-/** Optional object value serialized in the `parent` wire field. */
+/**
+ * Optional object value serialized in the `parent` wire field.
+ */
 data class WebhookPullRequestSynchronizePullRequestRequestedReviewersIteXd74200f11d(
-    /** Description of the team */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Description of the team
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the team */
+    /**
+     * Unique identifier of the team
+     */
     val id: Long,
-    /** Required `uri-template`-formatted value serialized in the `members_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `members_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /** Name of the team */
+    /**
+     * Name of the team
+     */
     val name: String,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Permission that the team will have for its repositories */
+    /**
+     * Permission that the team will have for its repositories
+     */
     val permission: String,
-    /** Required enumerated value serialized in the `privacy` wire field. */
+    /**
+     * Required enumerated value serialized in the `privacy` wire field.
+     */
     val privacy: WebhookPullRequestSynchronizePullRequestRequestedReviewersIteXdcf36c1c5a,
-    /** Required `uri`-formatted value serialized in the `repositories_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `repositories_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
-    /** Required `string` value serialized in the `slug` wire field. */
+    /**
+     * Required `string` value serialized in the `slug` wire field.
+     */
     val slug: String,
-    /** URL for the team */
-    val url: String,
+    /**
+     * URL for the team
+     */
+    val url: String
 )
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
 data class WebhookPullRequestSynchronizePullRequestRequestedReviewersItemVariant1(
-    /** Description of the team */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
-    val description: String?,
-    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    /**
+     * Description of the team
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
+    /**
+     * Required `uri`-formatted value serialized in the `html_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /** Unique identifier of the team */
+    /**
+     * Unique identifier of the team
+     */
     val id: Long,
-    /** Required `uri-template`-formatted value serialized in the `members_url` wire field. */
+    /**
+     * Required `uri-template`-formatted value serialized in the `members_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("members_url") val membersUrl: String,
-    /** Name of the team */
+    /**
+     * Name of the team
+     */
     val name: String,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Permission that the team will have for its repositories */
+    /**
+     * Permission that the team will have for its repositories
+     */
     val permission: String,
-    /** Required enumerated value serialized in the `privacy` wire field. */
+    /**
+     * Required enumerated value serialized in the `privacy` wire field.
+     */
     val privacy: WebhookPullRequestSynchronizePullRequestRequestedReviewersIteX8245eaecbd,
-    /** Required `uri`-formatted value serialized in the `repositories_url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `repositories_url` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
-    /** Required `string` value serialized in the `slug` wire field. */
+    /**
+     * Required `string` value serialized in the `slug` wire field.
+     */
     val slug: String,
-    /** URL for the team */
+    /**
+     * URL for the team
+     */
     val url: String,
-    /** Optional `boolean` value serialized in the `deleted` wire field. */
+    /**
+     * Optional `boolean` value serialized in the `deleted` wire field.
+     */
     val deleted: Boolean? = null,
-    /** Optional object value serialized in the `parent` wire field. */
-    val parent: WebhookPullRequestSynchronizePullRequestRequestedReviewersIteXd74200f11d? = null,
+    /**
+     * Optional object value serialized in the `parent` wire field.
+     */
+    val parent: WebhookPullRequestSynchronizePullRequestRequestedReviewersIteXd74200f11d? = null
 ) : WebhookPullRequestSynchronizePullRequestRequestedReviewersItem
 
-/** Required API value serialized in the `requested_reviewers[]` wire field. */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
-)
+/**
+ * Required API value serialized in the `requested_reviewers[]` wire field.
+ */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = WebhookPullRequestSynchronizePullRequestRequestedReviewersItemVariant0::class
-    ),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
-        value = WebhookPullRequestSynchronizePullRequestRequestedReviewersItemVariant1::class
-    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = WebhookPullRequestSynchronizePullRequestRequestedReviewersItemVariant0::class),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = WebhookPullRequestSynchronizePullRequestRequestedReviewersItemVariant1::class)
 )
 sealed interface WebhookPullRequestSynchronizePullRequestRequestedReviewersItem

@@ -5,107 +5,180 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Code quality finding */
+/**
+ * Code quality finding
+ */
 data class CodeQualityFinding(
-    /** The finding number. */
+    /**
+     * The finding number.
+     */
     val number: Long,
-    /** State of the code quality finding. */
+    /**
+     * State of the code quality finding.
+     */
     val state: CodeQualityFindingStateEnum,
-    /** The REST API URL of the code quality finding resource. */
+    /**
+     * The REST API URL of the code quality finding resource.
+     */
     val url: String,
-    /** Code quality rule */
+    /**
+     * Code quality rule
+     */
     val rule: CodeQualityFindingRule,
-    /** Code quality file location */
+    /**
+     * Code quality file location
+     */
     val location: CodeQualityFindingLocation,
-    /** Code quality finding message */
+    /**
+     * Code quality finding message
+     */
     val message: CodeQualityFindingMessage,
-    /** The time the code quality finding was created. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at")
-    val createdAt: OffsetDateTime? = null,
-)
-
-/** Code quality file location */
-data class CodeQualityFindingLocation(
-    /** The file path where the finding was detected. */
-    val path: String,
-    /** The line number where the finding starts. */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
-    /** The column number where the finding starts. */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_column") val startColumn: Long? = null,
-    /** The line number where the finding ends. */
-    @com.fasterxml.jackson.annotation.JsonProperty("end_line") val endLine: Long? = null,
-    /** The column number where the finding ends. */
-    @com.fasterxml.jackson.annotation.JsonProperty("end_column") val endColumn: Long? = null,
-)
-
-/** Code quality finding message */
-data class CodeQualityFindingMessage(
-    /** The message text of the code quality finding. */
-    val text: String,
-    /** The message text of the code quality finding in markdown format. */
-    val markdown: String,
-)
-
-/** Code quality rule */
-data class CodeQualityFindingRule(
-    /** A unique identifier for the rule used to detect the finding. */
-    val id: String,
-    /** The name of the rule used to detect the finding. */
-    val title: String,
-    /** A short description of the rule used to detect the finding. */
-    val description: String,
-    /** The severity of the rule used to detect the finding. */
-    val severity: CodeQualityFindingRuleSeverityEnum,
-    /** The category of the rule used to detect the finding. */
-    val category: CodeQualityFindingRuleCategoryEnum,
-    /** A detailed description of the rule used to detect the finding. */
-    val help: String? = null,
-)
-
-/** Configuration for code quality setup. */
-data class CodeQualitySetup(
-    /** Code quality setup has been configured or not. */
-    val state: CodeQualitySetupStateEnum? = null,
-    /** Languages to be analyzed. */
-    val languages: List<CodeQualitySetupLanguagesItemEnum>? = null,
-    /** Runner type to be used. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_type")
-    val runnerType: CodeQualitySetupRunnerTypeEnum? = null,
-    /** Runner label to be used if the runner type is labeled. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_label") val runnerLabel: String? = null,
-    /** Timestamp of latest configuration update. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
-    val updatedAt: OffsetDateTime? = null,
-    /** The frequency of the periodic analysis. */
-    val schedule: CodeQualitySetupScheduleEnum? = null,
-    /** The AI findings configuration for the repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ai_findings_option")
-    val aiFindingsOption: CodeQualitySetupAiFindingsOptionEnum? = null,
-)
-
-/** Configuration for code quality setup. */
-data class CodeQualitySetupUpdate(
-    /** The desired state of code quality setup. */
-    val state: CodeQualitySetupUpdateStateEnum? = null,
-    /** Runner type to be used. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_type")
-    val runnerType: CodeQualitySetupUpdateRunnerTypeEnum? = null,
-    /** Runner label to be used if the runner type is labeled. */
-    @com.fasterxml.jackson.annotation.JsonProperty("runner_label") val runnerLabel: String? = null,
-    /** Languages to be analyzed. */
-    val languages: List<CodeQualitySetupUpdateLanguagesItemEnum>? = null,
-    /** Whether AI findings run for Code Quality on this repository. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ai_findings_option")
-    val aiFindingsOption: CodeQualitySetupUpdateAiFindingsOptionEnum? = null,
+    /**
+     * The time the code quality finding was created.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime? = null
 )
 
 /**
- * You can use `run_url` to track the status of the run. This includes a property status and
- * conclusion. You should not rely on this always being an actions workflow run object.
+ * Code quality file location
+ */
+data class CodeQualityFindingLocation(
+    /**
+     * The file path where the finding was detected.
+     */
+    val path: String,
+    /**
+     * The line number where the finding starts.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long? = null,
+    /**
+     * The column number where the finding starts.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_column") val startColumn: Long? = null,
+    /**
+     * The line number where the finding ends.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("end_line") val endLine: Long? = null,
+    /**
+     * The column number where the finding ends.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("end_column") val endColumn: Long? = null
+)
+
+/**
+ * Code quality finding message
+ */
+data class CodeQualityFindingMessage(
+    /**
+     * The message text of the code quality finding.
+     */
+    val text: String,
+    /**
+     * The message text of the code quality finding in markdown format.
+     */
+    val markdown: String
+)
+
+/**
+ * Code quality rule
+ */
+data class CodeQualityFindingRule(
+    /**
+     * A unique identifier for the rule used to detect the finding.
+     */
+    val id: String,
+    /**
+     * The name of the rule used to detect the finding.
+     */
+    val title: String,
+    /**
+     * A short description of the rule used to detect the finding.
+     */
+    val description: String,
+    /**
+     * The severity of the rule used to detect the finding.
+     */
+    val severity: CodeQualityFindingRuleSeverityEnum,
+    /**
+     * The category of the rule used to detect the finding.
+     */
+    val category: CodeQualityFindingRuleCategoryEnum,
+    /**
+     * A detailed description of the rule used to detect the finding.
+     */
+    val help: String? = null
+)
+
+/**
+ * Configuration for code quality setup.
+ */
+data class CodeQualitySetup(
+    /**
+     * Code quality setup has been configured or not.
+     */
+    val state: CodeQualitySetupStateEnum? = null,
+    /**
+     * Languages to be analyzed.
+     */
+    val languages: List<CodeQualitySetupLanguagesItemEnum>? = null,
+    /**
+     * Runner type to be used.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_type") val runnerType: CodeQualitySetupRunnerTypeEnum? = null,
+    /**
+     * Runner label to be used if the runner type is labeled.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_label") val runnerLabel: String? = null,
+    /**
+     * Timestamp of latest configuration update.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
+    /**
+     * The frequency of the periodic analysis.
+     */
+    val schedule: CodeQualitySetupScheduleEnum? = null,
+    /**
+     * The AI findings configuration for the repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ai_findings_option") val aiFindingsOption: CodeQualitySetupAiFindingsOptionEnum? = null
+)
+
+/**
+ * Configuration for code quality setup.
+ */
+data class CodeQualitySetupUpdate(
+    /**
+     * The desired state of code quality setup.
+     */
+    val state: CodeQualitySetupUpdateStateEnum? = null,
+    /**
+     * Runner type to be used.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_type") val runnerType: CodeQualitySetupUpdateRunnerTypeEnum? = null,
+    /**
+     * Runner label to be used if the runner type is labeled.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_label") val runnerLabel: String? = null,
+    /**
+     * Languages to be analyzed.
+     */
+    val languages: List<CodeQualitySetupUpdateLanguagesItemEnum>? = null,
+    /**
+     * Whether AI findings run for Code Quality on this repository.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ai_findings_option") val aiFindingsOption: CodeQualitySetupUpdateAiFindingsOptionEnum? = null
+)
+
+/**
+ * You can use `run_url` to track the status of the run. This includes a property status and conclusion. You should not rely on this always being an actions workflow run object.
  */
 data class CodeQualitySetupUpdateResponse(
-    /** ID of the corresponding run. */
+    /**
+     * ID of the corresponding run.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("run_id") val runId: Long? = null,
-    /** URL of the corresponding run. */
-    @com.fasterxml.jackson.annotation.JsonProperty("run_url") val runUrl: String? = null,
+    /**
+     * URL of the corresponding run.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("run_url") val runUrl: String? = null
 )

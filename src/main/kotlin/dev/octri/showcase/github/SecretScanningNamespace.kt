@@ -3,337 +3,125 @@
 
 package dev.octri.showcase.github
 
+
 class SecretScanningNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists secret scanning alerts for eligible repositories in an organization, from newest to
-     * oldest. The authenticated user must be an administrator or security manager for the
-     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used
-     * with public repositories, the token can use the `public_repo` scope instead.
+     * Lists secret scanning alerts for eligible repositories in an organization, from newest to oldest. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      */
-    fun listAlertsForOrg(
-        request:
-            dev.octri.showcase.github.methods.SecretScanning.SecretScanningListAlertsForOrgRequest,
-        options: RequestOptions? = null,
-    ): List<OrganizationSecretScanningAlert> {
-        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListAlertsForOrg(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listAlertsForOrg(request: dev.octri.showcase.github.methods.SecretScanning.SecretScanningListAlertsForOrgRequest, options: RequestOptions? = null): List<OrganizationSecretScanningAlert> {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListAlertsForOrg(clientConfig, request, options)
     }
 
     /**
-     * Lists secret scanning custom patterns for an organization. Personal access tokens (classic)
-     * need the `read:org` scope to use this endpoint.
+     * Lists secret scanning custom patterns for an organization. Personal access tokens (classic) need the `read:org` scope to use this endpoint.
      */
-    fun listOrgCustomPatterns(
-        request:
-            dev.octri.showcase.github.methods.SecretScanning.SecretScanningListOrgCustomPatternsRequest,
-        options: RequestOptions? = null,
-    ): List<SecretScanningCustomPattern> {
-        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListOrgCustomPatterns(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listOrgCustomPatterns(request: dev.octri.showcase.github.methods.SecretScanning.SecretScanningListOrgCustomPatternsRequest, options: RequestOptions? = null): List<SecretScanningCustomPattern> {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListOrgCustomPatterns(clientConfig, request, options)
     }
 
     /**
-     * Bulk creates secret scanning custom patterns for an organization. Personal access tokens
-     * (classic) need the `write:org` scope to use this endpoint.
+     * Bulk creates secret scanning custom patterns for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun bulkCreateOrgCustomPatterns(
-        org: String,
-        patterns: List<SecretScanningCustomPatternToCreate>,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.SecretScanning.SecretScanningBulkCreateOrgCustomPatternsResponse {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningBulkCreateOrgCustomPatterns(clientConfig, org, patterns, options)
+    fun bulkCreateOrgCustomPatterns(org: String, patterns: List<SecretScanningCustomPatternToCreate>, options: RequestOptions? = null): dev.octri.showcase.github.methods.SecretScanning.SecretScanningBulkCreateOrgCustomPatternsResponse {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningBulkCreateOrgCustomPatterns(clientConfig, org, patterns, options)
     }
 
     /**
-     * Bulk deletes secret scanning custom patterns for an organization. Personal access tokens
-     * (classic) need the `write:org` scope to use this endpoint.
+     * Bulk deletes secret scanning custom patterns for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun bulkDeleteOrgCustomPatterns(
-        org: String,
-        patterns: List<SecretScanningCustomPatternToDelete>,
-        postDeleteAction: SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum? = null,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningBulkDeleteOrgCustomPatterns(
-                clientConfig,
-                org,
-                patterns,
-                postDeleteAction,
-                options,
-            )
+    fun bulkDeleteOrgCustomPatterns(org: String, patterns: List<SecretScanningCustomPatternToDelete>, postDeleteAction: SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum? = null, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningBulkDeleteOrgCustomPatterns(clientConfig, org, patterns, postDeleteAction, options)
     }
 
     /**
-     * Updates a secret scanning custom pattern for an organization. Personal access tokens
-     * (classic) need the `write:org` scope to use this endpoint.
+     * Updates a secret scanning custom pattern for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun updateOrgCustomPattern(
-        request:
-            dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateOrgCustomPatternRequest,
-        options: RequestOptions? = null,
-    ): SecretScanningCustomPattern {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningUpdateOrgCustomPattern(clientConfig, request, options)
+    fun updateOrgCustomPattern(request: dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateOrgCustomPatternRequest, options: RequestOptions? = null): SecretScanningCustomPattern {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningUpdateOrgCustomPattern(clientConfig, request, options)
     }
 
     /**
-     * Lists the secret scanning pattern configurations for an organization. Personal access tokens
-     * (classic) need the `read:org` scope to use this endpoint.
+     * Lists the secret scanning pattern configurations for an organization. Personal access tokens (classic) need the `read:org` scope to use this endpoint.
      */
-    fun listOrgPatternConfigs(
-        org: String,
-        options: RequestOptions? = null,
-    ): SecretScanningPatternConfiguration {
-        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListOrgPatternConfigs(
-            clientConfig,
-            org,
-            options,
-        )
+    fun listOrgPatternConfigs(org: String, options: RequestOptions? = null): SecretScanningPatternConfiguration {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListOrgPatternConfigs(clientConfig, org, options)
     }
 
     /**
-     * Updates the secret scanning pattern configurations for an organization. Personal access
-     * tokens (classic) need the `write:org` scope to use this endpoint.
+     * Updates the secret scanning pattern configurations for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun updateOrgPatternConfigs(
-        org: String,
-        patternConfigVersion: SdkClient.SdkOptional<SecretScanningRowVersion?>? = null,
-        providerPatternSettings:
-            List<
-                dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsItem
-            >? =
-            null,
-        customPatternSettings:
-            List<
-                dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsItem
-            >? =
-            null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateOrgPatternConfigsResponse {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningUpdateOrgPatternConfigs(
-                clientConfig,
-                org,
-                patternConfigVersion,
-                providerPatternSettings,
-                customPatternSettings,
-                options,
-            )
+    fun updateOrgPatternConfigs(org: String, patternConfigVersion: SdkClient.SdkOptional<SecretScanningRowVersion?>? = null, providerPatternSettings: List<dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsItem>? = null, customPatternSettings: List<dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsItem>? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateOrgPatternConfigsResponse {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningUpdateOrgPatternConfigs(clientConfig, org, patternConfigVersion, providerPatternSettings, customPatternSettings, options)
     }
 
     /**
-     * Lists secret scanning alerts for an eligible repository, from newest to oldest. The
-     * authenticated user must be an administrator for the repository or for the organization that
-     * owns the repository to use this endpoint. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint
-     * is only used with public repositories, the token can use the `public_repo` scope instead.
+     * Lists secret scanning alerts for an eligible repository, from newest to oldest. The authenticated user must be an administrator for the repository or for the organization that owns the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      */
-    fun listAlertsForRepo(
-        request:
-            dev.octri.showcase.github.methods.SecretScanning.SecretScanningListAlertsForRepoRequest,
-        options: RequestOptions? = null,
-    ): List<SecretScanningAlert> {
-        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListAlertsForRepo(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listAlertsForRepo(request: dev.octri.showcase.github.methods.SecretScanning.SecretScanningListAlertsForRepoRequest, options: RequestOptions? = null): List<SecretScanningAlert> {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListAlertsForRepo(clientConfig, request, options)
     }
 
     /**
-     * Gets a single secret scanning alert detected in an eligible repository. The authenticated
-     * user must be an administrator for the repository or for the organization that owns the
-     * repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used
-     * with public repositories, the token can use the `public_repo` scope instead.
+     * Gets a single secret scanning alert detected in an eligible repository. The authenticated user must be an administrator for the repository or for the organization that owns the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      */
-    fun getAlert(
-        owner: String,
-        repo: String,
-        alertNumber: AlertNumber,
-        hideSecret: Boolean? = null,
-        options: RequestOptions? = null,
-    ): SecretScanningAlertWithMetadata {
-        return dev.octri.showcase.github.methods.SecretScanning.secretScanningGetAlert(
-            clientConfig,
-            owner,
-            repo,
-            alertNumber,
-            hideSecret,
-            options,
-        )
+    fun getAlert(owner: String, repo: String, alertNumber: AlertNumber, hideSecret: Boolean? = null, options: RequestOptions? = null): SecretScanningAlertWithMetadata {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningGetAlert(clientConfig, owner, repo, alertNumber, hideSecret, options)
     }
 
     /**
-     * Updates the status of a secret scanning alert in an eligible repository. You can also use
-     * this endpoint to assign or unassign an alert to a user who has write access to the
-     * repository. The authenticated user must be an administrator for the repository or for the
-     * organization that owns the repository to use this endpoint. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If
-     * this endpoint is only used with…
+     * Updates the status of a secret scanning alert in an eligible repository. You can also use this endpoint to assign or unassign an alert to a user who has write access to the repository. The authenticated user must be an administrator for the repository or for the organization that owns the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with…
      */
-    fun updateAlert(
-        request: dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateAlertRequest,
-        options: RequestOptions? = null,
-    ): SecretScanningAlertWithMetadata {
-        return dev.octri.showcase.github.methods.SecretScanning.secretScanningUpdateAlert(
-            clientConfig,
-            request,
-            options,
-        )
+    fun updateAlert(request: dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateAlertRequest, options: RequestOptions? = null): SecretScanningAlertWithMetadata {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningUpdateAlert(clientConfig, request, options)
     }
 
     /**
-     * Lists all locations for a given secret scanning alert for an eligible repository. The
-     * authenticated user must be an administrator for the repository or for the organization that
-     * owns the repository to use this endpoint. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint
-     * is only used with public repositories, the token can use the `public_repo` scope instead.
+     * Lists all locations for a given secret scanning alert for an eligible repository. The authenticated user must be an administrator for the repository or for the organization that owns the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      */
-    fun listLocationsForAlert(
-        owner: String,
-        repo: String,
-        alertNumber: AlertNumber,
-        page: Long? = null,
-        perPage: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SecretScanningLocation> {
-        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListLocationsForAlert(
-            clientConfig,
-            owner,
-            repo,
-            alertNumber,
-            page,
-            perPage,
-            options,
-        )
+    fun listLocationsForAlert(owner: String, repo: String, alertNumber: AlertNumber, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): List<SecretScanningLocation> {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListLocationsForAlert(clientConfig, owner, repo, alertNumber, page, perPage, options)
     }
 
     /**
-     * Lists secret scanning custom patterns for a repository. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used
-     * with public repositories, the token can use the `public_repo` scope instead. Fine-grained
-     * access tokens require the `administration:write` repository permission.
+     * Lists secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. Fine-grained access tokens require the `administration:write` repository permission.
      */
-    fun listRepoCustomPatterns(
-        request:
-            dev.octri.showcase.github.methods.SecretScanning.SecretScanningListRepoCustomPatternsRequest,
-        options: RequestOptions? = null,
-    ): List<SecretScanningCustomPattern> {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningListRepoCustomPatterns(clientConfig, request, options)
+    fun listRepoCustomPatterns(request: dev.octri.showcase.github.methods.SecretScanning.SecretScanningListRepoCustomPatternsRequest, options: RequestOptions? = null): List<SecretScanningCustomPattern> {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningListRepoCustomPatterns(clientConfig, request, options)
     }
 
     /**
-     * Bulk creates secret scanning custom patterns for a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only
-     * used with public repositories, the token can use the `public_repo` scope instead.
-     * Fine-grained access tokens require the `administration:write` repository permission.
+     * Bulk creates secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. Fine-grained access tokens require the `administration:write` repository permission.
      */
-    fun bulkCreateRepoCustomPatterns(
-        owner: String,
-        repo: String,
-        patterns: List<SecretScanningCustomPatternToCreate>,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.SecretScanning.SecretScanningBulkCreateRepoCustomPatternsResponse {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningBulkCreateRepoCustomPatterns(
-                clientConfig,
-                owner,
-                repo,
-                patterns,
-                options,
-            )
+    fun bulkCreateRepoCustomPatterns(owner: String, repo: String, patterns: List<SecretScanningCustomPatternToCreate>, options: RequestOptions? = null): dev.octri.showcase.github.methods.SecretScanning.SecretScanningBulkCreateRepoCustomPatternsResponse {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningBulkCreateRepoCustomPatterns(clientConfig, owner, repo, patterns, options)
     }
 
     /**
-     * Bulk deletes secret scanning custom patterns for a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only
-     * used with public repositories, the token can use the `public_repo` scope instead.
-     * Fine-grained access tokens require the `administration:write` repository permission.
+     * Bulk deletes secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. Fine-grained access tokens require the `administration:write` repository permission.
      */
-    fun bulkDeleteRepoCustomPatterns(
-        owner: String,
-        repo: String,
-        patterns: List<SecretScanningCustomPatternToDelete>,
-        postDeleteAction: SecretScanningBulkDeleteRepoCustomPatternsPostDeleteActionEnum? = null,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningBulkDeleteRepoCustomPatterns(
-                clientConfig,
-                owner,
-                repo,
-                patterns,
-                postDeleteAction,
-                options,
-            )
+    fun bulkDeleteRepoCustomPatterns(owner: String, repo: String, patterns: List<SecretScanningCustomPatternToDelete>, postDeleteAction: SecretScanningBulkDeleteRepoCustomPatternsPostDeleteActionEnum? = null, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningBulkDeleteRepoCustomPatterns(clientConfig, owner, repo, patterns, postDeleteAction, options)
     }
 
     /**
-     * Updates a secret scanning custom pattern for a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only
-     * used with public repositories, the token can use the `public_repo` scope instead.
-     * Fine-grained access tokens require the `administration:write` repository permission.
+     * Updates a secret scanning custom pattern for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. Fine-grained access tokens require the `administration:write` repository permission.
      */
-    fun updateRepoCustomPattern(
-        request:
-            dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateRepoCustomPatternRequest,
-        options: RequestOptions? = null,
-    ): SecretScanningCustomPattern {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningUpdateRepoCustomPattern(clientConfig, request, options)
+    fun updateRepoCustomPattern(request: dev.octri.showcase.github.methods.SecretScanning.SecretScanningUpdateRepoCustomPatternRequest, options: RequestOptions? = null): SecretScanningCustomPattern {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningUpdateRepoCustomPattern(clientConfig, request, options)
     }
 
     /**
-     * Creates a bypass for a previously push protected secret. The authenticated user must be the
-     * original author of the committed secret. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Creates a bypass for a previously push protected secret. The authenticated user must be the original author of the committed secret. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun createPushProtectionBypass(
-        owner: String,
-        repo: String,
-        reason: SecretScanningPushProtectionBypassReason,
-        placeholderId: SecretScanningPushProtectionBypassPlaceholderId,
-        options: RequestOptions? = null,
-    ): SecretScanningPushProtectionBypass {
-        return dev.octri.showcase.github.methods.SecretScanning
-            .secretScanningCreatePushProtectionBypass(
-                clientConfig,
-                owner,
-                repo,
-                reason,
-                placeholderId,
-                options,
-            )
+    fun createPushProtectionBypass(owner: String, repo: String, reason: SecretScanningPushProtectionBypassReason, placeholderId: SecretScanningPushProtectionBypassPlaceholderId, options: RequestOptions? = null): SecretScanningPushProtectionBypass {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningCreatePushProtectionBypass(clientConfig, owner, repo, reason, placeholderId, options)
     }
 
     /**
-     * Lists the latest default incremental and backfill scans by type for a repository. > !NOTE] >
-     * This endpoint requires \[GitHub Advanced Security. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this
-     * endpoint is only used with public repositories, the token can use the `public_repo` scope
-     * instead.
+     * Lists the latest default incremental and backfill scans by type for a repository. > !NOTE] > This endpoint requires \[GitHub Advanced Security. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
      */
-    fun getScanHistory(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): SecretScanningScanHistory {
-        return dev.octri.showcase.github.methods.SecretScanning.secretScanningGetScanHistory(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun getScanHistory(owner: String, repo: String, options: RequestOptions? = null): SecretScanningScanHistory {
+        return dev.octri.showcase.github.methods.SecretScanning.secretScanningGetScanHistory(clientConfig, owner, repo, options)
     }
+
 }

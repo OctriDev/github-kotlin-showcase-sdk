@@ -30,127 +30,203 @@ import dev.octri.showcase.github.CopilotSpacesUpdateForUserResourcesAttributesIt
 import dev.octri.showcase.github.RequestOptions
 
 object CopilotSpaces {
-    data class CopilotSpacesListForOrgResponse(
-        /** The list of Copilot Spaces on this page of results. */
-        val spaces: List<CopilotSpace>
-    )
+data class CopilotSpacesListForOrgResponse(
+    /**
+     * The list of Copilot Spaces on this page of results.
+     */
+    val spaces: List<CopilotSpace>
+)
 
-    /** Metadata specific to the resource type. */
-    data class CopilotSpacesCreateForOrgResourcesAttributesItemMetadata(
-        /** Repository ID for repository or file resources. */
-        @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
-        val repositoryId: Long? = null,
-        /** File path for file resources. */
-        @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String? = null,
-        /** Text content for free text resources. */
-        val text: String? = null,
-        /** Name for the resource. */
-        val name: String? = null,
-        /** Issue or PR number. */
-        val number: Long? = null,
-    )
 
-    data class CopilotSpacesCreateForOrgResourcesAttributesItem(
-        /** The type of resource. */
-        @com.fasterxml.jackson.annotation.JsonProperty("resource_type")
-        val resourceType: CopilotSpacesCreateForOrgResourcesAttributesItemResourceTypeEnum? = null,
-        /** Metadata specific to the resource type. */
-        val metadata: CopilotSpacesCreateForOrgResourcesAttributesItemMetadata? = null,
-    )
 
-    /** Metadata specific to the resource type. */
-    data class CopilotSpacesUpdateForOrgResourcesAttributesItemMetadata(
-        /** Repository ID for repository or file resources. */
-        @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
-        val repositoryId: Long? = null,
-        /** File path for file resources. */
-        @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String? = null,
-        /** Text content for free text resources. */
-        val text: String? = null,
-        /** Name for the resource. */
-        val name: String? = null,
-        /** Issue or PR number. */
-        val number: Long? = null,
-    )
+/**
+ * Metadata specific to the resource type.
+ */
+data class CopilotSpacesCreateForOrgResourcesAttributesItemMetadata(
+    /**
+     * Repository ID for repository or file resources.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
+    /**
+     * File path for file resources.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String? = null,
+    /**
+     * Text content for free text resources.
+     */
+    val text: String? = null,
+    /**
+     * Name for the resource.
+     */
+    val name: String? = null,
+    /**
+     * Issue or PR number.
+     */
+    val number: Long? = null
+)
 
-    data class CopilotSpacesUpdateForOrgResourcesAttributesItem(
-        /** The type of resource. */
-        @com.fasterxml.jackson.annotation.JsonProperty("resource_type")
-        val resourceType: CopilotSpacesUpdateForOrgResourcesAttributesItemResourceTypeEnum? = null,
-        /** Metadata specific to the resource type. */
-        val metadata: CopilotSpacesUpdateForOrgResourcesAttributesItemMetadata? = null,
-    )
+data class CopilotSpacesCreateForOrgResourcesAttributesItem(
+    /**
+     * The type of resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("resource_type") val resourceType: CopilotSpacesCreateForOrgResourcesAttributesItemResourceTypeEnum? = null,
+    /**
+     * Metadata specific to the resource type.
+     */
+    val metadata: CopilotSpacesCreateForOrgResourcesAttributesItemMetadata? = null
+)
 
-    data class CopilotSpacesListCollaboratorsForOrgResponse(
-        /** The list of collaborators for this Copilot Space. */
-        val collaborators: List<CopilotSpaceCollaborator>
-    )
 
-    data class CopilotSpacesListResourcesForOrgResponse(
-        /** The list of resources attached to this Copilot Space. */
-        val resources: List<CopilotSpaceResource>
-    )
 
-    data class CopilotSpacesListForUserResponse(
-        /** The list of Copilot Spaces on this page of results. */
-        val spaces: List<CopilotSpace>
-    )
+/**
+ * Metadata specific to the resource type.
+ */
+data class CopilotSpacesUpdateForOrgResourcesAttributesItemMetadata(
+    /**
+     * Repository ID for repository or file resources.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
+    /**
+     * File path for file resources.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String? = null,
+    /**
+     * Text content for free text resources.
+     */
+    val text: String? = null,
+    /**
+     * Name for the resource.
+     */
+    val name: String? = null,
+    /**
+     * Issue or PR number.
+     */
+    val number: Long? = null
+)
 
-    /** Metadata specific to the resource type. */
-    data class CopilotSpacesCreateForUserResourcesAttributesItemMetadata(
-        /** Repository ID for repository or file resources. */
-        @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
-        val repositoryId: Long? = null,
-        /** File path for file resources. */
-        @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String? = null,
-        /** Text content for free text resources. */
-        val text: String? = null,
-        /** Name for the resource. */
-        val name: String? = null,
-        /** Issue or PR number. */
-        val number: Long? = null,
-    )
+data class CopilotSpacesUpdateForOrgResourcesAttributesItem(
+    /**
+     * The type of resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("resource_type") val resourceType: CopilotSpacesUpdateForOrgResourcesAttributesItemResourceTypeEnum? = null,
+    /**
+     * Metadata specific to the resource type.
+     */
+    val metadata: CopilotSpacesUpdateForOrgResourcesAttributesItemMetadata? = null
+)
 
-    data class CopilotSpacesCreateForUserResourcesAttributesItem(
-        /** The type of resource. */
-        @com.fasterxml.jackson.annotation.JsonProperty("resource_type")
-        val resourceType: CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum? = null,
-        /** Metadata specific to the resource type. */
-        val metadata: CopilotSpacesCreateForUserResourcesAttributesItemMetadata? = null,
-    )
+data class CopilotSpacesListCollaboratorsForOrgResponse(
+    /**
+     * The list of collaborators for this Copilot Space.
+     */
+    val collaborators: List<CopilotSpaceCollaborator>
+)
 
-    /** Metadata specific to the resource type. */
-    data class CopilotSpacesUpdateForUserResourcesAttributesItemMetadata(
-        /** Repository ID for repository or file resources. */
-        @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
-        val repositoryId: Long? = null,
-        /** File path for file resources. */
-        @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String? = null,
-        /** Text content for free text resources. */
-        val text: String? = null,
-        /** Name for the resource. */
-        val name: String? = null,
-        /** Issue or PR number. */
-        val number: Long? = null,
-    )
+data class CopilotSpacesListResourcesForOrgResponse(
+    /**
+     * The list of resources attached to this Copilot Space.
+     */
+    val resources: List<CopilotSpaceResource>
+)
 
-    data class CopilotSpacesUpdateForUserResourcesAttributesItem(
-        /** The type of resource. */
-        @com.fasterxml.jackson.annotation.JsonProperty("resource_type")
-        val resourceType: CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum? = null,
-        /** Metadata specific to the resource type. */
-        val metadata: CopilotSpacesUpdateForUserResourcesAttributesItemMetadata? = null,
-    )
+data class CopilotSpacesListForUserResponse(
+    /**
+     * The list of Copilot Spaces on this page of results.
+     */
+    val spaces: List<CopilotSpace>
+)
 
-    data class CopilotSpacesListCollaboratorsForUserResponse(
-        /** The list of collaborators for this Copilot Space. */
-        val collaborators: List<CopilotSpaceCollaborator>
-    )
 
-    data class CopilotSpacesListResourcesForUserResponse(
-        /** The list of resources attached to this Copilot Space. */
-        val resources: List<CopilotSpaceResource>
-    )
+
+/**
+ * Metadata specific to the resource type.
+ */
+data class CopilotSpacesCreateForUserResourcesAttributesItemMetadata(
+    /**
+     * Repository ID for repository or file resources.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
+    /**
+     * File path for file resources.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String? = null,
+    /**
+     * Text content for free text resources.
+     */
+    val text: String? = null,
+    /**
+     * Name for the resource.
+     */
+    val name: String? = null,
+    /**
+     * Issue or PR number.
+     */
+    val number: Long? = null
+)
+
+data class CopilotSpacesCreateForUserResourcesAttributesItem(
+    /**
+     * The type of resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("resource_type") val resourceType: CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum? = null,
+    /**
+     * Metadata specific to the resource type.
+     */
+    val metadata: CopilotSpacesCreateForUserResourcesAttributesItemMetadata? = null
+)
+
+
+
+/**
+ * Metadata specific to the resource type.
+ */
+data class CopilotSpacesUpdateForUserResourcesAttributesItemMetadata(
+    /**
+     * Repository ID for repository or file resources.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
+    /**
+     * File path for file resources.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("file_path") val filePath: String? = null,
+    /**
+     * Text content for free text resources.
+     */
+    val text: String? = null,
+    /**
+     * Name for the resource.
+     */
+    val name: String? = null,
+    /**
+     * Issue or PR number.
+     */
+    val number: Long? = null
+)
+
+data class CopilotSpacesUpdateForUserResourcesAttributesItem(
+    /**
+     * The type of resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("resource_type") val resourceType: CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum? = null,
+    /**
+     * Metadata specific to the resource type.
+     */
+    val metadata: CopilotSpacesUpdateForUserResourcesAttributesItemMetadata? = null
+)
+
+data class CopilotSpacesListCollaboratorsForUserResponse(
+    /**
+     * The list of collaborators for this Copilot Space.
+     */
+    val collaborators: List<CopilotSpaceCollaborator>
+)
+
+data class CopilotSpacesListResourcesForUserResponse(
+    /**
+     * The list of resources attached to this Copilot Space.
+     */
+    val resources: List<CopilotSpaceResource>
+)
 
     /** Parameters for [copilotSpacesCreateForOrg]. */
     data class CopilotSpacesCreateForOrgRequest(
@@ -159,7 +235,7 @@ object CopilotSpaces {
         val description: String? = null,
         val generalInstructions: String? = null,
         val baseRole: CopilotSpacesCreateForOrgBaseRoleEnum? = null,
-        val resourcesAttributes: List<CopilotSpacesCreateForOrgResourcesAttributesItem>? = null,
+        val resourcesAttributes: List<CopilotSpacesCreateForOrgResourcesAttributesItem>? = null
     )
 
     /** Parameters for [copilotSpacesUpdateForOrg]. */
@@ -170,7 +246,7 @@ object CopilotSpaces {
         val description: String? = null,
         val generalInstructions: String? = null,
         val baseRole: CopilotSpacesUpdateForOrgBaseRoleEnum? = null,
-        val resourcesAttributes: List<CopilotSpacesUpdateForOrgResourcesAttributesItem>? = null,
+        val resourcesAttributes: List<CopilotSpacesUpdateForOrgResourcesAttributesItem>? = null
     )
 
     /** Parameters for [copilotSpacesCreateForUser]. */
@@ -180,7 +256,7 @@ object CopilotSpaces {
         val description: String? = null,
         val generalInstructions: String? = null,
         val baseRole: CopilotSpacesCreateForUserBaseRoleEnum? = null,
-        val resourcesAttributes: List<CopilotSpacesCreateForUserResourcesAttributesItem>? = null,
+        val resourcesAttributes: List<CopilotSpacesCreateForUserResourcesAttributesItem>? = null
     )
 
     /** Parameters for [copilotSpacesUpdateForUser]. */
@@ -191,27 +267,13 @@ object CopilotSpaces {
         val description: String? = null,
         val generalInstructions: String? = null,
         val baseRole: CopilotSpacesUpdateForUserBaseRoleEnum? = null,
-        val resourcesAttributes: List<CopilotSpacesUpdateForUserResourcesAttributesItem>? = null,
+        val resourcesAttributes: List<CopilotSpacesUpdateForUserResourcesAttributesItem>? = null
     )
 
     /**
-     * Lists Copilot Spaces owned by an organization. The authenticated user must have read access
-     * to the organization's Copilot Spaces. Only Spaces that are readable by the authenticated user
-     * are returned. This includes public Spaces and internal Spaces if the user is a member of the
-     * organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope
-     * to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been
-     * granted access to the organization that owns the space. They must also have been granted
-     * access to every repository referenced by resources in a space; spaces with inaccessible
-     * resources are omitted from the response.
+     * Lists Copilot Spaces owned by an organization. The authenticated user must have read access to the organization's Copilot Spaces. Only Spaces that are readable by the authenticated user are returned. This includes public Spaces and internal Spaces if the user is a member of the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in a space; spaces with inaccessible resources are omitted from the response.
      */
-    fun copilotSpacesListForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        before: String? = null,
-        after: String? = null,
-        options: RequestOptions? = null,
-    ): CopilotSpacesListForOrgResponse =
+    fun copilotSpacesListForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): CopilotSpacesListForOrgResponse =
         dev.octri.showcase.github.methods.CopilotSpacesListForOrgOperation.copilotSpacesListForOrg(
             clientConfig,
             org,
@@ -222,41 +284,19 @@ object CopilotSpaces {
         )
 
     /**
-     * Creates a new Copilot Space owned by an organization. The authenticated user must have
-     * permissions to create spaces in the organization. Organization members with appropriate
-     * permissions can create Copilot Spaces to be shared within their organization. OAuth app
-     * tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
-     * Fine-grained tokens and GitHub App user access tokens must have been granted access to the
-     * organization that owns the space. They must also have been granted access to every repository
-     * referenced by the submitted resources.
+     * Creates a new Copilot Space owned by an organization. The authenticated user must have permissions to create spaces in the organization. Organization members with appropriate permissions can create Copilot Spaces to be shared within their organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by the submitted resources.
      */
-    fun copilotSpacesCreateForOrg(
-        clientConfig: ClientConfig,
-        request: CopilotSpacesCreateForOrgRequest,
-        options: RequestOptions? = null,
-    ): CopilotSpace =
-        dev.octri.showcase.github.methods.CopilotSpacesCreateForOrgOperation
-            .copilotSpacesCreateForOrg(
-                clientConfig,
-                request,
-                options,
-            )
+    fun copilotSpacesCreateForOrg(clientConfig: ClientConfig, request: CopilotSpacesCreateForOrgRequest, options: RequestOptions? = null): CopilotSpace =
+        dev.octri.showcase.github.methods.CopilotSpacesCreateForOrgOperation.copilotSpacesCreateForOrg(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets details about a specific Copilot Space owned by an organization. The authenticated user
-     * must have read access to the Space. Internal Spaces require the authenticated user to be a
-     * member of the organization or have been granted read permissions. OAuth app tokens and
-     * personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained
-     * tokens and GitHub App user access tokens must have been granted access to the organization
-     * that owns the space. They must also have been granted access to every repository referenced
-     * by resources in the space.
+     * Gets details about a specific Copilot Space owned by an organization. The authenticated user must have read access to the Space. Internal Spaces require the authenticated user to be a member of the organization or have been granted read permissions. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesGetForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpace =
+    fun copilotSpacesGetForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, options: RequestOptions? = null): CopilotSpace =
         dev.octri.showcase.github.methods.CopilotSpacesGetForOrgOperation.copilotSpacesGetForOrg(
             clientConfig,
             org,
@@ -265,341 +305,166 @@ object CopilotSpaces {
         )
 
     /**
-     * Updates a Copilot Space owned by an organization. The authenticated user must have
-     * permissions to update spaces in the organization. Organization members with appropriate
-     * permissions can update Copilot Spaces owned by their organization. OAuth app tokens and
-     * personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained
-     * tokens and GitHub App user access tokens must have been granted access to the organization
-     * that owns the space. They must also have been granted access to every repository referenced
-     * by resources in the space, including any being added or updated.
+     * Updates a Copilot Space owned by an organization. The authenticated user must have permissions to update spaces in the organization. Organization members with appropriate permissions can update Copilot Spaces owned by their organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space, including any being added or updated.
      */
-    fun copilotSpacesUpdateForOrg(
-        clientConfig: ClientConfig,
-        request: CopilotSpacesUpdateForOrgRequest,
-        options: RequestOptions? = null,
-    ): CopilotSpace =
-        dev.octri.showcase.github.methods.CopilotSpacesUpdateForOrgOperation
-            .copilotSpacesUpdateForOrg(
-                clientConfig,
-                request,
-                options,
-            )
+    fun copilotSpacesUpdateForOrg(clientConfig: ClientConfig, request: CopilotSpacesUpdateForOrgRequest, options: RequestOptions? = null): CopilotSpace =
+        dev.octri.showcase.github.methods.CopilotSpacesUpdateForOrgOperation.copilotSpacesUpdateForOrg(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes a Copilot Space owned by an organization. The authenticated user must have
-     * permissions to delete spaces in the organization. **Warning:** This action is permanent and
-     * cannot be undone. Deleting a Copilot Space will remove all associated resources and
-     * configurations. Organization members with appropriate permissions can delete Copilot Spaces
-     * owned by their organization. OAuth app tokens and personal access tokens (classic) need both
-     * the `read:org` and `repo` scopes to use this endpoint. Fine-grained tokens and GitHub App
-     * user access tokens must have been granted access to the organization that owns the space.
-     * They must also have been granted access to every repository referenced by resources in the
-     * space.
+     * Deletes a Copilot Space owned by an organization. The authenticated user must have permissions to delete spaces in the organization. **Warning:** This action is permanent and cannot be undone. Deleting a Copilot Space will remove all associated resources and configurations. Organization members with appropriate permissions can delete Copilot Spaces owned by their organization. OAuth app tokens and personal access tokens (classic) need both the `read:org` and `repo` scopes to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesDeleteForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.CopilotSpacesDeleteForOrgOperation
-            .copilotSpacesDeleteForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                options,
-            )
+    fun copilotSpacesDeleteForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.CopilotSpacesDeleteForOrgOperation.copilotSpacesDeleteForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            options,
+        )
 
     /**
-     * Lists all collaborators for a specific Copilot Space owned by an organization. The
-     * authenticated user must have appropriate permissions to view collaborators. Each collaborator
-     * entry specifies which user or team has access to the space and at what level (reader, writer,
-     * or admin). The space owner (organization) is excluded from this list. **Note:** Team
-     * collaborators listed here are teams that are defined in the organization. OAuth app tokens
-     * and personal access tokens (classic) need the `read:org` scope to use this endpoint.
-     * Fine-grained tokens and GitHub App user access tokens must have been granted access to the
-     * organization that owns the space. They must also have been granted access to every repository
-     * referenced by resources in the space.
+     * Lists all collaborators for a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to view collaborators. Each collaborator entry specifies which user or team has access to the space and at what level (reader, writer, or admin). The space owner (organization) is excluded from this list. **Note:** Team collaborators listed here are teams that are defined in the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesListCollaboratorsForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpacesListCollaboratorsForOrgResponse =
-        dev.octri.showcase.github.methods.CopilotSpacesListCollaboratorsForOrgOperation
-            .copilotSpacesListCollaboratorsForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                options,
-            )
+    fun copilotSpacesListCollaboratorsForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, options: RequestOptions? = null): CopilotSpacesListCollaboratorsForOrgResponse =
+        dev.octri.showcase.github.methods.CopilotSpacesListCollaboratorsForOrgOperation.copilotSpacesListCollaboratorsForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            options,
+        )
 
     /**
-     * Adds a collaborator (user or team) to a specific Copilot Space owned by an organization. The
-     * authenticated user must have appropriate permissions to manage collaborators. **Note:** When
-     * adding users as collaborators, they must already be members of the organization. When adding
-     * teams as collaborators, they must be defined in the organization. OAuth app tokens and
-     * personal access tokens (classic) need the `write:org` scope to use this endpoint.
-     * Fine-grained tokens and GitHub App user access tokens must have been granted access to the
-     * organization that owns the space. They must also have been granted access to every repository
-     * referenced by resources in the space.
+     * Adds a collaborator (user or team) to a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to manage collaborators. **Note:** When adding users as collaborators, they must already be members of the organization. When adding teams as collaborators, they must be defined in the organization. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesAddCollaboratorForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        actorType: CopilotSpacesAddCollaboratorForOrgActorTypeEnum,
-        actorIdentifier: String,
-        role: CopilotSpacesAddCollaboratorForOrgRoleEnum,
-        options: RequestOptions? = null,
-    ): CopilotSpaceCollaborator =
-        dev.octri.showcase.github.methods.CopilotSpacesAddCollaboratorForOrgOperation
-            .copilotSpacesAddCollaboratorForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                actorType,
-                actorIdentifier,
-                role,
-                options,
-            )
+    fun copilotSpacesAddCollaboratorForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, actorType: CopilotSpacesAddCollaboratorForOrgActorTypeEnum, actorIdentifier: String, role: CopilotSpacesAddCollaboratorForOrgRoleEnum, options: RequestOptions? = null): CopilotSpaceCollaborator =
+        dev.octri.showcase.github.methods.CopilotSpacesAddCollaboratorForOrgOperation.copilotSpacesAddCollaboratorForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            actorType,
+            actorIdentifier,
+            role,
+            options,
+        )
 
     /**
-     * Updates the role of a collaborator for a specific Copilot Space owned by an organization. The
-     * authenticated user must have appropriate permissions to manage collaborators. OAuth app
-     * tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
-     * Fine-grained tokens and GitHub App user access tokens must have been granted access to the
-     * organization that owns the space. They must also have been granted access to every repository
-     * referenced by resources in the space.
+     * Updates the role of a collaborator for a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to manage collaborators. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesUpdateCollaboratorForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        actorType: CopilotSpacesUpdateCollaboratorForOrgParameterEnum,
-        actorIdentifier: String,
-        role: CopilotSpacesUpdateCollaboratorForOrgRoleEnum,
-        options: RequestOptions? = null,
-    ): CopilotSpaceCollaborator =
-        dev.octri.showcase.github.methods.CopilotSpacesUpdateCollaboratorForOrgOperation
-            .copilotSpacesUpdateCollaboratorForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                actorType,
-                actorIdentifier,
-                role,
-                options,
-            )
+    fun copilotSpacesUpdateCollaboratorForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, actorType: CopilotSpacesUpdateCollaboratorForOrgParameterEnum, actorIdentifier: String, role: CopilotSpacesUpdateCollaboratorForOrgRoleEnum, options: RequestOptions? = null): CopilotSpaceCollaborator =
+        dev.octri.showcase.github.methods.CopilotSpacesUpdateCollaboratorForOrgOperation.copilotSpacesUpdateCollaboratorForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            actorType,
+            actorIdentifier,
+            role,
+            options,
+        )
 
     /**
-     * Removes a collaborator from a specific Copilot Space owned by an organization. The
-     * authenticated user must have appropriate permissions to manage collaborators. OAuth app
-     * tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
-     * Fine-grained tokens and GitHub App user access tokens must have been granted access to the
-     * organization that owns the space. They must also have been granted access to every repository
-     * referenced by resources in the space.
+     * Removes a collaborator from a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to manage collaborators. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesRemoveCollaboratorForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        actorType: CopilotSpacesRemoveCollaboratorForOrgParameterEnum,
-        actorIdentifier: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.CopilotSpacesRemoveCollaboratorForOrgOperation
-            .copilotSpacesRemoveCollaboratorForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                actorType,
-                actorIdentifier,
-                options,
-            )
+    fun copilotSpacesRemoveCollaboratorForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, actorType: CopilotSpacesRemoveCollaboratorForOrgParameterEnum, actorIdentifier: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.CopilotSpacesRemoveCollaboratorForOrgOperation.copilotSpacesRemoveCollaboratorForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            actorType,
+            actorIdentifier,
+            options,
+        )
 
     /**
-     * Lists all resources attached to a specific Copilot Space owned by an organization. The
-     * authenticated user must have appropriate permissions to view the space. OAuth app tokens and
-     * personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained
-     * tokens and GitHub App user access tokens must have been granted access to the organization
-     * that owns the space. They must also have been granted access to every repository referenced
-     * by resources in the space.
+     * Lists all resources attached to a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to view the space. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesListResourcesForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpacesListResourcesForOrgResponse =
-        dev.octri.showcase.github.methods.CopilotSpacesListResourcesForOrgOperation
-            .copilotSpacesListResourcesForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                options,
-            )
+    fun copilotSpacesListResourcesForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, options: RequestOptions? = null): CopilotSpacesListResourcesForOrgResponse =
+        dev.octri.showcase.github.methods.CopilotSpacesListResourcesForOrgOperation.copilotSpacesListResourcesForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            options,
+        )
 
     /**
-     * Creates a new resource in a specific Copilot Space owned by an organization. The
-     * authenticated user must have write permissions on the space. The following resource types are
-     * supported: `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`.
-     * The `uploaded_text_file` and `media_content` types are not supported via this endpoint. For
-     * `github_file` resources, if a resource with the same repository, file path, and SHA already
-     * exists, the existing resource is returned with a `200` status. OAuth app tokens and personal
-     * access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens
-     * and GitHub App user access tokens must have been granted access to the organization that owns
-     * the space. They must also have been granted access to every repository referenced by
-     * resources in the space, including the resource being created.
+     * Creates a new resource in a specific Copilot Space owned by an organization. The authenticated user must have write permissions on the space. The following resource types are supported: `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`. The `uploaded_text_file` and `media_content` types are not supported via this endpoint. For `github_file` resources, if a resource with the same repository, file path, and SHA already exists, the existing resource is returned with a `200` status. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space, including the resource being created.
      */
-    fun copilotSpacesCreateResourceForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        resourceType: CopilotSpacesCreateResourceForOrgResourceTypeEnum,
-        metadata: Map<String, Any>,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource =
-        dev.octri.showcase.github.methods.CopilotSpacesCreateResourceForOrgOperation
-            .copilotSpacesCreateResourceForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                resourceType,
-                metadata,
-                options,
-            )
+    fun copilotSpacesCreateResourceForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, resourceType: CopilotSpacesCreateResourceForOrgResourceTypeEnum, metadata: Map<String, Any>, options: RequestOptions? = null): CopilotSpaceResource =
+        dev.octri.showcase.github.methods.CopilotSpacesCreateResourceForOrgOperation.copilotSpacesCreateResourceForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            resourceType,
+            metadata,
+            options,
+        )
 
     /**
-     * Gets a specific resource attached to a Copilot Space owned by an organization. The
-     * authenticated user must have appropriate permissions to view the space. OAuth app tokens and
-     * personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained
-     * tokens and GitHub App user access tokens must have been granted access to the organization
-     * that owns the space. They must also have been granted access to every repository referenced
-     * by resources in the space.
+     * Gets a specific resource attached to a Copilot Space owned by an organization. The authenticated user must have appropriate permissions to view the space. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesGetResourceForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource =
-        dev.octri.showcase.github.methods.CopilotSpacesGetResourceForOrgOperation
-            .copilotSpacesGetResourceForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                spaceResourceId,
-                options,
-            )
+    fun copilotSpacesGetResourceForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, spaceResourceId: Long, options: RequestOptions? = null): CopilotSpaceResource =
+        dev.octri.showcase.github.methods.CopilotSpacesGetResourceForOrgOperation.copilotSpacesGetResourceForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            spaceResourceId,
+            options,
+        )
 
     /**
-     * Updates the metadata of a resource in a specific Copilot Space owned by an organization. The
-     * authenticated user must have write permissions on the space. OAuth app tokens and personal
-     * access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens
-     * and GitHub App user access tokens must have been granted access to the organization that owns
-     * the space. They must also have been granted access to every repository referenced by
-     * resources in the space, including the resource being updated.
+     * Updates the metadata of a resource in a specific Copilot Space owned by an organization. The authenticated user must have write permissions on the space. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space, including the resource being updated.
      */
-    fun copilotSpacesUpdateResourceForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        metadata: Map<String, Any>? = null,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource =
-        dev.octri.showcase.github.methods.CopilotSpacesUpdateResourceForOrgOperation
-            .copilotSpacesUpdateResourceForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                spaceResourceId,
-                metadata,
-                options,
-            )
+    fun copilotSpacesUpdateResourceForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, spaceResourceId: Long, metadata: Map<String, Any>? = null, options: RequestOptions? = null): CopilotSpaceResource =
+        dev.octri.showcase.github.methods.CopilotSpacesUpdateResourceForOrgOperation.copilotSpacesUpdateResourceForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            spaceResourceId,
+            metadata,
+            options,
+        )
 
     /**
-     * Deletes a resource from a specific Copilot Space owned by an organization. The authenticated
-     * user must have write permissions on the space. OAuth app tokens and personal access tokens
-     * (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App
-     * user access tokens must have been granted access to the organization that owns the space.
-     * They must also have been granted access to every repository referenced by resources in the
-     * space.
+     * Deletes a resource from a specific Copilot Space owned by an organization. The authenticated user must have write permissions on the space. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      */
-    fun copilotSpacesDeleteResourceForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.CopilotSpacesDeleteResourceForOrgOperation
-            .copilotSpacesDeleteResourceForOrg(
-                clientConfig,
-                org,
-                spaceNumber,
-                spaceResourceId,
-                options,
-            )
+    fun copilotSpacesDeleteResourceForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, spaceResourceId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.CopilotSpacesDeleteResourceForOrgOperation.copilotSpacesDeleteResourceForOrg(
+            clientConfig,
+            org,
+            spaceNumber,
+            spaceResourceId,
+            options,
+        )
 
     /**
-     * Lists Copilot Spaces owned by a user. The authenticated user must have read access to the
-     * user's Copilot Spaces. Only Spaces that are readable by the authenticated user are returned.
-     * This includes the user's own spaces, and public user spaces when accessing another user's
-     * spaces. OAuth app tokens and personal access tokens (classic) need the `read:user` scope to
-     * use this endpoint.
+     * Lists Copilot Spaces owned by a user. The authenticated user must have read access to the user's Copilot Spaces. Only Spaces that are readable by the authenticated user are returned. This includes the user's own spaces, and public user spaces when accessing another user's spaces. OAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint.
      */
-    fun copilotSpacesListForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        perPage: Long? = null,
-        before: String? = null,
-        after: String? = null,
-        options: RequestOptions? = null,
-    ): CopilotSpacesListForUserResponse =
-        dev.octri.showcase.github.methods.CopilotSpacesListForUserOperation
-            .copilotSpacesListForUser(
-                clientConfig,
-                username,
-                perPage,
-                before,
-                after,
-                options,
-            )
+    fun copilotSpacesListForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): CopilotSpacesListForUserResponse =
+        dev.octri.showcase.github.methods.CopilotSpacesListForUserOperation.copilotSpacesListForUser(
+            clientConfig,
+            username,
+            perPage,
+            before,
+            after,
+            options,
+        )
 
     /**
-     * Creates a new Copilot Space owned by a user. Only the authenticated user can create spaces
-     * for their own account. Users can create personal Copilot Spaces for their individual use.
-     * OAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this
-     * endpoint.
+     * Creates a new Copilot Space owned by a user. Only the authenticated user can create spaces for their own account. Users can create personal Copilot Spaces for their individual use. OAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint.
      */
-    fun copilotSpacesCreateForUser(
-        clientConfig: ClientConfig,
-        request: CopilotSpacesCreateForUserRequest,
-        options: RequestOptions? = null,
-    ): CopilotSpace =
-        dev.octri.showcase.github.methods.CopilotSpacesCreateForUserOperation
-            .copilotSpacesCreateForUser(
-                clientConfig,
-                request,
-                options,
-            )
+    fun copilotSpacesCreateForUser(clientConfig: ClientConfig, request: CopilotSpacesCreateForUserRequest, options: RequestOptions? = null): CopilotSpace =
+        dev.octri.showcase.github.methods.CopilotSpacesCreateForUserOperation.copilotSpacesCreateForUser(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets details about a specific Copilot Space owned by a user. The authenticated user must have
-     * read access to the Space. Private user spaces require the authenticated user to be the owner
-     * of the space. Public user spaces are accessible to any authenticated user. OAuth app tokens
-     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets details about a specific Copilot Space owned by a user. The authenticated user must have read access to the Space. Private user spaces require the authenticated user to be the owner of the space. Public user spaces are accessible to any authenticated user. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun copilotSpacesGetForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpace =
+    fun copilotSpacesGetForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, options: RequestOptions? = null): CopilotSpace =
         dev.octri.showcase.github.methods.CopilotSpacesGetForUserOperation.copilotSpacesGetForUser(
             clientConfig,
             username,
@@ -608,246 +473,136 @@ object CopilotSpaces {
         )
 
     /**
-     * Updates a Copilot Space owned by a user. Only the authenticated user can update spaces for
-     * their own account. Users can update their personal Copilot Spaces. OAuth app tokens and
-     * personal access tokens (classic) need the `read:user` scope to use this endpoint.
+     * Updates a Copilot Space owned by a user. Only the authenticated user can update spaces for their own account. Users can update their personal Copilot Spaces. OAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint.
      */
-    fun copilotSpacesUpdateForUser(
-        clientConfig: ClientConfig,
-        request: CopilotSpacesUpdateForUserRequest,
-        options: RequestOptions? = null,
-    ): CopilotSpace =
-        dev.octri.showcase.github.methods.CopilotSpacesUpdateForUserOperation
-            .copilotSpacesUpdateForUser(
-                clientConfig,
-                request,
-                options,
-            )
+    fun copilotSpacesUpdateForUser(clientConfig: ClientConfig, request: CopilotSpacesUpdateForUserRequest, options: RequestOptions? = null): CopilotSpace =
+        dev.octri.showcase.github.methods.CopilotSpacesUpdateForUserOperation.copilotSpacesUpdateForUser(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes a Copilot Space owned by a user. The authenticated user must be the owner of the
-     * space. **Warning:** This action is permanent and cannot be undone. Deleting a space will
-     * remove all associated resources and configurations. OAuth app tokens and personal access
-     * tokens (classic) need the `user` scope to use this endpoint.
+     * Deletes a Copilot Space owned by a user. The authenticated user must be the owner of the space. **Warning:** This action is permanent and cannot be undone. Deleting a space will remove all associated resources and configurations. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
      */
-    fun copilotSpacesDeleteForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.CopilotSpacesDeleteForUserOperation
-            .copilotSpacesDeleteForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                options,
-            )
+    fun copilotSpacesDeleteForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.CopilotSpacesDeleteForUserOperation.copilotSpacesDeleteForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            options,
+        )
 
     /**
-     * Lists all collaborators for a specific Copilot Space owned by a user. The authenticated user
-     * must be the owner of the space or have admin access to the space. Each collaborator entry
-     * specifies which user has access to the space and at what level (reader, writer, or admin).
-     * The space owner is excluded from this list. Team collaborators are not supported for
-     * user-owned Copilot Spaces. OAuth app tokens and personal access tokens (classic) need the
-     * `user` scope to use this endpoint.
+     * Lists all collaborators for a specific Copilot Space owned by a user. The authenticated user must be the owner of the space or have admin access to the space. Each collaborator entry specifies which user has access to the space and at what level (reader, writer, or admin). The space owner is excluded from this list. Team collaborators are not supported for user-owned Copilot Spaces. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
      */
-    fun copilotSpacesListCollaboratorsForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpacesListCollaboratorsForUserResponse =
-        dev.octri.showcase.github.methods.CopilotSpacesListCollaboratorsForUserOperation
-            .copilotSpacesListCollaboratorsForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                options,
-            )
+    fun copilotSpacesListCollaboratorsForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, options: RequestOptions? = null): CopilotSpacesListCollaboratorsForUserResponse =
+        dev.octri.showcase.github.methods.CopilotSpacesListCollaboratorsForUserOperation.copilotSpacesListCollaboratorsForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            options,
+        )
 
     /**
-     * Adds a collaborator to a specific Copilot Space owned by a user. The authenticated user must
-     * be the owner of the space or have admin access to the space. Team collaborators are not
-     * supported for user-owned Copilot Spaces. OAuth app tokens and personal access tokens
-     * (classic) need the `user` scope to use this endpoint.
+     * Adds a collaborator to a specific Copilot Space owned by a user. The authenticated user must be the owner of the space or have admin access to the space. Team collaborators are not supported for user-owned Copilot Spaces. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
      */
-    fun copilotSpacesAddCollaboratorForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        actorType: CopilotSpacesAddCollaboratorForUserActorTypeEnum,
-        actorIdentifier: String,
-        role: CopilotSpacesAddCollaboratorForUserRoleEnum,
-        options: RequestOptions? = null,
-    ): CopilotSpaceCollaborator =
-        dev.octri.showcase.github.methods.CopilotSpacesAddCollaboratorForUserOperation
-            .copilotSpacesAddCollaboratorForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                actorType,
-                actorIdentifier,
-                role,
-                options,
-            )
+    fun copilotSpacesAddCollaboratorForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, actorType: CopilotSpacesAddCollaboratorForUserActorTypeEnum, actorIdentifier: String, role: CopilotSpacesAddCollaboratorForUserRoleEnum, options: RequestOptions? = null): CopilotSpaceCollaborator =
+        dev.octri.showcase.github.methods.CopilotSpacesAddCollaboratorForUserOperation.copilotSpacesAddCollaboratorForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            actorType,
+            actorIdentifier,
+            role,
+            options,
+        )
 
     /**
-     * Updates the role of a collaborator for a specific Copilot Space owned by a user. The
-     * authenticated user must be the owner of the space or have admin access to the space. OAuth
-     * app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
+     * Updates the role of a collaborator for a specific Copilot Space owned by a user. The authenticated user must be the owner of the space or have admin access to the space. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
      */
-    fun copilotSpacesUpdateCollaboratorForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        actorType: CopilotSpacesUpdateCollaboratorForUserParameterEnum,
-        actorIdentifier: String,
-        role: CopilotSpacesUpdateCollaboratorForUserRoleEnum,
-        options: RequestOptions? = null,
-    ): CopilotSpaceCollaborator =
-        dev.octri.showcase.github.methods.CopilotSpacesUpdateCollaboratorForUserOperation
-            .copilotSpacesUpdateCollaboratorForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                actorType,
-                actorIdentifier,
-                role,
-                options,
-            )
+    fun copilotSpacesUpdateCollaboratorForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, actorType: CopilotSpacesUpdateCollaboratorForUserParameterEnum, actorIdentifier: String, role: CopilotSpacesUpdateCollaboratorForUserRoleEnum, options: RequestOptions? = null): CopilotSpaceCollaborator =
+        dev.octri.showcase.github.methods.CopilotSpacesUpdateCollaboratorForUserOperation.copilotSpacesUpdateCollaboratorForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            actorType,
+            actorIdentifier,
+            role,
+            options,
+        )
 
     /**
-     * Removes a collaborator from a specific Copilot Space owned by a user. The authenticated user
-     * must be the owner of the space or have admin access to the space. OAuth app tokens and
-     * personal access tokens (classic) need the `user` scope to use this endpoint.
+     * Removes a collaborator from a specific Copilot Space owned by a user. The authenticated user must be the owner of the space or have admin access to the space. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
      */
-    fun copilotSpacesRemoveCollaboratorForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        actorType: CopilotSpacesRemoveCollaboratorForUserParameterEnum,
-        actorIdentifier: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.CopilotSpacesRemoveCollaboratorForUserOperation
-            .copilotSpacesRemoveCollaboratorForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                actorType,
-                actorIdentifier,
-                options,
-            )
+    fun copilotSpacesRemoveCollaboratorForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, actorType: CopilotSpacesRemoveCollaboratorForUserParameterEnum, actorIdentifier: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.CopilotSpacesRemoveCollaboratorForUserOperation.copilotSpacesRemoveCollaboratorForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            actorType,
+            actorIdentifier,
+            options,
+        )
 
     /**
-     * Lists all resources attached to a specific Copilot Space owned by a user. The authenticated
-     * user must have appropriate permissions to view the space. OAuth app tokens and personal
-     * access tokens (classic) need the `read:user` scope to use this endpoint.
+     * Lists all resources attached to a specific Copilot Space owned by a user. The authenticated user must have appropriate permissions to view the space. OAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint.
      */
-    fun copilotSpacesListResourcesForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpacesListResourcesForUserResponse =
-        dev.octri.showcase.github.methods.CopilotSpacesListResourcesForUserOperation
-            .copilotSpacesListResourcesForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                options,
-            )
+    fun copilotSpacesListResourcesForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, options: RequestOptions? = null): CopilotSpacesListResourcesForUserResponse =
+        dev.octri.showcase.github.methods.CopilotSpacesListResourcesForUserOperation.copilotSpacesListResourcesForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            options,
+        )
 
     /**
-     * Creates a new resource in a specific Copilot Space owned by a user. The authenticated user
-     * must have write permissions on the space. The following resource types are supported:
-     * `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`. The
-     * `uploaded_text_file` and `media_content` types are not supported via this endpoint. For
-     * `github_file` resources, if a resource with the same repository, file path, and SHA already
-     * exists, the existing resource is returned with a `200` status. OAuth app tokens and personal
-     * access tokens (classic) need the `write:user` scope to use this endpoint.
+     * Creates a new resource in a specific Copilot Space owned by a user. The authenticated user must have write permissions on the space. The following resource types are supported: `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`. The `uploaded_text_file` and `media_content` types are not supported via this endpoint. For `github_file` resources, if a resource with the same repository, file path, and SHA already exists, the existing resource is returned with a `200` status. OAuth app tokens and personal access tokens (classic) need the `write:user` scope to use this endpoint.
      */
-    fun copilotSpacesCreateResourceForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        resourceType: CopilotSpacesCreateResourceForUserResourceTypeEnum,
-        metadata: Map<String, Any>,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource =
-        dev.octri.showcase.github.methods.CopilotSpacesCreateResourceForUserOperation
-            .copilotSpacesCreateResourceForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                resourceType,
-                metadata,
-                options,
-            )
+    fun copilotSpacesCreateResourceForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, resourceType: CopilotSpacesCreateResourceForUserResourceTypeEnum, metadata: Map<String, Any>, options: RequestOptions? = null): CopilotSpaceResource =
+        dev.octri.showcase.github.methods.CopilotSpacesCreateResourceForUserOperation.copilotSpacesCreateResourceForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            resourceType,
+            metadata,
+            options,
+        )
 
     /**
-     * Gets a specific resource attached to a Copilot Space owned by a user. The authenticated user
-     * must have appropriate permissions to view the space. OAuth app tokens and personal access
-     * tokens (classic) need the `read:user` scope to use this endpoint.
+     * Gets a specific resource attached to a Copilot Space owned by a user. The authenticated user must have appropriate permissions to view the space. OAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint.
      */
-    fun copilotSpacesGetResourceForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource =
-        dev.octri.showcase.github.methods.CopilotSpacesGetResourceForUserOperation
-            .copilotSpacesGetResourceForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                spaceResourceId,
-                options,
-            )
+    fun copilotSpacesGetResourceForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, spaceResourceId: Long, options: RequestOptions? = null): CopilotSpaceResource =
+        dev.octri.showcase.github.methods.CopilotSpacesGetResourceForUserOperation.copilotSpacesGetResourceForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            spaceResourceId,
+            options,
+        )
 
     /**
-     * Updates the metadata of a resource in a specific Copilot Space owned by a user. The
-     * authenticated user must have write permissions on the space. OAuth app tokens and personal
-     * access tokens (classic) need the `write:user` scope to use this endpoint.
+     * Updates the metadata of a resource in a specific Copilot Space owned by a user. The authenticated user must have write permissions on the space. OAuth app tokens and personal access tokens (classic) need the `write:user` scope to use this endpoint.
      */
-    fun copilotSpacesUpdateResourceForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        metadata: Map<String, Any>? = null,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource =
-        dev.octri.showcase.github.methods.CopilotSpacesUpdateResourceForUserOperation
-            .copilotSpacesUpdateResourceForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                spaceResourceId,
-                metadata,
-                options,
-            )
+    fun copilotSpacesUpdateResourceForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, spaceResourceId: Long, metadata: Map<String, Any>? = null, options: RequestOptions? = null): CopilotSpaceResource =
+        dev.octri.showcase.github.methods.CopilotSpacesUpdateResourceForUserOperation.copilotSpacesUpdateResourceForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            spaceResourceId,
+            metadata,
+            options,
+        )
 
     /**
-     * Deletes a resource from a specific Copilot Space owned by a user. The authenticated user must
-     * have write permissions on the space. OAuth app tokens and personal access tokens (classic)
-     * need the `write:user` scope to use this endpoint.
+     * Deletes a resource from a specific Copilot Space owned by a user. The authenticated user must have write permissions on the space. OAuth app tokens and personal access tokens (classic) need the `write:user` scope to use this endpoint.
      */
-    fun copilotSpacesDeleteResourceForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.CopilotSpacesDeleteResourceForUserOperation
-            .copilotSpacesDeleteResourceForUser(
-                clientConfig,
-                username,
-                spaceNumber,
-                spaceResourceId,
-                options,
-            )
+    fun copilotSpacesDeleteResourceForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, spaceResourceId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.CopilotSpacesDeleteResourceForUserOperation.copilotSpacesDeleteResourceForUser(
+            clientConfig,
+            username,
+            spaceNumber,
+            spaceResourceId,
+            options,
+        )
 }

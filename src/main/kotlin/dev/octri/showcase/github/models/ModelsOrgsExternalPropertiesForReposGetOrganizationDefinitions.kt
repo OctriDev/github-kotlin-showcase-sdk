@@ -3,8 +3,12 @@
 
 package dev.octri.showcase.github.models
 
-/** External custom property defined for a GitHub App installation */
+/**
+ * External custom property defined for a GitHub App installation
+ */
 data class ExternalProperty(
-    /** The name of the external property */
+    /**
+     * The name of the external property
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String
 )

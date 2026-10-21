@@ -3,10 +3,16 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `ParticipationStats` API schema. */
+/**
+ * Typed representation of the `ParticipationStats` API schema.
+ */
 data class ParticipationStats(
-    /** Required array value serialized in the `all` wire field. */
+    /**
+     * Required array value serialized in the `all` wire field.
+     */
     val all: List<Long>,
-    /** Required array value serialized in the `owner` wire field. */
-    val owner: List<Long>,
+    /**
+     * Required array value serialized in the `owner` wire field.
+     */
+    val owner: List<Long>
 )

@@ -14,376 +14,132 @@ import dev.octri.showcase.github.ValidationError
 
 internal object CopilotSpacesListResourcesForOrgOperation {
     /**
-     * Lists all resources attached to a specific Copilot Space owned by an organization. The
-     * authenticated user must have appropriate permissions to view the space. OAuth app tokens and
-     * personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained
-     * tokens and GitHub App user access tokens must have been granted access to the organization
-     * that owns the space. They must also have been granted access to every repository referenced
-     * by resources in the…
+     * Lists all resources attached to a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to view the space. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param spaceNumber The unique identifier of the Copilot Space.
      */
-    fun copilotSpacesListResourcesForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpaces.CopilotSpacesListResourcesForOrgResponse {
-        return SdkClient.request<CopilotSpaces.CopilotSpacesListResourcesForOrgResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources",
-                    config = clientConfig,
-                    operationId = "copilotSpacesListResourcesForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun copilotSpacesListResourcesForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, options: RequestOptions? = null): CopilotSpaces.CopilotSpacesListResourcesForOrgResponse {
+        return SdkClient.request<CopilotSpaces.CopilotSpacesListResourcesForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources", config = clientConfig, operationId = "copilotSpacesListResourcesForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotSpacesCreateResourceForOrgOperation {
     /**
-     * Creates a new resource in a specific Copilot Space owned by an organization. The
-     * authenticated user must have write permissions on the space. The following resource types are
-     * supported: `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`.
-     * The `uploaded_text_file` and `media_content` types are not supported via this endpoint. For
-     * `github_file` resources, if a resource with the same repository, file path, and SHA already
-     * exists, the existing…
+     * Creates a new resource in a specific Copilot Space owned by an organization. The authenticated user must have write permissions on the space. The following resource types are supported: `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`. The `uploaded_text_file` and `media_content` types are not supported via this endpoint. For `github_file` resources, if a resource with the same repository, file path, and SHA already exists, the existing…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param spaceNumber The unique identifier of the Copilot Space.
      * @param resourceType The type of resource to create.
      * @param metadata Resource-specific metadata.
      */
-    fun copilotSpacesCreateResourceForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        resourceType: CopilotSpacesCreateResourceForOrgResourceTypeEnum,
-        metadata: Map<String, Any>,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource {
-        return SdkClient.request<CopilotSpaceResource>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "resource_type" to (resourceType),
-                            "metadata" to (metadata),
-                        ),
-                    operationId = "copilotSpacesCreateResourceForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotSpacesCreateResourceForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, resourceType: CopilotSpacesCreateResourceForOrgResourceTypeEnum, metadata: Map<String, Any>, options: RequestOptions? = null): CopilotSpaceResource {
+        return SdkClient.request<CopilotSpaceResource>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources", config = clientConfig, body = SdkClient.bodyMap("resource_type" to (resourceType), "metadata" to (metadata)), operationId = "copilotSpacesCreateResourceForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object CopilotSpacesGetResourceForOrgOperation {
     /**
-     * Gets a specific resource attached to a Copilot Space owned by an organization. The
-     * authenticated user must have appropriate permissions to view the space. OAuth app tokens and
-     * personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained
-     * tokens and GitHub App user access tokens must have been granted access to the organization
-     * that owns the space. They must also have been granted access to every repository referenced
-     * by resources in the space.
+     * Gets a specific resource attached to a Copilot Space owned by an organization. The authenticated user must have appropriate permissions to view the space. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param spaceNumber The unique identifier of the Copilot Space.
      * @param spaceResourceId The unique identifier of the resource.
      */
-    fun copilotSpacesGetResourceForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource {
-        return SdkClient.request<CopilotSpaceResource>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}",
-                    config = clientConfig,
-                    operationId = "copilotSpacesGetResourceForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun copilotSpacesGetResourceForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, spaceResourceId: Long, options: RequestOptions? = null): CopilotSpaceResource {
+        return SdkClient.request<CopilotSpaceResource>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}", config = clientConfig, operationId = "copilotSpacesGetResourceForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotSpacesUpdateResourceForOrgOperation {
     /**
-     * Updates the metadata of a resource in a specific Copilot Space owned by an organization. The
-     * authenticated user must have write permissions on the space. OAuth app tokens and personal
-     * access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens
-     * and GitHub App user access tokens must have been granted access to the organization that owns
-     * the space. They must also have been granted access to every repository referenced by
-     * resources in the space,…
+     * Updates the metadata of a resource in a specific Copilot Space owned by an organization. The authenticated user must have write permissions on the space. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space,…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param spaceNumber The unique identifier of the Copilot Space.
      * @param spaceResourceId The unique identifier of the resource.
      * @param metadata Updated resource-specific metadata.
      */
-    fun copilotSpacesUpdateResourceForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        metadata: Map<String, Any>? = null,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource {
-        return SdkClient.request<CopilotSpaceResource>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("metadata" to (SdkClient.omitIfNull(metadata))),
-                    operationId = "copilotSpacesUpdateResourceForOrg",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotSpacesUpdateResourceForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, spaceResourceId: Long, metadata: Map<String, Any>? = null, options: RequestOptions? = null): CopilotSpaceResource {
+        return SdkClient.request<CopilotSpaceResource>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}", config = clientConfig, body = SdkClient.bodyMap("metadata" to (SdkClient.omitIfNull(metadata))), operationId = "copilotSpacesUpdateResourceForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object CopilotSpacesDeleteResourceForOrgOperation {
     /**
-     * Deletes a resource from a specific Copilot Space owned by an organization. The authenticated
-     * user must have write permissions on the space. OAuth app tokens and personal access tokens
-     * (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App
-     * user access tokens must have been granted access to the organization that owns the space.
-     * They must also have been granted access to every repository referenced by resources in the
-     * space.
+     * Deletes a resource from a specific Copilot Space owned by an organization. The authenticated user must have write permissions on the space. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint. Fine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param spaceNumber The unique identifier of the Copilot Space.
      * @param spaceResourceId The unique identifier of the resource.
      */
-    fun copilotSpacesDeleteResourceForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}",
-                config = clientConfig,
-                operationId = "copilotSpacesDeleteResourceForOrg",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-            )
-        )
+    fun copilotSpacesDeleteResourceForOrg(clientConfig: ClientConfig, org: String, spaceNumber: Long, spaceResourceId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}", config = clientConfig, operationId = "copilotSpacesDeleteResourceForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }
 
 internal object CopilotSpacesListResourcesForUserOperation {
     /**
-     * Lists all resources attached to a specific Copilot Space owned by a user. The authenticated
-     * user must have appropriate permissions to view the space. OAuth app tokens and personal
-     * access tokens (classic) need the `read:user` scope to use this endpoint.
+     * Lists all resources attached to a specific Copilot Space owned by a user. The authenticated user must have appropriate permissions to view the space. OAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint.
      *
      * @param username The handle for the GitHub user account.
      * @param spaceNumber The unique identifier of the Copilot Space.
      */
-    fun copilotSpacesListResourcesForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpaces.CopilotSpacesListResourcesForUserResponse {
-        return SdkClient.request<CopilotSpaces.CopilotSpacesListResourcesForUserResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources",
-                    config = clientConfig,
-                    operationId = "copilotSpacesListResourcesForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun copilotSpacesListResourcesForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, options: RequestOptions? = null): CopilotSpaces.CopilotSpacesListResourcesForUserResponse {
+        return SdkClient.request<CopilotSpaces.CopilotSpacesListResourcesForUserResponse>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources", config = clientConfig, operationId = "copilotSpacesListResourcesForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotSpacesCreateResourceForUserOperation {
     /**
-     * Creates a new resource in a specific Copilot Space owned by a user. The authenticated user
-     * must have write permissions on the space. The following resource types are supported:
-     * `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`. The
-     * `uploaded_text_file` and `media_content` types are not supported via this endpoint. For
-     * `github_file` resources, if a resource with the same repository, file path, and SHA already
-     * exists, the existing resource is…
+     * Creates a new resource in a specific Copilot Space owned by a user. The authenticated user must have write permissions on the space. The following resource types are supported: `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`. The `uploaded_text_file` and `media_content` types are not supported via this endpoint. For `github_file` resources, if a resource with the same repository, file path, and SHA already exists, the existing resource is…
      *
      * @param username The handle for the GitHub user account.
      * @param spaceNumber The unique identifier of the Copilot Space.
      * @param resourceType The type of resource to create.
      * @param metadata Resource-specific metadata.
      */
-    fun copilotSpacesCreateResourceForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        resourceType: CopilotSpacesCreateResourceForUserResourceTypeEnum,
-        metadata: Map<String, Any>,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource {
-        return SdkClient.request<CopilotSpaceResource>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "resource_type" to (resourceType),
-                            "metadata" to (metadata),
-                        ),
-                    operationId = "copilotSpacesCreateResourceForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotSpacesCreateResourceForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, resourceType: CopilotSpacesCreateResourceForUserResourceTypeEnum, metadata: Map<String, Any>, options: RequestOptions? = null): CopilotSpaceResource {
+        return SdkClient.request<CopilotSpaceResource>(SdkClient.RequestSpec("POST", "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources", config = clientConfig, body = SdkClient.bodyMap("resource_type" to (resourceType), "metadata" to (metadata)), operationId = "copilotSpacesCreateResourceForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object CopilotSpacesGetResourceForUserOperation {
     /**
-     * Gets a specific resource attached to a Copilot Space owned by a user. The authenticated user
-     * must have appropriate permissions to view the space. OAuth app tokens and personal access
-     * tokens (classic) need the `read:user` scope to use this endpoint.
+     * Gets a specific resource attached to a Copilot Space owned by a user. The authenticated user must have appropriate permissions to view the space. OAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint.
      *
      * @param username The handle for the GitHub user account.
      * @param spaceNumber The unique identifier of the Copilot Space.
      * @param spaceResourceId The unique identifier of the resource.
      */
-    fun copilotSpacesGetResourceForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource {
-        return SdkClient.request<CopilotSpaceResource>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}",
-                    config = clientConfig,
-                    operationId = "copilotSpacesGetResourceForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun copilotSpacesGetResourceForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, spaceResourceId: Long, options: RequestOptions? = null): CopilotSpaceResource {
+        return SdkClient.request<CopilotSpaceResource>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}", config = clientConfig, operationId = "copilotSpacesGetResourceForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object CopilotSpacesUpdateResourceForUserOperation {
     /**
-     * Updates the metadata of a resource in a specific Copilot Space owned by a user. The
-     * authenticated user must have write permissions on the space. OAuth app tokens and personal
-     * access tokens (classic) need the `write:user` scope to use this endpoint.
+     * Updates the metadata of a resource in a specific Copilot Space owned by a user. The authenticated user must have write permissions on the space. OAuth app tokens and personal access tokens (classic) need the `write:user` scope to use this endpoint.
      *
      * @param username The handle for the GitHub user account.
      * @param spaceNumber The unique identifier of the Copilot Space.
      * @param spaceResourceId The unique identifier of the resource.
      * @param metadata Updated resource-specific metadata.
      */
-    fun copilotSpacesUpdateResourceForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        metadata: Map<String, Any>? = null,
-        options: RequestOptions? = null,
-    ): CopilotSpaceResource {
-        return SdkClient.request<CopilotSpaceResource>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("metadata" to (SdkClient.omitIfNull(metadata))),
-                    operationId = "copilotSpacesUpdateResourceForUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun copilotSpacesUpdateResourceForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, spaceResourceId: Long, metadata: Map<String, Any>? = null, options: RequestOptions? = null): CopilotSpaceResource {
+        return SdkClient.request<CopilotSpaceResource>(SdkClient.RequestSpec("PUT", "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}", config = clientConfig, body = SdkClient.bodyMap("metadata" to (SdkClient.omitIfNull(metadata))), operationId = "copilotSpacesUpdateResourceForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object CopilotSpacesDeleteResourceForUserOperation {
     /**
-     * Deletes a resource from a specific Copilot Space owned by a user. The authenticated user must
-     * have write permissions on the space. OAuth app tokens and personal access tokens (classic)
-     * need the `write:user` scope to use this endpoint.
+     * Deletes a resource from a specific Copilot Space owned by a user. The authenticated user must have write permissions on the space. OAuth app tokens and personal access tokens (classic) need the `write:user` scope to use this endpoint.
      *
      * @param username The handle for the GitHub user account.
      * @param spaceNumber The unique identifier of the Copilot Space.
      * @param spaceResourceId The unique identifier of the resource.
      */
-    fun copilotSpacesDeleteResourceForUser(
-        clientConfig: ClientConfig,
-        username: String,
-        spaceNumber: Long,
-        spaceResourceId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}",
-                config = clientConfig,
-                operationId = "copilotSpacesDeleteResourceForUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-            )
-        )
+    fun copilotSpacesDeleteResourceForUser(clientConfig: ClientConfig, username: String, spaceNumber: Long, spaceResourceId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/users/${SdkClient.encodePathSegment(username)}/copilot-spaces/${SdkClient.encodePathSegment(spaceNumber)}/resources/${SdkClient.encodePathSegment(spaceResourceId)}", config = clientConfig, operationId = "copilotSpacesDeleteResourceForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }

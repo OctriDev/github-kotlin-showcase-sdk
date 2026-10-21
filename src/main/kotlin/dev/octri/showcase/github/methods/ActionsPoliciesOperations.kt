@@ -15,98 +15,40 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ActionsGetOrgActionsPoliciesOperation {
     /**
-     * Lists Actions policies configured for an organization. Set `has_parents` to include policies
-     * configured at higher levels that apply to the organization, and use `page` and `per_page` to
-     * paginate the results.
+     * Lists Actions policies configured for an organization. Set `has_parents` to include policies configured at higher levels that apply to the organization, and use `page` and `per_page` to paginate the results.
      *
      * List all Actions policies for an organization.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param hasParents Include policies configured at higher levels that apply to this
-     *   organization
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param hasParents Include policies configured at higher levels that apply to
+     *   this organization
      */
-    fun actionsGetOrgActionsPolicies(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        hasParents: Boolean? = null,
-        options: RequestOptions? = null,
-    ): Actions.ActionsGetOrgActionsPoliciesResponse {
-        return SdkClient.request<Actions.ActionsGetOrgActionsPoliciesResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "has_parents" to SdkClient.queryValue(hasParents, "form", true),
-                        ),
-                    operationId = "actionsGetOrgActionsPolicies",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
-                )
-            )
-            .data
+    fun actionsGetOrgActionsPolicies(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, hasParents: Boolean? = null, options: RequestOptions? = null): Actions.ActionsGetOrgActionsPoliciesResponse {
+        return SdkClient.request<Actions.ActionsGetOrgActionsPoliciesResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "has_parents" to
+    SdkClient.queryValue(hasParents, "form", true)), operationId = "actionsGetOrgActionsPolicies", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsCreateOrgActionsPolicyOperation {
     /**
-     * Create an Actions policy for an organization. Omitting `workflow_path` targets all workflows
-     * without storing an explicit condition.
+     * Create an Actions policy for an organization. Omitting `workflow_path` targets all workflows without storing an explicit condition.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the policy.
-     * @param enforcement The enforcement level of the ruleset. `evaluate` allows admins to test
-     *   rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate`
-     *   is only available with GitHub Enterprise).
-     * @param conditions Conditions for an organization Actions policy. The conditions object should
-     *   contain one of `repository_name`, `repository_id`, or `repository_property`, and may also
-     *   contain `workflow_path`.
+     * @param enforcement The enforcement level of the ruleset. `evaluate` allows
+     *   admins to test rules before enforcing them. Admins can view insights on the
+     *   Rule Insights page (`evaluate` is only available with GitHub Enterprise).
+     * @param conditions Conditions for an organization Actions policy. The
+     *   conditions object should contain one of `repository_name`, `repository_id`, or
+     *   `repository_property`, and may also contain `workflow_path`.
      * @param rules An array of rules within the policy.
      */
-    fun actionsCreateOrgActionsPolicy(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        enforcement: RepositoryRuleEnforcement,
-        conditions: ActionsPolicyOrgConditions? = null,
-        rules: List<ActionsRule>? = null,
-        options: RequestOptions? = null,
-    ): ActionsPolicy {
-        return SdkClient.request<ActionsPolicy>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (name),
-                            "enforcement" to (enforcement),
-                            "conditions" to (SdkClient.omitIfNull(conditions)),
-                            "rules" to (SdkClient.omitIfNull(rules)),
-                        ),
-                    operationId = "actionsCreateOrgActionsPolicy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun actionsCreateOrgActionsPolicy(clientConfig: ClientConfig, org: String, name: String, enforcement: RepositoryRuleEnforcement, conditions: ActionsPolicyOrgConditions? = null, rules: List<ActionsRule>? = null, options: RequestOptions? = null): ActionsPolicy {
+        return SdkClient.request<ActionsPolicy>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies", config = clientConfig, body = SdkClient.bodyMap("name" to (name), "enforcement" to (enforcement), "conditions" to (SdkClient.omitIfNull(conditions)), "rules" to (SdkClient.omitIfNull(rules))), operationId = "actionsCreateOrgActionsPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
@@ -117,314 +59,143 @@ internal object ActionsGetOrgActionsPolicyOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param policyId The ID of the policy.
      */
-    fun actionsGetOrgActionsPolicy(
-        clientConfig: ClientConfig,
-        org: String,
-        policyId: Long,
-        options: RequestOptions? = null,
-    ): ActionsPolicy {
-        return SdkClient.request<ActionsPolicy>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies/${SdkClient.encodePathSegment(policyId)}",
-                    config = clientConfig,
-                    operationId = "actionsGetOrgActionsPolicy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
-                )
-            )
-            .data
+    fun actionsGetOrgActionsPolicy(clientConfig: ClientConfig, org: String, policyId: Long, options: RequestOptions? = null): ActionsPolicy {
+        return SdkClient.request<ActionsPolicy>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies/${SdkClient.encodePathSegment(policyId)}", config = clientConfig, operationId = "actionsGetOrgActionsPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsUpdateOrgActionsPolicyOperation {
     /**
-     * Update an Actions policy for an organization. Omitting `workflow_path` preserves the policy's
-     * existing workflow targeting.
+     * Update an Actions policy for an organization. Omitting `workflow_path` preserves the policy's existing workflow targeting.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param policyId The ID of the policy.
      * @param name The name of the policy.
-     * @param enforcement The enforcement level of the ruleset. `evaluate` allows admins to test
-     *   rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate`
-     *   is only available with GitHub Enterprise).
-     * @param conditions Conditions for an organization Actions policy. The conditions object should
-     *   contain one of `repository_name`, `repository_id`, or `repository_property`, and may also
-     *   contain `workflow_path`.
+     * @param enforcement The enforcement level of the ruleset. `evaluate` allows
+     *   admins to test rules before enforcing them. Admins can view insights on the
+     *   Rule Insights page (`evaluate` is only available with GitHub Enterprise).
+     * @param conditions Conditions for an organization Actions policy. The
+     *   conditions object should contain one of `repository_name`, `repository_id`, or
+     *   `repository_property`, and may also contain `workflow_path`.
      * @param rules An array of rules within the policy.
      */
-    fun actionsUpdateOrgActionsPolicy(
-        clientConfig: ClientConfig,
-        request: Actions.ActionsUpdateOrgActionsPolicyRequest,
-        options: RequestOptions? = null,
-    ): ActionsPolicy {
-        return SdkClient.request<ActionsPolicy>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/policies/${SdkClient.encodePathSegment(request.policyId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                            "enforcement" to (SdkClient.omitIfNull(request.enforcement)),
-                            "conditions" to (SdkClient.omitIfNull(request.conditions)),
-                            "rules" to (SdkClient.omitIfNull(request.rules)),
-                        ),
-                    operationId = "actionsUpdateOrgActionsPolicy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun actionsUpdateOrgActionsPolicy(clientConfig: ClientConfig, request: Actions.ActionsUpdateOrgActionsPolicyRequest, options: RequestOptions? = null): ActionsPolicy {
+        return SdkClient.request<ActionsPolicy>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/policies/${SdkClient.encodePathSegment(request.policyId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "enforcement" to (SdkClient.omitIfNull(request.enforcement)), "conditions" to (SdkClient.omitIfNull(request.conditions)), "rules" to (SdkClient.omitIfNull(request.rules))), operationId = "actionsUpdateOrgActionsPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsDeleteOrgActionsPolicyOperation {
     /**
-     * Deletes an organization-level Actions policy. Use `org` and `policy_id` to identify the
-     * organization and policy to remove; the policy must belong to that organization.
+     * Deletes an organization-level Actions policy. Use `org` and `policy_id` to identify the organization and policy to remove; the policy must belong to that organization.
      *
      * Delete an Actions policy for an organization.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param policyId The ID of the policy.
      */
-    fun actionsDeleteOrgActionsPolicy(
-        clientConfig: ClientConfig,
-        org: String,
-        policyId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies/${SdkClient.encodePathSegment(policyId)}",
-                config = clientConfig,
-                operationId = "actionsDeleteOrgActionsPolicy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
-            )
-        )
+    fun actionsDeleteOrgActionsPolicy(clientConfig: ClientConfig, org: String, policyId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/policies/${SdkClient.encodePathSegment(policyId)}", config = clientConfig, operationId = "actionsDeleteOrgActionsPolicy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java)))
     }
 }
 
 internal object ActionsGetRepoActionsPoliciesOperation {
     /**
-     * Lists Actions policies that apply to a repository. Use `has_parents` to include policies
-     * configured at higher levels, and `page` and `per_page` to paginate the results.
+     * Lists Actions policies that apply to a repository. Use `has_parents` to include policies configured at higher levels, and `page` and `per_page` to paginate the results.
      *
      * List all Actions policies for a repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param hasParents Include policies configured at higher levels that apply to this repository
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param hasParents Include policies configured at higher levels that apply to
+     *   this repository
      */
-    fun actionsGetRepoActionsPolicies(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        hasParents: Boolean? = null,
-        options: RequestOptions? = null,
-    ): Actions.ActionsGetRepoActionsPoliciesResponse {
-        return SdkClient.request<Actions.ActionsGetRepoActionsPoliciesResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/policies",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "has_parents" to SdkClient.queryValue(hasParents, "form", true),
-                        ),
-                    operationId = "actionsGetRepoActionsPolicies",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
-                )
-            )
-            .data
+    fun actionsGetRepoActionsPolicies(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, hasParents: Boolean? = null, options: RequestOptions? = null): Actions.ActionsGetRepoActionsPoliciesResponse {
+        return SdkClient.request<Actions.ActionsGetRepoActionsPoliciesResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/policies", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "has_parents" to
+    SdkClient.queryValue(hasParents, "form", true)), operationId = "actionsGetRepoActionsPolicies", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsCreateRepoActionsPolicyOperation {
     /**
-     * Create an Actions policy for a repository. Omitting `workflow_path` targets all workflows
-     * without storing an explicit condition.
+     * Create an Actions policy for a repository. Omitting `workflow_path` targets all workflows without storing an explicit condition.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param name The name of the policy.
-     * @param enforcement The enforcement level of the ruleset. `evaluate` allows admins to test
-     *   rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate`
-     *   is only available with GitHub Enterprise).
-     * @param conditions Conditions for a repository Actions policy. The object may be empty to
-     *   preserve or use the default workflow targeting, or contain only `workflow_path`.
+     * @param enforcement The enforcement level of the ruleset. `evaluate` allows
+     *   admins to test rules before enforcing them. Admins can view insights on the
+     *   Rule Insights page (`evaluate` is only available with GitHub Enterprise).
+     * @param conditions Conditions for a repository Actions policy. The object may
+     *   be empty to preserve or use the default workflow targeting, or contain only
+     *   `workflow_path`.
      * @param rules An array of rules within the policy.
      */
-    fun actionsCreateRepoActionsPolicy(
-        clientConfig: ClientConfig,
-        request: Actions.ActionsCreateRepoActionsPolicyRequest,
-        options: RequestOptions? = null,
-    ): ActionsPolicy {
-        return SdkClient.request<ActionsPolicy>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/policies",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (request.name),
-                            "enforcement" to (request.enforcement),
-                            "conditions" to (SdkClient.omitIfNull(request.conditions)),
-                            "rules" to (SdkClient.omitIfNull(request.rules)),
-                        ),
-                    operationId = "actionsCreateRepoActionsPolicy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun actionsCreateRepoActionsPolicy(clientConfig: ClientConfig, request: Actions.ActionsCreateRepoActionsPolicyRequest, options: RequestOptions? = null): ActionsPolicy {
+        return SdkClient.request<ActionsPolicy>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/policies", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "enforcement" to (request.enforcement), "conditions" to (SdkClient.omitIfNull(request.conditions)), "rules" to (SdkClient.omitIfNull(request.rules))), operationId = "actionsCreateRepoActionsPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsGetRepoActionsPolicyOperation {
     /**
-     * Retrieves a specific Actions policy for a repository. Use `policy_id` to identify the policy
-     * and inspect its target, source, enforcement level, and rules.
+     * Retrieves a specific Actions policy for a repository. Use `policy_id` to identify the policy and inspect its target, source, enforcement level, and rules.
      *
      * Get a specific Actions policy for a repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param policyId The ID of the policy.
      */
-    fun actionsGetRepoActionsPolicy(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        policyId: Long,
-        options: RequestOptions? = null,
-    ): ActionsPolicy {
-        return SdkClient.request<ActionsPolicy>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/policies/${SdkClient.encodePathSegment(policyId)}",
-                    config = clientConfig,
-                    operationId = "actionsGetRepoActionsPolicy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
-                )
-            )
-            .data
+    fun actionsGetRepoActionsPolicy(clientConfig: ClientConfig, owner: String, repo: String, policyId: Long, options: RequestOptions? = null): ActionsPolicy {
+        return SdkClient.request<ActionsPolicy>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/policies/${SdkClient.encodePathSegment(policyId)}", config = clientConfig, operationId = "actionsGetRepoActionsPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsUpdateRepoActionsPolicyOperation {
     /**
-     * Update an Actions policy for a repository. Omitting `workflow_path` preserves the policy's
-     * existing workflow targeting.
+     * Update an Actions policy for a repository. Omitting `workflow_path` preserves the policy's existing workflow targeting.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param policyId The ID of the policy.
      * @param name The name of the policy.
-     * @param enforcement The enforcement level of the ruleset. `evaluate` allows admins to test
-     *   rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate`
-     *   is only available with GitHub Enterprise).
-     * @param conditions Conditions for a repository Actions policy. The object may be empty to
-     *   preserve or use the default workflow targeting, or contain only `workflow_path`.
+     * @param enforcement The enforcement level of the ruleset. `evaluate` allows
+     *   admins to test rules before enforcing them. Admins can view insights on the
+     *   Rule Insights page (`evaluate` is only available with GitHub Enterprise).
+     * @param conditions Conditions for a repository Actions policy. The object may
+     *   be empty to preserve or use the default workflow targeting, or contain only
+     *   `workflow_path`.
      * @param rules An array of rules within the policy.
      */
-    fun actionsUpdateRepoActionsPolicy(
-        clientConfig: ClientConfig,
-        request: Actions.ActionsUpdateRepoActionsPolicyRequest,
-        options: RequestOptions? = null,
-    ): ActionsPolicy {
-        return SdkClient.request<ActionsPolicy>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/policies/${SdkClient.encodePathSegment(request.policyId)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (SdkClient.omitIfNull(request.name)),
-                            "enforcement" to (SdkClient.omitIfNull(request.enforcement)),
-                            "conditions" to (SdkClient.omitIfNull(request.conditions)),
-                            "rules" to (SdkClient.omitIfNull(request.rules)),
-                        ),
-                    operationId = "actionsUpdateRepoActionsPolicy",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun actionsUpdateRepoActionsPolicy(clientConfig: ClientConfig, request: Actions.ActionsUpdateRepoActionsPolicyRequest, options: RequestOptions? = null): ActionsPolicy {
+        return SdkClient.request<ActionsPolicy>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/policies/${SdkClient.encodePathSegment(request.policyId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "enforcement" to (SdkClient.omitIfNull(request.enforcement)), "conditions" to (SdkClient.omitIfNull(request.conditions)), "rules" to (SdkClient.omitIfNull(request.rules))), operationId = "actionsUpdateRepoActionsPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsDeleteRepoActionsPolicyOperation {
     /**
-     * Deletes an Actions policy from a repository. Use `policy_id` to identify the policy you want
-     * to remove; this operation does not return a response body when successful.
+     * Deletes an Actions policy from a repository. Use `policy_id` to identify the policy you want to remove; this operation does not return a response body when successful.
      *
      * Delete an Actions policy for a repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param policyId The ID of the policy.
      */
-    fun actionsDeleteRepoActionsPolicy(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        policyId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/policies/${SdkClient.encodePathSegment(policyId)}",
-                config = clientConfig,
-                operationId = "actionsDeleteRepoActionsPolicy",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java),
-            )
-        )
+    fun actionsDeleteRepoActionsPolicy(clientConfig: ClientConfig, owner: String, repo: String, policyId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/policies/${SdkClient.encodePathSegment(policyId)}", config = clientConfig, operationId = "actionsDeleteRepoActionsPolicy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "500" to BasicError::class.java)))
     }
 }

@@ -13,146 +13,67 @@ import dev.octri.showcase.github.Validation
 
 internal object ActionsGetJobForWorkflowRunOperation {
     /**
-     * Gets a specific job in a workflow run. Anyone with read access to the repository can use this
-     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
-     * need the `repo` scope to use this endpoint.
+     * Gets a specific job in a workflow run. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param jobId The unique identifier of the job.
      */
-    fun actionsGetJobForWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        jobId: Long,
-        options: RequestOptions? = null,
-    ): Job {
-        return SdkClient.request<Job>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/jobs/${SdkClient.encodePathSegment(jobId)}",
-                    config = clientConfig,
-                    operationId = "actionsGetJobForWorkflowRun",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun actionsGetJobForWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, jobId: Long, options: RequestOptions? = null): Job {
+        return SdkClient.request<Job>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/jobs/${SdkClient.encodePathSegment(jobId)}", config = clientConfig, operationId = "actionsGetJobForWorkflowRun", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActionsDownloadJobLogsForWorkflowRunOperation {
     /**
-     * Gets a redirect URL to download a plain text file of logs for a workflow job. This link
-     * expires after 1 minute. Look for `Location:` in the response header to find the URL for the
-     * download. Anyone with read access to the repository can use this endpoint. If the repository
-     * is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Gets a redirect URL to download a plain text file of logs for a workflow job. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param jobId The unique identifier of the job.
      */
-    fun actionsDownloadJobLogsForWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        jobId: Long,
-        options: RequestOptions? = null,
-    ): Any {
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/jobs/${SdkClient.encodePathSegment(jobId)}/logs",
-                    config = clientConfig,
-                    operationId = "actionsDownloadJobLogsForWorkflowRun",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                )
-            )
-            .data
+    fun actionsDownloadJobLogsForWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, jobId: Long, options: RequestOptions? = null): Any {
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/jobs/${SdkClient.encodePathSegment(jobId)}/logs", config = clientConfig, operationId = "actionsDownloadJobLogsForWorkflowRun", decoder = SdkClient.ResponseDecoder.EMPTY, options = options)).data
     }
 }
 
 internal object ActionsReRunJobForWorkflowRunOperation {
     /**
-     * Re-run a job and its dependent jobs in a workflow run. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint.
+     * Re-run a job and its dependent jobs in a workflow run. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param jobId The unique identifier of the job.
      * @param enableDebugLogging Whether to enable debug logging for the re-run.
-     * @param enableDebugger Whether to enable the debugger for the re-run of this job.
+     * @param enableDebugger Whether to enable the debugger for the re-run of this
+     *   job.
      */
-    fun actionsReRunJobForWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        jobId: Long,
-        enableDebugLogging: Boolean? = null,
-        enableDebugger: Boolean? = null,
-        options: RequestOptions? = null,
-    ): EmptyObject {
-        return SdkClient.request<EmptyObject>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/jobs/${SdkClient.encodePathSegment(jobId)}/rerun",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "enable_debug_logging" to (SdkClient.omitIfNull(enableDebugLogging)),
-                            "enable_debugger" to (SdkClient.omitIfNull(enableDebugger)),
-                        ),
-                    operationId = "actionsReRunJobForWorkflowRun",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun actionsReRunJobForWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, jobId: Long, enableDebugLogging: Boolean? = null, enableDebugger: Boolean? = null, options: RequestOptions? = null): EmptyObject {
+        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/jobs/${SdkClient.encodePathSegment(jobId)}/rerun", config = clientConfig, body = SdkClient.bodyMap("enable_debug_logging" to
+    (SdkClient.omitIfNull(enableDebugLogging)), "enable_debugger" to (SdkClient.omitIfNull(enableDebugger))), operationId = "actionsReRunJobForWorkflowRun", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsDownloadStepLogsForWorkflowRunJobOperation {
     /**
-     * Gets a redirect URL to download a plain text file of logs for a specific step of a workflow
-     * job. This link expires after 1 minute. Look for `Location:` in the response header to find
-     * the URL for the download. This endpoint is intended for selective retrieval of one step. To
-     * download complete job logs, use the job logs endpoint. Anyone with read access to the
-     * repository can use this endpoint. If the repository is private, OAuth tokens and personal
-     * access tokens (classic) need…
+     * Gets a redirect URL to download a plain text file of logs for a specific step of a workflow job. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. This endpoint is intended for selective retrieval of one step. To download complete job logs, use the job logs endpoint. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param jobId The unique identifier of the job.
      * @param stepNumber The zero-based position number of the step in the job.
      */
-    fun actionsDownloadStepLogsForWorkflowRunJob(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        jobId: Long,
-        stepNumber: Long,
-        options: RequestOptions? = null,
-    ): Any {
+    fun actionsDownloadStepLogsForWorkflowRunJob(clientConfig: ClientConfig, owner: String, repo: String, jobId: Long, stepNumber: Long, options: RequestOptions? = null): Any {
         Validation.validateRange("step_number", stepNumber, Validation.RangeOpts(min = 0.0))
 
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/jobs/${SdkClient.encodePathSegment(jobId)}/steps/${SdkClient.encodePathSegment(stepNumber)}/logs",
-                    config = clientConfig,
-                    operationId = "actionsDownloadStepLogsForWorkflowRunJob",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/jobs/${SdkClient.encodePathSegment(jobId)}/steps/${SdkClient.encodePathSegment(stepNumber)}/logs", config = clientConfig, operationId = "actionsDownloadStepLogsForWorkflowRunJob", decoder = SdkClient.ResponseDecoder.EMPTY, options = options)).data
     }
 }

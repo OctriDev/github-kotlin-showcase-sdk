@@ -7,14 +7,10 @@ data class ApiInsightsSubjectStatsItem(
     @com.fasterxml.jackson.annotation.JsonProperty("subject_type") val subjectType: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("subject_name") val subjectName: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("subject_id") val subjectId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
-    val totalRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
-    val rateLimitedRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp")
-    val lastRateLimitedTimestamp: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp")
-    val lastRequestTimestamp: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp") val lastRateLimitedTimestamp: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp") val lastRequestTimestamp: String? = null
 )
 
 typealias ApiInsightsSubjectStats = List<ApiInsightsSubjectStatsItem>

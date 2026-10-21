@@ -11,147 +11,67 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ActionsListArtifactsForRepoOperation {
     /**
-     * Lists all artifacts for a repository. Anyone with read access to the repository can use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint with a private repository.
+     * Lists all artifacts for a repository. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
-     * @param name The name field of an artifact. When specified, only artifacts with this name will
-     *   be returned.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
+     * @param name The name field of an artifact. When specified, only artifacts with
+     *   this name will be returned.
      */
-    fun actionsListArtifactsForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        name: String? = null,
-        options: RequestOptions? = null,
-    ): Actions.ActionsListArtifactsForRepoResponse {
-        return SdkClient.request<Actions.ActionsListArtifactsForRepoResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                            "name" to SdkClient.queryValue(name, "form", true),
-                        ),
-                    operationId = "actionsListArtifactsForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun actionsListArtifactsForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, name: String? = null, options: RequestOptions? = null): Actions.ActionsListArtifactsForRepoResponse {
+        return SdkClient.request<Actions.ActionsListArtifactsForRepoResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "name" to SdkClient.queryValue(name, "form", true)), operationId = "actionsListArtifactsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActionsGetArtifactOperation {
     /**
-     * Gets a specific artifact for a workflow run. Anyone with read access to the repository can
-     * use this endpoint. If the repository is private, OAuth tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific artifact for a workflow run. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param artifactId The unique identifier of the artifact.
      */
-    fun actionsGetArtifact(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        artifactId: Long,
-        options: RequestOptions? = null,
-    ): Artifact {
-        return SdkClient.request<Artifact>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts/${SdkClient.encodePathSegment(artifactId)}",
-                    config = clientConfig,
-                    operationId = "actionsGetArtifact",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun actionsGetArtifact(clientConfig: ClientConfig, owner: String, repo: String, artifactId: Long, options: RequestOptions? = null): Artifact {
+        return SdkClient.request<Artifact>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts/${SdkClient.encodePathSegment(artifactId)}", config = clientConfig, operationId = "actionsGetArtifact", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object ActionsDeleteArtifactOperation {
     /**
-     * Deletes an artifact for a workflow run. OAuth tokens and personal access tokens (classic)
-     * need the `repo` scope to use this endpoint.
+     * Deletes an artifact for a workflow run. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param artifactId The unique identifier of the artifact.
      */
-    fun actionsDeleteArtifact(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        artifactId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts/${SdkClient.encodePathSegment(artifactId)}",
-                config = clientConfig,
-                operationId = "actionsDeleteArtifact",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-            )
-        )
+    fun actionsDeleteArtifact(clientConfig: ClientConfig, owner: String, repo: String, artifactId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts/${SdkClient.encodePathSegment(artifactId)}", config = clientConfig, operationId = "actionsDeleteArtifact", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
     }
 }
 
 internal object ActionsDownloadArtifactOperation {
     /**
-     * Retrieves a short-lived redirect URL for downloading an artifact archive from a repository.
-     * Use `owner`, `repo`, and `artifact_id` to identify the repository and artifact; the download
-     * URL expires after one minute. Send `archive_format` as `zip`, and use an OAuth token or
-     * personal access token (classic) with the `repo` scope.
+     * Retrieves a short-lived redirect URL for downloading an artifact archive from a repository. Use `owner`, `repo`, and `artifact_id` to identify the repository and artifact; the download URL expires after one minute. Send `archive_format` as `zip`, and use an OAuth token or personal access token (classic) with the `repo` scope.
      *
-     * Gets a redirect URL to download an archive for a repository. This URL expires after 1 minute.
-     * Look for `Location:` in the response header to find the URL for the download. The
-     * `:archive_format` must be `zip`. OAuth tokens and personal access tokens (classic) need the
-     * `repo` scope to use this endpoint.
+     * Gets a redirect URL to download an archive for a repository. This URL expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. The `:archive_format` must be `zip`. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param artifactId The unique identifier of the artifact.
      */
-    fun actionsDownloadArtifact(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        artifactId: Long,
-        archiveFormat: String,
-        options: RequestOptions? = null,
-    ): Any {
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts/${SdkClient.encodePathSegment(artifactId)}/${SdkClient.encodePathSegment(archiveFormat)}",
-                    config = clientConfig,
-                    operationId = "actionsDownloadArtifact",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors = mapOf("410" to BasicError::class.java),
-                )
-            )
-            .data
+    fun actionsDownloadArtifact(clientConfig: ClientConfig, owner: String, repo: String, artifactId: Long, archiveFormat: String, options: RequestOptions? = null): Any {
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/artifacts/${SdkClient.encodePathSegment(artifactId)}/${SdkClient.encodePathSegment(archiveFormat)}", config = clientConfig, operationId = "actionsDownloadArtifact", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("410" to BasicError::class.java))).data
     }
 }

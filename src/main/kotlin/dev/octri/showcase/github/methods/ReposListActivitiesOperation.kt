@@ -11,59 +11,38 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object ReposListActivitiesOperation {
     /**
-     * Lists a detailed history of changes to a repository, such as pushes, merges, force pushes,
-     * and branch changes, and associates these changes with commits and users. For more information
-     * about viewing repository activity, see "Viewing activity and data for your repository."
+     * Lists a detailed history of changes to a repository, such as pushes, merges, force pushes, and branch changes, and associates these changes with commits and users. For more information about viewing repository activity, see "Viewing activity and data for your repository."
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param direction The direction to sort the results by.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query
+     *   only searches for results before this cursor. For more information, see "Using
      *   pagination in the REST API."
-     * @param before A cursor, as given in the Link header. If specified, the query only searches
-     *   for results before this cursor. For more information, see "Using pagination in the REST
-     *   API."
-     * @param after A cursor, as given in the Link header. If specified, the query only searches for
-     *   results after this cursor. For more information, see "Using pagination in the REST API."
-     * @param ref The Git reference for the activities you want to list. The `ref` for a branch can
-     *   be formatted either as `refs/heads/BRANCH_NAME` or `BRANCH_NAME`, where `BRANCH_NAME` is
-     *   the name of your branch.
-     * @param actor The GitHub username to use to filter by the actor who performed the activity.
-     * @param timePeriod The time period to filter by. For example, `day` will filter for activity
-     *   that occurred in the past 24 hours, and `week` will filter for activity that occurred in
-     *   the past 7 days (168 hours).
-     * @param activityType The activity type to filter by. For example, you can choose to filter by
-     *   "force_push", to see all force pushes to the repository.
+     * @param after A cursor, as given in the Link header. If specified, the query
+     *   only searches for results after this cursor. For more information, see "Using
+     *   pagination in the REST API."
+     * @param ref The Git reference for the activities you want to list. The `ref`
+     *   for a branch can be formatted either as `refs/heads/BRANCH_NAME` or
+     *   `BRANCH_NAME`, where `BRANCH_NAME` is the name of your branch.
+     * @param actor The GitHub username to use to filter by the actor who performed
+     *   the activity.
+     * @param timePeriod The time period to filter by. For example, `day` will filter
+     *   for activity that occurred in the past 24 hours, and `week` will filter for
+     *   activity that occurred in the past 7 days (168 hours).
+     * @param activityType The activity type to filter by. For example, you can
+     *   choose to filter by "force_push", to see all force pushes to the repository.
      */
-    fun reposListActivities(
-        clientConfig: ClientConfig,
-        request: Repos.ReposListActivitiesRequest,
-        options: RequestOptions? = null,
-    ): List<Activity> {
-        return SdkClient.request<List<Activity>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/activity",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "direction" to SdkClient.queryValue(request.direction, "form", true),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "before" to SdkClient.queryValue(request.before, "form", true),
-                            "after" to SdkClient.queryValue(request.after, "form", true),
-                            "ref" to SdkClient.queryValue(request.ref, "form", true),
-                            "actor" to SdkClient.queryValue(request.actor, "form", true),
-                            "time_period" to SdkClient.queryValue(request.timePeriod, "form", true),
-                            "activity_type" to
-                                SdkClient.queryValue(request.activityType, "form", true),
-                        ),
-                    operationId = "reposListActivities",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationErrorSimple::class.java),
-                )
-            )
-            .data
+    fun reposListActivities(clientConfig: ClientConfig, request: Repos.ReposListActivitiesRequest, options: RequestOptions? = null): List<Activity> {
+        return SdkClient.request<List<Activity>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/activity", config = clientConfig, query = mapOf("direction" to
+    SdkClient.queryValue(request.direction, "form", true), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "before" to
+    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true), "ref" to SdkClient.queryValue(request.ref, "form", true), "actor" to SdkClient.queryValue(request.actor, "form", true), "time_period" to
+    SdkClient.queryValue(request.timePeriod, "form", true), "activity_type" to
+    SdkClient.queryValue(request.activityType, "form", true)), operationId = "reposListActivities", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationErrorSimple::class.java))).data
     }
 }

@@ -3,16 +3,13 @@
 
 package dev.octri.showcase.github.models
 
-/** Required API value serialized in the `payload` wire field. */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = WebhookDeploymentStatusCreatedDeploymentPayload.Deserializer::class
-)
+/**
+ * Required API value serialized in the `payload` wire field.
+ */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = WebhookDeploymentStatusCreatedDeploymentPayload.Deserializer::class)
 sealed interface WebhookDeploymentStatusCreatedDeploymentPayload {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer :
-        com.fasterxml.jackson.databind.JsonDeserializer<
-            WebhookDeploymentStatusCreatedDeploymentPayload
-        >() {
+    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<WebhookDeploymentStatusCreatedDeploymentPayload>() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
@@ -20,50 +17,17 @@ sealed interface WebhookDeploymentStatusCreatedDeploymentPayload {
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
             return when {
-                node.isTextual ->
-                    StringWebhookDeploymentStatusCreatedDeploymentPayload(
-                        mapper.convertValue(
-                            node,
-                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
-                        )
-                    )
-                node.isObject ->
-                    ObjectMapWebhookDeploymentStatusCreatedDeploymentPayload(
-                        mapper.convertValue(
-                            node,
-                            object :
-                                com.fasterxml.jackson.core.type.TypeReference<
-                                    Map<String, Any>
-                                >() {},
-                        )
-                    )
-                else ->
-                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                        parser,
-                        WebhookDeploymentStatusCreatedDeploymentPayload::class.java,
-                        "no WebhookDeploymentStatusCreatedDeploymentPayload branch accepts this payload",
-                    )
+                node.isTextual -> StringWebhookDeploymentStatusCreatedDeploymentPayload(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
+                node.isObject -> ObjectMapWebhookDeploymentStatusCreatedDeploymentPayload(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<Map<String, Any>>() {}))
+                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                    parser, WebhookDeploymentStatusCreatedDeploymentPayload::class.java, "no WebhookDeploymentStatusCreatedDeploymentPayload branch accepts this payload")
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class StringWebhookDeploymentStatusCreatedDeploymentPayload(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
-) : WebhookDeploymentStatusCreatedDeploymentPayload
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class StringWebhookDeploymentStatusCreatedDeploymentPayload(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : WebhookDeploymentStatusCreatedDeploymentPayload
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
-    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
-)
-@com.fasterxml.jackson.annotation.JsonTypeInfo(
-    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
-)
-data class ObjectMapWebhookDeploymentStatusCreatedDeploymentPayload(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: Map<String, Any>
-) : WebhookDeploymentStatusCreatedDeploymentPayload
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+data class ObjectMapWebhookDeploymentStatusCreatedDeploymentPayload(@get:com.fasterxml.jackson.annotation.JsonValue val value: Map<String, Any>) : WebhookDeploymentStatusCreatedDeploymentPayload

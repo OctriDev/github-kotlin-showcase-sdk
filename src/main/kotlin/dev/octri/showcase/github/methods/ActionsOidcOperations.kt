@@ -13,83 +13,37 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object ActionsGetCustomOidcSubClaimForRepoOperation {
     /**
-     * Gets the customization template for an OpenID Connect (OIDC) subject claim. OAuth tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the customization template for an OpenID Connect (OIDC) subject claim. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun actionsGetCustomOidcSubClaimForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): OidcCustomSubRepo {
-        return SdkClient.request<OidcCustomSubRepo>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/oidc/customization/sub",
-                    config = clientConfig,
-                    operationId = "actionsGetCustomOidcSubClaimForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("400" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun actionsGetCustomOidcSubClaimForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): OidcCustomSubRepo {
+        return SdkClient.request<OidcCustomSubRepo>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/oidc/customization/sub", config = clientConfig, operationId = "actionsGetCustomOidcSubClaimForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object ActionsSetCustomOidcSubClaimForRepoOperation {
     /**
-     * Sets the customization template and `opt-in` or `opt-out` flag for an OpenID Connect (OIDC)
-     * subject claim for a repository. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Sets the customization template and `opt-in` or `opt-out` flag for an OpenID Connect (OIDC) subject claim for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param useDefault Whether to use the default template or not. If `true`, the
      *   `include_claim_keys` field is ignored.
-     * @param includeClaimKeys Array of unique strings. Each claim key can only contain alphanumeric
-     *   characters and underscores.
-     * @param useImmutableSubject Whether to opt in to the immutable OIDC subject claim format for
-     *   this repository. When `true`, OIDC tokens will use a stable, repository-ID-based `sub`
-     *   claim.
+     * @param includeClaimKeys Array of unique strings. Each claim key can only
+     *   contain alphanumeric characters and underscores.
+     * @param useImmutableSubject Whether to opt in to the immutable OIDC subject
+     *   claim format for this repository. When `true`, OIDC tokens will use a stable,
+     *   repository-ID-based `sub` claim.
      */
-    fun actionsSetCustomOidcSubClaimForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        useDefault: Boolean,
-        includeClaimKeys: List<String>? = null,
-        useImmutableSubject: Boolean? = null,
-        options: RequestOptions? = null,
-    ): EmptyObject {
-        return SdkClient.request<EmptyObject>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/oidc/customization/sub",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "use_default" to (useDefault),
-                            "include_claim_keys" to (SdkClient.omitIfNull(includeClaimKeys)),
-                            "use_immutable_subject" to (SdkClient.omitIfNull(useImmutableSubject)),
-                        ),
-                    operationId = "actionsSetCustomOidcSubClaimForRepo",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun actionsSetCustomOidcSubClaimForRepo(clientConfig: ClientConfig, owner: String, repo: String, useDefault: Boolean, includeClaimKeys: List<String>? = null, useImmutableSubject: Boolean? = null, options: RequestOptions? = null): EmptyObject {
+        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/oidc/customization/sub", config = clientConfig, body = SdkClient.bodyMap("use_default" to (useDefault), "include_claim_keys" to
+    (SdkClient.omitIfNull(includeClaimKeys)), "use_immutable_subject" to
+    (SdkClient.omitIfNull(useImmutableSubject))), operationId = "actionsSetCustomOidcSubClaimForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }

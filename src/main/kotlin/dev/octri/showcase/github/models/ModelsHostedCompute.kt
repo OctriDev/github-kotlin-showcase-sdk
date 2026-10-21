@@ -5,40 +5,62 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** A hosted compute network configuration. */
+/**
+ * A hosted compute network configuration.
+ */
 data class NetworkConfiguration(
-    /** The unique identifier of the network configuration. */
+    /**
+     * The unique identifier of the network configuration.
+     */
     val id: String,
-    /** The name of the network configuration. */
+    /**
+     * The name of the network configuration.
+     */
     val name: String,
-    /** The time at which the network configuration was created, in ISO 8601 format. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_on", required = true)
-    val createdOn: OffsetDateTime?,
-    /** The hosted compute service the network configuration supports. */
-    @com.fasterxml.jackson.annotation.JsonProperty("compute_service")
-    val computeService: NetworkConfigurationComputeServiceEnum? = null,
-    /** The unique identifier of each network settings in the configuration. */
-    @com.fasterxml.jackson.annotation.JsonProperty("network_settings_ids")
-    val networkSettingsIds: List<String>? = null,
-    /** The unique identifier of each failover network settings in the configuration. */
-    @com.fasterxml.jackson.annotation.JsonProperty("failover_network_settings_ids")
-    val failoverNetworkSettingsIds: List<String>? = null,
-    /** Indicates whether the failover network resource is enabled. */
-    @com.fasterxml.jackson.annotation.JsonProperty("failover_network_enabled")
-    val failoverNetworkEnabled: Boolean? = null,
+    /**
+     * The time at which the network configuration was created, in ISO 8601 format.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_on", required = true) val createdOn: OffsetDateTime?,
+    /**
+     * The hosted compute service the network configuration supports.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("compute_service") val computeService: NetworkConfigurationComputeServiceEnum? = null,
+    /**
+     * The unique identifier of each network settings in the configuration.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("network_settings_ids") val networkSettingsIds: List<String>? = null,
+    /**
+     * The unique identifier of each failover network settings in the configuration.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("failover_network_settings_ids") val failoverNetworkSettingsIds: List<String>? = null,
+    /**
+     * Indicates whether the failover network resource is enabled.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("failover_network_enabled") val failoverNetworkEnabled: Boolean? = null
 )
 
-/** A hosted compute network settings resource. */
+/**
+ * A hosted compute network settings resource.
+ */
 data class NetworkSettings(
-    /** The unique identifier of the network settings resource. */
+    /**
+     * The unique identifier of the network settings resource.
+     */
     val id: String,
-    /** The name of the network settings resource. */
+    /**
+     * The name of the network settings resource.
+     */
     val name: String,
-    /** The subnet this network settings resource is configured for. */
+    /**
+     * The subnet this network settings resource is configured for.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("subnet_id") val subnetId: String,
-    /** The location of the subnet this network settings resource is configured for. */
+    /**
+     * The location of the subnet this network settings resource is configured for.
+     */
     val region: String,
-    /** The identifier of the network configuration that is using this settings resource. */
-    @com.fasterxml.jackson.annotation.JsonProperty("network_configuration_id")
-    val networkConfigurationId: String? = null,
+    /**
+     * The identifier of the network configuration that is using this settings resource.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("network_configuration_id") val networkConfigurationId: String? = null
 )

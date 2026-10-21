@@ -13,366 +13,157 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object PullsListReviewsOperation {
     /**
-     * Lists all reviews for a specified pull request. The list of reviews returns in chronological
-     * order. This endpoint supports the following custom media types. For more information, see
-     * "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw
-     * markdown body. Response will include `body`. This is the default if you do not pass any
-     * specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text
-     * only representation of the…
+     * Lists all reviews for a specified pull request. The list of reviews returns in chronological order. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsListReviews(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<PullRequestReview> {
-        return SdkClient.request<List<PullRequestReview>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "pullsListReviews",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun pullsListReviews(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PullRequestReview> {
+        return SdkClient.request<List<PullRequestReview>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "pullsListReviews", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object PullsCreateReviewOperation {
     /**
-     * Creates a review on a specified pull request. This endpoint triggers notifications. Creating
-     * content too quickly using this endpoint may result in secondary rate limiting. For more
-     * information, see "Rate limits for the API" and "Best practices for using the REST API." Pull
-     * request reviews created in the `PENDING` state are not submitted and therefore do not include
-     * the `submitted_at` property in the response. To create a pending review for a pull request,
-     * leave the `event`…
+     * Creates a review on a specified pull request. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." Pull request reviews created in the `PENDING` state are not submitted and therefore do not include the `submitted_at` property in the response. To create a pending review for a pull request, leave the `event`…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param commitId The SHA of the commit that needs a review. Not using the latest commit SHA
-     *   may render your review comment outdated if a subsequent commit modifies the line you
-     *   specify as the `position`. Defaults to the most recent commit in the pull request when you
-     *   do not specify a value.
-     * @param body **Required** when using `REQUEST_CHANGES` or `COMMENT` for the `event` parameter.
-     *   The body text of the pull request review.
-     * @param event The review action you want to perform. The review actions include: `APPROVE`,
-     *   `REQUEST_CHANGES`, or `COMMENT`. By leaving this blank, you set the review action state to
-     *   `PENDING`, which means you will need to submit the pull request review when you are ready.
-     * @param comments Use the following table to specify the location, destination, and contents of
-     *   the draft review comment.
+     * @param commitId The SHA of the commit that needs a review. Not using the
+     *   latest commit SHA may render your review comment outdated if a subsequent
+     *   commit modifies the line you specify as the `position`. Defaults to the most
+     *   recent commit in the pull request when you do not specify a value.
+     * @param body **Required** when using `REQUEST_CHANGES` or `COMMENT` for the
+     *   `event` parameter. The body text of the pull request review.
+     * @param event The review action you want to perform. The review actions
+     *   include: `APPROVE`, `REQUEST_CHANGES`, or `COMMENT`. By leaving this blank,
+     *   you set the review action state to `PENDING`, which means you will need to
+     *   submit the pull request review when you are ready.
+     * @param comments Use the following table to specify the location, destination,
+     *   and contents of the draft review comment.
      */
-    fun pullsCreateReview(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsCreateReviewRequest,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "commit_id" to (SdkClient.omitIfNull(request.commitId)),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                            "event" to (SdkClient.omitIfNull(request.event)),
-                            "comments" to (SdkClient.omitIfNull(request.comments)),
-                        ),
-                    operationId = "pullsCreateReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsCreateReview(clientConfig: ClientConfig, request: Pulls.PullsCreateReviewRequest, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews", config = clientConfig, body = SdkClient.bodyMap("commit_id" to (SdkClient.omitIfNull(request.commitId)), "body" to (SdkClient.omitIfNull(request.body)), "event" to (SdkClient.omitIfNull(request.event)), "comments" to (SdkClient.omitIfNull(request.comments))), operationId = "pullsCreateReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }
 
 internal object PullsGetReviewOperation {
     /**
-     * Retrieves a pull request review by its ID. This endpoint supports the following custom media
-     * types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
-     * the markdown body. Response will include `body_text`. -…
+     * Retrieves a pull request review by its ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewId The unique identifier of the review.
      */
-    fun pullsGetReview(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        reviewId: Long,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}",
-                    config = clientConfig,
-                    operationId = "pullsGetReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun pullsGetReview(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewId: Long, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}", config = clientConfig, operationId = "pullsGetReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object PullsUpdateReviewOperation {
     /**
-     * Updates the contents of a specified review summary comment. This endpoint supports the
-     * following custom media types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
-     * the markdown body. Response will include…
+     * Updates the contents of a specified review summary comment. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewId The unique identifier of the review.
      * @param body The body text of the pull request review.
      */
-    fun pullsUpdateReview(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        reviewId: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("body" to (body)),
-                    operationId = "pullsUpdateReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationErrorSimple::class.java),
-                )
-            )
-            .data
+    fun pullsUpdateReview(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewId: Long, body: String, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "pullsUpdateReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationErrorSimple::class.java))).data
     }
 }
 
 internal object PullsDeletePendingReviewOperation {
     /**
-     * Deletes a pull request review that has not been submitted. Submitted reviews cannot be
-     * deleted. This endpoint supports the following custom media types. For more information, see
-     * "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw
-     * markdown body. Response will include `body`. This is the default if you do not pass any
-     * specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text
-     * only representation of the…
+     * Deletes a pull request review that has not been submitted. Submitted reviews cannot be deleted. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewId The unique identifier of the review.
      */
-    fun pullsDeletePendingReview(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        pullNumber: Long,
-        reviewId: Long,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "DELETE",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}",
-                    config = clientConfig,
-                    operationId = "pullsDeletePendingReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsDeletePendingReview(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewId: Long, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/reviews/${SdkClient.encodePathSegment(reviewId)}", config = clientConfig, operationId = "pullsDeletePendingReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }
 
 internal object PullsListCommentsForReviewOperation {
     /**
-     * Lists comments for a specific pull request review. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you do not pass any specific media type. -
-     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
-     * the markdown body. Response will include `body_text`. -…
+     * Lists comments for a specific pull request review. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewId The unique identifier of the review.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun pullsListCommentsForReview(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsListCommentsForReviewRequest,
-        options: RequestOptions? = null,
-    ): List<ReviewComment> {
-        return SdkClient.request<List<ReviewComment>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews/${SdkClient.encodePathSegment(request.reviewId)}/comments",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "pullsListCommentsForReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun pullsListCommentsForReview(clientConfig: ClientConfig, request: Pulls.PullsListCommentsForReviewRequest, options: RequestOptions? = null): List<ReviewComment> {
+        return SdkClient.request<List<ReviewComment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews/${SdkClient.encodePathSegment(request.reviewId)}/comments", config = clientConfig, query = mapOf("per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "pullsListCommentsForReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object PullsDismissReviewOperation {
     /**
-     * Submits a dismissal for a specified review on a pull request in a repository. Provide the
-     * required `message`; `event` can only be `DISMISS` and is optional. For protected branches,
-     * you must be a repository administrator or be included in the people or teams allowed to
-     * dismiss reviews; a successful response returns the dismissed review.
+     * Submits a dismissal for a specified review on a pull request in a repository. Provide the required `message`; `event` can only be `DISMISS` and is optional. For protected branches, you must be a repository administrator or be included in the people or teams allowed to dismiss reviews; a successful response returns the dismissed review.
      *
-     * Dismisses a specified review on a pull request. > !NOTE] > To dismiss a pull request review
-     * on a \[protected branch, you must be a repository administrator or be included in the list of
-     * people or teams who can dismiss pull request reviews. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you…
+     * Dismisses a specified review on a pull request. > !NOTE] > To dismiss a pull request review on a \[protected branch, you must be a repository administrator or be included in the list of people or teams who can dismiss pull request reviews. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewId The unique identifier of the review.
      * @param message The message for the pull request review dismissal
      */
-    fun pullsDismissReview(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsDismissReviewRequest,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "PUT",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews/${SdkClient.encodePathSegment(request.reviewId)}/dismissals",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "message" to (request.message),
-                            "event" to (SdkClient.omitIfNull(request.event)),
-                        ),
-                    operationId = "pullsDismissReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsDismissReview(clientConfig: ClientConfig, request: Pulls.PullsDismissReviewRequest, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews/${SdkClient.encodePathSegment(request.reviewId)}/dismissals", config = clientConfig, body = SdkClient.bodyMap("message" to (request.message), "event" to (SdkClient.omitIfNull(request.event))), operationId = "pullsDismissReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }
 
 internal object PullsSubmitReviewOperation {
     /**
-     * Submits a pending review for a pull request. For more information about creating a pending
-     * review for a pull request, see "Create a review for a pull request." This endpoint supports
-     * the following custom media types. For more information, see "Media types." -
-     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
-     * will include `body`. This is the default if you do not pass any specific media type. -…
+     * Submits a pending review for a pull request. For more information about creating a pending review for a pull request, see "Create a review for a pull request." This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. -…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewId The unique identifier of the review.
-     * @param event The review action you want to perform. The review actions include: `APPROVE`,
-     *   `REQUEST_CHANGES`, or `COMMENT`. When you leave this blank, the API returns _HTTP 422
-     *   (Unrecognizable entity)_ and sets the review action state to `PENDING`, which means you
-     *   will need to re-submit the pull request review using a review action.
+     * @param event The review action you want to perform. The review actions
+     *   include: `APPROVE`, `REQUEST_CHANGES`, or `COMMENT`. When you leave this
+     *   blank, the API returns _HTTP 422 (Unrecognizable entity)_ and sets the review
+     *   action state to `PENDING`, which means you will need to re-submit the pull
+     *   request review using a review action.
      * @param body The body text of the pull request review
      */
-    fun pullsSubmitReview(
-        clientConfig: ClientConfig,
-        request: Pulls.PullsSubmitReviewRequest,
-        options: RequestOptions? = null,
-    ): PullRequestReview {
-        return SdkClient.request<PullRequestReview>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews/${SdkClient.encodePathSegment(request.reviewId)}/events",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "event" to (request.event),
-                            "body" to (SdkClient.omitIfNull(request.body)),
-                        ),
-                    operationId = "pullsSubmitReview",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationErrorSimple::class.java,
-                        ),
-                )
-            )
-            .data
+    fun pullsSubmitReview(clientConfig: ClientConfig, request: Pulls.PullsSubmitReviewRequest, options: RequestOptions? = null): PullRequestReview {
+        return SdkClient.request<PullRequestReview>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/reviews/${SdkClient.encodePathSegment(request.reviewId)}/events", config = clientConfig, body = SdkClient.bodyMap("event" to (request.event), "body" to (SdkClient.omitIfNull(request.body))), operationId = "pullsSubmitReview", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
     }
 }

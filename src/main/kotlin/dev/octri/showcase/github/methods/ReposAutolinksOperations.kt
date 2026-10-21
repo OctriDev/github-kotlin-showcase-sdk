@@ -12,30 +12,15 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposListAutolinksOperation {
     /**
-     * Gets all autolinks that are configured for a repository. Information about autolinks are only
-     * available to repository administrators.
+     * Gets all autolinks that are configured for a repository. Information about autolinks are only available to repository administrators.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun reposListAutolinks(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): List<Autolink> {
-        return SdkClient.request<List<Autolink>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/autolinks",
-                    config = clientConfig,
-                    operationId = "reposListAutolinks",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun reposListAutolinks(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<Autolink> {
+        return SdkClient.request<List<Autolink>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/autolinks", config = clientConfig, operationId = "reposListAutolinks", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
@@ -43,107 +28,51 @@ internal object ReposCreateAutolinkOperation {
     /**
      * Users with admin access to the repository can create an autolink.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param keyPrefix This prefix appended by certain characters will generate a link any time it
-     *   is found in an issue, pull request, or commit.
-     * @param urlTemplate The URL must contain `<num>` for the reference number. `<num>` matches
-     *   different characters depending on the value of `is_alphanumeric`.
-     * @param isAlphanumeric Whether this autolink reference matches alphanumeric characters. If
-     *   true, the `<num>` parameter of the `url_template` matches alphanumeric characters `A-Z`
-     *   (case insensitive), `0-9`, and `-`. If false, this autolink reference only matches numeric
-     *   characters.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param keyPrefix This prefix appended by certain characters will generate a
+     *   link any time it is found in an issue, pull request, or commit.
+     * @param urlTemplate The URL must contain `<num>` for the reference number.
+     *   `<num>` matches different characters depending on the value of
+     *   `is_alphanumeric`.
+     * @param isAlphanumeric Whether this autolink reference matches alphanumeric
+     *   characters. If true, the `<num>` parameter of the `url_template` matches
+     *   alphanumeric characters `A-Z` (case insensitive), `0-9`, and `-`. If false,
+     *   this autolink reference only matches numeric characters.
      */
-    fun reposCreateAutolink(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        keyPrefix: String,
-        urlTemplate: String,
-        isAlphanumeric: Boolean? = null,
-        options: RequestOptions? = null,
-    ): Autolink {
-        return SdkClient.request<Autolink>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/autolinks",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "key_prefix" to (keyPrefix),
-                            "url_template" to (urlTemplate),
-                            "is_alphanumeric" to (SdkClient.omitIfNull(isAlphanumeric)),
-                        ),
-                    operationId = "reposCreateAutolink",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+    fun reposCreateAutolink(clientConfig: ClientConfig, owner: String, repo: String, keyPrefix: String, urlTemplate: String, isAlphanumeric: Boolean? = null, options: RequestOptions? = null): Autolink {
+        return SdkClient.request<Autolink>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/autolinks", config = clientConfig, body = SdkClient.bodyMap("key_prefix" to (keyPrefix), "url_template" to (urlTemplate), "is_alphanumeric" to (SdkClient.omitIfNull(isAlphanumeric))), operationId = "reposCreateAutolink", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }
 
 internal object ReposGetAutolinkOperation {
     /**
-     * This returns a single autolink reference by ID that was configured for the given repository.
-     * Information about autolinks are only available to repository administrators.
+     * This returns a single autolink reference by ID that was configured for the given repository. Information about autolinks are only available to repository administrators.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param autolinkId The unique identifier of the autolink.
      */
-    fun reposGetAutolink(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        autolinkId: Long,
-        options: RequestOptions? = null,
-    ): Autolink {
-        return SdkClient.request<Autolink>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/autolinks/${SdkClient.encodePathSegment(autolinkId)}",
-                    config = clientConfig,
-                    operationId = "reposGetAutolink",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun reposGetAutolink(clientConfig: ClientConfig, owner: String, repo: String, autolinkId: Long, options: RequestOptions? = null): Autolink {
+        return SdkClient.request<Autolink>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/autolinks/${SdkClient.encodePathSegment(autolinkId)}", config = clientConfig, operationId = "reposGetAutolink", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object ReposDeleteAutolinkOperation {
     /**
-     * This deletes a single autolink reference by ID that was configured for the given repository.
-     * Information about autolinks are only available to repository administrators.
+     * This deletes a single autolink reference by ID that was configured for the given repository. Information about autolinks are only available to repository administrators.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param autolinkId The unique identifier of the autolink.
      */
-    fun reposDeleteAutolink(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        autolinkId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/autolinks/${SdkClient.encodePathSegment(autolinkId)}",
-                config = clientConfig,
-                operationId = "reposDeleteAutolink",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors = mapOf("404" to BasicError::class.java),
-            )
-        )
+    fun reposDeleteAutolink(clientConfig: ClientConfig, owner: String, repo: String, autolinkId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/autolinks/${SdkClient.encodePathSegment(autolinkId)}", config = clientConfig, operationId = "reposDeleteAutolink", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
     }
 }

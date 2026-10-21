@@ -9,38 +9,16 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ReposDownloadTarballArchiveOperation {
     /**
-     * Returns a redirect to a tar archive for a repository. Use `ref` to select a branch, tag, or
-     * commit; if you omit it, the repository's default branch is used. Follow the redirect or use
-     * its `Location` header to make a second GET request; download links for private repositories
-     * expire after five minutes.
+     * Returns a redirect to a tar archive for a repository. Use `ref` to select a branch, tag, or commit; if you omit it, the repository's default branch is used. Follow the redirect or use its `Location` header to make a second GET request; download links for private repositories expire after five minutes.
      *
-     * Gets a redirect URL to download a tar archive for a repository. If you omit `:ref`, the
-     * repository’s default branch (usually `main`) will be used. Please make sure your HTTP
-     * framework is configured to follow redirects or you will need to use the `Location` header to
-     * make a second `GET` request. > \[!NOTE\] > For private repositories, these links are
-     * temporary and expire after five minutes.
+     * Gets a redirect URL to download a tar archive for a repository. If you omit `:ref`, the repository’s default branch (usually `main`) will be used. Please make sure your HTTP framework is configured to follow redirects or you will need to use the `Location` header to make a second `GET` request. > \[!NOTE\] > For private repositories, these links are temporary and expire after five minutes.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun reposDownloadTarballArchive(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        ref: String,
-        options: RequestOptions? = null,
-    ): Any {
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/tarball/${SdkClient.encodePathSegment(ref)}",
-                    config = clientConfig,
-                    operationId = "reposDownloadTarballArchive",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                )
-            )
-            .data
+    fun reposDownloadTarballArchive(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): Any {
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/tarball/${SdkClient.encodePathSegment(ref)}", config = clientConfig, operationId = "reposDownloadTarballArchive", decoder = SdkClient.ResponseDecoder.EMPTY, options = options)).data
     }
 }

@@ -13,28 +13,12 @@ internal object ReposGetHashAlgorithmOperation {
     /**
      * Returns the hash algorithm used to store repository objects.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      */
-    fun reposGetHashAlgorithm(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): RepositoryHashAlgorithm {
-        return SdkClient.request<RepositoryHashAlgorithm>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hash-algorithm",
-                    config = clientConfig,
-                    operationId = "reposGetHashAlgorithm",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun reposGetHashAlgorithm(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): RepositoryHashAlgorithm {
+        return SdkClient.request<RepositoryHashAlgorithm>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hash-algorithm", config = clientConfig, operationId = "reposGetHashAlgorithm", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }

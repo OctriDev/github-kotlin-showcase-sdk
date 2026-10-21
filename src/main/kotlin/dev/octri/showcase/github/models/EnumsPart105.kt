@@ -3,852 +3,586 @@
 
 package dev.octri.showcase.github.models
 
-/** Machine-readable error code */
-class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum && value == other.value
-
+/**
+ * Machine-readable error code
+ */
+class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("missing")
-        @JvmField
-        val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("missing_field")
+        @JvmField val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("missing_field")
         @JvmField val INVALID = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("invalid")
-        @JvmField
-        val ALREADY_EXISTS = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("already_exists")
-        @JvmField
-        val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("unprocessable")
+        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("already_exists")
+        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("unprocessable")
         @JvmField val CUSTOM = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum(value)
     }
 }
 
-/** Machine-readable error code */
-class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85 && value == other.value
-
+/**
+ * Machine-readable error code
+ */
+class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("missing")
-        @JvmField
-        val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("missing_field")
+        @JvmField val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("missing_field")
         @JvmField val INVALID = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("invalid")
-        @JvmField
-        val ALREADY_EXISTS =
-            AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("already_exists")
-        @JvmField
-        val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("unprocessable")
+        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("already_exists")
+        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("unprocessable")
         @JvmField val CUSTOM = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum1b5ead85(value)
     }
 }
 
-/** Machine-readable error code */
-class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029 && value == other.value
-
+/**
+ * Machine-readable error code
+ */
+class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029 && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("missing")
-        @JvmField
-        val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("missing_field")
+        @JvmField val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("missing_field")
         @JvmField val INVALID = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("invalid")
-        @JvmField
-        val ALREADY_EXISTS =
-            AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("already_exists")
-        @JvmField
-        val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("unprocessable")
+        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("already_exists")
+        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("unprocessable")
         @JvmField val CUSTOM = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum40c08029(value)
     }
 }
 
-/** Machine-readable error code */
-class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad && value == other.value
-
+/**
+ * Machine-readable error code
+ */
+class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("missing")
-        @JvmField
-        val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("missing_field")
+        @JvmField val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("missing_field")
         @JvmField val INVALID = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("invalid")
-        @JvmField
-        val ALREADY_EXISTS =
-            AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("already_exists")
-        @JvmField
-        val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("unprocessable")
+        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("already_exists")
+        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("unprocessable")
         @JvmField val CUSTOM = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum258096ad(value)
     }
 }
 
-/** Machine-readable error code */
-class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb && value == other.value
-
+/**
+ * Machine-readable error code
+ */
+class AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("missing")
-        @JvmField
-        val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("missing_field")
+        @JvmField val MISSING_FIELD = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("missing_field")
         @JvmField val INVALID = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("invalid")
-        @JvmField
-        val ALREADY_EXISTS =
-            AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("already_exists")
-        @JvmField
-        val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("unprocessable")
+        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("already_exists")
+        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("unprocessable")
         @JvmField val CUSTOM = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseErrorsItemCodeEnum88efdbcb(value)
     }
 }
 
 /**
- * The enablement status of GitHub Advanced Security features. `enabled` will enable both Code
- * Security and Secret Protection features. > \[!WARNING\] > `code_security` and `secret_protection`
- * are deprecated values for this field. Prefer the individual `code_security` and
- * `secret_protection` fields to set the status of these features.
+ * The enablement status of GitHub Advanced Security features. `enabled` will enable both Code Security and Secret Protection features. > \[!WARNING\] > `code_security` and `secret_protection` are deprecated values for this field. Prefer the individual `code_security` and `secret_protection` fields to set the status of these features.
  */
-class CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum &&
-            value == other.value
-
+class CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val ENABLED = CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum("enabled")
-        @JvmField
-        val DISABLED = CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum("disabled")
-        @JvmField
-        val CODE_SECURITY =
-            CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum("code_security")
-        @JvmField
-        val SECRET_PROTECTION =
-            CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum("secret_protection")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum(value)
-    }
-}
-
-/** The enablement status of code scanning default setup */
-class CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum(value)
-    }
-}
-
-/** The enablement status of code scanning delegated alert dismissal */
-class CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d(value)
-    }
-}
-
-/** The enablement status of GitHub Code Security features. */
-class CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED = CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum("enabled")
-        @JvmField
-        val DISABLED = CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum("disabled")
-        @JvmField
-        val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum(value)
-    }
-}
-
-/** The enablement status of Dependabot alerts */
-class CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED = CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum("enabled")
-        @JvmField
-        val DISABLED = CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum("disabled")
-        @JvmField
-        val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum(value)
-    }
-}
-
-/** The enablement status of Dependabot security updates */
-class CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee(value)
-    }
-}
-
-/** The enablement status of Dependency Graph */
-class CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum("enabled")
-        @JvmField
-        val DISABLED = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum("disabled")
-        @JvmField
-        val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum(value)
-    }
-}
-
-/** The enablement status of Automatic dependency submission */
-class CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01 &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01(value)
-    }
-}
-
-/** The enforcement status for a security configuration */
-class CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum && value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENFORCED = CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum("enforced")
-        @JvmField
-        val UNENFORCED = CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum("unenforced")
-        @JvmField
-        val ENTERPRISE_ENFORCED =
-            CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum("enterprise_enforced")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum(value)
-    }
-}
-
-/** The enablement status of private vulnerability reporting */
-class CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45 &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45(value)
-    }
-}
-
-/** The enablement status of GitHub Secret Protection features. */
-class CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum("enabled")
-        @JvmField
-        val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum("disabled")
-        @JvmField
-        val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum(value)
-    }
-}
-
-/** The enablement status of secret scanning */
-class CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum("enabled")
-        @JvmField
-        val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum("disabled")
-        @JvmField
-        val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum(value)
-    }
-}
-
-/** The enablement status of secret scanning delegated alert dismissal */
-class CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab(value)
-    }
-}
-
-/** The enablement status of secret scanning extended metadata */
-class CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063 &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063(value)
-    }
-}
-
-/** The enablement status of Copilot secret scanning */
-class CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041 &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041(value)
-    }
-}
-
-/** The enablement status of secret scanning non provider patterns */
-class CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732 &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732(value)
-    }
-}
-
-/** The enablement status of secret scanning push protection */
-class CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b(value)
-    }
-}
-
-/** The enablement status of secret scanning validity checks */
-class CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa &&
-            value == other.value
-
-    override fun hashCode(): Int = value.hashCode()
-
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField
-        val ENABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa("not_set")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa(value)
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum("disabled")
+        @JvmField val CODE_SECURITY = CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum("code_security")
+        @JvmField val SECRET_PROTECTION = CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum("secret_protection")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum(value)
     }
 }
 
 /**
- * The enablement status of GitHub Advanced Security features. `enabled` will enable both Code
- * Security and Secret Protection features. > \[!WARNING\] > `code_security` and `secret_protection`
- * are deprecated values for this field. Prefer the individual `code_security` and
- * `secret_protection` fields to set the status of these features.
+ * The enablement status of code scanning default setup
  */
-class CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum &&
-            value == other.value
-
+class CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val ENABLED = CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum("enabled")
-        @JvmField
-        val DISABLED = CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum("disabled")
-        @JvmField
-        val CODE_SECURITY =
-            CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum("code_security")
-        @JvmField
-        val SECRET_PROTECTION =
-            CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum("secret_protection")
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum(value)
     }
 }
 
-/** The enablement status of code scanning default setup */
-class CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum &&
-            value == other.value
-
+/**
+ * The enablement status of code scanning delegated alert dismissal
+ */
+class CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val ENABLED =
-            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum("not_set")
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d(value)
     }
 }
 
-/** The enablement status of code scanning delegated alert dismissal */
-class CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca &&
-            value == other.value
-
+/**
+ * The enablement status of GitHub Code Security features.
+ */
+class CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
-
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField
-        val ENABLED =
-            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca("enabled")
-        @JvmField
-        val DISABLED =
-            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca("disabled")
-        @JvmField
-        val NOT_SET =
-            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca("not_set")
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum(value)
     }
 }
 
-/** The enablement status of GitHub Code Security features. */
-class CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum
-private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
-    override fun equals(other: Any?): Boolean =
-        other is CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum && value == other.value
-
+/**
+ * The enablement status of Dependabot alerts
+ */
+class CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum && value == other.value
     override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
 
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum(value)
+    }
+}
+
+/**
+ * The enablement status of Dependabot security updates
+ */
+class CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee(value)
+    }
+}
+
+/**
+ * The enablement status of Dependency Graph
+ */
+class CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum(value)
+    }
+}
+
+/**
+ * The enablement status of Automatic dependency submission
+ */
+class CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01 && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01(value)
+    }
+}
+
+/**
+ * The enforcement status for a security configuration
+ */
+class CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENFORCED = CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum("enforced")
+        @JvmField val UNENFORCED = CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum("unenforced")
+        @JvmField val ENTERPRISE_ENFORCED = CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum("enterprise_enforced")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum(value)
+    }
+}
+
+/**
+ * The enablement status of private vulnerability reporting
+ */
+class CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45 && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45(value)
+    }
+}
+
+/**
+ * The enablement status of GitHub Secret Protection features.
+ */
+class CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum(value)
+    }
+}
+
+/**
+ * The enablement status of secret scanning
+ */
+class CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum(value)
+    }
+}
+
+/**
+ * The enablement status of secret scanning delegated alert dismissal
+ */
+class CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab(value)
+    }
+}
+
+/**
+ * The enablement status of secret scanning extended metadata
+ */
+class CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063 && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063(value)
+    }
+}
+
+/**
+ * The enablement status of Copilot secret scanning
+ */
+class CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041 && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041(value)
+    }
+}
+
+/**
+ * The enablement status of secret scanning non provider patterns
+ */
+class CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732 private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732 && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732(value)
+    }
+}
+
+/**
+ * The enablement status of secret scanning push protection
+ */
+class CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b(value)
+    }
+}
+
+/**
+ * The enablement status of secret scanning validity checks
+ */
+class CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa("enabled")
+        @JvmField val DISABLED = CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa("disabled")
+        @JvmField val NOT_SET = CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa(value)
+    }
+}
+
+/**
+ * The enablement status of GitHub Advanced Security features. `enabled` will enable both Code Security and Secret Protection features. > \[!WARNING\] > `code_security` and `secret_protection` are deprecated values for this field. Prefer the individual `code_security` and `secret_protection` fields to set the status of these features.
+ */
+class CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum("disabled")
+        @JvmField val CODE_SECURITY = CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum("code_security")
+        @JvmField val SECRET_PROTECTION = CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum("secret_protection")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum(value)
+    }
+}
+
+/**
+ * The enablement status of code scanning default setup
+ */
+class CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum("enabled")
+        @JvmField val DISABLED = CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum("disabled")
+        @JvmField val NOT_SET = CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum(value)
+    }
+}
+
+/**
+ * The enablement status of code scanning delegated alert dismissal
+ */
+class CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca && value == other.value
+    override fun hashCode(): Int = value.hashCode()
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField val ENABLED = CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca("enabled")
+        @JvmField val DISABLED = CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca("disabled")
+        @JvmField val NOT_SET = CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca("not_set")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca(value)
+    }
+}
+
+/**
+ * The enablement status of GitHub Code Security features.
+ */
+class CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum private constructor(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
+) {
+    override fun equals(other: Any?): Boolean = other is CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum && value == other.value
+    override fun hashCode(): Int = value.hashCode()
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val ENABLED = CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum("enabled")
-        @JvmField
-        val DISABLED = CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum("disabled")
+        @JvmField val DISABLED = CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum("disabled")
         @JvmField val NOT_SET = CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(
-            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
-        )
-        @JvmStatic
-        fun fromValue(value: String) =
-            CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
+        @JvmStatic fun fromValue(value: String) = CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum(value)
     }
 }

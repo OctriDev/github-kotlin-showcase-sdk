@@ -3,26 +3,22 @@
 
 package dev.octri.showcase.github
 
+
 class GitignoreNamespace(private val clientConfig: ClientConfig) {
-    /** List all templates available to pass as an option when creating a repository. */
+    /**
+     * List all templates available to pass as an option when creating a repository.
+     */
     fun listTemplates(options: RequestOptions? = null): List<String> {
         return dev.octri.showcase.github.methods.Gitignore.listTemplates(clientConfig, options)
     }
 
     /**
-     * Retrieves the content of a gitignore template by name. The `application/vnd.github.raw+json`
-     * media type returns the raw `.gitignore` contents; the response object includes the template
-     * name and source.
+     * Retrieves the content of a gitignore template by name. The `application/vnd.github.raw+json` media type returns the raw `.gitignore` contents; the response object includes the template name and source.
      *
-     * Get the content of a gitignore template. This endpoint supports the following custom media
-     * types. For more information, see "Media types." - **`application/vnd.github.raw+json`**:
-     * Returns the raw .gitignore contents.
+     * Get the content of a gitignore template. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw .gitignore contents.
      */
     fun getTemplate(name: String, options: RequestOptions? = null): GitignoreTemplate {
-        return dev.octri.showcase.github.methods.Gitignore.gitignoreGetTemplate(
-            clientConfig,
-            name,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Gitignore.gitignoreGetTemplate(clientConfig, name, options)
     }
+
 }

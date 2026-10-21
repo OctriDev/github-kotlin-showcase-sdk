@@ -11,30 +11,12 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposListPublicOperation {
     /**
-     * Lists all public repositories in the order that they were created. Note: - For GitHub
-     * Enterprise Server, this endpoint will only list repositories available to all users on the
-     * enterprise. - Pagination is powered exclusively by the `since` parameter. Use the Link header
-     * to get the URL for the next page of repositories.
+     * Lists all public repositories in the order that they were created. Note: - For GitHub Enterprise Server, this endpoint will only list repositories available to all users on the enterprise. - Pagination is powered exclusively by the `since` parameter. Use the Link header to get the URL for the next page of repositories.
      *
-     * @param since A repository ID. Only return repositories with an ID greater than this ID.
+     * @param since A repository ID. Only return repositories with an ID greater than
+     *   this ID.
      */
-    fun reposListPublic(
-        clientConfig: ClientConfig,
-        since: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repositories",
-                    config = clientConfig,
-                    query = mapOf("since" to SdkClient.queryValue(since, "form", true)),
-                    operationId = "reposListPublic",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("422" to ValidationError::class.java),
-                )
-            )
-            .data
+    fun reposListPublic(clientConfig: ClientConfig, since: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/repositories", config = clientConfig, query = mapOf("since" to SdkClient.queryValue(since, "form", true)), operationId = "reposListPublic", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
     }
 }

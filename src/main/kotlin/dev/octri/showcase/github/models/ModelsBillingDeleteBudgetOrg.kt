@@ -3,10 +3,16 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `DeleteBudget` API schema. */
+/**
+ * Typed representation of the `DeleteBudget` API schema.
+ */
 data class DeleteBudget(
-    /** A message indicating the result of the deletion operation */
+    /**
+     * A message indicating the result of the deletion operation
+     */
     val message: String,
-    /** The ID of the deleted budget */
-    val id: String,
+    /**
+     * The ID of the deleted budget
+     */
+    val id: String
 )

@@ -13,51 +13,21 @@ import dev.octri.showcase.github.ValidationError
 
 internal object CodespacesCheckPermissionsForDevcontainerOperation {
     /**
-     * Checks whether the permissions defined by a given devcontainer configuration have been
-     * accepted by the authenticated user. OAuth app tokens and personal access tokens (classic)
-     * need the `codespace` scope to use this endpoint.
+     * Checks whether the permissions defined by a given devcontainer configuration have been accepted by the authenticated user. OAuth app tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param ref The git reference that points to the location of the devcontainer configuration to
-     *   use for the permission check. The value of `ref` will typically be a branch name
-     *   (`heads/BRANCH_NAME`). For more information, see "Git References" in the Git documentation.
-     * @param devcontainerPath Path to the devcontainer.json configuration to use for the permission
-     *   check.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param ref The git reference that points to the location of the devcontainer
+     *   configuration to use for the permission check. The value of `ref` will
+     *   typically be a branch name (`heads/BRANCH_NAME`). For more information, see
+     *   "Git References" in the Git documentation.
+     * @param devcontainerPath Path to the devcontainer.json configuration to use for
+     *   the permission check.
      */
-    fun codespacesCheckPermissionsForDevcontainer(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        ref: String,
-        devcontainerPath: String,
-        options: RequestOptions? = null,
-    ): CodespacesPermissionsCheckForDevcontainer {
-        return SdkClient.request<CodespacesPermissionsCheckForDevcontainer>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codespaces/permissions_check",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "ref" to SdkClient.queryValue(ref, "form", true),
-                            "devcontainer_path" to
-                                SdkClient.queryValue(devcontainerPath, "form", true),
-                        ),
-                    operationId = "codespacesCheckPermissionsForDevcontainer",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "503" to ServiceUnavailable::class.java,
-                        ),
-                )
-            )
-            .data
+    fun codespacesCheckPermissionsForDevcontainer(clientConfig: ClientConfig, owner: String, repo: String, ref: String, devcontainerPath: String, options: RequestOptions? = null): CodespacesPermissionsCheckForDevcontainer {
+        return SdkClient.request<CodespacesPermissionsCheckForDevcontainer>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codespaces/permissions_check", config = clientConfig, query = mapOf("ref" to SdkClient.queryValue(ref, "form", true), "devcontainer_path" to
+    SdkClient.queryValue(devcontainerPath, "form", true)), operationId = "codespacesCheckPermissionsForDevcontainer", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
     }
 }

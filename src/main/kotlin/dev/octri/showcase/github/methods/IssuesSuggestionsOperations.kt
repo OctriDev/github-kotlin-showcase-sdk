@@ -12,134 +12,55 @@ import dev.octri.showcase.github.ValidationError
 
 internal object IssuesListSuggestionsOperation {
     /**
-     * Lists the suggestions on an issue. A suggestion is an agent-proposed change to an issue's
-     * type, labels, fields, assignees, or closed state that a maintainer can approve or dismiss. By
-     * default only pending suggestions are returned. Use `state=all` to return suggestions in every
-     * state, or `state=<state>` to filter to a single state. Use `action=<action>` to return only
-     * suggestions for a specific change. This endpoint is only available while the issue
-     * suggestions feature is…
+     * Lists the suggestions on an issue. A suggestion is an agent-proposed change to an issue's type, labels, fields, assignees, or closed state that a maintainer can approve or dismiss. By default only pending suggestions are returned. Use `state=all` to return suggestions in every state, or `state=<state>` to filter to a single state. Use `action=<action>` to return only suggestions for a specific change. This endpoint is only available while the issue suggestions feature is…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param state Filter suggestions by their state.
      * @param action Filter suggestions by the change they propose.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun issuesListSuggestions(
-        clientConfig: ClientConfig,
-        request: Issues.IssuesListSuggestionsRequest,
-        options: RequestOptions? = null,
-    ): List<IssueSuggestion> {
-        return SdkClient.request<List<IssueSuggestion>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/suggestions",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "state" to SdkClient.queryValue(request.state, "form", true),
-                            "action" to SdkClient.queryValue(request.action, "form", true),
-                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
-                            "page" to SdkClient.queryValue(request.page, "form", true),
-                        ),
-                    operationId = "issuesListSuggestions",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun issuesListSuggestions(clientConfig: ClientConfig, request: Issues.IssuesListSuggestionsRequest, options: RequestOptions? = null): List<IssueSuggestion> {
+        return SdkClient.request<List<IssueSuggestion>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/suggestions", config = clientConfig, query = mapOf("state" to SdkClient.queryValue(request.state, "form", true), "action" to
+    SdkClient.queryValue(request.action, "form", true), "per_page" to
+    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "issuesListSuggestions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object IssuesApproveSuggestionOperation {
     /**
-     * Approves a pending suggestion on an issue. Applies the proposed change (creating the
-     * corresponding timeline event), transitions the suggestion to `approved`, and dismisses any
-     * competing pending suggestions for the same change. Requires triage access to the repository.
-     * Approving a suggestion also requires permission to perform the change it applies (for
-     * example, setting the issue type, adding a label or assignee, or closing the issue); this only
-     * affects fine-grained access…
+     * Approves a pending suggestion on an issue. Applies the proposed change (creating the corresponding timeline event), transitions the suggestion to `approved`, and dismisses any competing pending suggestions for the same change. Requires triage access to the repository. Approving a suggestion also requires permission to perform the change it applies (for example, setting the issue type, adding a label or assignee, or closing the issue); this only affects fine-grained access…
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param suggestionId The unique identifier of the suggestion.
      */
-    fun issuesApproveSuggestion(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        suggestionId: Long,
-        options: RequestOptions? = null,
-    ): IssueSuggestion {
-        return SdkClient.request<IssueSuggestion>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/suggestions/${SdkClient.encodePathSegment(suggestionId)}/approve",
-                    config = clientConfig,
-                    operationId = "issuesApproveSuggestion",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun issuesApproveSuggestion(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, suggestionId: Long, options: RequestOptions? = null): IssueSuggestion {
+        return SdkClient.request<IssueSuggestion>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/suggestions/${SdkClient.encodePathSegment(suggestionId)}/approve", config = clientConfig, operationId = "issuesApproveSuggestion", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object IssuesDismissSuggestionOperation {
     /**
-     * Dismisses a pending suggestion on an issue. Transitions the suggestion to `dismissed` without
-     * applying any change or creating a timeline event. Requires triage access to the repository.
-     * This endpoint only supports issues, not pull requests.
+     * Dismisses a pending suggestion on an issue. Transitions the suggestion to `dismissed` without applying any change or creating a timeline event. Requires triage access to the repository. This endpoint only supports issues, not pull requests.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param suggestionId The unique identifier of the suggestion.
      */
-    fun issuesDismissSuggestion(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        suggestionId: Long,
-        options: RequestOptions? = null,
-    ): IssueSuggestion {
-        return SdkClient.request<IssueSuggestion>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/suggestions/${SdkClient.encodePathSegment(suggestionId)}/dismiss",
-                    config = clientConfig,
-                    operationId = "issuesDismissSuggestion",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun issuesDismissSuggestion(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, suggestionId: Long, options: RequestOptions? = null): IssueSuggestion {
+        return SdkClient.request<IssueSuggestion>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/suggestions/${SdkClient.encodePathSegment(suggestionId)}/dismiss", config = clientConfig, operationId = "issuesDismissSuggestion", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }

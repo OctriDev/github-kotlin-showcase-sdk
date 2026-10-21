@@ -18,31 +18,7 @@ internal object ProjectsCreateDraftItemForAuthenticatedUserOperation {
      * @param title The title of the draft issue item to create in the project.
      * @param body The body content of the draft issue item to create in the project.
      */
-    fun projectsCreateDraftItemForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        userId: String,
-        projectNumber: Long,
-        title: String,
-        body: String? = null,
-        options: RequestOptions? = null,
-    ): ProjectsV2ItemSimple {
-        return SdkClient.request<ProjectsV2ItemSimple>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/user/${SdkClient.encodePathSegment(userId)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/drafts",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "title" to (title),
-                            "body" to (SdkClient.omitIfNull(body)),
-                        ),
-                    operationId = "projectsCreateDraftItemForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
-                )
-            )
-            .data
+    fun projectsCreateDraftItemForAuthenticatedUser(clientConfig: ClientConfig, userId: String, projectNumber: Long, title: String, body: String? = null, options: RequestOptions? = null): ProjectsV2ItemSimple {
+        return SdkClient.request<ProjectsV2ItemSimple>(SdkClient.RequestSpec("POST", "/user/${SdkClient.encodePathSegment(userId)}/projectsV2/${SdkClient.encodePathSegment(projectNumber)}/drafts", config = clientConfig, body = SdkClient.bodyMap("title" to (title), "body" to (SdkClient.omitIfNull(body))), operationId = "projectsCreateDraftItemForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
     }
 }

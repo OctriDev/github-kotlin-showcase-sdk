@@ -9,41 +9,18 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ActionsListRepoOrganizationVariablesOperation {
     /**
-     * Lists all organization variables shared with a repository. Authenticated users must have
-     * collaborator access to a repository to create, update, or read variables. OAuth app tokens
-     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all organization variables shared with a repository. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name is not case
+     * @param owner The account owner of the repository. The name is not case
      *   sensitive.
-     * @param perPage The number of results per page (max 30). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param repo The name of the repository without the `.git` extension. The name
+     *   is not case sensitive.
+     * @param perPage The number of results per page (max 30). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun actionsListRepoOrganizationVariables(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Actions.ActionsListRepoOrganizationVariablesResponse {
-        return SdkClient.request<Actions.ActionsListRepoOrganizationVariablesResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/organization-variables",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "actionsListRepoOrganizationVariables",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun actionsListRepoOrganizationVariables(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListRepoOrganizationVariablesResponse {
+        return SdkClient.request<Actions.ActionsListRepoOrganizationVariablesResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/organization-variables", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListRepoOrganizationVariables", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }

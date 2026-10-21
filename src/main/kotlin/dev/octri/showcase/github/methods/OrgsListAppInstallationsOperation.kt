@@ -9,39 +9,15 @@ import dev.octri.showcase.github.SdkClient
 
 internal object OrgsListAppInstallationsOperation {
     /**
-     * Lists all GitHub Apps in an organization. The installation count includes all GitHub Apps
-     * installed on repositories in the organization. The authenticated user must be an organization
-     * owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need the
-     * `admin:read` scope to use this endpoint.
+     * Lists all GitHub Apps in an organization. The installation count includes all GitHub Apps installed on repositories in the organization. The authenticated user must be an organization owner to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:read` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun orgsListAppInstallations(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsListAppInstallationsResponse {
-        return SdkClient.request<Orgs.OrgsListAppInstallationsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/installations",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "orgsListAppInstallations",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+    fun orgsListAppInstallations(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Orgs.OrgsListAppInstallationsResponse {
+        return SdkClient.request<Orgs.OrgsListAppInstallationsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/installations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListAppInstallations", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }

@@ -3,128 +3,192 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `cvss` wire field. */
+/**
+ * Required object value serialized in the `cvss` wire field.
+ */
 data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryCvss(
-    /** Required `number` value serialized in the `score` wire field. */
+    /**
+     * Required `number` value serialized in the `score` wire field.
+     */
     val score: Double,
-    /** Required `string` value serialized in the `vector_string` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true)
-    val vectorString: String?,
+    /**
+     * Required `string` value serialized in the `vector_string` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true) val vectorString: String?
 )
 
-/** Required object value serialized in the `cwes[]` wire field. */
+/**
+ * Required object value serialized in the `cwes[]` wire field.
+ */
 data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryCwesItem(
-    /** Required `string` value serialized in the `cwe_id` wire field. */
+    /**
+     * Required `string` value serialized in the `cwe_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("cwe_id") val cweId: String,
-    /** Required `string` value serialized in the `name` wire field. */
-    val name: String,
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
+    val name: String
 )
 
-/** Required object value serialized in the `identifiers[]` wire field. */
+/**
+ * Required object value serialized in the `identifiers[]` wire field.
+ */
 data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryIdentifiersItem(
-    /** Required `string` value serialized in the `type` wire field. */
+    /**
+     * Required `string` value serialized in the `type` wire field.
+     */
     val type: String,
-    /** Required `string` value serialized in the `value` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: String,
+    /**
+     * Required `string` value serialized in the `value` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: String
 )
 
-/** Required object value serialized in the `references[]` wire field. */
+/**
+ * Required object value serialized in the `references[]` wire field.
+ */
 data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryReferencesItem(
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String
 )
 
-/** Required object value serialized in the `first_patched_version` wire field. */
+/**
+ * Required object value serialized in the `first_patched_version` wire field.
+ */
 data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiXd0620b75f8(
-    /** Required `string` value serialized in the `identifier` wire field. */
+    /**
+     * Required `string` value serialized in the `identifier` wire field.
+     */
     val identifier: String
 )
 
-/** Required object value serialized in the `package` wire field. */
+/**
+ * Required object value serialized in the `package` wire field.
+ */
 data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiXe112a1d8d5(
-    /** Required `string` value serialized in the `ecosystem` wire field. */
-    val ecosystem: String,
-    /** Required `string` value serialized in the `name` wire field. */
-    val name: String,
-)
-
-/** Required object value serialized in the `vulnerabilities[]` wire field. */
-data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiesItem(
-    /** Required object value serialized in the `first_patched_version` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("first_patched_version", required = true)
-    val firstPatchedVersion:
-        WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiXd0620b75f8?,
-    /** Required object value serialized in the `package` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("package")
-    val `package`: WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiXe112a1d8d5,
-    /** Required `string` value serialized in the `severity` wire field. */
-    val severity: String,
-    /** Required `string` value serialized in the `vulnerable_version_range` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range")
-    val vulnerableVersionRange: String,
-)
-
-/** The details of the security advisory, including summary, description, and severity. */
-data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisory(
-    /** Required object value serialized in the `cvss` wire field. */
-    val cvss: WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryCvss,
-    /** Required array value serialized in the `cwes` wire field. */
-    val cwes: List<WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryCwesItem>,
-    /** Required `string` value serialized in the `description` wire field. */
-    val description: String,
-    /** Required `string` value serialized in the `ghsa_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ghsa_id") val ghsaId: String,
-    /** Required array value serialized in the `identifiers` wire field. */
-    val identifiers: List<WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryIdentifiersItem>,
-    /** Required `string` value serialized in the `published_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("published_at") val publishedAt: String,
-    /** Required array value serialized in the `references` wire field. */
-    val references: List<WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryReferencesItem>,
-    /** Required `string` value serialized in the `severity` wire field. */
-    val severity: String,
-    /** Required `string` value serialized in the `summary` wire field. */
-    val summary: String,
-    /** Required `string` value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String,
-    /** Required array value serialized in the `vulnerabilities` wire field. */
-    val vulnerabilities: List<WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiesItem>,
-    /** Required `string` value serialized in the `withdrawn_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("withdrawn_at") val withdrawnAt: String,
-    /** Optional object value serialized in the `cvss_severities` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("cvss_severities")
-    val cvssSeverities: CvssSeverities? = null,
-)
-
-/** Typed representation of the `WebhookSecurityAdvisoryWithdrawn` API schema. */
-data class WebhookSecurityAdvisoryWithdrawn(
-    /** Required enumerated value serialized in the `action` wire field. */
-    val action: WebhookSecurityAdvisoryWithdrawnActionEnum,
-    /** The details of the security advisory, including summary, description, and severity. */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_advisory")
-    val securityAdvisory: WebhookSecurityAdvisoryWithdrawnSecurityAdvisory,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * Required `string` value serialized in the `ecosystem` wire field.
+     */
+    val ecosystem: String,
+    /**
+     * Required `string` value serialized in the `name` wire field.
+     */
+    val name: String
+)
+
+/**
+ * Required object value serialized in the `vulnerabilities[]` wire field.
+ */
+data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiesItem(
+    /**
+     * Required object value serialized in the `first_patched_version` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("first_patched_version", required = true) val firstPatchedVersion: WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiXd0620b75f8?,
+    /**
+     * Required object value serialized in the `package` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("package") val `package`: WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiXe112a1d8d5,
+    /**
+     * Required `string` value serialized in the `severity` wire field.
+     */
+    val severity: String,
+    /**
+     * Required `string` value serialized in the `vulnerable_version_range` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range") val vulnerableVersionRange: String
+)
+
+/**
+ * The details of the security advisory, including summary, description, and severity.
+ */
+data class WebhookSecurityAdvisoryWithdrawnSecurityAdvisory(
+    /**
+     * Required object value serialized in the `cvss` wire field.
+     */
+    val cvss: WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryCvss,
+    /**
+     * Required array value serialized in the `cwes` wire field.
+     */
+    val cwes: List<WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryCwesItem>,
+    /**
+     * Required `string` value serialized in the `description` wire field.
+     */
+    val description: String,
+    /**
+     * Required `string` value serialized in the `ghsa_id` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("ghsa_id") val ghsaId: String,
+    /**
+     * Required array value serialized in the `identifiers` wire field.
+     */
+    val identifiers: List<WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryIdentifiersItem>,
+    /**
+     * Required `string` value serialized in the `published_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("published_at") val publishedAt: String,
+    /**
+     * Required array value serialized in the `references` wire field.
+     */
+    val references: List<WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryReferencesItem>,
+    /**
+     * Required `string` value serialized in the `severity` wire field.
+     */
+    val severity: String,
+    /**
+     * Required `string` value serialized in the `summary` wire field.
+     */
+    val summary: String,
+    /**
+     * Required `string` value serialized in the `updated_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String,
+    /**
+     * Required array value serialized in the `vulnerabilities` wire field.
+     */
+    val vulnerabilities: List<WebhookSecurityAdvisoryWithdrawnSecurityAdvisoryVulnerabilitiesItem>,
+    /**
+     * Required `string` value serialized in the `withdrawn_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("withdrawn_at") val withdrawnAt: String,
+    /**
+     * Optional object value serialized in the `cvss_severities` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("cvss_severities") val cvssSeverities: CvssSeverities? = null
+)
+
+/**
+ * Typed representation of the `WebhookSecurityAdvisoryWithdrawn` API schema.
+ */
+data class WebhookSecurityAdvisoryWithdrawn(
+    /**
+     * Required enumerated value serialized in the `action` wire field.
+     */
+    val action: WebhookSecurityAdvisoryWithdrawnActionEnum,
+    /**
+     * The details of the security advisory, including summary, description, and severity.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_advisory") val securityAdvisory: WebhookSecurityAdvisoryWithdrawnSecurityAdvisory,
+    /**
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks? = null,
-    /** A GitHub user. */
-    val sender: SimpleUser? = null,
+    /**
+     * A GitHub user.
+     */
+    val sender: SimpleUser? = null
 )

@@ -10,178 +10,118 @@ import dev.octri.showcase.github.SdkClient
 
 object Classroom {
 
-    /**
-     * Retrieves a classroom assignment by its unique identifier. This operation is closing down and
-     * will be removed on August 28, 2026. Use the `assignment_id` path parameter to identify the
-     * classroom assignment.
-     *
-     * > !WARNING] > **Closed notice:** This operation is no longer available as of August
-     * > 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
-     *
-     * @param assignmentId The unique identifier of the classroom assignment.
-     * @deprecated This operation is deprecated and may be removed in a future release.
-     */
-    fun classroomGetAnAssignment(
-        clientConfig: ClientConfig,
-        assignmentId: Long,
-        options: RequestOptions? = null,
-    ): BasicError {
-        return SdkClient.request<BasicError>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/assignments/${SdkClient.encodePathSegment(assignmentId)}",
-                    config = clientConfig,
-                    operationId = "classroomGetAnAssignment",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors = mapOf("410" to BasicError::class.java),
-                )
-            )
-            .data
-    }
 
     /**
-     * Lists accepted assignments for a classroom assignment. This operation is closing down and
-     * will be removed on August 28, 2026. Use the `assignment_id` path parameter to select the
-     * assignment whose accepted assignments you want to retrieve.
+     * Retrieves a classroom assignment by its unique identifier. This operation is closing down and will be removed on August 28, 2026. Use the `assignment_id` path parameter to identify the classroom assignment.
      *
-     * > !WARNING] > **Closed notice:** This operation is no longer available as of August
-     * > 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
+     * > !WARNING] > **Closed notice:** This operation is no longer available as of August 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
      *
      * @param assignmentId The unique identifier of the classroom assignment.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun classroomListAcceptedAssignmentsForAnAssignment(
-        clientConfig: ClientConfig,
-        assignmentId: Long,
-        options: RequestOptions? = null,
-    ): BasicError {
-        return SdkClient.request<BasicError>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/assignments/${SdkClient.encodePathSegment(assignmentId)}/accepted_assignments",
-                    config = clientConfig,
-                    operationId = "classroomListAcceptedAssignmentsForAnAssignment",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors = mapOf("410" to BasicError::class.java),
-                )
-            )
-            .data
+    fun classroomGetAnAssignment(clientConfig: ClientConfig, assignmentId: Long, options: RequestOptions? = null): BasicError {
+        return SdkClient.request<BasicError>(SdkClient.RequestSpec("GET", "/assignments/${SdkClient.encodePathSegment(assignmentId)}", config = clientConfig, operationId = "classroomGetAnAssignment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("410" to BasicError::class.java))).data
     }
 
+
+
+
+
+
+
     /**
-     * Retrieves grades for a classroom assignment. Supply the `assignment_id` to identify the
-     * assignment whose grades you need. This operation is no longer available as of August
-     * 28, 2026.
+     * Lists accepted assignments for a classroom assignment. This operation is closing down and will be removed on August 28, 2026. Use the `assignment_id` path parameter to select the assignment whose accepted assignments you want to retrieve.
      *
-     * > !WARNING] > **Closed notice:** This operation is no longer available as of August
-     * > 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
+     * > !WARNING] > **Closed notice:** This operation is no longer available as of August 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
      *
      * @param assignmentId The unique identifier of the classroom assignment.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun classroomGetAssignmentGrades(
-        clientConfig: ClientConfig,
-        assignmentId: Long,
-        options: RequestOptions? = null,
-    ): BasicError {
-        return SdkClient.request<BasicError>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/assignments/${SdkClient.encodePathSegment(assignmentId)}/grades",
-                    config = clientConfig,
-                    operationId = "classroomGetAssignmentGrades",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors = mapOf("410" to BasicError::class.java),
-                )
-            )
-            .data
+    fun classroomListAcceptedAssignmentsForAnAssignment(clientConfig: ClientConfig, assignmentId: Long, options: RequestOptions? = null): BasicError {
+        return SdkClient.request<BasicError>(SdkClient.RequestSpec("GET", "/assignments/${SdkClient.encodePathSegment(assignmentId)}/accepted_assignments", config = clientConfig, operationId = "classroomListAcceptedAssignmentsForAnAssignment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("410" to BasicError::class.java))).data
     }
+
+
+
+
+
+
+
+    /**
+     * Retrieves grades for a classroom assignment. Supply the `assignment_id` to identify the assignment whose grades you need. This operation is no longer available as of August 28, 2026.
+     *
+     * > !WARNING] > **Closed notice:** This operation is no longer available as of August 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
+     *
+     * @param assignmentId The unique identifier of the classroom assignment.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
+     */
+    fun classroomGetAssignmentGrades(clientConfig: ClientConfig, assignmentId: Long, options: RequestOptions? = null): BasicError {
+        return SdkClient.request<BasicError>(SdkClient.RequestSpec("GET", "/assignments/${SdkClient.encodePathSegment(assignmentId)}/grades", config = clientConfig, operationId = "classroomGetAssignmentGrades", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("410" to BasicError::class.java))).data
+    }
+
+
+
+
+
+
 
     /**
      * Lists classrooms. This operation is no longer available as of August 28, 2026.
      *
-     * > !WARNING] > **Closed notice:** This operation is no longer available as of August
-     * > 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
+     * > !WARNING] > **Closed notice:** This operation is no longer available as of August 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun classroomListClassrooms(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): BasicError {
-        return SdkClient.request<BasicError>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/classrooms",
-                    config = clientConfig,
-                    operationId = "classroomListClassrooms",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors = mapOf("410" to BasicError::class.java),
-                )
-            )
-            .data
+    fun classroomListClassrooms(clientConfig: ClientConfig, options: RequestOptions? = null): BasicError {
+        return SdkClient.request<BasicError>(SdkClient.RequestSpec("GET", "/classrooms", config = clientConfig, operationId = "classroomListClassrooms", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("410" to BasicError::class.java))).data
     }
 
-    /**
-     * Retrieves a classroom by its unique identifier. Supply `classroom_id` to identify the
-     * classroom you want to retrieve. This operation is no longer available as of August 28, 2026.
-     *
-     * > !WARNING] > **Closed notice:** This operation is no longer available as of August
-     * > 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
-     *
-     * @param classroomId The unique identifier of the classroom.
-     * @deprecated This operation is deprecated and may be removed in a future release.
-     */
-    fun classroomGetAClassroom(
-        clientConfig: ClientConfig,
-        classroomId: Long,
-        options: RequestOptions? = null,
-    ): BasicError {
-        return SdkClient.request<BasicError>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/classrooms/${SdkClient.encodePathSegment(classroomId)}",
-                    config = clientConfig,
-                    operationId = "classroomGetAClassroom",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors = mapOf("410" to BasicError::class.java),
-                )
-            )
-            .data
-    }
+
+
+
+
+
 
     /**
-     * Lists assignments for a classroom. Supply `classroom_id` to identify the classroom whose
-     * assignments you want to retrieve. This operation is no longer available as of August
-     * 28, 2026.
+     * Retrieves a classroom by its unique identifier. Supply `classroom_id` to identify the classroom you want to retrieve. This operation is no longer available as of August 28, 2026.
      *
-     * > !WARNING] > **Closed notice:** This operation is no longer available as of August
-     * > 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
+     * > !WARNING] > **Closed notice:** This operation is no longer available as of August 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
      *
      * @param classroomId The unique identifier of the classroom.
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun classroomListAssignmentsForAClassroom(
-        clientConfig: ClientConfig,
-        classroomId: Long,
-        options: RequestOptions? = null,
-    ): BasicError {
-        return SdkClient.request<BasicError>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/classrooms/${SdkClient.encodePathSegment(classroomId)}/assignments",
-                    config = clientConfig,
-                    operationId = "classroomListAssignmentsForAClassroom",
-                    decoder = SdkClient.ResponseDecoder.EMPTY,
-                    options = options,
-                    errors = mapOf("410" to BasicError::class.java),
-                )
-            )
-            .data
+    fun classroomGetAClassroom(clientConfig: ClientConfig, classroomId: Long, options: RequestOptions? = null): BasicError {
+        return SdkClient.request<BasicError>(SdkClient.RequestSpec("GET", "/classrooms/${SdkClient.encodePathSegment(classroomId)}", config = clientConfig, operationId = "classroomGetAClassroom", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("410" to BasicError::class.java))).data
     }
+
+
+
+
+
+
+
+    /**
+     * Lists assignments for a classroom. Supply `classroom_id` to identify the classroom whose assignments you want to retrieve. This operation is no longer available as of August 28, 2026.
+     *
+     * > !WARNING] > **Closed notice:** This operation is no longer available as of August 28, 2026. > For more information, see the \[GitHub Classroom sunset notice.
+     *
+     * @param classroomId The unique identifier of the classroom.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
+     */
+    fun classroomListAssignmentsForAClassroom(clientConfig: ClientConfig, classroomId: Long, options: RequestOptions? = null): BasicError {
+        return SdkClient.request<BasicError>(SdkClient.RequestSpec("GET", "/classrooms/${SdkClient.encodePathSegment(classroomId)}/assignments", config = clientConfig, operationId = "classroomListAssignmentsForAClassroom", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("410" to BasicError::class.java))).data
+    }
+
+
+
+
+
+
+
 }

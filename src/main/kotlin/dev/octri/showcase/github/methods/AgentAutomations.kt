@@ -4,6 +4,7 @@
 package dev.octri.showcase.github.methods
 
 import com.fasterxml.jackson.annotation.JsonProperty as JacksonJsonProperty
+
 import dev.octri.showcase.github.AgentAutomationsCreateRepoAutomationOwnerTypeEnum
 import dev.octri.showcase.github.AgentAutomationsCreateRepoAutomationResponseOwnerTypeEnum
 import dev.octri.showcase.github.AgentAutomationsCreateRepoAutomationResponseTriggersAutomatioXc2f9f98a75
@@ -171,13 +172,6 @@ import dev.octri.showcase.github.AgentAutomationsGetRepoAutomationResponseTrigge
 import dev.octri.showcase.github.AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRunCXcf6974d55d
 import dev.octri.showcase.github.AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRunWX467b1992ee
 import dev.octri.showcase.github.AgentAutomationsGetRepoAutomationResponseWriteScopeEnum
-import dev.octri.showcase.github.AgentAutomationsListAutomationTasksParameterEnum
-import dev.octri.showcase.github.AgentAutomationsListAutomationTasksParameterEnumbdd318b8
-import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemArtifactsItemData
-import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemArtifactsX7777873f39
-import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemArtifactsXc4ab4ff591
-import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemCreatorTypeEnum
-import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemStateEnum
 import dev.octri.showcase.github.AgentAutomationsListAutomationsParameterEnum
 import dev.octri.showcase.github.AgentAutomationsListAutomationsResponseItemOwnerTypeEnum
 import dev.octri.showcase.github.AgentAutomationsListAutomationsResponseItemTriggersAutomationX8e09a9a7a2
@@ -207,6 +201,13 @@ import dev.octri.showcase.github.AgentAutomationsListAutomationsResponseItemTrig
 import dev.octri.showcase.github.AgentAutomationsListAutomationsResponseItemTriggersWorkflowRuX14df3d2f07
 import dev.octri.showcase.github.AgentAutomationsListAutomationsResponseItemTriggersWorkflowRuXc1ac5c2d03
 import dev.octri.showcase.github.AgentAutomationsListAutomationsResponseItemWriteScopeEnum
+import dev.octri.showcase.github.AgentAutomationsListAutomationTasksParameterEnum
+import dev.octri.showcase.github.AgentAutomationsListAutomationTasksParameterEnumbdd318b8
+import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemArtifactsItemData
+import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemArtifactsX7777873f39
+import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemArtifactsXc4ab4ff591
+import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemCreatorTypeEnum
+import dev.octri.showcase.github.AgentAutomationsListAutomationTasksResponseTasksItemStateEnum
 import dev.octri.showcase.github.AgentAutomationsListAvailableAutomationToolsResponseItemToolsX6d2d5b3b6b
 import dev.octri.showcase.github.AgentAutomationsListAvailableAutomationTriggersResponseItemFiX8d60f6fda7
 import dev.octri.showcase.github.AgentAutomationsListRepoAutomationsParameterEnum
@@ -243,3906 +244,3756 @@ import dev.octri.showcase.github.RequestOptions
 import java.time.OffsetDateTime
 
 object AgentAutomations {
-    /** Repository identity for an automation in cross-repository list responses. */
-    data class AgentAutomationsListAutomationsResponseItemRepository(
-        /** The unique identifier of the repository. */
-        val id: Long,
-        /** The repository owner login. */
-        val owner: String,
-        /** The repository name. */
-        val name: String,
-    )
-
-    /** A GitHub user */
-    data class AgentAutomationsListAutomationsResponseItemCreatedBy(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersInterval(
-        /** One or more schedules on which the Automation runs. */
-        val cadence: List<AgentAutomationsListAutomationsResponseItemTriggersIntervalCaX45290db5ca>,
-        /**
-         * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly
-         * values default to `0` (midnight UTC).
-         */
-        @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
-        /**
-         * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted
-         * weekly values default to Monday (`1`).
-         */
-        @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
-        /**
-         * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default
-         * to `0`. Must be omitted whenever `cadence` includes `hourly`.
-         */
-        @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIntervalWrX7331218855? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersIssueOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIssueOpeneX5176234b7a? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersIssueLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIssueLabelX1f74befc21? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersWorkflowRun(
-        /** Workflow names matched against the name in each workflow YAML file. */
-        val workflows: List<String>,
-        /** Workflow conclusions to match. The current trigger supports failure. */
-        val conclusions:
-            List<AgentAutomationsListAutomationsResponseItemTriggersWorkflowRuXc1ac5c2d03>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersWorkflowRuX14df3d2f07? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX3192011c4c? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesXa631abce67(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX93c516252d? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestMerged(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX6e29c9068b? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersIssueComment(
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIssueCommeXb28cd434fc? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestComment(
-        /** Pull request conversation and inline review comment types to match. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsListAutomationsResponseItemTriggersPullRequesXc6b5baa666>,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXa9c0081cac? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersDiscussionOpened(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersDiscussionXe83d58f013? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersDiscussionUpdated(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersDiscussionXd06c065c24? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersDiscussionComment(
-        /** Top-level discussion comments and replies to match. Omit to match both. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsListAutomationsResponseItemTriggersDiscussionXd502854dff>? =
-            null,
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersDiscussionX7ba1b72865? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersIssueAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIssueAssigX9ce1640da5? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXa7841e30e7? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersSubIssueAdded(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersSubIssueAdXdc38a5e435? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesX5103d45795(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXd9ed522e93? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX2493898e19? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesX3b3ef8f305(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX8d3c579a1b? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesXae2b59baa6(
-        /** Submitted review states to match. */
-        val states: List<AgentAutomationsListAutomationsResponseItemTriggersPullRequesX40c9c9d3ad>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXb1c9e0b06c? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesX7056dbca7f(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX77e1cbabb8? =
-            null,
-    )
-
-    data class AgentAutomationsListAutomationsResponseItemTriggersAutomationCompleted(
-        /** Upstream Automation IDs in the same repository. */
-        @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemTriggersAutomationX8e09a9a7a2? =
-            null,
-    )
-
+/**
+ * Repository identity for an automation in cross-repository list responses.
+ */
+data class AgentAutomationsListAutomationsResponseItemRepository(
     /**
-     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a
-     * closed, trigger-specific configuration schema.
+     * The unique identifier of the repository.
      */
-    data class AgentAutomationsListAutomationsResponseItemTriggers(
-        val interval: AgentAutomationsListAutomationsResponseItemTriggersInterval? = null,
-        @JacksonJsonProperty("issue_opened")
-        val issueOpened: AgentAutomationsListAutomationsResponseItemTriggersIssueOpened? = null,
-        @JacksonJsonProperty("issue_labeled")
-        val issueLabeled: AgentAutomationsListAutomationsResponseItemTriggersIssueLabeled? = null,
-        @JacksonJsonProperty("workflow_run")
-        val workflowRun: AgentAutomationsListAutomationsResponseItemTriggersWorkflowRun? = null,
-        @JacksonJsonProperty("pull_request_opened")
-        val pullRequestOpened:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequestOpened? =
-            null,
-        @JacksonJsonProperty("pull_request_synchronize")
-        val pullRequestSynchronize:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequesXa631abce67? =
-            null,
-        @JacksonJsonProperty("pull_request_merged")
-        val pullRequestMerged:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequestMerged? =
-            null,
-        @JacksonJsonProperty("issue_comment")
-        val issueComment: AgentAutomationsListAutomationsResponseItemTriggersIssueComment? = null,
-        @JacksonJsonProperty("pull_request_comment")
-        val pullRequestComment:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequestComment? =
-            null,
-        @JacksonJsonProperty("discussion_opened")
-        val discussionOpened: AgentAutomationsListAutomationsResponseItemTriggersDiscussionOpened? =
-            null,
-        @JacksonJsonProperty("discussion_updated")
-        val discussionUpdated:
-            AgentAutomationsListAutomationsResponseItemTriggersDiscussionUpdated? =
-            null,
-        @JacksonJsonProperty("discussion_comment")
-        val discussionComment:
-            AgentAutomationsListAutomationsResponseItemTriggersDiscussionComment? =
-            null,
-        @JacksonJsonProperty("issue_assigned")
-        val issueAssigned: AgentAutomationsListAutomationsResponseItemTriggersIssueAssigned? = null,
-        @JacksonJsonProperty("pull_request_assigned")
-        val pullRequestAssigned:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequestAssigned? =
-            null,
-        @JacksonJsonProperty("sub_issue_added")
-        val subIssueAdded: AgentAutomationsListAutomationsResponseItemTriggersSubIssueAdded? = null,
-        @JacksonJsonProperty("pull_request_ready_for_review")
-        val pullRequestReadyForReview:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequesX5103d45795? =
-            null,
-        @JacksonJsonProperty("pull_request_labeled")
-        val pullRequestLabeled:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequestLabeled? =
-            null,
-        @JacksonJsonProperty("pull_request_merge_conflict")
-        val pullRequestMergeConflict:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequesX3b3ef8f305? =
-            null,
-        @JacksonJsonProperty("pull_request_review_submitted")
-        val pullRequestReviewSubmitted:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequesXae2b59baa6? =
-            null,
-        @JacksonJsonProperty("pull_request_review_requested")
-        val pullRequestReviewRequested:
-            AgentAutomationsListAutomationsResponseItemTriggersPullRequesX7056dbca7f? =
-            null,
-        @JacksonJsonProperty("automation_completed")
-        val automationCompleted:
-            AgentAutomationsListAutomationsResponseItemTriggersAutomationCompleted? =
-            null,
-    )
-
+    val id: Long,
     /**
-     * A summary representation of an automation including repository identity (used in
-     * cross-repository list responses).
+     * The repository owner login.
      */
-    data class AgentAutomationsListAutomationsResponseItem(
-        /** The unique identifier of the automation. */
-        val id: String,
-        /** Repository identity for an automation in cross-repository list responses. */
-        val repository: AgentAutomationsListAutomationsResponseItemRepository,
-        /** The name of the automation. */
-        val name: String,
-        /** When the automation was created. */
-        @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-        /** When the automation was last updated. */
-        @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-        /** A GitHub user */
-        @JacksonJsonProperty("created_by")
-        val createdBy: AgentAutomationsListAutomationsResponseItemCreatedBy,
-        /** Whether the automation is currently enabled. */
-        val enabled: Boolean? = null,
-        /**
-         * Who owns the automation. `user` keeps it private to its creator and its runs act as that
-         * user. `repository` makes it belong to the repository, visible to anyone with read access
-         * to the repository, and its runs act as the Copilot app rather than as a person.
-         */
-        @JacksonJsonProperty("owner_type")
-        val ownerType: AgentAutomationsListAutomationsResponseItemOwnerTypeEnum? = null,
-        /**
-         * Controls which repository resources a run may modify. `trigger` limits writes to the
-         * resource that started the run, when one exists, and resources created during the run;
-         * `repository` allows writes to any resource in the repository. Supported values:
-         * `trigger`, `repository`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListAutomationsResponseItemWriteScopeEnum? = null,
-        /**
-         * When true, event-triggered runs require the event actor to have repo write permission,
-         * even when the org's allow_read_access_triggers policy is enabled. Does not apply to
-         * interval-scheduled runs, which always run as the automation owner.
-         */
-        @JacksonJsonProperty("require_actor_write_permission")
-        val requireActorWritePermission: Boolean? = null,
-        /**
-         * The model to use for sessions triggered by this automation. Omit to use the platform
-         * default.
-         */
-        val model: String? = null,
-        /**
-         * The reasoning effort to use for sessions triggered by this automation. Omit or leave
-         * empty for no override. Currently supported values: `none`, `low`, `medium`, `high`,
-         * `xhigh`, `max`
-         */
-        @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null,
-        /**
-         * Public trigger configuration keyed by stable public trigger identifier. Each trigger has
-         * a closed, trigger-specific configuration schema.
-         */
-        val triggers: AgentAutomationsListAutomationsResponseItemTriggers? = null,
-    )
-
-    /** A tool that can be selected in an Automation. */
-    data class AgentAutomationsListAvailableAutomationToolsResponseItemToolsItem(
-        /**
-         * The exact tool identifier accepted by Automation create and edit requests. The catalog is
-         * authoritative and open-ended; clients must accept identifiers they have not seen before.
-         */
-        val id: String,
-        /** The human-readable tool title. */
-        val title: String,
-        /** A short description of what the tool does. */
-        val description: String,
-        /**
-         * The tool's behavior level. `read` tools only retrieve data. `write` tools can change
-         * data. This describes tool behavior, not a specific GitHub token permission.
-         */
-        val scope: AgentAutomationsListAvailableAutomationToolsResponseItemToolsX6d2d5b3b6b? = null,
-    )
-
+    val owner: String,
     /**
-     * A CMC-controlled presentation category for Automation tools. Clients must not depend on group
-     * identifiers, membership, or ordering remaining stable.
+     * The repository name.
      */
-    data class AgentAutomationsListAvailableAutomationToolsResponseItem(
-        /** A presentation-category identifier controlled by CMC. */
-        val id: String,
-        /** The human-readable group title. */
-        val title: String,
-        /** The tools currently presented in this group. */
-        val tools: List<AgentAutomationsListAvailableAutomationToolsResponseItemToolsItem>,
-    )
+    val name: String
+)
 
-    /** A configurable field in a public Automation trigger definition. */
-    data class AgentAutomationsListAvailableAutomationTriggersResponseItemFieldsItem(
-        /** The stable field identifier used in configured triggers. */
-        val id: String,
-        /** The human-readable field label. */
-        val label: String,
-        /** Whether the field must be provided. */
-        val required: Boolean,
-        /**
-         * A restricted JSON Schema fragment describing the field value accepted by Automation
-         * create and update requests.
-         */
-        val schema: AgentAutomationsListAvailableAutomationTriggersResponseItemFiX8d60f6fda7,
-        /** Markdown guidance for configuring the field. */
-        val description: String? = null,
-    )
-
-    /** A public Automation trigger and its configurable fields. */
-    data class AgentAutomationsListAvailableAutomationTriggersResponseItem(
-        /** The stable public trigger identifier. */
-        val id: String,
-        /** The human-readable trigger title. */
-        val title: String,
-        /** A short description of when the trigger fires. */
-        val description: String,
-        /** The trigger-specific public configuration fields. */
-        val fields: List<AgentAutomationsListAvailableAutomationTriggersResponseItemFieldsItem>,
-        /**
-         * Whether this trigger supports event-specific Run now simulation. Omit to indicate
-         * support.
-         */
-        @JacksonJsonProperty("supports_run_now") val supportsRunNow: Boolean? = null,
-    )
-
-    /** Repository identity for an automation in cross-repository list responses. */
-    data class AgentAutomationsGetAutomationResponseRepository(
-        /** The unique identifier of the repository. */
-        val id: Long,
-        /** The repository owner login. */
-        val owner: String,
-        /** The repository name. */
-        val name: String,
-    )
-
-    /** A GitHub user */
-    data class AgentAutomationsGetAutomationResponseCreatedBy(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersInterval(
-        /** One or more schedules on which the Automation runs. */
-        val cadence: List<AgentAutomationsGetAutomationResponseTriggersIntervalCadenceItemEnum>,
-        /**
-         * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly
-         * values default to `0` (midnight UTC).
-         */
-        @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
-        /**
-         * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted
-         * weekly values default to Monday (`1`).
-         */
-        @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
-        /**
-         * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default
-         * to `0`. Must be omitted whenever `cadence` includes `hourly`.
-         */
-        @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersIntervalWriteScopeEnum? = null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersIssueOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersIssueOpenedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersIssueLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersIssueLabeledWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersWorkflowRun(
-        /** Workflow names matched against the name in each workflow YAML file. */
-        val workflows: List<String>,
-        /** Workflow conclusions to match. The current trigger supports failure. */
-        val conclusions:
-            List<AgentAutomationsGetAutomationResponseTriggersWorkflowRunConclX46fc525a6d>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersWorkflowRunWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestOpeneX1fe8521857? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestSynchronize(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestSynchXacaeaf3795? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestMerged(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestMergeXa4f4b488d0? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersIssueComment(
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersIssueCommentWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestComment(
-        /** Pull request conversation and inline review comment types to match. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsGetAutomationResponseTriggersPullRequestCommeXe068ceff0e>,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestCommeX0d0635d570? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersDiscussionOpened(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersDiscussionOpenedX730d2aa718? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersDiscussionUpdated(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersDiscussionUpdateX60130ca979? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersDiscussionComment(
-        /** Top-level discussion comments and replies to match. Omit to match both. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsGetAutomationResponseTriggersDiscussionCommenX1691f75f8c>? =
-            null,
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersDiscussionCommenX7f571cce64? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersIssueAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersIssueAssignedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestAssigXd41df126ff? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersSubIssueAdded(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersSubIssueAddedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestReadyForReview(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestReadyX9f55fe0ae4? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestLabelXf1ec3309dd? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestMergeConflict(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestMergeX400c10ba89? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestReviewSubmitted(
-        /** Submitted review states to match. */
-        val states: List<AgentAutomationsGetAutomationResponseTriggersPullRequestRevieXeede3b708e>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestRevieXce07aa4687? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersPullRequestReviewRequested(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestRevieXc997d2863f? =
-            null,
-    )
-
-    data class AgentAutomationsGetAutomationResponseTriggersAutomationCompleted(
-        /** Upstream Automation IDs in the same repository. */
-        @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseTriggersAutomationCompleXb2c2bfec48? =
-            null,
-    )
-
+/**
+ * A GitHub user
+ */
+data class AgentAutomationsListAutomationsResponseItemCreatedBy(
     /**
-     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a
-     * closed, trigger-specific configuration schema.
+     * The unique identifier of the user
      */
-    data class AgentAutomationsGetAutomationResponseTriggers(
-        val interval: AgentAutomationsGetAutomationResponseTriggersInterval? = null,
-        @JacksonJsonProperty("issue_opened")
-        val issueOpened: AgentAutomationsGetAutomationResponseTriggersIssueOpened? = null,
-        @JacksonJsonProperty("issue_labeled")
-        val issueLabeled: AgentAutomationsGetAutomationResponseTriggersIssueLabeled? = null,
-        @JacksonJsonProperty("workflow_run")
-        val workflowRun: AgentAutomationsGetAutomationResponseTriggersWorkflowRun? = null,
-        @JacksonJsonProperty("pull_request_opened")
-        val pullRequestOpened: AgentAutomationsGetAutomationResponseTriggersPullRequestOpened? =
-            null,
-        @JacksonJsonProperty("pull_request_synchronize")
-        val pullRequestSynchronize:
-            AgentAutomationsGetAutomationResponseTriggersPullRequestSynchronize? =
-            null,
-        @JacksonJsonProperty("pull_request_merged")
-        val pullRequestMerged: AgentAutomationsGetAutomationResponseTriggersPullRequestMerged? =
-            null,
-        @JacksonJsonProperty("issue_comment")
-        val issueComment: AgentAutomationsGetAutomationResponseTriggersIssueComment? = null,
-        @JacksonJsonProperty("pull_request_comment")
-        val pullRequestComment: AgentAutomationsGetAutomationResponseTriggersPullRequestComment? =
-            null,
-        @JacksonJsonProperty("discussion_opened")
-        val discussionOpened: AgentAutomationsGetAutomationResponseTriggersDiscussionOpened? = null,
-        @JacksonJsonProperty("discussion_updated")
-        val discussionUpdated: AgentAutomationsGetAutomationResponseTriggersDiscussionUpdated? =
-            null,
-        @JacksonJsonProperty("discussion_comment")
-        val discussionComment: AgentAutomationsGetAutomationResponseTriggersDiscussionComment? =
-            null,
-        @JacksonJsonProperty("issue_assigned")
-        val issueAssigned: AgentAutomationsGetAutomationResponseTriggersIssueAssigned? = null,
-        @JacksonJsonProperty("pull_request_assigned")
-        val pullRequestAssigned: AgentAutomationsGetAutomationResponseTriggersPullRequestAssigned? =
-            null,
-        @JacksonJsonProperty("sub_issue_added")
-        val subIssueAdded: AgentAutomationsGetAutomationResponseTriggersSubIssueAdded? = null,
-        @JacksonJsonProperty("pull_request_ready_for_review")
-        val pullRequestReadyForReview:
-            AgentAutomationsGetAutomationResponseTriggersPullRequestReadyForReview? =
-            null,
-        @JacksonJsonProperty("pull_request_labeled")
-        val pullRequestLabeled: AgentAutomationsGetAutomationResponseTriggersPullRequestLabeled? =
-            null,
-        @JacksonJsonProperty("pull_request_merge_conflict")
-        val pullRequestMergeConflict:
-            AgentAutomationsGetAutomationResponseTriggersPullRequestMergeConflict? =
-            null,
-        @JacksonJsonProperty("pull_request_review_submitted")
-        val pullRequestReviewSubmitted:
-            AgentAutomationsGetAutomationResponseTriggersPullRequestReviewSubmitted? =
-            null,
-        @JacksonJsonProperty("pull_request_review_requested")
-        val pullRequestReviewRequested:
-            AgentAutomationsGetAutomationResponseTriggersPullRequestReviewRequested? =
-            null,
-        @JacksonJsonProperty("automation_completed")
-        val automationCompleted: AgentAutomationsGetAutomationResponseTriggersAutomationCompleted? =
-            null,
-    )
+    val id: Long? = null
+)
 
+
+
+
+
+
+
+
+
+data class AgentAutomationsListAutomationsResponseItemTriggersInterval(
     /**
-     * A full representation of an automation including all configuration fields and repository
-     * identity (used in cross-repository get responses).
+     * One or more schedules on which the Automation runs.
      */
-    data class AgentAutomationsGetAutomationResponse(
-        /** The unique identifier of the automation. */
-        val id: String,
-        /** Repository identity for an automation in cross-repository list responses. */
-        val repository: AgentAutomationsGetAutomationResponseRepository,
-        /** The name of the automation. */
-        val name: String,
-        /** The prompt template for the automation. */
-        val prompt: String,
-        /** When the automation was created. */
-        @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-        /** When the automation was last updated. */
-        @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-        /** A GitHub user */
-        @JacksonJsonProperty("created_by")
-        val createdBy: AgentAutomationsGetAutomationResponseCreatedBy,
-        /** Whether the automation is currently enabled. */
-        val enabled: Boolean? = null,
-        /**
-         * Who owns the automation. `user` keeps it private to its creator and its runs act as that
-         * user. `repository` makes it belong to the repository, visible to anyone with read access
-         * to the repository, and its runs act as the Copilot app rather than as a person.
-         */
-        @JacksonJsonProperty("owner_type")
-        val ownerType: AgentAutomationsGetAutomationResponseOwnerTypeEnum? = null,
-        /**
-         * Controls which repository resources a run may modify. `trigger` limits writes to the
-         * resource that started the run, when one exists, and resources created during the run;
-         * `repository` allows writes to any resource in the repository. Supported values:
-         * `trigger`, `repository`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetAutomationResponseWriteScopeEnum? = null,
-        /**
-         * When true, event-triggered runs require the event actor to have repo write permission,
-         * even when the org's allow_read_access_triggers policy is enabled. Does not apply to
-         * interval-scheduled runs, which always run as the automation owner.
-         */
-        @JacksonJsonProperty("require_actor_write_permission")
-        val requireActorWritePermission: Boolean? = null,
-        /**
-         * Public trigger configuration keyed by stable public trigger identifier. Each trigger has
-         * a closed, trigger-specific configuration schema.
-         */
-        val triggers: AgentAutomationsGetAutomationResponseTriggers? = null,
-        /** The tools available to the automation. */
-        val tools: List<String>? = null,
-        /** Custom agents (subagents) this automation is allowed to invoke. */
-        @JacksonJsonProperty("allowed_custom_agents") val allowedCustomAgents: List<String>? = null,
-        /**
-         * The model to use for sessions triggered by this automation. Omit to use the platform
-         * default.
-         */
-        val model: String? = null,
-        /**
-         * The reasoning effort to use for sessions triggered by this automation. Omit or leave
-         * empty for no override. Currently supported values: `none`, `low`, `medium`, `high`,
-         * `xhigh`, `max`
-         */
-        @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null,
-    )
-
-    /** The entity who created this task */
-    data class AgentAutomationsListAutomationTasksResponseTasksItemCreator(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    /** A GitHub user */
-    data class AgentAutomationsListAutomationTasksResponseTasksItemUserCollaXae830d1721(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    /** The owner of the repository */
-    data class AgentAutomationsListAutomationTasksResponseTasksItemOwner(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    /** The repository this task belongs to */
-    data class AgentAutomationsListAutomationTasksResponseTasksItemRepository(
-        /** The unique identifier of the repository */
-        val id: Long? = null
-    )
-
-    /** A resource generated by the task */
-    data class AgentAutomationsListAutomationTasksResponseTasksItemArtifactsItem(
-        /** Provider namespace */
-        val provider: AgentAutomationsListAutomationTasksResponseTasksItemArtifactsXc4ab4ff591,
-        /** Type of artifact. Available Values: `pull`, `branch`. */
-        val type: AgentAutomationsListAutomationTasksResponseTasksItemArtifactsX7777873f39,
-        /** Resource data (shape depends on type) */
-        @JacksonJsonProperty("data")
-        val `data`: AgentAutomationsListAutomationTasksResponseTasksItemArtifactsItemData,
-    )
-
-    /** Custom agent metadata associated with this task */
-    data class AgentAutomationsListAutomationTasksResponseTasksItemCustomAgent(
-        /**
-         * The custom agent's filename without the extension - for example, `performance-optimizer`
-         * for a `.github/agents/performance-optimizer.agent.md` custom agent.
-         */
-        val id: String? = null
-    )
-
-    data class AgentAutomationsListAutomationTasksResponseTasksItem(
-        /** Unique task identifier */
-        val id: String,
-        /** Current state of the task, derived from its most recent session */
-        val state: AgentAutomationsListAutomationTasksResponseTasksItemStateEnum,
-        /** Timestamp when the task was created */
-        @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-        /** API URL for this task */
-        val url: String? = null,
-        /** Web URL for this task */
-        @JacksonJsonProperty("html_url") val htmlUrl: String? = null,
-        /** Human-readable name derived from the task prompt */
-        val name: String? = null,
-        /** The entity who created this task */
-        val creator: AgentAutomationsListAutomationTasksResponseTasksItemCreator? = null,
-        /** Type of the task creator */
-        @JacksonJsonProperty("creator_type")
-        val creatorType: AgentAutomationsListAutomationTasksResponseTasksItemCreatorTypeEnum? =
-            null,
-        /** User objects of collaborators on this task */
-        @JacksonJsonProperty("user_collaborators")
-        val userCollaborators:
-            List<AgentAutomationsListAutomationTasksResponseTasksItemUserCollaXae830d1721>? =
-            null,
-        /** The owner of the repository */
-        val owner: AgentAutomationsListAutomationTasksResponseTasksItemOwner? = null,
-        /** The repository this task belongs to */
-        val repository: AgentAutomationsListAutomationTasksResponseTasksItemRepository? = null,
-        /** Number of sessions in this task */
-        @JacksonJsonProperty("session_count") val sessionCount: Int? = null,
-        /** Resources created by this task (PRs, branches, etc.) */
-        val artifacts: List<AgentAutomationsListAutomationTasksResponseTasksItemArtifactsItem>? =
-            null,
-        /** Timestamp when the task was archived, null if not archived */
-        @JacksonJsonProperty("archived_at") val archivedAt: OffsetDateTime? = null,
-        /** Timestamp of the most recent update */
-        @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
-        /** Custom agent metadata associated with this task */
-        @JacksonJsonProperty("custom_agent")
-        val customAgent: AgentAutomationsListAutomationTasksResponseTasksItemCustomAgent? = null,
-    )
-
-    /** A page of tasks created by an automation. */
-    data class AgentAutomationsListAutomationTasksResponse(
-        /** Tasks created by the automation. */
-        val tasks: List<AgentAutomationsListAutomationTasksResponseTasksItem>
-    )
-
-    /** A GitHub user */
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemCreatedBy(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX07690c38c5(
-        /** One or more schedules on which the Automation runs. */
-        val cadence: List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc3281adf4f>,
-        /**
-         * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly
-         * values default to `0` (midnight UTC).
-         */
-        @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
-        /**
-         * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted
-         * weekly values default to Monday (`1`).
-         */
-        @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
-        /**
-         * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default
-         * to `0`. Must be omitted whenever `cadence` includes `hourly`.
-         */
-        @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6a3ed5ceef? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX0277499a33(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6ddf1f014a(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd8a77a48a8(
-        /** Workflow names matched against the name in each workflow YAML file. */
-        val workflows: List<String>,
-        /** Workflow conclusions to match. The current trigger supports failure. */
-        val conclusions:
-            List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX82b9184068(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXec67005fdd(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5dd5ddc50f(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX2772e2f982(
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX89661b5571(
-        /** Pull request conversation and inline review comment types to match. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19>,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX2592e17e2b(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd6fda182ed? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc5cdd55c36(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd79e492ff4? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX77d3b846e7(
-        /** Top-level discussion comments and replies to match. Omit to match both. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX9171732c49>? =
-            null,
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX9746d19b91? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX980a41581f(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXa624576f5a? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXa01aa0eab8(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1733f46b3b(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdf969f5297(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX3b7f21e40e(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd304e6055c(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX023a19aeac(
-        /** Submitted review states to match. */
-        val states: List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc78746c9af(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d? =
-            null,
-    )
-
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1af62c93fd(
-        /** Upstream Automation IDs in the same repository. */
-        @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXfc9ea83c83? =
-            null,
-    )
-
+    val cadence: List<AgentAutomationsListAutomationsResponseItemTriggersIntervalCaX45290db5ca>,
     /**
-     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a
-     * closed, trigger-specific configuration schema.
+     * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly values default to `0` (midnight UTC).
      */
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriggers(
-        val interval: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX07690c38c5? =
-            null,
-        @JacksonJsonProperty("issue_opened")
-        val issueOpened: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX0277499a33? =
-            null,
-        @JacksonJsonProperty("issue_labeled")
-        val issueLabeled:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6ddf1f014a? =
-            null,
-        @JacksonJsonProperty("workflow_run")
-        val workflowRun: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd8a77a48a8? =
-            null,
-        @JacksonJsonProperty("pull_request_opened")
-        val pullRequestOpened:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX82b9184068? =
-            null,
-        @JacksonJsonProperty("pull_request_synchronize")
-        val pullRequestSynchronize:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXec67005fdd? =
-            null,
-        @JacksonJsonProperty("pull_request_merged")
-        val pullRequestMerged:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5dd5ddc50f? =
-            null,
-        @JacksonJsonProperty("issue_comment")
-        val issueComment:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX2772e2f982? =
-            null,
-        @JacksonJsonProperty("pull_request_comment")
-        val pullRequestComment:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX89661b5571? =
-            null,
-        @JacksonJsonProperty("discussion_opened")
-        val discussionOpened:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX2592e17e2b? =
-            null,
-        @JacksonJsonProperty("discussion_updated")
-        val discussionUpdated:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc5cdd55c36? =
-            null,
-        @JacksonJsonProperty("discussion_comment")
-        val discussionComment:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX77d3b846e7? =
-            null,
-        @JacksonJsonProperty("issue_assigned")
-        val issueAssigned:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX980a41581f? =
-            null,
-        @JacksonJsonProperty("pull_request_assigned")
-        val pullRequestAssigned:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXa01aa0eab8? =
-            null,
-        @JacksonJsonProperty("sub_issue_added")
-        val subIssueAdded:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1733f46b3b? =
-            null,
-        @JacksonJsonProperty("pull_request_ready_for_review")
-        val pullRequestReadyForReview:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdf969f5297? =
-            null,
-        @JacksonJsonProperty("pull_request_labeled")
-        val pullRequestLabeled:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX3b7f21e40e? =
-            null,
-        @JacksonJsonProperty("pull_request_merge_conflict")
-        val pullRequestMergeConflict:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd304e6055c? =
-            null,
-        @JacksonJsonProperty("pull_request_review_submitted")
-        val pullRequestReviewSubmitted:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX023a19aeac? =
-            null,
-        @JacksonJsonProperty("pull_request_review_requested")
-        val pullRequestReviewRequested:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc78746c9af? =
-            null,
-        @JacksonJsonProperty("automation_completed")
-        val automationCompleted:
-            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1af62c93fd? =
-            null,
-    )
-
-    /** A summary representation of an automation (used in list responses). */
-    data class AgentAutomationsListRepoAutomationsResponseAutomationsItem(
-        /** The unique identifier of the automation. */
-        val id: String,
-        /** The name of the automation. */
-        val name: String,
-        /** When the automation was created. */
-        @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-        /** When the automation was last updated. */
-        @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-        /** A GitHub user */
-        @JacksonJsonProperty("created_by")
-        val createdBy: AgentAutomationsListRepoAutomationsResponseAutomationsItemCreatedBy,
-        /** Whether the automation is currently enabled. */
-        val enabled: Boolean? = null,
-        /**
-         * Who owns the automation. `user` keeps it private to its creator and its runs act as that
-         * user. `repository` makes it belong to the repository, visible to anyone with read access
-         * to the repository, and its runs act as the Copilot app rather than as a person.
-         */
-        @JacksonJsonProperty("owner_type")
-        val ownerType: AgentAutomationsListRepoAutomationsResponseAutomationsItemOwnerTypeEnum? =
-            null,
-        /**
-         * Controls which repository resources a run may modify. `trigger` limits writes to the
-         * resource that started the run, when one exists, and resources created during the run;
-         * `repository` allows writes to any resource in the repository. Supported values:
-         * `trigger`, `repository`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum? =
-            null,
-        /**
-         * When true, event-triggered runs require the event actor to have repo write permission,
-         * even when the org's allow_read_access_triggers policy is enabled. Does not apply to
-         * interval-scheduled runs, which always run as the automation owner.
-         */
-        @JacksonJsonProperty("require_actor_write_permission")
-        val requireActorWritePermission: Boolean? = null,
-        /**
-         * The model to use for sessions triggered by this automation. Omit to use the platform
-         * default.
-         */
-        val model: String? = null,
-        /**
-         * The reasoning effort to use for sessions triggered by this automation. Omit or leave
-         * empty for no override. Currently supported values: `none`, `low`, `medium`, `high`,
-         * `xhigh`, `max`
-         */
-        @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null,
-        /**
-         * Public trigger configuration keyed by stable public trigger identifier. Each trigger has
-         * a closed, trigger-specific configuration schema.
-         */
-        val triggers: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriggers? = null,
-    )
-
-    /** A page of automations for a repository and the complete filtered result count. */
-    data class AgentAutomationsListRepoAutomationsResponse(
-        /** List of automations in the repository */
-        val automations: List<AgentAutomationsListRepoAutomationsResponseAutomationsItem>,
-        /**
-         * Total count of caller-visible automations matching the supplied filters (across all
-         * pages)
-         */
-        @JacksonJsonProperty("total_count") val totalCount: Int,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersInterval(
-        /** One or more schedules on which the Automation runs. */
-        val cadence: List<AgentAutomationsCreateRepoAutomationTriggersIntervalCadenceItemEnum>,
-        /**
-         * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly
-         * values default to `0` (midnight UTC).
-         */
-        @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
-        /**
-         * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted
-         * weekly values default to Monday (`1`).
-         */
-        @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
-        /**
-         * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default
-         * to `0`. Must be omitted whenever `cadence` includes `hourly`.
-         */
-        @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersIntervalWriteScopeEnum? = null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersIssueOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersIssueOpenedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersIssueLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersIssueLabeledWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersWorkflowRun(
-        /** Workflow names matched against the name in each workflow YAML file. */
-        val workflows: List<String>,
-        /** Workflow conclusions to match. The current trigger supports failure. */
-        val conclusions:
-            List<AgentAutomationsCreateRepoAutomationTriggersWorkflowRunConcluXeeeac095b4>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersWorkflowRunWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestOpenedX51a84fdd33? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestSynchronize(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestSynchrX5e57b3c981? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestMerged(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestMergedX260169b6b8? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersIssueComment(
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersIssueCommentWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestComment(
-        /** Pull request conversation and inline review comment types to match. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsCreateRepoAutomationTriggersPullRequestCommenXc64fd98382>,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestCommenX8a3e2a3be4? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersDiscussionOpened(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdated(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersDiscussionComment(
-        /** Top-level discussion comments and replies to match. Omit to match both. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6>? =
-            null,
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersIssueAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersIssueAssignedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestAssignX4668629182? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersSubIssueAdded(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersSubIssueAddedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestReadyForReview(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestReadyFX0d32f84856? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestLabeleX84f85d65fd? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestMergeConflict(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestMergeCXbbe6724599? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewSubmitted(
-        /** Submitted review states to match. */
-        val states: List<AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewX1b7afbdc47>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewX60e7abb7b4? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewRequested(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewX595ab58ca1? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationTriggersAutomationCompleted(
-        /** Upstream Automation IDs in the same repository. */
-        @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f? =
-            null,
-    )
-
+    @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
     /**
-     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a
-     * closed, trigger-specific configuration schema.
+     * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted weekly values default to Monday (`1`).
      */
-    data class AgentAutomationsCreateRepoAutomationTriggers(
-        val interval: AgentAutomationsCreateRepoAutomationTriggersInterval? = null,
-        @JacksonJsonProperty("issue_opened")
-        val issueOpened: AgentAutomationsCreateRepoAutomationTriggersIssueOpened? = null,
-        @JacksonJsonProperty("issue_labeled")
-        val issueLabeled: AgentAutomationsCreateRepoAutomationTriggersIssueLabeled? = null,
-        @JacksonJsonProperty("workflow_run")
-        val workflowRun: AgentAutomationsCreateRepoAutomationTriggersWorkflowRun? = null,
-        @JacksonJsonProperty("pull_request_opened")
-        val pullRequestOpened: AgentAutomationsCreateRepoAutomationTriggersPullRequestOpened? =
-            null,
-        @JacksonJsonProperty("pull_request_synchronize")
-        val pullRequestSynchronize:
-            AgentAutomationsCreateRepoAutomationTriggersPullRequestSynchronize? =
-            null,
-        @JacksonJsonProperty("pull_request_merged")
-        val pullRequestMerged: AgentAutomationsCreateRepoAutomationTriggersPullRequestMerged? =
-            null,
-        @JacksonJsonProperty("issue_comment")
-        val issueComment: AgentAutomationsCreateRepoAutomationTriggersIssueComment? = null,
-        @JacksonJsonProperty("pull_request_comment")
-        val pullRequestComment: AgentAutomationsCreateRepoAutomationTriggersPullRequestComment? =
-            null,
-        @JacksonJsonProperty("discussion_opened")
-        val discussionOpened: AgentAutomationsCreateRepoAutomationTriggersDiscussionOpened? = null,
-        @JacksonJsonProperty("discussion_updated")
-        val discussionUpdated: AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdated? =
-            null,
-        @JacksonJsonProperty("discussion_comment")
-        val discussionComment: AgentAutomationsCreateRepoAutomationTriggersDiscussionComment? =
-            null,
-        @JacksonJsonProperty("issue_assigned")
-        val issueAssigned: AgentAutomationsCreateRepoAutomationTriggersIssueAssigned? = null,
-        @JacksonJsonProperty("pull_request_assigned")
-        val pullRequestAssigned: AgentAutomationsCreateRepoAutomationTriggersPullRequestAssigned? =
-            null,
-        @JacksonJsonProperty("sub_issue_added")
-        val subIssueAdded: AgentAutomationsCreateRepoAutomationTriggersSubIssueAdded? = null,
-        @JacksonJsonProperty("pull_request_ready_for_review")
-        val pullRequestReadyForReview:
-            AgentAutomationsCreateRepoAutomationTriggersPullRequestReadyForReview? =
-            null,
-        @JacksonJsonProperty("pull_request_labeled")
-        val pullRequestLabeled: AgentAutomationsCreateRepoAutomationTriggersPullRequestLabeled? =
-            null,
-        @JacksonJsonProperty("pull_request_merge_conflict")
-        val pullRequestMergeConflict:
-            AgentAutomationsCreateRepoAutomationTriggersPullRequestMergeConflict? =
-            null,
-        @JacksonJsonProperty("pull_request_review_submitted")
-        val pullRequestReviewSubmitted:
-            AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewSubmitted? =
-            null,
-        @JacksonJsonProperty("pull_request_review_requested")
-        val pullRequestReviewRequested:
-            AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewRequested? =
-            null,
-        @JacksonJsonProperty("automation_completed")
-        val automationCompleted: AgentAutomationsCreateRepoAutomationTriggersAutomationCompleted? =
-            null,
-    )
-
-    /** A GitHub user */
-    data class AgentAutomationsCreateRepoAutomationResponseCreatedBy(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersInterval(
-        /** One or more schedules on which the Automation runs. */
-        val cadence: List<AgentAutomationsCreateRepoAutomationResponseTriggersIntervalCXf741c96122>,
-        /**
-         * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly
-         * values default to `0` (midnight UTC).
-         */
-        @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
-        /**
-         * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted
-         * weekly values default to Monday (`1`).
-         */
-        @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
-        /**
-         * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default
-         * to `0`. Must be omitted whenever `cadence` includes `hourly`.
-         */
-        @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIntervalWX06e1da75d1? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersIssueOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIssueOpenX1550bb487e? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersIssueLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIssueLabeXf6877ae851? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersWorkflowRun(
-        /** Workflow names matched against the name in each workflow YAML file. */
-        val workflows: List<String>,
-        /** Workflow conclusions to match. The current trigger supports failure. */
-        val conclusions:
-            List<AgentAutomationsCreateRepoAutomationResponseTriggersWorkflowRX5a495114a8>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersWorkflowRX29a58f0eb4? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb5bc2f52ba? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX3e2784d1a2(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXf8438fe35d? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestMerged(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX997eaaaf1b? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersIssueComment(
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIssueCommXa27edcdc8c? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestComment(
-        /** Pull request conversation and inline review comment types to match. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX6c5b617e3c>,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX19d67bf3c4? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionOpened(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussioX47e7bd71c3? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionUpdated(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussioXdc3f3ed431? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionComment(
-        /** Top-level discussion comments and replies to match. Omit to match both. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsCreateRepoAutomationResponseTriggersDiscussioX7f7837a5e8>? =
-            null,
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussioX29ef2d6791? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersIssueAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIssueAssiXde2b386878? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX060801a365? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersSubIssueAdded(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersSubIssueAX68cea4cc87? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX02fa4f6dda(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXdcecf35d10? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXd32f2afa62? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb1e696d64a(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX618cb7d735? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXc15b10caca(
-        /** Submitted review states to match. */
-        val states: List<AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX9da4dcf34f>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX0ca1903d3c? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb6aa6bf4cb(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXff1aa2c7a1? =
-            null,
-    )
-
-    data class AgentAutomationsCreateRepoAutomationResponseTriggersAutomationCompleted(
-        /** Upstream Automation IDs in the same repository. */
-        @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersAutomatioXc2f9f98a75? =
-            null,
-    )
-
+    @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
     /**
-     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a
-     * closed, trigger-specific configuration schema.
+     * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default to `0`. Must be omitted whenever `cadence` includes `hourly`.
      */
-    data class AgentAutomationsCreateRepoAutomationResponseTriggers(
-        val interval: AgentAutomationsCreateRepoAutomationResponseTriggersInterval? = null,
-        @JacksonJsonProperty("issue_opened")
-        val issueOpened: AgentAutomationsCreateRepoAutomationResponseTriggersIssueOpened? = null,
-        @JacksonJsonProperty("issue_labeled")
-        val issueLabeled: AgentAutomationsCreateRepoAutomationResponseTriggersIssueLabeled? = null,
-        @JacksonJsonProperty("workflow_run")
-        val workflowRun: AgentAutomationsCreateRepoAutomationResponseTriggersWorkflowRun? = null,
-        @JacksonJsonProperty("pull_request_opened")
-        val pullRequestOpened:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestOpened? =
-            null,
-        @JacksonJsonProperty("pull_request_synchronize")
-        val pullRequestSynchronize:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX3e2784d1a2? =
-            null,
-        @JacksonJsonProperty("pull_request_merged")
-        val pullRequestMerged:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestMerged? =
-            null,
-        @JacksonJsonProperty("issue_comment")
-        val issueComment: AgentAutomationsCreateRepoAutomationResponseTriggersIssueComment? = null,
-        @JacksonJsonProperty("pull_request_comment")
-        val pullRequestComment:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestComment? =
-            null,
-        @JacksonJsonProperty("discussion_opened")
-        val discussionOpened:
-            AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionOpened? =
-            null,
-        @JacksonJsonProperty("discussion_updated")
-        val discussionUpdated:
-            AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionUpdated? =
-            null,
-        @JacksonJsonProperty("discussion_comment")
-        val discussionComment:
-            AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionComment? =
-            null,
-        @JacksonJsonProperty("issue_assigned")
-        val issueAssigned: AgentAutomationsCreateRepoAutomationResponseTriggersIssueAssigned? =
-            null,
-        @JacksonJsonProperty("pull_request_assigned")
-        val pullRequestAssigned:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestAssigned? =
-            null,
-        @JacksonJsonProperty("sub_issue_added")
-        val subIssueAdded: AgentAutomationsCreateRepoAutomationResponseTriggersSubIssueAdded? =
-            null,
-        @JacksonJsonProperty("pull_request_ready_for_review")
-        val pullRequestReadyForReview:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX02fa4f6dda? =
-            null,
-        @JacksonJsonProperty("pull_request_labeled")
-        val pullRequestLabeled:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestLabeled? =
-            null,
-        @JacksonJsonProperty("pull_request_merge_conflict")
-        val pullRequestMergeConflict:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb1e696d64a? =
-            null,
-        @JacksonJsonProperty("pull_request_review_submitted")
-        val pullRequestReviewSubmitted:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXc15b10caca? =
-            null,
-        @JacksonJsonProperty("pull_request_review_requested")
-        val pullRequestReviewRequested:
-            AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb6aa6bf4cb? =
-            null,
-        @JacksonJsonProperty("automation_completed")
-        val automationCompleted:
-            AgentAutomationsCreateRepoAutomationResponseTriggersAutomationCompleted? =
-            null,
-    )
-
-    /** A full representation of an automation including all configuration fields. */
-    data class AgentAutomationsCreateRepoAutomationResponse(
-        /** The unique identifier of the automation. */
-        val id: String,
-        /** The name of the automation. */
-        val name: String,
-        /** The prompt template for the automation. */
-        val prompt: String,
-        /** When the automation was created. */
-        @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-        /** When the automation was last updated. */
-        @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-        /** A GitHub user */
-        @JacksonJsonProperty("created_by")
-        val createdBy: AgentAutomationsCreateRepoAutomationResponseCreatedBy,
-        /** Whether the automation is currently enabled. */
-        val enabled: Boolean? = null,
-        /**
-         * Who owns the automation. `user` keeps it private to its creator and its runs act as that
-         * user. `repository` makes it belong to the repository, visible to anyone with read access
-         * to the repository, and its runs act as the Copilot app rather than as a person.
-         */
-        @JacksonJsonProperty("owner_type")
-        val ownerType: AgentAutomationsCreateRepoAutomationResponseOwnerTypeEnum? = null,
-        /**
-         * Controls which repository resources a run may modify. `trigger` limits writes to the
-         * resource that started the run, when one exists, and resources created during the run;
-         * `repository` allows writes to any resource in the repository. Supported values:
-         * `trigger`, `repository`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsCreateRepoAutomationResponseWriteScopeEnum? = null,
-        /**
-         * When true, event-triggered runs require the event actor to have repo write permission,
-         * even when the org's allow_read_access_triggers policy is enabled. Does not apply to
-         * interval-scheduled runs, which always run as the automation owner.
-         */
-        @JacksonJsonProperty("require_actor_write_permission")
-        val requireActorWritePermission: Boolean? = null,
-        /**
-         * Public trigger configuration keyed by stable public trigger identifier. Each trigger has
-         * a closed, trigger-specific configuration schema.
-         */
-        val triggers: AgentAutomationsCreateRepoAutomationResponseTriggers? = null,
-        /** The tools available to the automation. */
-        val tools: List<String>? = null,
-        /** Custom agents (subagents) this automation is allowed to invoke. */
-        @JacksonJsonProperty("allowed_custom_agents") val allowedCustomAgents: List<String>? = null,
-        /**
-         * The model to use for sessions triggered by this automation. Omit to use the platform
-         * default.
-         */
-        val model: String? = null,
-        /**
-         * The reasoning effort to use for sessions triggered by this automation. Omit or leave
-         * empty for no override. Currently supported values: `none`, `low`, `medium`, `high`,
-         * `xhigh`, `max`
-         */
-        @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null,
-    )
-
-    /** A GitHub user */
-    data class AgentAutomationsGetRepoAutomationResponseCreatedBy(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersInterval(
-        /** One or more schedules on which the Automation runs. */
-        val cadence: List<AgentAutomationsGetRepoAutomationResponseTriggersIntervalCadenceItemEnum>,
-        /**
-         * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly
-         * values default to `0` (midnight UTC).
-         */
-        @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
-        /**
-         * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted
-         * weekly values default to Monday (`1`).
-         */
-        @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
-        /**
-         * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default
-         * to `0`. Must be omitted whenever `cadence` includes `hourly`.
-         */
-        @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIntervalWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersIssueOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIssueOpenedWX9c19723681? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersIssueLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIssueLabeledXc973c58e73? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRun(
-        /** Workflow names matched against the name in each workflow YAML file. */
-        val workflows: List<String>,
-        /** Workflow conclusions to match. The current trigger supports failure. */
-        val conclusions:
-            List<AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRunCXcf6974d55d>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRunWX467b1992ee? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestOXe844e787a3? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestSynchronize(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestSX4891808029? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMerged(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMX00fcce4e7d? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersIssueComment(
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIssueCommentX0c7ecd1ef5? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestComment(
-        /** Pull request conversation and inline review comment types to match. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsGetRepoAutomationResponseTriggersPullRequestCX11b941bdb8>,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestCX7f2bdfd009? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersDiscussionOpened(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionOpXef8999245a? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersDiscussionUpdated(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionUpXd66463ad48? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersDiscussionComment(
-        /** Top-level discussion comments and replies to match. Omit to match both. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsGetRepoAutomationResponseTriggersDiscussionCoX9239564cd0>? =
-            null,
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionCoX1008078cb0? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersIssueAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIssueAssigneX521164fbc0? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestAX9310776f95? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersSubIssueAdded(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersSubIssueAddeXa43cdce846? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRXc82d37bd70(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX4550c94a09? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestLX4e5c4930fc? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMXf8c0418c3c(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMX73f1df90bb? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX980ca56f90(
-        /** Submitted review states to match. */
-        val states: List<AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX92f01bf312>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX7e80612404? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX1fbeb466c8(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRXfb1f22d751? =
-            null,
-    )
-
-    data class AgentAutomationsGetRepoAutomationResponseTriggersAutomationCompleted(
-        /** Upstream Automation IDs in the same repository. */
-        @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersAutomationCoXa672a845a9? =
-            null,
-    )
-
+    @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
     /**
-     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a
-     * closed, trigger-specific configuration schema.
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
      */
-    data class AgentAutomationsGetRepoAutomationResponseTriggers(
-        val interval: AgentAutomationsGetRepoAutomationResponseTriggersInterval? = null,
-        @JacksonJsonProperty("issue_opened")
-        val issueOpened: AgentAutomationsGetRepoAutomationResponseTriggersIssueOpened? = null,
-        @JacksonJsonProperty("issue_labeled")
-        val issueLabeled: AgentAutomationsGetRepoAutomationResponseTriggersIssueLabeled? = null,
-        @JacksonJsonProperty("workflow_run")
-        val workflowRun: AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRun? = null,
-        @JacksonJsonProperty("pull_request_opened")
-        val pullRequestOpened: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestOpened? =
-            null,
-        @JacksonJsonProperty("pull_request_synchronize")
-        val pullRequestSynchronize:
-            AgentAutomationsGetRepoAutomationResponseTriggersPullRequestSynchronize? =
-            null,
-        @JacksonJsonProperty("pull_request_merged")
-        val pullRequestMerged: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMerged? =
-            null,
-        @JacksonJsonProperty("issue_comment")
-        val issueComment: AgentAutomationsGetRepoAutomationResponseTriggersIssueComment? = null,
-        @JacksonJsonProperty("pull_request_comment")
-        val pullRequestComment:
-            AgentAutomationsGetRepoAutomationResponseTriggersPullRequestComment? =
-            null,
-        @JacksonJsonProperty("discussion_opened")
-        val discussionOpened: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionOpened? =
-            null,
-        @JacksonJsonProperty("discussion_updated")
-        val discussionUpdated: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionUpdated? =
-            null,
-        @JacksonJsonProperty("discussion_comment")
-        val discussionComment: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionComment? =
-            null,
-        @JacksonJsonProperty("issue_assigned")
-        val issueAssigned: AgentAutomationsGetRepoAutomationResponseTriggersIssueAssigned? = null,
-        @JacksonJsonProperty("pull_request_assigned")
-        val pullRequestAssigned:
-            AgentAutomationsGetRepoAutomationResponseTriggersPullRequestAssigned? =
-            null,
-        @JacksonJsonProperty("sub_issue_added")
-        val subIssueAdded: AgentAutomationsGetRepoAutomationResponseTriggersSubIssueAdded? = null,
-        @JacksonJsonProperty("pull_request_ready_for_review")
-        val pullRequestReadyForReview:
-            AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRXc82d37bd70? =
-            null,
-        @JacksonJsonProperty("pull_request_labeled")
-        val pullRequestLabeled:
-            AgentAutomationsGetRepoAutomationResponseTriggersPullRequestLabeled? =
-            null,
-        @JacksonJsonProperty("pull_request_merge_conflict")
-        val pullRequestMergeConflict:
-            AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMXf8c0418c3c? =
-            null,
-        @JacksonJsonProperty("pull_request_review_submitted")
-        val pullRequestReviewSubmitted:
-            AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX980ca56f90? =
-            null,
-        @JacksonJsonProperty("pull_request_review_requested")
-        val pullRequestReviewRequested:
-            AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX1fbeb466c8? =
-            null,
-        @JacksonJsonProperty("automation_completed")
-        val automationCompleted:
-            AgentAutomationsGetRepoAutomationResponseTriggersAutomationCompleted? =
-            null,
-    )
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIntervalWrX7331218855? = null
+)
 
-    /** A full representation of an automation including all configuration fields. */
-    data class AgentAutomationsGetRepoAutomationResponse(
-        /** The unique identifier of the automation. */
-        val id: String,
-        /** The name of the automation. */
-        val name: String,
-        /** The prompt template for the automation. */
-        val prompt: String,
-        /** When the automation was created. */
-        @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-        /** When the automation was last updated. */
-        @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-        /** A GitHub user */
-        @JacksonJsonProperty("created_by")
-        val createdBy: AgentAutomationsGetRepoAutomationResponseCreatedBy,
-        /** Whether the automation is currently enabled. */
-        val enabled: Boolean? = null,
-        /**
-         * Who owns the automation. `user` keeps it private to its creator and its runs act as that
-         * user. `repository` makes it belong to the repository, visible to anyone with read access
-         * to the repository, and its runs act as the Copilot app rather than as a person.
-         */
-        @JacksonJsonProperty("owner_type")
-        val ownerType: AgentAutomationsGetRepoAutomationResponseOwnerTypeEnum? = null,
-        /**
-         * Controls which repository resources a run may modify. `trigger` limits writes to the
-         * resource that started the run, when one exists, and resources created during the run;
-         * `repository` allows writes to any resource in the repository. Supported values:
-         * `trigger`, `repository`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsGetRepoAutomationResponseWriteScopeEnum? = null,
-        /**
-         * When true, event-triggered runs require the event actor to have repo write permission,
-         * even when the org's allow_read_access_triggers policy is enabled. Does not apply to
-         * interval-scheduled runs, which always run as the automation owner.
-         */
-        @JacksonJsonProperty("require_actor_write_permission")
-        val requireActorWritePermission: Boolean? = null,
-        /**
-         * Public trigger configuration keyed by stable public trigger identifier. Each trigger has
-         * a closed, trigger-specific configuration schema.
-         */
-        val triggers: AgentAutomationsGetRepoAutomationResponseTriggers? = null,
-        /** The tools available to the automation. */
-        val tools: List<String>? = null,
-        /** Custom agents (subagents) this automation is allowed to invoke. */
-        @JacksonJsonProperty("allowed_custom_agents") val allowedCustomAgents: List<String>? = null,
-        /**
-         * The model to use for sessions triggered by this automation. Omit to use the platform
-         * default.
-         */
-        val model: String? = null,
-        /**
-         * The reasoning effort to use for sessions triggered by this automation. Omit or leave
-         * empty for no override. Currently supported values: `none`, `low`, `medium`, `high`,
-         * `xhigh`, `max`
-         */
-        @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersInterval(
-        /** One or more schedules on which the Automation runs. */
-        val cadence: List<AgentAutomationsEditRepoAutomationTriggersIntervalCadenceItemEnum>,
-        /**
-         * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly
-         * values default to `0` (midnight UTC).
-         */
-        @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
-        /**
-         * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted
-         * weekly values default to Monday (`1`).
-         */
-        @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
-        /**
-         * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default
-         * to `0`. Must be omitted whenever `cadence` includes `hourly`.
-         */
-        @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersIntervalWriteScopeEnum? = null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersIssueOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersIssueOpenedWriteScopeEnum? = null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersIssueLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersIssueLabeledWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersWorkflowRun(
-        /** Workflow names matched against the name in each workflow YAML file. */
-        val workflows: List<String>,
-        /** Workflow conclusions to match. The current trigger supports failure. */
-        val conclusions:
-            List<AgentAutomationsEditRepoAutomationTriggersWorkflowRunConclusionsItemEnum>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersWorkflowRunWriteScopeEnum? = null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestOpenedWrX573c6e10dd? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestSynchronize(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestSynchronXba2fe205ce? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestMerged(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestMergedWrXef7263a39e? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersIssueComment(
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersIssueCommentWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestComment(
-        /** Pull request conversation and inline review comment types to match. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsEditRepoAutomationTriggersPullRequestCommentCX7a04d264c2>,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestCommentWXa0ac9be8f4? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersDiscussionOpened(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersDiscussionOpenedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersDiscussionUpdated(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersDiscussionUpdatedWrX939f06617a? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersDiscussionComment(
-        /** Top-level discussion comments and replies to match. Omit to match both. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsEditRepoAutomationTriggersDiscussionCommentCoX3284347f2c>? =
-            null,
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersDiscussionCommentWrX87a8a1a5d5? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersIssueAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersIssueAssignedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestAssignedX73bcbe4952? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersSubIssueAdded(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersSubIssueAddedWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestReadyForReview(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestReadyForXdf38b54495? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestLabeledWX6edf0019b4? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestMergeConflict(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestMergeConX9e79d13619? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestReviewSubmitted(
-        /** Submitted review states to match. */
-        val states: List<AgentAutomationsEditRepoAutomationTriggersPullRequestReviewSuXfe686d1407>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestReviewSuXb3a6805efc? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersPullRequestReviewRequested(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestReviewReX1c98774b43? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationTriggersAutomationCompleted(
-        /** Upstream Automation IDs in the same repository. */
-        @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationTriggersAutomationCompletedXd9f23294d7? =
-            null,
-    )
-
+data class AgentAutomationsListAutomationsResponseItemTriggersIssueOpened(
     /**
-     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a
-     * closed, trigger-specific configuration schema.
+     * A GitHub issue or pull request search query.
      */
-    data class AgentAutomationsEditRepoAutomationTriggers(
-        val interval: AgentAutomationsEditRepoAutomationTriggersInterval? = null,
-        @JacksonJsonProperty("issue_opened")
-        val issueOpened: AgentAutomationsEditRepoAutomationTriggersIssueOpened? = null,
-        @JacksonJsonProperty("issue_labeled")
-        val issueLabeled: AgentAutomationsEditRepoAutomationTriggersIssueLabeled? = null,
-        @JacksonJsonProperty("workflow_run")
-        val workflowRun: AgentAutomationsEditRepoAutomationTriggersWorkflowRun? = null,
-        @JacksonJsonProperty("pull_request_opened")
-        val pullRequestOpened: AgentAutomationsEditRepoAutomationTriggersPullRequestOpened? = null,
-        @JacksonJsonProperty("pull_request_synchronize")
-        val pullRequestSynchronize:
-            AgentAutomationsEditRepoAutomationTriggersPullRequestSynchronize? =
-            null,
-        @JacksonJsonProperty("pull_request_merged")
-        val pullRequestMerged: AgentAutomationsEditRepoAutomationTriggersPullRequestMerged? = null,
-        @JacksonJsonProperty("issue_comment")
-        val issueComment: AgentAutomationsEditRepoAutomationTriggersIssueComment? = null,
-        @JacksonJsonProperty("pull_request_comment")
-        val pullRequestComment: AgentAutomationsEditRepoAutomationTriggersPullRequestComment? =
-            null,
-        @JacksonJsonProperty("discussion_opened")
-        val discussionOpened: AgentAutomationsEditRepoAutomationTriggersDiscussionOpened? = null,
-        @JacksonJsonProperty("discussion_updated")
-        val discussionUpdated: AgentAutomationsEditRepoAutomationTriggersDiscussionUpdated? = null,
-        @JacksonJsonProperty("discussion_comment")
-        val discussionComment: AgentAutomationsEditRepoAutomationTriggersDiscussionComment? = null,
-        @JacksonJsonProperty("issue_assigned")
-        val issueAssigned: AgentAutomationsEditRepoAutomationTriggersIssueAssigned? = null,
-        @JacksonJsonProperty("pull_request_assigned")
-        val pullRequestAssigned: AgentAutomationsEditRepoAutomationTriggersPullRequestAssigned? =
-            null,
-        @JacksonJsonProperty("sub_issue_added")
-        val subIssueAdded: AgentAutomationsEditRepoAutomationTriggersSubIssueAdded? = null,
-        @JacksonJsonProperty("pull_request_ready_for_review")
-        val pullRequestReadyForReview:
-            AgentAutomationsEditRepoAutomationTriggersPullRequestReadyForReview? =
-            null,
-        @JacksonJsonProperty("pull_request_labeled")
-        val pullRequestLabeled: AgentAutomationsEditRepoAutomationTriggersPullRequestLabeled? =
-            null,
-        @JacksonJsonProperty("pull_request_merge_conflict")
-        val pullRequestMergeConflict:
-            AgentAutomationsEditRepoAutomationTriggersPullRequestMergeConflict? =
-            null,
-        @JacksonJsonProperty("pull_request_review_submitted")
-        val pullRequestReviewSubmitted:
-            AgentAutomationsEditRepoAutomationTriggersPullRequestReviewSubmitted? =
-            null,
-        @JacksonJsonProperty("pull_request_review_requested")
-        val pullRequestReviewRequested:
-            AgentAutomationsEditRepoAutomationTriggersPullRequestReviewRequested? =
-            null,
-        @JacksonJsonProperty("automation_completed")
-        val automationCompleted: AgentAutomationsEditRepoAutomationTriggersAutomationCompleted? =
-            null,
-    )
-
-    /** A GitHub user */
-    data class AgentAutomationsEditRepoAutomationResponseCreatedBy(
-        /** The unique identifier of the user */
-        val id: Long? = null
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersInterval(
-        /** One or more schedules on which the Automation runs. */
-        val cadence: List<AgentAutomationsEditRepoAutomationResponseTriggersIntervalCadX7dd9e5a97d>,
-        /**
-         * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly
-         * values default to `0` (midnight UTC).
-         */
-        @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
-        /**
-         * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted
-         * weekly values default to Monday (`1`).
-         */
-        @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
-        /**
-         * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default
-         * to `0`. Must be omitted whenever `cadence` includes `hourly`.
-         */
-        @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIntervalWriteScopeEnum? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersIssueOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIssueOpenedX790251247b? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersIssueLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIssueLabeleX52db871ec1? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersWorkflowRun(
-        /** Workflow names matched against the name in each workflow YAML file. */
-        val workflows: List<String>,
-        /** Workflow conclusions to match. The current trigger supports failure. */
-        val conclusions:
-            List<AgentAutomationsEditRepoAutomationResponseTriggersWorkflowRunXd8a777fd98>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersWorkflowRunX9a636220a8? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestOpened(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXad161e13c6? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestSynchronize(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX429d87c57d? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestMerged(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX6eddf87a03? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersIssueComment(
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIssueCommenX9e992feaa5? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestComment(
-        /** Pull request conversation and inline review comment types to match. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX023aac0e55>,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXb6976e3898? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersDiscussionOpened(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionOXd447bc3968? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersDiscussionUpdated(
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionUX1e5c113ed9? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersDiscussionComment(
-        /** Top-level discussion comments and replies to match. Omit to match both. */
-        @JacksonJsonProperty("comment_types")
-        val commentTypes:
-            List<AgentAutomationsEditRepoAutomationResponseTriggersDiscussionCX1c784accc7>? =
-            null,
-        /** Discussion category names matched case-insensitively. */
-        val categories: List<String>? = null,
-        /** A case-insensitive substring matched against the event body. */
-        @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionCX08404367ca? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersIssueAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIssueAssignXc2768e9b57? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestAssigned(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /** Affected assignee logins matched case-insensitively. */
-        val assignees: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX54a0bda8eb? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersSubIssueAdded(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersSubIssueAddX4e81dd201f? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX4156db4999(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX10f26747e7? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestLabeled(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Label names matched case-insensitively against the label added by the event. Omit or use
-         * an empty array to match every added label.
-         */
-        val labels: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXd767130045? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXd08319626a(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX2f1f1a04af? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX39dee95b20(
-        /** Submitted review states to match. */
-        val states: List<AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX7679326dc0>,
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX311a204cac? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX7abf772e14(
-        /** A GitHub issue or pull request search query. */
-        val query: String? = null,
-        /** Gitignore-style changed-file path globs. */
-        val paths: List<String>? = null,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX2cadd3c8ea? =
-            null,
-    )
-
-    data class AgentAutomationsEditRepoAutomationResponseTriggersAutomationCompleted(
-        /** Upstream Automation IDs in the same repository. */
-        @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
-        /**
-         * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
-         * automation's `write_scope` is used. Organization or repository policy may restrict the
-         * effective scope to `trigger`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersAutomationCX84bf0ba329? =
-            null,
-    )
-
+    val query: String? = null,
     /**
-     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a
-     * closed, trigger-specific configuration schema.
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
      */
-    data class AgentAutomationsEditRepoAutomationResponseTriggers(
-        val interval: AgentAutomationsEditRepoAutomationResponseTriggersInterval? = null,
-        @JacksonJsonProperty("issue_opened")
-        val issueOpened: AgentAutomationsEditRepoAutomationResponseTriggersIssueOpened? = null,
-        @JacksonJsonProperty("issue_labeled")
-        val issueLabeled: AgentAutomationsEditRepoAutomationResponseTriggersIssueLabeled? = null,
-        @JacksonJsonProperty("workflow_run")
-        val workflowRun: AgentAutomationsEditRepoAutomationResponseTriggersWorkflowRun? = null,
-        @JacksonJsonProperty("pull_request_opened")
-        val pullRequestOpened:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestOpened? =
-            null,
-        @JacksonJsonProperty("pull_request_synchronize")
-        val pullRequestSynchronize:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestSynchronize? =
-            null,
-        @JacksonJsonProperty("pull_request_merged")
-        val pullRequestMerged:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestMerged? =
-            null,
-        @JacksonJsonProperty("issue_comment")
-        val issueComment: AgentAutomationsEditRepoAutomationResponseTriggersIssueComment? = null,
-        @JacksonJsonProperty("pull_request_comment")
-        val pullRequestComment:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestComment? =
-            null,
-        @JacksonJsonProperty("discussion_opened")
-        val discussionOpened: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionOpened? =
-            null,
-        @JacksonJsonProperty("discussion_updated")
-        val discussionUpdated:
-            AgentAutomationsEditRepoAutomationResponseTriggersDiscussionUpdated? =
-            null,
-        @JacksonJsonProperty("discussion_comment")
-        val discussionComment:
-            AgentAutomationsEditRepoAutomationResponseTriggersDiscussionComment? =
-            null,
-        @JacksonJsonProperty("issue_assigned")
-        val issueAssigned: AgentAutomationsEditRepoAutomationResponseTriggersIssueAssigned? = null,
-        @JacksonJsonProperty("pull_request_assigned")
-        val pullRequestAssigned:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestAssigned? =
-            null,
-        @JacksonJsonProperty("sub_issue_added")
-        val subIssueAdded: AgentAutomationsEditRepoAutomationResponseTriggersSubIssueAdded? = null,
-        @JacksonJsonProperty("pull_request_ready_for_review")
-        val pullRequestReadyForReview:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX4156db4999? =
-            null,
-        @JacksonJsonProperty("pull_request_labeled")
-        val pullRequestLabeled:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestLabeled? =
-            null,
-        @JacksonJsonProperty("pull_request_merge_conflict")
-        val pullRequestMergeConflict:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXd08319626a? =
-            null,
-        @JacksonJsonProperty("pull_request_review_submitted")
-        val pullRequestReviewSubmitted:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX39dee95b20? =
-            null,
-        @JacksonJsonProperty("pull_request_review_requested")
-        val pullRequestReviewRequested:
-            AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX7abf772e14? =
-            null,
-        @JacksonJsonProperty("automation_completed")
-        val automationCompleted:
-            AgentAutomationsEditRepoAutomationResponseTriggersAutomationCompleted? =
-            null,
-    )
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIssueOpeneX5176234b7a? = null
+)
 
-    /** A full representation of an automation including all configuration fields. */
-    data class AgentAutomationsEditRepoAutomationResponse(
-        /** The unique identifier of the automation. */
-        val id: String,
-        /** The name of the automation. */
-        val name: String,
-        /** The prompt template for the automation. */
-        val prompt: String,
-        /** When the automation was created. */
-        @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-        /** When the automation was last updated. */
-        @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-        /** A GitHub user */
-        @JacksonJsonProperty("created_by")
-        val createdBy: AgentAutomationsEditRepoAutomationResponseCreatedBy,
-        /** Whether the automation is currently enabled. */
-        val enabled: Boolean? = null,
-        /**
-         * Who owns the automation. `user` keeps it private to its creator and its runs act as that
-         * user. `repository` makes it belong to the repository, visible to anyone with read access
-         * to the repository, and its runs act as the Copilot app rather than as a person.
-         */
-        @JacksonJsonProperty("owner_type")
-        val ownerType: AgentAutomationsEditRepoAutomationResponseOwnerTypeEnum? = null,
-        /**
-         * Controls which repository resources a run may modify. `trigger` limits writes to the
-         * resource that started the run, when one exists, and resources created during the run;
-         * `repository` allows writes to any resource in the repository. Supported values:
-         * `trigger`, `repository`.
-         */
-        @JacksonJsonProperty("write_scope")
-        val writeScope: AgentAutomationsEditRepoAutomationResponseWriteScopeEnum? = null,
-        /**
-         * When true, event-triggered runs require the event actor to have repo write permission,
-         * even when the org's allow_read_access_triggers policy is enabled. Does not apply to
-         * interval-scheduled runs, which always run as the automation owner.
-         */
-        @JacksonJsonProperty("require_actor_write_permission")
-        val requireActorWritePermission: Boolean? = null,
-        /**
-         * Public trigger configuration keyed by stable public trigger identifier. Each trigger has
-         * a closed, trigger-specific configuration schema.
-         */
-        val triggers: AgentAutomationsEditRepoAutomationResponseTriggers? = null,
-        /** The tools available to the automation. */
-        val tools: List<String>? = null,
-        /** Custom agents (subagents) this automation is allowed to invoke. */
-        @JacksonJsonProperty("allowed_custom_agents") val allowedCustomAgents: List<String>? = null,
-        /**
-         * The model to use for sessions triggered by this automation. Omit to use the platform
-         * default.
-         */
-        val model: String? = null,
-        /**
-         * The reasoning effort to use for sessions triggered by this automation. Omit or leave
-         * empty for no override. Currently supported values: `none`, `low`, `medium`, `high`,
-         * `xhigh`, `max`
-         */
-        @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null,
-    )
+data class AgentAutomationsListAutomationsResponseItemTriggersIssueLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIssueLabelX1f74befc21? = null
+)
+
+
+
+
+
+data class AgentAutomationsListAutomationsResponseItemTriggersWorkflowRun(
+    /**
+     * Workflow names matched against the name in each workflow YAML file.
+     */
+    val workflows: List<String>,
+    /**
+     * Workflow conclusions to match. The current trigger supports failure.
+     */
+    val conclusions: List<AgentAutomationsListAutomationsResponseItemTriggersWorkflowRuXc1ac5c2d03>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersWorkflowRuX14df3d2f07? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX3192011c4c? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesXa631abce67(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX93c516252d? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestMerged(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX6e29c9068b? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersIssueComment(
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIssueCommeXb28cd434fc? = null
+)
+
+
+
+
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestComment(
+    /**
+     * Pull request conversation and inline review comment types to match.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsListAutomationsResponseItemTriggersPullRequesXc6b5baa666>,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXa9c0081cac? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersDiscussionOpened(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersDiscussionXe83d58f013? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersDiscussionUpdated(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersDiscussionXd06c065c24? = null
+)
+
+
+
+
+
+data class AgentAutomationsListAutomationsResponseItemTriggersDiscussionComment(
+    /**
+     * Top-level discussion comments and replies to match. Omit to match both.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsListAutomationsResponseItemTriggersDiscussionXd502854dff>? = null,
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersDiscussionX7ba1b72865? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersIssueAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersIssueAssigX9ce1640da5? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXa7841e30e7? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersSubIssueAdded(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersSubIssueAdXdc38a5e435? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesX5103d45795(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXd9ed522e93? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequestLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX2493898e19? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesX3b3ef8f305(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX8d3c579a1b? = null
+)
+
+
+
+
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesXae2b59baa6(
+    /**
+     * Submitted review states to match.
+     */
+    val states: List<AgentAutomationsListAutomationsResponseItemTriggersPullRequesX40c9c9d3ad>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXb1c9e0b06c? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersPullRequesX7056dbca7f(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX77e1cbabb8? = null
+)
+
+data class AgentAutomationsListAutomationsResponseItemTriggersAutomationCompleted(
+    /**
+     * Upstream Automation IDs in the same repository.
+     */
+    @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemTriggersAutomationX8e09a9a7a2? = null
+)
+
+/**
+ * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+ */
+data class AgentAutomationsListAutomationsResponseItemTriggers(
+    val interval: AgentAutomationsListAutomationsResponseItemTriggersInterval? = null,
+    @JacksonJsonProperty("issue_opened") val issueOpened: AgentAutomationsListAutomationsResponseItemTriggersIssueOpened? = null,
+    @JacksonJsonProperty("issue_labeled") val issueLabeled: AgentAutomationsListAutomationsResponseItemTriggersIssueLabeled? = null,
+    @JacksonJsonProperty("workflow_run") val workflowRun: AgentAutomationsListAutomationsResponseItemTriggersWorkflowRun? = null,
+    @JacksonJsonProperty("pull_request_opened") val pullRequestOpened: AgentAutomationsListAutomationsResponseItemTriggersPullRequestOpened? = null,
+    @JacksonJsonProperty("pull_request_synchronize") val pullRequestSynchronize: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXa631abce67? = null,
+    @JacksonJsonProperty("pull_request_merged") val pullRequestMerged: AgentAutomationsListAutomationsResponseItemTriggersPullRequestMerged? = null,
+    @JacksonJsonProperty("issue_comment") val issueComment: AgentAutomationsListAutomationsResponseItemTriggersIssueComment? = null,
+    @JacksonJsonProperty("pull_request_comment") val pullRequestComment: AgentAutomationsListAutomationsResponseItemTriggersPullRequestComment? = null,
+    @JacksonJsonProperty("discussion_opened") val discussionOpened: AgentAutomationsListAutomationsResponseItemTriggersDiscussionOpened? = null,
+    @JacksonJsonProperty("discussion_updated") val discussionUpdated: AgentAutomationsListAutomationsResponseItemTriggersDiscussionUpdated? = null,
+    @JacksonJsonProperty("discussion_comment") val discussionComment: AgentAutomationsListAutomationsResponseItemTriggersDiscussionComment? = null,
+    @JacksonJsonProperty("issue_assigned") val issueAssigned: AgentAutomationsListAutomationsResponseItemTriggersIssueAssigned? = null,
+    @JacksonJsonProperty("pull_request_assigned") val pullRequestAssigned: AgentAutomationsListAutomationsResponseItemTriggersPullRequestAssigned? = null,
+    @JacksonJsonProperty("sub_issue_added") val subIssueAdded: AgentAutomationsListAutomationsResponseItemTriggersSubIssueAdded? = null,
+    @JacksonJsonProperty("pull_request_ready_for_review") val pullRequestReadyForReview: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX5103d45795? = null,
+    @JacksonJsonProperty("pull_request_labeled") val pullRequestLabeled: AgentAutomationsListAutomationsResponseItemTriggersPullRequestLabeled? = null,
+    @JacksonJsonProperty("pull_request_merge_conflict") val pullRequestMergeConflict: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX3b3ef8f305? = null,
+    @JacksonJsonProperty("pull_request_review_submitted") val pullRequestReviewSubmitted: AgentAutomationsListAutomationsResponseItemTriggersPullRequesXae2b59baa6? = null,
+    @JacksonJsonProperty("pull_request_review_requested") val pullRequestReviewRequested: AgentAutomationsListAutomationsResponseItemTriggersPullRequesX7056dbca7f? = null,
+    @JacksonJsonProperty("automation_completed") val automationCompleted: AgentAutomationsListAutomationsResponseItemTriggersAutomationCompleted? = null
+)
+
+/**
+ * A summary representation of an automation including repository identity (used in cross-repository list responses).
+ */
+data class AgentAutomationsListAutomationsResponseItem(
+    /**
+     * The unique identifier of the automation.
+     */
+    val id: String,
+    /**
+     * Repository identity for an automation in cross-repository list responses.
+     */
+    val repository: AgentAutomationsListAutomationsResponseItemRepository,
+    /**
+     * The name of the automation.
+     */
+    val name: String,
+    /**
+     * When the automation was created.
+     */
+    @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * When the automation was last updated.
+     */
+    @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * A GitHub user
+     */
+    @JacksonJsonProperty("created_by") val createdBy: AgentAutomationsListAutomationsResponseItemCreatedBy,
+    /**
+     * Whether the automation is currently enabled.
+     */
+    val enabled: Boolean? = null,
+    /**
+     * Who owns the automation. `user` keeps it private to its creator and its runs act as that user. `repository` makes it belong to the repository, visible to anyone with read access to the repository, and its runs act as the Copilot app rather than as a person.
+     */
+    @JacksonJsonProperty("owner_type") val ownerType: AgentAutomationsListAutomationsResponseItemOwnerTypeEnum? = null,
+    /**
+     * Controls which repository resources a run may modify. `trigger` limits writes to the resource that started the run, when one exists, and resources created during the run; `repository` allows writes to any resource in the repository. Supported values: `trigger`, `repository`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListAutomationsResponseItemWriteScopeEnum? = null,
+    /**
+     * When true, event-triggered runs require the event actor to have repo write permission, even when the org's allow_read_access_triggers policy is enabled. Does not apply to interval-scheduled runs, which always run as the automation owner.
+     */
+    @JacksonJsonProperty("require_actor_write_permission") val requireActorWritePermission: Boolean? = null,
+    /**
+     * The model to use for sessions triggered by this automation. Omit to use the platform default.
+     */
+    val model: String? = null,
+    /**
+     * The reasoning effort to use for sessions triggered by this automation. Omit or leave empty for no override. Currently supported values: `none`, `low`, `medium`, `high`, `xhigh`, `max`
+     */
+    @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null,
+    /**
+     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+     */
+    val triggers: AgentAutomationsListAutomationsResponseItemTriggers? = null
+)
+
+/**
+ * A tool that can be selected in an Automation.
+ */
+data class AgentAutomationsListAvailableAutomationToolsResponseItemToolsItem(
+    /**
+     * The exact tool identifier accepted by Automation create and edit requests. The catalog is authoritative and open-ended; clients must accept identifiers they have not seen before.
+     */
+    val id: String,
+    /**
+     * The human-readable tool title.
+     */
+    val title: String,
+    /**
+     * A short description of what the tool does.
+     */
+    val description: String,
+    /**
+     * The tool's behavior level. `read` tools only retrieve data. `write` tools can change data. This describes tool behavior, not a specific GitHub token permission.
+     */
+    val scope: AgentAutomationsListAvailableAutomationToolsResponseItemToolsX6d2d5b3b6b? = null
+)
+
+/**
+ * A CMC-controlled presentation category for Automation tools. Clients must not depend on group identifiers, membership, or ordering remaining stable.
+ */
+data class AgentAutomationsListAvailableAutomationToolsResponseItem(
+    /**
+     * A presentation-category identifier controlled by CMC.
+     */
+    val id: String,
+    /**
+     * The human-readable group title.
+     */
+    val title: String,
+    /**
+     * The tools currently presented in this group.
+     */
+    val tools: List<AgentAutomationsListAvailableAutomationToolsResponseItemToolsItem>
+)
+
+/**
+ * A configurable field in a public Automation trigger definition.
+ */
+data class AgentAutomationsListAvailableAutomationTriggersResponseItemFieldsItem(
+    /**
+     * The stable field identifier used in configured triggers.
+     */
+    val id: String,
+    /**
+     * The human-readable field label.
+     */
+    val label: String,
+    /**
+     * Whether the field must be provided.
+     */
+    val required: Boolean,
+    /**
+     * A restricted JSON Schema fragment describing the field value accepted by Automation create and update requests.
+     */
+    val schema: AgentAutomationsListAvailableAutomationTriggersResponseItemFiX8d60f6fda7,
+    /**
+     * Markdown guidance for configuring the field.
+     */
+    val description: String? = null
+)
+
+/**
+ * A public Automation trigger and its configurable fields.
+ */
+data class AgentAutomationsListAvailableAutomationTriggersResponseItem(
+    /**
+     * The stable public trigger identifier.
+     */
+    val id: String,
+    /**
+     * The human-readable trigger title.
+     */
+    val title: String,
+    /**
+     * A short description of when the trigger fires.
+     */
+    val description: String,
+    /**
+     * The trigger-specific public configuration fields.
+     */
+    val fields: List<AgentAutomationsListAvailableAutomationTriggersResponseItemFieldsItem>,
+    /**
+     * Whether this trigger supports event-specific Run now simulation. Omit to indicate support.
+     */
+    @JacksonJsonProperty("supports_run_now") val supportsRunNow: Boolean? = null
+)
+
+/**
+ * Repository identity for an automation in cross-repository list responses.
+ */
+data class AgentAutomationsGetAutomationResponseRepository(
+    /**
+     * The unique identifier of the repository.
+     */
+    val id: Long,
+    /**
+     * The repository owner login.
+     */
+    val owner: String,
+    /**
+     * The repository name.
+     */
+    val name: String
+)
+
+/**
+ * A GitHub user
+ */
+data class AgentAutomationsGetAutomationResponseCreatedBy(
+    /**
+     * The unique identifier of the user
+     */
+    val id: Long? = null
+)
+
+
+
+
+
+
+
+
+
+data class AgentAutomationsGetAutomationResponseTriggersInterval(
+    /**
+     * One or more schedules on which the Automation runs.
+     */
+    val cadence: List<AgentAutomationsGetAutomationResponseTriggersIntervalCadenceItemEnum>,
+    /**
+     * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly values default to `0` (midnight UTC).
+     */
+    @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
+    /**
+     * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted weekly values default to Monday (`1`).
+     */
+    @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
+    /**
+     * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default to `0`. Must be omitted whenever `cadence` includes `hourly`.
+     */
+    @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersIntervalWriteScopeEnum? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersIssueOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersIssueOpenedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersIssueLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersIssueLabeledWriteScopeEnum? = null
+)
+
+
+
+
+
+data class AgentAutomationsGetAutomationResponseTriggersWorkflowRun(
+    /**
+     * Workflow names matched against the name in each workflow YAML file.
+     */
+    val workflows: List<String>,
+    /**
+     * Workflow conclusions to match. The current trigger supports failure.
+     */
+    val conclusions: List<AgentAutomationsGetAutomationResponseTriggersWorkflowRunConclX46fc525a6d>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersWorkflowRunWriteScopeEnum? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestOpeneX1fe8521857? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestSynchronize(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestSynchXacaeaf3795? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestMerged(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestMergeXa4f4b488d0? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersIssueComment(
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersIssueCommentWriteScopeEnum? = null
+)
+
+
+
+
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestComment(
+    /**
+     * Pull request conversation and inline review comment types to match.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsGetAutomationResponseTriggersPullRequestCommeXe068ceff0e>,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestCommeX0d0635d570? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersDiscussionOpened(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersDiscussionOpenedX730d2aa718? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersDiscussionUpdated(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersDiscussionUpdateX60130ca979? = null
+)
+
+
+
+
+
+data class AgentAutomationsGetAutomationResponseTriggersDiscussionComment(
+    /**
+     * Top-level discussion comments and replies to match. Omit to match both.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsGetAutomationResponseTriggersDiscussionCommenX1691f75f8c>? = null,
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersDiscussionCommenX7f571cce64? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersIssueAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersIssueAssignedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestAssigXd41df126ff? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersSubIssueAdded(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersSubIssueAddedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestReadyForReview(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestReadyX9f55fe0ae4? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestLabelXf1ec3309dd? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestMergeConflict(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestMergeX400c10ba89? = null
+)
+
+
+
+
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestReviewSubmitted(
+    /**
+     * Submitted review states to match.
+     */
+    val states: List<AgentAutomationsGetAutomationResponseTriggersPullRequestRevieXeede3b708e>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestRevieXce07aa4687? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersPullRequestReviewRequested(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersPullRequestRevieXc997d2863f? = null
+)
+
+data class AgentAutomationsGetAutomationResponseTriggersAutomationCompleted(
+    /**
+     * Upstream Automation IDs in the same repository.
+     */
+    @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseTriggersAutomationCompleXb2c2bfec48? = null
+)
+
+/**
+ * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+ */
+data class AgentAutomationsGetAutomationResponseTriggers(
+    val interval: AgentAutomationsGetAutomationResponseTriggersInterval? = null,
+    @JacksonJsonProperty("issue_opened") val issueOpened: AgentAutomationsGetAutomationResponseTriggersIssueOpened? = null,
+    @JacksonJsonProperty("issue_labeled") val issueLabeled: AgentAutomationsGetAutomationResponseTriggersIssueLabeled? = null,
+    @JacksonJsonProperty("workflow_run") val workflowRun: AgentAutomationsGetAutomationResponseTriggersWorkflowRun? = null,
+    @JacksonJsonProperty("pull_request_opened") val pullRequestOpened: AgentAutomationsGetAutomationResponseTriggersPullRequestOpened? = null,
+    @JacksonJsonProperty("pull_request_synchronize") val pullRequestSynchronize: AgentAutomationsGetAutomationResponseTriggersPullRequestSynchronize? = null,
+    @JacksonJsonProperty("pull_request_merged") val pullRequestMerged: AgentAutomationsGetAutomationResponseTriggersPullRequestMerged? = null,
+    @JacksonJsonProperty("issue_comment") val issueComment: AgentAutomationsGetAutomationResponseTriggersIssueComment? = null,
+    @JacksonJsonProperty("pull_request_comment") val pullRequestComment: AgentAutomationsGetAutomationResponseTriggersPullRequestComment? = null,
+    @JacksonJsonProperty("discussion_opened") val discussionOpened: AgentAutomationsGetAutomationResponseTriggersDiscussionOpened? = null,
+    @JacksonJsonProperty("discussion_updated") val discussionUpdated: AgentAutomationsGetAutomationResponseTriggersDiscussionUpdated? = null,
+    @JacksonJsonProperty("discussion_comment") val discussionComment: AgentAutomationsGetAutomationResponseTriggersDiscussionComment? = null,
+    @JacksonJsonProperty("issue_assigned") val issueAssigned: AgentAutomationsGetAutomationResponseTriggersIssueAssigned? = null,
+    @JacksonJsonProperty("pull_request_assigned") val pullRequestAssigned: AgentAutomationsGetAutomationResponseTriggersPullRequestAssigned? = null,
+    @JacksonJsonProperty("sub_issue_added") val subIssueAdded: AgentAutomationsGetAutomationResponseTriggersSubIssueAdded? = null,
+    @JacksonJsonProperty("pull_request_ready_for_review") val pullRequestReadyForReview: AgentAutomationsGetAutomationResponseTriggersPullRequestReadyForReview? = null,
+    @JacksonJsonProperty("pull_request_labeled") val pullRequestLabeled: AgentAutomationsGetAutomationResponseTriggersPullRequestLabeled? = null,
+    @JacksonJsonProperty("pull_request_merge_conflict") val pullRequestMergeConflict: AgentAutomationsGetAutomationResponseTriggersPullRequestMergeConflict? = null,
+    @JacksonJsonProperty("pull_request_review_submitted") val pullRequestReviewSubmitted: AgentAutomationsGetAutomationResponseTriggersPullRequestReviewSubmitted? = null,
+    @JacksonJsonProperty("pull_request_review_requested") val pullRequestReviewRequested: AgentAutomationsGetAutomationResponseTriggersPullRequestReviewRequested? = null,
+    @JacksonJsonProperty("automation_completed") val automationCompleted: AgentAutomationsGetAutomationResponseTriggersAutomationCompleted? = null
+)
+
+/**
+ * A full representation of an automation including all configuration fields and repository identity (used in cross-repository get responses).
+ */
+data class AgentAutomationsGetAutomationResponse(
+    /**
+     * The unique identifier of the automation.
+     */
+    val id: String,
+    /**
+     * Repository identity for an automation in cross-repository list responses.
+     */
+    val repository: AgentAutomationsGetAutomationResponseRepository,
+    /**
+     * The name of the automation.
+     */
+    val name: String,
+    /**
+     * The prompt template for the automation.
+     */
+    val prompt: String,
+    /**
+     * When the automation was created.
+     */
+    @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * When the automation was last updated.
+     */
+    @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * A GitHub user
+     */
+    @JacksonJsonProperty("created_by") val createdBy: AgentAutomationsGetAutomationResponseCreatedBy,
+    /**
+     * Whether the automation is currently enabled.
+     */
+    val enabled: Boolean? = null,
+    /**
+     * Who owns the automation. `user` keeps it private to its creator and its runs act as that user. `repository` makes it belong to the repository, visible to anyone with read access to the repository, and its runs act as the Copilot app rather than as a person.
+     */
+    @JacksonJsonProperty("owner_type") val ownerType: AgentAutomationsGetAutomationResponseOwnerTypeEnum? = null,
+    /**
+     * Controls which repository resources a run may modify. `trigger` limits writes to the resource that started the run, when one exists, and resources created during the run; `repository` allows writes to any resource in the repository. Supported values: `trigger`, `repository`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetAutomationResponseWriteScopeEnum? = null,
+    /**
+     * When true, event-triggered runs require the event actor to have repo write permission, even when the org's allow_read_access_triggers policy is enabled. Does not apply to interval-scheduled runs, which always run as the automation owner.
+     */
+    @JacksonJsonProperty("require_actor_write_permission") val requireActorWritePermission: Boolean? = null,
+    /**
+     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+     */
+    val triggers: AgentAutomationsGetAutomationResponseTriggers? = null,
+    /**
+     * The tools available to the automation.
+     */
+    val tools: List<String>? = null,
+    /**
+     * Custom agents (subagents) this automation is allowed to invoke.
+     */
+    @JacksonJsonProperty("allowed_custom_agents") val allowedCustomAgents: List<String>? = null,
+    /**
+     * The model to use for sessions triggered by this automation. Omit to use the platform default.
+     */
+    val model: String? = null,
+    /**
+     * The reasoning effort to use for sessions triggered by this automation. Omit or leave empty for no override. Currently supported values: `none`, `low`, `medium`, `high`, `xhigh`, `max`
+     */
+    @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null
+)
+
+
+
+/**
+ * The entity who created this task
+ */
+data class AgentAutomationsListAutomationTasksResponseTasksItemCreator(
+    /**
+     * The unique identifier of the user
+     */
+    val id: Long? = null
+)
+
+
+
+/**
+ * A GitHub user
+ */
+data class AgentAutomationsListAutomationTasksResponseTasksItemUserCollaXae830d1721(
+    /**
+     * The unique identifier of the user
+     */
+    val id: Long? = null
+)
+
+/**
+ * The owner of the repository
+ */
+data class AgentAutomationsListAutomationTasksResponseTasksItemOwner(
+    /**
+     * The unique identifier of the user
+     */
+    val id: Long? = null
+)
+
+/**
+ * The repository this task belongs to
+ */
+data class AgentAutomationsListAutomationTasksResponseTasksItemRepository(
+    /**
+     * The unique identifier of the repository
+     */
+    val id: Long? = null
+)
+
+
+
+
+
+/**
+ * A resource generated by the task
+ */
+data class AgentAutomationsListAutomationTasksResponseTasksItemArtifactsItem(
+    /**
+     * Provider namespace
+     */
+    val provider: AgentAutomationsListAutomationTasksResponseTasksItemArtifactsXc4ab4ff591,
+    /**
+     * Type of artifact. Available Values: `pull`, `branch`.
+     */
+    val type: AgentAutomationsListAutomationTasksResponseTasksItemArtifactsX7777873f39,
+    /**
+     * Resource data (shape depends on type)
+     */
+    @JacksonJsonProperty("data") val `data`: AgentAutomationsListAutomationTasksResponseTasksItemArtifactsItemData
+)
+
+/**
+ * Custom agent metadata associated with this task
+ */
+data class AgentAutomationsListAutomationTasksResponseTasksItemCustomAgent(
+    /**
+     * The custom agent's filename without the extension - for example, `performance-optimizer` for a `.github/agents/performance-optimizer.agent.md` custom agent.
+     */
+    val id: String? = null
+)
+
+data class AgentAutomationsListAutomationTasksResponseTasksItem(
+    /**
+     * Unique task identifier
+     */
+    val id: String,
+    /**
+     * Current state of the task, derived from its most recent session
+     */
+    val state: AgentAutomationsListAutomationTasksResponseTasksItemStateEnum,
+    /**
+     * Timestamp when the task was created
+     */
+    @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * API URL for this task
+     */
+    val url: String? = null,
+    /**
+     * Web URL for this task
+     */
+    @JacksonJsonProperty("html_url") val htmlUrl: String? = null,
+    /**
+     * Human-readable name derived from the task prompt
+     */
+    val name: String? = null,
+    /**
+     * The entity who created this task
+     */
+    val creator: AgentAutomationsListAutomationTasksResponseTasksItemCreator? = null,
+    /**
+     * Type of the task creator
+     */
+    @JacksonJsonProperty("creator_type") val creatorType: AgentAutomationsListAutomationTasksResponseTasksItemCreatorTypeEnum? = null,
+    /**
+     * User objects of collaborators on this task
+     */
+    @JacksonJsonProperty("user_collaborators") val userCollaborators: List<AgentAutomationsListAutomationTasksResponseTasksItemUserCollaXae830d1721>? = null,
+    /**
+     * The owner of the repository
+     */
+    val owner: AgentAutomationsListAutomationTasksResponseTasksItemOwner? = null,
+    /**
+     * The repository this task belongs to
+     */
+    val repository: AgentAutomationsListAutomationTasksResponseTasksItemRepository? = null,
+    /**
+     * Number of sessions in this task
+     */
+    @JacksonJsonProperty("session_count") val sessionCount: Int? = null,
+    /**
+     * Resources created by this task (PRs, branches, etc.)
+     */
+    val artifacts: List<AgentAutomationsListAutomationTasksResponseTasksItemArtifactsItem>? = null,
+    /**
+     * Timestamp when the task was archived, null if not archived
+     */
+    @JacksonJsonProperty("archived_at") val archivedAt: OffsetDateTime? = null,
+    /**
+     * Timestamp of the most recent update
+     */
+    @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
+    /**
+     * Custom agent metadata associated with this task
+     */
+    @JacksonJsonProperty("custom_agent") val customAgent: AgentAutomationsListAutomationTasksResponseTasksItemCustomAgent? = null
+)
+
+/**
+ * A page of tasks created by an automation.
+ */
+data class AgentAutomationsListAutomationTasksResponse(
+    /**
+     * Tasks created by the automation.
+     */
+    val tasks: List<AgentAutomationsListAutomationTasksResponseTasksItem>
+)
+
+/**
+ * A GitHub user
+ */
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemCreatedBy(
+    /**
+     * The unique identifier of the user
+     */
+    val id: Long? = null
+)
+
+
+
+
+
+
+
+
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX07690c38c5(
+    /**
+     * One or more schedules on which the Automation runs.
+     */
+    val cadence: List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc3281adf4f>,
+    /**
+     * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly values default to `0` (midnight UTC).
+     */
+    @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
+    /**
+     * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted weekly values default to Monday (`1`).
+     */
+    @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
+    /**
+     * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default to `0`. Must be omitted whenever `cadence` includes `hourly`.
+     */
+    @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6a3ed5ceef? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX0277499a33(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6ddf1f014a(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306? = null
+)
+
+
+
+
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd8a77a48a8(
+    /**
+     * Workflow names matched against the name in each workflow YAML file.
+     */
+    val workflows: List<String>,
+    /**
+     * Workflow conclusions to match. The current trigger supports failure.
+     */
+    val conclusions: List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX82b9184068(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXec67005fdd(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5dd5ddc50f(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX2772e2f982(
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547? = null
+)
+
+
+
+
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX89661b5571(
+    /**
+     * Pull request conversation and inline review comment types to match.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19>,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX2592e17e2b(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd6fda182ed? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc5cdd55c36(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd79e492ff4? = null
+)
+
+
+
+
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX77d3b846e7(
+    /**
+     * Top-level discussion comments and replies to match. Omit to match both.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX9171732c49>? = null,
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX9746d19b91? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX980a41581f(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXa624576f5a? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXa01aa0eab8(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1733f46b3b(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdf969f5297(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX3b7f21e40e(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd304e6055c(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018? = null
+)
+
+
+
+
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX023a19aeac(
+    /**
+     * Submitted review states to match.
+     */
+    val states: List<AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc78746c9af(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d? = null
+)
+
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1af62c93fd(
+    /**
+     * Upstream Automation IDs in the same repository.
+     */
+    @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXfc9ea83c83? = null
+)
+
+/**
+ * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+ */
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriggers(
+    val interval: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX07690c38c5? = null,
+    @JacksonJsonProperty("issue_opened") val issueOpened: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX0277499a33? = null,
+    @JacksonJsonProperty("issue_labeled") val issueLabeled: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6ddf1f014a? = null,
+    @JacksonJsonProperty("workflow_run") val workflowRun: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd8a77a48a8? = null,
+    @JacksonJsonProperty("pull_request_opened") val pullRequestOpened: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX82b9184068? = null,
+    @JacksonJsonProperty("pull_request_synchronize") val pullRequestSynchronize: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXec67005fdd? = null,
+    @JacksonJsonProperty("pull_request_merged") val pullRequestMerged: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5dd5ddc50f? = null,
+    @JacksonJsonProperty("issue_comment") val issueComment: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX2772e2f982? = null,
+    @JacksonJsonProperty("pull_request_comment") val pullRequestComment: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX89661b5571? = null,
+    @JacksonJsonProperty("discussion_opened") val discussionOpened: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX2592e17e2b? = null,
+    @JacksonJsonProperty("discussion_updated") val discussionUpdated: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc5cdd55c36? = null,
+    @JacksonJsonProperty("discussion_comment") val discussionComment: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX77d3b846e7? = null,
+    @JacksonJsonProperty("issue_assigned") val issueAssigned: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX980a41581f? = null,
+    @JacksonJsonProperty("pull_request_assigned") val pullRequestAssigned: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXa01aa0eab8? = null,
+    @JacksonJsonProperty("sub_issue_added") val subIssueAdded: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1733f46b3b? = null,
+    @JacksonJsonProperty("pull_request_ready_for_review") val pullRequestReadyForReview: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdf969f5297? = null,
+    @JacksonJsonProperty("pull_request_labeled") val pullRequestLabeled: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX3b7f21e40e? = null,
+    @JacksonJsonProperty("pull_request_merge_conflict") val pullRequestMergeConflict: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd304e6055c? = null,
+    @JacksonJsonProperty("pull_request_review_submitted") val pullRequestReviewSubmitted: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX023a19aeac? = null,
+    @JacksonJsonProperty("pull_request_review_requested") val pullRequestReviewRequested: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc78746c9af? = null,
+    @JacksonJsonProperty("automation_completed") val automationCompleted: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1af62c93fd? = null
+)
+
+/**
+ * A summary representation of an automation (used in list responses).
+ */
+data class AgentAutomationsListRepoAutomationsResponseAutomationsItem(
+    /**
+     * The unique identifier of the automation.
+     */
+    val id: String,
+    /**
+     * The name of the automation.
+     */
+    val name: String,
+    /**
+     * When the automation was created.
+     */
+    @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * When the automation was last updated.
+     */
+    @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * A GitHub user
+     */
+    @JacksonJsonProperty("created_by") val createdBy: AgentAutomationsListRepoAutomationsResponseAutomationsItemCreatedBy,
+    /**
+     * Whether the automation is currently enabled.
+     */
+    val enabled: Boolean? = null,
+    /**
+     * Who owns the automation. `user` keeps it private to its creator and its runs act as that user. `repository` makes it belong to the repository, visible to anyone with read access to the repository, and its runs act as the Copilot app rather than as a person.
+     */
+    @JacksonJsonProperty("owner_type") val ownerType: AgentAutomationsListRepoAutomationsResponseAutomationsItemOwnerTypeEnum? = null,
+    /**
+     * Controls which repository resources a run may modify. `trigger` limits writes to the resource that started the run, when one exists, and resources created during the run; `repository` allows writes to any resource in the repository. Supported values: `trigger`, `repository`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum? = null,
+    /**
+     * When true, event-triggered runs require the event actor to have repo write permission, even when the org's allow_read_access_triggers policy is enabled. Does not apply to interval-scheduled runs, which always run as the automation owner.
+     */
+    @JacksonJsonProperty("require_actor_write_permission") val requireActorWritePermission: Boolean? = null,
+    /**
+     * The model to use for sessions triggered by this automation. Omit to use the platform default.
+     */
+    val model: String? = null,
+    /**
+     * The reasoning effort to use for sessions triggered by this automation. Omit or leave empty for no override. Currently supported values: `none`, `low`, `medium`, `high`, `xhigh`, `max`
+     */
+    @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null,
+    /**
+     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+     */
+    val triggers: AgentAutomationsListRepoAutomationsResponseAutomationsItemTriggers? = null
+)
+
+/**
+ * A page of automations for a repository and the complete filtered result count.
+ */
+data class AgentAutomationsListRepoAutomationsResponse(
+    /**
+     * List of automations in the repository
+     */
+    val automations: List<AgentAutomationsListRepoAutomationsResponseAutomationsItem>,
+    /**
+     * Total count of caller-visible automations matching the supplied filters (across all pages)
+     */
+    @JacksonJsonProperty("total_count") val totalCount: Int
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationTriggersInterval(
+    /**
+     * One or more schedules on which the Automation runs.
+     */
+    val cadence: List<AgentAutomationsCreateRepoAutomationTriggersIntervalCadenceItemEnum>,
+    /**
+     * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly values default to `0` (midnight UTC).
+     */
+    @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
+    /**
+     * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted weekly values default to Monday (`1`).
+     */
+    @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
+    /**
+     * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default to `0`. Must be omitted whenever `cadence` includes `hourly`.
+     */
+    @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersIntervalWriteScopeEnum? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersIssueOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersIssueOpenedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersIssueLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersIssueLabeledWriteScopeEnum? = null
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationTriggersWorkflowRun(
+    /**
+     * Workflow names matched against the name in each workflow YAML file.
+     */
+    val workflows: List<String>,
+    /**
+     * Workflow conclusions to match. The current trigger supports failure.
+     */
+    val conclusions: List<AgentAutomationsCreateRepoAutomationTriggersWorkflowRunConcluXeeeac095b4>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersWorkflowRunWriteScopeEnum? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestOpenedX51a84fdd33? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestSynchronize(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestSynchrX5e57b3c981? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestMerged(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestMergedX260169b6b8? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersIssueComment(
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersIssueCommentWriteScopeEnum? = null
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestComment(
+    /**
+     * Pull request conversation and inline review comment types to match.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsCreateRepoAutomationTriggersPullRequestCommenXc64fd98382>,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestCommenX8a3e2a3be4? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersDiscussionOpened(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdated(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da? = null
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationTriggersDiscussionComment(
+    /**
+     * Top-level discussion comments and replies to match. Omit to match both.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6>? = null,
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersIssueAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersIssueAssignedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestAssignX4668629182? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersSubIssueAdded(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersSubIssueAddedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestReadyForReview(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestReadyFX0d32f84856? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestLabeleX84f85d65fd? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestMergeConflict(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestMergeCXbbe6724599? = null
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewSubmitted(
+    /**
+     * Submitted review states to match.
+     */
+    val states: List<AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewX1b7afbdc47>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewX60e7abb7b4? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewRequested(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewX595ab58ca1? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationTriggersAutomationCompleted(
+    /**
+     * Upstream Automation IDs in the same repository.
+     */
+    @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f? = null
+)
+
+/**
+ * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+ */
+data class AgentAutomationsCreateRepoAutomationTriggers(
+    val interval: AgentAutomationsCreateRepoAutomationTriggersInterval? = null,
+    @JacksonJsonProperty("issue_opened") val issueOpened: AgentAutomationsCreateRepoAutomationTriggersIssueOpened? = null,
+    @JacksonJsonProperty("issue_labeled") val issueLabeled: AgentAutomationsCreateRepoAutomationTriggersIssueLabeled? = null,
+    @JacksonJsonProperty("workflow_run") val workflowRun: AgentAutomationsCreateRepoAutomationTriggersWorkflowRun? = null,
+    @JacksonJsonProperty("pull_request_opened") val pullRequestOpened: AgentAutomationsCreateRepoAutomationTriggersPullRequestOpened? = null,
+    @JacksonJsonProperty("pull_request_synchronize") val pullRequestSynchronize: AgentAutomationsCreateRepoAutomationTriggersPullRequestSynchronize? = null,
+    @JacksonJsonProperty("pull_request_merged") val pullRequestMerged: AgentAutomationsCreateRepoAutomationTriggersPullRequestMerged? = null,
+    @JacksonJsonProperty("issue_comment") val issueComment: AgentAutomationsCreateRepoAutomationTriggersIssueComment? = null,
+    @JacksonJsonProperty("pull_request_comment") val pullRequestComment: AgentAutomationsCreateRepoAutomationTriggersPullRequestComment? = null,
+    @JacksonJsonProperty("discussion_opened") val discussionOpened: AgentAutomationsCreateRepoAutomationTriggersDiscussionOpened? = null,
+    @JacksonJsonProperty("discussion_updated") val discussionUpdated: AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdated? = null,
+    @JacksonJsonProperty("discussion_comment") val discussionComment: AgentAutomationsCreateRepoAutomationTriggersDiscussionComment? = null,
+    @JacksonJsonProperty("issue_assigned") val issueAssigned: AgentAutomationsCreateRepoAutomationTriggersIssueAssigned? = null,
+    @JacksonJsonProperty("pull_request_assigned") val pullRequestAssigned: AgentAutomationsCreateRepoAutomationTriggersPullRequestAssigned? = null,
+    @JacksonJsonProperty("sub_issue_added") val subIssueAdded: AgentAutomationsCreateRepoAutomationTriggersSubIssueAdded? = null,
+    @JacksonJsonProperty("pull_request_ready_for_review") val pullRequestReadyForReview: AgentAutomationsCreateRepoAutomationTriggersPullRequestReadyForReview? = null,
+    @JacksonJsonProperty("pull_request_labeled") val pullRequestLabeled: AgentAutomationsCreateRepoAutomationTriggersPullRequestLabeled? = null,
+    @JacksonJsonProperty("pull_request_merge_conflict") val pullRequestMergeConflict: AgentAutomationsCreateRepoAutomationTriggersPullRequestMergeConflict? = null,
+    @JacksonJsonProperty("pull_request_review_submitted") val pullRequestReviewSubmitted: AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewSubmitted? = null,
+    @JacksonJsonProperty("pull_request_review_requested") val pullRequestReviewRequested: AgentAutomationsCreateRepoAutomationTriggersPullRequestReviewRequested? = null,
+    @JacksonJsonProperty("automation_completed") val automationCompleted: AgentAutomationsCreateRepoAutomationTriggersAutomationCompleted? = null
+)
+
+/**
+ * A GitHub user
+ */
+data class AgentAutomationsCreateRepoAutomationResponseCreatedBy(
+    /**
+     * The unique identifier of the user
+     */
+    val id: Long? = null
+)
+
+
+
+
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersInterval(
+    /**
+     * One or more schedules on which the Automation runs.
+     */
+    val cadence: List<AgentAutomationsCreateRepoAutomationResponseTriggersIntervalCXf741c96122>,
+    /**
+     * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly values default to `0` (midnight UTC).
+     */
+    @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
+    /**
+     * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted weekly values default to Monday (`1`).
+     */
+    @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
+    /**
+     * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default to `0`. Must be omitted whenever `cadence` includes `hourly`.
+     */
+    @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIntervalWX06e1da75d1? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersIssueOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIssueOpenX1550bb487e? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersIssueLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIssueLabeXf6877ae851? = null
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersWorkflowRun(
+    /**
+     * Workflow names matched against the name in each workflow YAML file.
+     */
+    val workflows: List<String>,
+    /**
+     * Workflow conclusions to match. The current trigger supports failure.
+     */
+    val conclusions: List<AgentAutomationsCreateRepoAutomationResponseTriggersWorkflowRX5a495114a8>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersWorkflowRX29a58f0eb4? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb5bc2f52ba? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX3e2784d1a2(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXf8438fe35d? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestMerged(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX997eaaaf1b? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersIssueComment(
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIssueCommXa27edcdc8c? = null
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestComment(
+    /**
+     * Pull request conversation and inline review comment types to match.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX6c5b617e3c>,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX19d67bf3c4? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionOpened(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussioX47e7bd71c3? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionUpdated(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussioXdc3f3ed431? = null
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionComment(
+    /**
+     * Top-level discussion comments and replies to match. Omit to match both.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsCreateRepoAutomationResponseTriggersDiscussioX7f7837a5e8>? = null,
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussioX29ef2d6791? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersIssueAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersIssueAssiXde2b386878? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX060801a365? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersSubIssueAdded(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersSubIssueAX68cea4cc87? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX02fa4f6dda(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXdcecf35d10? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXd32f2afa62? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb1e696d64a(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX618cb7d735? = null
+)
+
+
+
+
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXc15b10caca(
+    /**
+     * Submitted review states to match.
+     */
+    val states: List<AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX9da4dcf34f>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX0ca1903d3c? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb6aa6bf4cb(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXff1aa2c7a1? = null
+)
+
+data class AgentAutomationsCreateRepoAutomationResponseTriggersAutomationCompleted(
+    /**
+     * Upstream Automation IDs in the same repository.
+     */
+    @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseTriggersAutomatioXc2f9f98a75? = null
+)
+
+/**
+ * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+ */
+data class AgentAutomationsCreateRepoAutomationResponseTriggers(
+    val interval: AgentAutomationsCreateRepoAutomationResponseTriggersInterval? = null,
+    @JacksonJsonProperty("issue_opened") val issueOpened: AgentAutomationsCreateRepoAutomationResponseTriggersIssueOpened? = null,
+    @JacksonJsonProperty("issue_labeled") val issueLabeled: AgentAutomationsCreateRepoAutomationResponseTriggersIssueLabeled? = null,
+    @JacksonJsonProperty("workflow_run") val workflowRun: AgentAutomationsCreateRepoAutomationResponseTriggersWorkflowRun? = null,
+    @JacksonJsonProperty("pull_request_opened") val pullRequestOpened: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestOpened? = null,
+    @JacksonJsonProperty("pull_request_synchronize") val pullRequestSynchronize: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX3e2784d1a2? = null,
+    @JacksonJsonProperty("pull_request_merged") val pullRequestMerged: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestMerged? = null,
+    @JacksonJsonProperty("issue_comment") val issueComment: AgentAutomationsCreateRepoAutomationResponseTriggersIssueComment? = null,
+    @JacksonJsonProperty("pull_request_comment") val pullRequestComment: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestComment? = null,
+    @JacksonJsonProperty("discussion_opened") val discussionOpened: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionOpened? = null,
+    @JacksonJsonProperty("discussion_updated") val discussionUpdated: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionUpdated? = null,
+    @JacksonJsonProperty("discussion_comment") val discussionComment: AgentAutomationsCreateRepoAutomationResponseTriggersDiscussionComment? = null,
+    @JacksonJsonProperty("issue_assigned") val issueAssigned: AgentAutomationsCreateRepoAutomationResponseTriggersIssueAssigned? = null,
+    @JacksonJsonProperty("pull_request_assigned") val pullRequestAssigned: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestAssigned? = null,
+    @JacksonJsonProperty("sub_issue_added") val subIssueAdded: AgentAutomationsCreateRepoAutomationResponseTriggersSubIssueAdded? = null,
+    @JacksonJsonProperty("pull_request_ready_for_review") val pullRequestReadyForReview: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeX02fa4f6dda? = null,
+    @JacksonJsonProperty("pull_request_labeled") val pullRequestLabeled: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequestLabeled? = null,
+    @JacksonJsonProperty("pull_request_merge_conflict") val pullRequestMergeConflict: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb1e696d64a? = null,
+    @JacksonJsonProperty("pull_request_review_submitted") val pullRequestReviewSubmitted: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXc15b10caca? = null,
+    @JacksonJsonProperty("pull_request_review_requested") val pullRequestReviewRequested: AgentAutomationsCreateRepoAutomationResponseTriggersPullRequeXb6aa6bf4cb? = null,
+    @JacksonJsonProperty("automation_completed") val automationCompleted: AgentAutomationsCreateRepoAutomationResponseTriggersAutomationCompleted? = null
+)
+
+/**
+ * A full representation of an automation including all configuration fields.
+ */
+data class AgentAutomationsCreateRepoAutomationResponse(
+    /**
+     * The unique identifier of the automation.
+     */
+    val id: String,
+    /**
+     * The name of the automation.
+     */
+    val name: String,
+    /**
+     * The prompt template for the automation.
+     */
+    val prompt: String,
+    /**
+     * When the automation was created.
+     */
+    @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * When the automation was last updated.
+     */
+    @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * A GitHub user
+     */
+    @JacksonJsonProperty("created_by") val createdBy: AgentAutomationsCreateRepoAutomationResponseCreatedBy,
+    /**
+     * Whether the automation is currently enabled.
+     */
+    val enabled: Boolean? = null,
+    /**
+     * Who owns the automation. `user` keeps it private to its creator and its runs act as that user. `repository` makes it belong to the repository, visible to anyone with read access to the repository, and its runs act as the Copilot app rather than as a person.
+     */
+    @JacksonJsonProperty("owner_type") val ownerType: AgentAutomationsCreateRepoAutomationResponseOwnerTypeEnum? = null,
+    /**
+     * Controls which repository resources a run may modify. `trigger` limits writes to the resource that started the run, when one exists, and resources created during the run; `repository` allows writes to any resource in the repository. Supported values: `trigger`, `repository`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsCreateRepoAutomationResponseWriteScopeEnum? = null,
+    /**
+     * When true, event-triggered runs require the event actor to have repo write permission, even when the org's allow_read_access_triggers policy is enabled. Does not apply to interval-scheduled runs, which always run as the automation owner.
+     */
+    @JacksonJsonProperty("require_actor_write_permission") val requireActorWritePermission: Boolean? = null,
+    /**
+     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+     */
+    val triggers: AgentAutomationsCreateRepoAutomationResponseTriggers? = null,
+    /**
+     * The tools available to the automation.
+     */
+    val tools: List<String>? = null,
+    /**
+     * Custom agents (subagents) this automation is allowed to invoke.
+     */
+    @JacksonJsonProperty("allowed_custom_agents") val allowedCustomAgents: List<String>? = null,
+    /**
+     * The model to use for sessions triggered by this automation. Omit to use the platform default.
+     */
+    val model: String? = null,
+    /**
+     * The reasoning effort to use for sessions triggered by this automation. Omit or leave empty for no override. Currently supported values: `none`, `low`, `medium`, `high`, `xhigh`, `max`
+     */
+    @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null
+)
+
+/**
+ * A GitHub user
+ */
+data class AgentAutomationsGetRepoAutomationResponseCreatedBy(
+    /**
+     * The unique identifier of the user
+     */
+    val id: Long? = null
+)
+
+
+
+
+
+
+
+
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersInterval(
+    /**
+     * One or more schedules on which the Automation runs.
+     */
+    val cadence: List<AgentAutomationsGetRepoAutomationResponseTriggersIntervalCadenceItemEnum>,
+    /**
+     * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly values default to `0` (midnight UTC).
+     */
+    @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
+    /**
+     * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted weekly values default to Monday (`1`).
+     */
+    @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
+    /**
+     * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default to `0`. Must be omitted whenever `cadence` includes `hourly`.
+     */
+    @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIntervalWriteScopeEnum? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersIssueOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIssueOpenedWX9c19723681? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersIssueLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIssueLabeledXc973c58e73? = null
+)
+
+
+
+
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRun(
+    /**
+     * Workflow names matched against the name in each workflow YAML file.
+     */
+    val workflows: List<String>,
+    /**
+     * Workflow conclusions to match. The current trigger supports failure.
+     */
+    val conclusions: List<AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRunCXcf6974d55d>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRunWX467b1992ee? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestOXe844e787a3? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestSynchronize(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestSX4891808029? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMerged(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMX00fcce4e7d? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersIssueComment(
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIssueCommentX0c7ecd1ef5? = null
+)
+
+
+
+
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestComment(
+    /**
+     * Pull request conversation and inline review comment types to match.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsGetRepoAutomationResponseTriggersPullRequestCX11b941bdb8>,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestCX7f2bdfd009? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersDiscussionOpened(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionOpXef8999245a? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersDiscussionUpdated(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionUpXd66463ad48? = null
+)
+
+
+
+
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersDiscussionComment(
+    /**
+     * Top-level discussion comments and replies to match. Omit to match both.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsGetRepoAutomationResponseTriggersDiscussionCoX9239564cd0>? = null,
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionCoX1008078cb0? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersIssueAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersIssueAssigneX521164fbc0? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestAX9310776f95? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersSubIssueAdded(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersSubIssueAddeXa43cdce846? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRXc82d37bd70(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX4550c94a09? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestLX4e5c4930fc? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMXf8c0418c3c(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMX73f1df90bb? = null
+)
+
+
+
+
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX980ca56f90(
+    /**
+     * Submitted review states to match.
+     */
+    val states: List<AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX92f01bf312>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX7e80612404? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX1fbeb466c8(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRXfb1f22d751? = null
+)
+
+data class AgentAutomationsGetRepoAutomationResponseTriggersAutomationCompleted(
+    /**
+     * Upstream Automation IDs in the same repository.
+     */
+    @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseTriggersAutomationCoXa672a845a9? = null
+)
+
+/**
+ * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+ */
+data class AgentAutomationsGetRepoAutomationResponseTriggers(
+    val interval: AgentAutomationsGetRepoAutomationResponseTriggersInterval? = null,
+    @JacksonJsonProperty("issue_opened") val issueOpened: AgentAutomationsGetRepoAutomationResponseTriggersIssueOpened? = null,
+    @JacksonJsonProperty("issue_labeled") val issueLabeled: AgentAutomationsGetRepoAutomationResponseTriggersIssueLabeled? = null,
+    @JacksonJsonProperty("workflow_run") val workflowRun: AgentAutomationsGetRepoAutomationResponseTriggersWorkflowRun? = null,
+    @JacksonJsonProperty("pull_request_opened") val pullRequestOpened: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestOpened? = null,
+    @JacksonJsonProperty("pull_request_synchronize") val pullRequestSynchronize: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestSynchronize? = null,
+    @JacksonJsonProperty("pull_request_merged") val pullRequestMerged: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMerged? = null,
+    @JacksonJsonProperty("issue_comment") val issueComment: AgentAutomationsGetRepoAutomationResponseTriggersIssueComment? = null,
+    @JacksonJsonProperty("pull_request_comment") val pullRequestComment: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestComment? = null,
+    @JacksonJsonProperty("discussion_opened") val discussionOpened: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionOpened? = null,
+    @JacksonJsonProperty("discussion_updated") val discussionUpdated: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionUpdated? = null,
+    @JacksonJsonProperty("discussion_comment") val discussionComment: AgentAutomationsGetRepoAutomationResponseTriggersDiscussionComment? = null,
+    @JacksonJsonProperty("issue_assigned") val issueAssigned: AgentAutomationsGetRepoAutomationResponseTriggersIssueAssigned? = null,
+    @JacksonJsonProperty("pull_request_assigned") val pullRequestAssigned: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestAssigned? = null,
+    @JacksonJsonProperty("sub_issue_added") val subIssueAdded: AgentAutomationsGetRepoAutomationResponseTriggersSubIssueAdded? = null,
+    @JacksonJsonProperty("pull_request_ready_for_review") val pullRequestReadyForReview: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRXc82d37bd70? = null,
+    @JacksonJsonProperty("pull_request_labeled") val pullRequestLabeled: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestLabeled? = null,
+    @JacksonJsonProperty("pull_request_merge_conflict") val pullRequestMergeConflict: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestMXf8c0418c3c? = null,
+    @JacksonJsonProperty("pull_request_review_submitted") val pullRequestReviewSubmitted: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX980ca56f90? = null,
+    @JacksonJsonProperty("pull_request_review_requested") val pullRequestReviewRequested: AgentAutomationsGetRepoAutomationResponseTriggersPullRequestRX1fbeb466c8? = null,
+    @JacksonJsonProperty("automation_completed") val automationCompleted: AgentAutomationsGetRepoAutomationResponseTriggersAutomationCompleted? = null
+)
+
+/**
+ * A full representation of an automation including all configuration fields.
+ */
+data class AgentAutomationsGetRepoAutomationResponse(
+    /**
+     * The unique identifier of the automation.
+     */
+    val id: String,
+    /**
+     * The name of the automation.
+     */
+    val name: String,
+    /**
+     * The prompt template for the automation.
+     */
+    val prompt: String,
+    /**
+     * When the automation was created.
+     */
+    @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * When the automation was last updated.
+     */
+    @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * A GitHub user
+     */
+    @JacksonJsonProperty("created_by") val createdBy: AgentAutomationsGetRepoAutomationResponseCreatedBy,
+    /**
+     * Whether the automation is currently enabled.
+     */
+    val enabled: Boolean? = null,
+    /**
+     * Who owns the automation. `user` keeps it private to its creator and its runs act as that user. `repository` makes it belong to the repository, visible to anyone with read access to the repository, and its runs act as the Copilot app rather than as a person.
+     */
+    @JacksonJsonProperty("owner_type") val ownerType: AgentAutomationsGetRepoAutomationResponseOwnerTypeEnum? = null,
+    /**
+     * Controls which repository resources a run may modify. `trigger` limits writes to the resource that started the run, when one exists, and resources created during the run; `repository` allows writes to any resource in the repository. Supported values: `trigger`, `repository`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsGetRepoAutomationResponseWriteScopeEnum? = null,
+    /**
+     * When true, event-triggered runs require the event actor to have repo write permission, even when the org's allow_read_access_triggers policy is enabled. Does not apply to interval-scheduled runs, which always run as the automation owner.
+     */
+    @JacksonJsonProperty("require_actor_write_permission") val requireActorWritePermission: Boolean? = null,
+    /**
+     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+     */
+    val triggers: AgentAutomationsGetRepoAutomationResponseTriggers? = null,
+    /**
+     * The tools available to the automation.
+     */
+    val tools: List<String>? = null,
+    /**
+     * Custom agents (subagents) this automation is allowed to invoke.
+     */
+    @JacksonJsonProperty("allowed_custom_agents") val allowedCustomAgents: List<String>? = null,
+    /**
+     * The model to use for sessions triggered by this automation. Omit to use the platform default.
+     */
+    val model: String? = null,
+    /**
+     * The reasoning effort to use for sessions triggered by this automation. Omit or leave empty for no override. Currently supported values: `none`, `low`, `medium`, `high`, `xhigh`, `max`
+     */
+    @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationTriggersInterval(
+    /**
+     * One or more schedules on which the Automation runs.
+     */
+    val cadence: List<AgentAutomationsEditRepoAutomationTriggersIntervalCadenceItemEnum>,
+    /**
+     * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly values default to `0` (midnight UTC).
+     */
+    @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
+    /**
+     * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted weekly values default to Monday (`1`).
+     */
+    @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
+    /**
+     * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default to `0`. Must be omitted whenever `cadence` includes `hourly`.
+     */
+    @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersIntervalWriteScopeEnum? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersIssueOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersIssueOpenedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersIssueLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersIssueLabeledWriteScopeEnum? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationTriggersWorkflowRun(
+    /**
+     * Workflow names matched against the name in each workflow YAML file.
+     */
+    val workflows: List<String>,
+    /**
+     * Workflow conclusions to match. The current trigger supports failure.
+     */
+    val conclusions: List<AgentAutomationsEditRepoAutomationTriggersWorkflowRunConclusionsItemEnum>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersWorkflowRunWriteScopeEnum? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestOpenedWrX573c6e10dd? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestSynchronize(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestSynchronXba2fe205ce? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestMerged(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestMergedWrXef7263a39e? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersIssueComment(
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersIssueCommentWriteScopeEnum? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestComment(
+    /**
+     * Pull request conversation and inline review comment types to match.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsEditRepoAutomationTriggersPullRequestCommentCX7a04d264c2>,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestCommentWXa0ac9be8f4? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersDiscussionOpened(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersDiscussionOpenedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersDiscussionUpdated(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersDiscussionUpdatedWrX939f06617a? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationTriggersDiscussionComment(
+    /**
+     * Top-level discussion comments and replies to match. Omit to match both.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsEditRepoAutomationTriggersDiscussionCommentCoX3284347f2c>? = null,
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersDiscussionCommentWrX87a8a1a5d5? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersIssueAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersIssueAssignedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestAssignedX73bcbe4952? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersSubIssueAdded(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersSubIssueAddedWriteScopeEnum? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestReadyForReview(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestReadyForXdf38b54495? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestLabeledWX6edf0019b4? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestMergeConflict(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestMergeConX9e79d13619? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestReviewSubmitted(
+    /**
+     * Submitted review states to match.
+     */
+    val states: List<AgentAutomationsEditRepoAutomationTriggersPullRequestReviewSuXfe686d1407>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestReviewSuXb3a6805efc? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersPullRequestReviewRequested(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersPullRequestReviewReX1c98774b43? = null
+)
+
+data class AgentAutomationsEditRepoAutomationTriggersAutomationCompleted(
+    /**
+     * Upstream Automation IDs in the same repository.
+     */
+    @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationTriggersAutomationCompletedXd9f23294d7? = null
+)
+
+/**
+ * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+ */
+data class AgentAutomationsEditRepoAutomationTriggers(
+    val interval: AgentAutomationsEditRepoAutomationTriggersInterval? = null,
+    @JacksonJsonProperty("issue_opened") val issueOpened: AgentAutomationsEditRepoAutomationTriggersIssueOpened? = null,
+    @JacksonJsonProperty("issue_labeled") val issueLabeled: AgentAutomationsEditRepoAutomationTriggersIssueLabeled? = null,
+    @JacksonJsonProperty("workflow_run") val workflowRun: AgentAutomationsEditRepoAutomationTriggersWorkflowRun? = null,
+    @JacksonJsonProperty("pull_request_opened") val pullRequestOpened: AgentAutomationsEditRepoAutomationTriggersPullRequestOpened? = null,
+    @JacksonJsonProperty("pull_request_synchronize") val pullRequestSynchronize: AgentAutomationsEditRepoAutomationTriggersPullRequestSynchronize? = null,
+    @JacksonJsonProperty("pull_request_merged") val pullRequestMerged: AgentAutomationsEditRepoAutomationTriggersPullRequestMerged? = null,
+    @JacksonJsonProperty("issue_comment") val issueComment: AgentAutomationsEditRepoAutomationTriggersIssueComment? = null,
+    @JacksonJsonProperty("pull_request_comment") val pullRequestComment: AgentAutomationsEditRepoAutomationTriggersPullRequestComment? = null,
+    @JacksonJsonProperty("discussion_opened") val discussionOpened: AgentAutomationsEditRepoAutomationTriggersDiscussionOpened? = null,
+    @JacksonJsonProperty("discussion_updated") val discussionUpdated: AgentAutomationsEditRepoAutomationTriggersDiscussionUpdated? = null,
+    @JacksonJsonProperty("discussion_comment") val discussionComment: AgentAutomationsEditRepoAutomationTriggersDiscussionComment? = null,
+    @JacksonJsonProperty("issue_assigned") val issueAssigned: AgentAutomationsEditRepoAutomationTriggersIssueAssigned? = null,
+    @JacksonJsonProperty("pull_request_assigned") val pullRequestAssigned: AgentAutomationsEditRepoAutomationTriggersPullRequestAssigned? = null,
+    @JacksonJsonProperty("sub_issue_added") val subIssueAdded: AgentAutomationsEditRepoAutomationTriggersSubIssueAdded? = null,
+    @JacksonJsonProperty("pull_request_ready_for_review") val pullRequestReadyForReview: AgentAutomationsEditRepoAutomationTriggersPullRequestReadyForReview? = null,
+    @JacksonJsonProperty("pull_request_labeled") val pullRequestLabeled: AgentAutomationsEditRepoAutomationTriggersPullRequestLabeled? = null,
+    @JacksonJsonProperty("pull_request_merge_conflict") val pullRequestMergeConflict: AgentAutomationsEditRepoAutomationTriggersPullRequestMergeConflict? = null,
+    @JacksonJsonProperty("pull_request_review_submitted") val pullRequestReviewSubmitted: AgentAutomationsEditRepoAutomationTriggersPullRequestReviewSubmitted? = null,
+    @JacksonJsonProperty("pull_request_review_requested") val pullRequestReviewRequested: AgentAutomationsEditRepoAutomationTriggersPullRequestReviewRequested? = null,
+    @JacksonJsonProperty("automation_completed") val automationCompleted: AgentAutomationsEditRepoAutomationTriggersAutomationCompleted? = null
+)
+
+/**
+ * A GitHub user
+ */
+data class AgentAutomationsEditRepoAutomationResponseCreatedBy(
+    /**
+     * The unique identifier of the user
+     */
+    val id: Long? = null
+)
+
+
+
+
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersInterval(
+    /**
+     * One or more schedules on which the Automation runs.
+     */
+    val cadence: List<AgentAutomationsEditRepoAutomationResponseTriggersIntervalCadX7dd9e5a97d>,
+    /**
+     * UTC hour anchor (0 through 23) for daily and weekly schedules. Omitted daily and weekly values default to `0` (midnight UTC).
+     */
+    @JacksonJsonProperty("hour_utc") val hourUtc: Long? = null,
+    /**
+     * UTC weekday anchor for weekly schedules, where `0` is Sunday and `6` is Saturday. Omitted weekly values default to Monday (`1`).
+     */
+    @JacksonJsonProperty("day_of_week") val dayOfWeek: Long? = null,
+    /**
+     * UTC minute anchor for daily and weekly schedules. Omitted daily and weekly values default to `0`. Must be omitted whenever `cadence` includes `hourly`.
+     */
+    @JacksonJsonProperty("minute_utc") val minuteUtc: Long? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIntervalWriteScopeEnum? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersIssueOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIssueOpenedX790251247b? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersIssueLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIssueLabeleX52db871ec1? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersWorkflowRun(
+    /**
+     * Workflow names matched against the name in each workflow YAML file.
+     */
+    val workflows: List<String>,
+    /**
+     * Workflow conclusions to match. The current trigger supports failure.
+     */
+    val conclusions: List<AgentAutomationsEditRepoAutomationResponseTriggersWorkflowRunXd8a777fd98>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersWorkflowRunX9a636220a8? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestOpened(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXad161e13c6? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestSynchronize(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX429d87c57d? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestMerged(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX6eddf87a03? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersIssueComment(
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIssueCommenX9e992feaa5? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestComment(
+    /**
+     * Pull request conversation and inline review comment types to match.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX023aac0e55>,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXb6976e3898? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersDiscussionOpened(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionOXd447bc3968? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersDiscussionUpdated(
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionUX1e5c113ed9? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersDiscussionComment(
+    /**
+     * Top-level discussion comments and replies to match. Omit to match both.
+     */
+    @JacksonJsonProperty("comment_types") val commentTypes: List<AgentAutomationsEditRepoAutomationResponseTriggersDiscussionCX1c784accc7>? = null,
+    /**
+     * Discussion category names matched case-insensitively.
+     */
+    val categories: List<String>? = null,
+    /**
+     * A case-insensitive substring matched against the event body.
+     */
+    @JacksonJsonProperty("body_substring") val bodySubstring: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionCX08404367ca? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersIssueAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersIssueAssignXc2768e9b57? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestAssigned(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Affected assignee logins matched case-insensitively.
+     */
+    val assignees: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX54a0bda8eb? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersSubIssueAdded(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersSubIssueAddX4e81dd201f? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX4156db4999(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX10f26747e7? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestLabeled(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Label names matched case-insensitively against the label added by the event. Omit or use an empty array to match every added label.
+     */
+    val labels: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXd767130045? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXd08319626a(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX2f1f1a04af? = null
+)
+
+
+
+
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX39dee95b20(
+    /**
+     * Submitted review states to match.
+     */
+    val states: List<AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX7679326dc0>,
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX311a204cac? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX7abf772e14(
+    /**
+     * A GitHub issue or pull request search query.
+     */
+    val query: String? = null,
+    /**
+     * Gitignore-style changed-file path globs.
+     */
+    val paths: List<String>? = null,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX2cadd3c8ea? = null
+)
+
+data class AgentAutomationsEditRepoAutomationResponseTriggersAutomationCompleted(
+    /**
+     * Upstream Automation IDs in the same repository.
+     */
+    @JacksonJsonProperty("automation_ids") val automationIds: List<String>,
+    /**
+     * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseTriggersAutomationCX84bf0ba329? = null
+)
+
+/**
+ * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+ */
+data class AgentAutomationsEditRepoAutomationResponseTriggers(
+    val interval: AgentAutomationsEditRepoAutomationResponseTriggersInterval? = null,
+    @JacksonJsonProperty("issue_opened") val issueOpened: AgentAutomationsEditRepoAutomationResponseTriggersIssueOpened? = null,
+    @JacksonJsonProperty("issue_labeled") val issueLabeled: AgentAutomationsEditRepoAutomationResponseTriggersIssueLabeled? = null,
+    @JacksonJsonProperty("workflow_run") val workflowRun: AgentAutomationsEditRepoAutomationResponseTriggersWorkflowRun? = null,
+    @JacksonJsonProperty("pull_request_opened") val pullRequestOpened: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestOpened? = null,
+    @JacksonJsonProperty("pull_request_synchronize") val pullRequestSynchronize: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestSynchronize? = null,
+    @JacksonJsonProperty("pull_request_merged") val pullRequestMerged: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestMerged? = null,
+    @JacksonJsonProperty("issue_comment") val issueComment: AgentAutomationsEditRepoAutomationResponseTriggersIssueComment? = null,
+    @JacksonJsonProperty("pull_request_comment") val pullRequestComment: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestComment? = null,
+    @JacksonJsonProperty("discussion_opened") val discussionOpened: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionOpened? = null,
+    @JacksonJsonProperty("discussion_updated") val discussionUpdated: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionUpdated? = null,
+    @JacksonJsonProperty("discussion_comment") val discussionComment: AgentAutomationsEditRepoAutomationResponseTriggersDiscussionComment? = null,
+    @JacksonJsonProperty("issue_assigned") val issueAssigned: AgentAutomationsEditRepoAutomationResponseTriggersIssueAssigned? = null,
+    @JacksonJsonProperty("pull_request_assigned") val pullRequestAssigned: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestAssigned? = null,
+    @JacksonJsonProperty("sub_issue_added") val subIssueAdded: AgentAutomationsEditRepoAutomationResponseTriggersSubIssueAdded? = null,
+    @JacksonJsonProperty("pull_request_ready_for_review") val pullRequestReadyForReview: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX4156db4999? = null,
+    @JacksonJsonProperty("pull_request_labeled") val pullRequestLabeled: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestLabeled? = null,
+    @JacksonJsonProperty("pull_request_merge_conflict") val pullRequestMergeConflict: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestXd08319626a? = null,
+    @JacksonJsonProperty("pull_request_review_submitted") val pullRequestReviewSubmitted: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX39dee95b20? = null,
+    @JacksonJsonProperty("pull_request_review_requested") val pullRequestReviewRequested: AgentAutomationsEditRepoAutomationResponseTriggersPullRequestX7abf772e14? = null,
+    @JacksonJsonProperty("automation_completed") val automationCompleted: AgentAutomationsEditRepoAutomationResponseTriggersAutomationCompleted? = null
+)
+
+/**
+ * A full representation of an automation including all configuration fields.
+ */
+data class AgentAutomationsEditRepoAutomationResponse(
+    /**
+     * The unique identifier of the automation.
+     */
+    val id: String,
+    /**
+     * The name of the automation.
+     */
+    val name: String,
+    /**
+     * The prompt template for the automation.
+     */
+    val prompt: String,
+    /**
+     * When the automation was created.
+     */
+    @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
+    /**
+     * When the automation was last updated.
+     */
+    @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /**
+     * A GitHub user
+     */
+    @JacksonJsonProperty("created_by") val createdBy: AgentAutomationsEditRepoAutomationResponseCreatedBy,
+    /**
+     * Whether the automation is currently enabled.
+     */
+    val enabled: Boolean? = null,
+    /**
+     * Who owns the automation. `user` keeps it private to its creator and its runs act as that user. `repository` makes it belong to the repository, visible to anyone with read access to the repository, and its runs act as the Copilot app rather than as a person.
+     */
+    @JacksonJsonProperty("owner_type") val ownerType: AgentAutomationsEditRepoAutomationResponseOwnerTypeEnum? = null,
+    /**
+     * Controls which repository resources a run may modify. `trigger` limits writes to the resource that started the run, when one exists, and resources created during the run; `repository` allows writes to any resource in the repository. Supported values: `trigger`, `repository`.
+     */
+    @JacksonJsonProperty("write_scope") val writeScope: AgentAutomationsEditRepoAutomationResponseWriteScopeEnum? = null,
+    /**
+     * When true, event-triggered runs require the event actor to have repo write permission, even when the org's allow_read_access_triggers policy is enabled. Does not apply to interval-scheduled runs, which always run as the automation owner.
+     */
+    @JacksonJsonProperty("require_actor_write_permission") val requireActorWritePermission: Boolean? = null,
+    /**
+     * Public trigger configuration keyed by stable public trigger identifier. Each trigger has a closed, trigger-specific configuration schema.
+     */
+    val triggers: AgentAutomationsEditRepoAutomationResponseTriggers? = null,
+    /**
+     * The tools available to the automation.
+     */
+    val tools: List<String>? = null,
+    /**
+     * Custom agents (subagents) this automation is allowed to invoke.
+     */
+    @JacksonJsonProperty("allowed_custom_agents") val allowedCustomAgents: List<String>? = null,
+    /**
+     * The model to use for sessions triggered by this automation. Omit to use the platform default.
+     */
+    val model: String? = null,
+    /**
+     * The reasoning effort to use for sessions triggered by this automation. Omit or leave empty for no override. Currently supported values: `none`, `low`, `medium`, `high`, `xhigh`, `max`
+     */
+    @JacksonJsonProperty("reasoning_effort") val reasoningEffort: String? = null
+)
 
     /** Parameters for [agentAutomationsListAutomationTasks]. */
     data class AgentAutomationsListAutomationTasksRequest(
@@ -4152,7 +4003,7 @@ object AgentAutomations {
         val sort: AgentAutomationsListAutomationTasksParameterEnum? = null,
         val direction: AgentAutomationsListAutomationTasksParameterEnumbdd318b8? = null,
         val state: String? = null,
-        val isArchived: Boolean? = null,
+        val isArchived: Boolean? = null
     )
 
     /** Parameters for [agentAutomationsCreateRepoAutomation]. */
@@ -4169,7 +4020,7 @@ object AgentAutomations {
         val enabled: Boolean? = null,
         val ownerType: AgentAutomationsCreateRepoAutomationOwnerTypeEnum? = null,
         val writeScope: AgentAutomationsCreateRepoAutomationWriteScopeEnum? = null,
-        val requireActorWritePermission: Boolean? = null,
+        val requireActorWritePermission: Boolean? = null
     )
 
     /** Parameters for [agentAutomationsEditRepoAutomation]. */
@@ -4186,270 +4037,114 @@ object AgentAutomations {
         val triggers: AgentAutomationsEditRepoAutomationTriggers? = null,
         val prompt: String? = null,
         val tools: List<String>? = null,
-        val allowedCustomAgents: List<String>? = null,
+        val allowedCustomAgents: List<String>? = null
     )
 
     /**
-     * Returns automations whose `created_by` user is the authenticated caller, across repositories
-     * the caller can read. This includes both user-owned and repository-owned automations created
-     * by the caller but excludes repository-owned automations created by someone else even if the
-     * caller has write access to the repository. Use the repository-scoped list operation for those
-     * automations. The `owner_type` filter only narrows this creator-scoped collection.
-     * **Fine-grained access tokens for "List automations for user"** This endpoint works with the
-     * following fine-grained token types: * [GitHub App user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * The fine-grained token must have one of the following permission sets for each repository
-     * accessed by this request: * "Agent tasks" repository permissions (read) * "Contents"
-     * repository permissions (read) The required permission set depends on each repository's
-     * Automation permission configuration. GitHub App installation access tokens are not supported
-     * for this endpoint.
+     * Returns automations whose `created_by` user is the authenticated caller, across repositories the caller can read. This includes both user-owned and repository-owned automations created by the caller but excludes repository-owned automations created by someone else even if the caller has write access to the repository. Use the repository-scoped list operation for those automations. The `owner_type` filter only narrows this creator-scoped collection. **Fine-grained access tokens for "List automations for user"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read) * "Contents" repository permissions (read) The required permission set depends on each repository's Automation permission configuration. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsListAutomations(
-        clientConfig: ClientConfig,
-        page: Long? = null,
-        perPage: Long? = null,
-        ownerType: AgentAutomationsListAutomationsParameterEnum? = null,
-        options: RequestOptions? = null,
-    ): List<AgentAutomationsListAutomationsResponseItem> =
-        dev.octri.showcase.github.methods.AgentAutomationsListAutomationsOperation
-            .agentAutomationsListAutomations(
-                clientConfig,
-                page,
-                perPage,
-                ownerType,
-                options,
-            )
+    fun agentAutomationsListAutomations(clientConfig: ClientConfig, page: Long? = null, perPage: Long? = null, ownerType: AgentAutomationsListAutomationsParameterEnum? = null, options: RequestOptions? = null): List<AgentAutomationsListAutomationsResponseItem> =
+        dev.octri.showcase.github.methods.AgentAutomationsListAutomationsOperation.agentAutomationsListAutomations(
+            clientConfig,
+            page,
+            perPage,
+            ownerType,
+            options,
+        )
 
     /**
-     * Returns the tools available to the authenticated caller for use when creating or updating an
-     * automation. **Fine-grained access tokens for "List available automation tools"** This
-     * endpoint works with the following fine-grained token types: * [GitHub App user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * This endpoint does not require repository permissions. GitHub App installation access tokens
-     * are not supported for this endpoint.
+     * Returns the tools available to the authenticated caller for use when creating or updating an automation. **Fine-grained access tokens for "List available automation tools"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) This endpoint does not require repository permissions. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsListAvailableAutomationTools(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): List<AgentAutomationsListAvailableAutomationToolsResponseItem> =
-        dev.octri.showcase.github.methods.AgentAutomationsListAvailableAutomationToolsOperation
-            .agentAutomationsListAvailableAutomationTools(
-                clientConfig,
-                options,
-            )
+    fun agentAutomationsListAvailableAutomationTools(clientConfig: ClientConfig, options: RequestOptions? = null): List<AgentAutomationsListAvailableAutomationToolsResponseItem> =
+        dev.octri.showcase.github.methods.AgentAutomationsListAvailableAutomationToolsOperation.agentAutomationsListAvailableAutomationTools(
+            clientConfig,
+            options,
+        )
 
     /**
-     * Returns the triggers available to the authenticated caller, including machine-readable
-     * schemas for their configurable fields. **Fine-grained access tokens for "List available
-     * automation triggers"** This endpoint works with the following fine-grained token
-     * types: * [GitHub App user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * This endpoint does not require repository permissions. GitHub App installation access tokens
-     * are not supported for this endpoint.
+     * Returns the triggers available to the authenticated caller, including machine-readable schemas for their configurable fields. **Fine-grained access tokens for "List available automation triggers"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) This endpoint does not require repository permissions. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsListAvailableAutomationTriggers(
-        clientConfig: ClientConfig,
-        options: RequestOptions? = null,
-    ): List<AgentAutomationsListAvailableAutomationTriggersResponseItem> =
-        dev.octri.showcase.github.methods.AgentAutomationsListAvailableAutomationTriggersOperation
-            .agentAutomationsListAvailableAutomationTriggers(
-                clientConfig,
-                options,
-            )
+    fun agentAutomationsListAvailableAutomationTriggers(clientConfig: ClientConfig, options: RequestOptions? = null): List<AgentAutomationsListAvailableAutomationTriggersResponseItem> =
+        dev.octri.showcase.github.methods.AgentAutomationsListAvailableAutomationTriggersOperation.agentAutomationsListAvailableAutomationTriggers(
+            clientConfig,
+            options,
+        )
 
     /**
-     * Returns an automation by ID without requiring repository context when its `created_by` user
-     * is the authenticated caller and the caller can read its repository. This includes both
-     * user-owned and repository-owned automations created by the caller but excludes
-     * repository-owned automations created by someone else even if the caller has write access to
-     * the repository. Use the repository-scoped get operation for those automations. The response
-     * includes repository identity so clients can link back to the repository. **Fine-grained
-     * access tokens for "Get an automation by ID"** This endpoint works with the following
-     * fine-grained token types: * [GitHub App user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * The fine-grained token must have one of the following permission sets for each repository
-     * accessed by this request: * "Agent tasks" repository permissions (read) * "Contents"
-     * repository permissions (read) The required permission set depends on each repository's
-     * Automation permission configuration. GitHub App installation access tokens are not supported
-     * for this endpoint.
+     * Returns an automation by ID without requiring repository context when its `created_by` user is the authenticated caller and the caller can read its repository. This includes both user-owned and repository-owned automations created by the caller but excludes repository-owned automations created by someone else even if the caller has write access to the repository. Use the repository-scoped get operation for those automations. The response includes repository identity so clients can link back to the repository. **Fine-grained access tokens for "Get an automation by ID"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read) * "Contents" repository permissions (read) The required permission set depends on each repository's Automation permission configuration. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsGetAutomation(
-        clientConfig: ClientConfig,
-        automationId: String,
-        options: RequestOptions? = null,
-    ): AgentAutomationsGetAutomationResponse =
-        dev.octri.showcase.github.methods.AgentAutomationsGetAutomationOperation
-            .agentAutomationsGetAutomation(
-                clientConfig,
-                automationId,
-                options,
-            )
+    fun agentAutomationsGetAutomation(clientConfig: ClientConfig, automationId: String, options: RequestOptions? = null): AgentAutomationsGetAutomationResponse =
+        dev.octri.showcase.github.methods.AgentAutomationsGetAutomationOperation.agentAutomationsGetAutomation(
+            clientConfig,
+            automationId,
+            options,
+        )
 
     /**
-     * Returns a list of tasks triggered by the specified automation. User-owned automation history
-     * is available only to its creator, while repository-owned automation history is available to
-     * anyone with read access to the repository. Deleted and unlisted tasks are excluded. Tasks
-     * produced by private-session agents are excluded unless the caller created the task, is a task
-     * collaborator, or the task is shared. **Fine-grained access tokens for "List tasks for an
-     * automation"** This endpoint works with the following fine-grained token types: * [GitHub App
-     * user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * The fine-grained token must have one of the following permission sets for each repository
-     * accessed by this request: * "Agent tasks" repository permissions (read) * "Contents"
-     * repository permissions (read) The required permission set depends on each repository's
-     * Automation permission configuration. GitHub App installation access tokens are not supported
-     * for this endpoint.
+     * Returns a list of tasks triggered by the specified automation. User-owned automation history is available only to its creator, while repository-owned automation history is available to anyone with read access to the repository. Deleted and unlisted tasks are excluded. Tasks produced by private-session agents are excluded unless the caller created the task, is a task collaborator, or the task is shared. **Fine-grained access tokens for "List tasks for an automation"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read) * "Contents" repository permissions (read) The required permission set depends on each repository's Automation permission configuration. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsListAutomationTasks(
-        clientConfig: ClientConfig,
-        request: AgentAutomationsListAutomationTasksRequest,
-        options: RequestOptions? = null,
-    ): AgentAutomationsListAutomationTasksResponse =
-        dev.octri.showcase.github.methods.AgentAutomationsListAutomationTasksOperation
-            .agentAutomationsListAutomationTasks(
-                clientConfig,
-                request,
-                options,
-            )
+    fun agentAutomationsListAutomationTasks(clientConfig: ClientConfig, request: AgentAutomationsListAutomationTasksRequest, options: RequestOptions? = null): AgentAutomationsListAutomationTasksResponse =
+        dev.octri.showcase.github.methods.AgentAutomationsListAutomationTasksOperation.agentAutomationsListAutomationTasks(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Returns a paginated list of the authenticated user's automations for a repository, together
-     * with every repository-owned automation in it. `total_count` is the number of caller-visible
-     * automations matching the supplied filters across all pages. Repository-owned automations are
-     * visible to anyone with read access to the repository, so the results are not limited to
-     * automations the caller created. Use the `owner_type` field on each automation to tell the two
-     * apart. **Fine-grained access tokens for "List automations for a repository"** This endpoint
-     * works with the following fine-grained token types: * [GitHub App user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * The fine-grained token must have one of the following permission sets for each repository
-     * accessed by this request: * "Agent tasks" repository permissions (read) * "Contents"
-     * repository permissions (read) The required permission set depends on each repository's
-     * Automation permission configuration. GitHub App installation access tokens are not supported
-     * for this endpoint.
+     * Returns a paginated list of the authenticated user's automations for a repository, together with every repository-owned automation in it. `total_count` is the number of caller-visible automations matching the supplied filters across all pages. Repository-owned automations are visible to anyone with read access to the repository, so the results are not limited to automations the caller created. Use the `owner_type` field on each automation to tell the two apart. **Fine-grained access tokens for "List automations for a repository"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read) * "Contents" repository permissions (read) The required permission set depends on each repository's Automation permission configuration. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsListRepoAutomations(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        page: Long? = null,
-        perPage: Long? = null,
-        ownerType: AgentAutomationsListRepoAutomationsParameterEnum? = null,
-        options: RequestOptions? = null,
-    ): AgentAutomationsListRepoAutomationsResponse =
-        dev.octri.showcase.github.methods.AgentAutomationsListRepoAutomationsOperation
-            .agentAutomationsListRepoAutomations(
-                clientConfig,
-                owner,
-                repo,
-                page,
-                perPage,
-                ownerType,
-                options,
-            )
+    fun agentAutomationsListRepoAutomations(clientConfig: ClientConfig, owner: String, repo: String, page: Long? = null, perPage: Long? = null, ownerType: AgentAutomationsListRepoAutomationsParameterEnum? = null, options: RequestOptions? = null): AgentAutomationsListRepoAutomationsResponse =
+        dev.octri.showcase.github.methods.AgentAutomationsListRepoAutomationsOperation.agentAutomationsListRepoAutomations(
+            clientConfig,
+            owner,
+            repo,
+            page,
+            perPage,
+            ownerType,
+            options,
+        )
 
     /**
-     * Creates a new automation in a repository. User-owned automations remain private to their
-     * creator. Repository-owned automations are visible to anyone with read access to the
-     * repository and manageable by anyone with write access to the repository. **Fine-grained
-     * access tokens for "Create an automation for a repository"** This endpoint works with the
-     * following fine-grained token types: * [GitHub App user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * The fine-grained token must have one of the following permission sets for each repository
-     * accessed by this request: * "Agent tasks" repository permissions (read and write) *
-     * "Contents" repository permissions (read and write) The required permission set depends on
-     * each repository's Automation permission configuration. GitHub App installation access tokens
-     * are not supported for this endpoint.
+     * Creates a new automation in a repository. User-owned automations remain private to their creator. Repository-owned automations are visible to anyone with read access to the repository and manageable by anyone with write access to the repository. **Fine-grained access tokens for "Create an automation for a repository"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read and write) * "Contents" repository permissions (read and write) The required permission set depends on each repository's Automation permission configuration. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsCreateRepoAutomation(
-        clientConfig: ClientConfig,
-        request: AgentAutomationsCreateRepoAutomationRequest,
-        options: RequestOptions? = null,
-    ): AgentAutomationsCreateRepoAutomationResponse =
-        dev.octri.showcase.github.methods.AgentAutomationsCreateRepoAutomationOperation
-            .agentAutomationsCreateRepoAutomation(
-                clientConfig,
-                request,
-                options,
-            )
+    fun agentAutomationsCreateRepoAutomation(clientConfig: ClientConfig, request: AgentAutomationsCreateRepoAutomationRequest, options: RequestOptions? = null): AgentAutomationsCreateRepoAutomationResponse =
+        dev.octri.showcase.github.methods.AgentAutomationsCreateRepoAutomationOperation.agentAutomationsCreateRepoAutomation(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Returns an automation by ID in a repository. User-owned automations are visible only to their
-     * creator. Repository-owned automations are visible to anyone with read access to the
-     * repository. The `created_by` field identifies the creator and is distinct from the
-     * automation's `owner_type`. **Fine-grained access tokens for "Get an automation for a
-     * repository"** This endpoint works with the following fine-grained token types: * [GitHub App
-     * user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * The fine-grained token must have one of the following permission sets for each repository
-     * accessed by this request: * "Agent tasks" repository permissions (read) * "Contents"
-     * repository permissions (read) The required permission set depends on each repository's
-     * Automation permission configuration. GitHub App installation access tokens are not supported
-     * for this endpoint.
+     * Returns an automation by ID in a repository. User-owned automations are visible only to their creator. Repository-owned automations are visible to anyone with read access to the repository. The `created_by` field identifies the creator and is distinct from the automation's `owner_type`. **Fine-grained access tokens for "Get an automation for a repository"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read) * "Contents" repository permissions (read) The required permission set depends on each repository's Automation permission configuration. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsGetRepoAutomation(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        automationId: String,
-        options: RequestOptions? = null,
-    ): AgentAutomationsGetRepoAutomationResponse =
-        dev.octri.showcase.github.methods.AgentAutomationsGetRepoAutomationOperation
-            .agentAutomationsGetRepoAutomation(
-                clientConfig,
-                owner,
-                repo,
-                automationId,
-                options,
-            )
+    fun agentAutomationsGetRepoAutomation(clientConfig: ClientConfig, owner: String, repo: String, automationId: String, options: RequestOptions? = null): AgentAutomationsGetRepoAutomationResponse =
+        dev.octri.showcase.github.methods.AgentAutomationsGetRepoAutomationOperation.agentAutomationsGetRepoAutomation(
+            clientConfig,
+            owner,
+            repo,
+            automationId,
+            options,
+        )
 
     /**
-     * Edits specified fields on an existing automation in a repository. Omitted fields are left
-     * unchanged. The automation's `owner_type` is immutable and cannot be changed by this
-     * operation. **Fine-grained access tokens for "Edit an automation for a repository"** This
-     * endpoint works with the following fine-grained token types: * [GitHub App user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * The fine-grained token must have one of the following permission sets for each repository
-     * accessed by this request: * "Agent tasks" repository permissions (read and write) *
-     * "Contents" repository permissions (read and write) The required permission set depends on
-     * each repository's Automation permission configuration. GitHub App installation access tokens
-     * are not supported for this endpoint.
+     * Edits specified fields on an existing automation in a repository. Omitted fields are left unchanged. The automation's `owner_type` is immutable and cannot be changed by this operation. **Fine-grained access tokens for "Edit an automation for a repository"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read and write) * "Contents" repository permissions (read and write) The required permission set depends on each repository's Automation permission configuration. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsEditRepoAutomation(
-        clientConfig: ClientConfig,
-        request: AgentAutomationsEditRepoAutomationRequest,
-        options: RequestOptions? = null,
-    ): AgentAutomationsEditRepoAutomationResponse =
-        dev.octri.showcase.github.methods.AgentAutomationsEditRepoAutomationOperation
-            .agentAutomationsEditRepoAutomation(
-                clientConfig,
-                request,
-                options,
-            )
+    fun agentAutomationsEditRepoAutomation(clientConfig: ClientConfig, request: AgentAutomationsEditRepoAutomationRequest, options: RequestOptions? = null): AgentAutomationsEditRepoAutomationResponse =
+        dev.octri.showcase.github.methods.AgentAutomationsEditRepoAutomationOperation.agentAutomationsEditRepoAutomation(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes an automation in a repository. **Fine-grained access tokens for "Delete an automation
-     * for a repository"** This endpoint works with the following fine-grained token
-     * types: * [GitHub App user access
-     * tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-     * The fine-grained token must have one of the following permission sets for each repository
-     * accessed by this request: * "Agent tasks" repository permissions (read and write) *
-     * "Contents" repository permissions (read and write) The required permission set depends on
-     * each repository's Automation permission configuration. GitHub App installation access tokens
-     * are not supported for this endpoint.
+     * Deletes an automation in a repository. **Fine-grained access tokens for "Delete an automation for a repository"** This endpoint works with the following fine-grained token types: * [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app) * [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) The fine-grained token must have one of the following permission sets for each repository accessed by this request: * "Agent tasks" repository permissions (read and write) * "Contents" repository permissions (read and write) The required permission set depends on each repository's Automation permission configuration. GitHub App installation access tokens are not supported for this endpoint.
      */
-    fun agentAutomationsDeleteRepoAutomation(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        automationId: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.AgentAutomationsDeleteRepoAutomationOperation
-            .agentAutomationsDeleteRepoAutomation(
-                clientConfig,
-                owner,
-                repo,
-                automationId,
-                options,
-            )
+    fun agentAutomationsDeleteRepoAutomation(clientConfig: ClientConfig, owner: String, repo: String, automationId: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.AgentAutomationsDeleteRepoAutomationOperation.agentAutomationsDeleteRepoAutomation(
+            clientConfig,
+            owner,
+            repo,
+            automationId,
+            options,
+        )
 }

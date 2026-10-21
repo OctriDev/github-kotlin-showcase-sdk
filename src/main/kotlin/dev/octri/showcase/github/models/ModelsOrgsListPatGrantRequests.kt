@@ -3,58 +3,74 @@
 
 package dev.octri.showcase.github.models
 
-/** Permissions requested, categorized by type of permission. */
+/**
+ * Permissions requested, categorized by type of permission.
+ */
 data class OrganizationProgrammaticAccessGrantRequestPermissions(
-    /** Optional object value serialized in the `organization` wire field. */
+    /**
+     * Optional object value serialized in the `organization` wire field.
+     */
     val organization: Map<String, String>? = null,
-    /** Optional object value serialized in the `repository` wire field. */
+    /**
+     * Optional object value serialized in the `repository` wire field.
+     */
     val repository: Map<String, String>? = null,
-    /** Optional object value serialized in the `other` wire field. */
-    val other: Map<String, String>? = null,
+    /**
+     * Optional object value serialized in the `other` wire field.
+     */
+    val other: Map<String, String>? = null
 )
 
-/** Minimal representation of an organization programmatic access grant request for enumerations */
+/**
+ * Minimal representation of an organization programmatic access grant request for enumerations
+ */
 data class OrganizationProgrammaticAccessGrantRequest(
     /**
-     * Unique identifier of the request for access via fine-grained personal access token. The
-     * `pat_request_id` used to review PAT requests.
+     * Unique identifier of the request for access via fine-grained personal access token. The `pat_request_id` used to review PAT requests.
      */
     val id: Long,
-    /** Reason for requesting access. */
-    @com.fasterxml.jackson.annotation.JsonProperty("reason", required = true) val reason: String?,
-    /** A GitHub user. */
-    val owner: SimpleUser,
-    /** Type of repository selection requested. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_selection")
-    val repositorySelection: OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum,
     /**
-     * URL to the list of repositories requested to be accessed via fine-grained personal access
-     * token. Should only be followed when `repository_selection` is `subset`.
+     * Reason for requesting access.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("reason", required = true) val reason: String?,
+    /**
+     * A GitHub user.
+     */
+    val owner: SimpleUser,
+    /**
+     * Type of repository selection requested.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_selection") val repositorySelection: OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum,
+    /**
+     * URL to the list of repositories requested to be accessed via fine-grained personal access token. Should only be followed when `repository_selection` is `subset`.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("repositories_url") val repositoriesUrl: String,
-    /** Permissions requested, categorized by type of permission. */
+    /**
+     * Permissions requested, categorized by type of permission.
+     */
     val permissions: OrganizationProgrammaticAccessGrantRequestPermissions,
-    /** Date and time when the request for access was created. */
+    /**
+     * Date and time when the request for access was created.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * Unique identifier of the user's token. This field can also be found in audit log events and
-     * the organization's settings for their PAT grants.
+     * Unique identifier of the user's token. This field can also be found in audit log events and the organization's settings for their PAT grants.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("token_id") val tokenId: Long,
     /**
-     * The name given to the user's token. This field can also be found in an organization's
-     * settings page for Active Tokens.
+     * The name given to the user's token. This field can also be found in an organization's settings page for Active Tokens.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("token_name") val tokenName: String,
-    /** Whether the associated fine-grained personal access token has expired. */
-    @com.fasterxml.jackson.annotation.JsonProperty("token_expired") val tokenExpired: Boolean,
-    /** Date and time when the associated fine-grained personal access token expires. */
-    @com.fasterxml.jackson.annotation.JsonProperty("token_expires_at", required = true)
-    val tokenExpiresAt: String?,
     /**
-     * Date and time when the associated fine-grained personal access token was last used for
-     * authentication.
+     * Whether the associated fine-grained personal access token has expired.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("token_last_used_at", required = true)
-    val tokenLastUsedAt: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("token_expired") val tokenExpired: Boolean,
+    /**
+     * Date and time when the associated fine-grained personal access token expires.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("token_expires_at", required = true) val tokenExpiresAt: String?,
+    /**
+     * Date and time when the associated fine-grained personal access token was last used for authentication.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("token_last_used_at", required = true) val tokenLastUsedAt: String?
 )

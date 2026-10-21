@@ -3,13 +3,20 @@
 
 package dev.octri.showcase.github.models
 
-/** Results of a successful merge upstream request */
+/**
+ * Results of a successful merge upstream request
+ */
 data class MergedUpstream(
-    /** Optional `string` value serialized in the `message` wire field. */
+    /**
+     * Optional `string` value serialized in the `message` wire field.
+     */
     val message: String? = null,
-    /** Optional enumerated value serialized in the `merge_type` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_type")
-    val mergeType: MergedUpstreamMergeTypeEnum? = null,
-    /** Optional `string` value serialized in the `base_branch` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("base_branch") val baseBranch: String? = null,
+    /**
+     * Optional enumerated value serialized in the `merge_type` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_type") val mergeType: MergedUpstreamMergeTypeEnum? = null,
+    /**
+     * Optional `string` value serialized in the `base_branch` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("base_branch") val baseBranch: String? = null
 )

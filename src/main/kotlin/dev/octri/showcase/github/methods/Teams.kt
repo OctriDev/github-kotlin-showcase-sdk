@@ -41,7 +41,7 @@ object Teams {
         val notificationSetting: TeamsCreateNotificationSettingEnum? = null,
         val permission: TeamsCreatePermissionEnum? = null,
         val parentTeamId: Long? = null,
-        val parentTeamSlug: String? = null,
+        val parentTeamSlug: String? = null
     )
 
     /** Parameters for [teamsUpdateInOrg]. */
@@ -54,7 +54,7 @@ object Teams {
         val notificationSetting: TeamsUpdateInOrgNotificationSettingEnum? = null,
         val permission: TeamsUpdateInOrgPermissionEnum? = null,
         val parentTeamId: SdkClient.SdkOptional<Long?>? = null,
-        val parentTeamSlug: SdkClient.SdkOptional<String?>? = null,
+        val parentTeamSlug: SdkClient.SdkOptional<String?>? = null
     )
 
     /** Parameters for [teamsUpdateLegacy]. */
@@ -66,18 +66,13 @@ object Teams {
         val notificationSetting: TeamsUpdateLegacyNotificationSettingEnum? = null,
         val permission: TeamsUpdateLegacyPermissionEnum? = null,
         val parentTeamId: SdkClient.SdkOptional<Long?>? = null,
-        val parentTeamSlug: SdkClient.SdkOptional<String?>? = null,
+        val parentTeamSlug: SdkClient.SdkOptional<String?>? = null
     )
 
-    /** Lists all teams in an organization that are visible to the authenticated user. */
-    fun teamsList(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        teamType: SchemaSchemaEnum7df6f108? = null,
-        options: RequestOptions? = null,
-    ): List<Team> =
+    /**
+     * Lists all teams in an organization that are visible to the authenticated user.
+     */
+    fun teamsList(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, teamType: SchemaSchemaEnum7df6f108? = null, options: RequestOptions? = null): List<Team> =
         dev.octri.showcase.github.methods.TeamsListOperation.teamsList(
             clientConfig,
             org,
@@ -88,19 +83,9 @@ object Teams {
         )
 
     /**
-     * To create a team, the authenticated user must be a member or owner of `{org}`. By default,
-     * organization members can create teams. Organization owners can limit team creation to
-     * organization owners. For more information, see "[Setting team creation
-     * permissions](https://docs.github.com/articles/setting-team-creation-permissions-in-your-organization)."
-     * When you create a new team, you automatically become a team maintainer without explicitly
-     * adding yourself to the optional array of `maintainers`. For more information, see "[About
-     * teams](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/about-teams)".
+     * To create a team, the authenticated user must be a member or owner of `{org}`. By default, organization members can create teams. Organization owners can limit team creation to organization owners. For more information, see "[Setting team creation permissions](https://docs.github.com/articles/setting-team-creation-permissions-in-your-organization)." When you create a new team, you automatically become a team maintainer without explicitly adding yourself to the optional array of `maintainers`. For more information, see "[About teams](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/about-teams)".
      */
-    fun teamsCreate(
-        clientConfig: ClientConfig,
-        request: TeamsCreateRequest,
-        options: RequestOptions? = null,
-    ): TeamFull =
+    fun teamsCreate(clientConfig: ClientConfig, request: TeamsCreateRequest, options: RequestOptions? = null): TeamFull =
         dev.octri.showcase.github.methods.TeamsCreateOperation.teamsCreate(
             clientConfig,
             request,
@@ -108,18 +93,9 @@ object Teams {
         )
 
     /**
-     * Gets a team using the team's `slug`. To create the `slug`, GitHub replaces special characters
-     * in the `name` string, changes all words to lowercase, and replaces spaces with a `-`
-     * separator. For example, `"My TEam Näme"` would become `my-team-name`. > [!NOTE] > You can
-     * also specify a team by `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}`.
+     * Gets a team using the team's `slug`. To create the `slug`, GitHub replaces special characters in the `name` string, changes all words to lowercase, and replaces spaces with a `-` separator. For example, `"My TEam Näme"` would become `my-team-name`. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}`.
      */
-    fun teamsGetByName(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        options: RequestOptions? = null,
-    ): TeamFull =
+    fun teamsGetByName(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): TeamFull =
         dev.octri.showcase.github.methods.TeamsGetByNameOperation.teamsGetByName(
             clientConfig,
             org,
@@ -128,15 +104,9 @@ object Teams {
         )
 
     /**
-     * To edit a team, the authenticated user must either be an organization owner or a team
-     * maintainer. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route
-     * `PATCH /organizations/{org_id}/team/{team_id}`.
+     * To edit a team, the authenticated user must either be an organization owner or a team maintainer. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `PATCH /organizations/{org_id}/team/{team_id}`.
      */
-    fun teamsUpdateInOrg(
-        clientConfig: ClientConfig,
-        request: TeamsUpdateInOrgRequest,
-        options: RequestOptions? = null,
-    ): TeamFull =
+    fun teamsUpdateInOrg(clientConfig: ClientConfig, request: TeamsUpdateInOrgRequest, options: RequestOptions? = null): TeamFull =
         dev.octri.showcase.github.methods.TeamsUpdateInOrgOperation.teamsUpdateInOrg(
             clientConfig,
             request,
@@ -144,17 +114,9 @@ object Teams {
         )
 
     /**
-     * To delete a team, the authenticated user must be an organization owner or team maintainer. If
-     * you are an organization owner, deleting a parent team will delete all of its child teams as
-     * well. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route
-     * `DELETE /organizations/{org_id}/team/{team_id}`.
+     * To delete a team, the authenticated user must be an organization owner or team maintainer. If you are an organization owner, deleting a parent team will delete all of its child teams as well. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `DELETE /organizations/{org_id}/team/{team_id}`.
      */
-    fun teamsDeleteInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun teamsDeleteInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.TeamsDeleteInOrgOperation.teamsDeleteInOrg(
             clientConfig,
             org,
@@ -163,48 +125,22 @@ object Teams {
         )
 
     /**
-     * The return hash contains a `role` field which refers to the Organization Invitation role and
-     * will be one of the following values: `direct_member`, `admin`, `billing_manager`,
-     * `hiring_manager`, or `reinstate`. If the invitee is not a GitHub member, the `login` field in
-     * the return hash will be `null`. > [!NOTE] > You can also specify a team by `org_id` and
-     * `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/invitations`.
+     * The return hash contains a `role` field which refers to the Organization Invitation role and will be one of the following values: `direct_member`, `admin`, `billing_manager`, `hiring_manager`, or `reinstate`. If the invitee is not a GitHub member, the `login` field in the return hash will be `null`. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/invitations`.
      */
-    fun teamsListPendingInvitationsInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<OrganizationInvitation> =
-        dev.octri.showcase.github.methods.TeamsListPendingInvitationsInOrgOperation
-            .teamsListPendingInvitationsInOrg(
-                clientConfig,
-                org,
-                teamSlug,
-                perPage,
-                page,
-                options,
-            )
+    fun teamsListPendingInvitationsInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<OrganizationInvitation> =
+        dev.octri.showcase.github.methods.TeamsListPendingInvitationsInOrgOperation.teamsListPendingInvitationsInOrg(
+            clientConfig,
+            org,
+            teamSlug,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Team members will include the members of child teams. Each member includes their `role` on
-     * the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership
-     * is inherited from a child team (`true`) or is a direct membership (`false`). These fields let
-     * you read a member's role and direct/inherited status without additional requests. To list
-     * members in a team, the team must be visible to the authenticated user. > [!NOTE] > You can
-     * also specify a team by `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}/members`.
+     * Team members will include the members of child teams. Each member includes their `role` on the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership is inherited from a child team (`true`) or is a direct membership (`false`). These fields let you read a member's role and direct/inherited status without additional requests. To list members in a team, the team must be visible to the authenticated user. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/members`.
      */
-    fun teamsListMembersInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        role: TeamsListMembersInOrgParameterEnum? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<TeamMember> =
+    fun teamsListMembersInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, role: TeamsListMembersInOrgParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamMember> =
         dev.octri.showcase.github.methods.TeamsListMembersInOrgOperation.teamsListMembersInOrg(
             clientConfig,
             org,
@@ -216,118 +152,46 @@ object Teams {
         )
 
     /**
-     * Team members will include the members of child teams. To get a user's membership with a team,
-     * the team must be visible to the authenticated user. > [!NOTE] > You can also specify a team
-     * by `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}/memberships/{username}`. > [!NOTE] > The response
-     * contains the `state` of the membership and the member's `role`. The `role` for organization
-     * owners is set to `maintainer`. For more information about `maintainer` roles, see
-     * [Create a team](https://docs.github.com/rest/teams/teams#create-a-team).
+     * Team members will include the members of child teams. To get a user's membership with a team, the team must be visible to the authenticated user. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/memberships/{username}`. > [!NOTE] > The response contains the `state` of the membership and the member's `role`. The `role` for organization owners is set to `maintainer`. For more information about `maintainer` roles, see [Create a team](https://docs.github.com/rest/teams/teams#create-a-team).
      */
-    fun teamsGetMembershipForUserInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): TeamMembership =
-        dev.octri.showcase.github.methods.TeamsGetMembershipForUserInOrgOperation
-            .teamsGetMembershipForUserInOrg(
-                clientConfig,
-                org,
-                teamSlug,
-                username,
-                options,
-            )
+    fun teamsGetMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, options: RequestOptions? = null): TeamMembership =
+        dev.octri.showcase.github.methods.TeamsGetMembershipForUserInOrgOperation.teamsGetMembershipForUserInOrg(
+            clientConfig,
+            org,
+            teamSlug,
+            username,
+            options,
+        )
 
     /**
-     * Adds an organization member to a team. An authenticated organization owner or team maintainer
-     * can add organization members to a team. Team synchronization is available for organizations
-     * using GitHub Enterprise Cloud. For more information, see
-     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
-     * in the GitHub Help documentation. > [!NOTE] > When you have team synchronization set up for a
-     * team with your organization's identity provider (IdP), you will see an error if you attempt
-     * to use the API for making changes to the team's membership. If you have access to manage
-     * group membership in your IdP, you can manage GitHub team membership through your identity
-     * provider, which automatically adds and removes team members in an organization. For more
-     * information, see "[Synchronizing teams between your identity provider and
-     * GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)."
-     * An organization owner can add someone who is not part of the team's organization to a team.
-     * When an organization owner adds someone to a team who is not an organization member, this
-     * endpoint will send an invitation to the person via email. This newly-created membership will
-     * be in the "pending" state until the person accepts the invitation, at which point the
-     * membership will transition to the "active" state and the user will be added as a member of
-     * the team. If the user is already a member of the team, this endpoint will update the role of
-     * the team member's role. To update the membership of a team member, the authenticated user
-     * must be an organization owner or a team maintainer. > [!NOTE] > You can also specify a team
-     * by `org_id` and `team_id` using the route `PUT
-     * /organizations/{org_id}/team/{team_id}/memberships/{username}`.
+     * Adds an organization member to a team. An authenticated organization owner or team maintainer can add organization members to a team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. > [!NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes to the team's membership. If you have access to manage group membership in your IdP, you can manage GitHub team membership through your identity provider, which automatically adds and removes team members in an organization. For more information, see "[Synchronizing teams between your identity provider and GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)." An organization owner can add someone who is not part of the team's organization to a team. When an organization owner adds someone to a team who is not an organization member, this endpoint will send an invitation to the person via email. This newly-created membership will be in the "pending" state until the person accepts the invitation, at which point the membership will transition to the "active" state and the user will be added as a member of the team. If the user is already a member of the team, this endpoint will update the role of the team member's role. To update the membership of a team member, the authenticated user must be an organization owner or a team maintainer. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `PUT /organizations/{org_id}/team/{team_id}/memberships/{username}`.
      */
-    fun teamsAddOrUpdateMembershipForUserInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        username: String,
-        role: TeamsAddOrUpdateMembershipForUserInOrgRoleEnum? = null,
-        options: RequestOptions? = null,
-    ): TeamMembership =
-        dev.octri.showcase.github.methods.TeamsAddOrUpdateMembershipForUserInOrgOperation
-            .teamsAddOrUpdateMembershipForUserInOrg(
-                clientConfig,
-                org,
-                teamSlug,
-                username,
-                role,
-                options,
-            )
+    fun teamsAddOrUpdateMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, role: TeamsAddOrUpdateMembershipForUserInOrgRoleEnum? = null, options: RequestOptions? = null): TeamMembership =
+        dev.octri.showcase.github.methods.TeamsAddOrUpdateMembershipForUserInOrgOperation.teamsAddOrUpdateMembershipForUserInOrg(
+            clientConfig,
+            org,
+            teamSlug,
+            username,
+            role,
+            options,
+        )
 
     /**
-     * To remove a membership between a user and a team, the authenticated user must have 'admin'
-     * permissions to the team or be an owner of the organization that the team is associated with.
-     * Removing team membership does not delete the user, it just removes their membership from the
-     * team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For
-     * more information, see
-     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
-     * in the GitHub Help documentation. > [!NOTE] > When you have team synchronization set up for a
-     * team with your organization's identity provider (IdP), you will see an error if you attempt
-     * to use the API for making changes to the team's membership. If you have access to manage
-     * group membership in your IdP, you can manage GitHub team membership through your identity
-     * provider, which automatically adds and removes team members in an organization. For more
-     * information, see "[Synchronizing teams between your identity provider and
-     * GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)." > [!NOTE] >
-     * You can also specify a team by `org_id` and `team_id` using the route `DELETE
-     * /organizations/{org_id}/team/{team_id}/memberships/{username}`.
+     * To remove a membership between a user and a team, the authenticated user must have 'admin' permissions to the team or be an owner of the organization that the team is associated with. Removing team membership does not delete the user, it just removes their membership from the team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. > [!NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes to the team's membership. If you have access to manage group membership in your IdP, you can manage GitHub team membership through your identity provider, which automatically adds and removes team members in an organization. For more information, see "[Synchronizing teams between your identity provider and GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)." > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `DELETE /organizations/{org_id}/team/{team_id}/memberships/{username}`.
      */
-    fun teamsRemoveMembershipForUserInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.TeamsRemoveMembershipForUserInOrgOperation
-            .teamsRemoveMembershipForUserInOrg(
-                clientConfig,
-                org,
-                teamSlug,
-                username,
-                options,
-            )
+    fun teamsRemoveMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.TeamsRemoveMembershipForUserInOrgOperation.teamsRemoveMembershipForUserInOrg(
+            clientConfig,
+            org,
+            teamSlug,
+            username,
+            options,
+        )
 
     /**
-     * Lists a team's repositories visible to the authenticated user. OAuth app tokens and personal
-     * access tokens (classic) need the `read:org` or `repo` scope to use this endpoint. > [!NOTE] >
-     * You can also specify a team by `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}/repos`.
+     * Lists a team's repositories visible to the authenticated user. OAuth app tokens and personal access tokens (classic) need the `read:org` or `repo` scope to use this endpoint. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/repos`.
      */
-    fun teamsListReposInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> =
+    fun teamsListReposInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> =
         dev.octri.showcase.github.methods.TeamsListReposInOrgOperation.teamsListReposInOrg(
             clientConfig,
             org,
@@ -338,86 +202,36 @@ object Teams {
         )
 
     /**
-     * Checks whether a team has `admin`, `push`, `maintain`, `triage`, or `pull` permission for a
-     * repository. Repositories inherited through a parent team will also be checked. You can also
-     * get information about the specified repository, including what permissions the team grants on
-     * it, by passing the following custom
-     * [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types/)
-     * via the `application/vnd.github.v3.repository+json` accept header. If a team doesn't have
-     * permission for the repository, you will receive a `404 Not Found` response status. If the
-     * repository is private, you must have at least `read` permission for that repository, and your
-     * token must have the `repo` or `admin:org` scope. Otherwise, you will receive a `404 Not
-     * Found` response status. > [!NOTE] > You can also specify a team by `org_id` and `team_id`
-     * using the route `GET /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`.
+     * Checks whether a team has `admin`, `push`, `maintain`, `triage`, or `pull` permission for a repository. Repositories inherited through a parent team will also be checked. You can also get information about the specified repository, including what permissions the team grants on it, by passing the following custom [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types/) via the `application/vnd.github.v3.repository+json` accept header. If a team doesn't have permission for the repository, you will receive a `404 Not Found` response status. If the repository is private, you must have at least `read` permission for that repository, and your token must have the `repo` or `admin:org` scope. Otherwise, you will receive a `404 Not Found` response status. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`.
      */
-    fun teamsCheckPermissionsForRepoInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): TeamRepository =
-        dev.octri.showcase.github.methods.TeamsCheckPermissionsForRepoInOrgOperation
-            .teamsCheckPermissionsForRepoInOrg(
-                clientConfig,
-                org,
-                teamSlug,
-                owner,
-                repo,
-                options,
-            )
+    fun teamsCheckPermissionsForRepoInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, owner: String, repo: String, options: RequestOptions? = null): TeamRepository =
+        dev.octri.showcase.github.methods.TeamsCheckPermissionsForRepoInOrgOperation.teamsCheckPermissionsForRepoInOrg(
+            clientConfig,
+            org,
+            teamSlug,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * To add a repository to a team or update the team's permission on a repository, the
-     * authenticated user must have admin access to the repository, and must be able to see the
-     * team. The repository must be owned by the organization, or a direct fork of a repository
-     * owned by the organization. You will get a `422 Unprocessable Entity` status if you attempt to
-     * add a repository to a team that is not owned by the organization. Note that, if you choose
-     * not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to
-     * this endpoint. For more information, see "[HTTP
-     * method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)." > [!NOTE] >
-     * You can also specify a team by `org_id` and `team_id` using the route `PUT
-     * /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`. For more information about the
-     * permission levels, see "[Repository permission levels for an
-     * organization](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#permission-levels-for-repositories-owned-by-an-organization)".
+     * To add a repository to a team or update the team's permission on a repository, the authenticated user must have admin access to the repository, and must be able to see the team. The repository must be owned by the organization, or a direct fork of a repository owned by the organization. You will get a `422 Unprocessable Entity` status if you attempt to add a repository to a team that is not owned by the organization. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)." > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `PUT /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`. For more information about the permission levels, see "[Repository permission levels for an organization](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#permission-levels-for-repositories-owned-by-an-organization)".
      */
-    fun teamsAddOrUpdateRepoPermissionsInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        owner: String,
-        repo: String,
-        permission: String? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.TeamsAddOrUpdateRepoPermissionsInOrgOperation
-            .teamsAddOrUpdateRepoPermissionsInOrg(
-                clientConfig,
-                org,
-                teamSlug,
-                owner,
-                repo,
-                permission,
-                options,
-            )
+    fun teamsAddOrUpdateRepoPermissionsInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, owner: String, repo: String, permission: String? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.TeamsAddOrUpdateRepoPermissionsInOrgOperation.teamsAddOrUpdateRepoPermissionsInOrg(
+            clientConfig,
+            org,
+            teamSlug,
+            owner,
+            repo,
+            permission,
+            options,
+        )
 
     /**
-     * If the authenticated user is an organization owner or a team maintainer, they can remove any
-     * repositories from the team. To remove a repository from a team as an organization member, the
-     * authenticated user must have admin access to the repository and must be able to see the team.
-     * This does not delete the repository, it just removes it from the team. > [!NOTE] > You can
-     * also specify a team by `org_id` and `team_id` using the route `DELETE
-     * /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`.
+     * If the authenticated user is an organization owner or a team maintainer, they can remove any repositories from the team. To remove a repository from a team as an organization member, the authenticated user must have admin access to the repository and must be able to see the team. This does not delete the repository, it just removes it from the team. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `DELETE /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`.
      */
-    fun teamsRemoveRepoInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun teamsRemoveRepoInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, owner: String, repo: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.TeamsRemoveRepoInOrgOperation.teamsRemoveRepoInOrg(
             clientConfig,
             org,
@@ -428,18 +242,9 @@ object Teams {
         )
 
     /**
-     * Lists the child teams of the team specified by `{team_slug}`. > [!NOTE] > You can also
-     * specify a team by `org_id` and `team_id` using the route `GET
-     * /organizations/{org_id}/team/{team_id}/teams`.
+     * Lists the child teams of the team specified by `{team_slug}`. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/teams`.
      */
-    fun teamsListChildInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        teamSlug: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Team> =
+    fun teamsListChildInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Team> =
         dev.octri.showcase.github.methods.TeamsListChildInOrgOperation.teamsListChildInOrg(
             clientConfig,
             org,
@@ -450,17 +255,12 @@ object Teams {
         )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the
-     * > [Get a team by name](https://docs.github.com/rest/teams/teams#get-a-team-by-name) endpoint.
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the [Get a team by name](https://docs.github.com/rest/teams/teams#get-a-team-by-name) endpoint.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsGetLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        options: RequestOptions? = null,
-    ): TeamFull =
+    fun teamsGetLegacy(clientConfig: ClientConfig, teamId: Long, options: RequestOptions? = null): TeamFull =
         dev.octri.showcase.github.methods.TeamsGetLegacyOperation.teamsGetLegacy(
             clientConfig,
             teamId,
@@ -468,20 +268,12 @@ object Teams {
         )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [Update a team](https://docs.github.com/rest/teams/teams#update-a-team) endpoint. To edit a
-     * > team, the authenticated user must either be an organization owner or a team
-     * > maintainer. > [!NOTE] > With nested teams, the `privacy` for parent teams cannot be
-     * > `secret`.
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [Update a team](https://docs.github.com/rest/teams/teams#update-a-team) endpoint. To edit a team, the authenticated user must either be an organization owner or a team maintainer. > [!NOTE] > With nested teams, the `privacy` for parent teams cannot be `secret`.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsUpdateLegacy(
-        clientConfig: ClientConfig,
-        request: TeamsUpdateLegacyRequest,
-        options: RequestOptions? = null,
-    ): TeamFull =
+    fun teamsUpdateLegacy(clientConfig: ClientConfig, request: TeamsUpdateLegacyRequest, options: RequestOptions? = null): TeamFull =
         dev.octri.showcase.github.methods.TeamsUpdateLegacyOperation.teamsUpdateLegacy(
             clientConfig,
             request,
@@ -489,19 +281,12 @@ object Teams {
         )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [Delete a team](https://docs.github.com/rest/teams/teams#delete-a-team) endpoint. To delete
-     * > a team, the authenticated user must be an organization owner or team maintainer. If you are
-     * > an organization owner, deleting a parent team will delete all of its child teams as well.
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [Delete a team](https://docs.github.com/rest/teams/teams#delete-a-team) endpoint. To delete a team, the authenticated user must be an organization owner or team maintainer. If you are an organization owner, deleting a parent team will delete all of its child teams as well.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsDeleteLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun teamsDeleteLegacy(clientConfig: ClientConfig, teamId: Long, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.TeamsDeleteLegacyOperation.teamsDeleteLegacy(
             clientConfig,
             teamId,
@@ -509,50 +294,27 @@ object Teams {
         )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [`List pending team invitations`](https://docs.github.com/rest/teams/members#list-pending-team-invitations)
-     * > endpoint. The return hash contains a `role` field which refers to the Organization
-     * > Invitation role and will be one of the following values: `direct_member`, `admin`,
-     * > `billing_manager`, `hiring_manager`, or `reinstate`. If the invitee is not a GitHub member,
-     * > the `login` field in the return hash will be `null`.
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [`List pending team invitations`](https://docs.github.com/rest/teams/members#list-pending-team-invitations) endpoint. The return hash contains a `role` field which refers to the Organization Invitation role and will be one of the following values: `direct_member`, `admin`, `billing_manager`, `hiring_manager`, or `reinstate`. If the invitee is not a GitHub member, the `login` field in the return hash will be `null`.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsListPendingInvitationsLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<OrganizationInvitation> =
-        dev.octri.showcase.github.methods.TeamsListPendingInvitationsLegacyOperation
-            .teamsListPendingInvitationsLegacy(
-                clientConfig,
-                teamId,
-                perPage,
-                page,
-                options,
-            )
+    fun teamsListPendingInvitationsLegacy(clientConfig: ClientConfig, teamId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<OrganizationInvitation> =
+        dev.octri.showcase.github.methods.TeamsListPendingInvitationsLegacyOperation.teamsListPendingInvitationsLegacy(
+            clientConfig,
+            teamId,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [`List team members`](https://docs.github.com/rest/teams/members#list-team-members)
-     * > endpoint. Team members will include the members of child teams. Each member includes their
-     * > `role` on the team (`member` or `maintainer`) and an `inherited` flag indicating whether
-     * > the membership is inherited from a child team (`true`) or is a direct membership (`false`).
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [`List team members`](https://docs.github.com/rest/teams/members#list-team-members) endpoint. Team members will include the members of child teams. Each member includes their `role` on the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership is inherited from a child team (`true`) or is a direct membership (`false`).
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsListMembersLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        role: TeamsListMembersLegacyParameterEnum? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<TeamMember> =
+    fun teamsListMembersLegacy(clientConfig: ClientConfig, teamId: Long, role: TeamsListMembersLegacyParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamMember> =
         dev.octri.showcase.github.methods.TeamsListMembersLegacyOperation.teamsListMembersLegacy(
             clientConfig,
             teamId,
@@ -563,19 +325,12 @@ object Teams {
         )
 
     /**
-     * The "Get team member" endpoint (described below) is closing down. We recommend using the
-     * [Get team membership for a user](https://docs.github.com/rest/teams/members#get-team-membership-for-a-user)
-     * endpoint instead. It allows you to get both active and pending memberships. To list members
-     * in a team, the team must be visible to the authenticated user.
+     * The "Get team member" endpoint (described below) is closing down. We recommend using the [Get team membership for a user](https://docs.github.com/rest/teams/members#get-team-membership-for-a-user) endpoint instead. It allows you to get both active and pending memberships. To list members in a team, the team must be visible to the authenticated user.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsGetMemberLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun teamsGetMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.TeamsGetMemberLegacyOperation.teamsGetMemberLegacy(
             clientConfig,
             teamId,
@@ -584,34 +339,12 @@ object Teams {
         )
 
     /**
-     * The "Add team member" endpoint (described below) is closing down. We recommend using the
-     * [Add or update team membership for a user](https://docs.github.com/rest/teams/members#add-or-update-team-membership-for-a-user)
-     * endpoint instead. It allows you to invite new organization members to your teams. Team
-     * synchronization is available for organizations using GitHub Enterprise Cloud. For more
-     * information, see
-     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
-     * in the GitHub Help documentation. To add someone to a team, the authenticated user must be an
-     * organization owner or a team maintainer in the team they're changing. The person being added
-     * to the team must be a member of the team's organization. > [!NOTE] > When you have team
-     * synchronization set up for a team with your organization's identity provider (IdP), you will
-     * see an error if you attempt to use the API for making changes to the team's membership. If
-     * you have access to manage group membership in your IdP, you can manage GitHub team membership
-     * through your identity provider, which automatically adds and removes team members in an
-     * organization. For more information, see "[Synchronizing teams between your identity provider
-     * and
-     * GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)."
-     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For
-     * more information, see "[HTTP
-     * method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
+     * The "Add team member" endpoint (described below) is closing down. We recommend using the [Add or update team membership for a user](https://docs.github.com/rest/teams/members#add-or-update-team-membership-for-a-user) endpoint instead. It allows you to invite new organization members to your teams. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. To add someone to a team, the authenticated user must be an organization owner or a team maintainer in the team they're changing. The person being added to the team must be a member of the team's organization. > [!NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes to the team's membership. If you have access to manage group membership in your IdP, you can manage GitHub team membership through your identity provider, which automatically adds and removes team members in an organization. For more information, see "[Synchronizing teams between your identity provider and GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)." Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsAddMemberLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun teamsAddMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.TeamsAddMemberLegacyOperation.teamsAddMemberLegacy(
             clientConfig,
             teamId,
@@ -620,31 +353,12 @@ object Teams {
         )
 
     /**
-     * The "Remove team member" endpoint (described below) is closing down. We recommend using the
-     * [Remove team membership for a user](https://docs.github.com/rest/teams/members#remove-team-membership-for-a-user)
-     * endpoint instead. It allows you to remove both active and pending memberships. Team
-     * synchronization is available for organizations using GitHub Enterprise Cloud. For more
-     * information, see
-     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
-     * in the GitHub Help documentation. To remove a team member, the authenticated user must have
-     * 'admin' permissions to the team or be an owner of the org that the team is associated with.
-     * Removing a team member does not delete the user, it just removes them from the
-     * team. > [!NOTE] > When you have team synchronization set up for a team with your
-     * organization's identity provider (IdP), you will see an error if you attempt to use the API
-     * for making changes to the team's membership. If you have access to manage group membership in
-     * your IdP, you can manage GitHub team membership through your identity provider, which
-     * automatically adds and removes team members in an organization. For more information, see
-     * "[Synchronizing teams between your identity provider and
-     * GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)."
+     * The "Remove team member" endpoint (described below) is closing down. We recommend using the [Remove team membership for a user](https://docs.github.com/rest/teams/members#remove-team-membership-for-a-user) endpoint instead. It allows you to remove both active and pending memberships. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. To remove a team member, the authenticated user must have 'admin' permissions to the team or be an owner of the org that the team is associated with. Removing a team member does not delete the user, it just removes them from the team. > [!NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes to the team's membership. If you have access to manage group membership in your IdP, you can manage GitHub team membership through your identity provider, which automatically adds and removes team members in an organization. For more information, see "[Synchronizing teams between your identity provider and GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)."
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsRemoveMemberLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun teamsRemoveMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.TeamsRemoveMemberLegacyOperation.teamsRemoveMemberLegacy(
             clientConfig,
             teamId,
@@ -653,125 +367,55 @@ object Teams {
         )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [Get team membership for a user](https://docs.github.com/rest/teams/members#get-team-membership-for-a-user)
-     * > endpoint. Team members will include the members of child teams. To get a user's membership
-     * > with a team, the team must be visible to the authenticated user. **Note:** The response
-     * > contains the `state` of the membership and the member's `role`. The `role` for organization
-     * > owners is set to `maintainer`. For more information about `maintainer` roles, see
-     * > [Create a team](https://docs.github.com/rest/teams/teams#create-a-team).
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [Get team membership for a user](https://docs.github.com/rest/teams/members#get-team-membership-for-a-user) endpoint. Team members will include the members of child teams. To get a user's membership with a team, the team must be visible to the authenticated user. **Note:** The response contains the `state` of the membership and the member's `role`. The `role` for organization owners is set to `maintainer`. For more information about `maintainer` roles, see [Create a team](https://docs.github.com/rest/teams/teams#create-a-team).
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsGetMembershipForUserLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): TeamMembership =
-        dev.octri.showcase.github.methods.TeamsGetMembershipForUserLegacyOperation
-            .teamsGetMembershipForUserLegacy(
-                clientConfig,
-                teamId,
-                username,
-                options,
-            )
+    fun teamsGetMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): TeamMembership =
+        dev.octri.showcase.github.methods.TeamsGetMembershipForUserLegacyOperation.teamsGetMembershipForUserLegacy(
+            clientConfig,
+            teamId,
+            username,
+            options,
+        )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [Add or update team membership for a user](https://docs.github.com/rest/teams/members#add-or-update-team-membership-for-a-user)
-     * > endpoint. Team synchronization is available for organizations using GitHub Enterprise
-     * > Cloud. For more information, see
-     * > [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
-     * > in the GitHub Help documentation. If the user is already a member of the team's
-     * > organization, this endpoint will add the user to the team. To add a membership between an
-     * > organization member and a team, the authenticated user must be an organization owner or a
-     * > team maintainer. > [!NOTE] > When you have team synchronization set up for a team with your
-     * > organization's identity provider (IdP), you will see an error if you attempt to use the API
-     * > for making changes to the team's membership. If you have access to manage group membership
-     * > in your IdP, you can manage GitHub team membership through your identity provider, which
-     * > automatically adds and removes team members in an organization. For more information, see
-     * > "[Synchronizing teams between your identity provider and
-     * > GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)."
-     * > If the user is unaffiliated with the team's organization, this endpoint will send an
-     * > invitation to the user via email. This newly-created membership will be in the "pending"
-     * > state until the user accepts the invitation, at which point the membership will transition
-     * > to the "active" state and the user will be added as a member of the team. To add a
-     * > membership between an unaffiliated user and a team, the authenticated user must be an
-     * > organization owner. If the user is already a member of the team, this endpoint will update
-     * > the role of the team member's role. To update the membership of a team member, the
-     * > authenticated user must be an organization owner or a team maintainer.
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [Add or update team membership for a user](https://docs.github.com/rest/teams/members#add-or-update-team-membership-for-a-user) endpoint. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. If the user is already a member of the team's organization, this endpoint will add the user to the team. To add a membership between an organization member and a team, the authenticated user must be an organization owner or a team maintainer. > [!NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes to the team's membership. If you have access to manage group membership in your IdP, you can manage GitHub team membership through your identity provider, which automatically adds and removes team members in an organization. For more information, see "[Synchronizing teams between your identity provider and GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)." If the user is unaffiliated with the team's organization, this endpoint will send an invitation to the user via email. This newly-created membership will be in the "pending" state until the user accepts the invitation, at which point the membership will transition to the "active" state and the user will be added as a member of the team. To add a membership between an unaffiliated user and a team, the authenticated user must be an organization owner. If the user is already a member of the team, this endpoint will update the role of the team member's role. To update the membership of a team member, the authenticated user must be an organization owner or a team maintainer.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsAddOrUpdateMembershipForUserLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        role: TeamsAddOrUpdateMembershipForUserLegacyRoleEnum? = null,
-        options: RequestOptions? = null,
-    ): TeamMembership =
-        dev.octri.showcase.github.methods.TeamsAddOrUpdateMembershipForUserLegacyOperation
-            .teamsAddOrUpdateMembershipForUserLegacy(
-                clientConfig,
-                teamId,
-                username,
-                role,
-                options,
-            )
+    fun teamsAddOrUpdateMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, role: TeamsAddOrUpdateMembershipForUserLegacyRoleEnum? = null, options: RequestOptions? = null): TeamMembership =
+        dev.octri.showcase.github.methods.TeamsAddOrUpdateMembershipForUserLegacyOperation.teamsAddOrUpdateMembershipForUserLegacy(
+            clientConfig,
+            teamId,
+            username,
+            role,
+            options,
+        )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [Remove team membership for a user](https://docs.github.com/rest/teams/members#remove-team-membership-for-a-user)
-     * > endpoint. Team synchronization is available for organizations using GitHub Enterprise
-     * > Cloud. For more information, see
-     * > [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
-     * > in the GitHub Help documentation. To remove a membership between a user and a team, the
-     * > authenticated user must have 'admin' permissions to the team or be an owner of the
-     * > organization that the team is associated with. Removing team membership does not delete the
-     * > user, it just removes their membership from the team. > [!NOTE] > When you have team
-     * > synchronization set up for a team with your organization's identity provider (IdP), you
-     * > will see an error if you attempt to use the API for making changes to the team's
-     * > membership. If you have access to manage group membership in your IdP, you can manage
-     * > GitHub team membership through your identity provider, which automatically adds and removes
-     * > team members in an organization. For more information, see "[Synchronizing teams between
-     * > your identity provider and
-     * > GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)."
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [Remove team membership for a user](https://docs.github.com/rest/teams/members#remove-team-membership-for-a-user) endpoint. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. To remove a membership between a user and a team, the authenticated user must have 'admin' permissions to the team or be an owner of the organization that the team is associated with. Removing team membership does not delete the user, it just removes their membership from the team. > [!NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes to the team's membership. If you have access to manage group membership in your IdP, you can manage GitHub team membership through your identity provider, which automatically adds and removes team members in an organization. For more information, see "[Synchronizing teams between your identity provider and GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)."
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsRemoveMembershipForUserLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        username: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.TeamsRemoveMembershipForUserLegacyOperation
-            .teamsRemoveMembershipForUserLegacy(
-                clientConfig,
-                teamId,
-                username,
-                options,
-            )
+    fun teamsRemoveMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.TeamsRemoveMembershipForUserLegacyOperation.teamsRemoveMembershipForUserLegacy(
+            clientConfig,
+            teamId,
+            username,
+            options,
+        )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [List team repositories](https://docs.github.com/rest/teams/teams#list-team-repositories)
-     * > endpoint.
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [List team repositories](https://docs.github.com/rest/teams/teams#list-team-repositories) endpoint.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsListReposLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> =
+    fun teamsListReposLegacy(clientConfig: ClientConfig, teamId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> =
         dev.octri.showcase.github.methods.TeamsListReposLegacyOperation.teamsListReposLegacy(
             clientConfig,
             teamId,
@@ -781,86 +425,43 @@ object Teams {
         )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [Check team permissions for a repository](https://docs.github.com/rest/teams/teams#check-team-permissions-for-a-repository)
-     * > endpoint. > [!NOTE] > Repositories inherited through a parent team will also be checked.
-     * > You can also get information about the specified repository, including what permissions the
-     * > team grants on it, by passing the following custom
-     * > [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types/)
-     * > via the `Accept` header:
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [Check team permissions for a repository](https://docs.github.com/rest/teams/teams#check-team-permissions-for-a-repository) endpoint. > [!NOTE] > Repositories inherited through a parent team will also be checked. You can also get information about the specified repository, including what permissions the team grants on it, by passing the following custom [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types/) via the `Accept` header:
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsCheckPermissionsForRepoLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): TeamRepository =
-        dev.octri.showcase.github.methods.TeamsCheckPermissionsForRepoLegacyOperation
-            .teamsCheckPermissionsForRepoLegacy(
-                clientConfig,
-                teamId,
-                owner,
-                repo,
-                options,
-            )
+    fun teamsCheckPermissionsForRepoLegacy(clientConfig: ClientConfig, teamId: Long, owner: String, repo: String, options: RequestOptions? = null): TeamRepository =
+        dev.octri.showcase.github.methods.TeamsCheckPermissionsForRepoLegacyOperation.teamsCheckPermissionsForRepoLegacy(
+            clientConfig,
+            teamId,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > "[Add or update team repository
-     * > permissions](https://docs.github.com/rest/teams/teams#add-or-update-team-repository-permissions)"
-     * > endpoint. To add a repository to a team or update the team's permission on a repository,
-     * > the authenticated user must have admin access to the repository, and must be able to see
-     * > the team. The repository must be owned by the organization, or a direct fork of a
-     * > repository owned by the organization. You will get a `422 Unprocessable Entity` status if
-     * > you attempt to add a repository to a team that is not owned by the organization. Note that,
-     * > if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when
-     * > calling out to this endpoint. For more information, see "[HTTP
-     * > method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new "[Add or update team repository permissions](https://docs.github.com/rest/teams/teams#add-or-update-team-repository-permissions)" endpoint. To add a repository to a team or update the team's permission on a repository, the authenticated user must have admin access to the repository, and must be able to see the team. The repository must be owned by the organization, or a direct fork of a repository owned by the organization. You will get a `422 Unprocessable Entity` status if you attempt to add a repository to a team that is not owned by the organization. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsAddOrUpdateRepoPermissionsLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        owner: String,
-        repo: String,
-        permission: TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.TeamsAddOrUpdateRepoPermissionsLegacyOperation
-            .teamsAddOrUpdateRepoPermissionsLegacy(
-                clientConfig,
-                teamId,
-                owner,
-                repo,
-                permission,
-                options,
-            )
+    fun teamsAddOrUpdateRepoPermissionsLegacy(clientConfig: ClientConfig, teamId: Long, owner: String, repo: String, permission: TeamsAddOrUpdateRepoPermissionsLegacyPermissionEnum? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.TeamsAddOrUpdateRepoPermissionsLegacyOperation.teamsAddOrUpdateRepoPermissionsLegacy(
+            clientConfig,
+            teamId,
+            owner,
+            repo,
+            permission,
+            options,
+        )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [Remove a repository from a team](https://docs.github.com/rest/teams/teams#remove-a-repository-from-a-team)
-     * > endpoint. If the authenticated user is an organization owner or a team maintainer, they can
-     * > remove any repositories from the team. To remove a repository from a team as an
-     * > organization member, the authenticated user must have admin access to the repository and
-     * > must be able to see the team. NOTE: This does not delete the repository, it just removes it
-     * > from the team.
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [Remove a repository from a team](https://docs.github.com/rest/teams/teams#remove-a-repository-from-a-team) endpoint. If the authenticated user is an organization owner or a team maintainer, they can remove any repositories from the team. To remove a repository from a team as an organization member, the authenticated user must have admin access to the repository and must be able to see the team. NOTE: This does not delete the repository, it just removes it from the team.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsRemoveRepoLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun teamsRemoveRepoLegacy(clientConfig: ClientConfig, teamId: Long, owner: String, repo: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.TeamsRemoveRepoLegacyOperation.teamsRemoveRepoLegacy(
             clientConfig,
             teamId,
@@ -870,19 +471,12 @@ object Teams {
         )
 
     /**
-     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
-     * > be removed from the Teams API. We recommend migrating your existing code to use the new
-     * > [`List child teams`](https://docs.github.com/rest/teams/teams#list-child-teams) endpoint.
+     * > [!WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new [`List child teams`](https://docs.github.com/rest/teams/teams#list-child-teams) endpoint.
      *
-     * @deprecated This operation is deprecated and may be removed in a future release.
+     * @deprecated This operation is deprecated and may be removed in a future
+     *   release.
      */
-    fun teamsListChildLegacy(
-        clientConfig: ClientConfig,
-        teamId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Team> =
+    fun teamsListChildLegacy(clientConfig: ClientConfig, teamId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Team> =
         dev.octri.showcase.github.methods.TeamsListChildLegacyOperation.teamsListChildLegacy(
             clientConfig,
             teamId,
@@ -892,23 +486,13 @@ object Teams {
         )
 
     /**
-     * List all of the teams across all of the organizations to which the authenticated user
-     * belongs. OAuth app tokens and personal access tokens (classic) need the `user`, `repo`, or
-     * `read:org` scope to use this endpoint. When using a fine-grained personal access token, the
-     * resource owner of the token must be a single organization, and the response will only include
-     * the teams from that organization.
+     * List all of the teams across all of the organizations to which the authenticated user belongs. OAuth app tokens and personal access tokens (classic) need the `user`, `repo`, or `read:org` scope to use this endpoint. When using a fine-grained personal access token, the resource owner of the token must be a single organization, and the response will only include the teams from that organization.
      */
-    fun teamsListForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<TeamFull> =
-        dev.octri.showcase.github.methods.TeamsListForAuthenticatedUserOperation
-            .teamsListForAuthenticatedUser(
-                clientConfig,
-                perPage,
-                page,
-                options,
-            )
+    fun teamsListForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamFull> =
+        dev.octri.showcase.github.methods.TeamsListForAuthenticatedUserOperation.teamsListForAuthenticatedUser(
+            clientConfig,
+            perPage,
+            page,
+            options,
+        )
 }

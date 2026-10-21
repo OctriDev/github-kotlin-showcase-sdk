@@ -12,66 +12,24 @@ import dev.octri.showcase.github.ValidationError
 
 internal object CodespacesExportForAuthenticatedUserOperation {
     /**
-     * Triggers an export of the specified codespace and returns a URL and ID where the status of
-     * the export can be monitored. If changes cannot be pushed to the codespace's repository, they
-     * will be pushed to a new or previously-existing fork instead. OAuth app tokens and personal
-     * access tokens (classic) need the `codespace` scope to use this endpoint.
+     * Triggers an export of the specified codespace and returns a URL and ID where the status of the export can be monitored. If changes cannot be pushed to the codespace's repository, they will be pushed to a new or previously-existing fork instead. OAuth app tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
      *
      * @param codespaceName The name of the codespace.
      */
-    fun codespacesExportForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        codespaceName: String,
-        options: RequestOptions? = null,
-    ): CodespaceExportDetails {
-        return SdkClient.request<CodespaceExportDetails>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/exports",
-                    config = clientConfig,
-                    operationId = "codespacesExportForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun codespacesExportForAuthenticatedUser(clientConfig: ClientConfig, codespaceName: String, options: RequestOptions? = null): CodespaceExportDetails {
+        return SdkClient.request<CodespaceExportDetails>(SdkClient.RequestSpec("POST", "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/exports", config = clientConfig, operationId = "codespacesExportForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java))).data
     }
 }
 
 internal object CodespacesGetExportDetailsForAuthenticatedUserOperation {
     /**
-     * Gets information about an export of a codespace. OAuth app tokens and personal access tokens
-     * (classic) need the `codespace` scope to use this endpoint.
+     * Gets information about an export of a codespace. OAuth app tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
      *
      * @param codespaceName The name of the codespace.
-     * @param exportId The ID of the export operation, or `latest`. Currently only `latest` is
-     *   currently supported.
+     * @param exportId The ID of the export operation, or `latest`. Currently only
+     *   `latest` is currently supported.
      */
-    fun codespacesGetExportDetailsForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        codespaceName: String,
-        exportId: String,
-        options: RequestOptions? = null,
-    ): CodespaceExportDetails {
-        return SdkClient.request<CodespaceExportDetails>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/exports/${SdkClient.encodePathSegment(exportId)}",
-                    config = clientConfig,
-                    operationId = "codespacesGetExportDetailsForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun codespacesGetExportDetailsForAuthenticatedUser(clientConfig: ClientConfig, codespaceName: String, exportId: String, options: RequestOptions? = null): CodespaceExportDetails {
+        return SdkClient.request<CodespaceExportDetails>(SdkClient.RequestSpec("GET", "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/exports/${SdkClient.encodePathSegment(exportId)}", config = clientConfig, operationId = "codespacesGetExportDetailsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }

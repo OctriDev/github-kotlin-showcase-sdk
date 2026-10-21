@@ -3,28 +3,22 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `SelectedActions` API schema. */
+/**
+ * Typed representation of the `SelectedActions` API schema.
+ */
 data class SelectedActions(
     /**
-     * Whether GitHub-owned actions are allowed. For example, this includes the actions in the
-     * `actions` organization.
+     * Whether GitHub-owned actions are allowed. For example, this includes the actions in the `actions` organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("github_owned_allowed")
-    val githubOwnedAllowed: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("github_owned_allowed") val githubOwnedAllowed: Boolean? = null,
     /**
-     * Whether actions from GitHub Marketplace verified creators are allowed. Set to `true` to allow
-     * all actions by GitHub Marketplace verified creators.
+     * Whether actions from GitHub Marketplace verified creators are allowed. Set to `true` to allow all actions by GitHub Marketplace verified creators.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("verified_allowed")
-    val verifiedAllowed: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("verified_allowed") val verifiedAllowed: Boolean? = null,
     /**
-     * Specifies a list of string-matching patterns to allow specific action(s) and reusable
-     * workflow(s). Wildcards, tags, and SHAs are allowed. For example, `monalisa/octocat@*`,
-     * `monalisa/octocat@v2`, `monalisa/ *`. > \[!NOTE\] > The `patterns_allowed` setting only
-     * applies to public repositories.
+     * Specifies a list of string-matching patterns to allow specific action(s) and reusable workflow(s). Wildcards, tags, and SHAs are allowed. For example, `monalisa/octocat@*`, `monalisa/octocat@v2`, `monalisa/ *`. > \[!NOTE\] > The `patterns_allowed` setting only applies to public repositories.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("patterns_allowed")
-    val patternsAllowed: List<String>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("patterns_allowed") val patternsAllowed: List<String>? = null
 )
 
 typealias SelectedActionsUrl = String

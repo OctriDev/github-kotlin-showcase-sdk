@@ -7,580 +7,245 @@ import java.time.OffsetDateTime
 
 class ActivityNamespace(private val clientConfig: ClientConfig) {
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      */
-    fun listPublicEvents(
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListPublicEvents(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun listPublicEvents(perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListPublicEvents(clientConfig, perPage, page, options)
     }
 
     /**
-     * Lists the feeds available to the authenticated user. The response provides a URL for each
-     * feed. You can then get a specific feed by sending a request to one of the feed URLs. *
-     * **Timeline**: The GitHub global public timeline * **User**: The public timeline for any user,
-     * using `uri_template`. For more information, see "Hypermedia." * **Current user public**: The
-     * public timeline for the authenticated user * **Current user**: The private timeline for the
-     * authenticated user *…
+     * Lists the feeds available to the authenticated user. The response provides a URL for each feed. You can then get a specific feed by sending a request to one of the feed URLs. * **Timeline**: The GitHub global public timeline * **User**: The public timeline for any user, using `uri_template`. For more information, see "Hypermedia." * **Current user public**: The public timeline for the authenticated user * **Current user**: The private timeline for the authenticated user *…
      */
     fun getFeeds(options: RequestOptions? = null): Feed {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityGetFeeds(
-            clientConfig,
-            options,
-        )
+        return dev.octri.showcase.github.methods.ActivityMethods.activityGetFeeds(clientConfig, options)
     }
 
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      */
-    fun listPublicEventsForRepoNetwork(
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityListPublicEventsForRepoNetwork(
-                clientConfig,
-                owner,
-                repo,
-                perPage,
-                page,
-                options,
-            )
-    }
-
-    /** List all notifications for the current user, sorted by most recently updated. */
-    fun listNotificationsForAuthenticatedUser(
-        request:
-            dev.octri.showcase.github.methods.ActivityMethods.ActivityListNotificationsForAuthenticatedUserRequest,
-        options: RequestOptions? = null,
-    ): List<Thread> {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityListNotificationsForAuthenticatedUser(clientConfig, request, options)
+    fun listPublicEventsForRepoNetwork(owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListPublicEventsForRepoNetwork(clientConfig, owner, repo, perPage, page, options)
     }
 
     /**
-     * Marks all notifications as "read" for the current user. If the number of notifications is too
-     * large to complete in one request, you will receive a `202 Accepted` status and GitHub will
-     * run an asynchronous process to mark notifications as "read." To check whether any "unread"
-     * notifications remain, you can use the List notifications for the authenticated user endpoint
-     * and pass the query parameter `all=false`.
+     * List all notifications for the current user, sorted by most recently updated.
      */
-    fun markNotificationsAsRead(
-        lastReadAt: OffsetDateTime? = null,
-        read: Boolean? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.ActivityMethods.ActivityMarkNotificationsAsReadResponse {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityMarkNotificationsAsRead(
-            clientConfig,
-            lastReadAt,
-            read,
-            options,
-        )
+    fun listNotificationsForAuthenticatedUser(request: dev.octri.showcase.github.methods.ActivityMethods.ActivityListNotificationsForAuthenticatedUserRequest, options: RequestOptions? = null): List<Thread> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListNotificationsForAuthenticatedUser(clientConfig, request, options)
     }
 
     /**
-     * Retrieves a notification thread by its unique identifier. Use the `thread_id` value returned
-     * in a notification's `id` field to inspect the thread's repository, subject, unread state, and
-     * subscription URL.
+     * Marks all notifications as "read" for the current user. If the number of notifications is too large to complete in one request, you will receive a `202 Accepted` status and GitHub will run an asynchronous process to mark notifications as "read." To check whether any "unread" notifications remain, you can use the List notifications for the authenticated user endpoint and pass the query parameter `all=false`.
+     */
+    fun markNotificationsAsRead(lastReadAt: OffsetDateTime? = null, read: Boolean? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.ActivityMethods.ActivityMarkNotificationsAsReadResponse {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityMarkNotificationsAsRead(clientConfig, lastReadAt, read, options)
+    }
+
+    /**
+     * Retrieves a notification thread by its unique identifier. Use the `thread_id` value returned in a notification's `id` field to inspect the thread's repository, subject, unread state, and subscription URL.
      *
      * Gets information about a notification thread.
      */
     fun getThread(threadId: Long, options: RequestOptions? = null): Thread {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityGetThread(
-            clientConfig,
-            threadId,
-            options,
-        )
+        return dev.octri.showcase.github.methods.ActivityMethods.activityGetThread(clientConfig, threadId, options)
     }
 
     /**
-     * Marks a thread as "read." Marking a thread as "read" is equivalent to clicking a notification
-     * in your notification inbox on GitHub: github.com
+     * Marks a thread as "read." Marking a thread as "read" is equivalent to clicking a notification in your notification inbox on GitHub: github.com
      */
     fun markThreadAsRead(threadId: Long, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityMarkThreadAsRead(
-            clientConfig,
-            threadId,
-            options,
-        )
+        return dev.octri.showcase.github.methods.ActivityMethods.activityMarkThreadAsRead(clientConfig, threadId, options)
     }
 
     /**
-     * Marks a thread as "done." Marking a thread as "done" is equivalent to marking a notification
-     * in your notification inbox on GitHub as done: github.com
+     * Marks a thread as "done." Marking a thread as "done" is equivalent to marking a notification in your notification inbox on GitHub as done: github.com
      */
     fun markThreadAsDone(threadId: Long, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityMarkThreadAsDone(
-            clientConfig,
-            threadId,
-            options,
-        )
+        return dev.octri.showcase.github.methods.ActivityMethods.activityMarkThreadAsDone(clientConfig, threadId, options)
     }
 
     /**
-     * This checks to see if the current user is subscribed to a thread. You can also get a
-     * repository subscription. Note that subscriptions are only generated if a user is
-     * participating in a conversation--for example, they've replied to the thread, were
-     * **@mentioned**, or manually subscribe to a thread.
+     * This checks to see if the current user is subscribed to a thread. You can also get a repository subscription. Note that subscriptions are only generated if a user is participating in a conversation--for example, they've replied to the thread, were **@mentioned**, or manually subscribe to a thread.
      */
-    fun getThreadSubscriptionForAuthenticatedUser(
-        threadId: Long,
-        options: RequestOptions? = null,
-    ): ThreadSubscription {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityGetThreadSubscriptionForAuthenticatedUser(clientConfig, threadId, options)
+    fun getThreadSubscriptionForAuthenticatedUser(threadId: Long, options: RequestOptions? = null): ThreadSubscription {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityGetThreadSubscriptionForAuthenticatedUser(clientConfig, threadId, options)
     }
 
     /**
-     * If you are watching a repository, you receive notifications for all threads by default. Use
-     * this endpoint to ignore future notifications for threads until you comment on the thread or
-     * get an **@mention**. You can also use this endpoint to subscribe to threads that you are
-     * currently not receiving notifications for or to subscribed to threads that you have
-     * previously ignored. Unsubscribing from a conversation in a repository that you are not
-     * watching is functionally equivalent…
+     * If you are watching a repository, you receive notifications for all threads by default. Use this endpoint to ignore future notifications for threads until you comment on the thread or get an **@mention**. You can also use this endpoint to subscribe to threads that you are currently not receiving notifications for or to subscribed to threads that you have previously ignored. Unsubscribing from a conversation in a repository that you are not watching is functionally equivalent…
      */
-    fun setThreadSubscription(
-        threadId: Long,
-        ignored: Boolean? = null,
-        options: RequestOptions? = null,
-    ): ThreadSubscription {
-        return dev.octri.showcase.github.methods.ActivityMethods.activitySetThreadSubscription(
-            clientConfig,
-            threadId,
-            ignored,
-            options,
-        )
+    fun setThreadSubscription(threadId: Long, ignored: Boolean? = null, options: RequestOptions? = null): ThreadSubscription {
+        return dev.octri.showcase.github.methods.ActivityMethods.activitySetThreadSubscription(clientConfig, threadId, ignored, options)
     }
 
     /**
-     * Mutes all future notifications for a conversation until you comment on the thread or get an
-     * **@mention**. If you are watching the repository of the thread, you will still receive
-     * notifications. To ignore future notifications for a repository you are watching, use the Set
-     * a thread subscription endpoint and set `ignore` to `true`.
+     * Mutes all future notifications for a conversation until you comment on the thread or get an **@mention**. If you are watching the repository of the thread, you will still receive notifications. To ignore future notifications for a repository you are watching, use the Set a thread subscription endpoint and set `ignore` to `true`.
      */
     fun deleteThreadSubscription(threadId: Long, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityDeleteThreadSubscription(
-            clientConfig,
-            threadId,
-            options,
-        )
+        return dev.octri.showcase.github.methods.ActivityMethods.activityDeleteThreadSubscription(clientConfig, threadId, options)
     }
 
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      */
-    fun listPublicOrgEvents(
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListPublicOrgEvents(
-            clientConfig,
-            org,
-            perPage,
-            page,
-            options,
-        )
+    fun listPublicOrgEvents(org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListPublicOrgEvents(clientConfig, org, perPage, page, options)
     }
 
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      */
-    fun listRepoEvents(
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListRepoEvents(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
-    }
-
-    /** Lists all notifications for the current user in the specified repository. */
-    fun listRepoNotificationsForAuthenticatedUser(
-        request:
-            dev.octri.showcase.github.methods.ActivityMethods.ActivityListRepoNotificationsForAuthenticatedUserRequest,
-        options: RequestOptions? = null,
-    ): List<Thread> {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityListRepoNotificationsForAuthenticatedUser(clientConfig, request, options)
+    fun listRepoEvents(owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListRepoEvents(clientConfig, owner, repo, perPage, page, options)
     }
 
     /**
-     * Marks all notifications in a repository as "read" for the current user. If the number of
-     * notifications is too large to complete in one request, you will receive a `202 Accepted`
-     * status and GitHub will run an asynchronous process to mark notifications as "read." To check
-     * whether any "unread" notifications remain, you can use the List repository notifications for
-     * the authenticated user endpoint and pass the query parameter `all=false`.
+     * Lists all notifications for the current user in the specified repository.
      */
-    fun markRepoNotificationsAsRead(
-        owner: String,
-        repo: String,
-        lastReadAt: OffsetDateTime? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.ActivityMethods.ActivityMarkRepoNotificationsAsReadResponse {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityMarkRepoNotificationsAsRead(clientConfig, owner, repo, lastReadAt, options)
+    fun listRepoNotificationsForAuthenticatedUser(request: dev.octri.showcase.github.methods.ActivityMethods.ActivityListRepoNotificationsForAuthenticatedUserRequest, options: RequestOptions? = null): List<Thread> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListRepoNotificationsForAuthenticatedUser(clientConfig, request, options)
     }
 
     /**
-     * Lists the people that have starred the repository. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created.
+     * Marks all notifications in a repository as "read" for the current user. If the number of notifications is too large to complete in one request, you will receive a `202 Accepted` status and GitHub will run an asynchronous process to mark notifications as "read." To check whether any "unread" notifications remain, you can use the List repository notifications for the authenticated user endpoint and pass the query parameter `all=false`.
      */
-    fun listStargazersForRepo(
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Any {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListStargazersForRepo(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun markRepoNotificationsAsRead(owner: String, repo: String, lastReadAt: OffsetDateTime? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.ActivityMethods.ActivityMarkRepoNotificationsAsReadResponse {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityMarkRepoNotificationsAsRead(clientConfig, owner, repo, lastReadAt, options)
     }
 
     /**
-     * Gets the current number of users who have starred the repository. Users who previously
-     * starred the repository but later removed their star are not included.
+     * Lists the people that have starred the repository. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created.
      */
-    fun getStargazerCountForRepo(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.ActivityMethods.ActivityGetStargazerCountForRepoResponse {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityGetStargazerCountForRepo(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun listStargazersForRepo(owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Any {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListStargazersForRepo(clientConfig, owner, repo, perPage, page, options)
     }
 
     /**
-     * Returns repository stars grouped by calendar weeks, most recent first. Pages move backward
-     * toward the repository's creation week, and weeks within a page are ordered newest to oldest,
-     * so concatenating pages produces one continuous series. Weeks without stars contain zero
-     * counts. Week and day boundaries are not guaranteed to align with UTC. The `days` array
-     * contains the number of stars created on each day of the week, starting on Sunday.
+     * Gets the current number of users who have starred the repository. Users who previously starred the repository but later removed their star are not included.
      */
-    fun getStargazerHistoryForRepo(
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<StargazerHistory> {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityGetStargazerHistoryForRepo(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
-    }
-
-    /** Lists the people watching the specified repository. */
-    fun listWatchersForRepo(
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SimpleUser> {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListWatchersForRepo(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
-    }
-
-    /** Gets information about whether the authenticated user is subscribed to the repository. */
-    fun getRepoSubscription(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): RepositorySubscription {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityGetRepoSubscription(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun getStargazerCountForRepo(owner: String, repo: String, options: RequestOptions? = null): dev.octri.showcase.github.methods.ActivityMethods.ActivityGetStargazerCountForRepoResponse {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityGetStargazerCountForRepo(clientConfig, owner, repo, options)
     }
 
     /**
-     * If you would like to watch a repository, set `subscribed` to `true`. If you would like to
-     * ignore notifications made within a repository, set `ignored` to `true`. If you would like to
-     * stop watching a repository, delete the repository's subscription completely.
+     * Returns repository stars grouped by calendar weeks, most recent first. Pages move backward toward the repository's creation week, and weeks within a page are ordered newest to oldest, so concatenating pages produces one continuous series. Weeks without stars contain zero counts. Week and day boundaries are not guaranteed to align with UTC. The `days` array contains the number of stars created on each day of the week, starting on Sunday.
      */
-    fun setRepoSubscription(
-        owner: String,
-        repo: String,
-        subscribed: Boolean? = null,
-        ignored: Boolean? = null,
-        options: RequestOptions? = null,
-    ): RepositorySubscription {
-        return dev.octri.showcase.github.methods.ActivityMethods.activitySetRepoSubscription(
-            clientConfig,
-            owner,
-            repo,
-            subscribed,
-            ignored,
-            options,
-        )
+    fun getStargazerHistoryForRepo(owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<StargazerHistory> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityGetStargazerHistoryForRepo(clientConfig, owner, repo, perPage, page, options)
     }
 
     /**
-     * This endpoint should only be used to stop watching a repository. To control whether or not
-     * you wish to receive notifications from a repository, set the repository's subscription
-     * manually.
+     * Lists the people watching the specified repository.
+     */
+    fun listWatchersForRepo(owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListWatchersForRepo(clientConfig, owner, repo, perPage, page, options)
+    }
+
+    /**
+     * Gets information about whether the authenticated user is subscribed to the repository.
+     */
+    fun getRepoSubscription(owner: String, repo: String, options: RequestOptions? = null): RepositorySubscription {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityGetRepoSubscription(clientConfig, owner, repo, options)
+    }
+
+    /**
+     * If you would like to watch a repository, set `subscribed` to `true`. If you would like to ignore notifications made within a repository, set `ignored` to `true`. If you would like to stop watching a repository, delete the repository's subscription completely.
+     */
+    fun setRepoSubscription(owner: String, repo: String, subscribed: Boolean? = null, ignored: Boolean? = null, options: RequestOptions? = null): RepositorySubscription {
+        return dev.octri.showcase.github.methods.ActivityMethods.activitySetRepoSubscription(clientConfig, owner, repo, subscribed, ignored, options)
+    }
+
+    /**
+     * This endpoint should only be used to stop watching a repository. To control whether or not you wish to receive notifications from a repository, set the repository's subscription manually.
      */
     fun deleteRepoSubscription(owner: String, repo: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityDeleteRepoSubscription(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+        return dev.octri.showcase.github.methods.ActivityMethods.activityDeleteRepoSubscription(clientConfig, owner, repo, options)
     }
 
     /**
-     * Lists repositories the authenticated user has starred. This endpoint supports the following
-     * custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created.
+     * Lists repositories the authenticated user has starred. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created.
      */
-    fun listReposStarredByAuthenticatedUser(
-        sort: SchemaSchemaEnum00c9f324? = null,
-        direction: SchemaSchemaEnum0df64690? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Repository> {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityListReposStarredByAuthenticatedUser(
-                clientConfig,
-                sort,
-                direction,
-                perPage,
-                page,
-                options,
-            )
-    }
-
-    /** Whether the authenticated user has starred the repository. */
-    fun checkRepoIsStarredByAuthenticatedUser(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityCheckRepoIsStarredByAuthenticatedUser(clientConfig, owner, repo, options)
+    fun listReposStarredByAuthenticatedUser(sort: SchemaSchemaEnum00c9f324? = null, direction: SchemaSchemaEnum0df64690? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Repository> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListReposStarredByAuthenticatedUser(clientConfig, sort, direction, perPage, page, options)
     }
 
     /**
-     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For
-     * more information, see "HTTP method."
+     * Whether the authenticated user has starred the repository.
      */
-    fun starRepoForAuthenticatedUser(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityStarRepoForAuthenticatedUser(clientConfig, owner, repo, options)
-    }
-
-    /** Unstar a repository that the authenticated user has previously starred. */
-    fun unstarRepoForAuthenticatedUser(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityUnstarRepoForAuthenticatedUser(clientConfig, owner, repo, options)
-    }
-
-    /** Lists repositories the authenticated user is watching. */
-    fun listWatchedReposForAuthenticatedUser(
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityListWatchedReposForAuthenticatedUser(clientConfig, perPage, page, options)
+    fun checkRepoIsStarredByAuthenticatedUser(owner: String, repo: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityCheckRepoIsStarredByAuthenticatedUser(clientConfig, owner, repo, options)
     }
 
     /**
-     * If you are authenticated as the given user, you will see your private events. Otherwise,
-     * you'll only see public events. _Optional_: use the fine-grained token with following
-     * permission set to view private events: "Events" user permissions (read). > \[!NOTE\] > This
-     * API is not built to serve real-time use cases. Depending on the time of day, event latency
-     * can be anywhere from 30s to 6h.
+     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "HTTP method."
      */
-    fun listEventsForAuthenticatedUser(
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityListEventsForAuthenticatedUser(clientConfig, username, perPage, page, options)
+    fun starRepoForAuthenticatedUser(owner: String, repo: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityStarRepoForAuthenticatedUser(clientConfig, owner, repo, options)
     }
 
     /**
-     * This is the user's organization dashboard. You must be authenticated as the user to view
-     * this. > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time
-     * of day, event latency can be anywhere from 30s to 6h.
+     * Unstar a repository that the authenticated user has previously starred.
      */
-    fun listOrgEventsForAuthenticatedUser(
-        username: String,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityListOrgEventsForAuthenticatedUser(
-                clientConfig,
-                username,
-                org,
-                perPage,
-                page,
-                options,
-            )
+    fun unstarRepoForAuthenticatedUser(owner: String, repo: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityUnstarRepoForAuthenticatedUser(clientConfig, owner, repo, options)
     }
 
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * Lists repositories the authenticated user is watching.
      */
-    fun listPublicEventsForUser(
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListPublicEventsForUser(
-            clientConfig,
-            username,
-            perPage,
-            page,
-            options,
-        )
+    fun listWatchedReposForAuthenticatedUser(perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListWatchedReposForAuthenticatedUser(clientConfig, perPage, page, options)
     }
 
     /**
-     * These are events that you've received by watching repositories and following users. If you
-     * are authenticated as the given user, you will see private events. Otherwise, you'll only see
-     * public events. > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on
-     * the time of day, event latency can be anywhere from 30s to 6h.
+     * If you are authenticated as the given user, you will see your private events. Otherwise, you'll only see public events. _Optional_: use the fine-grained token with following permission set to view private events: "Events" user permissions (read). > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      */
-    fun listReceivedEventsForUser(
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListReceivedEventsForUser(
-            clientConfig,
-            username,
-            perPage,
-            page,
-            options,
-        )
+    fun listEventsForAuthenticatedUser(username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListEventsForAuthenticatedUser(clientConfig, username, perPage, page, options)
     }
 
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
-     * > day, event latency can be anywhere from 30s to 6h.
+     * This is the user's organization dashboard. You must be authenticated as the user to view this. > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      */
-    fun listReceivedPublicEventsForUser(
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<Event> {
-        return dev.octri.showcase.github.methods.ActivityMethods
-            .activityListReceivedPublicEventsForUser(clientConfig, username, perPage, page, options)
+    fun listOrgEventsForAuthenticatedUser(username: String, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListOrgEventsForAuthenticatedUser(clientConfig, username, org, perPage, page, options)
     }
 
     /**
-     * Lists repositories a user has starred. If the specified user has a private profile, this
-     * endpoint returns an empty list unless the request is authenticated as that user. A request
-     * authenticated as the specified user returns starred repositories visible to the token even if
-     * the token has no OAuth scopes. This endpoint supports the following custom media types. For
-     * more information, see "Media types." - **`application/vnd.github.star+json`**: Includes a
-     * timestamp of when the…
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
      */
-    fun listReposStarredByUser(
-        username: String,
-        sort: SchemaSchemaEnum00c9f324? = null,
-        direction: SchemaSchemaEnum0df64690? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): Any {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListReposStarredByUser(
-            clientConfig,
-            username,
-            sort,
-            direction,
-            perPage,
-            page,
-            options,
-        )
+    fun listPublicEventsForUser(username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListPublicEventsForUser(clientConfig, username, perPage, page, options)
     }
 
     /**
-     * Lists repositories that a specified GitHub user is watching. Use `page` and `per_page` to
-     * paginate the results.
+     * These are events that you've received by watching repositories and following users. If you are authenticated as the given user, you will see private events. Otherwise, you'll only see public events. > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
+     */
+    fun listReceivedEventsForUser(username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListReceivedEventsForUser(clientConfig, username, perPage, page, options)
+    }
+
+    /**
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
+     */
+    fun listReceivedPublicEventsForUser(username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListReceivedPublicEventsForUser(clientConfig, username, perPage, page, options)
+    }
+
+    /**
+     * Lists repositories a user has starred. If the specified user has a private profile, this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns starred repositories visible to the token even if the token has no OAuth scopes. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.star+json`**: Includes a timestamp of when the…
+     */
+    fun listReposStarredByUser(username: String, sort: SchemaSchemaEnum00c9f324? = null, direction: SchemaSchemaEnum0df64690? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Any {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListReposStarredByUser(clientConfig, username, sort, direction, perPage, page, options)
+    }
+
+    /**
+     * Lists repositories that a specified GitHub user is watching. Use `page` and `per_page` to paginate the results.
      *
      * Lists repositories a user is watching.
      */
-    fun listReposWatchedByUser(
-        username: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<MinimalRepository> {
-        return dev.octri.showcase.github.methods.ActivityMethods.activityListReposWatchedByUser(
-            clientConfig,
-            username,
-            perPage,
-            page,
-            options,
-        )
+    fun listReposWatchedByUser(username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
+        return dev.octri.showcase.github.methods.ActivityMethods.activityListReposWatchedByUser(clientConfig, username, perPage, page, options)
     }
+
 }

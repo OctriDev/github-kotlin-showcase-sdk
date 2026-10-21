@@ -7,323 +7,151 @@ import java.time.OffsetDateTime
 
 class GistsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists the authenticated user's gists or if called anonymously, this endpoint returns all
-     * public gists:
+     * Lists the authenticated user's gists or if called anonymously, this endpoint returns all public gists:
      */
-    fun list(
-        since: OffsetDateTime? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<BaseGist> {
-        return dev.octri.showcase.github.methods.Gists.gistsList(
-            clientConfig,
-            since,
-            perPage,
-            page,
-            options,
-        )
+    fun list(since: OffsetDateTime? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<BaseGist> {
+        return dev.octri.showcase.github.methods.Gists.gistsList(clientConfig, since, perPage, page, options)
     }
 
     /**
-     * Creates a new gist containing one or more files. Supply file names and their `content` in
-     * `files`; `public` defaults to false when omitted. Avoid names that match Gist’s automatic
-     * `gistfile` numbering pattern.
+     * Creates a new gist containing one or more files. Supply file names and their `content` in `files`; `public` defaults to false when omitted. Avoid names that match Gist’s automatic `gistfile` numbering pattern.
      *
-     * Allows you to add a new gist with one or more files. > \[!NOTE\] > Don't name your files
-     * "gistfile" with a numerical suffix. This is the format of the automatic naming scheme that
-     * Gist uses internally.
+     * Allows you to add a new gist with one or more files. > \[!NOTE\] > Don't name your files "gistfile" with a numerical suffix. This is the format of the automatic naming scheme that Gist uses internally.
      */
-    fun create(
-        files: Map<String, Map<String, Any>>,
-        description: String? = null,
-        public: Any? = null,
-        options: RequestOptions? = null,
-    ): GistSimple {
-        return dev.octri.showcase.github.methods.Gists.gistsCreate(
-            clientConfig,
-            files,
-            description,
-            public,
-            options,
-        )
+    fun create(files: Map<String, Map<String, Any>>, description: String? = null, public: Any? = null, options: RequestOptions? = null): GistSimple {
+        return dev.octri.showcase.github.methods.Gists.gistsCreate(clientConfig, files, description, public, options)
     }
 
     /**
-     * List public gists sorted by most recently updated to least recently updated. Note: With
-     * pagination, you can fetch up to 3000 gists. For example, you can fetch 100 pages with 30
-     * gists per page or 30 pages with 100 gists per page.
+     * List public gists sorted by most recently updated to least recently updated. Note: With pagination, you can fetch up to 3000 gists. For example, you can fetch 100 pages with 30 gists per page or 30 pages with 100 gists per page.
      */
-    fun listPublic(
-        since: OffsetDateTime? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<BaseGist> {
-        return dev.octri.showcase.github.methods.Gists.gistsListPublic(
-            clientConfig,
-            since,
-            perPage,
-            page,
-            options,
-        )
+    fun listPublic(since: OffsetDateTime? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<BaseGist> {
+        return dev.octri.showcase.github.methods.Gists.gistsListPublic(clientConfig, since, perPage, page, options)
     }
 
     /**
-     * Lists gists starred by the authenticated user. Use `since` to filter by the last-updated
-     * timestamp and `page` with `per_page` to paginate the results.
+     * Lists gists starred by the authenticated user. Use `since` to filter by the last-updated timestamp and `page` with `per_page` to paginate the results.
      *
      * List the authenticated user's starred gists:
      */
-    fun listStarred(
-        since: OffsetDateTime? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<BaseGist> {
-        return dev.octri.showcase.github.methods.Gists.gistsListStarred(
-            clientConfig,
-            since,
-            perPage,
-            page,
-            options,
-        )
+    fun listStarred(since: OffsetDateTime? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<BaseGist> {
+        return dev.octri.showcase.github.methods.Gists.gistsListStarred(clientConfig, since, perPage, page, options)
     }
 
     /**
-     * Gets a specified gist. This endpoint supports the following custom media types. For more
-     * information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
-     * markdown. This is the default if you do not pass any specific media type.
+     * Gets a specified gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
      */
     fun get(gistId: String, options: RequestOptions? = null): GistSimple {
         return dev.octri.showcase.github.methods.Gists.gistsGet(clientConfig, gistId, options)
     }
 
     /**
-     * Allows you to update a gist's description and to update, delete, or rename gist files. Files
-     * from the previous version of the gist that aren't explicitly changed during an edit are
-     * unchanged. At least one of `description` or `files` is required. This endpoint supports the
-     * following custom media types. For more information, see "Media types." -
-     * **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you
-     * do not pass any specific media type.
+     * Allows you to update a gist's description and to update, delete, or rename gist files. Files from the previous version of the gist that aren't explicitly changed during an edit are unchanged. At least one of `description` or `files` is required. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
      */
-    fun update(
-        gistId: String,
-        description: String? = null,
-        files: Map<String, Map<String, Any>>? = null,
-        options: RequestOptions? = null,
-    ): GistSimple {
-        return dev.octri.showcase.github.methods.Gists.gistsUpdate(
-            clientConfig,
-            gistId,
-            description,
-            files,
-            options,
-        )
+    fun update(gistId: String, description: String? = null, files: Map<String, Map<String, Any>>? = null, options: RequestOptions? = null): GistSimple {
+        return dev.octri.showcase.github.methods.Gists.gistsUpdate(clientConfig, gistId, description, files, options)
     }
 
     /**
-     * Deletes a specific gist. Use `gist_id` to identify the gist you want to remove; the operation
-     * returns no response body when deletion completes.
+     * Deletes a specific gist. Use `gist_id` to identify the gist you want to remove; the operation returns no response body when deletion completes.
      */
     fun delete(gistId: String, options: RequestOptions? = null): Unit {
         return dev.octri.showcase.github.methods.Gists.gistsDelete(clientConfig, gistId, options)
     }
 
     /**
-     * Lists the comments on a gist. This endpoint supports the following custom media types. For
-     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
-     * markdown. This is the default if you do not pass any specific media type.
+     * Lists the comments on a gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
      */
-    fun listComments(
-        gistId: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<GistComment> {
-        return dev.octri.showcase.github.methods.Gists.gistsListComments(
-            clientConfig,
-            gistId,
-            perPage,
-            page,
-            options,
-        )
+    fun listComments(gistId: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<GistComment> {
+        return dev.octri.showcase.github.methods.Gists.gistsListComments(clientConfig, gistId, perPage, page, options)
     }
 
     /**
-     * Creates a comment on a gist. This endpoint supports the following custom media types. For
-     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
-     * markdown. This is the default if you do not pass any specific media type.
+     * Creates a comment on a gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
      */
     fun createComment(gistId: String, body: String, options: RequestOptions? = null): GistComment {
-        return dev.octri.showcase.github.methods.Gists.gistsCreateComment(
-            clientConfig,
-            gistId,
-            body,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Gists.gistsCreateComment(clientConfig, gistId, body, options)
     }
 
     /**
-     * Gets a comment on a gist. This endpoint supports the following custom media types. For more
-     * information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
-     * markdown. This is the default if you do not pass any specific media type.
+     * Gets a comment on a gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
      */
     fun getComment(gistId: String, commentId: Long, options: RequestOptions? = null): GistComment {
-        return dev.octri.showcase.github.methods.Gists.gistsGetComment(
-            clientConfig,
-            gistId,
-            commentId,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Gists.gistsGetComment(clientConfig, gistId, commentId, options)
     }
 
     /**
-     * Updates a comment on a gist. This endpoint supports the following custom media types. For
-     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
-     * markdown. This is the default if you do not pass any specific media type.
+     * Updates a comment on a gist. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
      */
-    fun updateComment(
-        gistId: String,
-        commentId: Long,
-        body: String,
-        options: RequestOptions? = null,
-    ): GistComment {
-        return dev.octri.showcase.github.methods.Gists.gistsUpdateComment(
-            clientConfig,
-            gistId,
-            commentId,
-            body,
-            options,
-        )
+    fun updateComment(gistId: String, commentId: Long, body: String, options: RequestOptions? = null): GistComment {
+        return dev.octri.showcase.github.methods.Gists.gistsUpdateComment(clientConfig, gistId, commentId, body, options)
     }
 
     /**
-     * Removes a specific comment from a gist. Use `gist_id` and `comment_id` to identify the
-     * gist-comment pair; the operation returns no content when the comment is deleted.
+     * Removes a specific comment from a gist. Use `gist_id` and `comment_id` to identify the gist-comment pair; the operation returns no content when the comment is deleted.
      */
     fun deleteComment(gistId: String, commentId: Long, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.Gists.gistsDeleteComment(
-            clientConfig,
-            gistId,
-            commentId,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Gists.gistsDeleteComment(clientConfig, gistId, commentId, options)
     }
 
     /**
-     * Lists commits in a gist, including each commit's version, author, timestamp, and change
-     * counts. Use `page` and `per_page` to paginate the results.
+     * Lists commits in a gist, including each commit's version, author, timestamp, and change counts. Use `page` and `per_page` to paginate the results.
      */
-    fun listCommits(
-        gistId: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<GistCommit> {
-        return dev.octri.showcase.github.methods.Gists.gistsListCommits(
-            clientConfig,
-            gistId,
-            perPage,
-            page,
-            options,
-        )
+    fun listCommits(gistId: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<GistCommit> {
+        return dev.octri.showcase.github.methods.Gists.gistsListCommits(clientConfig, gistId, perPage, page, options)
     }
 
     /**
-     * Lists forks of a gist, returning the forked gist objects. Use `page` and `per_page` to
-     * paginate the results.
+     * Lists forks of a gist, returning the forked gist objects. Use `page` and `per_page` to paginate the results.
      */
-    fun listForks(
-        gistId: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<GistSimple> {
-        return dev.octri.showcase.github.methods.Gists.gistsListForks(
-            clientConfig,
-            gistId,
-            perPage,
-            page,
-            options,
-        )
+    fun listForks(gistId: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<GistSimple> {
+        return dev.octri.showcase.github.methods.Gists.gistsListForks(clientConfig, gistId, perPage, page, options)
     }
 
     /**
-     * Creates a fork of a gist for the authenticated user. Supply the gist identifier to select the
-     * gist to fork; the response contains the created fork.
+     * Creates a fork of a gist for the authenticated user. Supply the gist identifier to select the gist to fork; the response contains the created fork.
      */
     fun fork(gistId: String, options: RequestOptions? = null): BaseGist {
         return dev.octri.showcase.github.methods.Gists.gistsFork(clientConfig, gistId, options)
     }
 
     /**
-     * Checks whether the authenticated user has starred a gist. Use `gist_id` to identify the gist;
-     * a 204 response indicates that it is starred.
+     * Checks whether the authenticated user has starred a gist. Use `gist_id` to identify the gist; a 204 response indicates that it is starred.
      */
     fun checkIsStarred(gistId: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.Gists.gistsCheckIsStarred(
-            clientConfig,
-            gistId,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Gists.gistsCheckIsStarred(clientConfig, gistId, options)
     }
 
     /**
-     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For
-     * more information, see "HTTP method."
+     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "HTTP method."
      */
     fun star(gistId: String, options: RequestOptions? = null): Unit {
         return dev.octri.showcase.github.methods.Gists.gistsStar(clientConfig, gistId, options)
     }
 
     /**
-     * Removes the authenticated user's star from a gist. Supply `gist_id` to identify the gist
-     * whose star you want to remove; the operation returns no content.
+     * Removes the authenticated user's star from a gist. Supply `gist_id` to identify the gist whose star you want to remove; the operation returns no content.
      */
     fun unstar(gistId: String, options: RequestOptions? = null): Unit {
         return dev.octri.showcase.github.methods.Gists.gistsUnstar(clientConfig, gistId, options)
     }
 
     /**
-     * Retrieves a specified revision of a gist. Supply `gist_id` and `sha` to identify the gist and
-     * revision; the `application/vnd.github.raw+json` media type returns the raw Markdown and is
-     * the default when you do not specify a media type.
+     * Retrieves a specified revision of a gist. Supply `gist_id` and `sha` to identify the gist and revision; the `application/vnd.github.raw+json` media type returns the raw Markdown and is the default when you do not specify a media type.
      *
-     * Gets a specified gist revision. This endpoint supports the following custom media types. For
-     * more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw
-     * markdown. This is the default if you do not pass any specific media type.
+     * Gets a specified gist revision. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
      */
     fun getRevision(gistId: String, sha: String, options: RequestOptions? = null): GistSimple {
-        return dev.octri.showcase.github.methods.Gists.gistsGetRevision(
-            clientConfig,
-            gistId,
-            sha,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Gists.gistsGetRevision(clientConfig, gistId, sha, options)
     }
 
     /**
-     * Lists public gists for the specified user. Use `since` to filter by last-updated time, and
-     * use `page` and `per_page` to paginate the results. `per_page` accepts up to 100 results per
-     * page.
+     * Lists public gists for the specified user. Use `since` to filter by last-updated time, and use `page` and `per_page` to paginate the results. `per_page` accepts up to 100 results per page.
      *
      * Lists public gists for the specified user:
      */
-    fun listForUser(
-        username: String,
-        since: OffsetDateTime? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<BaseGist> {
-        return dev.octri.showcase.github.methods.Gists.gistsListForUser(
-            clientConfig,
-            username,
-            since,
-            perPage,
-            page,
-            options,
-        )
+    fun listForUser(username: String, since: OffsetDateTime? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<BaseGist> {
+        return dev.octri.showcase.github.methods.Gists.gistsListForUser(clientConfig, username, since, perPage, page, options)
     }
+
 }

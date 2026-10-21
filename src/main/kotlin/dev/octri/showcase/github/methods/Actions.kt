@@ -15,8 +15,8 @@ import dev.octri.showcase.github.ActionsCacheUsageByRepository
 import dev.octri.showcase.github.ActionsCacheUsageOrgEnterprise
 import dev.octri.showcase.github.ActionsCanApprovePullRequestReviews
 import dev.octri.showcase.github.ActionsCreateHostedRunnerForOrgImageSourceEnum
-import dev.octri.showcase.github.ActionsCreateOrUpdateOrgSecretVisibilityEnum
 import dev.octri.showcase.github.ActionsCreateOrgVariableVisibilityEnum
+import dev.octri.showcase.github.ActionsCreateOrUpdateOrgSecretVisibilityEnum
 import dev.octri.showcase.github.ActionsCreateSelfHostedRunnerGroupForOrgVisibilityEnum
 import dev.octri.showcase.github.ActionsDefaultWorkflowPermissions
 import dev.octri.showcase.github.ActionsEnabled
@@ -88,234 +88,240 @@ import dev.octri.showcase.github.WorkflowUsage
 import java.time.OffsetDateTime
 
 object Actions {
-    data class ActionsGetActionsCacheUsageByRepoForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("repository_cache_usages")
-        val repositoryCacheUsages: List<ActionsCacheUsageByRepository>,
-    )
+data class ActionsGetActionsCacheUsageByRepoForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_cache_usages") val repositoryCacheUsages: List<ActionsCacheUsageByRepository>
+)
 
-    data class ActionsListHostedRunnersForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val runners: List<ActionsHostedRunner>,
-    )
+data class ActionsListHostedRunnersForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val runners: List<ActionsHostedRunner>
+)
 
+/**
+ * The image of runner. To list all available images, use `GET /actions/hosted-runners/images/github-owned` or `GET /actions/hosted-runners/images/partner`.
+ */
+data class ActionsCreateHostedRunnerForOrgImage(
     /**
-     * The image of runner. To list all available images, use `GET
-     * /actions/hosted-runners/images/github-owned` or `GET /actions/hosted-runners/images/partner`.
+     * The unique identifier of the runner image.
      */
-    data class ActionsCreateHostedRunnerForOrgImage(
-        /** The unique identifier of the runner image. */
-        val id: String? = null,
-        /** The source of the runner image. */
-        val source: ActionsCreateHostedRunnerForOrgImageSourceEnum? = null,
-        /**
-         * The version of the runner image to deploy. This is relevant only for runners using custom
-         * images.
-         */
-        val version: String? = null,
-    )
+    val id: String? = null,
+    /**
+     * The source of the runner image.
+     */
+    val source: ActionsCreateHostedRunnerForOrgImageSourceEnum? = null,
+    /**
+     * The version of the runner image to deploy. This is relevant only for runners using custom images.
+     */
+    val version: String? = null
+)
 
-    data class ActionsListCustomImagesForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val images: List<ActionsHostedRunnerCustomImage>,
-    )
+data class ActionsListCustomImagesForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val images: List<ActionsHostedRunnerCustomImage>
+)
 
-    data class ActionsListCustomImageVersionsForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("image_versions")
-        val imageVersions: List<ActionsHostedRunnerCustomImageVersion>,
-    )
+data class ActionsListCustomImageVersionsForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("image_versions") val imageVersions: List<ActionsHostedRunnerCustomImageVersion>
+)
 
-    data class ActionsGetHostedRunnersGithubOwnedImagesForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val images: List<ActionsHostedRunnerCuratedImage>,
-    )
+data class ActionsGetHostedRunnersGithubOwnedImagesForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val images: List<ActionsHostedRunnerCuratedImage>
+)
 
-    data class ActionsGetHostedRunnersPartnerImagesForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val images: List<ActionsHostedRunnerCuratedImage>,
-    )
+data class ActionsGetHostedRunnersPartnerImagesForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val images: List<ActionsHostedRunnerCuratedImage>
+)
 
-    data class ActionsGetHostedRunnersMachineSpecsForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("machine_specs")
-        val machineSpecs: List<ActionsHostedRunnerMachineSpec>,
-    )
+data class ActionsGetHostedRunnersMachineSpecsForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("machine_specs") val machineSpecs: List<ActionsHostedRunnerMachineSpec>
+)
 
-    data class ActionsGetHostedRunnersPlatformsForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val platforms: List<String>,
-    )
+data class ActionsGetHostedRunnersPlatformsForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val platforms: List<String>
+)
 
-    data class ActionsListSelectedRepositoriesEnabledGithubActionsOrganizationResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
-        val repositories: List<Repository>,
-    )
+data class ActionsListSelectedRepositoriesEnabledGithubActionsOrganizationResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
+    val repositories: List<Repository>
+)
 
-    data class ActionsListSelectedRepositoriesSelfHostedRunnersOrganizationResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long? = null,
-        val repositories: List<Repository>? = null,
-    )
+data class ActionsListSelectedRepositoriesSelfHostedRunnersOrganizationResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long? = null,
+    val repositories: List<Repository>? = null
+)
 
-    data class ActionsGetOrgActionsPoliciesResponse(
-        /** The total number of Actions policies. */
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        /** An array of Actions policies. */
-        val policies: List<ActionsPolicy>,
-    )
+data class ActionsGetOrgActionsPoliciesResponse(
+    /**
+     * The total number of Actions policies.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    /**
+     * An array of Actions policies.
+     */
+    val policies: List<ActionsPolicy>
+)
 
-    data class ActionsListSelfHostedRunnerGroupsForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
-        @com.fasterxml.jackson.annotation.JsonProperty("runner_groups")
-        val runnerGroups: List<RunnerGroupsOrg>,
-    )
+data class ActionsListSelfHostedRunnerGroupsForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_groups") val runnerGroups: List<RunnerGroupsOrg>
+)
 
-    data class ActionsListGithubHostedRunnersInGroupForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
-        val runners: List<ActionsHostedRunner>,
-    )
+data class ActionsListGithubHostedRunnersInGroupForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
+    val runners: List<ActionsHostedRunner>
+)
 
-    data class ActionsListRepoAccessToSelfHostedRunnerGroupInOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
-        val repositories: List<MinimalRepository>,
-    )
+data class ActionsListRepoAccessToSelfHostedRunnerGroupInOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
+    val repositories: List<MinimalRepository>
+)
 
-    data class ActionsListSelfHostedRunnersInGroupForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
-        val runners: List<Runner>,
-    )
+data class ActionsListSelfHostedRunnersInGroupForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Double,
+    val runners: List<Runner>
+)
 
-    data class ActionsListSelfHostedRunnersForOrgResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val runners: List<Runner>,
-    )
+data class ActionsListSelfHostedRunnersForOrgResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val runners: List<Runner>
+)
 
-    data class ActionsGetRunnerVersionDeprecationForOrgResponse(
-        /** The runner version string. */
-        @com.fasterxml.jackson.annotation.JsonProperty("runner_version") val runnerVersion: String,
-        /**
-         * The date after which this runner version can no longer register. Null if no schedule is
-         * set.
-         */
-        @com.fasterxml.jackson.annotation.JsonProperty("registration_deprecates_at")
-        val registrationDeprecatesAt: OffsetDateTime? = null,
-        /** The date after which jobs will no longer be dispatched to runners on this version. */
-        @com.fasterxml.jackson.annotation.JsonProperty("runtime_deprecates_at")
-        val runtimeDeprecatesAt: OffsetDateTime? = null,
-    )
+data class ActionsGetRunnerVersionDeprecationForOrgResponse(
+    /**
+     * The runner version string.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_version") val runnerVersion: String,
+    /**
+     * The date after which this runner version can no longer register. Null if no schedule is set.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("registration_deprecates_at") val registrationDeprecatesAt: OffsetDateTime? = null,
+    /**
+     * The date after which jobs will no longer be dispatched to runners on this version.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runtime_deprecates_at") val runtimeDeprecatesAt: OffsetDateTime? = null
+)
 
-    data class ActionsListOrgSecretsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val secrets: List<OrganizationActionsSecret>,
-    )
+data class ActionsListOrgSecretsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val secrets: List<OrganizationActionsSecret>
+)
 
-    data class ActionsListSelectedReposForOrgSecretResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val repositories: List<MinimalRepository>,
-    )
+data class ActionsListSelectedReposForOrgSecretResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val repositories: List<MinimalRepository>
+)
 
-    data class ActionsListOrgVariablesResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val variables: List<OrganizationActionsVariable>,
-    )
+data class ActionsListOrgVariablesResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val variables: List<OrganizationActionsVariable>
+)
 
-    data class ActionsListSelectedReposForOrgVariableResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val repositories: List<MinimalRepository>,
-    )
+data class ActionsListSelectedReposForOrgVariableResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val repositories: List<MinimalRepository>
+)
 
-    data class ActionsListArtifactsForRepoResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val artifacts: List<Artifact>,
-    )
+data class ActionsListArtifactsForRepoResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val artifacts: List<Artifact>
+)
 
-    data class ActionsListRepoOrganizationSecretsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val secrets: List<ActionsSecret>,
-    )
+data class ActionsListRepoOrganizationSecretsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val secrets: List<ActionsSecret>
+)
 
-    data class ActionsListRepoOrganizationVariablesResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val variables: List<ActionsVariable>,
-    )
+data class ActionsListRepoOrganizationVariablesResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val variables: List<ActionsVariable>
+)
 
-    data class ActionsGetRepoActionsPoliciesResponse(
-        /** The total number of Actions policies. */
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        /** An array of Actions policies. */
-        val policies: List<ActionsPolicy>,
-    )
+data class ActionsGetRepoActionsPoliciesResponse(
+    /**
+     * The total number of Actions policies.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    /**
+     * An array of Actions policies.
+     */
+    val policies: List<ActionsPolicy>
+)
 
-    data class ActionsListSelfHostedRunnersForRepoResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val runners: List<Runner>,
-    )
+data class ActionsListSelfHostedRunnersForRepoResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val runners: List<Runner>
+)
 
-    data class ActionsGetRunnerVersionDeprecationForRepoResponse(
-        /** The runner version string. */
-        @com.fasterxml.jackson.annotation.JsonProperty("runner_version") val runnerVersion: String,
-        /**
-         * The date after which this runner version can no longer register. Null if no schedule is
-         * set.
-         */
-        @com.fasterxml.jackson.annotation.JsonProperty("registration_deprecates_at")
-        val registrationDeprecatesAt: OffsetDateTime? = null,
-        /** The date after which jobs will no longer be dispatched to runners on this version. */
-        @com.fasterxml.jackson.annotation.JsonProperty("runtime_deprecates_at")
-        val runtimeDeprecatesAt: OffsetDateTime? = null,
-    )
+data class ActionsGetRunnerVersionDeprecationForRepoResponse(
+    /**
+     * The runner version string.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runner_version") val runnerVersion: String,
+    /**
+     * The date after which this runner version can no longer register. Null if no schedule is set.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("registration_deprecates_at") val registrationDeprecatesAt: OffsetDateTime? = null,
+    /**
+     * The date after which jobs will no longer be dispatched to runners on this version.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("runtime_deprecates_at") val runtimeDeprecatesAt: OffsetDateTime? = null
+)
 
-    data class ActionsListWorkflowRunsForRepoResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("workflow_runs")
-        val workflowRuns: List<WorkflowRun>,
-    )
+data class ActionsListWorkflowRunsForRepoResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_runs") val workflowRuns: List<WorkflowRun>
+)
 
-    data class ActionsListWorkflowRunArtifactsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val artifacts: List<Artifact>,
-    )
+data class ActionsListWorkflowRunArtifactsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val artifacts: List<Artifact>
+)
 
-    data class ActionsListJobsForWorkflowRunAttemptResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val jobs: List<Job>,
-    )
+data class ActionsListJobsForWorkflowRunAttemptResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val jobs: List<Job>
+)
 
-    data class ActionsListJobsForWorkflowRunResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val jobs: List<Job>,
-    )
+data class ActionsListJobsForWorkflowRunResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val jobs: List<Job>
+)
 
-    data class ActionsListRepoSecretsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val secrets: List<ActionsSecret>,
-    )
+data class ActionsListRepoSecretsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val secrets: List<ActionsSecret>
+)
 
-    data class ActionsListRepoVariablesResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val variables: List<ActionsVariable>,
-    )
+data class ActionsListRepoVariablesResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val variables: List<ActionsVariable>
+)
 
-    data class ActionsListRepoWorkflowsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val workflows: List<Workflow>,
-    )
+data class ActionsListRepoWorkflowsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val workflows: List<Workflow>
+)
 
-    data class ActionsListWorkflowRunsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        @com.fasterxml.jackson.annotation.JsonProperty("workflow_runs")
-        val workflowRuns: List<WorkflowRun>,
-    )
+data class ActionsListWorkflowRunsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_runs") val workflowRuns: List<WorkflowRun>
+)
 
-    data class ActionsListEnvironmentSecretsResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val secrets: List<ActionsSecret>,
-    )
+data class ActionsListEnvironmentSecretsResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val secrets: List<ActionsSecret>
+)
 
-    data class ActionsListEnvironmentVariablesResponse(
-        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-        val variables: List<ActionsVariable>,
-    )
+data class ActionsListEnvironmentVariablesResponse(
+    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+    val variables: List<ActionsVariable>
+)
 
     /** Parameters for [actionsCreateHostedRunnerForOrg]. */
     data class ActionsCreateHostedRunnerForOrgRequest(
@@ -326,7 +332,7 @@ object Actions {
         val runnerGroupId: Long,
         val maximumRunners: Long? = null,
         val enableStaticIp: Boolean? = null,
-        val imageGen: Boolean? = null,
+        val imageGen: Boolean? = null
     )
 
     /** Parameters for [actionsUpdateHostedRunnerForOrg]. */
@@ -341,7 +347,7 @@ object Actions {
         val imageSource: ActionsUpdateHostedRunnerForOrgImageSourceEnum? = null,
         val imageId: String? = null,
         val imageVersion: SdkClient.SdkOptional<String?>? = null,
-        val imageGen: Boolean? = null,
+        val imageGen: Boolean? = null
     )
 
     /** Parameters for [actionsUpdateOrgActionsPolicy]. */
@@ -351,7 +357,7 @@ object Actions {
         val name: String? = null,
         val enforcement: RepositoryRuleEnforcement? = null,
         val conditions: ActionsPolicyOrgConditions? = null,
-        val rules: List<ActionsRule>? = null,
+        val rules: List<ActionsRule>? = null
     )
 
     /** Parameters for [actionsCreateSelfHostedRunnerGroupForOrg]. */
@@ -364,7 +370,7 @@ object Actions {
         val allowsPublicRepositories: Boolean? = null,
         val restrictedToWorkflows: Boolean? = null,
         val selectedWorkflows: List<String>? = null,
-        val networkConfigurationId: String? = null,
+        val networkConfigurationId: String? = null
     )
 
     /** Parameters for [actionsUpdateSelfHostedRunnerGroupForOrg]. */
@@ -376,7 +382,7 @@ object Actions {
         val allowsPublicRepositories: Boolean? = null,
         val restrictedToWorkflows: Boolean? = null,
         val selectedWorkflows: List<String>? = null,
-        val networkConfigurationId: SdkClient.SdkOptional<String?>? = null,
+        val networkConfigurationId: SdkClient.SdkOptional<String?>? = null
     )
 
     /** Parameters for [actionsCreateOrUpdateOrgSecret]. */
@@ -386,7 +392,7 @@ object Actions {
         val encryptedValue: String,
         val keyId: String,
         val visibility: ActionsCreateOrUpdateOrgSecretVisibilityEnum,
-        val selectedRepositoryIds: List<Long>? = null,
+        val selectedRepositoryIds: List<Long>? = null
     )
 
     /** Parameters for [actionsUpdateOrgVariable]. */
@@ -396,7 +402,7 @@ object Actions {
         val name2: String? = null,
         val value: String? = null,
         val visibility: ActionsUpdateOrgVariableVisibilityEnum? = null,
-        val selectedRepositoryIds: List<Long>? = null,
+        val selectedRepositoryIds: List<Long>? = null
     )
 
     /** Parameters for [actionsGetActionsCacheList]. */
@@ -408,7 +414,7 @@ object Actions {
         val ref: String? = null,
         val key: String? = null,
         val sort: SchemaSchemaEnum? = null,
-        val direction: SchemaSchemaEnum0df64690? = null,
+        val direction: SchemaSchemaEnum0df64690? = null
     )
 
     /** Parameters for [actionsSetPrivateRepoForkPrWorkflowsSettingsRepository]. */
@@ -418,7 +424,7 @@ object Actions {
         val runWorkflowsFromForkPullRequests: Boolean,
         val sendWriteTokensToWorkflows: Boolean? = null,
         val sendSecretsAndVariables: Boolean? = null,
-        val requireApprovalForForkPrWorkflows: Boolean? = null,
+        val requireApprovalForForkPrWorkflows: Boolean? = null
     )
 
     /** Parameters for [actionsCreateRepoActionsPolicy]. */
@@ -428,7 +434,7 @@ object Actions {
         val name: String,
         val enforcement: RepositoryRuleEnforcement,
         val conditions: ActionsPolicyRepoConditions? = null,
-        val rules: List<ActionsRule>? = null,
+        val rules: List<ActionsRule>? = null
     )
 
     /** Parameters for [actionsUpdateRepoActionsPolicy]. */
@@ -439,7 +445,7 @@ object Actions {
         val name: String? = null,
         val enforcement: RepositoryRuleEnforcement? = null,
         val conditions: ActionsPolicyRepoConditions? = null,
-        val rules: List<ActionsRule>? = null,
+        val rules: List<ActionsRule>? = null
     )
 
     /** Parameters for [actionsGenerateRunnerJitconfigForRepo]. */
@@ -449,7 +455,7 @@ object Actions {
         val name: String,
         val runnerGroupId: Long,
         val labels: List<String>,
-        val workFolder: String? = null,
+        val workFolder: String? = null
     )
 
     /** Parameters for [actionsListWorkflowRunsForRepo]. */
@@ -465,7 +471,7 @@ object Actions {
         val created: OffsetDateTime? = null,
         val excludePullRequests: Boolean? = null,
         val checkSuiteId: Long? = null,
-        val headSha: String? = null,
+        val headSha: String? = null
     )
 
     /** Parameters for [actionsListWorkflowRunArtifacts]. */
@@ -476,7 +482,7 @@ object Actions {
         val perPage: Long? = null,
         val page: Long? = null,
         val name: String? = null,
-        val direction: SchemaSchemaEnum0df64690? = null,
+        val direction: SchemaSchemaEnum0df64690? = null
     )
 
     /** Parameters for [actionsListJobsForWorkflowRunAttempt]. */
@@ -486,7 +492,7 @@ object Actions {
         val runId: Long,
         val attemptNumber: Long,
         val perPage: Long? = null,
-        val page: Long? = null,
+        val page: Long? = null
     )
 
     /** Parameters for [actionsListConcurrencyGroupsForWorkflowRun]. */
@@ -496,7 +502,7 @@ object Actions {
         val runId: Long,
         val perPage: Long? = null,
         val before: String? = null,
-        val after: String? = null,
+        val after: String? = null
     )
 
     /** Parameters for [actionsListJobsForWorkflowRun]. */
@@ -506,7 +512,7 @@ object Actions {
         val runId: Long,
         val filter: ActionsListJobsForWorkflowRunParameterEnum? = null,
         val perPage: Long? = null,
-        val page: Long? = null,
+        val page: Long? = null
     )
 
     /** Parameters for [actionsReviewPendingDeploymentsForRun]. */
@@ -516,7 +522,7 @@ object Actions {
         val runId: Long,
         val environmentIds: List<Long>,
         val state: ActionsReviewPendingDeploymentsForRunStateEnum,
-        val comment: String,
+        val comment: String
     )
 
     /** Parameters for [actionsCreateWorkflowDispatch]. */
@@ -526,7 +532,7 @@ object Actions {
         val workflowId: Any,
         val ref: String,
         val inputs: Map<String, Any>? = null,
-        val returnRunDetails: Boolean? = null,
+        val returnRunDetails: Boolean? = null
     )
 
     /** Parameters for [actionsListWorkflowRuns]. */
@@ -543,7 +549,7 @@ object Actions {
         val created: OffsetDateTime? = null,
         val excludePullRequests: Boolean? = null,
         val checkSuiteId: Long? = null,
-        val headSha: String? = null,
+        val headSha: String? = null
     )
 
     /** Parameters for [actionsCreateOrUpdateEnvironmentSecret]. */
@@ -553,7 +559,7 @@ object Actions {
         val environmentName: String,
         val secretName: String,
         val encryptedValue: String,
-        val keyId: String,
+        val keyId: String
     )
 
     /** Parameters for [actionsUpdateEnvironmentVariable]. */
@@ -563,1613 +569,908 @@ object Actions {
         val name: String,
         val environmentName: String,
         val name2: String? = null,
-        val value: String? = null,
+        val value: String? = null
     )
 
     /**
-     * Gets GitHub Actions cache retention limit for an enterprise. All organizations and
-     * repositories under this enterprise may not set a higher cache retention limit. OAuth tokens
-     * and personal access tokens (classic) need the `admin:enterprise` scope to use this
-     * endpoint. > [!NOTE] > The "Enterprise administration" fine-grained permission is not
-     * available to callers. To use this API, you must use an OAuth app token or a personal access
-     * token (classic).
+     * Gets GitHub Actions cache retention limit for an enterprise. All organizations and repositories under this enterprise may not set a higher cache retention limit. OAuth tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > [!NOTE] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
      */
-    fun actionsGetActionsCacheRetentionLimitForEnterprise(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        options: RequestOptions? = null,
-    ): ActionsCacheRetentionLimitForEnterprise =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheRetentionLimitForEnterpriseOperation
-            .actionsGetActionsCacheRetentionLimitForEnterprise(
-                clientConfig,
-                enterprise,
-                options,
-            )
+    fun actionsGetActionsCacheRetentionLimitForEnterprise(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): ActionsCacheRetentionLimitForEnterprise =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheRetentionLimitForEnterpriseOperation.actionsGetActionsCacheRetentionLimitForEnterprise(
+            clientConfig,
+            enterprise,
+            options,
+        )
 
     /**
-     * Sets GitHub Actions cache retention limit for an enterprise. All organizations and
-     * repositories under this enterprise may not set a higher cache retention limit. OAuth tokens
-     * and personal access tokens (classic) need the `admin:enterprise` scope to use this
-     * endpoint. > [!NOTE] > The "Enterprise administration" fine-grained permission is not
-     * available to callers. To use this API, you must use an OAuth app token or a personal access
-     * token (classic).
+     * Sets GitHub Actions cache retention limit for an enterprise. All organizations and repositories under this enterprise may not set a higher cache retention limit. OAuth tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > [!NOTE] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
      */
-    fun actionsSetActionsCacheRetentionLimitForEnterprise(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        maxCacheRetentionDays: Long? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetActionsCacheRetentionLimitForEnterpriseOperation
-            .actionsSetActionsCacheRetentionLimitForEnterprise(
-                clientConfig,
-                enterprise,
-                maxCacheRetentionDays,
-                options,
-            )
+    fun actionsSetActionsCacheRetentionLimitForEnterprise(clientConfig: ClientConfig, enterprise: String, maxCacheRetentionDays: Long? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetActionsCacheRetentionLimitForEnterpriseOperation.actionsSetActionsCacheRetentionLimitForEnterprise(
+            clientConfig,
+            enterprise,
+            maxCacheRetentionDays,
+            options,
+        )
 
     /**
-     * Gets GitHub Actions cache storage limit for an enterprise. All organizations and repositories
-     * under this enterprise may not set a higher cache storage limit. OAuth tokens and personal
-     * access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > [!NOTE] >
-     * The "Enterprise administration" fine-grained permission is not available to callers. To use
-     * this API, you must use an OAuth app token or a personal access token (classic).
+     * Gets GitHub Actions cache storage limit for an enterprise. All organizations and repositories under this enterprise may not set a higher cache storage limit. OAuth tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > [!NOTE] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
      */
-    fun actionsGetActionsCacheStorageLimitForEnterprise(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        options: RequestOptions? = null,
-    ): ActionsCacheStorageLimitForEnterprise =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheStorageLimitForEnterpriseOperation
-            .actionsGetActionsCacheStorageLimitForEnterprise(
-                clientConfig,
-                enterprise,
-                options,
-            )
+    fun actionsGetActionsCacheStorageLimitForEnterprise(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): ActionsCacheStorageLimitForEnterprise =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheStorageLimitForEnterpriseOperation.actionsGetActionsCacheStorageLimitForEnterprise(
+            clientConfig,
+            enterprise,
+            options,
+        )
 
     /**
-     * Sets GitHub Actions cache storage limit for an enterprise. All organizations and repositories
-     * under this enterprise may not set a higher cache storage limit. OAuth tokens and personal
-     * access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > [!NOTE] >
-     * The "Enterprise administration" fine-grained permission is not available to callers. To use
-     * this API, you must use an OAuth app token or a personal access token (classic).
+     * Sets GitHub Actions cache storage limit for an enterprise. All organizations and repositories under this enterprise may not set a higher cache storage limit. OAuth tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > [!NOTE] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
      */
-    fun actionsSetActionsCacheStorageLimitForEnterprise(
-        clientConfig: ClientConfig,
-        enterprise: String,
-        maxCacheSizeGb: Long? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetActionsCacheStorageLimitForEnterpriseOperation
-            .actionsSetActionsCacheStorageLimitForEnterprise(
-                clientConfig,
-                enterprise,
-                maxCacheSizeGb,
-                options,
-            )
+    fun actionsSetActionsCacheStorageLimitForEnterprise(clientConfig: ClientConfig, enterprise: String, maxCacheSizeGb: Long? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetActionsCacheStorageLimitForEnterpriseOperation.actionsSetActionsCacheStorageLimitForEnterprise(
+            clientConfig,
+            enterprise,
+            maxCacheSizeGb,
+            options,
+        )
 
     /**
-     * Gets GitHub Actions cache retention limit for an organization. All repositories under this
-     * organization may not set a higher cache retention limit. OAuth tokens and personal access
-     * tokens (classic) need the `admin:organization` scope to use this endpoint.
+     * Gets GitHub Actions cache retention limit for an organization. All repositories under this organization may not set a higher cache retention limit. OAuth tokens and personal access tokens (classic) need the `admin:organization` scope to use this endpoint.
      */
-    fun actionsGetActionsCacheRetentionLimitForOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsCacheRetentionLimitForOrganization =
-        dev.octri.showcase.github.methods
-            .ActionsGetActionsCacheRetentionLimitForOrganizationOperation
-            .actionsGetActionsCacheRetentionLimitForOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsGetActionsCacheRetentionLimitForOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsCacheRetentionLimitForOrganization =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheRetentionLimitForOrganizationOperation.actionsGetActionsCacheRetentionLimitForOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Sets GitHub Actions cache retention limit for an organization. All repositories under this
-     * organization may not set a higher cache retention limit. OAuth tokens and personal access
-     * tokens (classic) need the `admin:organization` scope to use this endpoint.
+     * Sets GitHub Actions cache retention limit for an organization. All repositories under this organization may not set a higher cache retention limit. OAuth tokens and personal access tokens (classic) need the `admin:organization` scope to use this endpoint.
      */
-    fun actionsSetActionsCacheRetentionLimitForOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        maxCacheRetentionDays: Long? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetActionsCacheRetentionLimitForOrganizationOperation
-            .actionsSetActionsCacheRetentionLimitForOrganization(
-                clientConfig,
-                org,
-                maxCacheRetentionDays,
-                options,
-            )
+    fun actionsSetActionsCacheRetentionLimitForOrganization(clientConfig: ClientConfig, org: String, maxCacheRetentionDays: Long? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetActionsCacheRetentionLimitForOrganizationOperation.actionsSetActionsCacheRetentionLimitForOrganization(
+            clientConfig,
+            org,
+            maxCacheRetentionDays,
+            options,
+        )
 
     /**
-     * Gets GitHub Actions cache storage limit for an organization. All repositories under this
-     * organization may not set a higher cache storage limit. OAuth tokens and personal access
-     * tokens (classic) need the `admin:organization` scope to use this endpoint.
+     * Gets GitHub Actions cache storage limit for an organization. All repositories under this organization may not set a higher cache storage limit. OAuth tokens and personal access tokens (classic) need the `admin:organization` scope to use this endpoint.
      */
-    fun actionsGetActionsCacheStorageLimitForOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsCacheStorageLimitForOrganization =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheStorageLimitForOrganizationOperation
-            .actionsGetActionsCacheStorageLimitForOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsGetActionsCacheStorageLimitForOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsCacheStorageLimitForOrganization =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheStorageLimitForOrganizationOperation.actionsGetActionsCacheStorageLimitForOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Sets GitHub Actions cache storage limit for an organization. All organizations and
-     * repositories under this organization may not set a higher cache storage limit. OAuth tokens
-     * and personal access tokens (classic) need the `admin:organization` scope to use this
-     * endpoint.
+     * Sets GitHub Actions cache storage limit for an organization. All organizations and repositories under this organization may not set a higher cache storage limit. OAuth tokens and personal access tokens (classic) need the `admin:organization` scope to use this endpoint.
      */
-    fun actionsSetActionsCacheStorageLimitForOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        maxCacheSizeGb: Long? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetActionsCacheStorageLimitForOrganizationOperation
-            .actionsSetActionsCacheStorageLimitForOrganization(
-                clientConfig,
-                org,
-                maxCacheSizeGb,
-                options,
-            )
+    fun actionsSetActionsCacheStorageLimitForOrganization(clientConfig: ClientConfig, org: String, maxCacheSizeGb: Long? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetActionsCacheStorageLimitForOrganizationOperation.actionsSetActionsCacheStorageLimitForOrganization(
+            clientConfig,
+            org,
+            maxCacheSizeGb,
+            options,
+        )
 
     /**
-     * Gets the total GitHub Actions cache usage for an organization. The data fetched using this
-     * API is refreshed approximately every 5 minutes, so values returned from this endpoint may
-     * take at least 5 minutes to get updated. OAuth tokens and personal access tokens (classic)
-     * need the `read:org` scope to use this endpoint.
+     * Gets the total GitHub Actions cache usage for an organization. The data fetched using this API is refreshed approximately every 5 minutes, so values returned from this endpoint may take at least 5 minutes to get updated. OAuth tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
      */
-    fun actionsGetActionsCacheUsageForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsCacheUsageOrgEnterprise =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheUsageForOrgOperation
-            .actionsGetActionsCacheUsageForOrg(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsGetActionsCacheUsageForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsCacheUsageOrgEnterprise =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheUsageForOrgOperation.actionsGetActionsCacheUsageForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Lists repositories and their GitHub Actions cache usage for an organization. The data fetched
-     * using this API is refreshed approximately every 5 minutes, so values returned from this
-     * endpoint may take at least 5 minutes to get updated. OAuth tokens and personal access tokens
-     * (classic) need the `read:org` scope to use this endpoint.
+     * Lists repositories and their GitHub Actions cache usage for an organization. The data fetched using this API is refreshed approximately every 5 minutes, so values returned from this endpoint may take at least 5 minutes to get updated. OAuth tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
      */
-    fun actionsGetActionsCacheUsageByRepoForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsGetActionsCacheUsageByRepoForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheUsageByRepoForOrgOperation
-            .actionsGetActionsCacheUsageByRepoForOrg(
-                clientConfig,
-                org,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsGetActionsCacheUsageByRepoForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsGetActionsCacheUsageByRepoForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheUsageByRepoForOrgOperation.actionsGetActionsCacheUsageByRepoForOrg(
+            clientConfig,
+            org,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Lists all GitHub-hosted runners configured in an organization. OAuth app tokens and personal
-     * access tokens (classic) need the `manage_runner:org` scope to use this endpoint.
+     * Lists all GitHub-hosted runners configured in an organization. OAuth app tokens and personal access tokens (classic) need the `manage_runner:org` scope to use this endpoint.
      */
-    fun actionsListHostedRunnersForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListHostedRunnersForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsListHostedRunnersForOrgOperation
-            .actionsListHostedRunnersForOrg(
-                clientConfig,
-                org,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsListHostedRunnersForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListHostedRunnersForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsListHostedRunnersForOrgOperation.actionsListHostedRunnersForOrg(
+            clientConfig,
+            org,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Creates a GitHub-hosted runner for an organization. OAuth tokens and personal access tokens
-     * (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Creates a GitHub-hosted runner for an organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsCreateHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        request: ActionsCreateHostedRunnerForOrgRequest,
-        options: RequestOptions? = null,
-    ): ActionsHostedRunner =
-        dev.octri.showcase.github.methods.ActionsCreateHostedRunnerForOrgOperation
-            .actionsCreateHostedRunnerForOrg(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsCreateHostedRunnerForOrg(clientConfig: ClientConfig, request: ActionsCreateHostedRunnerForOrgRequest, options: RequestOptions? = null): ActionsHostedRunner =
+        dev.octri.showcase.github.methods.ActionsCreateHostedRunnerForOrgOperation.actionsCreateHostedRunnerForOrg(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * List custom images for an organization. OAuth tokens and personal access tokens (classic)
-     * need the `manage_runners:org` scope to use this endpoint.
+     * List custom images for an organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsListCustomImagesForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsListCustomImagesForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsListCustomImagesForOrgOperation
-            .actionsListCustomImagesForOrg(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsListCustomImagesForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsListCustomImagesForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsListCustomImagesForOrgOperation.actionsListCustomImagesForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Get a custom image definition for GitHub Actions Hosted Runners. OAuth tokens and personal
-     * access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Get a custom image definition for GitHub Actions Hosted Runners. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsGetCustomImageForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        imageDefinitionId: Long,
-        options: RequestOptions? = null,
-    ): ActionsHostedRunnerCustomImage =
-        dev.octri.showcase.github.methods.ActionsGetCustomImageForOrgOperation
-            .actionsGetCustomImageForOrg(
-                clientConfig,
-                org,
-                imageDefinitionId,
-                options,
-            )
+    fun actionsGetCustomImageForOrg(clientConfig: ClientConfig, org: String, imageDefinitionId: Long, options: RequestOptions? = null): ActionsHostedRunnerCustomImage =
+        dev.octri.showcase.github.methods.ActionsGetCustomImageForOrgOperation.actionsGetCustomImageForOrg(
+            clientConfig,
+            org,
+            imageDefinitionId,
+            options,
+        )
 
     /**
-     * Delete a custom image from the organization. OAuth tokens and personal access tokens
-     * (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Delete a custom image from the organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsDeleteCustomImageFromOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        imageDefinitionId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteCustomImageFromOrgOperation
-            .actionsDeleteCustomImageFromOrg(
-                clientConfig,
-                org,
-                imageDefinitionId,
-                options,
-            )
+    fun actionsDeleteCustomImageFromOrg(clientConfig: ClientConfig, org: String, imageDefinitionId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteCustomImageFromOrgOperation.actionsDeleteCustomImageFromOrg(
+            clientConfig,
+            org,
+            imageDefinitionId,
+            options,
+        )
 
     /**
-     * List image versions of a custom image for an organization. OAuth tokens and personal access
-     * tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * List image versions of a custom image for an organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsListCustomImageVersionsForOrg(
-        clientConfig: ClientConfig,
-        imageDefinitionId: Long,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsListCustomImageVersionsForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsListCustomImageVersionsForOrgOperation
-            .actionsListCustomImageVersionsForOrg(
-                clientConfig,
-                imageDefinitionId,
-                org,
-                options,
-            )
+    fun actionsListCustomImageVersionsForOrg(clientConfig: ClientConfig, imageDefinitionId: Long, org: String, options: RequestOptions? = null): ActionsListCustomImageVersionsForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsListCustomImageVersionsForOrgOperation.actionsListCustomImageVersionsForOrg(
+            clientConfig,
+            imageDefinitionId,
+            org,
+            options,
+        )
 
     /**
-     * Get an image version of a custom image for GitHub Actions Hosted Runners. OAuth tokens and
-     * personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Get an image version of a custom image for GitHub Actions Hosted Runners. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsGetCustomImageVersionForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        imageDefinitionId: Long,
-        version: String,
-        options: RequestOptions? = null,
-    ): ActionsHostedRunnerCustomImageVersion =
-        dev.octri.showcase.github.methods.ActionsGetCustomImageVersionForOrgOperation
-            .actionsGetCustomImageVersionForOrg(
-                clientConfig,
-                org,
-                imageDefinitionId,
-                version,
-                options,
-            )
+    fun actionsGetCustomImageVersionForOrg(clientConfig: ClientConfig, org: String, imageDefinitionId: Long, version: String, options: RequestOptions? = null): ActionsHostedRunnerCustomImageVersion =
+        dev.octri.showcase.github.methods.ActionsGetCustomImageVersionForOrgOperation.actionsGetCustomImageVersionForOrg(
+            clientConfig,
+            org,
+            imageDefinitionId,
+            version,
+            options,
+        )
 
     /**
-     * Delete an image version of custom image from the organization. OAuth tokens and personal
-     * access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Delete an image version of custom image from the organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsDeleteCustomImageVersionFromOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        imageDefinitionId: Long,
-        version: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteCustomImageVersionFromOrgOperation
-            .actionsDeleteCustomImageVersionFromOrg(
-                clientConfig,
-                org,
-                imageDefinitionId,
-                version,
-                options,
-            )
+    fun actionsDeleteCustomImageVersionFromOrg(clientConfig: ClientConfig, org: String, imageDefinitionId: Long, version: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteCustomImageVersionFromOrgOperation.actionsDeleteCustomImageVersionFromOrg(
+            clientConfig,
+            org,
+            imageDefinitionId,
+            version,
+            options,
+        )
 
     /**
      * Get the list of GitHub-owned images available for GitHub-hosted runners for an organization.
      */
-    fun actionsGetHostedRunnersGithubOwnedImagesForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsGetHostedRunnersGithubOwnedImagesForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsGetHostedRunnersGithubOwnedImagesForOrgOperation
-            .actionsGetHostedRunnersGithubOwnedImagesForOrg(
-                clientConfig,
-                org,
-                options,
-            )
-
-    /** Get the list of partner images available for GitHub-hosted runners for an organization. */
-    fun actionsGetHostedRunnersPartnerImagesForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsGetHostedRunnersPartnerImagesForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsGetHostedRunnersPartnerImagesForOrgOperation
-            .actionsGetHostedRunnersPartnerImagesForOrg(
-                clientConfig,
-                org,
-                options,
-            )
-
-    /** Get the GitHub-hosted runners limits for an organization. */
-    fun actionsGetHostedRunnersLimitsForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsHostedRunnerLimits =
-        dev.octri.showcase.github.methods.ActionsGetHostedRunnersLimitsForOrgOperation
-            .actionsGetHostedRunnersLimitsForOrg(
-                clientConfig,
-                org,
-                options,
-            )
-
-    /** Get the list of machine specs available for GitHub-hosted runners for an organization. */
-    fun actionsGetHostedRunnersMachineSpecsForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsGetHostedRunnersMachineSpecsForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsGetHostedRunnersMachineSpecsForOrgOperation
-            .actionsGetHostedRunnersMachineSpecsForOrg(
-                clientConfig,
-                org,
-                options,
-            )
-
-    /** Get the list of platforms available for GitHub-hosted runners for an organization. */
-    fun actionsGetHostedRunnersPlatformsForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsGetHostedRunnersPlatformsForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsGetHostedRunnersPlatformsForOrgOperation
-            .actionsGetHostedRunnersPlatformsForOrg(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsGetHostedRunnersGithubOwnedImagesForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsGetHostedRunnersGithubOwnedImagesForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsGetHostedRunnersGithubOwnedImagesForOrgOperation.actionsGetHostedRunnersGithubOwnedImagesForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Gets a GitHub-hosted runner configured in an organization. OAuth app tokens and personal
-     * access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Get the list of partner images available for GitHub-hosted runners for an organization.
      */
-    fun actionsGetHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        hostedRunnerId: Long,
-        options: RequestOptions? = null,
-    ): ActionsHostedRunner =
-        dev.octri.showcase.github.methods.ActionsGetHostedRunnerForOrgOperation
-            .actionsGetHostedRunnerForOrg(
-                clientConfig,
-                org,
-                hostedRunnerId,
-                options,
-            )
+    fun actionsGetHostedRunnersPartnerImagesForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsGetHostedRunnersPartnerImagesForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsGetHostedRunnersPartnerImagesForOrgOperation.actionsGetHostedRunnersPartnerImagesForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Updates a GitHub-hosted runner for an organization. OAuth app tokens and personal access
-     * tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Get the GitHub-hosted runners limits for an organization.
      */
-    fun actionsUpdateHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        request: ActionsUpdateHostedRunnerForOrgRequest,
-        options: RequestOptions? = null,
-    ): ActionsHostedRunner =
-        dev.octri.showcase.github.methods.ActionsUpdateHostedRunnerForOrgOperation
-            .actionsUpdateHostedRunnerForOrg(
-                clientConfig,
-                request,
-                options,
-            )
-
-    /** Deletes a GitHub-hosted runner for an organization. */
-    fun actionsDeleteHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        hostedRunnerId: Long,
-        options: RequestOptions? = null,
-    ): ActionsHostedRunner =
-        dev.octri.showcase.github.methods.ActionsDeleteHostedRunnerForOrgOperation
-            .actionsDeleteHostedRunnerForOrg(
-                clientConfig,
-                org,
-                hostedRunnerId,
-                options,
-            )
+    fun actionsGetHostedRunnersLimitsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsHostedRunnerLimits =
+        dev.octri.showcase.github.methods.ActionsGetHostedRunnersLimitsForOrgOperation.actionsGetHostedRunnersLimitsForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Gets the GitHub Actions permissions policy for repositories and allowed actions and reusable
-     * workflows in an organization. OAuth tokens and personal access tokens (classic) need the
-     * `admin:org` scope to use this endpoint.
+     * Get the list of machine specs available for GitHub-hosted runners for an organization.
      */
-    fun actionsGetGithubActionsPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsOrganizationPermissions =
-        dev.octri.showcase.github.methods.ActionsGetGithubActionsPermissionsOrganizationOperation
-            .actionsGetGithubActionsPermissionsOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsGetHostedRunnersMachineSpecsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsGetHostedRunnersMachineSpecsForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsGetHostedRunnersMachineSpecsForOrgOperation.actionsGetHostedRunnersMachineSpecsForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Sets the GitHub Actions permissions policy for repositories and allowed actions and reusable
-     * workflows in an organization. OAuth app tokens and personal access tokens (classic) need the
-     * `admin:org` scope to use this endpoint.
+     * Get the list of platforms available for GitHub-hosted runners for an organization.
      */
-    fun actionsSetGithubActionsPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        enabledRepositories: EnabledRepositories,
-        allowedActions: AllowedActions? = null,
-        shaPinningRequired: ShaPinningRequired? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetGithubActionsPermissionsOrganizationOperation
-            .actionsSetGithubActionsPermissionsOrganization(
-                clientConfig,
-                org,
-                enabledRepositories,
-                allowedActions,
-                shaPinningRequired,
-                options,
-            )
+    fun actionsGetHostedRunnersPlatformsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsGetHostedRunnersPlatformsForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsGetHostedRunnersPlatformsForOrgOperation.actionsGetHostedRunnersPlatformsForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Gets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for
-     * an organization. Checks include check suites, check runs, and check annotations. These
-     * settings also apply to checks and commit statuses created by third-party integrations, and
-     * are not limited to data created by GitHub Actions. OAuth app tokens and personal access
-     * tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission
-     * to use this endpoint.
+     * Gets a GitHub-hosted runner configured in an organization. OAuth app tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsGetArtifactAndLogRetentionSettingsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsArtifactAndLogRetentionResponse =
-        dev.octri.showcase.github.methods
-            .ActionsGetArtifactAndLogRetentionSettingsOrganizationOperation
-            .actionsGetArtifactAndLogRetentionSettingsOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsGetHostedRunnerForOrg(clientConfig: ClientConfig, org: String, hostedRunnerId: Long, options: RequestOptions? = null): ActionsHostedRunner =
+        dev.octri.showcase.github.methods.ActionsGetHostedRunnerForOrgOperation.actionsGetHostedRunnerForOrg(
+            clientConfig,
+            org,
+            hostedRunnerId,
+            options,
+        )
 
     /**
-     * Sets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for
-     * an organization. Checks include check suites, check runs, and check annotations. These
-     * settings also apply to checks and commit statuses created by third-party integrations, and
-     * are not limited to data created by GitHub Actions. OAuth app tokens and personal access
-     * tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission
-     * to use this endpoint.
+     * Updates a GitHub-hosted runner for an organization. OAuth app tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      */
-    fun actionsSetArtifactAndLogRetentionSettingsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        days: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetArtifactAndLogRetentionSettingsOrganizationOperation
-            .actionsSetArtifactAndLogRetentionSettingsOrganization(
-                clientConfig,
-                org,
-                days,
-                options,
-            )
+    fun actionsUpdateHostedRunnerForOrg(clientConfig: ClientConfig, request: ActionsUpdateHostedRunnerForOrgRequest, options: RequestOptions? = null): ActionsHostedRunner =
+        dev.octri.showcase.github.methods.ActionsUpdateHostedRunnerForOrgOperation.actionsUpdateHostedRunnerForOrg(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets the fork PR contributor approval policy for an organization. OAuth app tokens and
-     * personal access tokens (classic) need the `admin:org` scope or the "Actions policies"
-     * fine-grained permission to use this endpoint.
+     * Deletes a GitHub-hosted runner for an organization.
      */
-    fun actionsGetForkPrContributorApprovalPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsForkPrContributorApproval =
-        dev.octri.showcase.github.methods
-            .ActionsGetForkPrContributorApprovalPermissionsOrganizationOperation
-            .actionsGetForkPrContributorApprovalPermissionsOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsDeleteHostedRunnerForOrg(clientConfig: ClientConfig, org: String, hostedRunnerId: Long, options: RequestOptions? = null): ActionsHostedRunner =
+        dev.octri.showcase.github.methods.ActionsDeleteHostedRunnerForOrgOperation.actionsDeleteHostedRunnerForOrg(
+            clientConfig,
+            org,
+            hostedRunnerId,
+            options,
+        )
 
     /**
-     * Sets the fork PR contributor approval policy for an organization. OAuth app tokens and
-     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets the GitHub Actions permissions policy for repositories and allowed actions and reusable workflows in an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsSetForkPrContributorApprovalPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        approvalPolicy: ActionsForkPrContributorApprovalApprovalPolicyEnum,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetForkPrContributorApprovalPermissionsOrganizationOperation
-            .actionsSetForkPrContributorApprovalPermissionsOrganization(
-                clientConfig,
-                org,
-                approvalPolicy,
-                options,
-            )
+    fun actionsGetGithubActionsPermissionsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsOrganizationPermissions =
+        dev.octri.showcase.github.methods.ActionsGetGithubActionsPermissionsOrganizationOperation.actionsGetGithubActionsPermissionsOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Gets the settings for whether workflows from fork pull requests can run on private
-     * repositories in an organization.
+     * Sets the GitHub Actions permissions policy for repositories and allowed actions and reusable workflows in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsGetPrivateRepoForkPrWorkflowsSettingsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsForkPrWorkflowsPrivateRepos =
-        dev.octri.showcase.github.methods
-            .ActionsGetPrivateRepoForkPrWorkflowsSettingsOrganizationOperation
-            .actionsGetPrivateRepoForkPrWorkflowsSettingsOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsSetGithubActionsPermissionsOrganization(clientConfig: ClientConfig, org: String, enabledRepositories: EnabledRepositories, allowedActions: AllowedActions? = null, shaPinningRequired: ShaPinningRequired? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetGithubActionsPermissionsOrganizationOperation.actionsSetGithubActionsPermissionsOrganization(
+            clientConfig,
+            org,
+            enabledRepositories,
+            allowedActions,
+            shaPinningRequired,
+            options,
+        )
 
     /**
-     * Sets the settings for whether workflows from fork pull requests can run on private
-     * repositories in an organization.
+     * Gets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for an organization. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsSetPrivateRepoForkPrWorkflowsSettingsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        runWorkflowsFromForkPullRequests: Boolean,
-        sendWriteTokensToWorkflows: Boolean? = null,
-        sendSecretsAndVariables: Boolean? = null,
-        requireApprovalForForkPrWorkflows: Boolean? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetPrivateRepoForkPrWorkflowsSettingsOrganizationOperation
-            .actionsSetPrivateRepoForkPrWorkflowsSettingsOrganization(
-                clientConfig,
-                org,
-                runWorkflowsFromForkPullRequests,
-                sendWriteTokensToWorkflows,
-                sendSecretsAndVariables,
-                requireApprovalForForkPrWorkflows,
-                options,
-            )
+    fun actionsGetArtifactAndLogRetentionSettingsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsArtifactAndLogRetentionResponse =
+        dev.octri.showcase.github.methods.ActionsGetArtifactAndLogRetentionSettingsOrganizationOperation.actionsGetArtifactAndLogRetentionSettingsOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Lists the selected repositories that are enabled for GitHub Actions in an organization. To
-     * use this endpoint, the organization permission policy for `enabled_repositories` must be
-     * configured to `selected`. For more information, see "Set GitHub Actions permissions for an
-     * organization." OAuth app tokens and personal access tokens (classic) need the `admin:org`
-     * scope to use this endpoint.
+     * Sets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for an organization. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsListSelectedRepositoriesEnabledGithubActionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListSelectedRepositoriesEnabledGithubActionsOrganizationResponse =
-        dev.octri.showcase.github.methods
-            .ActionsListSelectedRepositoriesEnabledGithubActionsOrganizationOperation
-            .actionsListSelectedRepositoriesEnabledGithubActionsOrganization(
-                clientConfig,
-                org,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsSetArtifactAndLogRetentionSettingsOrganization(clientConfig: ClientConfig, org: String, days: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetArtifactAndLogRetentionSettingsOrganizationOperation.actionsSetArtifactAndLogRetentionSettingsOrganization(
+            clientConfig,
+            org,
+            days,
+            options,
+        )
 
     /**
-     * Replaces the list of selected repositories that are enabled for GitHub Actions in an
-     * organization. To use this endpoint, the organization permission policy for
-     * `enabled_repositories` must be configured to `selected`. For more information, see "Set
-     * GitHub Actions permissions for an organization." OAuth app tokens and personal access tokens
-     * (classic) need the `admin:org` scope to use this endpoint.
+     * Gets the fork PR contributor approval policy for an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsSetSelectedRepositoriesEnabledGithubActionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        selectedRepositoryIds: List<Long>,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetSelectedRepositoriesEnabledGithubActionsOrganizationOperation
-            .actionsSetSelectedRepositoriesEnabledGithubActionsOrganization(
-                clientConfig,
-                org,
-                selectedRepositoryIds,
-                options,
-            )
+    fun actionsGetForkPrContributorApprovalPermissionsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsForkPrContributorApproval =
+        dev.octri.showcase.github.methods.ActionsGetForkPrContributorApprovalPermissionsOrganizationOperation.actionsGetForkPrContributorApprovalPermissionsOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Adds a repository to the list of selected repositories that are enabled for GitHub Actions in
-     * an organization. To use this endpoint, the organization permission policy for
-     * `enabled_repositories` must be must be configured to `selected`. For more information, see
-     * "Set GitHub Actions permissions for an organization." OAuth tokens and personal access tokens
-     * (classic) need the `admin:org` scope to use this endpoint.
+     * Sets the fork PR contributor approval policy for an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsEnableSelectedRepositoryGithubActionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsEnableSelectedRepositoryGithubActionsOrganizationOperation
-            .actionsEnableSelectedRepositoryGithubActionsOrganization(
-                clientConfig,
-                org,
-                repositoryId,
-                options,
-            )
+    fun actionsSetForkPrContributorApprovalPermissionsOrganization(clientConfig: ClientConfig, org: String, approvalPolicy: ActionsForkPrContributorApprovalApprovalPolicyEnum, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetForkPrContributorApprovalPermissionsOrganizationOperation.actionsSetForkPrContributorApprovalPermissionsOrganization(
+            clientConfig,
+            org,
+            approvalPolicy,
+            options,
+        )
 
     /**
-     * Removes a repository from the list of selected repositories that are enabled for GitHub
-     * Actions in an organization. To use this endpoint, the organization permission policy for
-     * `enabled_repositories` must be configured to `selected`. For more information, see "Set
-     * GitHub Actions permissions for an organization." OAuth tokens and personal access tokens
-     * (classic) need the `admin:org` scope to use this endpoint.
+     * Gets the settings for whether workflows from fork pull requests can run on private repositories in an organization.
      */
-    fun actionsDisableSelectedRepositoryGithubActionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsDisableSelectedRepositoryGithubActionsOrganizationOperation
-            .actionsDisableSelectedRepositoryGithubActionsOrganization(
-                clientConfig,
-                org,
-                repositoryId,
-                options,
-            )
+    fun actionsGetPrivateRepoForkPrWorkflowsSettingsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsForkPrWorkflowsPrivateRepos =
+        dev.octri.showcase.github.methods.ActionsGetPrivateRepoForkPrWorkflowsSettingsOrganizationOperation.actionsGetPrivateRepoForkPrWorkflowsSettingsOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Gets the selected actions and reusable workflows that are allowed in an organization. To use
-     * this endpoint, the organization permission policy for `allowed_actions` must be configured to
-     * `selected`. For more information, see "Set GitHub Actions permissions for an organization."
-     * OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this
-     * endpoint.
+     * Sets the settings for whether workflows from fork pull requests can run on private repositories in an organization.
      */
-    fun actionsGetAllowedActionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): SelectedActions =
-        dev.octri.showcase.github.methods.ActionsGetAllowedActionsOrganizationOperation
-            .actionsGetAllowedActionsOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsSetPrivateRepoForkPrWorkflowsSettingsOrganization(clientConfig: ClientConfig, org: String, runWorkflowsFromForkPullRequests: Boolean, sendWriteTokensToWorkflows: Boolean? = null, sendSecretsAndVariables: Boolean? = null, requireApprovalForForkPrWorkflows: Boolean? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetPrivateRepoForkPrWorkflowsSettingsOrganizationOperation.actionsSetPrivateRepoForkPrWorkflowsSettingsOrganization(
+            clientConfig,
+            org,
+            runWorkflowsFromForkPullRequests,
+            sendWriteTokensToWorkflows,
+            sendSecretsAndVariables,
+            requireApprovalForForkPrWorkflows,
+            options,
+        )
 
     /**
-     * Sets the actions and reusable workflows that are allowed in an organization. To use this
-     * endpoint, the organization permission policy for `allowed_actions` must be configured to
-     * `selected`. For more information, see "Set GitHub Actions permissions for an organization."
-     * OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this
-     * endpoint.
+     * Lists the selected repositories that are enabled for GitHub Actions in an organization. To use this endpoint, the organization permission policy for `enabled_repositories` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for an organization." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsSetAllowedActionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        githubOwnedAllowed: Boolean? = null,
-        verifiedAllowed: Boolean? = null,
-        patternsAllowed: List<String>? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetAllowedActionsOrganizationOperation
-            .actionsSetAllowedActionsOrganization(
-                clientConfig,
-                org,
-                githubOwnedAllowed,
-                verifiedAllowed,
-                patternsAllowed,
-                options,
-            )
+    fun actionsListSelectedRepositoriesEnabledGithubActionsOrganization(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListSelectedRepositoriesEnabledGithubActionsOrganizationResponse =
+        dev.octri.showcase.github.methods.ActionsListSelectedRepositoriesEnabledGithubActionsOrganizationOperation.actionsListSelectedRepositoriesEnabledGithubActionsOrganization(
+            clientConfig,
+            org,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Gets the settings for self-hosted runners for an organization. OAuth app tokens and personal
-     * access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained
-     * permission to use this endpoint.
+     * Replaces the list of selected repositories that are enabled for GitHub Actions in an organization. To use this endpoint, the organization permission policy for `enabled_repositories` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for an organization." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsGetSelfHostedRunnersPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): SelfHostedRunnersSettings =
-        dev.octri.showcase.github.methods
-            .ActionsGetSelfHostedRunnersPermissionsOrganizationOperation
-            .actionsGetSelfHostedRunnersPermissionsOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsSetSelectedRepositoriesEnabledGithubActionsOrganization(clientConfig: ClientConfig, org: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetSelectedRepositoriesEnabledGithubActionsOrganizationOperation.actionsSetSelectedRepositoriesEnabledGithubActionsOrganization(
+            clientConfig,
+            org,
+            selectedRepositoryIds,
+            options,
+        )
 
     /**
-     * Sets the settings for self-hosted runners for an organization. OAuth app tokens and personal
-     * access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained
-     * permission to use this endpoint.
+     * Adds a repository to the list of selected repositories that are enabled for GitHub Actions in an organization. To use this endpoint, the organization permission policy for `enabled_repositories` must be must be configured to `selected`. For more information, see "Set GitHub Actions permissions for an organization." OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsSetSelfHostedRunnersPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        enabledRepositories:
-            ActionsSetSelfHostedRunnersPermissionsOrganizationEnabledRepoXb2b6f4fa1d,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetSelfHostedRunnersPermissionsOrganizationOperation
-            .actionsSetSelfHostedRunnersPermissionsOrganization(
-                clientConfig,
-                org,
-                enabledRepositories,
-                options,
-            )
+    fun actionsEnableSelectedRepositoryGithubActionsOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsEnableSelectedRepositoryGithubActionsOrganizationOperation.actionsEnableSelectedRepositoryGithubActionsOrganization(
+            clientConfig,
+            org,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Lists repositories that are allowed to use self-hosted runners in an organization. OAuth app
-     * tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions
-     * policies" fine-grained permission to use this endpoint.
+     * Removes a repository from the list of selected repositories that are enabled for GitHub Actions in an organization. To use this endpoint, the organization permission policy for `enabled_repositories` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for an organization." OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsListSelectedRepositoriesSelfHostedRunnersOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListSelectedRepositoriesSelfHostedRunnersOrganizationResponse =
-        dev.octri.showcase.github.methods
-            .ActionsListSelectedRepositoriesSelfHostedRunnersOrganizationOperation
-            .actionsListSelectedRepositoriesSelfHostedRunnersOrganization(
-                clientConfig,
-                org,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsDisableSelectedRepositoryGithubActionsOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDisableSelectedRepositoryGithubActionsOrganizationOperation.actionsDisableSelectedRepositoryGithubActionsOrganization(
+            clientConfig,
+            org,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Sets repositories that are allowed to use self-hosted runners in an organization. OAuth app
-     * tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions
-     * policies" fine-grained permission to use this endpoint.
+     * Gets the selected actions and reusable workflows that are allowed in an organization. To use this endpoint, the organization permission policy for `allowed_actions` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for an organization." OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsSetSelectedRepositoriesSelfHostedRunnersOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        selectedRepositoryIds: List<Long>,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetSelectedRepositoriesSelfHostedRunnersOrganizationOperation
-            .actionsSetSelectedRepositoriesSelfHostedRunnersOrganization(
-                clientConfig,
-                org,
-                selectedRepositoryIds,
-                options,
-            )
+    fun actionsGetAllowedActionsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SelectedActions =
+        dev.octri.showcase.github.methods.ActionsGetAllowedActionsOrganizationOperation.actionsGetAllowedActionsOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Adds a repository to the list of repositories that are allowed to use self-hosted runners in
-     * an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org`
-     * scope or the "Actions policies" fine-grained permission to use this endpoint.
+     * Sets the actions and reusable workflows that are allowed in an organization. To use this endpoint, the organization permission policy for `allowed_actions` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for an organization." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsEnableSelectedRepositorySelfHostedRunnersOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsEnableSelectedRepositorySelfHostedRunnersOrganizationOperation
-            .actionsEnableSelectedRepositorySelfHostedRunnersOrganization(
-                clientConfig,
-                org,
-                repositoryId,
-                options,
-            )
+    fun actionsSetAllowedActionsOrganization(clientConfig: ClientConfig, org: String, githubOwnedAllowed: Boolean? = null, verifiedAllowed: Boolean? = null, patternsAllowed: List<String>? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetAllowedActionsOrganizationOperation.actionsSetAllowedActionsOrganization(
+            clientConfig,
+            org,
+            githubOwnedAllowed,
+            verifiedAllowed,
+            patternsAllowed,
+            options,
+        )
 
     /**
-     * Removes a repository from the list of repositories that are allowed to use self-hosted
-     * runners in an organization. OAuth app tokens and personal access tokens (classic) need the
-     * `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
+     * Gets the settings for self-hosted runners for an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsDisableSelectedRepositorySelfHostedRunnersOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsDisableSelectedRepositorySelfHostedRunnersOrganizationOperation
-            .actionsDisableSelectedRepositorySelfHostedRunnersOrganization(
-                clientConfig,
-                org,
-                repositoryId,
-                options,
-            )
+    fun actionsGetSelfHostedRunnersPermissionsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SelfHostedRunnersSettings =
+        dev.octri.showcase.github.methods.ActionsGetSelfHostedRunnersPermissionsOrganizationOperation.actionsGetSelfHostedRunnersPermissionsOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Gets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in
-     * an organization, as well as whether GitHub Actions can submit approving pull request reviews.
-     * For more information, see "[Setting the permissions of the GITHUB_TOKEN for your
-     * organization](https://docs.github.com/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#setting-the-permissions-of-the-github_token-for-your-organization)."
-     * OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this
-     * endpoint.
+     * Sets the settings for self-hosted runners for an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsGetGithubActionsDefaultWorkflowPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsGetDefaultWorkflowPermissions =
-        dev.octri.showcase.github.methods
-            .ActionsGetGithubActionsDefaultWorkflowPermissionsOrganizationOperation
-            .actionsGetGithubActionsDefaultWorkflowPermissionsOrganization(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsSetSelfHostedRunnersPermissionsOrganization(clientConfig: ClientConfig, org: String, enabledRepositories: ActionsSetSelfHostedRunnersPermissionsOrganizationEnabledRepoXb2b6f4fa1d, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetSelfHostedRunnersPermissionsOrganizationOperation.actionsSetSelfHostedRunnersPermissionsOrganization(
+            clientConfig,
+            org,
+            enabledRepositories,
+            options,
+        )
 
     /**
-     * Sets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in
-     * an organization, and sets if GitHub Actions can submit approving pull request reviews. For
-     * more information, see "[Setting the permissions of the GITHUB_TOKEN for your
-     * organization](https://docs.github.com/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#setting-the-permissions-of-the-github_token-for-your-organization)."
-     * OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this
-     * endpoint.
+     * Lists repositories that are allowed to use self-hosted runners in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsSetGithubActionsDefaultWorkflowPermissionsOrganization(
-        clientConfig: ClientConfig,
-        org: String,
-        defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions? = null,
-        canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetGithubActionsDefaultWorkflowPermissionsOrganizationOperation
-            .actionsSetGithubActionsDefaultWorkflowPermissionsOrganization(
-                clientConfig,
-                org,
-                defaultWorkflowPermissions,
-                canApprovePullRequestReviews,
-                options,
-            )
+    fun actionsListSelectedRepositoriesSelfHostedRunnersOrganization(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListSelectedRepositoriesSelfHostedRunnersOrganizationResponse =
+        dev.octri.showcase.github.methods.ActionsListSelectedRepositoriesSelfHostedRunnersOrganizationOperation.actionsListSelectedRepositoriesSelfHostedRunnersOrganization(
+            clientConfig,
+            org,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Lists Actions policies configured for an organization. Set `has_parents` to include policies
-     * configured at higher levels that apply to the organization, and use `page` and `per_page` to
-     * paginate the results.
+     * Sets repositories that are allowed to use self-hosted runners in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsGetOrgActionsPolicies(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        hasParents: Boolean? = null,
-        options: RequestOptions? = null,
-    ): ActionsGetOrgActionsPoliciesResponse =
-        dev.octri.showcase.github.methods.ActionsGetOrgActionsPoliciesOperation
-            .actionsGetOrgActionsPolicies(
-                clientConfig,
-                org,
-                perPage,
-                page,
-                hasParents,
-                options,
-            )
+    fun actionsSetSelectedRepositoriesSelfHostedRunnersOrganization(clientConfig: ClientConfig, org: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetSelectedRepositoriesSelfHostedRunnersOrganizationOperation.actionsSetSelectedRepositoriesSelfHostedRunnersOrganization(
+            clientConfig,
+            org,
+            selectedRepositoryIds,
+            options,
+        )
 
     /**
-     * Create an Actions policy for an organization. Omitting `workflow_path` targets all workflows
-     * without storing an explicit condition.
+     * Adds a repository to the list of repositories that are allowed to use self-hosted runners in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsCreateOrgActionsPolicy(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        enforcement: RepositoryRuleEnforcement,
-        conditions: ActionsPolicyOrgConditions? = null,
-        rules: List<ActionsRule>? = null,
-        options: RequestOptions? = null,
-    ): ActionsPolicy =
-        dev.octri.showcase.github.methods.ActionsCreateOrgActionsPolicyOperation
-            .actionsCreateOrgActionsPolicy(
-                clientConfig,
-                org,
-                name,
-                enforcement,
-                conditions,
-                rules,
-                options,
-            )
-
-    /** Get a specific Actions policy for an organization. */
-    fun actionsGetOrgActionsPolicy(
-        clientConfig: ClientConfig,
-        org: String,
-        policyId: Long,
-        options: RequestOptions? = null,
-    ): ActionsPolicy =
-        dev.octri.showcase.github.methods.ActionsGetOrgActionsPolicyOperation
-            .actionsGetOrgActionsPolicy(
-                clientConfig,
-                org,
-                policyId,
-                options,
-            )
+    fun actionsEnableSelectedRepositorySelfHostedRunnersOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsEnableSelectedRepositorySelfHostedRunnersOrganizationOperation.actionsEnableSelectedRepositorySelfHostedRunnersOrganization(
+            clientConfig,
+            org,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Update an Actions policy for an organization. Omitting `workflow_path` preserves the policy's
-     * existing workflow targeting.
+     * Removes a repository from the list of repositories that are allowed to use self-hosted runners in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the "Actions policies" fine-grained permission to use this endpoint.
      */
-    fun actionsUpdateOrgActionsPolicy(
-        clientConfig: ClientConfig,
-        request: ActionsUpdateOrgActionsPolicyRequest,
-        options: RequestOptions? = null,
-    ): ActionsPolicy =
-        dev.octri.showcase.github.methods.ActionsUpdateOrgActionsPolicyOperation
-            .actionsUpdateOrgActionsPolicy(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsDisableSelectedRepositorySelfHostedRunnersOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDisableSelectedRepositorySelfHostedRunnersOrganizationOperation.actionsDisableSelectedRepositorySelfHostedRunnersOrganization(
+            clientConfig,
+            org,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Deletes an organization-level Actions policy. Use `org` and `policy_id` to identify the
-     * organization and policy to remove; the policy must belong to that organization.
+     * Gets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in an organization, as well as whether GitHub Actions can submit approving pull request reviews. For more information, see "[Setting the permissions of the GITHUB_TOKEN for your organization](https://docs.github.com/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#setting-the-permissions-of-the-github_token-for-your-organization)." OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsDeleteOrgActionsPolicy(
-        clientConfig: ClientConfig,
-        org: String,
-        policyId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteOrgActionsPolicyOperation
-            .actionsDeleteOrgActionsPolicy(
-                clientConfig,
-                org,
-                policyId,
-                options,
-            )
+    fun actionsGetGithubActionsDefaultWorkflowPermissionsOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsGetDefaultWorkflowPermissions =
+        dev.octri.showcase.github.methods.ActionsGetGithubActionsDefaultWorkflowPermissionsOrganizationOperation.actionsGetGithubActionsDefaultWorkflowPermissionsOrganization(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Lists all self-hosted runner groups configured in an organization and inherited from an
-     * enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
-     * to use this endpoint.
+     * Sets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in an organization, and sets if GitHub Actions can submit approving pull request reviews. For more information, see "[Setting the permissions of the GITHUB_TOKEN for your organization](https://docs.github.com/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#setting-the-permissions-of-the-github_token-for-your-organization)." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsListSelfHostedRunnerGroupsForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        visibleToRepository: String? = null,
-        options: RequestOptions? = null,
-    ): ActionsListSelfHostedRunnerGroupsForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsListSelfHostedRunnerGroupsForOrgOperation
-            .actionsListSelfHostedRunnerGroupsForOrg(
-                clientConfig,
-                org,
-                perPage,
-                page,
-                visibleToRepository,
-                options,
-            )
+    fun actionsSetGithubActionsDefaultWorkflowPermissionsOrganization(clientConfig: ClientConfig, org: String, defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions? = null, canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetGithubActionsDefaultWorkflowPermissionsOrganizationOperation.actionsSetGithubActionsDefaultWorkflowPermissionsOrganization(
+            clientConfig,
+            org,
+            defaultWorkflowPermissions,
+            canApprovePullRequestReviews,
+            options,
+        )
 
     /**
-     * Creates a new self-hosted runner group for an organization. OAuth tokens and personal access
-     * tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists Actions policies configured for an organization. Set `has_parents` to include policies configured at higher levels that apply to the organization, and use `page` and `per_page` to paginate the results.
      */
-    fun actionsCreateSelfHostedRunnerGroupForOrg(
-        clientConfig: ClientConfig,
-        request: ActionsCreateSelfHostedRunnerGroupForOrgRequest,
-        options: RequestOptions? = null,
-    ): RunnerGroupsOrg =
-        dev.octri.showcase.github.methods.ActionsCreateSelfHostedRunnerGroupForOrgOperation
-            .actionsCreateSelfHostedRunnerGroupForOrg(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsGetOrgActionsPolicies(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, hasParents: Boolean? = null, options: RequestOptions? = null): ActionsGetOrgActionsPoliciesResponse =
+        dev.octri.showcase.github.methods.ActionsGetOrgActionsPoliciesOperation.actionsGetOrgActionsPolicies(
+            clientConfig,
+            org,
+            perPage,
+            page,
+            hasParents,
+            options,
+        )
 
     /**
-     * Gets a specific self-hosted runner group for an organization. OAuth app tokens and personal
-     * access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Create an Actions policy for an organization. Omitting `workflow_path` targets all workflows without storing an explicit condition.
      */
-    fun actionsGetSelfHostedRunnerGroupForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        options: RequestOptions? = null,
-    ): RunnerGroupsOrg =
-        dev.octri.showcase.github.methods.ActionsGetSelfHostedRunnerGroupForOrgOperation
-            .actionsGetSelfHostedRunnerGroupForOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                options,
-            )
+    fun actionsCreateOrgActionsPolicy(clientConfig: ClientConfig, org: String, name: String, enforcement: RepositoryRuleEnforcement, conditions: ActionsPolicyOrgConditions? = null, rules: List<ActionsRule>? = null, options: RequestOptions? = null): ActionsPolicy =
+        dev.octri.showcase.github.methods.ActionsCreateOrgActionsPolicyOperation.actionsCreateOrgActionsPolicy(
+            clientConfig,
+            org,
+            name,
+            enforcement,
+            conditions,
+            rules,
+            options,
+        )
 
     /**
-     * Updates the `name` and `visibility` of a self-hosted runner group in an organization. OAuth
-     * app tokens and personal access tokens (classic) need the `admin:org` scope to use this
-     * endpoint.
+     * Get a specific Actions policy for an organization.
      */
-    fun actionsUpdateSelfHostedRunnerGroupForOrg(
-        clientConfig: ClientConfig,
-        request: ActionsUpdateSelfHostedRunnerGroupForOrgRequest,
-        options: RequestOptions? = null,
-    ): RunnerGroupsOrg =
-        dev.octri.showcase.github.methods.ActionsUpdateSelfHostedRunnerGroupForOrgOperation
-            .actionsUpdateSelfHostedRunnerGroupForOrg(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsGetOrgActionsPolicy(clientConfig: ClientConfig, org: String, policyId: Long, options: RequestOptions? = null): ActionsPolicy =
+        dev.octri.showcase.github.methods.ActionsGetOrgActionsPolicyOperation.actionsGetOrgActionsPolicy(
+            clientConfig,
+            org,
+            policyId,
+            options,
+        )
 
     /**
-     * Deletes a self-hosted runner group for an organization. OAuth tokens and personal access
-     * tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Update an Actions policy for an organization. Omitting `workflow_path` preserves the policy's existing workflow targeting.
      */
-    fun actionsDeleteSelfHostedRunnerGroupFromOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteSelfHostedRunnerGroupFromOrgOperation
-            .actionsDeleteSelfHostedRunnerGroupFromOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                options,
-            )
+    fun actionsUpdateOrgActionsPolicy(clientConfig: ClientConfig, request: ActionsUpdateOrgActionsPolicyRequest, options: RequestOptions? = null): ActionsPolicy =
+        dev.octri.showcase.github.methods.ActionsUpdateOrgActionsPolicyOperation.actionsUpdateOrgActionsPolicy(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Lists the GitHub-hosted runners in an organization group. OAuth app tokens and personal
-     * access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Deletes an organization-level Actions policy. Use `org` and `policy_id` to identify the organization and policy to remove; the policy must belong to that organization.
      */
-    fun actionsListGithubHostedRunnersInGroupForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListGithubHostedRunnersInGroupForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsListGithubHostedRunnersInGroupForOrgOperation
-            .actionsListGithubHostedRunnersInGroupForOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsDeleteOrgActionsPolicy(clientConfig: ClientConfig, org: String, policyId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteOrgActionsPolicyOperation.actionsDeleteOrgActionsPolicy(
+            clientConfig,
+            org,
+            policyId,
+            options,
+        )
 
     /**
-     * Lists the repositories with access to a self-hosted runner group configured in an
-     * organization. OAuth app tokens and personal access tokens (classic) need the `admin:org`
-     * scope to use this endpoint.
+     * Lists all self-hosted runner groups configured in an organization and inherited from an enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsListRepoAccessToSelfHostedRunnerGroupInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        page: Long? = null,
-        perPage: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListRepoAccessToSelfHostedRunnerGroupInOrgResponse =
-        dev.octri.showcase.github.methods.ActionsListRepoAccessToSelfHostedRunnerGroupInOrgOperation
-            .actionsListRepoAccessToSelfHostedRunnerGroupInOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                page,
-                perPage,
-                options,
-            )
+    fun actionsListSelfHostedRunnerGroupsForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, visibleToRepository: String? = null, options: RequestOptions? = null): ActionsListSelfHostedRunnerGroupsForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsListSelfHostedRunnerGroupsForOrgOperation.actionsListSelfHostedRunnerGroupsForOrg(
+            clientConfig,
+            org,
+            perPage,
+            page,
+            visibleToRepository,
+            options,
+        )
 
     /**
-     * Replaces the list of repositories that have access to a self-hosted runner group configured
-     * in an organization. OAuth app tokens and personal access tokens (classic) need the
-     * `admin:org` scope to use this endpoint.
+     * Creates a new self-hosted runner group for an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsSetRepoAccessToSelfHostedRunnerGroupInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        selectedRepositoryIds: List<Long>,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetRepoAccessToSelfHostedRunnerGroupInOrgOperation
-            .actionsSetRepoAccessToSelfHostedRunnerGroupInOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                selectedRepositoryIds,
-                options,
-            )
+    fun actionsCreateSelfHostedRunnerGroupForOrg(clientConfig: ClientConfig, request: ActionsCreateSelfHostedRunnerGroupForOrgRequest, options: RequestOptions? = null): RunnerGroupsOrg =
+        dev.octri.showcase.github.methods.ActionsCreateSelfHostedRunnerGroupForOrgOperation.actionsCreateSelfHostedRunnerGroupForOrg(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Adds a repository to the list of repositories that can access a self-hosted runner group. The
-     * runner group must have `visibility` set to `selected`. For more information, see "Create a
-     * self-hosted runner group for an organization." OAuth tokens and personal access tokens
-     * (classic) need the `admin:org` scope to use this endpoint.
+     * Gets a specific self-hosted runner group for an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsAddRepoAccessToSelfHostedRunnerGroupInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsAddRepoAccessToSelfHostedRunnerGroupInOrgOperation
-            .actionsAddRepoAccessToSelfHostedRunnerGroupInOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                repositoryId,
-                options,
-            )
+    fun actionsGetSelfHostedRunnerGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, options: RequestOptions? = null): RunnerGroupsOrg =
+        dev.octri.showcase.github.methods.ActionsGetSelfHostedRunnerGroupForOrgOperation.actionsGetSelfHostedRunnerGroupForOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            options,
+        )
 
     /**
-     * Removes a repository from the list of selected repositories that can access a self-hosted
-     * runner group. The runner group must have `visibility` set to `selected`. For more
-     * information, see "Create a self-hosted runner group for an organization." OAuth app tokens
-     * and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Updates the `name` and `visibility` of a self-hosted runner group in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsRemoveRepoAccessToSelfHostedRunnerGroupInOrgOperation
-            .actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                repositoryId,
-                options,
-            )
+    fun actionsUpdateSelfHostedRunnerGroupForOrg(clientConfig: ClientConfig, request: ActionsUpdateSelfHostedRunnerGroupForOrgRequest, options: RequestOptions? = null): RunnerGroupsOrg =
+        dev.octri.showcase.github.methods.ActionsUpdateSelfHostedRunnerGroupForOrgOperation.actionsUpdateSelfHostedRunnerGroupForOrg(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Lists self-hosted runners that are in a specific organization group. OAuth app tokens and
-     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Deletes a self-hosted runner group for an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsListSelfHostedRunnersInGroupForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListSelfHostedRunnersInGroupForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsListSelfHostedRunnersInGroupForOrgOperation
-            .actionsListSelfHostedRunnersInGroupForOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsDeleteSelfHostedRunnerGroupFromOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteSelfHostedRunnerGroupFromOrgOperation.actionsDeleteSelfHostedRunnerGroupFromOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            options,
+        )
 
     /**
-     * Replaces the list of self-hosted runners that are part of an organization runner group. OAuth
-     * app tokens and personal access tokens (classic) need the `admin:org` scope to use this
-     * endpoint.
+     * Lists the GitHub-hosted runners in an organization group. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsSetSelfHostedRunnersInGroupForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        runners: List<Long>,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetSelfHostedRunnersInGroupForOrgOperation
-            .actionsSetSelfHostedRunnersInGroupForOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                runners,
-                options,
-            )
+    fun actionsListGithubHostedRunnersInGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListGithubHostedRunnersInGroupForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsListGithubHostedRunnersInGroupForOrgOperation.actionsListGithubHostedRunnersInGroupForOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Adds a self-hosted runner to a runner group configured in an organization. OAuth tokens and
-     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists the repositories with access to a self-hosted runner group configured in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsAddSelfHostedRunnerToGroupForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsAddSelfHostedRunnerToGroupForOrgOperation
-            .actionsAddSelfHostedRunnerToGroupForOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                runnerId,
-                options,
-            )
+    fun actionsListRepoAccessToSelfHostedRunnerGroupInOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): ActionsListRepoAccessToSelfHostedRunnerGroupInOrgResponse =
+        dev.octri.showcase.github.methods.ActionsListRepoAccessToSelfHostedRunnerGroupInOrgOperation.actionsListRepoAccessToSelfHostedRunnerGroupInOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            page,
+            perPage,
+            options,
+        )
 
     /**
-     * Removes a self-hosted runner from a group configured in an organization. The runner is then
-     * returned to the default group. OAuth app tokens and personal access tokens (classic) need the
-     * `admin:org` scope to use this endpoint.
+     * Replaces the list of repositories that have access to a self-hosted runner group configured in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsRemoveSelfHostedRunnerFromGroupForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerGroupId: Long,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsRemoveSelfHostedRunnerFromGroupForOrgOperation
-            .actionsRemoveSelfHostedRunnerFromGroupForOrg(
-                clientConfig,
-                org,
-                runnerGroupId,
-                runnerId,
-                options,
-            )
+    fun actionsSetRepoAccessToSelfHostedRunnerGroupInOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetRepoAccessToSelfHostedRunnerGroupInOrgOperation.actionsSetRepoAccessToSelfHostedRunnerGroupInOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            selectedRepositoryIds,
+            options,
+        )
 
     /**
-     * Lists all self-hosted runners configured in an organization. Authenticated users must have
-     * admin access to the organization to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is
-     * private, the `repo` scope is also required.
+     * Adds a repository to the list of repositories that can access a self-hosted runner group. The runner group must have `visibility` set to `selected`. For more information, see "Create a self-hosted runner group for an organization." OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsListSelfHostedRunnersForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListSelfHostedRunnersForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsListSelfHostedRunnersForOrgOperation
-            .actionsListSelfHostedRunnersForOrg(
-                clientConfig,
-                org,
-                name,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsAddRepoAccessToSelfHostedRunnerGroupInOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsAddRepoAccessToSelfHostedRunnerGroupInOrgOperation.actionsAddRepoAccessToSelfHostedRunnerGroupInOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Gets the end-of-life schedule for a specific runner version in an organization. Returns the
-     * runner version and the dates when registration and runtime support will end. Authenticated
-     * users must have admin access to the organization to use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Removes a repository from the list of selected repositories that can access a self-hosted runner group. The runner group must have `visibility` set to `selected`. For more information, see "Create a self-hosted runner group for an organization." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsGetRunnerVersionDeprecationForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        version: String,
-        options: RequestOptions? = null,
-    ): ActionsGetRunnerVersionDeprecationForOrgResponse =
-        dev.octri.showcase.github.methods.ActionsGetRunnerVersionDeprecationForOrgOperation
-            .actionsGetRunnerVersionDeprecationForOrg(
-                clientConfig,
-                org,
-                version,
-                options,
-            )
+    fun actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsRemoveRepoAccessToSelfHostedRunnerGroupInOrgOperation.actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Lists binaries for the runner application that you can download and run. Authenticated users
-     * must have admin access to the organization to use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
-     * repository is private, the `repo` scope is also required.
+     * Lists self-hosted runners that are in a specific organization group. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsListRunnerApplicationsForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): List<RunnerApplication> =
-        dev.octri.showcase.github.methods.ActionsListRunnerApplicationsForOrgOperation
-            .actionsListRunnerApplicationsForOrg(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsListSelfHostedRunnersInGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListSelfHostedRunnersInGroupForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsListSelfHostedRunnersInGroupForOrgOperation.actionsListSelfHostedRunnersInGroupForOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Generates a configuration that can be passed to the runner application at startup. The
-     * authenticated user must have admin access to the organization. OAuth tokens and personal
-     * access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is
-     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Replaces the list of self-hosted runners that are part of an organization runner group. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsGenerateRunnerJitconfigForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        runnerGroupId: Long,
-        labels: List<String>,
-        workFolder: String? = null,
-        options: RequestOptions? = null,
-    ): ActionsRunnerJitconfig =
-        dev.octri.showcase.github.methods.ActionsGenerateRunnerJitconfigForOrgOperation
-            .actionsGenerateRunnerJitconfigForOrg(
-                clientConfig,
-                org,
-                name,
-                runnerGroupId,
-                labels,
-                workFolder,
-                options,
-            )
+    fun actionsSetSelfHostedRunnersInGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, runners: List<Long>, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetSelfHostedRunnersInGroupForOrgOperation.actionsSetSelfHostedRunnersInGroupForOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            runners,
+            options,
+        )
 
     /**
-     * Returns a token that you can pass to the `config` script. The token expires after one hour.
-     * For example, you can replace `TOKEN` in the following example with the registration token
-     * provided by this endpoint to configure your self-hosted runner: ``` ./config.sh --url
-     * https://github.com/octo-org --token TOKEN ``` Authenticated users must have admin access to
-     * the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need
-     * the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Adds a self-hosted runner to a runner group configured in an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsCreateRegistrationTokenForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): AuthenticationToken =
-        dev.octri.showcase.github.methods.ActionsCreateRegistrationTokenForOrgOperation
-            .actionsCreateRegistrationTokenForOrg(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsAddSelfHostedRunnerToGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, runnerId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsAddSelfHostedRunnerToGroupForOrgOperation.actionsAddSelfHostedRunnerToGroupForOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            runnerId,
+            options,
+        )
 
     /**
-     * Returns a token that you can pass to the `config` script to remove a self-hosted runner from
-     * an organization. The token expires after one hour. For example, you can replace `TOKEN` in
-     * the following example with the registration token provided by this endpoint to remove your
-     * self-hosted runner from an organization: ``` ./config.sh remove --token TOKEN ```
-     * Authenticated users must have admin access to the organization to use this endpoint. OAuth
-     * tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint.
-     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
-     * `repo` scope to use this endpoint.
+     * Removes a self-hosted runner from a group configured in an organization. The runner is then returned to the default group. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsCreateRemoveTokenForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): AuthenticationToken =
-        dev.octri.showcase.github.methods.ActionsCreateRemoveTokenForOrgOperation
-            .actionsCreateRemoveTokenForOrg(
-                clientConfig,
-                org,
-                options,
-            )
+    fun actionsRemoveSelfHostedRunnerFromGroupForOrg(clientConfig: ClientConfig, org: String, runnerGroupId: Long, runnerId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsRemoveSelfHostedRunnerFromGroupForOrgOperation.actionsRemoveSelfHostedRunnerFromGroupForOrg(
+            clientConfig,
+            org,
+            runnerGroupId,
+            runnerId,
+            options,
+        )
 
     /**
-     * Gets a specific self-hosted runner configured in an organization. Authenticated users must
-     * have admin access to the organization to use this endpoint. OAuth app tokens and personal
-     * access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is
-     * private, the `repo` scope is also required.
+     * Lists all self-hosted runners configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsGetSelfHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): Runner =
-        dev.octri.showcase.github.methods.ActionsGetSelfHostedRunnerForOrgOperation
-            .actionsGetSelfHostedRunnerForOrg(
-                clientConfig,
-                org,
-                runnerId,
-                options,
-            )
+    fun actionsListSelfHostedRunnersForOrg(clientConfig: ClientConfig, org: String, name: String? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListSelfHostedRunnersForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsListSelfHostedRunnersForOrgOperation.actionsListSelfHostedRunnersForOrg(
+            clientConfig,
+            org,
+            name,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Forces the removal of a self-hosted runner from an organization. You can use this endpoint to
-     * completely remove the runner when the machine you were using no longer exists. Authenticated
-     * users must have admin access to the organization to use this endpoint. OAuth tokens and
-     * personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the
-     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
-     * scope to use this endpoint.
+     * Gets the end-of-life schedule for a specific runner version in an organization. Returns the runner version and the dates when registration and runtime support will end. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun actionsDeleteSelfHostedRunnerFromOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteSelfHostedRunnerFromOrgOperation
-            .actionsDeleteSelfHostedRunnerFromOrg(
-                clientConfig,
-                org,
-                runnerId,
-                options,
-            )
+    fun actionsGetRunnerVersionDeprecationForOrg(clientConfig: ClientConfig, org: String, version: String, options: RequestOptions? = null): ActionsGetRunnerVersionDeprecationForOrgResponse =
+        dev.octri.showcase.github.methods.ActionsGetRunnerVersionDeprecationForOrgOperation.actionsGetRunnerVersionDeprecationForOrg(
+            clientConfig,
+            org,
+            version,
+            options,
+        )
 
     /**
-     * Lists all labels for a self-hosted runner configured in an organization. Authenticated users
-     * must have admin access to the organization to use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
-     * repository is private, the `repo` scope is also required.
+     * Lists binaries for the runner application that you can download and run. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsListLabelsForSelfHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels =
-        dev.octri.showcase.github.methods.ActionsListLabelsForSelfHostedRunnerForOrgOperation
-            .actionsListLabelsForSelfHostedRunnerForOrg(
-                clientConfig,
-                org,
-                runnerId,
-                options,
-            )
+    fun actionsListRunnerApplicationsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<RunnerApplication> =
+        dev.octri.showcase.github.methods.ActionsListRunnerApplicationsForOrgOperation.actionsListRunnerApplicationsForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Adds custom labels to a self-hosted runner configured in an organization. Authenticated users
-     * must have admin access to the organization to use this endpoint. OAuth tokens and personal
-     * access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Generates a configuration that can be passed to the runner application at startup. The authenticated user must have admin access to the organization. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsAddCustomLabelsToSelfHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerId: Long,
-        labels: List<String>,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels =
-        dev.octri.showcase.github.methods.ActionsAddCustomLabelsToSelfHostedRunnerForOrgOperation
-            .actionsAddCustomLabelsToSelfHostedRunnerForOrg(
-                clientConfig,
-                org,
-                runnerId,
-                labels,
-                options,
-            )
+    fun actionsGenerateRunnerJitconfigForOrg(clientConfig: ClientConfig, org: String, name: String, runnerGroupId: Long, labels: List<String>, workFolder: String? = null, options: RequestOptions? = null): ActionsRunnerJitconfig =
+        dev.octri.showcase.github.methods.ActionsGenerateRunnerJitconfigForOrgOperation.actionsGenerateRunnerJitconfigForOrg(
+            clientConfig,
+            org,
+            name,
+            runnerGroupId,
+            labels,
+            workFolder,
+            options,
+        )
 
     /**
-     * Remove all previous custom labels and set the new custom labels for a specific self-hosted
-     * runner configured in an organization. Authenticated users must have admin access to the
-     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
-     * also required.
+     * Returns a token that you can pass to the `config` script. The token expires after one hour. For example, you can replace `TOKEN` in the following example with the registration token provided by this endpoint to configure your self-hosted runner: ``` ./config.sh --url https://github.com/octo-org --token TOKEN ``` Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetCustomLabelsForSelfHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerId: Long,
-        labels: List<String>,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels =
-        dev.octri.showcase.github.methods.ActionsSetCustomLabelsForSelfHostedRunnerForOrgOperation
-            .actionsSetCustomLabelsForSelfHostedRunnerForOrg(
-                clientConfig,
-                org,
-                runnerId,
-                labels,
-                options,
-            )
+    fun actionsCreateRegistrationTokenForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): AuthenticationToken =
+        dev.octri.showcase.github.methods.ActionsCreateRegistrationTokenForOrgOperation.actionsCreateRegistrationTokenForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Remove all custom labels from a self-hosted runner configured in an organization. Returns the
-     * remaining read-only labels from the runner. Authenticated users must have admin access to the
-     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
-     * also required.
+     * Returns a token that you can pass to the `config` script to remove a self-hosted runner from an organization. The token expires after one hour. For example, you can replace `TOKEN` in the following example with the registration token provided by this endpoint to remove your self-hosted runner from an organization: ``` ./config.sh remove --token TOKEN ``` Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabelsReadonly =
-        dev.octri.showcase.github.methods
-            .ActionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrgOperation
-            .actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg(
-                clientConfig,
-                org,
-                runnerId,
-                options,
-            )
+    fun actionsCreateRemoveTokenForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): AuthenticationToken =
+        dev.octri.showcase.github.methods.ActionsCreateRemoveTokenForOrgOperation.actionsCreateRemoveTokenForOrg(
+            clientConfig,
+            org,
+            options,
+        )
 
     /**
-     * Remove a custom label from a self-hosted runner configured in an organization. Returns the
-     * remaining labels from the runner. This endpoint returns a `404 Not Found` status if the
-     * custom label is not present on the runner. Authenticated users must have admin access to the
-     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
-     * also required.
+     * Gets a specific self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsRemoveCustomLabelFromSelfHostedRunnerForOrg(
-        clientConfig: ClientConfig,
-        org: String,
-        runnerId: Long,
-        name: String,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels =
-        dev.octri.showcase.github.methods
-            .ActionsRemoveCustomLabelFromSelfHostedRunnerForOrgOperation
-            .actionsRemoveCustomLabelFromSelfHostedRunnerForOrg(
-                clientConfig,
-                org,
-                runnerId,
-                name,
-                options,
-            )
+    fun actionsGetSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, options: RequestOptions? = null): Runner =
+        dev.octri.showcase.github.methods.ActionsGetSelfHostedRunnerForOrgOperation.actionsGetSelfHostedRunnerForOrg(
+            clientConfig,
+            org,
+            runnerId,
+            options,
+        )
 
     /**
-     * Lists all secrets available in an organization without revealing their encrypted values.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
-     * use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Forces the removal of a self-hosted runner from an organization. You can use this endpoint to completely remove the runner when the machine you were using no longer exists. Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListOrgSecrets(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListOrgSecretsResponse =
+    fun actionsDeleteSelfHostedRunnerFromOrg(clientConfig: ClientConfig, org: String, runnerId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteSelfHostedRunnerFromOrgOperation.actionsDeleteSelfHostedRunnerFromOrg(
+            clientConfig,
+            org,
+            runnerId,
+            options,
+        )
+
+    /**
+     * Lists all labels for a self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     */
+    fun actionsListLabelsForSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, options: RequestOptions? = null): ActionsRunnerLabels =
+        dev.octri.showcase.github.methods.ActionsListLabelsForSelfHostedRunnerForOrgOperation.actionsListLabelsForSelfHostedRunnerForOrg(
+            clientConfig,
+            org,
+            runnerId,
+            options,
+        )
+
+    /**
+     * Adds custom labels to a self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     */
+    fun actionsAddCustomLabelsToSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, labels: List<String>, options: RequestOptions? = null): ActionsRunnerLabels =
+        dev.octri.showcase.github.methods.ActionsAddCustomLabelsToSelfHostedRunnerForOrgOperation.actionsAddCustomLabelsToSelfHostedRunnerForOrg(
+            clientConfig,
+            org,
+            runnerId,
+            labels,
+            options,
+        )
+
+    /**
+     * Remove all previous custom labels and set the new custom labels for a specific self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     */
+    fun actionsSetCustomLabelsForSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, labels: List<String>, options: RequestOptions? = null): ActionsRunnerLabels =
+        dev.octri.showcase.github.methods.ActionsSetCustomLabelsForSelfHostedRunnerForOrgOperation.actionsSetCustomLabelsForSelfHostedRunnerForOrg(
+            clientConfig,
+            org,
+            runnerId,
+            labels,
+            options,
+        )
+
+    /**
+     * Remove all custom labels from a self-hosted runner configured in an organization. Returns the remaining read-only labels from the runner. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     */
+    fun actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, options: RequestOptions? = null): ActionsRunnerLabelsReadonly =
+        dev.octri.showcase.github.methods.ActionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrgOperation.actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg(
+            clientConfig,
+            org,
+            runnerId,
+            options,
+        )
+
+    /**
+     * Remove a custom label from a self-hosted runner configured in an organization. Returns the remaining labels from the runner. This endpoint returns a `404 Not Found` status if the custom label is not present on the runner. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     */
+    fun actionsRemoveCustomLabelFromSelfHostedRunnerForOrg(clientConfig: ClientConfig, org: String, runnerId: Long, name: String, options: RequestOptions? = null): ActionsRunnerLabels =
+        dev.octri.showcase.github.methods.ActionsRemoveCustomLabelFromSelfHostedRunnerForOrgOperation.actionsRemoveCustomLabelFromSelfHostedRunnerForOrg(
+            clientConfig,
+            org,
+            runnerId,
+            name,
+            options,
+        )
+
+    /**
+     * Lists all secrets available in an organization without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     */
+    fun actionsListOrgSecrets(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListOrgSecretsResponse =
         dev.octri.showcase.github.methods.ActionsListOrgSecretsOperation.actionsListOrgSecrets(
             clientConfig,
             org,
@@ -2179,17 +1480,9 @@ object Actions {
         )
 
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
-     * you can create or update secrets. The authenticated user must have collaborator access to a
-     * repository to create, update, or read secrets. OAuth tokens and personal access tokens
-     * (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth
-     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. The authenticated user must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetOrgPublicKey(
-        clientConfig: ClientConfig,
-        org: String,
-        options: RequestOptions? = null,
-    ): ActionsPublicKey =
+    fun actionsGetOrgPublicKey(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsPublicKey =
         dev.octri.showcase.github.methods.ActionsGetOrgPublicKeyOperation.actionsGetOrgPublicKey(
             clientConfig,
             org,
@@ -2197,18 +1490,9 @@ object Actions {
         )
 
     /**
-     * Gets a single organization secret without revealing its encrypted value. The authenticated
-     * user must have collaborator access to a repository to create, update, or read secrets OAuth
-     * tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint.
-     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
-     * `repo` scope to use this endpoint.
+     * Gets a single organization secret without revealing its encrypted value. The authenticated user must have collaborator access to a repository to create, update, or read secrets OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetOrgSecret(
-        clientConfig: ClientConfig,
-        org: String,
-        secretName: String,
-        options: RequestOptions? = null,
-    ): OrganizationActionsSecret =
+    fun actionsGetOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): OrganizationActionsSecret =
         dev.octri.showcase.github.methods.ActionsGetOrgSecretOperation.actionsGetOrgSecret(
             clientConfig,
             org,
@@ -2217,40 +1501,19 @@ object Actions {
         )
 
     /**
-     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using
-     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
-     * information, see "[Encrypting secrets for the REST
-     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated
-     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
-     * tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint.
-     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
-     * `repo` scope to use this endpoint.
+     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateOrUpdateOrgSecret(
-        clientConfig: ClientConfig,
-        request: ActionsCreateOrUpdateOrgSecretRequest,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsCreateOrUpdateOrgSecretOperation
-            .actionsCreateOrUpdateOrgSecret(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsCreateOrUpdateOrgSecret(clientConfig: ClientConfig, request: ActionsCreateOrUpdateOrgSecretRequest, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsCreateOrUpdateOrgSecretOperation.actionsCreateOrUpdateOrgSecret(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes a secret in an organization using the secret name. Authenticated users must have
-     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
-     * personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the
-     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
-     * scope to use this endpoint.
+     * Deletes a secret in an organization using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteOrgSecret(
-        clientConfig: ClientConfig,
-        org: String,
-        secretName: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun actionsDeleteOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.ActionsDeleteOrgSecretOperation.actionsDeleteOrgSecret(
             clientConfig,
             org,
@@ -2259,111 +1522,58 @@ object Actions {
         )
 
     /**
-     * Lists all repositories that have been selected when the `visibility` for repository access to
-     * a secret is set to `selected`. Authenticated users must have collaborator access to a
-     * repository to create, update, or read secrets. OAuth app tokens and personal access tokens
-     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
-     * `repo` scope is also required.
+     * Lists all repositories that have been selected when the `visibility` for repository access to a secret is set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsListSelectedReposForOrgSecret(
-        clientConfig: ClientConfig,
-        org: String,
-        secretName: String,
-        page: Long? = null,
-        perPage: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListSelectedReposForOrgSecretResponse =
-        dev.octri.showcase.github.methods.ActionsListSelectedReposForOrgSecretOperation
-            .actionsListSelectedReposForOrgSecret(
-                clientConfig,
-                org,
-                secretName,
-                page,
-                perPage,
-                options,
-            )
+    fun actionsListSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): ActionsListSelectedReposForOrgSecretResponse =
+        dev.octri.showcase.github.methods.ActionsListSelectedReposForOrgSecretOperation.actionsListSelectedReposForOrgSecret(
+            clientConfig,
+            org,
+            secretName,
+            page,
+            perPage,
+            options,
+        )
 
     /**
-     * Replaces all repositories for an organization secret when the `visibility` for repository
-     * access is set to `selected`. The visibility is set when you
-     * [Create or update an organization secret](https://docs.github.com/rest/actions/secrets#create-or-update-an-organization-secret).
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
-     * use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Replaces all repositories for an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you [Create or update an organization secret](https://docs.github.com/rest/actions/secrets#create-or-update-an-organization-secret). Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsSetSelectedReposForOrgSecret(
-        clientConfig: ClientConfig,
-        org: String,
-        secretName: String,
-        selectedRepositoryIds: List<Long>,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetSelectedReposForOrgSecretOperation
-            .actionsSetSelectedReposForOrgSecret(
-                clientConfig,
-                org,
-                secretName,
-                selectedRepositoryIds,
-                options,
-            )
+    fun actionsSetSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetSelectedReposForOrgSecretOperation.actionsSetSelectedReposForOrgSecret(
+            clientConfig,
+            org,
+            secretName,
+            selectedRepositoryIds,
+            options,
+        )
 
     /**
-     * Adds a repository to an organization secret's selected repository list. Use this operation
-     * when the secret's `visibility` is set to `selected`; the authenticated user must have
-     * collaborator access to the repository. OAuth tokens and personal access tokens (classic) need
-     * the `admin:org` scope, plus the `repo` scope for private repositories.
+     * Adds a repository to an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth tokens and personal access tokens (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
      */
-    fun actionsAddSelectedRepoToOrgSecret(
-        clientConfig: ClientConfig,
-        org: String,
-        secretName: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsAddSelectedRepoToOrgSecretOperation
-            .actionsAddSelectedRepoToOrgSecret(
-                clientConfig,
-                org,
-                secretName,
-                repositoryId,
-                options,
-            )
+    fun actionsAddSelectedRepoToOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsAddSelectedRepoToOrgSecretOperation.actionsAddSelectedRepoToOrgSecret(
+            clientConfig,
+            org,
+            secretName,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Removes a repository from an organization secret's selected repository list. Use this
-     * operation when the secret's `visibility` is set to `selected`; the authenticated user must
-     * have collaborator access to the repository. OAuth app tokens and personal access tokens
-     * (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
+     * Removes a repository from an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
      */
-    fun actionsRemoveSelectedRepoFromOrgSecret(
-        clientConfig: ClientConfig,
-        org: String,
-        secretName: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsRemoveSelectedRepoFromOrgSecretOperation
-            .actionsRemoveSelectedRepoFromOrgSecret(
-                clientConfig,
-                org,
-                secretName,
-                repositoryId,
-                options,
-            )
+    fun actionsRemoveSelectedRepoFromOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsRemoveSelectedRepoFromOrgSecretOperation.actionsRemoveSelectedRepoFromOrgSecret(
+            clientConfig,
+            org,
+            secretName,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Lists all organization variables. Authenticated users must have collaborator access to a
-     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
-     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
-     * `repo` scope is also required.
+     * Lists all organization variables. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsListOrgVariables(
-        clientConfig: ClientConfig,
-        org: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListOrgVariablesResponse =
+    fun actionsListOrgVariables(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListOrgVariablesResponse =
         dev.octri.showcase.github.methods.ActionsListOrgVariablesOperation.actionsListOrgVariables(
             clientConfig,
             org,
@@ -2373,45 +1583,23 @@ object Actions {
         )
 
     /**
-     * Creates an organization variable that you can reference in a GitHub Actions workflow.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * variables. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use
-     * this endpoint. If the repository is private, OAuth tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Creates an organization variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateOrgVariable(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        value: String,
-        visibility: ActionsCreateOrgVariableVisibilityEnum,
-        selectedRepositoryIds: List<Long>? = null,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsCreateOrgVariableOperation
-            .actionsCreateOrgVariable(
-                clientConfig,
-                org,
-                name,
-                value,
-                visibility,
-                selectedRepositoryIds,
-                options,
-            )
+    fun actionsCreateOrgVariable(clientConfig: ClientConfig, org: String, name: String, value: String, visibility: ActionsCreateOrgVariableVisibilityEnum, selectedRepositoryIds: List<Long>? = null, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsCreateOrgVariableOperation.actionsCreateOrgVariable(
+            clientConfig,
+            org,
+            name,
+            value,
+            visibility,
+            selectedRepositoryIds,
+            options,
+        )
 
     /**
-     * Gets a specific variable in an organization. The authenticated user must have collaborator
-     * access to a repository to create, update, or read variables. OAuth tokens and personal access
-     * tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is
-     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Gets a specific variable in an organization. The authenticated user must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetOrgVariable(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        options: RequestOptions? = null,
-    ): OrganizationActionsVariable =
+    fun actionsGetOrgVariable(clientConfig: ClientConfig, org: String, name: String, options: RequestOptions? = null): OrganizationActionsVariable =
         dev.octri.showcase.github.methods.ActionsGetOrgVariableOperation.actionsGetOrgVariable(
             clientConfig,
             org,
@@ -2420,174 +1608,93 @@ object Actions {
         )
 
     /**
-     * Updates an organization variable that you can reference in a GitHub Actions workflow.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
-     * to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Updates an organization variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsUpdateOrgVariable(
-        clientConfig: ClientConfig,
-        request: ActionsUpdateOrgVariableRequest,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsUpdateOrgVariableOperation
-            .actionsUpdateOrgVariable(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsUpdateOrgVariable(clientConfig: ClientConfig, request: ActionsUpdateOrgVariableRequest, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsUpdateOrgVariableOperation.actionsUpdateOrgVariable(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes an organization variable using the variable name. Authenticated users must have
-     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
-     * personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the
-     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
-     * scope to use this endpoint.
+     * Deletes an organization variable using the variable name. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteOrgVariable(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteOrgVariableOperation
-            .actionsDeleteOrgVariable(
-                clientConfig,
-                org,
-                name,
-                options,
-            )
+    fun actionsDeleteOrgVariable(clientConfig: ClientConfig, org: String, name: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteOrgVariableOperation.actionsDeleteOrgVariable(
+            clientConfig,
+            org,
+            name,
+            options,
+        )
 
     /**
-     * Lists all repositories that can access an organization variable that is available to selected
-     * repositories. Authenticated users must have collaborator access to a repository to create,
-     * update, or read variables. OAuth app tokens and personal access tokens (classic) need the
-     * `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
-     * also required.
+     * Lists all repositories that can access an organization variable that is available to selected repositories. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsListSelectedReposForOrgVariable(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        page: Long? = null,
-        perPage: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListSelectedReposForOrgVariableResponse =
-        dev.octri.showcase.github.methods.ActionsListSelectedReposForOrgVariableOperation
-            .actionsListSelectedReposForOrgVariable(
-                clientConfig,
-                org,
-                name,
-                page,
-                perPage,
-                options,
-            )
+    fun actionsListSelectedReposForOrgVariable(clientConfig: ClientConfig, org: String, name: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): ActionsListSelectedReposForOrgVariableResponse =
+        dev.octri.showcase.github.methods.ActionsListSelectedReposForOrgVariableOperation.actionsListSelectedReposForOrgVariable(
+            clientConfig,
+            org,
+            name,
+            page,
+            perPage,
+            options,
+        )
 
     /**
-     * Replaces all repositories for an organization variable that is available to selected
-     * repositories. Organization variables that are available to selected repositories have their
-     * `visibility` field set to `selected`. Authenticated users must have collaborator access to a
-     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
-     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
-     * `repo` scope is also required.
+     * Replaces all repositories for an organization variable that is available to selected repositories. Organization variables that are available to selected repositories have their `visibility` field set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun actionsSetSelectedReposForOrgVariable(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        selectedRepositoryIds: List<Long>,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetSelectedReposForOrgVariableOperation
-            .actionsSetSelectedReposForOrgVariable(
-                clientConfig,
-                org,
-                name,
-                selectedRepositoryIds,
-                options,
-            )
+    fun actionsSetSelectedReposForOrgVariable(clientConfig: ClientConfig, org: String, name: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetSelectedReposForOrgVariableOperation.actionsSetSelectedReposForOrgVariable(
+            clientConfig,
+            org,
+            name,
+            selectedRepositoryIds,
+            options,
+        )
 
     /**
-     * Adds a repository to an organization variable configured for selected repositories. Use
-     * `name` and `repository_id` to identify the variable and repository to include; the variable
-     * must have `visibility` set to `selected`. The authenticated user must have collaborator
-     * access to the repository, and the token must have the required organization scope.
+     * Adds a repository to an organization variable configured for selected repositories. Use `name` and `repository_id` to identify the variable and repository to include; the variable must have `visibility` set to `selected`. The authenticated user must have collaborator access to the repository, and the token must have the required organization scope.
      */
-    fun actionsAddSelectedRepoToOrgVariable(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsAddSelectedRepoToOrgVariableOperation
-            .actionsAddSelectedRepoToOrgVariable(
-                clientConfig,
-                org,
-                name,
-                repositoryId,
-                options,
-            )
+    fun actionsAddSelectedRepoToOrgVariable(clientConfig: ClientConfig, org: String, name: String, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsAddSelectedRepoToOrgVariableOperation.actionsAddSelectedRepoToOrgVariable(
+            clientConfig,
+            org,
+            name,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Removes a repository from an organization variable configured for selected repositories. Use
-     * `name` and `repository_id` to identify the variable and repository to remove; the variable
-     * must have `visibility` set to `selected`. The authenticated user must have collaborator
-     * access to the repository, and the token must have the required organization scope.
+     * Removes a repository from an organization variable configured for selected repositories. Use `name` and `repository_id` to identify the variable and repository to remove; the variable must have `visibility` set to `selected`. The authenticated user must have collaborator access to the repository, and the token must have the required organization scope.
      */
-    fun actionsRemoveSelectedRepoFromOrgVariable(
-        clientConfig: ClientConfig,
-        org: String,
-        name: String,
-        repositoryId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsRemoveSelectedRepoFromOrgVariableOperation
-            .actionsRemoveSelectedRepoFromOrgVariable(
-                clientConfig,
-                org,
-                name,
-                repositoryId,
-                options,
-            )
+    fun actionsRemoveSelectedRepoFromOrgVariable(clientConfig: ClientConfig, org: String, name: String, repositoryId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsRemoveSelectedRepoFromOrgVariableOperation.actionsRemoveSelectedRepoFromOrgVariable(
+            clientConfig,
+            org,
+            name,
+            repositoryId,
+            options,
+        )
 
     /**
-     * Lists all artifacts for a repository. Anyone with read access to the repository can use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint with a private repository.
+     * Lists all artifacts for a repository. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsListArtifactsForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        name: String? = null,
-        options: RequestOptions? = null,
-    ): ActionsListArtifactsForRepoResponse =
-        dev.octri.showcase.github.methods.ActionsListArtifactsForRepoOperation
-            .actionsListArtifactsForRepo(
-                clientConfig,
-                owner,
-                repo,
-                perPage,
-                page,
-                name,
-                options,
-            )
+    fun actionsListArtifactsForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, name: String? = null, options: RequestOptions? = null): ActionsListArtifactsForRepoResponse =
+        dev.octri.showcase.github.methods.ActionsListArtifactsForRepoOperation.actionsListArtifactsForRepo(
+            clientConfig,
+            owner,
+            repo,
+            perPage,
+            page,
+            name,
+            options,
+        )
 
     /**
-     * Gets a specific artifact for a workflow run. Anyone with read access to the repository can
-     * use this endpoint. If the repository is private, OAuth tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific artifact for a workflow run. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetArtifact(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        artifactId: Long,
-        options: RequestOptions? = null,
-    ): Artifact =
+    fun actionsGetArtifact(clientConfig: ClientConfig, owner: String, repo: String, artifactId: Long, options: RequestOptions? = null): Artifact =
         dev.octri.showcase.github.methods.ActionsGetArtifactOperation.actionsGetArtifact(
             clientConfig,
             owner,
@@ -2597,16 +1704,9 @@ object Actions {
         )
 
     /**
-     * Deletes an artifact for a workflow run. OAuth tokens and personal access tokens (classic)
-     * need the `repo` scope to use this endpoint.
+     * Deletes an artifact for a workflow run. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteArtifact(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        artifactId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun actionsDeleteArtifact(clientConfig: ClientConfig, owner: String, repo: String, artifactId: Long, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.ActionsDeleteArtifactOperation.actionsDeleteArtifact(
             clientConfig,
             owner,
@@ -2616,19 +1716,9 @@ object Actions {
         )
 
     /**
-     * Retrieves a short-lived redirect URL for downloading an artifact archive from a repository.
-     * Use `owner`, `repo`, and `artifact_id` to identify the repository and artifact; the download
-     * URL expires after one minute. Send `archive_format` as `zip`, and use an OAuth token or
-     * personal access token (classic) with the `repo` scope.
+     * Retrieves a short-lived redirect URL for downloading an artifact archive from a repository. Use `owner`, `repo`, and `artifact_id` to identify the repository and artifact; the download URL expires after one minute. Send `archive_format` as `zip`, and use an OAuth token or personal access token (classic) with the `repo` scope.
      */
-    fun actionsDownloadArtifact(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        artifactId: Long,
-        archiveFormat: String,
-        options: RequestOptions? = null,
-    ): Any =
+    fun actionsDownloadArtifact(clientConfig: ClientConfig, owner: String, repo: String, artifactId: Long, archiveFormat: String, options: RequestOptions? = null): Any =
         dev.octri.showcase.github.methods.ActionsDownloadArtifactOperation.actionsDownloadArtifact(
             clientConfig,
             owner,
@@ -2639,1138 +1729,618 @@ object Actions {
         )
 
     /**
-     * Gets GitHub Actions cache retention limit for a repository. This determines how long caches
-     * will be retained for, if not manually removed or evicted due to size constraints. OAuth
-     * tokens and personal access tokens (classic) need the `admin:repository` scope to use this
-     * endpoint.
+     * Gets GitHub Actions cache retention limit for a repository. This determines how long caches will be retained for, if not manually removed or evicted due to size constraints. OAuth tokens and personal access tokens (classic) need the `admin:repository` scope to use this endpoint.
      */
-    fun actionsGetActionsCacheRetentionLimitForRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsCacheRetentionLimitForRepository =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheRetentionLimitForRepositoryOperation
-            .actionsGetActionsCacheRetentionLimitForRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetActionsCacheRetentionLimitForRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsCacheRetentionLimitForRepository =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheRetentionLimitForRepositoryOperation.actionsGetActionsCacheRetentionLimitForRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets GitHub Actions cache retention limit for a repository. This determines how long caches
-     * will be retained for, if not manually removed or evicted due to size constraints. OAuth
-     * tokens and personal access tokens (classic) need the `admin:repository` scope to use this
-     * endpoint.
+     * Sets GitHub Actions cache retention limit for a repository. This determines how long caches will be retained for, if not manually removed or evicted due to size constraints. OAuth tokens and personal access tokens (classic) need the `admin:repository` scope to use this endpoint.
      */
-    fun actionsSetActionsCacheRetentionLimitForRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        maxCacheRetentionDays: Long? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetActionsCacheRetentionLimitForRepositoryOperation
-            .actionsSetActionsCacheRetentionLimitForRepository(
-                clientConfig,
-                owner,
-                repo,
-                maxCacheRetentionDays,
-                options,
-            )
+    fun actionsSetActionsCacheRetentionLimitForRepository(clientConfig: ClientConfig, owner: String, repo: String, maxCacheRetentionDays: Long? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetActionsCacheRetentionLimitForRepositoryOperation.actionsSetActionsCacheRetentionLimitForRepository(
+            clientConfig,
+            owner,
+            repo,
+            maxCacheRetentionDays,
+            options,
+        )
 
     /**
-     * Gets GitHub Actions cache storage limit for a repository. This determines the maximum size of
-     * caches that can be stored before eviction occurs. OAuth tokens and personal access tokens
-     * (classic) need the `admin:repository` scope to use this endpoint.
+     * Gets GitHub Actions cache storage limit for a repository. This determines the maximum size of caches that can be stored before eviction occurs. OAuth tokens and personal access tokens (classic) need the `admin:repository` scope to use this endpoint.
      */
-    fun actionsGetActionsCacheStorageLimitForRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsCacheStorageLimitForRepository =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheStorageLimitForRepositoryOperation
-            .actionsGetActionsCacheStorageLimitForRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetActionsCacheStorageLimitForRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsCacheStorageLimitForRepository =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheStorageLimitForRepositoryOperation.actionsGetActionsCacheStorageLimitForRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets GitHub Actions cache storage limit for a repository. This determines the maximum size of
-     * caches that can be stored before eviction occurs. OAuth tokens and personal access tokens
-     * (classic) need the `admin:repository` scope to use this endpoint.
+     * Sets GitHub Actions cache storage limit for a repository. This determines the maximum size of caches that can be stored before eviction occurs. OAuth tokens and personal access tokens (classic) need the `admin:repository` scope to use this endpoint.
      */
-    fun actionsSetActionsCacheStorageLimitForRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        maxCacheSizeGb: Long? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetActionsCacheStorageLimitForRepositoryOperation
-            .actionsSetActionsCacheStorageLimitForRepository(
-                clientConfig,
-                owner,
-                repo,
-                maxCacheSizeGb,
-                options,
-            )
+    fun actionsSetActionsCacheStorageLimitForRepository(clientConfig: ClientConfig, owner: String, repo: String, maxCacheSizeGb: Long? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetActionsCacheStorageLimitForRepositoryOperation.actionsSetActionsCacheStorageLimitForRepository(
+            clientConfig,
+            owner,
+            repo,
+            maxCacheSizeGb,
+            options,
+        )
 
     /**
-     * Gets GitHub Actions cache usage for a repository. The data fetched using this API is
-     * refreshed approximately every 5 minutes, so values returned from this endpoint may take at
-     * least 5 minutes to get updated. Anyone with read access to the repository can use this
-     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
-     * need the `repo` scope to use this endpoint.
+     * Gets GitHub Actions cache usage for a repository. The data fetched using this API is refreshed approximately every 5 minutes, so values returned from this endpoint may take at least 5 minutes to get updated. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetActionsCacheUsage(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsCacheUsageByRepository =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheUsageOperation
-            .actionsGetActionsCacheUsage(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetActionsCacheUsage(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsCacheUsageByRepository =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheUsageOperation.actionsGetActionsCacheUsage(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Lists the GitHub Actions caches for a repository. OAuth tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Lists the GitHub Actions caches for a repository. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetActionsCacheList(
-        clientConfig: ClientConfig,
-        request: ActionsGetActionsCacheListRequest,
-        options: RequestOptions? = null,
-    ): ActionsCacheList =
-        dev.octri.showcase.github.methods.ActionsGetActionsCacheListOperation
-            .actionsGetActionsCacheList(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsGetActionsCacheList(clientConfig: ClientConfig, request: ActionsGetActionsCacheListRequest, options: RequestOptions? = null): ActionsCacheList =
+        dev.octri.showcase.github.methods.ActionsGetActionsCacheListOperation.actionsGetActionsCacheList(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes one or more GitHub Actions caches for a repository, using a complete cache key. By
-     * default, all caches that match the provided key are deleted, but you can optionally provide a
-     * Git ref to restrict deletions to caches that match both the provided key and the Git ref.
-     * OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes one or more GitHub Actions caches for a repository, using a complete cache key. By default, all caches that match the provided key are deleted, but you can optionally provide a Git ref to restrict deletions to caches that match both the provided key and the Git ref. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteActionsCacheByKey(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        key: String,
-        ref: String? = null,
-        options: RequestOptions? = null,
-    ): ActionsCacheList =
-        dev.octri.showcase.github.methods.ActionsDeleteActionsCacheByKeyOperation
-            .actionsDeleteActionsCacheByKey(
-                clientConfig,
-                owner,
-                repo,
-                key,
-                ref,
-                options,
-            )
+    fun actionsDeleteActionsCacheByKey(clientConfig: ClientConfig, owner: String, repo: String, key: String, ref: String? = null, options: RequestOptions? = null): ActionsCacheList =
+        dev.octri.showcase.github.methods.ActionsDeleteActionsCacheByKeyOperation.actionsDeleteActionsCacheByKey(
+            clientConfig,
+            owner,
+            repo,
+            key,
+            ref,
+            options,
+        )
 
     /**
-     * Deletes a GitHub Actions cache for a repository, using a cache ID. OAuth tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a GitHub Actions cache for a repository, using a cache ID. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteActionsCacheById(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        cacheId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteActionsCacheByIdOperation
-            .actionsDeleteActionsCacheById(
-                clientConfig,
-                owner,
-                repo,
-                cacheId,
-                options,
-            )
+    fun actionsDeleteActionsCacheById(clientConfig: ClientConfig, owner: String, repo: String, cacheId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteActionsCacheByIdOperation.actionsDeleteActionsCacheById(
+            clientConfig,
+            owner,
+            repo,
+            cacheId,
+            options,
+        )
 
     /**
-     * Lists the active concurrency groups for a repository. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists the active concurrency groups for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsListConcurrencyGroupsForRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        after: String? = null,
-        options: RequestOptions? = null,
-    ): ConcurrencyGroupList =
-        dev.octri.showcase.github.methods.ActionsListConcurrencyGroupsForRepositoryOperation
-            .actionsListConcurrencyGroupsForRepository(
-                clientConfig,
-                owner,
-                repo,
-                perPage,
-                after,
-                options,
-            )
+    fun actionsListConcurrencyGroupsForRepository(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, after: String? = null, options: RequestOptions? = null): ConcurrencyGroupList =
+        dev.octri.showcase.github.methods.ActionsListConcurrencyGroupsForRepositoryOperation.actionsListConcurrencyGroupsForRepository(
+            clientConfig,
+            owner,
+            repo,
+            perPage,
+            after,
+            options,
+        )
 
     /**
-     * Gets a specific concurrency group for a repository, including all instances in the group's
-     * queue. Returns 404 if the group is inactive or does not exist. Optionally, pass
-     * `ahead_of_run` or `ahead_of_job` to filter the results to only the items ahead of the
-     * specified workflow run or job in the queue, plus the specified item itself (returned as the
-     * last element). This is useful for determining what is blocking a particular run or job.
-     * Returns 422 if the specified run or job is not in this concurrency group. When using
-     * `ahead_of_run`, this matches workflow-level concurrency and any reusable-workflow leases held
-     * on behalf of that run. Job-level leases within the run are not considered to block the run as
-     * a whole. Use `ahead_of_job` to match job-level concurrency and reusable-workflow leases on
-     * the job's ancestor paths. OAuth app tokens and personal access tokens (classic) need the
-     * `repo` scope to use this endpoint with a private repository.
+     * Gets a specific concurrency group for a repository, including all instances in the group's queue. Returns 404 if the group is inactive or does not exist. Optionally, pass `ahead_of_run` or `ahead_of_job` to filter the results to only the items ahead of the specified workflow run or job in the queue, plus the specified item itself (returned as the last element). This is useful for determining what is blocking a particular run or job. Returns 422 if the specified run or job is not in this concurrency group. When using `ahead_of_run`, this matches workflow-level concurrency and any reusable-workflow leases held on behalf of that run. Job-level leases within the run are not considered to block the run as a whole. Use `ahead_of_job` to match job-level concurrency and reusable-workflow leases on the job's ancestor paths. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsGetConcurrencyGroupForRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        concurrencyGroupName: String,
-        aheadOfRun: Long? = null,
-        aheadOfJob: Long? = null,
-        options: RequestOptions? = null,
-    ): ConcurrencyGroup =
-        dev.octri.showcase.github.methods.ActionsGetConcurrencyGroupForRepositoryOperation
-            .actionsGetConcurrencyGroupForRepository(
-                clientConfig,
-                owner,
-                repo,
-                concurrencyGroupName,
-                aheadOfRun,
-                aheadOfJob,
-                options,
-            )
+    fun actionsGetConcurrencyGroupForRepository(clientConfig: ClientConfig, owner: String, repo: String, concurrencyGroupName: String, aheadOfRun: Long? = null, aheadOfJob: Long? = null, options: RequestOptions? = null): ConcurrencyGroup =
+        dev.octri.showcase.github.methods.ActionsGetConcurrencyGroupForRepositoryOperation.actionsGetConcurrencyGroupForRepository(
+            clientConfig,
+            owner,
+            repo,
+            concurrencyGroupName,
+            aheadOfRun,
+            aheadOfJob,
+            options,
+        )
 
     /**
-     * Gets a specific job in a workflow run. Anyone with read access to the repository can use this
-     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
-     * need the `repo` scope to use this endpoint.
+     * Gets a specific job in a workflow run. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetJobForWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        jobId: Long,
-        options: RequestOptions? = null,
-    ): Job =
-        dev.octri.showcase.github.methods.ActionsGetJobForWorkflowRunOperation
-            .actionsGetJobForWorkflowRun(
-                clientConfig,
-                owner,
-                repo,
-                jobId,
-                options,
-            )
+    fun actionsGetJobForWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, jobId: Long, options: RequestOptions? = null): Job =
+        dev.octri.showcase.github.methods.ActionsGetJobForWorkflowRunOperation.actionsGetJobForWorkflowRun(
+            clientConfig,
+            owner,
+            repo,
+            jobId,
+            options,
+        )
 
     /**
-     * Gets a redirect URL to download a plain text file of logs for a workflow job. This link
-     * expires after 1 minute. Look for `Location:` in the response header to find the URL for the
-     * download. Anyone with read access to the repository can use this endpoint. If the repository
-     * is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Gets a redirect URL to download a plain text file of logs for a workflow job. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDownloadJobLogsForWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        jobId: Long,
-        options: RequestOptions? = null,
-    ): Any =
-        dev.octri.showcase.github.methods.ActionsDownloadJobLogsForWorkflowRunOperation
-            .actionsDownloadJobLogsForWorkflowRun(
-                clientConfig,
-                owner,
-                repo,
-                jobId,
-                options,
-            )
+    fun actionsDownloadJobLogsForWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, jobId: Long, options: RequestOptions? = null): Any =
+        dev.octri.showcase.github.methods.ActionsDownloadJobLogsForWorkflowRunOperation.actionsDownloadJobLogsForWorkflowRun(
+            clientConfig,
+            owner,
+            repo,
+            jobId,
+            options,
+        )
 
     /**
-     * Re-run a job and its dependent jobs in a workflow run. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint.
+     * Re-run a job and its dependent jobs in a workflow run. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsReRunJobForWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        jobId: Long,
-        enableDebugLogging: Boolean? = null,
-        enableDebugger: Boolean? = null,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsReRunJobForWorkflowRunOperation
-            .actionsReRunJobForWorkflowRun(
-                clientConfig,
-                owner,
-                repo,
-                jobId,
-                enableDebugLogging,
-                enableDebugger,
-                options,
-            )
+    fun actionsReRunJobForWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, jobId: Long, enableDebugLogging: Boolean? = null, enableDebugger: Boolean? = null, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsReRunJobForWorkflowRunOperation.actionsReRunJobForWorkflowRun(
+            clientConfig,
+            owner,
+            repo,
+            jobId,
+            enableDebugLogging,
+            enableDebugger,
+            options,
+        )
 
     /**
-     * Gets a redirect URL to download a plain text file of logs for a specific step of a workflow
-     * job. This link expires after 1 minute. Look for `Location:` in the response header to find
-     * the URL for the download. This endpoint is intended for selective retrieval of one step. To
-     * download complete job logs, use the
-     * [job logs endpoint](https://docs.github.com/rest/actions/workflow-jobs#download-job-logs-for-a-workflow-run).
-     * Anyone with read access to the repository can use this endpoint. If the repository is
-     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Gets a redirect URL to download a plain text file of logs for a specific step of a workflow job. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. This endpoint is intended for selective retrieval of one step. To download complete job logs, use the [job logs endpoint](https://docs.github.com/rest/actions/workflow-jobs#download-job-logs-for-a-workflow-run). Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDownloadStepLogsForWorkflowRunJob(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        jobId: Long,
-        stepNumber: Long,
-        options: RequestOptions? = null,
-    ): Any =
-        dev.octri.showcase.github.methods.ActionsDownloadStepLogsForWorkflowRunJobOperation
-            .actionsDownloadStepLogsForWorkflowRunJob(
-                clientConfig,
-                owner,
-                repo,
-                jobId,
-                stepNumber,
-                options,
-            )
+    fun actionsDownloadStepLogsForWorkflowRunJob(clientConfig: ClientConfig, owner: String, repo: String, jobId: Long, stepNumber: Long, options: RequestOptions? = null): Any =
+        dev.octri.showcase.github.methods.ActionsDownloadStepLogsForWorkflowRunJobOperation.actionsDownloadStepLogsForWorkflowRunJob(
+            clientConfig,
+            owner,
+            repo,
+            jobId,
+            stepNumber,
+            options,
+        )
 
     /**
-     * Gets the customization template for an OpenID Connect (OIDC) subject claim. OAuth tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the customization template for an OpenID Connect (OIDC) subject claim. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetCustomOidcSubClaimForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): OidcCustomSubRepo =
-        dev.octri.showcase.github.methods.ActionsGetCustomOidcSubClaimForRepoOperation
-            .actionsGetCustomOidcSubClaimForRepo(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetCustomOidcSubClaimForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): OidcCustomSubRepo =
+        dev.octri.showcase.github.methods.ActionsGetCustomOidcSubClaimForRepoOperation.actionsGetCustomOidcSubClaimForRepo(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets the customization template and `opt-in` or `opt-out` flag for an OpenID Connect (OIDC)
-     * subject claim for a repository. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Sets the customization template and `opt-in` or `opt-out` flag for an OpenID Connect (OIDC) subject claim for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetCustomOidcSubClaimForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        useDefault: Boolean,
-        includeClaimKeys: List<String>? = null,
-        useImmutableSubject: Boolean? = null,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsSetCustomOidcSubClaimForRepoOperation
-            .actionsSetCustomOidcSubClaimForRepo(
-                clientConfig,
-                owner,
-                repo,
-                useDefault,
-                includeClaimKeys,
-                useImmutableSubject,
-                options,
-            )
+    fun actionsSetCustomOidcSubClaimForRepo(clientConfig: ClientConfig, owner: String, repo: String, useDefault: Boolean, includeClaimKeys: List<String>? = null, useImmutableSubject: Boolean? = null, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsSetCustomOidcSubClaimForRepoOperation.actionsSetCustomOidcSubClaimForRepo(
+            clientConfig,
+            owner,
+            repo,
+            useDefault,
+            includeClaimKeys,
+            useImmutableSubject,
+            options,
+        )
 
     /**
-     * Lists all organization secrets shared with a repository without revealing their encrypted
-     * values. Authenticated users must have collaborator access to a repository to create, update,
-     * or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope
-     * to use this endpoint.
+     * Lists all organization secrets shared with a repository without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListRepoOrganizationSecrets(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListRepoOrganizationSecretsResponse =
-        dev.octri.showcase.github.methods.ActionsListRepoOrganizationSecretsOperation
-            .actionsListRepoOrganizationSecrets(
-                clientConfig,
-                owner,
-                repo,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsListRepoOrganizationSecrets(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListRepoOrganizationSecretsResponse =
+        dev.octri.showcase.github.methods.ActionsListRepoOrganizationSecretsOperation.actionsListRepoOrganizationSecrets(
+            clientConfig,
+            owner,
+            repo,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Lists all organization variables shared with a repository. Authenticated users must have
-     * collaborator access to a repository to create, update, or read variables. OAuth app tokens
-     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all organization variables shared with a repository. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListRepoOrganizationVariables(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListRepoOrganizationVariablesResponse =
-        dev.octri.showcase.github.methods.ActionsListRepoOrganizationVariablesOperation
-            .actionsListRepoOrganizationVariables(
-                clientConfig,
-                owner,
-                repo,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsListRepoOrganizationVariables(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListRepoOrganizationVariablesResponse =
+        dev.octri.showcase.github.methods.ActionsListRepoOrganizationVariablesOperation.actionsListRepoOrganizationVariables(
+            clientConfig,
+            owner,
+            repo,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Gets the GitHub Actions permissions policy for a repository, including whether GitHub Actions
-     * is enabled and the actions and reusable workflows allowed to run in the repository. OAuth
-     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the GitHub Actions permissions policy for a repository, including whether GitHub Actions is enabled and the actions and reusable workflows allowed to run in the repository. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetGithubActionsPermissionsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsRepositoryPermissions =
-        dev.octri.showcase.github.methods.ActionsGetGithubActionsPermissionsRepositoryOperation
-            .actionsGetGithubActionsPermissionsRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetGithubActionsPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsRepositoryPermissions =
+        dev.octri.showcase.github.methods.ActionsGetGithubActionsPermissionsRepositoryOperation.actionsGetGithubActionsPermissionsRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets the GitHub Actions permissions policy for enabling GitHub Actions and allowed actions
-     * and reusable workflows in the repository. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Sets the GitHub Actions permissions policy for enabling GitHub Actions and allowed actions and reusable workflows in the repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetGithubActionsPermissionsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        enabled: ActionsEnabled,
-        allowedActions: AllowedActions? = null,
-        shaPinningRequired: ShaPinningRequired? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetGithubActionsPermissionsRepositoryOperation
-            .actionsSetGithubActionsPermissionsRepository(
-                clientConfig,
-                owner,
-                repo,
-                enabled,
-                allowedActions,
-                shaPinningRequired,
-                options,
-            )
+    fun actionsSetGithubActionsPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, enabled: ActionsEnabled, allowedActions: AllowedActions? = null, shaPinningRequired: ShaPinningRequired? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetGithubActionsPermissionsRepositoryOperation.actionsSetGithubActionsPermissionsRepository(
+            clientConfig,
+            owner,
+            repo,
+            enabled,
+            allowedActions,
+            shaPinningRequired,
+            options,
+        )
 
     /**
-     * Gets the level of access that workflows outside of the repository have to actions and
-     * reusable workflows in the repository. This endpoint only applies to private repositories. For
-     * more information, see "[Allowing access to components in a private
-     * repository](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#allowing-access-to-components-in-a-private-repository)."
-     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Gets the level of access that workflows outside of the repository have to actions and reusable workflows in the repository. This endpoint only applies to private repositories. For more information, see "[Allowing access to components in a private repository](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#allowing-access-to-components-in-a-private-repository)." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetWorkflowAccessToRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsWorkflowAccessToRepository =
-        dev.octri.showcase.github.methods.ActionsGetWorkflowAccessToRepositoryOperation
-            .actionsGetWorkflowAccessToRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetWorkflowAccessToRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsWorkflowAccessToRepository =
+        dev.octri.showcase.github.methods.ActionsGetWorkflowAccessToRepositoryOperation.actionsGetWorkflowAccessToRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets the level of access that workflows outside of the repository have to actions and
-     * reusable workflows in the repository. This endpoint only applies to private repositories. For
-     * more information, see "[Allowing access to components in a private
-     * repository](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#allowing-access-to-components-in-a-private-repository)".
-     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Sets the level of access that workflows outside of the repository have to actions and reusable workflows in the repository. This endpoint only applies to private repositories. For more information, see "[Allowing access to components in a private repository](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#allowing-access-to-components-in-a-private-repository)". OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetWorkflowAccessToRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        accessLevel: ActionsWorkflowAccessToRepositoryAccessLevelEnum,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetWorkflowAccessToRepositoryOperation
-            .actionsSetWorkflowAccessToRepository(
-                clientConfig,
-                owner,
-                repo,
-                accessLevel,
-                options,
-            )
+    fun actionsSetWorkflowAccessToRepository(clientConfig: ClientConfig, owner: String, repo: String, accessLevel: ActionsWorkflowAccessToRepositoryAccessLevelEnum, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetWorkflowAccessToRepositoryOperation.actionsSetWorkflowAccessToRepository(
+            clientConfig,
+            owner,
+            repo,
+            accessLevel,
+            options,
+        )
 
     /**
-     * Gets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a
-     * repository. Checks include check suites, check runs, and check annotations. These settings
-     * also apply to checks and commit statuses created by third-party integrations, and are not
-     * limited to data created by GitHub Actions. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Gets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a repository. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetArtifactAndLogRetentionSettingsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsArtifactAndLogRetentionResponse =
-        dev.octri.showcase.github.methods
-            .ActionsGetArtifactAndLogRetentionSettingsRepositoryOperation
-            .actionsGetArtifactAndLogRetentionSettingsRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetArtifactAndLogRetentionSettingsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsArtifactAndLogRetentionResponse =
+        dev.octri.showcase.github.methods.ActionsGetArtifactAndLogRetentionSettingsRepositoryOperation.actionsGetArtifactAndLogRetentionSettingsRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a
-     * repository. Checks include check suites, check runs, and check annotations. These settings
-     * also apply to checks and commit statuses created by third-party integrations, and are not
-     * limited to data created by GitHub Actions. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Sets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a repository. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetArtifactAndLogRetentionSettingsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        days: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetArtifactAndLogRetentionSettingsRepositoryOperation
-            .actionsSetArtifactAndLogRetentionSettingsRepository(
-                clientConfig,
-                owner,
-                repo,
-                days,
-                options,
-            )
+    fun actionsSetArtifactAndLogRetentionSettingsRepository(clientConfig: ClientConfig, owner: String, repo: String, days: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetArtifactAndLogRetentionSettingsRepositoryOperation.actionsSetArtifactAndLogRetentionSettingsRepository(
+            clientConfig,
+            owner,
+            repo,
+            days,
+            options,
+        )
 
     /**
-     * Gets the fork PR contributor approval policy for a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the fork PR contributor approval policy for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetForkPrContributorApprovalPermissionsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsForkPrContributorApproval =
-        dev.octri.showcase.github.methods
-            .ActionsGetForkPrContributorApprovalPermissionsRepositoryOperation
-            .actionsGetForkPrContributorApprovalPermissionsRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetForkPrContributorApprovalPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsForkPrContributorApproval =
+        dev.octri.showcase.github.methods.ActionsGetForkPrContributorApprovalPermissionsRepositoryOperation.actionsGetForkPrContributorApprovalPermissionsRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets the fork PR contributor approval policy for a repository. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint.
+     * Sets the fork PR contributor approval policy for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetForkPrContributorApprovalPermissionsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        approvalPolicy: ActionsForkPrContributorApprovalApprovalPolicyEnum,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetForkPrContributorApprovalPermissionsRepositoryOperation
-            .actionsSetForkPrContributorApprovalPermissionsRepository(
-                clientConfig,
-                owner,
-                repo,
-                approvalPolicy,
-                options,
-            )
+    fun actionsSetForkPrContributorApprovalPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, approvalPolicy: ActionsForkPrContributorApprovalApprovalPolicyEnum, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetForkPrContributorApprovalPermissionsRepositoryOperation.actionsSetForkPrContributorApprovalPermissionsRepository(
+            clientConfig,
+            owner,
+            repo,
+            approvalPolicy,
+            options,
+        )
 
     /**
-     * Gets the settings for whether workflows from fork pull requests can run on a private
-     * repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
-     * use this endpoint.
+     * Gets the settings for whether workflows from fork pull requests can run on a private repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetPrivateRepoForkPrWorkflowsSettingsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsForkPrWorkflowsPrivateRepos =
-        dev.octri.showcase.github.methods
-            .ActionsGetPrivateRepoForkPrWorkflowsSettingsRepositoryOperation
-            .actionsGetPrivateRepoForkPrWorkflowsSettingsRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetPrivateRepoForkPrWorkflowsSettingsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsForkPrWorkflowsPrivateRepos =
+        dev.octri.showcase.github.methods.ActionsGetPrivateRepoForkPrWorkflowsSettingsRepositoryOperation.actionsGetPrivateRepoForkPrWorkflowsSettingsRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets the settings for whether workflows from fork pull requests can run on a private
-     * repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
-     * use this endpoint.
+     * Sets the settings for whether workflows from fork pull requests can run on a private repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetPrivateRepoForkPrWorkflowsSettingsRepository(
-        clientConfig: ClientConfig,
-        request: ActionsSetPrivateRepoForkPrWorkflowsSettingsRepositoryRequest,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetPrivateRepoForkPrWorkflowsSettingsRepositoryOperation
-            .actionsSetPrivateRepoForkPrWorkflowsSettingsRepository(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsSetPrivateRepoForkPrWorkflowsSettingsRepository(clientConfig: ClientConfig, request: ActionsSetPrivateRepoForkPrWorkflowsSettingsRepositoryRequest, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetPrivateRepoForkPrWorkflowsSettingsRepositoryOperation.actionsSetPrivateRepoForkPrWorkflowsSettingsRepository(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets the settings for selected actions and reusable workflows that are allowed in a
-     * repository. To use this endpoint, the repository policy for `allowed_actions` must be
-     * configured to `selected`. For more information, see "Set GitHub Actions permissions for a
-     * repository." OAuth tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Gets the settings for selected actions and reusable workflows that are allowed in a repository. To use this endpoint, the repository policy for `allowed_actions` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for a repository." OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetAllowedActionsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): SelectedActions =
-        dev.octri.showcase.github.methods.ActionsGetAllowedActionsRepositoryOperation
-            .actionsGetAllowedActionsRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetAllowedActionsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SelectedActions =
+        dev.octri.showcase.github.methods.ActionsGetAllowedActionsRepositoryOperation.actionsGetAllowedActionsRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets the actions and reusable workflows that are allowed in a repository. To use this
-     * endpoint, the repository permission policy for `allowed_actions` must be configured to
-     * `selected`. For more information, see "Set GitHub Actions permissions for a repository."
-     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Sets the actions and reusable workflows that are allowed in a repository. To use this endpoint, the repository permission policy for `allowed_actions` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for a repository." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetAllowedActionsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        githubOwnedAllowed: Boolean? = null,
-        verifiedAllowed: Boolean? = null,
-        patternsAllowed: List<String>? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsSetAllowedActionsRepositoryOperation
-            .actionsSetAllowedActionsRepository(
-                clientConfig,
-                owner,
-                repo,
-                githubOwnedAllowed,
-                verifiedAllowed,
-                patternsAllowed,
-                options,
-            )
+    fun actionsSetAllowedActionsRepository(clientConfig: ClientConfig, owner: String, repo: String, githubOwnedAllowed: Boolean? = null, verifiedAllowed: Boolean? = null, patternsAllowed: List<String>? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetAllowedActionsRepositoryOperation.actionsSetAllowedActionsRepository(
+            clientConfig,
+            owner,
+            repo,
+            githubOwnedAllowed,
+            verifiedAllowed,
+            patternsAllowed,
+            options,
+        )
 
     /**
-     * Gets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in
-     * a repository, as well as if GitHub Actions can submit approving pull request reviews. For
-     * more information, see "[Setting the permissions of the GITHUB_TOKEN for your
-     * repository](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#setting-the-permissions-of-the-github_token-for-your-repository)."
-     * OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in a repository, as well as if GitHub Actions can submit approving pull request reviews. For more information, see "[Setting the permissions of the GITHUB_TOKEN for your repository](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#setting-the-permissions-of-the-github_token-for-your-repository)." OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetGithubActionsDefaultWorkflowPermissionsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsGetDefaultWorkflowPermissions =
-        dev.octri.showcase.github.methods
-            .ActionsGetGithubActionsDefaultWorkflowPermissionsRepositoryOperation
-            .actionsGetGithubActionsDefaultWorkflowPermissionsRepository(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsGetGithubActionsDefaultWorkflowPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsGetDefaultWorkflowPermissions =
+        dev.octri.showcase.github.methods.ActionsGetGithubActionsDefaultWorkflowPermissionsRepositoryOperation.actionsGetGithubActionsDefaultWorkflowPermissionsRepository(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Sets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in
-     * a repository, and sets if GitHub Actions can submit approving pull request reviews. For more
-     * information, see "[Setting the permissions of the GITHUB_TOKEN for your
-     * repository](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#setting-the-permissions-of-the-github_token-for-your-repository)."
-     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Sets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in a repository, and sets if GitHub Actions can submit approving pull request reviews. For more information, see "[Setting the permissions of the GITHUB_TOKEN for your repository](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#setting-the-permissions-of-the-github_token-for-your-repository)." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetGithubActionsDefaultWorkflowPermissionsRepository(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions? = null,
-        canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods
-            .ActionsSetGithubActionsDefaultWorkflowPermissionsRepositoryOperation
-            .actionsSetGithubActionsDefaultWorkflowPermissionsRepository(
-                clientConfig,
-                owner,
-                repo,
-                defaultWorkflowPermissions,
-                canApprovePullRequestReviews,
-                options,
-            )
+    fun actionsSetGithubActionsDefaultWorkflowPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions? = null, canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsSetGithubActionsDefaultWorkflowPermissionsRepositoryOperation.actionsSetGithubActionsDefaultWorkflowPermissionsRepository(
+            clientConfig,
+            owner,
+            repo,
+            defaultWorkflowPermissions,
+            canApprovePullRequestReviews,
+            options,
+        )
 
     /**
-     * Lists Actions policies that apply to a repository. Use `has_parents` to include policies
-     * configured at higher levels, and `page` and `per_page` to paginate the results.
+     * Lists Actions policies that apply to a repository. Use `has_parents` to include policies configured at higher levels, and `page` and `per_page` to paginate the results.
      */
-    fun actionsGetRepoActionsPolicies(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        hasParents: Boolean? = null,
-        options: RequestOptions? = null,
-    ): ActionsGetRepoActionsPoliciesResponse =
-        dev.octri.showcase.github.methods.ActionsGetRepoActionsPoliciesOperation
-            .actionsGetRepoActionsPolicies(
-                clientConfig,
-                owner,
-                repo,
-                perPage,
-                page,
-                hasParents,
-                options,
-            )
+    fun actionsGetRepoActionsPolicies(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, hasParents: Boolean? = null, options: RequestOptions? = null): ActionsGetRepoActionsPoliciesResponse =
+        dev.octri.showcase.github.methods.ActionsGetRepoActionsPoliciesOperation.actionsGetRepoActionsPolicies(
+            clientConfig,
+            owner,
+            repo,
+            perPage,
+            page,
+            hasParents,
+            options,
+        )
 
     /**
-     * Create an Actions policy for a repository. Omitting `workflow_path` targets all workflows
-     * without storing an explicit condition.
+     * Create an Actions policy for a repository. Omitting `workflow_path` targets all workflows without storing an explicit condition.
      */
-    fun actionsCreateRepoActionsPolicy(
-        clientConfig: ClientConfig,
-        request: ActionsCreateRepoActionsPolicyRequest,
-        options: RequestOptions? = null,
-    ): ActionsPolicy =
-        dev.octri.showcase.github.methods.ActionsCreateRepoActionsPolicyOperation
-            .actionsCreateRepoActionsPolicy(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsCreateRepoActionsPolicy(clientConfig: ClientConfig, request: ActionsCreateRepoActionsPolicyRequest, options: RequestOptions? = null): ActionsPolicy =
+        dev.octri.showcase.github.methods.ActionsCreateRepoActionsPolicyOperation.actionsCreateRepoActionsPolicy(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Retrieves a specific Actions policy for a repository. Use `policy_id` to identify the policy
-     * and inspect its target, source, enforcement level, and rules.
+     * Retrieves a specific Actions policy for a repository. Use `policy_id` to identify the policy and inspect its target, source, enforcement level, and rules.
      */
-    fun actionsGetRepoActionsPolicy(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        policyId: Long,
-        options: RequestOptions? = null,
-    ): ActionsPolicy =
-        dev.octri.showcase.github.methods.ActionsGetRepoActionsPolicyOperation
-            .actionsGetRepoActionsPolicy(
-                clientConfig,
-                owner,
-                repo,
-                policyId,
-                options,
-            )
+    fun actionsGetRepoActionsPolicy(clientConfig: ClientConfig, owner: String, repo: String, policyId: Long, options: RequestOptions? = null): ActionsPolicy =
+        dev.octri.showcase.github.methods.ActionsGetRepoActionsPolicyOperation.actionsGetRepoActionsPolicy(
+            clientConfig,
+            owner,
+            repo,
+            policyId,
+            options,
+        )
 
     /**
-     * Update an Actions policy for a repository. Omitting `workflow_path` preserves the policy's
-     * existing workflow targeting.
+     * Update an Actions policy for a repository. Omitting `workflow_path` preserves the policy's existing workflow targeting.
      */
-    fun actionsUpdateRepoActionsPolicy(
-        clientConfig: ClientConfig,
-        request: ActionsUpdateRepoActionsPolicyRequest,
-        options: RequestOptions? = null,
-    ): ActionsPolicy =
-        dev.octri.showcase.github.methods.ActionsUpdateRepoActionsPolicyOperation
-            .actionsUpdateRepoActionsPolicy(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsUpdateRepoActionsPolicy(clientConfig: ClientConfig, request: ActionsUpdateRepoActionsPolicyRequest, options: RequestOptions? = null): ActionsPolicy =
+        dev.octri.showcase.github.methods.ActionsUpdateRepoActionsPolicyOperation.actionsUpdateRepoActionsPolicy(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes an Actions policy from a repository. Use `policy_id` to identify the policy you want
-     * to remove; this operation does not return a response body when successful.
+     * Deletes an Actions policy from a repository. Use `policy_id` to identify the policy you want to remove; this operation does not return a response body when successful.
      */
-    fun actionsDeleteRepoActionsPolicy(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        policyId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteRepoActionsPolicyOperation
-            .actionsDeleteRepoActionsPolicy(
-                clientConfig,
-                owner,
-                repo,
-                policyId,
-                options,
-            )
+    fun actionsDeleteRepoActionsPolicy(clientConfig: ClientConfig, owner: String, repo: String, policyId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteRepoActionsPolicyOperation.actionsDeleteRepoActionsPolicy(
+            clientConfig,
+            owner,
+            repo,
+            policyId,
+            options,
+        )
 
     /**
-     * Lists all self-hosted runners configured in a repository. Authenticated users must have admin
-     * access to the repository to use this endpoint. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Lists all self-hosted runners configured in a repository. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListSelfHostedRunnersForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        name: String? = null,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListSelfHostedRunnersForRepoResponse =
-        dev.octri.showcase.github.methods.ActionsListSelfHostedRunnersForRepoOperation
-            .actionsListSelfHostedRunnersForRepo(
-                clientConfig,
-                owner,
-                repo,
-                name,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsListSelfHostedRunnersForRepo(clientConfig: ClientConfig, owner: String, repo: String, name: String? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListSelfHostedRunnersForRepoResponse =
+        dev.octri.showcase.github.methods.ActionsListSelfHostedRunnersForRepoOperation.actionsListSelfHostedRunnersForRepo(
+            clientConfig,
+            owner,
+            repo,
+            name,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Gets the end-of-life schedule for a specific runner version in a repository. Returns the
-     * runner version and the dates when registration and runtime support will end. Authenticated
-     * users must have admin access to the repository to use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the end-of-life schedule for a specific runner version in a repository. Returns the runner version and the dates when registration and runtime support will end. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetRunnerVersionDeprecationForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        version: String,
-        options: RequestOptions? = null,
-    ): ActionsGetRunnerVersionDeprecationForRepoResponse =
-        dev.octri.showcase.github.methods.ActionsGetRunnerVersionDeprecationForRepoOperation
-            .actionsGetRunnerVersionDeprecationForRepo(
-                clientConfig,
-                owner,
-                repo,
-                version,
-                options,
-            )
+    fun actionsGetRunnerVersionDeprecationForRepo(clientConfig: ClientConfig, owner: String, repo: String, version: String, options: RequestOptions? = null): ActionsGetRunnerVersionDeprecationForRepoResponse =
+        dev.octri.showcase.github.methods.ActionsGetRunnerVersionDeprecationForRepoOperation.actionsGetRunnerVersionDeprecationForRepo(
+            clientConfig,
+            owner,
+            repo,
+            version,
+            options,
+        )
 
     /**
-     * Lists binaries for the runner application that you can download and run. Authenticated users
-     * must have admin access to the repository to use this endpoint. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists binaries for the runner application that you can download and run. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListRunnerApplicationsForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): List<RunnerApplication> =
-        dev.octri.showcase.github.methods.ActionsListRunnerApplicationsForRepoOperation
-            .actionsListRunnerApplicationsForRepo(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsListRunnerApplicationsForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<RunnerApplication> =
+        dev.octri.showcase.github.methods.ActionsListRunnerApplicationsForRepoOperation.actionsListRunnerApplicationsForRepo(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Generates a configuration that can be passed to the runner application at startup. The
-     * authenticated user must have admin access to the repository. OAuth tokens and personal access
-     * tokens (classic) need the`repo` scope to use this endpoint.
+     * Generates a configuration that can be passed to the runner application at startup. The authenticated user must have admin access to the repository. OAuth tokens and personal access tokens (classic) need the`repo` scope to use this endpoint.
      */
-    fun actionsGenerateRunnerJitconfigForRepo(
-        clientConfig: ClientConfig,
-        request: ActionsGenerateRunnerJitconfigForRepoRequest,
-        options: RequestOptions? = null,
-    ): ActionsRunnerJitconfig =
-        dev.octri.showcase.github.methods.ActionsGenerateRunnerJitconfigForRepoOperation
-            .actionsGenerateRunnerJitconfigForRepo(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsGenerateRunnerJitconfigForRepo(clientConfig: ClientConfig, request: ActionsGenerateRunnerJitconfigForRepoRequest, options: RequestOptions? = null): ActionsRunnerJitconfig =
+        dev.octri.showcase.github.methods.ActionsGenerateRunnerJitconfigForRepoOperation.actionsGenerateRunnerJitconfigForRepo(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Returns a token that you can pass to the `config` script. The token expires after one hour.
-     * For example, you can replace `TOKEN` in the following example with the registration token
-     * provided by this endpoint to configure your self-hosted runner: ``` ./config.sh --url
-     * https://github.com/octo-org --token TOKEN ``` Authenticated users must have admin access to
-     * the repository to use this endpoint. OAuth tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Returns a token that you can pass to the `config` script. The token expires after one hour. For example, you can replace `TOKEN` in the following example with the registration token provided by this endpoint to configure your self-hosted runner: ``` ./config.sh --url https://github.com/octo-org --token TOKEN ``` Authenticated users must have admin access to the repository to use this endpoint. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateRegistrationTokenForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): AuthenticationToken =
-        dev.octri.showcase.github.methods.ActionsCreateRegistrationTokenForRepoOperation
-            .actionsCreateRegistrationTokenForRepo(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsCreateRegistrationTokenForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): AuthenticationToken =
+        dev.octri.showcase.github.methods.ActionsCreateRegistrationTokenForRepoOperation.actionsCreateRegistrationTokenForRepo(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Returns a token that you can pass to the `config` script to remove a self-hosted runner from
-     * an repository. The token expires after one hour. For example, you can replace `TOKEN` in the
-     * following example with the registration token provided by this endpoint to remove your
-     * self-hosted runner from an organization: ``` ./config.sh remove --token TOKEN ```
-     * Authenticated users must have admin access to the repository to use this endpoint. OAuth
-     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Returns a token that you can pass to the `config` script to remove a self-hosted runner from an repository. The token expires after one hour. For example, you can replace `TOKEN` in the following example with the registration token provided by this endpoint to remove your self-hosted runner from an organization: ``` ./config.sh remove --token TOKEN ``` Authenticated users must have admin access to the repository to use this endpoint. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateRemoveTokenForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): AuthenticationToken =
-        dev.octri.showcase.github.methods.ActionsCreateRemoveTokenForRepoOperation
-            .actionsCreateRemoveTokenForRepo(
-                clientConfig,
-                owner,
-                repo,
-                options,
-            )
+    fun actionsCreateRemoveTokenForRepo(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): AuthenticationToken =
+        dev.octri.showcase.github.methods.ActionsCreateRemoveTokenForRepoOperation.actionsCreateRemoveTokenForRepo(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
 
     /**
-     * Gets a specific self-hosted runner configured in a repository. Authenticated users must have
-     * admin access to the repository to use this endpoint. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific self-hosted runner configured in a repository. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetSelfHostedRunnerForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): Runner =
-        dev.octri.showcase.github.methods.ActionsGetSelfHostedRunnerForRepoOperation
-            .actionsGetSelfHostedRunnerForRepo(
-                clientConfig,
-                owner,
-                repo,
-                runnerId,
-                options,
-            )
+    fun actionsGetSelfHostedRunnerForRepo(clientConfig: ClientConfig, owner: String, repo: String, runnerId: Long, options: RequestOptions? = null): Runner =
+        dev.octri.showcase.github.methods.ActionsGetSelfHostedRunnerForRepoOperation.actionsGetSelfHostedRunnerForRepo(
+            clientConfig,
+            owner,
+            repo,
+            runnerId,
+            options,
+        )
 
     /**
-     * Forces the removal of a self-hosted runner from a repository. You can use this endpoint to
-     * completely remove the runner when the machine you were using no longer exists. Authenticated
-     * users must have admin access to the repository to use this endpoint. OAuth tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Forces the removal of a self-hosted runner from a repository. You can use this endpoint to completely remove the runner when the machine you were using no longer exists. Authenticated users must have admin access to the repository to use this endpoint. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteSelfHostedRunnerFromRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteSelfHostedRunnerFromRepoOperation
-            .actionsDeleteSelfHostedRunnerFromRepo(
-                clientConfig,
-                owner,
-                repo,
-                runnerId,
-                options,
-            )
+    fun actionsDeleteSelfHostedRunnerFromRepo(clientConfig: ClientConfig, owner: String, repo: String, runnerId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteSelfHostedRunnerFromRepoOperation.actionsDeleteSelfHostedRunnerFromRepo(
+            clientConfig,
+            owner,
+            repo,
+            runnerId,
+            options,
+        )
 
     /**
-     * Lists all labels for a self-hosted runner configured in a repository. Authenticated users
-     * must have admin access to the repository to use this endpoint. OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all labels for a self-hosted runner configured in a repository. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListLabelsForSelfHostedRunnerForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels =
-        dev.octri.showcase.github.methods.ActionsListLabelsForSelfHostedRunnerForRepoOperation
-            .actionsListLabelsForSelfHostedRunnerForRepo(
-                clientConfig,
-                owner,
-                repo,
-                runnerId,
-                options,
-            )
+    fun actionsListLabelsForSelfHostedRunnerForRepo(clientConfig: ClientConfig, owner: String, repo: String, runnerId: Long, options: RequestOptions? = null): ActionsRunnerLabels =
+        dev.octri.showcase.github.methods.ActionsListLabelsForSelfHostedRunnerForRepoOperation.actionsListLabelsForSelfHostedRunnerForRepo(
+            clientConfig,
+            owner,
+            repo,
+            runnerId,
+            options,
+        )
 
     /**
-     * Adds custom labels to a self-hosted runner configured in a repository. Authenticated users
-     * must have admin access to the organization to use this endpoint. OAuth tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint.
+     * Adds custom labels to a self-hosted runner configured in a repository. Authenticated users must have admin access to the organization to use this endpoint. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsAddCustomLabelsToSelfHostedRunnerForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runnerId: Long,
-        labels: List<String>,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels =
-        dev.octri.showcase.github.methods.ActionsAddCustomLabelsToSelfHostedRunnerForRepoOperation
-            .actionsAddCustomLabelsToSelfHostedRunnerForRepo(
-                clientConfig,
-                owner,
-                repo,
-                runnerId,
-                labels,
-                options,
-            )
+    fun actionsAddCustomLabelsToSelfHostedRunnerForRepo(clientConfig: ClientConfig, owner: String, repo: String, runnerId: Long, labels: List<String>, options: RequestOptions? = null): ActionsRunnerLabels =
+        dev.octri.showcase.github.methods.ActionsAddCustomLabelsToSelfHostedRunnerForRepoOperation.actionsAddCustomLabelsToSelfHostedRunnerForRepo(
+            clientConfig,
+            owner,
+            repo,
+            runnerId,
+            labels,
+            options,
+        )
 
     /**
-     * Remove all previous custom labels and set the new custom labels for a specific self-hosted
-     * runner configured in a repository. Authenticated users must have admin access to the
-     * repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Remove all previous custom labels and set the new custom labels for a specific self-hosted runner configured in a repository. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsSetCustomLabelsForSelfHostedRunnerForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runnerId: Long,
-        labels: List<String>,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels =
-        dev.octri.showcase.github.methods.ActionsSetCustomLabelsForSelfHostedRunnerForRepoOperation
-            .actionsSetCustomLabelsForSelfHostedRunnerForRepo(
-                clientConfig,
-                owner,
-                repo,
-                runnerId,
-                labels,
-                options,
-            )
+    fun actionsSetCustomLabelsForSelfHostedRunnerForRepo(clientConfig: ClientConfig, owner: String, repo: String, runnerId: Long, labels: List<String>, options: RequestOptions? = null): ActionsRunnerLabels =
+        dev.octri.showcase.github.methods.ActionsSetCustomLabelsForSelfHostedRunnerForRepoOperation.actionsSetCustomLabelsForSelfHostedRunnerForRepo(
+            clientConfig,
+            owner,
+            repo,
+            runnerId,
+            labels,
+            options,
+        )
 
     /**
-     * Remove all custom labels from a self-hosted runner configured in a repository. Returns the
-     * remaining read-only labels from the runner. Authenticated users must have admin access to the
-     * repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Remove all custom labels from a self-hosted runner configured in a repository. Returns the remaining read-only labels from the runner. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsRemoveAllCustomLabelsFromSelfHostedRunnerForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runnerId: Long,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabelsReadonly =
-        dev.octri.showcase.github.methods
-            .ActionsRemoveAllCustomLabelsFromSelfHostedRunnerForRepoOperation
-            .actionsRemoveAllCustomLabelsFromSelfHostedRunnerForRepo(
-                clientConfig,
-                owner,
-                repo,
-                runnerId,
-                options,
-            )
+    fun actionsRemoveAllCustomLabelsFromSelfHostedRunnerForRepo(clientConfig: ClientConfig, owner: String, repo: String, runnerId: Long, options: RequestOptions? = null): ActionsRunnerLabelsReadonly =
+        dev.octri.showcase.github.methods.ActionsRemoveAllCustomLabelsFromSelfHostedRunnerForRepoOperation.actionsRemoveAllCustomLabelsFromSelfHostedRunnerForRepo(
+            clientConfig,
+            owner,
+            repo,
+            runnerId,
+            options,
+        )
 
     /**
-     * Remove a custom label from a self-hosted runner configured in a repository. Returns the
-     * remaining labels from the runner. This endpoint returns a `404 Not Found` status if the
-     * custom label is not present on the runner. Authenticated users must have admin access to the
-     * repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Remove a custom label from a self-hosted runner configured in a repository. Returns the remaining labels from the runner. This endpoint returns a `404 Not Found` status if the custom label is not present on the runner. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsRemoveCustomLabelFromSelfHostedRunnerForRepo(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runnerId: Long,
-        name: String,
-        options: RequestOptions? = null,
-    ): ActionsRunnerLabels =
-        dev.octri.showcase.github.methods
-            .ActionsRemoveCustomLabelFromSelfHostedRunnerForRepoOperation
-            .actionsRemoveCustomLabelFromSelfHostedRunnerForRepo(
-                clientConfig,
-                owner,
-                repo,
-                runnerId,
-                name,
-                options,
-            )
+    fun actionsRemoveCustomLabelFromSelfHostedRunnerForRepo(clientConfig: ClientConfig, owner: String, repo: String, runnerId: Long, name: String, options: RequestOptions? = null): ActionsRunnerLabels =
+        dev.octri.showcase.github.methods.ActionsRemoveCustomLabelFromSelfHostedRunnerForRepoOperation.actionsRemoveCustomLabelFromSelfHostedRunnerForRepo(
+            clientConfig,
+            owner,
+            repo,
+            runnerId,
+            name,
+            options,
+        )
 
     /**
-     * Lists all workflow runs for a repository. You can use parameters to narrow the list of
-     * results. For more information about using parameters, see
-     * [Parameters](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#parameters).
-     * Anyone with read access to the repository can use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint with a private
-     * repository. This endpoint will return up to 1,000 results for each search when using the
-     * following parameters: `actor`, `branch`, `check_suite_id`, `created`, `event`, `head_sha`,
-     * `status`.
+     * Lists all workflow runs for a repository. You can use parameters to narrow the list of results. For more information about using parameters, see [Parameters](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#parameters). Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository. This endpoint will return up to 1,000 results for each search when using the following parameters: `actor`, `branch`, `check_suite_id`, `created`, `event`, `head_sha`, `status`.
      */
-    fun actionsListWorkflowRunsForRepo(
-        clientConfig: ClientConfig,
-        request: ActionsListWorkflowRunsForRepoRequest,
-        options: RequestOptions? = null,
-    ): ActionsListWorkflowRunsForRepoResponse =
-        dev.octri.showcase.github.methods.ActionsListWorkflowRunsForRepoOperation
-            .actionsListWorkflowRunsForRepo(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsListWorkflowRunsForRepo(clientConfig: ClientConfig, request: ActionsListWorkflowRunsForRepoRequest, options: RequestOptions? = null): ActionsListWorkflowRunsForRepoResponse =
+        dev.octri.showcase.github.methods.ActionsListWorkflowRunsForRepoOperation.actionsListWorkflowRunsForRepo(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets a specific workflow run. Anyone with read access to the repository can use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint with a private repository.
+     * Gets a specific workflow run. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsGetWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        excludePullRequests: Boolean? = null,
-        options: RequestOptions? = null,
-    ): WorkflowRun =
+    fun actionsGetWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, excludePullRequests: Boolean? = null, options: RequestOptions? = null): WorkflowRun =
         dev.octri.showcase.github.methods.ActionsGetWorkflowRunOperation.actionsGetWorkflowRun(
             clientConfig,
             owner,
@@ -3781,38 +2351,21 @@ object Actions {
         )
 
     /**
-     * Deletes a specific workflow run. Anyone with write access to the repository can use this
-     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
-     * need the `repo` scope to use this endpoint.
+     * Deletes a specific workflow run. Anyone with write access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteWorkflowRunOperation
-            .actionsDeleteWorkflowRun(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                options,
-            )
+    fun actionsDeleteWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteWorkflowRunOperation.actionsDeleteWorkflowRun(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            options,
+        )
 
     /**
-     * Anyone with read access to the repository can use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint with a private
-     * repository.
+     * Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsGetReviewsForRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): List<EnvironmentApprovals> =
+    fun actionsGetReviewsForRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): List<EnvironmentApprovals> =
         dev.octri.showcase.github.methods.ActionsGetReviewsForRunOperation.actionsGetReviewsForRun(
             clientConfig,
             owner,
@@ -3822,323 +2375,171 @@ object Actions {
         )
 
     /**
-     * Approves a workflow run for a pull request from a public fork of a first time contributor.
-     * For more information, see
-     * ["Approving workflow runs from public forks](https://docs.github.com/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks)."
-     * OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Approves a workflow run for a pull request from a public fork of a first time contributor. For more information, see ["Approving workflow runs from public forks](https://docs.github.com/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks)." OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsApproveWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsApproveWorkflowRunOperation
-            .actionsApproveWorkflowRun(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                options,
-            )
+    fun actionsApproveWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsApproveWorkflowRunOperation.actionsApproveWorkflowRun(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            options,
+        )
 
     /**
-     * Lists artifacts for a workflow run. Anyone with read access to the repository can use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint with a private repository.
+     * Lists artifacts for a workflow run. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsListWorkflowRunArtifacts(
-        clientConfig: ClientConfig,
-        request: ActionsListWorkflowRunArtifactsRequest,
-        options: RequestOptions? = null,
-    ): ActionsListWorkflowRunArtifactsResponse =
-        dev.octri.showcase.github.methods.ActionsListWorkflowRunArtifactsOperation
-            .actionsListWorkflowRunArtifacts(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsListWorkflowRunArtifacts(clientConfig: ClientConfig, request: ActionsListWorkflowRunArtifactsRequest, options: RequestOptions? = null): ActionsListWorkflowRunArtifactsResponse =
+        dev.octri.showcase.github.methods.ActionsListWorkflowRunArtifactsOperation.actionsListWorkflowRunArtifacts(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets a specific workflow run attempt. Anyone with read access to the repository can use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint with a private repository.
+     * Gets a specific workflow run attempt. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsGetWorkflowRunAttempt(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        attemptNumber: Long,
-        excludePullRequests: Boolean? = null,
-        options: RequestOptions? = null,
-    ): WorkflowRun =
-        dev.octri.showcase.github.methods.ActionsGetWorkflowRunAttemptOperation
-            .actionsGetWorkflowRunAttempt(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                attemptNumber,
-                excludePullRequests,
-                options,
-            )
+    fun actionsGetWorkflowRunAttempt(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, attemptNumber: Long, excludePullRequests: Boolean? = null, options: RequestOptions? = null): WorkflowRun =
+        dev.octri.showcase.github.methods.ActionsGetWorkflowRunAttemptOperation.actionsGetWorkflowRunAttempt(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            attemptNumber,
+            excludePullRequests,
+            options,
+        )
 
     /**
-     * Lists jobs for a specific workflow run attempt. You can use parameters to narrow the list of
-     * results. For more information about using parameters, see
-     * [Parameters](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#parameters).
-     * Anyone with read access to the repository can use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint with a private
-     * repository.
+     * Lists jobs for a specific workflow run attempt. You can use parameters to narrow the list of results. For more information about using parameters, see [Parameters](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#parameters). Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsListJobsForWorkflowRunAttempt(
-        clientConfig: ClientConfig,
-        request: ActionsListJobsForWorkflowRunAttemptRequest,
-        options: RequestOptions? = null,
-    ): ActionsListJobsForWorkflowRunAttemptResponse =
-        dev.octri.showcase.github.methods.ActionsListJobsForWorkflowRunAttemptOperation
-            .actionsListJobsForWorkflowRunAttempt(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsListJobsForWorkflowRunAttempt(clientConfig: ClientConfig, request: ActionsListJobsForWorkflowRunAttemptRequest, options: RequestOptions? = null): ActionsListJobsForWorkflowRunAttemptResponse =
+        dev.octri.showcase.github.methods.ActionsListJobsForWorkflowRunAttemptOperation.actionsListJobsForWorkflowRunAttempt(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets a redirect URL to download an archive of log files for a specific workflow run attempt.
-     * This link expires after 1 minute. Look for `Location:` in the response header to find the URL
-     * for the download. Anyone with read access to the repository can use this endpoint. If the
-     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
-     * scope to use this endpoint.
+     * Gets a redirect URL to download an archive of log files for a specific workflow run attempt. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDownloadWorkflowRunAttemptLogs(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        attemptNumber: Long,
-        options: RequestOptions? = null,
-    ): Any =
-        dev.octri.showcase.github.methods.ActionsDownloadWorkflowRunAttemptLogsOperation
-            .actionsDownloadWorkflowRunAttemptLogs(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                attemptNumber,
-                options,
-            )
+    fun actionsDownloadWorkflowRunAttemptLogs(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, attemptNumber: Long, options: RequestOptions? = null): Any =
+        dev.octri.showcase.github.methods.ActionsDownloadWorkflowRunAttemptLogsOperation.actionsDownloadWorkflowRunAttemptLogs(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            attemptNumber,
+            options,
+        )
 
     /**
-     * Cancels a workflow run using its `id`. OAuth tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Cancels a workflow run using its `id`. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCancelWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsCancelWorkflowRunOperation
-            .actionsCancelWorkflowRun(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                options,
-            )
+    fun actionsCancelWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsCancelWorkflowRunOperation.actionsCancelWorkflowRun(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            options,
+        )
 
     /**
-     * Lists all concurrency groups associated with a workflow run or its jobs. The set of groups is
-     * derived from the run's configuration, so a group is included even when the run no longer has
-     * any items currently holding or waiting in it. In that case the `group_members` array will be
-     * empty. `total_count` reflects the number of groups the run participates in by configuration,
-     * not the number with active items. This differs from `GET
-     * /repos/{owner}/{repo}/actions/concurrency_groups/{group_name}`, which returns 404 when a
-     * group has no active items. That endpoint reports the live state of a group repo-wide, while
-     * this endpoint reports the groups associated with a specific run by configuration. Results are
-     * sorted by group name and support cursor-based pagination via `before` and `after`. The
-     * `after` cursor paginates forward only and does not emit a `rel="prev"` Link; use `before` to
-     * page backward from a forward page's `next` cursor. OAuth app tokens and personal access
-     * tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists all concurrency groups associated with a workflow run or its jobs. The set of groups is derived from the run's configuration, so a group is included even when the run no longer has any items currently holding or waiting in it. In that case the `group_members` array will be empty. `total_count` reflects the number of groups the run participates in by configuration, not the number with active items. This differs from `GET /repos/{owner}/{repo}/actions/concurrency_groups/{group_name}`, which returns 404 when a group has no active items. That endpoint reports the live state of a group repo-wide, while this endpoint reports the groups associated with a specific run by configuration. Results are sorted by group name and support cursor-based pagination via `before` and `after`. The `after` cursor paginates forward only and does not emit a `rel="prev"` Link; use `before` to page backward from a forward page's `next` cursor. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsListConcurrencyGroupsForWorkflowRun(
-        clientConfig: ClientConfig,
-        request: ActionsListConcurrencyGroupsForWorkflowRunRequest,
-        options: RequestOptions? = null,
-    ): ConcurrencyGroupRunList =
-        dev.octri.showcase.github.methods.ActionsListConcurrencyGroupsForWorkflowRunOperation
-            .actionsListConcurrencyGroupsForWorkflowRun(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsListConcurrencyGroupsForWorkflowRun(clientConfig: ClientConfig, request: ActionsListConcurrencyGroupsForWorkflowRunRequest, options: RequestOptions? = null): ConcurrencyGroupRunList =
+        dev.octri.showcase.github.methods.ActionsListConcurrencyGroupsForWorkflowRunOperation.actionsListConcurrencyGroupsForWorkflowRun(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Submits an approval or rejection for a custom deployment protection rule on a workflow run.
-     * Use this endpoint when your GitHub App owns the rule; to review a deployment waiting on a
-     * person or team, use POST /repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments
-     * instead. OAuth app tokens and personal access tokens (classic) need the `repo` scope for
-     * private repositories.
+     * Submits an approval or rejection for a custom deployment protection rule on a workflow run. Use this endpoint when your GitHub App owns the rule; to review a deployment waiting on a person or team, use POST /repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments instead. OAuth app tokens and personal access tokens (classic) need the `repo` scope for private repositories.
      */
-    fun actionsReviewCustomGatesForRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        body: Any,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsReviewCustomGatesForRunOperation
-            .actionsReviewCustomGatesForRun(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                body,
-                options,
-            )
+    fun actionsReviewCustomGatesForRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, body: Any, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsReviewCustomGatesForRunOperation.actionsReviewCustomGatesForRun(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            body,
+            options,
+        )
 
     /**
-     * Cancels a workflow run and bypasses conditions that would otherwise cause a workflow
-     * execution to continue, such as an `always()` condition on a job. You should only use this
-     * endpoint to cancel a workflow run when the workflow run is not responding to `POST
-     * /repos/{owner}/{repo}/actions/runs/{run_id}/cancel`. OAuth tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Cancels a workflow run and bypasses conditions that would otherwise cause a workflow execution to continue, such as an `always()` condition on a job. You should only use this endpoint to cancel a workflow run when the workflow run is not responding to `POST /repos/{owner}/{repo}/actions/runs/{run_id}/cancel`. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsForceCancelWorkflowRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsForceCancelWorkflowRunOperation
-            .actionsForceCancelWorkflowRun(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                options,
-            )
+    fun actionsForceCancelWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsForceCancelWorkflowRunOperation.actionsForceCancelWorkflowRun(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            options,
+        )
 
     /**
-     * Lists jobs for a workflow run. You can use parameters to narrow the list of results. For more
-     * information about using parameters, see
-     * [Parameters](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#parameters).
-     * Anyone with read access to the repository can use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint with a private
-     * repository.
+     * Lists jobs for a workflow run. You can use parameters to narrow the list of results. For more information about using parameters, see [Parameters](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#parameters). Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsListJobsForWorkflowRun(
-        clientConfig: ClientConfig,
-        request: ActionsListJobsForWorkflowRunRequest,
-        options: RequestOptions? = null,
-    ): ActionsListJobsForWorkflowRunResponse =
-        dev.octri.showcase.github.methods.ActionsListJobsForWorkflowRunOperation
-            .actionsListJobsForWorkflowRun(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsListJobsForWorkflowRun(clientConfig: ClientConfig, request: ActionsListJobsForWorkflowRunRequest, options: RequestOptions? = null): ActionsListJobsForWorkflowRunResponse =
+        dev.octri.showcase.github.methods.ActionsListJobsForWorkflowRunOperation.actionsListJobsForWorkflowRun(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Gets a redirect URL to download an archive of log files for a workflow run. This link expires
-     * after 1 minute. Look for `Location:` in the response header to find the URL for the download.
-     * Anyone with read access to the repository can use this endpoint. If the repository is
-     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Gets a redirect URL to download an archive of log files for a workflow run. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDownloadWorkflowRunLogs(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): Any =
-        dev.octri.showcase.github.methods.ActionsDownloadWorkflowRunLogsOperation
-            .actionsDownloadWorkflowRunLogs(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                options,
-            )
+    fun actionsDownloadWorkflowRunLogs(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): Any =
+        dev.octri.showcase.github.methods.ActionsDownloadWorkflowRunLogsOperation.actionsDownloadWorkflowRunLogs(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            options,
+        )
 
     /**
-     * Deletes all logs for a workflow run. OAuth tokens and personal access tokens (classic) need
-     * the `repo` scope to use this endpoint.
+     * Deletes all logs for a workflow run. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteWorkflowRunLogs(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteWorkflowRunLogsOperation
-            .actionsDeleteWorkflowRunLogs(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                options,
-            )
+    fun actionsDeleteWorkflowRunLogs(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteWorkflowRunLogsOperation.actionsDeleteWorkflowRunLogs(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            options,
+        )
 
     /**
-     * Get all deployment environments for a workflow run that are waiting for protection rules to
-     * pass. Anyone with read access to the repository can use this endpoint. If the repository is
-     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
-     * endpoint.
+     * Get all deployment environments for a workflow run that are waiting for protection rules to pass. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetPendingDeploymentsForRun(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): List<PendingDeployment> =
-        dev.octri.showcase.github.methods.ActionsGetPendingDeploymentsForRunOperation
-            .actionsGetPendingDeploymentsForRun(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                options,
-            )
+    fun actionsGetPendingDeploymentsForRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): List<PendingDeployment> =
+        dev.octri.showcase.github.methods.ActionsGetPendingDeploymentsForRunOperation.actionsGetPendingDeploymentsForRun(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            options,
+        )
 
     /**
-     * Approve or reject pending deployments that are waiting on approval by a required reviewer.
-     * Required reviewers with read access to the repository contents and deployments can use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Approve or reject pending deployments that are waiting on approval by a required reviewer. Required reviewers with read access to the repository contents and deployments can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsReviewPendingDeploymentsForRun(
-        clientConfig: ClientConfig,
-        request: ActionsReviewPendingDeploymentsForRunRequest,
-        options: RequestOptions? = null,
-    ): List<Deployment> =
-        dev.octri.showcase.github.methods.ActionsReviewPendingDeploymentsForRunOperation
-            .actionsReviewPendingDeploymentsForRun(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsReviewPendingDeploymentsForRun(clientConfig: ClientConfig, request: ActionsReviewPendingDeploymentsForRunRequest, options: RequestOptions? = null): List<Deployment> =
+        dev.octri.showcase.github.methods.ActionsReviewPendingDeploymentsForRunOperation.actionsReviewPendingDeploymentsForRun(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Re-runs your workflow run using its `id`. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Re-runs your workflow run using its `id`. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsReRunWorkflow(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        enableDebugLogging: Boolean? = null,
-        options: RequestOptions? = null,
-    ): EmptyObject =
+    fun actionsReRunWorkflow(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, enableDebugLogging: Boolean? = null, options: RequestOptions? = null): EmptyObject =
         dev.octri.showcase.github.methods.ActionsReRunWorkflowOperation.actionsReRunWorkflow(
             clientConfig,
             owner,
@@ -4149,73 +2550,34 @@ object Actions {
         )
 
     /**
-     * Re-run all of the failed jobs and their dependent jobs in a workflow run using the `id` of
-     * the workflow run. OAuth app tokens and personal access tokens (classic) need the `repo` scope
-     * to use this endpoint.
+     * Re-run all of the failed jobs and their dependent jobs in a workflow run using the `id` of the workflow run. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsReRunWorkflowFailedJobs(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        enableDebugLogging: Boolean? = null,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsReRunWorkflowFailedJobsOperation
-            .actionsReRunWorkflowFailedJobs(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                enableDebugLogging,
-                options,
-            )
+    fun actionsReRunWorkflowFailedJobs(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, enableDebugLogging: Boolean? = null, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsReRunWorkflowFailedJobsOperation.actionsReRunWorkflowFailedJobs(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            enableDebugLogging,
+            options,
+        )
 
     /**
-     * > [!WARNING] > This endpoint is in the process of closing down. Refer to "[Actions Get
-     * > workflow usage and Get workflow run usage endpoints closing
-     * > down](https://github.blog/changelog/2025-02-02-actions-get-workflow-usage-and-get-workflow-run-usage-endpoints-closing-down/)"
-     * > for more information. Gets the number of billable minutes and total run time for a specific
-     * > workflow run. Billable minutes only apply to workflows in private repositories that use
-     * > GitHub-hosted runners. Usage is listed for each GitHub-hosted runner operating system in
-     * > milliseconds. Any job re-runs are also included in the usage. The usage does not include
-     * > the multiplier for macOS and Windows runners and is not rounded up to the nearest whole
-     * > minute. For more information, see "[Managing billing for GitHub
-     * > Actions](https://docs.github.com/github/setting-up-and-managing-billing-and-payments-on-github/managing-billing-for-github-actions)".
-     * > Anyone with read access to the repository can use this endpoint. OAuth app tokens and
-     * > personal access tokens (classic) need the `repo` scope to use this endpoint with a private
-     * > repository.
+     * > [!WARNING] > This endpoint is in the process of closing down. Refer to "[Actions Get workflow usage and Get workflow run usage endpoints closing down](https://github.blog/changelog/2025-02-02-actions-get-workflow-usage-and-get-workflow-run-usage-endpoints-closing-down/)" for more information. Gets the number of billable minutes and total run time for a specific workflow run. Billable minutes only apply to workflows in private repositories that use GitHub-hosted runners. Usage is listed for each GitHub-hosted runner operating system in milliseconds. Any job re-runs are also included in the usage. The usage does not include the multiplier for macOS and Windows runners and is not rounded up to the nearest whole minute. For more information, see "[Managing billing for GitHub Actions](https://docs.github.com/github/setting-up-and-managing-billing-and-payments-on-github/managing-billing-for-github-actions)". Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsGetWorkflowRunUsage(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        runId: Long,
-        options: RequestOptions? = null,
-    ): WorkflowRunUsage =
-        dev.octri.showcase.github.methods.ActionsGetWorkflowRunUsageOperation
-            .actionsGetWorkflowRunUsage(
-                clientConfig,
-                owner,
-                repo,
-                runId,
-                options,
-            )
+    fun actionsGetWorkflowRunUsage(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): WorkflowRunUsage =
+        dev.octri.showcase.github.methods.ActionsGetWorkflowRunUsageOperation.actionsGetWorkflowRunUsage(
+            clientConfig,
+            owner,
+            repo,
+            runId,
+            options,
+        )
 
     /**
-     * Lists all secrets available in a repository without revealing their encrypted values.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Lists all secrets available in a repository without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListRepoSecrets(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListRepoSecretsResponse =
+    fun actionsListRepoSecrets(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListRepoSecretsResponse =
         dev.octri.showcase.github.methods.ActionsListRepoSecretsOperation.actionsListRepoSecrets(
             clientConfig,
             owner,
@@ -4226,17 +2588,9 @@ object Actions {
         )
 
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
-     * you can create or update secrets. Anyone with read access to the repository can use this
-     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
-     * need the `repo` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetRepoPublicKey(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): ActionsPublicKey =
+    fun actionsGetRepoPublicKey(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsPublicKey =
         dev.octri.showcase.github.methods.ActionsGetRepoPublicKeyOperation.actionsGetRepoPublicKey(
             clientConfig,
             owner,
@@ -4245,17 +2599,9 @@ object Actions {
         )
 
     /**
-     * Gets a single repository secret without revealing its encrypted value. The authenticated user
-     * must have collaborator access to the repository to use this endpoint. OAuth app tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single repository secret without revealing its encrypted value. The authenticated user must have collaborator access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetRepoSecret(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        secretName: String,
-        options: RequestOptions? = null,
-    ): ActionsSecret =
+    fun actionsGetRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): ActionsSecret =
         dev.octri.showcase.github.methods.ActionsGetRepoSecretOperation.actionsGetRepoSecret(
             clientConfig,
             owner,
@@ -4265,45 +2611,23 @@ object Actions {
         )
 
     /**
-     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using
-     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
-     * information, see "[Encrypting secrets for the REST
-     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated
-     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
-     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateOrUpdateRepoSecret(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        secretName: String,
-        encryptedValue: String,
-        keyId: String,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsCreateOrUpdateRepoSecretOperation
-            .actionsCreateOrUpdateRepoSecret(
-                clientConfig,
-                owner,
-                repo,
-                secretName,
-                encryptedValue,
-                keyId,
-                options,
-            )
+    fun actionsCreateOrUpdateRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, encryptedValue: String, keyId: String, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsCreateOrUpdateRepoSecretOperation.actionsCreateOrUpdateRepoSecret(
+            clientConfig,
+            owner,
+            repo,
+            secretName,
+            encryptedValue,
+            keyId,
+            options,
+        )
 
     /**
-     * Deletes a secret in a repository using the secret name. Authenticated users must have
-     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in a repository using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteRepoSecret(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        secretName: String,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun actionsDeleteRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.ActionsDeleteRepoSecretOperation.actionsDeleteRepoSecret(
             clientConfig,
             owner,
@@ -4313,64 +2637,35 @@ object Actions {
         )
 
     /**
-     * Lists all repository variables. Authenticated users must have collaborator access to a
-     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Lists all repository variables. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListRepoVariables(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListRepoVariablesResponse =
-        dev.octri.showcase.github.methods.ActionsListRepoVariablesOperation
-            .actionsListRepoVariables(
-                clientConfig,
-                owner,
-                repo,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsListRepoVariables(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListRepoVariablesResponse =
+        dev.octri.showcase.github.methods.ActionsListRepoVariablesOperation.actionsListRepoVariables(
+            clientConfig,
+            owner,
+            repo,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Creates a repository variable that you can reference in a GitHub Actions workflow.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Creates a repository variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateRepoVariable(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        name: String,
-        value: String,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsCreateRepoVariableOperation
-            .actionsCreateRepoVariable(
-                clientConfig,
-                owner,
-                repo,
-                name,
-                value,
-                options,
-            )
+    fun actionsCreateRepoVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, value: String, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsCreateRepoVariableOperation.actionsCreateRepoVariable(
+            clientConfig,
+            owner,
+            repo,
+            name,
+            value,
+            options,
+        )
 
     /**
-     * Gets a specific variable in a repository. The authenticated user must have collaborator
-     * access to the repository to use this endpoint. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific variable in a repository. The authenticated user must have collaborator access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetRepoVariable(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        name: String,
-        options: RequestOptions? = null,
-    ): ActionsVariable =
+    fun actionsGetRepoVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): ActionsVariable =
         dev.octri.showcase.github.methods.ActionsGetRepoVariableOperation.actionsGetRepoVariable(
             clientConfig,
             owner,
@@ -4380,88 +2675,48 @@ object Actions {
         )
 
     /**
-     * Updates a repository variable that you can reference in a GitHub Actions workflow.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Updates a repository variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsUpdateRepoVariable(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        name: String,
-        name2: String? = null,
-        value: String? = null,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsUpdateRepoVariableOperation
-            .actionsUpdateRepoVariable(
-                clientConfig,
-                owner,
-                repo,
-                name,
-                name2,
-                value,
-                options,
-            )
+    fun actionsUpdateRepoVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, name2: String? = null, value: String? = null, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsUpdateRepoVariableOperation.actionsUpdateRepoVariable(
+            clientConfig,
+            owner,
+            repo,
+            name,
+            name2,
+            value,
+            options,
+        )
 
     /**
-     * Deletes a repository variable using the variable name. Authenticated users must have
-     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a repository variable using the variable name. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteRepoVariable(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        name: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteRepoVariableOperation
-            .actionsDeleteRepoVariable(
-                clientConfig,
-                owner,
-                repo,
-                name,
-                options,
-            )
+    fun actionsDeleteRepoVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteRepoVariableOperation.actionsDeleteRepoVariable(
+            clientConfig,
+            owner,
+            repo,
+            name,
+            options,
+        )
 
     /**
-     * Lists the workflows in a repository. Anyone with read access to the repository can use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint with a private repository.
+     * Lists the workflows in a repository. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsListRepoWorkflows(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListRepoWorkflowsResponse =
-        dev.octri.showcase.github.methods.ActionsListRepoWorkflowsOperation
-            .actionsListRepoWorkflows(
-                clientConfig,
-                owner,
-                repo,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsListRepoWorkflows(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListRepoWorkflowsResponse =
+        dev.octri.showcase.github.methods.ActionsListRepoWorkflowsOperation.actionsListRepoWorkflows(
+            clientConfig,
+            owner,
+            repo,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Gets a specific workflow. You can replace `workflow_id` with the workflow file name. For
-     * example, you could use `main.yaml`. Anyone with read access to the repository can use this
-     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint with a private repository.
+     * Gets a specific workflow. You can replace `workflow_id` with the workflow file name. For example, you could use `main.yaml`. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsGetWorkflow(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        workflowId: Any,
-        options: RequestOptions? = null,
-    ): Workflow =
+    fun actionsGetWorkflow(clientConfig: ClientConfig, owner: String, repo: String, workflowId: Any, options: RequestOptions? = null): Workflow =
         dev.octri.showcase.github.methods.ActionsGetWorkflowOperation.actionsGetWorkflow(
             clientConfig,
             owner,
@@ -4471,17 +2726,9 @@ object Actions {
         )
 
     /**
-     * Disables a workflow and sets the `state` of the workflow to `disabled_manually`. You can
-     * replace `workflow_id` with the workflow file name. For example, you could use `main.yaml`.
-     * OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Disables a workflow and sets the `state` of the workflow to `disabled_manually`. You can replace `workflow_id` with the workflow file name. For example, you could use `main.yaml`. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDisableWorkflow(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        workflowId: Any,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun actionsDisableWorkflow(clientConfig: ClientConfig, owner: String, repo: String, workflowId: Any, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.ActionsDisableWorkflowOperation.actionsDisableWorkflow(
             clientConfig,
             owner,
@@ -4491,38 +2738,19 @@ object Actions {
         )
 
     /**
-     * You can use this endpoint to manually trigger a GitHub Actions workflow run. You can replace
-     * `workflow_id` with the workflow file name. For example, you could use `main.yaml`. You must
-     * configure your GitHub Actions workflow to run when the `workflow_dispatch` webhook event
-     * occurs. The `inputs` are configured in the workflow file. For more information about how to
-     * configure the `workflow_dispatch` event in the workflow file, see "Events that trigger
-     * workflows." OAuth tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * You can use this endpoint to manually trigger a GitHub Actions workflow run. You can replace `workflow_id` with the workflow file name. For example, you could use `main.yaml`. You must configure your GitHub Actions workflow to run when the `workflow_dispatch` webhook event occurs. The `inputs` are configured in the workflow file. For more information about how to configure the `workflow_dispatch` event in the workflow file, see "Events that trigger workflows." OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateWorkflowDispatch(
-        clientConfig: ClientConfig,
-        request: ActionsCreateWorkflowDispatchRequest,
-        options: RequestOptions? = null,
-    ): WorkflowDispatchResponse =
-        dev.octri.showcase.github.methods.ActionsCreateWorkflowDispatchOperation
-            .actionsCreateWorkflowDispatch(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsCreateWorkflowDispatch(clientConfig: ClientConfig, request: ActionsCreateWorkflowDispatchRequest, options: RequestOptions? = null): WorkflowDispatchResponse =
+        dev.octri.showcase.github.methods.ActionsCreateWorkflowDispatchOperation.actionsCreateWorkflowDispatch(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Enables a workflow and sets the `state` of the workflow to `active`. You can replace
-     * `workflow_id` with the workflow file name. For example, you could use `main.yaml`. OAuth
-     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Enables a workflow and sets the `state` of the workflow to `active`. You can replace `workflow_id` with the workflow file name. For example, you could use `main.yaml`. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsEnableWorkflow(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        workflowId: Any,
-        options: RequestOptions? = null,
-    ): Unit =
+    fun actionsEnableWorkflow(clientConfig: ClientConfig, owner: String, repo: String, workflowId: Any, options: RequestOptions? = null): Unit =
         dev.octri.showcase.github.methods.ActionsEnableWorkflowOperation.actionsEnableWorkflow(
             clientConfig,
             owner,
@@ -4532,20 +2760,9 @@ object Actions {
         )
 
     /**
-     * List all workflow runs for a workflow. You can replace `workflow_id` with the workflow file
-     * name. For example, you could use `main.yaml`. You can use parameters to narrow the list of
-     * results. For more information about using parameters, see
-     * [Parameters](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#parameters).
-     * Anyone with read access to the repository can use this endpoint OAuth app tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
-     * This endpoint will return up to 1,000 results for each search when using the following
-     * parameters: `actor`, `branch`, `check_suite_id`, `created`, `event`, `head_sha`, `status`.
+     * List all workflow runs for a workflow. You can replace `workflow_id` with the workflow file name. For example, you could use `main.yaml`. You can use parameters to narrow the list of results. For more information about using parameters, see [Parameters](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#parameters). Anyone with read access to the repository can use this endpoint OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository. This endpoint will return up to 1,000 results for each search when using the following parameters: `actor`, `branch`, `check_suite_id`, `created`, `event`, `head_sha`, `status`.
      */
-    fun actionsListWorkflowRuns(
-        clientConfig: ClientConfig,
-        request: ActionsListWorkflowRunsRequest,
-        options: RequestOptions? = null,
-    ): ActionsListWorkflowRunsResponse =
+    fun actionsListWorkflowRuns(clientConfig: ClientConfig, request: ActionsListWorkflowRunsRequest, options: RequestOptions? = null): ActionsListWorkflowRunsResponse =
         dev.octri.showcase.github.methods.ActionsListWorkflowRunsOperation.actionsListWorkflowRuns(
             clientConfig,
             request,
@@ -4553,28 +2770,9 @@ object Actions {
         )
 
     /**
-     * > [!WARNING] > This endpoint is in the process of closing down. Refer to "[Actions Get
-     * > workflow usage and Get workflow run usage endpoints closing
-     * > down](https://github.blog/changelog/2025-02-02-actions-get-workflow-usage-and-get-workflow-run-usage-endpoints-closing-down/)"
-     * > for more information. Gets the number of billable minutes used by a specific workflow
-     * > during the current billing cycle. Billable minutes only apply to workflows in private
-     * > repositories that use GitHub-hosted runners. Usage is listed for each GitHub-hosted runner
-     * > operating system in milliseconds. Any job re-runs are also included in the usage. The usage
-     * > does not include the multiplier for macOS and Windows runners and is not rounded up to the
-     * > nearest whole minute. For more information, see "[Managing billing for GitHub
-     * > Actions](https://docs.github.com/github/setting-up-and-managing-billing-and-payments-on-github/managing-billing-for-github-actions)".
-     * > You can replace `workflow_id` with the workflow file name. For example, you could use
-     * > `main.yaml`. Anyone with read access to the repository can use this endpoint. OAuth app
-     * > tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with
-     * > a private repository.
+     * > [!WARNING] > This endpoint is in the process of closing down. Refer to "[Actions Get workflow usage and Get workflow run usage endpoints closing down](https://github.blog/changelog/2025-02-02-actions-get-workflow-usage-and-get-workflow-run-usage-endpoints-closing-down/)" for more information. Gets the number of billable minutes used by a specific workflow during the current billing cycle. Billable minutes only apply to workflows in private repositories that use GitHub-hosted runners. Usage is listed for each GitHub-hosted runner operating system in milliseconds. Any job re-runs are also included in the usage. The usage does not include the multiplier for macOS and Windows runners and is not rounded up to the nearest whole minute. For more information, see "[Managing billing for GitHub Actions](https://docs.github.com/github/setting-up-and-managing-billing-and-payments-on-github/managing-billing-for-github-actions)". You can replace `workflow_id` with the workflow file name. For example, you could use `main.yaml`. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun actionsGetWorkflowUsage(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        workflowId: Any,
-        options: RequestOptions? = null,
-    ): WorkflowUsage =
+    fun actionsGetWorkflowUsage(clientConfig: ClientConfig, owner: String, repo: String, workflowId: Any, options: RequestOptions? = null): WorkflowUsage =
         dev.octri.showcase.github.methods.ActionsGetWorkflowUsageOperation.actionsGetWorkflowUsage(
             clientConfig,
             owner,
@@ -4584,231 +2782,128 @@ object Actions {
         )
 
     /**
-     * Lists all secrets available in an environment without revealing their encrypted values.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Lists all secrets available in an environment without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListEnvironmentSecrets(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        environmentName: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListEnvironmentSecretsResponse =
-        dev.octri.showcase.github.methods.ActionsListEnvironmentSecretsOperation
-            .actionsListEnvironmentSecrets(
-                clientConfig,
-                owner,
-                repo,
-                environmentName,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsListEnvironmentSecrets(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListEnvironmentSecretsResponse =
+        dev.octri.showcase.github.methods.ActionsListEnvironmentSecretsOperation.actionsListEnvironmentSecrets(
+            clientConfig,
+            owner,
+            repo,
+            environmentName,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Get the public key for an environment, which you need to encrypt environment secrets. You
-     * need to encrypt a secret before you can create or update secrets. Anyone with read access to
-     * the repository can use this endpoint. If the repository is private, OAuth tokens and personal
-     * access tokens (classic) need the `repo` scope to use this endpoint.
+     * Get the public key for an environment, which you need to encrypt environment secrets. You need to encrypt a secret before you can create or update secrets. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetEnvironmentPublicKey(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        environmentName: String,
-        options: RequestOptions? = null,
-    ): ActionsPublicKey =
-        dev.octri.showcase.github.methods.ActionsGetEnvironmentPublicKeyOperation
-            .actionsGetEnvironmentPublicKey(
-                clientConfig,
-                owner,
-                repo,
-                environmentName,
-                options,
-            )
+    fun actionsGetEnvironmentPublicKey(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, options: RequestOptions? = null): ActionsPublicKey =
+        dev.octri.showcase.github.methods.ActionsGetEnvironmentPublicKeyOperation.actionsGetEnvironmentPublicKey(
+            clientConfig,
+            owner,
+            repo,
+            environmentName,
+            options,
+        )
 
     /**
-     * Gets a single environment secret without revealing its encrypted value. Authenticated users
-     * must have collaborator access to a repository to create, update, or read secrets. OAuth
-     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single environment secret without revealing its encrypted value. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetEnvironmentSecret(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        environmentName: String,
-        secretName: String,
-        options: RequestOptions? = null,
-    ): ActionsSecret =
-        dev.octri.showcase.github.methods.ActionsGetEnvironmentSecretOperation
-            .actionsGetEnvironmentSecret(
-                clientConfig,
-                owner,
-                repo,
-                environmentName,
-                secretName,
-                options,
-            )
+    fun actionsGetEnvironmentSecret(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, secretName: String, options: RequestOptions? = null): ActionsSecret =
+        dev.octri.showcase.github.methods.ActionsGetEnvironmentSecretOperation.actionsGetEnvironmentSecret(
+            clientConfig,
+            owner,
+            repo,
+            environmentName,
+            secretName,
+            options,
+        )
 
     /**
-     * Creates or updates an environment secret with an encrypted value. Encrypt your secret using
-     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
-     * information, see "[Encrypting secrets for the REST
-     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated
-     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
-     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates an environment secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateOrUpdateEnvironmentSecret(
-        clientConfig: ClientConfig,
-        request: ActionsCreateOrUpdateEnvironmentSecretRequest,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsCreateOrUpdateEnvironmentSecretOperation
-            .actionsCreateOrUpdateEnvironmentSecret(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsCreateOrUpdateEnvironmentSecret(clientConfig: ClientConfig, request: ActionsCreateOrUpdateEnvironmentSecretRequest, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsCreateOrUpdateEnvironmentSecretOperation.actionsCreateOrUpdateEnvironmentSecret(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes a secret in an environment using the secret name. Authenticated users must have
-     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in an environment using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteEnvironmentSecret(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        environmentName: String,
-        secretName: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteEnvironmentSecretOperation
-            .actionsDeleteEnvironmentSecret(
-                clientConfig,
-                owner,
-                repo,
-                environmentName,
-                secretName,
-                options,
-            )
+    fun actionsDeleteEnvironmentSecret(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, secretName: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteEnvironmentSecretOperation.actionsDeleteEnvironmentSecret(
+            clientConfig,
+            owner,
+            repo,
+            environmentName,
+            secretName,
+            options,
+        )
 
     /**
-     * Lists all environment variables. Authenticated users must have collaborator access to a
-     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Lists all environment variables. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsListEnvironmentVariables(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        environmentName: String,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): ActionsListEnvironmentVariablesResponse =
-        dev.octri.showcase.github.methods.ActionsListEnvironmentVariablesOperation
-            .actionsListEnvironmentVariables(
-                clientConfig,
-                owner,
-                repo,
-                environmentName,
-                perPage,
-                page,
-                options,
-            )
+    fun actionsListEnvironmentVariables(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ActionsListEnvironmentVariablesResponse =
+        dev.octri.showcase.github.methods.ActionsListEnvironmentVariablesOperation.actionsListEnvironmentVariables(
+            clientConfig,
+            owner,
+            repo,
+            environmentName,
+            perPage,
+            page,
+            options,
+        )
 
     /**
-     * Create an environment variable that you can reference in a GitHub Actions workflow.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Create an environment variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsCreateEnvironmentVariable(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        environmentName: String,
-        name: String,
-        value: String,
-        options: RequestOptions? = null,
-    ): EmptyObject =
-        dev.octri.showcase.github.methods.ActionsCreateEnvironmentVariableOperation
-            .actionsCreateEnvironmentVariable(
-                clientConfig,
-                owner,
-                repo,
-                environmentName,
-                name,
-                value,
-                options,
-            )
+    fun actionsCreateEnvironmentVariable(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, name: String, value: String, options: RequestOptions? = null): EmptyObject =
+        dev.octri.showcase.github.methods.ActionsCreateEnvironmentVariableOperation.actionsCreateEnvironmentVariable(
+            clientConfig,
+            owner,
+            repo,
+            environmentName,
+            name,
+            value,
+            options,
+        )
 
     /**
-     * Gets a specific variable in an environment. Authenticated users must have collaborator access
-     * to a repository to create, update, or read variables. OAuth tokens and personal access tokens
-     * (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific variable in an environment. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsGetEnvironmentVariable(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        environmentName: String,
-        name: String,
-        options: RequestOptions? = null,
-    ): ActionsVariable =
-        dev.octri.showcase.github.methods.ActionsGetEnvironmentVariableOperation
-            .actionsGetEnvironmentVariable(
-                clientConfig,
-                owner,
-                repo,
-                environmentName,
-                name,
-                options,
-            )
+    fun actionsGetEnvironmentVariable(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, name: String, options: RequestOptions? = null): ActionsVariable =
+        dev.octri.showcase.github.methods.ActionsGetEnvironmentVariableOperation.actionsGetEnvironmentVariable(
+            clientConfig,
+            owner,
+            repo,
+            environmentName,
+            name,
+            options,
+        )
 
     /**
-     * Updates an environment variable that you can reference in a GitHub Actions workflow.
-     * Authenticated users must have collaborator access to a repository to create, update, or read
-     * variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
-     * this endpoint.
+     * Updates an environment variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsUpdateEnvironmentVariable(
-        clientConfig: ClientConfig,
-        request: ActionsUpdateEnvironmentVariableRequest,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsUpdateEnvironmentVariableOperation
-            .actionsUpdateEnvironmentVariable(
-                clientConfig,
-                request,
-                options,
-            )
+    fun actionsUpdateEnvironmentVariable(clientConfig: ClientConfig, request: ActionsUpdateEnvironmentVariableRequest, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsUpdateEnvironmentVariableOperation.actionsUpdateEnvironmentVariable(
+            clientConfig,
+            request,
+            options,
+        )
 
     /**
-     * Deletes an environment variable using the variable name. Authenticated users must have
-     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
-     * personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes an environment variable using the variable name. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun actionsDeleteEnvironmentVariable(
-        clientConfig: ClientConfig,
-        owner: String,
-        repo: String,
-        name: String,
-        environmentName: String,
-        options: RequestOptions? = null,
-    ): Unit =
-        dev.octri.showcase.github.methods.ActionsDeleteEnvironmentVariableOperation
-            .actionsDeleteEnvironmentVariable(
-                clientConfig,
-                owner,
-                repo,
-                name,
-                environmentName,
-                options,
-            )
+    fun actionsDeleteEnvironmentVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, environmentName: String, options: RequestOptions? = null): Unit =
+        dev.octri.showcase.github.methods.ActionsDeleteEnvironmentVariableOperation.actionsDeleteEnvironmentVariable(
+            clientConfig,
+            owner,
+            repo,
+            name,
+            environmentName,
+            options,
+        )
 }

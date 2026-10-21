@@ -3,52 +3,96 @@
 
 package dev.octri.showcase.github.models
 
-/** Required object value serialized in the `timePeriod` wire field. */
+/**
+ * Required object value serialized in the `timePeriod` wire field.
+ */
 data class BillingPremiumRequestUsageReportUserTimePeriod(
-    /** The year for the usage report. */
+    /**
+     * The year for the usage report.
+     */
     val year: Long,
-    /** The month for the usage report. */
+    /**
+     * The month for the usage report.
+     */
     val month: Long? = null,
-    /** The day for the usage report. */
-    val day: Long? = null,
+    /**
+     * The day for the usage report.
+     */
+    val day: Long? = null
 )
 
-/** Required object value serialized in the `usageItems[]` wire field. */
+/**
+ * Required object value serialized in the `usageItems[]` wire field.
+ */
 data class BillingPremiumRequestUsageReportUserUsageItemsItem(
-    /** Product name. */
+    /**
+     * Product name.
+     */
     val product: String,
-    /** SKU name. */
+    /**
+     * SKU name.
+     */
     val sku: String,
-    /** Model name. */
+    /**
+     * Model name.
+     */
     val model: String,
-    /** Unit type of the usage line item. */
+    /**
+     * Unit type of the usage line item.
+     */
     val unitType: String,
-    /** Price per unit of the usage line item. */
+    /**
+     * Price per unit of the usage line item.
+     */
     val pricePerUnit: Double,
-    /** Gross quantity of the usage line item. */
+    /**
+     * Gross quantity of the usage line item.
+     */
     val grossQuantity: Double,
-    /** Gross amount of the usage line item. */
+    /**
+     * Gross amount of the usage line item.
+     */
     val grossAmount: Double,
-    /** Discount quantity of the usage line item. */
+    /**
+     * Discount quantity of the usage line item.
+     */
     val discountQuantity: Double,
-    /** Discount amount of the usage line item. */
+    /**
+     * Discount amount of the usage line item.
+     */
     val discountAmount: Double,
-    /** Net quantity of the usage line item. */
+    /**
+     * Net quantity of the usage line item.
+     */
     val netQuantity: Double,
-    /** Net amount of the usage line item. */
-    val netAmount: Double,
+    /**
+     * Net amount of the usage line item.
+     */
+    val netAmount: Double
 )
 
-/** Typed representation of the `BillingPremiumRequestUsageReportUser` API schema. */
+/**
+ * Typed representation of the `BillingPremiumRequestUsageReportUser` API schema.
+ */
 data class BillingPremiumRequestUsageReportUser(
-    /** Required object value serialized in the `timePeriod` wire field. */
+    /**
+     * Required object value serialized in the `timePeriod` wire field.
+     */
     val timePeriod: BillingPremiumRequestUsageReportUserTimePeriod,
-    /** The unique identifier of the user. */
+    /**
+     * The unique identifier of the user.
+     */
     val user: String,
-    /** Required array value serialized in the `usageItems` wire field. */
+    /**
+     * Required array value serialized in the `usageItems` wire field.
+     */
     val usageItems: List<BillingPremiumRequestUsageReportUserUsageItemsItem>,
-    /** The product for the usage report. */
+    /**
+     * The product for the usage report.
+     */
     val product: String? = null,
-    /** The model for the usage report. */
-    val model: String? = null,
+    /**
+     * The model for the usage report.
+     */
+    val model: String? = null
 )

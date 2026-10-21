@@ -11,143 +11,86 @@ import dev.octri.showcase.github.Validation
 
 internal object OrgsCreateArtifactDeploymentRecordOperation {
     /**
-     * Create or update deployment records for an artifact associated with an organization. This
-     * endpoint allows you to record information about a specific artifact, such as its name,
-     * digest, environments, cluster, and deployment. The deployment name has to be uniqe within a
-     * cluster (i.e a combination of logical, physical environment and cluster) as it identifies
-     * unique deployment. Multiple requests for the same combination of logical, physical
-     * environment, cluster and deployment…
+     * Create or update deployment records for an artifact associated with an organization. This endpoint allows you to record information about a specific artifact, such as its name, digest, environments, cluster, and deployment. The deployment name has to be uniqe within a cluster (i.e a combination of logical, physical environment and cluster) as it identifies unique deployment. Multiple requests for the same combination of logical, physical environment, cluster and deployment…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the artifact.
      * @param digest The hex encoded digest of the artifact.
-     * @param status The status of the artifact. Can be either deployed or decommissioned.
+     * @param status The status of the artifact. Can be either deployed or
+     *   decommissioned.
      * @param logicalEnvironment The stage of the deployment.
-     * @param deploymentName The unique identifier for the deployment represented by the new record.
-     *   To accommodate differing containers and namespaces within a cluster, the following format
-     *   is recommended: {namespaceName}-{deploymentName}-{containerName}.
+     * @param deploymentName The unique identifier for the deployment represented by
+     *   the new record. To accommodate differing containers and namespaces within a
+     *   cluster, the following format is recommended:
+     *   {namespaceName}-{deploymentName}-{containerName}.
      * @param version The artifact version.
      * @param physicalEnvironment The physical region of the deployment.
      * @param cluster The deployment cluster.
      * @param tags The tags associated with the deployment.
      * @param runtimeRisks A list of runtime risks associated with the deployment.
-     * @param githubRepository The name of the GitHub repository associated with the artifact. This
-     *   should be used when there are no provenance attestations available for the artifact. The
-     *   repository must belong to the organization specified in the path parameter. If a provenance
-     *   attestation is available for the artifact, the API will use the repository information from
-     *   the attestation instead of this parameter.
-     * @param returnRecords If true, the endpoint will return the created or updated record in the
-     *   response body.
+     * @param githubRepository The name of the GitHub repository associated with the
+     *   artifact. This should be used when there are no provenance attestations
+     *   available for the artifact. The repository must belong to the organization
+     *   specified in the path parameter. If a provenance attestation is available for
+     *   the artifact, the API will use the repository information from the attestation
+     *   instead of this parameter.
+     * @param returnRecords If true, the endpoint will return the created or updated
+     *   record in the response body.
      */
-    fun orgsCreateArtifactDeploymentRecord(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsCreateArtifactDeploymentRecordRequest,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsCreateArtifactDeploymentRecordResponse {
+    fun orgsCreateArtifactDeploymentRecord(clientConfig: ClientConfig, request: Orgs.OrgsCreateArtifactDeploymentRecordRequest, options: RequestOptions? = null): Orgs.OrgsCreateArtifactDeploymentRecordResponse {
         validateOrgsCreateArtifactDeploymentRecordRequest(request)
 
-        return SdkClient.request<Orgs.OrgsCreateArtifactDeploymentRecordResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/artifacts/metadata/deployment-record",
-                    config = clientConfig,
-                    body = buildOrgsCreateArtifactDeploymentRecordBody(request),
-                    operationId = "orgsCreateArtifactDeploymentRecord",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+        return SdkClient.request<Orgs.OrgsCreateArtifactDeploymentRecordResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/artifacts/metadata/deployment-record", config = clientConfig, body = buildOrgsCreateArtifactDeploymentRecordBody(request), operationId = "orgsCreateArtifactDeploymentRecord", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 
-    private fun validateOrgsCreateArtifactDeploymentRecordRequest(
-        request: Orgs.OrgsCreateArtifactDeploymentRecordRequest
-    ) {
+
+    private fun validateOrgsCreateArtifactDeploymentRecordRequest(request: Orgs.OrgsCreateArtifactDeploymentRecordRequest) {
         validateOrgsCreateArtifactDeploymentRecordRequestPart1(request)
         validateOrgsCreateArtifactDeploymentRecordRequestPart2(request)
     }
 
-    private fun validateOrgsCreateArtifactDeploymentRecordRequestPart1(
-        request: Orgs.OrgsCreateArtifactDeploymentRecordRequest
-    ) {
+    private fun validateOrgsCreateArtifactDeploymentRecordRequestPart1(request: Orgs.OrgsCreateArtifactDeploymentRecordRequest) {
         Validation.validateLength("name", request.name, Validation.LengthOpts(min = 1, max = 256))
 
-        Validation.validateLength(
-            "digest",
-            request.digest,
-            Validation.LengthOpts(min = 71, max = 71),
-        )
+        Validation.validateLength("digest", request.digest, Validation.LengthOpts(min = 71, max = 71))
         Validation.validatePattern("digest", request.digest, "^sha256:[a-f0-9]{64}$")
 
-        Validation.validateLength(
-            "logical_environment",
-            request.logicalEnvironment,
-            Validation.LengthOpts(min = 1, max = 128),
-        )
+        Validation.validateLength("logical_environment", request.logicalEnvironment, Validation.LengthOpts(min = 1, max = 128))
 
-        Validation.validateLength(
-            "deployment_name",
-            request.deploymentName,
-            Validation.LengthOpts(max = 256),
-        )
+        Validation.validateLength("deployment_name", request.deploymentName, Validation.LengthOpts(max = 256))
 
         if (request.version != null) {
-            Validation.validateLength(
-                "version",
-                request.version,
-                Validation.LengthOpts(min = 1, max = 100),
-            )
-        }
+            Validation.validateLength("version", request.version, Validation.LengthOpts(min = 1, max = 100))
+}
     }
 
-    private fun validateOrgsCreateArtifactDeploymentRecordRequestPart2(
-        request: Orgs.OrgsCreateArtifactDeploymentRecordRequest
-    ) {
+    private fun validateOrgsCreateArtifactDeploymentRecordRequestPart2(request: Orgs.OrgsCreateArtifactDeploymentRecordRequest) {
         if (request.physicalEnvironment != null) {
-            Validation.validateLength(
-                "physical_environment",
-                request.physicalEnvironment,
-                Validation.LengthOpts(max = 128),
-            )
-        }
+            Validation.validateLength("physical_environment", request.physicalEnvironment, Validation.LengthOpts(max = 128))
+}
 
         if (request.cluster != null) {
             Validation.validateLength("cluster", request.cluster, Validation.LengthOpts(max = 128))
-        }
+}
 
         if (request.runtimeRisks != null) {
-            Validation.validateItems(
-                "runtime_risks",
-                request.runtimeRisks,
-                Validation.LengthOpts(max = 4),
-            )
-        }
+            Validation.validateItems("runtime_risks", request.runtimeRisks, Validation.LengthOpts(max = 4))
+}
 
         if (request.githubRepository != null) {
-            Validation.validateLength(
-                "github_repository",
-                request.githubRepository,
-                Validation.LengthOpts(min = 1, max = 100),
-            )
-            Validation.validatePattern(
-                "github_repository",
-                request.githubRepository,
-                "^[A-Za-z0-9.\\-_]+$",
-            )
+            Validation.validateLength("github_repository", request.githubRepository, Validation.LengthOpts(min = 1, max = 100))
+            Validation.validatePattern("github_repository", request.githubRepository, "^[A-Za-z0-9.\\-_]+$")
+}
+    }
+
+
+
+    private fun buildOrgsCreateArtifactDeploymentRecordBody(request: Orgs.OrgsCreateArtifactDeploymentRecordRequest): Map<String, Any?> =
+        buildMap {
+            putAll(buildOrgsCreateArtifactDeploymentRecordBodyPart1(request))
         }
-    }
 
-    private fun buildOrgsCreateArtifactDeploymentRecordBody(
-        request: Orgs.OrgsCreateArtifactDeploymentRecordRequest
-    ): Map<String, Any?> = buildMap {
-        putAll(buildOrgsCreateArtifactDeploymentRecordBodyPart1(request))
-    }
-
-    private fun buildOrgsCreateArtifactDeploymentRecordBodyPart1(
-        request: Orgs.OrgsCreateArtifactDeploymentRecordRequest
-    ): Map<String, Any?> =
+    private fun buildOrgsCreateArtifactDeploymentRecordBodyPart1(request: Orgs.OrgsCreateArtifactDeploymentRecordRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "name" to (request.name),
             "digest" to (request.digest),
@@ -155,105 +98,64 @@ internal object OrgsCreateArtifactDeploymentRecordOperation {
             "logical_environment" to (request.logicalEnvironment),
             "deployment_name" to (request.deploymentName),
             "version" to (SdkClient.omitIfNull(request.version)),
-            "physical_environment" to (SdkClient.omitIfNull(request.physicalEnvironment)),
+            "physical_environment" to
+    (SdkClient.omitIfNull(request.physicalEnvironment)),
             "cluster" to (SdkClient.omitIfNull(request.cluster)),
             "tags" to (SdkClient.omitIfNull(request.tags)),
-            "runtime_risks" to (SdkClient.omitIfNull(request.runtimeRisks)),
-            "github_repository" to (SdkClient.omitIfNull(request.githubRepository)),
-            "return_records" to (SdkClient.omitIfNull(request.returnRecords)),
+            "runtime_risks" to
+    (SdkClient.omitIfNull(request.runtimeRisks)),
+            "github_repository" to
+    (SdkClient.omitIfNull(request.githubRepository)),
+            "return_records" to
+    (SdkClient.omitIfNull(request.returnRecords)),
         )
 }
 
 internal object OrgsSetClusterDeploymentRecordsOperation {
     /**
-     * Set deployment records for a given cluster. If proposed records in the 'deployments' field
-     * have identical 'cluster', 'logical_environment', 'physical_environment', and
-     * 'deployment_name' values as existing records, the existing records will be updated. If no
-     * existing records match, new records will be created. Note: Artifacts are uniquely identified
-     * by the combination of their repository and digest fields. If two entries in the deployments
-     * array resolve to the same repository…
+     * Set deployment records for a given cluster. If proposed records in the 'deployments' field have identical 'cluster', 'logical_environment', 'physical_environment', and 'deployment_name' values as existing records, the existing records will be updated. If no existing records match, new records will be created. Note: Artifacts are uniquely identified by the combination of their repository and digest fields. If two entries in the deployments array resolve to the same repository…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param cluster The cluster name.
      * @param logicalEnvironment The stage of the deployment.
      * @param deployments The list of deployments to record.
      * @param physicalEnvironment The physical region of the deployment.
-     * @param partialSuccess When enabled, deployments associated with repositories the actor can
-     *   write to are processed while deployments associated with repositories that cannot be
-     *   resolved or written to by the actor are skipped and reported in the `errors` array. When
-     *   false (the default), the endpoint returns an error if any targeted repository cannot be
-     *   resolved, the actor lacks write access, or no matching attestation can be found.
-     * @param returnRecords If true, the endpoint will return the set records in the response body
+     * @param partialSuccess When enabled, deployments associated with repositories
+     *   the actor can write to are processed while deployments associated with
+     *   repositories that cannot be resolved or written to by the actor are skipped
+     *   and reported in the `errors` array. When false (the default), the endpoint
+     *   returns an error if any targeted repository cannot be resolved, the actor
+     *   lacks write access, or no matching attestation can be found.
+     * @param returnRecords If true, the endpoint will return the set records in the
+     *   response body
      */
-    fun orgsSetClusterDeploymentRecords(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsSetClusterDeploymentRecordsRequest,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsSetClusterDeploymentRecordsResponse {
+    fun orgsSetClusterDeploymentRecords(clientConfig: ClientConfig, request: Orgs.OrgsSetClusterDeploymentRecordsRequest, options: RequestOptions? = null): Orgs.OrgsSetClusterDeploymentRecordsResponse {
         validateOrgsSetClusterDeploymentRecordsRequest(request)
 
-        return SdkClient.request<Orgs.OrgsSetClusterDeploymentRecordsResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/artifacts/metadata/deployment-record/cluster/${SdkClient.encodePathSegment(request.cluster)}",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "logical_environment" to (request.logicalEnvironment),
-                            "deployments" to (request.deployments),
-                            "physical_environment" to
-                                (SdkClient.omitIfNull(request.physicalEnvironment)),
-                            "partial_success" to (SdkClient.omitIfNull(request.partialSuccess)),
-                            "return_records" to (SdkClient.omitIfNull(request.returnRecords)),
-                        ),
-                    operationId = "orgsSetClusterDeploymentRecords",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+        return SdkClient.request<Orgs.OrgsSetClusterDeploymentRecordsResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/artifacts/metadata/deployment-record/cluster/${SdkClient.encodePathSegment(request.cluster)}", config = clientConfig, body = SdkClient.bodyMap("logical_environment" to (request.logicalEnvironment), "deployments" to (request.deployments), "physical_environment" to
+    (SdkClient.omitIfNull(request.physicalEnvironment)), "partial_success" to
+    (SdkClient.omitIfNull(request.partialSuccess)), "return_records" to
+    (SdkClient.omitIfNull(request.returnRecords))), operationId = "orgsSetClusterDeploymentRecords", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 
-    private fun validateOrgsSetClusterDeploymentRecordsRequest(
-        request: Orgs.OrgsSetClusterDeploymentRecordsRequest
-    ) {
-        Validation.validateLength(
-            "cluster",
-            request.cluster,
-            Validation.LengthOpts(min = 1, max = 128),
-        )
+
+    private fun validateOrgsSetClusterDeploymentRecordsRequest(request: Orgs.OrgsSetClusterDeploymentRecordsRequest) {
+        Validation.validateLength("cluster", request.cluster, Validation.LengthOpts(min = 1, max = 128))
         Validation.validatePattern("cluster", request.cluster, "^[a-zA-Z0-9._-]+$")
 
-        Validation.validateLength(
-            "logical_environment",
-            request.logicalEnvironment,
-            Validation.LengthOpts(min = 1, max = 128),
-        )
+        Validation.validateLength("logical_environment", request.logicalEnvironment, Validation.LengthOpts(min = 1, max = 128))
 
-        Validation.validateItems(
-            "deployments",
-            request.deployments,
-            Validation.LengthOpts(max = 1000),
-        )
+        Validation.validateItems("deployments", request.deployments, Validation.LengthOpts(max = 1000))
 
         if (request.physicalEnvironment != null) {
-            Validation.validateLength(
-                "physical_environment",
-                request.physicalEnvironment,
-                Validation.LengthOpts(max = 128),
-            )
-        }
+            Validation.validateLength("physical_environment", request.physicalEnvironment, Validation.LengthOpts(max = 128))
+}
     }
 }
 
 internal object OrgsCreateClusterDeploymentRecordsJobOperation {
     /**
-     * Create a background job to set deployment records for a given cluster. Performs validation
-     * and permission checks synchronously, returning rejected deployments immediately, then
-     * enqueues a background job for the actual deployment updates. Use the companion GET endpoint
-     * to poll for job status.
+     * Create a background job to set deployment records for a given cluster. Performs validation and permission checks synchronously, returning rejected deployments immediately, then enqueues a background job for the actual deployment updates. Use the companion GET endpoint to poll for job status.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param cluster The cluster name.
@@ -261,58 +163,20 @@ internal object OrgsCreateClusterDeploymentRecordsJobOperation {
      * @param deployments The list of deployments to record.
      * @param physicalEnvironment The physical region of the deployment.
      */
-    fun orgsCreateClusterDeploymentRecordsJob(
-        clientConfig: ClientConfig,
-        org: String,
-        cluster: String,
-        logicalEnvironment: String,
-        deployments: List<Orgs.OrgsCreateClusterDeploymentRecordsJobDeploymentsItem>,
-        physicalEnvironment: String? = null,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsCreateClusterDeploymentRecordsJobResponse {
+    fun orgsCreateClusterDeploymentRecordsJob(clientConfig: ClientConfig, org: String, cluster: String, logicalEnvironment: String, deployments: List<Orgs.OrgsCreateClusterDeploymentRecordsJobDeploymentsItem>, physicalEnvironment: String? = null, options: RequestOptions? = null): Orgs.OrgsCreateClusterDeploymentRecordsJobResponse {
         Validation.validateLength("cluster", cluster, Validation.LengthOpts(min = 1, max = 128))
         Validation.validatePattern("cluster", cluster, "^[a-zA-Z0-9._-]+$")
 
-        Validation.validateLength(
-            "logical_environment",
-            logicalEnvironment,
-            Validation.LengthOpts(min = 1, max = 128),
-        )
+        Validation.validateLength("logical_environment", logicalEnvironment, Validation.LengthOpts(min = 1, max = 128))
 
         Validation.validateItems("deployments", deployments, Validation.LengthOpts(max = 5000))
 
         if (physicalEnvironment != null) {
-            Validation.validateLength(
-                "physical_environment",
-                physicalEnvironment,
-                Validation.LengthOpts(max = 128),
-            )
-        }
+            Validation.validateLength("physical_environment", physicalEnvironment, Validation.LengthOpts(max = 128))
+}
 
-        return SdkClient.request<Orgs.OrgsCreateClusterDeploymentRecordsJobResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/artifacts/metadata/deployment-record/cluster/${SdkClient.encodePathSegment(cluster)}/jobs",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "logical_environment" to (logicalEnvironment),
-                            "deployments" to (deployments),
-                            "physical_environment" to (SdkClient.omitIfNull(physicalEnvironment)),
-                        ),
-                    operationId = "orgsCreateClusterDeploymentRecordsJob",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "409" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<Orgs.OrgsCreateClusterDeploymentRecordsJobResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/artifacts/metadata/deployment-record/cluster/${SdkClient.encodePathSegment(cluster)}/jobs", config = clientConfig, body = SdkClient.bodyMap("logical_environment" to (logicalEnvironment), "deployments" to (deployments), "physical_environment" to
+    (SdkClient.omitIfNull(physicalEnvironment))), operationId = "orgsCreateClusterDeploymentRecordsJob", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java))).data
     }
 }
 
@@ -324,36 +188,17 @@ internal object OrgsGetClusterDeploymentRecordsJobOperation {
      * @param cluster The cluster name.
      * @param jobId The ID of the job.
      */
-    fun orgsGetClusterDeploymentRecordsJob(
-        clientConfig: ClientConfig,
-        org: String,
-        cluster: String,
-        jobId: Long,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsGetClusterDeploymentRecordsJobResponse {
+    fun orgsGetClusterDeploymentRecordsJob(clientConfig: ClientConfig, org: String, cluster: String, jobId: Long, options: RequestOptions? = null): Orgs.OrgsGetClusterDeploymentRecordsJobResponse {
         Validation.validateLength("cluster", cluster, Validation.LengthOpts(min = 1, max = 128))
         Validation.validatePattern("cluster", cluster, "^[a-zA-Z0-9._-]+$")
 
-        return SdkClient.request<Orgs.OrgsGetClusterDeploymentRecordsJobResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/artifacts/metadata/deployment-record/cluster/${SdkClient.encodePathSegment(cluster)}/jobs/${SdkClient.encodePathSegment(jobId)}",
-                    config = clientConfig,
-                    operationId = "orgsGetClusterDeploymentRecordsJob",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+        return SdkClient.request<Orgs.OrgsGetClusterDeploymentRecordsJobResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/artifacts/metadata/deployment-record/cluster/${SdkClient.encodePathSegment(cluster)}/jobs/${SdkClient.encodePathSegment(jobId)}", config = clientConfig, operationId = "orgsGetClusterDeploymentRecordsJob", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
 
 internal object OrgsCreateArtifactStorageRecordOperation {
     /**
-     * Create metadata storage records for artifacts associated with an organization. This endpoint
-     * will create a new artifact storage record on behalf of any artifact matching the provided
-     * digest and associated with a repository owned by the organization.
+     * Create metadata storage records for artifacts associated with an organization. This endpoint will create a new artifact storage record on behalf of any artifact matching the provided digest and associated with a repository owned by the organization.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name The name of the artifact.
@@ -364,123 +209,65 @@ internal object OrgsCreateArtifactStorageRecordOperation {
      * @param path The path of the artifact.
      * @param repository The repository name within the registry.
      * @param status The status of the artifact (e.g., active, inactive).
-     * @param githubRepository The name of the GitHub repository associated with the artifact. This
-     *   should be used when there are no provenance attestations available for the artifact. The
-     *   repository must belong to the organization specified in the path parameter. If a provenance
-     *   attestation is available for the artifact, the API will use the repository information from
-     *   the attestation instead of this parameter.
-     * @param returnRecords If true, the endpoint will return the created record in the response
-     *   body.
+     * @param githubRepository The name of the GitHub repository associated with the
+     *   artifact. This should be used when there are no provenance attestations
+     *   available for the artifact. The repository must belong to the organization
+     *   specified in the path parameter. If a provenance attestation is available for
+     *   the artifact, the API will use the repository information from the attestation
+     *   instead of this parameter.
+     * @param returnRecords If true, the endpoint will return the created record in
+     *   the response body.
      */
-    fun orgsCreateArtifactStorageRecord(
-        clientConfig: ClientConfig,
-        request: Orgs.OrgsCreateArtifactStorageRecordRequest,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsCreateArtifactStorageRecordResponse {
+    fun orgsCreateArtifactStorageRecord(clientConfig: ClientConfig, request: Orgs.OrgsCreateArtifactStorageRecordRequest, options: RequestOptions? = null): Orgs.OrgsCreateArtifactStorageRecordResponse {
         validateOrgsCreateArtifactStorageRecordRequest(request)
 
-        return SdkClient.request<Orgs.OrgsCreateArtifactStorageRecordResponse>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/orgs/${SdkClient.encodePathSegment(request.org)}/artifacts/metadata/storage-record",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap(
-                            "name" to (request.name),
-                            "digest" to (request.digest),
-                            "registry_url" to (request.registryUrl),
-                            "version" to (SdkClient.omitIfNull(request.version)),
-                            "artifact_url" to (SdkClient.omitIfNull(request.artifactUrl)),
-                            "path" to (SdkClient.omitIfNull(request.path)),
-                            "repository" to (SdkClient.omitIfNull(request.repository)),
-                            "status" to (SdkClient.omitIfNull(request.status)),
-                            "github_repository" to (SdkClient.omitIfNull(request.githubRepository)),
-                            "return_records" to (SdkClient.omitIfNull(request.returnRecords)),
-                        ),
-                    operationId = "orgsCreateArtifactStorageRecord",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
-                )
-            )
-            .data
+        return SdkClient.request<Orgs.OrgsCreateArtifactStorageRecordResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/artifacts/metadata/storage-record", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "digest" to (request.digest), "registry_url" to (request.registryUrl), "version" to (SdkClient.omitIfNull(request.version)), "artifact_url" to
+    (SdkClient.omitIfNull(request.artifactUrl)), "path" to (SdkClient.omitIfNull(request.path)), "repository" to (SdkClient.omitIfNull(request.repository)), "status" to (SdkClient.omitIfNull(request.status)), "github_repository" to
+    (SdkClient.omitIfNull(request.githubRepository)), "return_records" to
+    (SdkClient.omitIfNull(request.returnRecords))), operationId = "orgsCreateArtifactStorageRecord", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 
-    private fun validateOrgsCreateArtifactStorageRecordRequest(
-        request: Orgs.OrgsCreateArtifactStorageRecordRequest
-    ) {
+
+    private fun validateOrgsCreateArtifactStorageRecordRequest(request: Orgs.OrgsCreateArtifactStorageRecordRequest) {
         validateOrgsCreateArtifactStorageRecordRequestPart1(request)
         validateOrgsCreateArtifactStorageRecordRequestPart2(request)
     }
 
-    private fun validateOrgsCreateArtifactStorageRecordRequestPart1(
-        request: Orgs.OrgsCreateArtifactStorageRecordRequest
-    ) {
+    private fun validateOrgsCreateArtifactStorageRecordRequestPart1(request: Orgs.OrgsCreateArtifactStorageRecordRequest) {
         Validation.validateLength("name", request.name, Validation.LengthOpts(min = 1, max = 256))
 
-        Validation.validateLength(
-            "digest",
-            request.digest,
-            Validation.LengthOpts(min = 71, max = 71),
-        )
+        Validation.validateLength("digest", request.digest, Validation.LengthOpts(min = 71, max = 71))
         Validation.validatePattern("digest", request.digest, "^sha256:[a-f0-9]{64}$")
 
-        Validation.validateLength(
-            "registry_url",
-            request.registryUrl,
-            Validation.LengthOpts(min = 1, max = 256),
-        )
+        Validation.validateLength("registry_url", request.registryUrl, Validation.LengthOpts(min = 1, max = 256))
         Validation.validatePattern("registry_url", request.registryUrl, "^https://")
         Validation.validateUri("registry_url", request.registryUrl)
 
         if (request.version != null) {
-            Validation.validateLength(
-                "version",
-                request.version,
-                Validation.LengthOpts(min = 1, max = 100),
-            )
-        }
+            Validation.validateLength("version", request.version, Validation.LengthOpts(min = 1, max = 100))
+}
 
         if (request.artifactUrl != null) {
-            Validation.validateLength(
-                "artifact_url",
-                request.artifactUrl,
-                Validation.LengthOpts(max = 152),
-            )
+            Validation.validateLength("artifact_url", request.artifactUrl, Validation.LengthOpts(max = 152))
             Validation.validatePattern("artifact_url", request.artifactUrl, "^https://")
             Validation.validateUri("artifact_url", request.artifactUrl)
-        }
+}
     }
 
-    private fun validateOrgsCreateArtifactStorageRecordRequestPart2(
-        request: Orgs.OrgsCreateArtifactStorageRecordRequest
-    ) {
+    private fun validateOrgsCreateArtifactStorageRecordRequestPart2(request: Orgs.OrgsCreateArtifactStorageRecordRequest) {
         if (request.path != null) {
             Validation.validateLength("path", request.path, Validation.LengthOpts(max = 512))
             Validation.validateUri("path", request.path)
-        }
+}
 
         if (request.repository != null) {
-            Validation.validateLength(
-                "repository",
-                request.repository,
-                Validation.LengthOpts(max = 128),
-            )
-        }
+            Validation.validateLength("repository", request.repository, Validation.LengthOpts(max = 128))
+}
 
         if (request.githubRepository != null) {
-            Validation.validateLength(
-                "github_repository",
-                request.githubRepository,
-                Validation.LengthOpts(min = 1, max = 100),
-            )
-            Validation.validatePattern(
-                "github_repository",
-                request.githubRepository,
-                "^[A-Za-z0-9.\\-_]+$",
-            )
-        }
+            Validation.validateLength("github_repository", request.githubRepository, Validation.LengthOpts(min = 1, max = 100))
+            Validation.validatePattern("github_repository", request.githubRepository, "^[A-Za-z0-9.\\-_]+$")
+}
     }
 }
 
@@ -489,69 +276,29 @@ internal object OrgsListArtifactDeploymentRecordsOperation {
      * List deployment records for an artifact metadata associated with an organization.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param subjectDigest The SHA256 digest of the artifact, in the form `sha256:HEX_DIGEST`.
+     * @param subjectDigest The SHA256 digest of the artifact, in the form
+     *   `sha256:HEX_DIGEST`.
      */
-    fun orgsListArtifactDeploymentRecords(
-        clientConfig: ClientConfig,
-        org: String,
-        subjectDigest: String,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsListArtifactDeploymentRecordsResponse {
-        Validation.validateLength(
-            "subject_digest",
-            subjectDigest,
-            Validation.LengthOpts(min = 71, max = 71),
-        )
+    fun orgsListArtifactDeploymentRecords(clientConfig: ClientConfig, org: String, subjectDigest: String, options: RequestOptions? = null): Orgs.OrgsListArtifactDeploymentRecordsResponse {
+        Validation.validateLength("subject_digest", subjectDigest, Validation.LengthOpts(min = 71, max = 71))
         Validation.validatePattern("subject_digest", subjectDigest, "^sha256:[a-f0-9]{64}$")
 
-        return SdkClient.request<Orgs.OrgsListArtifactDeploymentRecordsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/artifacts/${SdkClient.encodePathSegment(subjectDigest)}/metadata/deployment-records",
-                    config = clientConfig,
-                    operationId = "orgsListArtifactDeploymentRecords",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<Orgs.OrgsListArtifactDeploymentRecordsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/artifacts/${SdkClient.encodePathSegment(subjectDigest)}/metadata/deployment-records", config = clientConfig, operationId = "orgsListArtifactDeploymentRecords", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }
 
 internal object OrgsListArtifactStorageRecordsOperation {
     /**
-     * List artifact storage records with a given subject digest for repositories owned by an
-     * organization. Results are filtered by the authenticated user's permissions; records for
-     * repositories the user cannot read are omitted. Fine-grained access tokens require the
-     * `artifact-metadata:read` permission.
+     * List artifact storage records with a given subject digest for repositories owned by an organization. Results are filtered by the authenticated user's permissions; records for repositories the user cannot read are omitted. Fine-grained access tokens require the `artifact-metadata:read` permission.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param subjectDigest The parameter should be set to the attestation's subject's SHA256
-     *   digest, in the form `sha256:HEX_DIGEST`.
+     * @param subjectDigest The parameter should be set to the attestation's
+     *   subject's SHA256 digest, in the form `sha256:HEX_DIGEST`.
      */
-    fun orgsListArtifactStorageRecords(
-        clientConfig: ClientConfig,
-        org: String,
-        subjectDigest: String,
-        options: RequestOptions? = null,
-    ): Orgs.OrgsListArtifactStorageRecordsResponse {
-        Validation.validateLength(
-            "subject_digest",
-            subjectDigest,
-            Validation.LengthOpts(min = 71, max = 71),
-        )
+    fun orgsListArtifactStorageRecords(clientConfig: ClientConfig, org: String, subjectDigest: String, options: RequestOptions? = null): Orgs.OrgsListArtifactStorageRecordsResponse {
+        Validation.validateLength("subject_digest", subjectDigest, Validation.LengthOpts(min = 71, max = 71))
         Validation.validatePattern("subject_digest", subjectDigest, "^sha256:[a-f0-9]{64}$")
 
-        return SdkClient.request<Orgs.OrgsListArtifactStorageRecordsResponse>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/orgs/${SdkClient.encodePathSegment(org)}/artifacts/${SdkClient.encodePathSegment(subjectDigest)}/metadata/storage-records",
-                    config = clientConfig,
-                    operationId = "orgsListArtifactStorageRecords",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                )
-            )
-            .data
+        return SdkClient.request<Orgs.OrgsListArtifactStorageRecordsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/artifacts/${SdkClient.encodePathSegment(subjectDigest)}/metadata/storage-records", config = clientConfig, operationId = "orgsListArtifactStorageRecords", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 }

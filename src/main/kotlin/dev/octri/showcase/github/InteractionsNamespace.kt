@@ -3,261 +3,118 @@
 
 package dev.octri.showcase.github
 
+
 class InteractionsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Shows which type of GitHub user can interact with this organization and when the restriction
-     * expires. If there is no restrictions, you will see an empty response.
+     * Shows which type of GitHub user can interact with this organization and when the restriction expires. If there is no restrictions, you will see an empty response.
      */
     fun getRestrictionsForOrg(org: String, options: RequestOptions? = null): Any {
-        return dev.octri.showcase.github.methods.Interactions.interactionsGetRestrictionsForOrg(
-            clientConfig,
-            org,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Interactions.interactionsGetRestrictionsForOrg(clientConfig, org, options)
     }
 
     /**
-     * Temporarily restricts interactions to a certain type of GitHub user in any public repository
-     * in the given organization. You must be an organization owner to set these restrictions.
-     * Setting the interaction limit at the organization level will overwrite any interaction limits
-     * that are set for individual repositories owned by the organization.
+     * Temporarily restricts interactions to a certain type of GitHub user in any public repository in the given organization. You must be an organization owner to set these restrictions. Setting the interaction limit at the organization level will overwrite any interaction limits that are set for individual repositories owned by the organization.
      */
-    fun setRestrictionsForOrg(
-        org: String,
-        limit: InteractionGroup,
-        expiry: InteractionExpiry? = null,
-        options: RequestOptions? = null,
-    ): InteractionLimitResponse {
-        return dev.octri.showcase.github.methods.Interactions.interactionsSetRestrictionsForOrg(
-            clientConfig,
-            org,
-            limit,
-            expiry,
-            options,
-        )
+    fun setRestrictionsForOrg(org: String, limit: InteractionGroup, expiry: InteractionExpiry? = null, options: RequestOptions? = null): InteractionLimitResponse {
+        return dev.octri.showcase.github.methods.Interactions.interactionsSetRestrictionsForOrg(clientConfig, org, limit, expiry, options)
     }
 
     /**
-     * Removes all interaction restrictions from public repositories in the given organization. You
-     * must be an organization owner to remove restrictions.
+     * Removes all interaction restrictions from public repositories in the given organization. You must be an organization owner to remove restrictions.
      */
     fun removeRestrictionsForOrg(org: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.Interactions.interactionsRemoveRestrictionsForOrg(
-            clientConfig,
-            org,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Interactions.interactionsRemoveRestrictionsForOrg(clientConfig, org, options)
     }
 
     /**
-     * Gets the pull request creation cap configuration for an organization. The cap limits the
-     * total number of open pull requests a user can have across all public repositories in the
-     * organization at one time. Only users with admin access to the organization can view the cap
-     * configuration.
+     * Gets the pull request creation cap configuration for an organization. The cap limits the total number of open pull requests a user can have across all public repositories in the organization at one time. Only users with admin access to the organization can view the cap configuration.
      */
-    fun getPullRequestCreationCapForOrg(
-        org: String,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.Interactions.InteractionsGetPullRequestCreationCapForOrgResponse {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsGetPullRequestCreationCapForOrg(clientConfig, org, options)
+    fun getPullRequestCreationCapForOrg(org: String, options: RequestOptions? = null): dev.octri.showcase.github.methods.Interactions.InteractionsGetPullRequestCreationCapForOrgResponse {
+        return dev.octri.showcase.github.methods.Interactions.interactionsGetPullRequestCreationCapForOrg(clientConfig, org, options)
     }
 
     /**
-     * Updates the pull request creation cap for an organization. The cap limits the total number of
-     * open pull requests a user can have across all public repositories in the organization at one
-     * time. Only users with admin access to the organization can configure the cap.
+     * Updates the pull request creation cap for an organization. The cap limits the total number of open pull requests a user can have across all public repositories in the organization at one time. Only users with admin access to the organization can configure the cap.
      */
-    fun updatePullRequestCreationCapForOrg(
-        org: String,
-        enabled: Boolean,
-        maxOpenPullRequests: Long? = null,
-        includeDrafts: Boolean? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.Interactions.InteractionsUpdatePullRequestCreationCapForOrgResponse {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsUpdatePullRequestCreationCapForOrg(
-                clientConfig,
-                org,
-                enabled,
-                maxOpenPullRequests,
-                includeDrafts,
-                options,
-            )
+    fun updatePullRequestCreationCapForOrg(org: String, enabled: Boolean, maxOpenPullRequests: Long? = null, includeDrafts: Boolean? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.Interactions.InteractionsUpdatePullRequestCreationCapForOrgResponse {
+        return dev.octri.showcase.github.methods.Interactions.interactionsUpdatePullRequestCreationCapForOrg(clientConfig, org, enabled, maxOpenPullRequests, includeDrafts, options)
     }
 
     /**
-     * Shows which type of GitHub user can interact with this repository and when the restriction
-     * expires. If there are no restrictions, you will see an empty response.
+     * Shows which type of GitHub user can interact with this repository and when the restriction expires. If there are no restrictions, you will see an empty response.
      */
     fun getRestrictionsForRepo(owner: String, repo: String, options: RequestOptions? = null): Any {
-        return dev.octri.showcase.github.methods.Interactions.interactionsGetRestrictionsForRepo(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+        return dev.octri.showcase.github.methods.Interactions.interactionsGetRestrictionsForRepo(clientConfig, owner, repo, options)
     }
 
     /**
-     * Temporarily restricts interactions to a certain type of GitHub user within the given
-     * repository. You must have owner or admin access to set these restrictions. If an interaction
-     * limit is set for the user or organization that owns this repository, you will receive a `409
-     * Conflict` response and will not be able to use this endpoint to change the interaction limit
-     * for a single repository.
+     * Temporarily restricts interactions to a certain type of GitHub user within the given repository. You must have owner or admin access to set these restrictions. If an interaction limit is set for the user or organization that owns this repository, you will receive a `409 Conflict` response and will not be able to use this endpoint to change the interaction limit for a single repository.
      */
-    fun setRestrictionsForRepo(
-        owner: String,
-        repo: String,
-        limit: InteractionGroup,
-        expiry: InteractionExpiry? = null,
-        options: RequestOptions? = null,
-    ): InteractionLimitResponse {
-        return dev.octri.showcase.github.methods.Interactions.interactionsSetRestrictionsForRepo(
-            clientConfig,
-            owner,
-            repo,
-            limit,
-            expiry,
-            options,
-        )
+    fun setRestrictionsForRepo(owner: String, repo: String, limit: InteractionGroup, expiry: InteractionExpiry? = null, options: RequestOptions? = null): InteractionLimitResponse {
+        return dev.octri.showcase.github.methods.Interactions.interactionsSetRestrictionsForRepo(clientConfig, owner, repo, limit, expiry, options)
     }
 
     /**
-     * Removes all interaction restrictions from the given repository. You must have owner or admin
-     * access to remove restrictions. If the interaction limit is set for the user or organization
-     * that owns this repository, you will receive a `409 Conflict` response and will not be able to
-     * use this endpoint to change the interaction limit for a single repository.
+     * Removes all interaction restrictions from the given repository. You must have owner or admin access to remove restrictions. If the interaction limit is set for the user or organization that owns this repository, you will receive a `409 Conflict` response and will not be able to use this endpoint to change the interaction limit for a single repository.
      */
-    fun removeRestrictionsForRepo(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Interactions.interactionsRemoveRestrictionsForRepo(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun removeRestrictionsForRepo(owner: String, repo: String, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Interactions.interactionsRemoveRestrictionsForRepo(clientConfig, owner, repo, options)
     }
 
     /**
-     * Lists the users that are on the pull request creation cap bypass list for a repository. Users
-     * on this list can create pull requests regardless of any configured pull request creation cap.
-     * Only users with maintainer permissions can view the bypass list.
+     * Lists the users that are on the pull request creation cap bypass list for a repository. Users on this list can create pull requests regardless of any configured pull request creation cap. Only users with maintainer permissions can view the bypass list.
      */
-    fun getPullRequestBypassListForRepo(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): List<SimpleUser> {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsGetPullRequestBypassListForRepo(clientConfig, owner, repo, options)
+    fun getPullRequestBypassListForRepo(owner: String, repo: String, options: RequestOptions? = null): List<SimpleUser> {
+        return dev.octri.showcase.github.methods.Interactions.interactionsGetPullRequestBypassListForRepo(clientConfig, owner, repo, options)
     }
 
     /**
-     * Adds users to the pull request creation cap bypass list for a repository. Users on this list
-     * can create pull requests regardless of any configured pull request creation cap. Only users
-     * with maintainer permissions can modify the bypass list. You can add a maximum of 100 users
-     * per request. The bypass list can only hold a maximum of 100 users.
+     * Adds users to the pull request creation cap bypass list for a repository. Users on this list can create pull requests regardless of any configured pull request creation cap. Only users with maintainer permissions can modify the bypass list. You can add a maximum of 100 users per request. The bypass list can only hold a maximum of 100 users.
      */
-    fun setPullRequestBypassListForRepo(
-        owner: String,
-        repo: String,
-        users: List<String>,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsSetPullRequestBypassListForRepo(clientConfig, owner, repo, users, options)
+    fun setPullRequestBypassListForRepo(owner: String, repo: String, users: List<String>, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Interactions.interactionsSetPullRequestBypassListForRepo(clientConfig, owner, repo, users, options)
     }
 
     /**
-     * Removes users from the pull request creation cap bypass list for a repository. Removed users
-     * will be subject to any configured pull request creation cap. Only users with maintainer
-     * permissions can modify the bypass list. You can remove a maximum of 100 users per request.
+     * Removes users from the pull request creation cap bypass list for a repository. Removed users will be subject to any configured pull request creation cap. Only users with maintainer permissions can modify the bypass list. You can remove a maximum of 100 users per request.
      */
-    fun removePullRequestBypassListForRepo(
-        owner: String,
-        repo: String,
-        users: List<String>,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsRemovePullRequestBypassListForRepo(
-                clientConfig,
-                owner,
-                repo,
-                users,
-                options,
-            )
+    fun removePullRequestBypassListForRepo(owner: String, repo: String, users: List<String>, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Interactions.interactionsRemovePullRequestBypassListForRepo(clientConfig, owner, repo, users, options)
     }
 
     /**
-     * Gets the pull request creation cap configuration for a repository. The cap limits the number
-     * of open pull requests a user can have at one time. Only users with admin access to the
-     * repository can view the cap configuration.
+     * Gets the pull request creation cap configuration for a repository. The cap limits the number of open pull requests a user can have at one time. Only users with admin access to the repository can view the cap configuration.
      */
-    fun getPullRequestCreationCapForRepo(
-        owner: String,
-        repo: String,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.Interactions.InteractionsGetPullRequestCreationCapForRepoResponse {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsGetPullRequestCreationCapForRepo(clientConfig, owner, repo, options)
+    fun getPullRequestCreationCapForRepo(owner: String, repo: String, options: RequestOptions? = null): dev.octri.showcase.github.methods.Interactions.InteractionsGetPullRequestCreationCapForRepoResponse {
+        return dev.octri.showcase.github.methods.Interactions.interactionsGetPullRequestCreationCapForRepo(clientConfig, owner, repo, options)
     }
 
     /**
-     * Updates the pull request creation cap for a repository. The cap limits the number of open
-     * pull requests a user can have at one time. Only users with admin access to the repository can
-     * configure the cap.
+     * Updates the pull request creation cap for a repository. The cap limits the number of open pull requests a user can have at one time. Only users with admin access to the repository can configure the cap.
      */
-    fun updatePullRequestCreationCapForRepo(
-        owner: String,
-        repo: String,
-        enabled: Boolean,
-        maxOpenPullRequests: Long? = null,
-        includeDrafts: Boolean? = null,
-        options: RequestOptions? = null,
-    ): dev.octri.showcase.github.methods.Interactions.InteractionsUpdatePullRequestCreationCapForRepoResponse {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsUpdatePullRequestCreationCapForRepo(
-                clientConfig,
-                owner,
-                repo,
-                enabled,
-                maxOpenPullRequests,
-                includeDrafts,
-                options,
-            )
+    fun updatePullRequestCreationCapForRepo(owner: String, repo: String, enabled: Boolean, maxOpenPullRequests: Long? = null, includeDrafts: Boolean? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.Interactions.InteractionsUpdatePullRequestCreationCapForRepoResponse {
+        return dev.octri.showcase.github.methods.Interactions.interactionsUpdatePullRequestCreationCapForRepo(clientConfig, owner, repo, enabled, maxOpenPullRequests, includeDrafts, options)
     }
 
     /**
-     * Shows which type of GitHub user can interact with your public repositories and when the
-     * restriction expires.
+     * Shows which type of GitHub user can interact with your public repositories and when the restriction expires.
      */
     fun getRestrictionsForAuthenticatedUser(options: RequestOptions? = null): Any {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsGetRestrictionsForAuthenticatedUser(clientConfig, options)
+        return dev.octri.showcase.github.methods.Interactions.interactionsGetRestrictionsForAuthenticatedUser(clientConfig, options)
     }
 
     /**
-     * Temporarily restricts which type of GitHub user can interact with your public repositories.
-     * Setting the interaction limit at the user level will overwrite any interaction limits that
-     * are set for individual repositories owned by the user.
+     * Temporarily restricts which type of GitHub user can interact with your public repositories. Setting the interaction limit at the user level will overwrite any interaction limits that are set for individual repositories owned by the user.
      */
-    fun setRestrictionsForAuthenticatedUser(
-        limit: InteractionGroup,
-        expiry: InteractionExpiry? = null,
-        options: RequestOptions? = null,
-    ): InteractionLimitResponse {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsSetRestrictionsForAuthenticatedUser(clientConfig, limit, expiry, options)
+    fun setRestrictionsForAuthenticatedUser(limit: InteractionGroup, expiry: InteractionExpiry? = null, options: RequestOptions? = null): InteractionLimitResponse {
+        return dev.octri.showcase.github.methods.Interactions.interactionsSetRestrictionsForAuthenticatedUser(clientConfig, limit, expiry, options)
     }
 
-    /** Removes any interaction restrictions from your public repositories. */
+    /**
+     * Removes any interaction restrictions from your public repositories.
+     */
     fun removeRestrictionsForAuthenticatedUser(options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.Interactions
-            .interactionsRemoveRestrictionsForAuthenticatedUser(clientConfig, options)
+        return dev.octri.showcase.github.methods.Interactions.interactionsRemoveRestrictionsForAuthenticatedUser(clientConfig, options)
     }
+
 }

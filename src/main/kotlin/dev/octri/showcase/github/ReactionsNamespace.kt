@@ -3,287 +3,113 @@
 
 package dev.octri.showcase.github
 
+
 class ReactionsNamespace(private val clientConfig: ClientConfig) {
-    /** List the reactions to a commit comment. */
-    fun listForCommitComment(
-        request: dev.octri.showcase.github.methods.Reactions.ReactionsListForCommitCommentRequest,
-        options: RequestOptions? = null,
-    ): List<Reaction> {
-        return dev.octri.showcase.github.methods.Reactions.reactionsListForCommitComment(
-            clientConfig,
-            request,
-            options,
-        )
-    }
-
     /**
-     * Create a reaction to a commit comment. A response with an HTTP `200` status means that you
-     * already added the reaction type to this commit comment.
+     * List the reactions to a commit comment.
      */
-    fun createForCommitComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        content: ReactionsCreateForCommitCommentContentEnum,
-        options: RequestOptions? = null,
-    ): Reaction {
-        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForCommitComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            content,
-            options,
-        )
+    fun listForCommitComment(request: dev.octri.showcase.github.methods.Reactions.ReactionsListForCommitCommentRequest, options: RequestOptions? = null): List<Reaction> {
+        return dev.octri.showcase.github.methods.Reactions.reactionsListForCommitComment(clientConfig, request, options)
     }
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
-     * > /repositories/:repository_id/comments/:comment_id/reactions/:reaction_id`. Delete a
-     * > reaction to a \[commit comment.
+     * Create a reaction to a commit comment. A response with an HTTP `200` status means that you already added the reaction type to this commit comment.
      */
-    fun deleteForCommitComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        reactionId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForCommitComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            reactionId,
-            options,
-        )
-    }
-
-    /** List the reactions to an issue comment. */
-    fun listForIssueComment(
-        request: dev.octri.showcase.github.methods.Reactions.ReactionsListForIssueCommentRequest,
-        options: RequestOptions? = null,
-    ): List<Reaction> {
-        return dev.octri.showcase.github.methods.Reactions.reactionsListForIssueComment(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createForCommitComment(owner: String, repo: String, commentId: Long, content: ReactionsCreateForCommitCommentContentEnum, options: RequestOptions? = null): Reaction {
+        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForCommitComment(clientConfig, owner, repo, commentId, content, options)
     }
 
     /**
-     * Create a reaction to an issue comment. A response with an HTTP `200` status means that you
-     * already added the reaction type to this issue comment.
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/comments/:comment_id/reactions/:reaction_id`. Delete a reaction to a \[commit comment.
      */
-    fun createForIssueComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        content: ReactionsCreateForIssueCommentContentEnum,
-        options: RequestOptions? = null,
-    ): Reaction {
-        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForIssueComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            content,
-            options,
-        )
+    fun deleteForCommitComment(owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForCommitComment(clientConfig, owner, repo, commentId, reactionId, options)
     }
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
-     * > delete /repositories/:repository_id/issues/comments/:comment_id/reactions/:reaction_id`.
-     * > Delete a reaction to an \[issue comment.
+     * List the reactions to an issue comment.
      */
-    fun deleteForIssueComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        reactionId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForIssueComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            reactionId,
-            options,
-        )
+    fun listForIssueComment(request: dev.octri.showcase.github.methods.Reactions.ReactionsListForIssueCommentRequest, options: RequestOptions? = null): List<Reaction> {
+        return dev.octri.showcase.github.methods.Reactions.reactionsListForIssueComment(clientConfig, request, options)
     }
 
     /**
-     * Lists reactions to an issue in a repository. Use `content` to filter the results to one
-     * reaction type, or omit it to list all reactions; use `page` and `per_page` to paginate the
-     * results.
+     * Create a reaction to an issue comment. A response with an HTTP `200` status means that you already added the reaction type to this issue comment.
+     */
+    fun createForIssueComment(owner: String, repo: String, commentId: Long, content: ReactionsCreateForIssueCommentContentEnum, options: RequestOptions? = null): Reaction {
+        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForIssueComment(clientConfig, owner, repo, commentId, content, options)
+    }
+
+    /**
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE delete /repositories/:repository_id/issues/comments/:comment_id/reactions/:reaction_id`. Delete a reaction to an \[issue comment.
+     */
+    fun deleteForIssueComment(owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForIssueComment(clientConfig, owner, repo, commentId, reactionId, options)
+    }
+
+    /**
+     * Lists reactions to an issue in a repository. Use `content` to filter the results to one reaction type, or omit it to list all reactions; use `page` and `per_page` to paginate the results.
      *
      * List the reactions to an issue.
      */
-    fun listForIssue(
-        request: dev.octri.showcase.github.methods.Reactions.ReactionsListForIssueRequest,
-        options: RequestOptions? = null,
-    ): List<Reaction> {
-        return dev.octri.showcase.github.methods.Reactions.reactionsListForIssue(
-            clientConfig,
-            request,
-            options,
-        )
+    fun listForIssue(request: dev.octri.showcase.github.methods.Reactions.ReactionsListForIssueRequest, options: RequestOptions? = null): List<Reaction> {
+        return dev.octri.showcase.github.methods.Reactions.reactionsListForIssue(clientConfig, request, options)
     }
 
     /**
-     * Create a reaction to an issue. A response with an HTTP `200` status means that you already
-     * added the reaction type to this issue.
+     * Create a reaction to an issue. A response with an HTTP `200` status means that you already added the reaction type to this issue.
      */
-    fun createForIssue(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        content: ReactionsCreateForIssueContentEnum,
-        options: RequestOptions? = null,
-    ): Reaction {
-        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForIssue(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            content,
-            options,
-        )
+    fun createForIssue(owner: String, repo: String, issueNumber: Long, content: ReactionsCreateForIssueContentEnum, options: RequestOptions? = null): Reaction {
+        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForIssue(clientConfig, owner, repo, issueNumber, content, options)
     }
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
-     * > /repositories/:repository_id/issues/:issue_number/reactions/:reaction_id`. Delete a
-     * > reaction to an \[issue.
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/issues/:issue_number/reactions/:reaction_id`. Delete a reaction to an \[issue.
      */
-    fun deleteForIssue(
-        owner: String,
-        repo: String,
-        issueNumber: Long,
-        reactionId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForIssue(
-            clientConfig,
-            owner,
-            repo,
-            issueNumber,
-            reactionId,
-            options,
-        )
-    }
-
-    /** List the reactions to a pull request review comment. */
-    fun listForPullRequestReviewComment(
-        request:
-            dev.octri.showcase.github.methods.Reactions.ReactionsListForPullRequestReviewCommentRequest,
-        options: RequestOptions? = null,
-    ): List<Reaction> {
-        return dev.octri.showcase.github.methods.Reactions.reactionsListForPullRequestReviewComment(
-            clientConfig,
-            request,
-            options,
-        )
+    fun deleteForIssue(owner: String, repo: String, issueNumber: Long, reactionId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForIssue(clientConfig, owner, repo, issueNumber, reactionId, options)
     }
 
     /**
-     * Create a reaction to a pull request review comment. A response with an HTTP `200` status
-     * means that you already added the reaction type to this pull request review comment.
+     * List the reactions to a pull request review comment.
      */
-    fun createForPullRequestReviewComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        content: ReactionsCreateForPullRequestReviewCommentContentEnum,
-        options: RequestOptions? = null,
-    ): Reaction {
-        return dev.octri.showcase.github.methods.Reactions
-            .reactionsCreateForPullRequestReviewComment(
-                clientConfig,
-                owner,
-                repo,
-                commentId,
-                content,
-                options,
-            )
+    fun listForPullRequestReviewComment(request: dev.octri.showcase.github.methods.Reactions.ReactionsListForPullRequestReviewCommentRequest, options: RequestOptions? = null): List<Reaction> {
+        return dev.octri.showcase.github.methods.Reactions.reactionsListForPullRequestReviewComment(clientConfig, request, options)
     }
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
-     * > /repositories/:repository_id/pulls/comments/:comment_id/reactions/:reaction_id.` Delete a
-     * > reaction to a \[pull request review comment.
+     * Create a reaction to a pull request review comment. A response with an HTTP `200` status means that you already added the reaction type to this pull request review comment.
      */
-    fun deleteForPullRequestComment(
-        owner: String,
-        repo: String,
-        commentId: Long,
-        reactionId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForPullRequestComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            reactionId,
-            options,
-        )
-    }
-
-    /** List the reactions to a release. */
-    fun listForRelease(
-        request: dev.octri.showcase.github.methods.Reactions.ReactionsListForReleaseRequest,
-        options: RequestOptions? = null,
-    ): List<Reaction> {
-        return dev.octri.showcase.github.methods.Reactions.reactionsListForRelease(
-            clientConfig,
-            request,
-            options,
-        )
+    fun createForPullRequestReviewComment(owner: String, repo: String, commentId: Long, content: ReactionsCreateForPullRequestReviewCommentContentEnum, options: RequestOptions? = null): Reaction {
+        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForPullRequestReviewComment(clientConfig, owner, repo, commentId, content, options)
     }
 
     /**
-     * Create a reaction to a release. A response with a `Status: 200 OK` means that you already
-     * added the reaction type to this release.
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/pulls/comments/:comment_id/reactions/:reaction_id.` Delete a reaction to a \[pull request review comment.
      */
-    fun createForRelease(
-        owner: String,
-        repo: String,
-        releaseId: Long,
-        content: ReactionsCreateForReleaseContentEnum,
-        options: RequestOptions? = null,
-    ): Reaction {
-        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForRelease(
-            clientConfig,
-            owner,
-            repo,
-            releaseId,
-            content,
-            options,
-        )
+    fun deleteForPullRequestComment(owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForPullRequestComment(clientConfig, owner, repo, commentId, reactionId, options)
     }
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
-     * > delete /repositories/:repository_id/releases/:release_id/reactions/:reaction_id`. Delete a
-     * > reaction to a \[release.
+     * List the reactions to a release.
      */
-    fun deleteForRelease(
-        owner: String,
-        repo: String,
-        releaseId: Long,
-        reactionId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForRelease(
-            clientConfig,
-            owner,
-            repo,
-            releaseId,
-            reactionId,
-            options,
-        )
+    fun listForRelease(request: dev.octri.showcase.github.methods.Reactions.ReactionsListForReleaseRequest, options: RequestOptions? = null): List<Reaction> {
+        return dev.octri.showcase.github.methods.Reactions.reactionsListForRelease(clientConfig, request, options)
     }
+
+    /**
+     * Create a reaction to a release. A response with a `Status: 200 OK` means that you already added the reaction type to this release.
+     */
+    fun createForRelease(owner: String, repo: String, releaseId: Long, content: ReactionsCreateForReleaseContentEnum, options: RequestOptions? = null): Reaction {
+        return dev.octri.showcase.github.methods.Reactions.reactionsCreateForRelease(clientConfig, owner, repo, releaseId, content, options)
+    }
+
+    /**
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE delete /repositories/:repository_id/releases/:release_id/reactions/:reaction_id`. Delete a reaction to a \[release.
+     */
+    fun deleteForRelease(owner: String, repo: String, releaseId: Long, reactionId: Long, options: RequestOptions? = null): Unit {
+        return dev.octri.showcase.github.methods.Reactions.reactionsDeleteForRelease(clientConfig, owner, repo, releaseId, reactionId, options)
+    }
+
 }

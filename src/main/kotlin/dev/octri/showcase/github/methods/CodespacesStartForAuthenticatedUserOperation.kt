@@ -11,36 +11,11 @@ import dev.octri.showcase.github.SdkClient
 
 internal object CodespacesStartForAuthenticatedUserOperation {
     /**
-     * Starts a user's codespace. OAuth app tokens and personal access tokens (classic) need the
-     * `codespace` scope to use this endpoint.
+     * Starts a user's codespace. OAuth app tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
      *
      * @param codespaceName The name of the codespace.
      */
-    fun codespacesStartForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        codespaceName: String,
-        options: RequestOptions? = null,
-    ): Codespace {
-        return SdkClient.request<Codespace>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/start",
-                    config = clientConfig,
-                    operationId = "codespacesStartForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "400" to BasicError::class.java,
-                            "401" to BasicError::class.java,
-                            "402" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "409" to BasicError::class.java,
-                            "500" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun codespacesStartForAuthenticatedUser(clientConfig: ClientConfig, codespaceName: String, options: RequestOptions? = null): Codespace {
+        return SdkClient.request<Codespace>(SdkClient.RequestSpec("POST", "/user/codespaces/${SdkClient.encodePathSegment(codespaceName)}/start", config = clientConfig, operationId = "codespacesStartForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "401" to BasicError::class.java, "402" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "500" to BasicError::class.java))).data
     }
 }

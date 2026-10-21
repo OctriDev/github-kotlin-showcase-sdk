@@ -3,12 +3,20 @@
 
 package dev.octri.showcase.github.models
 
-/** View Traffic */
+/**
+ * View Traffic
+ */
 data class ViewTraffic(
-    /** Required `integer` value serialized in the `count` wire field. */
+    /**
+     * Required `integer` value serialized in the `count` wire field.
+     */
     val count: Long,
-    /** Required `integer` value serialized in the `uniques` wire field. */
+    /**
+     * Required `integer` value serialized in the `uniques` wire field.
+     */
     val uniques: Long,
-    /** Required array value serialized in the `views` wire field. */
-    val views: List<Traffic>,
+    /**
+     * Required array value serialized in the `views` wire field.
+     */
+    val views: List<Traffic>
 )

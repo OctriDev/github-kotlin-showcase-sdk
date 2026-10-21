@@ -5,55 +5,90 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/** Required object value serialized in the `base` wire field. */
+/**
+ * Required object value serialized in the `base` wire field.
+ */
 data class PullRequestStackMinimalBase(
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String
 )
 
-/** Required object value serialized in the `head` wire field. */
+/**
+ * Required object value serialized in the `head` wire field.
+ */
 data class PullRequestStackMinimalPullRequestsItemHead(
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String,
-    /** Required `string` value serialized in the `sha` wire field. */
-    val sha: String,
+    /**
+     * Required `string` value serialized in the `sha` wire field.
+     */
+    val sha: String
 )
 
-/** Required object value serialized in the `pull_requests[]` wire field. */
+/**
+ * Required object value serialized in the `pull_requests[]` wire field.
+ */
 data class PullRequestStackMinimalPullRequestsItem(
-    /** Required `integer` value serialized in the `number` wire field. */
+    /**
+     * Required `integer` value serialized in the `number` wire field.
+     */
     val number: Long,
-    /** Required enumerated value serialized in the `state` wire field. */
+    /**
+     * Required enumerated value serialized in the `state` wire field.
+     */
     val state: PullRequestStackMinimalPullRequestsItemStateEnum,
-    /** Required `boolean` value serialized in the `draft` wire field. */
+    /**
+     * Required `boolean` value serialized in the `draft` wire field.
+     */
     val draft: Boolean,
-    /** Required `date-time`-formatted value serialized in the `merged_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true)
-    val mergedAt: OffsetDateTime?,
-    /** Required object value serialized in the `head` wire field. */
-    val head: PullRequestStackMinimalPullRequestsItemHead,
+    /**
+     * Required `date-time`-formatted value serialized in the `merged_at` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true) val mergedAt: OffsetDateTime?,
+    /**
+     * Required object value serialized in the `head` wire field.
+     */
+    val head: PullRequestStackMinimalPullRequestsItemHead
 )
 
-/** Typed representation of the `PullRequestStackMinimal` API schema. */
+/**
+ * Typed representation of the `PullRequestStackMinimal` API schema.
+ */
 data class PullRequestStackMinimal(
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `integer` value serialized in the `number` wire field. */
+    /**
+     * Required `integer` value serialized in the `number` wire field.
+     */
     val number: Long,
-    /** Required `string` value serialized in the `node_id` wire field. */
+    /**
+     * Required `string` value serialized in the `node_id` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required object value serialized in the `base` wire field. */
+    /**
+     * Required object value serialized in the `base` wire field.
+     */
     val base: PullRequestStackMinimalBase,
     /**
-     * Whether the stack has any open pull request. False when all pull requests are merged or
-     * closed.
+     * Whether the stack has any open pull request. False when all pull requests are merged or closed.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("open") val `open`: Boolean,
-    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    /**
+     * Required `date-time`-formatted value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /** Required array value serialized in the `pull_requests` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
-    val pullRequests: List<PullRequestStackMinimalPullRequestsItem>,
+    /**
+     * Required array value serialized in the `pull_requests` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: List<PullRequestStackMinimalPullRequestsItem>
 )

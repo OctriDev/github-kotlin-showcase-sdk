@@ -3,28 +3,50 @@
 
 package dev.octri.showcase.github.models
 
-/** The `deploy key` resource. */
+/**
+ * The `deploy key` resource.
+ */
 data class WebhooksDeployKey(
-    /** Required `string` value serialized in the `created_at` wire field. */
+    /**
+     * Required `string` value serialized in the `created_at` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /** Required `integer` value serialized in the `id` wire field. */
+    /**
+     * Required `integer` value serialized in the `id` wire field.
+     */
     val id: Long,
-    /** Required `string` value serialized in the `key` wire field. */
+    /**
+     * Required `string` value serialized in the `key` wire field.
+     */
     val key: String,
-    /** Required `boolean` value serialized in the `read_only` wire field. */
+    /**
+     * Required `boolean` value serialized in the `read_only` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("read_only") val readOnly: Boolean,
-    /** Required `string` value serialized in the `title` wire field. */
+    /**
+     * Required `string` value serialized in the `title` wire field.
+     */
     val title: String,
-    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    /**
+     * Required `uri`-formatted value serialized in the `url` wire field.
+     */
     val url: String,
-    /** Required `boolean` value serialized in the `verified` wire field. */
+    /**
+     * Required `boolean` value serialized in the `verified` wire field.
+     */
     val verified: Boolean,
-    /** Optional `string` value serialized in the `added_by` wire field. */
+    /**
+     * Optional `string` value serialized in the `added_by` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("added_by") val addedBy: String? = null,
-    /** Optional `string` value serialized in the `last_used` wire field. */
+    /**
+     * Optional `string` value serialized in the `last_used` wire field.
+     */
     @com.fasterxml.jackson.annotation.JsonProperty("last_used") val lastUsed: String? = null,
-    /** Optional `boolean` value serialized in the `enabled` wire field. */
-    val enabled: Boolean? = null,
+    /**
+     * Optional `boolean` value serialized in the `enabled` wire field.
+     */
+    val enabled: Boolean? = null
 )
 
 typealias WebhooksDeployPusherType = String

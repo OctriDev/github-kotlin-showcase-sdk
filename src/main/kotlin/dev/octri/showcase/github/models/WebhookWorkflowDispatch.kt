@@ -3,38 +3,40 @@
 
 package dev.octri.showcase.github.models
 
-/** Typed representation of the `WebhookWorkflowDispatch` API schema. */
+/**
+ * Typed representation of the `WebhookWorkflowDispatch` API schema.
+ */
 data class WebhookWorkflowDispatch(
-    /** Required object value serialized in the `inputs` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("inputs", required = true)
-    val inputs: Map<String, Any>?,
-    /** Required `string` value serialized in the `ref` wire field. */
+    /**
+     * Required object value serialized in the `inputs` wire field.
+     */
+    @com.fasterxml.jackson.annotation.JsonProperty("inputs", required = true) val inputs: Map<String, Any>?,
+    /**
+     * Required `string` value serialized in the `ref` wire field.
+     */
     val ref: String,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
-     * property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /** A GitHub user. */
+    /**
+     * A GitHub user.
+     */
     val sender: SimpleUser,
-    /** Required `string` value serialized in the `workflow` wire field. */
+    /**
+     * Required `string` value serialized in the `workflow` wire field.
+     */
     val workflow: String,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
-     * is configured on an enterprise account or an organization that's part of an enterprise
-     * account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the
-     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
-     * with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
-     * is configured for an organization, or when the event occurs from activity in a repository
-     * owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null,
+    val organization: OrganizationSimpleWebhooks? = null
 )

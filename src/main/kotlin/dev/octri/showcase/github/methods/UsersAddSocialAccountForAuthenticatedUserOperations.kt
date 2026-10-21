@@ -14,246 +14,84 @@ import dev.octri.showcase.github.ValidationError
 
 internal object UsersAddSocialAccountForAuthenticatedUserOperation {
     /**
-     * Add one or more social accounts to the authenticated user's profile. OAuth app tokens and
-     * personal access tokens (classic) need the `user` scope to use this endpoint.
+     * Add one or more social accounts to the authenticated user's profile. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
      *
      * @param accountUrls Full URLs for the social media profiles to add.
      */
-    fun usersAddSocialAccountForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        accountUrls: List<String>,
-        options: RequestOptions? = null,
-    ): List<SocialAccount> {
-        return SdkClient.request<List<SocialAccount>>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/user/social_accounts",
-                    config = clientConfig,
-                    body = SdkClient.bodyMap("account_urls" to (accountUrls)),
-                    operationId = "usersAddSocialAccountForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun usersAddSocialAccountForAuthenticatedUser(clientConfig: ClientConfig, accountUrls: List<String>, options: RequestOptions? = null): List<SocialAccount> {
+        return SdkClient.request<List<SocialAccount>>(SdkClient.RequestSpec("POST", "/user/social_accounts", config = clientConfig, body = SdkClient.bodyMap("account_urls" to (accountUrls)), operationId = "usersAddSocialAccountForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object UsersDeleteSocialAccountForAuthenticatedUserOperation {
     /**
-     * Deletes one or more social accounts from the authenticated user's profile. OAuth app tokens
-     * and personal access tokens (classic) need the `user` scope to use this endpoint.
+     * Deletes one or more social accounts from the authenticated user's profile. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
      *
      * @param accountUrls Full URLs for the social media profiles to delete.
      */
-    fun usersDeleteSocialAccountForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        accountUrls: List<String>,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/user/social_accounts",
-                config = clientConfig,
-                body = SdkClient.bodyMap("account_urls" to (accountUrls)),
-                operationId = "usersDeleteSocialAccountForAuthenticatedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                        "422" to ValidationError::class.java,
-                    ),
-            )
-        )
+    fun usersDeleteSocialAccountForAuthenticatedUser(clientConfig: ClientConfig, accountUrls: List<String>, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/social_accounts", config = clientConfig, body = SdkClient.bodyMap("account_urls" to (accountUrls)), operationId = "usersDeleteSocialAccountForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
     }
 }
 
 internal object UsersListSshSigningKeysForAuthenticatedUserOperation {
     /**
-     * Lists the SSH signing keys for the authenticated user's GitHub account. OAuth app tokens and
-     * personal access tokens (classic) need the `read:ssh_signing_key` scope to use this endpoint.
+     * Lists the SSH signing keys for the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `read:ssh_signing_key` scope to use this endpoint.
      *
-     * @param perPage The number of results per page (max 100). For more information, see "Using
-     *   pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see "Using
-     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information,
+     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see
+     *   "Using pagination in the REST API."
      */
-    fun usersListSshSigningKeysForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        perPage: Long? = null,
-        page: Long? = null,
-        options: RequestOptions? = null,
-    ): List<SshSigningKey> {
-        return SdkClient.request<List<SshSigningKey>>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/ssh_signing_keys",
-                    config = clientConfig,
-                    query =
-                        mapOf(
-                            "per_page" to SdkClient.queryValue(perPage, "form", true),
-                            "page" to SdkClient.queryValue(page, "form", true),
-                        ),
-                    operationId = "usersListSshSigningKeysForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun usersListSshSigningKeysForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SshSigningKey> {
+        return SdkClient.request<List<SshSigningKey>>(SdkClient.RequestSpec("GET", "/user/ssh_signing_keys", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "usersListSshSigningKeysForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object UsersCreateSshSigningKeyForAuthenticatedUserOperation {
     /**
-     * Creates an SSH signing key for the authenticated user's GitHub account. OAuth app tokens and
-     * personal access tokens (classic) need the `write:ssh_signing_key` scope to use this endpoint.
+     * Creates an SSH signing key for the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `write:ssh_signing_key` scope to use this endpoint.
      *
-     * @param key The public SSH key to add to your GitHub account. For more information, see
-     *   "Checking for existing SSH keys."
+     * @param key The public SSH key to add to your GitHub account. For more
+     *   information, see "Checking for existing SSH keys."
      * @param title A descriptive name for the new key.
      */
-    fun usersCreateSshSigningKeyForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        key: String,
-        title: String? = null,
-        options: RequestOptions? = null,
-    ): SshSigningKey {
-        Validation.validatePattern(
-            "key",
-            key,
-            "^ssh-(rsa|dss|ed25519) |^ecdsa-sha2-nistp(256|384|521) |^(sk-ssh-ed25519|sk-ecdsa-sha2-nistp256)@openssh.com ",
-        )
+    fun usersCreateSshSigningKeyForAuthenticatedUser(clientConfig: ClientConfig, key: String, title: String? = null, options: RequestOptions? = null): SshSigningKey {
+        Validation.validatePattern("key", key, "^ssh-(rsa|dss|ed25519) |^ecdsa-sha2-nistp(256|384|521) |^(sk-ssh-ed25519|sk-ecdsa-sha2-nistp256)@openssh.com ")
 
-        return SdkClient.request<SshSigningKey>(
-                SdkClient.RequestSpec(
-                    "POST",
-                    "/user/ssh_signing_keys",
-                    config = clientConfig,
-                    body =
-                        SdkClient.bodyMap("key" to (key), "title" to (SdkClient.omitIfNull(title))),
-                    operationId = "usersCreateSshSigningKeyForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                            "422" to ValidationError::class.java,
-                        ),
-                )
-            )
-            .data
+        return SdkClient.request<SshSigningKey>(SdkClient.RequestSpec("POST", "/user/ssh_signing_keys", config = clientConfig, body = SdkClient.bodyMap("key" to (key), "title" to (SdkClient.omitIfNull(title))), operationId = "usersCreateSshSigningKeyForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
     }
 }
 
 internal object UsersGetSshSigningKeyForAuthenticatedUserOperation {
     /**
-     * Gets extended details for an SSH signing key. OAuth app tokens and personal access tokens
-     * (classic) need the `read:ssh_signing_key` scope to use this endpoint.
+     * Gets extended details for an SSH signing key. OAuth app tokens and personal access tokens (classic) need the `read:ssh_signing_key` scope to use this endpoint.
      *
      * @param sshSigningKeyId The unique identifier of the SSH signing key.
      */
-    fun usersGetSshSigningKeyForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        sshSigningKeyId: Long,
-        options: RequestOptions? = null,
-    ): SshSigningKey {
-        return SdkClient.request<SshSigningKey>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/ssh_signing_keys/${SdkClient.encodePathSegment(sshSigningKeyId)}",
-                    config = clientConfig,
-                    operationId = "usersGetSshSigningKeyForAuthenticatedUser",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors =
-                        mapOf(
-                            "401" to BasicError::class.java,
-                            "403" to BasicError::class.java,
-                            "404" to BasicError::class.java,
-                        ),
-                )
-            )
-            .data
+    fun usersGetSshSigningKeyForAuthenticatedUser(clientConfig: ClientConfig, sshSigningKeyId: Long, options: RequestOptions? = null): SshSigningKey {
+        return SdkClient.request<SshSigningKey>(SdkClient.RequestSpec("GET", "/user/ssh_signing_keys/${SdkClient.encodePathSegment(sshSigningKeyId)}", config = clientConfig, operationId = "usersGetSshSigningKeyForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
     }
 }
 
 internal object UsersDeleteSshSigningKeyForAuthenticatedUserOperation {
     /**
-     * Deletes an SSH signing key from the authenticated user's GitHub account. OAuth app tokens and
-     * personal access tokens (classic) need the `admin:ssh_signing_key` scope to use this endpoint.
+     * Deletes an SSH signing key from the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `admin:ssh_signing_key` scope to use this endpoint.
      *
      * @param sshSigningKeyId The unique identifier of the SSH signing key.
      */
-    fun usersDeleteSshSigningKeyForAuthenticatedUser(
-        clientConfig: ClientConfig,
-        sshSigningKeyId: Long,
-        options: RequestOptions? = null,
-    ): Unit {
-        SdkClient.request<Unit>(
-            SdkClient.RequestSpec(
-                "DELETE",
-                "/user/ssh_signing_keys/${SdkClient.encodePathSegment(sshSigningKeyId)}",
-                config = clientConfig,
-                operationId = "usersDeleteSshSigningKeyForAuthenticatedUser",
-                decoder = SdkClient.ResponseDecoder.EMPTY,
-                options = options,
-                errors =
-                    mapOf(
-                        "401" to BasicError::class.java,
-                        "403" to BasicError::class.java,
-                        "404" to BasicError::class.java,
-                    ),
-            )
-        )
+    fun usersDeleteSshSigningKeyForAuthenticatedUser(clientConfig: ClientConfig, sshSigningKeyId: Long, options: RequestOptions? = null): Unit {
+        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/user/ssh_signing_keys/${SdkClient.encodePathSegment(sshSigningKeyId)}", config = clientConfig, operationId = "usersDeleteSshSigningKeyForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
     }
 }
 
 internal object UsersGetByIdOperation {
     /**
-     * Provides publicly available information about someone with a GitHub account. This method
-     * takes their durable user `ID` instead of their `login`, which can change over time. If you
-     * are requesting information about an Enterprise Managed User, or a GitHub App bot that is
-     * installed in an organization that uses Enterprise Managed Users, your requests must be
-     * authenticated as a user or GitHub App that has access to the organization to view that
-     * account's information. If you are…
+     * Provides publicly available information about someone with a GitHub account. This method takes their durable user `ID` instead of their `login`, which can change over time. If you are requesting information about an Enterprise Managed User, or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users, your requests must be authenticated as a user or GitHub App that has access to the organization to view that account's information. If you are…
      *
      * @param accountId account_id parameter
      */
-    fun usersGetById(
-        clientConfig: ClientConfig,
-        accountId: Long,
-        options: RequestOptions? = null,
-    ): Any {
-        return SdkClient.request<Any>(
-                SdkClient.RequestSpec(
-                    "GET",
-                    "/user/${SdkClient.encodePathSegment(accountId)}",
-                    config = clientConfig,
-                    operationId = "usersGetById",
-                    decoder = SdkClient.ResponseDecoder.JSON,
-                    options = options,
-                    errors = mapOf("404" to BasicError::class.java),
-                )
-            )
-            .data
+    fun usersGetById(clientConfig: ClientConfig, accountId: Long, options: RequestOptions? = null): Any {
+        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/user/${SdkClient.encodePathSegment(accountId)}", config = clientConfig, operationId = "usersGetById", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
     }
 }
