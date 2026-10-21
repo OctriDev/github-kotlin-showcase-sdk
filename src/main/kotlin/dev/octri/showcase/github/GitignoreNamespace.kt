@@ -5,11 +5,8 @@ package dev.octri.showcase.github
 
 class GitignoreNamespace(private val clientConfig: ClientConfig) {
     /** List all templates available to pass as an option when creating a repository. */
-    fun getAllTemplates(options: RequestOptions? = null): List<String> {
-        return dev.octri.showcase.github.methods.Gitignore.gitignoreGetAllTemplates(
-            clientConfig,
-            options,
-        )
+    fun listTemplates(options: RequestOptions? = null): List<String> {
+        return dev.octri.showcase.github.methods.Gitignore.listTemplates(clientConfig, options)
     }
 
     /**

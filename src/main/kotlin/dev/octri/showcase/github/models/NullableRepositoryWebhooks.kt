@@ -3,306 +3,280 @@
 
 package dev.octri.showcase.github.models
 
-/** Optional object value serialized in the `permissions` wire field. */
-data class NullableRepositoryWebhooksPermissions(
-    /** Required `boolean` value serialized in the `admin` wire field. */
-    val admin: Boolean,
-    /** Required `boolean` value serialized in the `pull` wire field. */
-    val pull: Boolean,
-    /** Required `boolean` value serialized in the `push` wire field. */
-    val push: Boolean,
-    /** Optional `boolean` value serialized in the `triage` wire field. */
-    val triage: Boolean? = null,
-    /** Optional `boolean` value serialized in the `maintain` wire field. */
-    val maintain: Boolean? = null,
-)
+import java.time.OffsetDateTime
 
-/** Optional object value serialized in the `owner` wire field. */
-data class NullableRepositoryWebhooksTemplateRepositoryOwner(
-    /** Optional `string` value serialized in the `login` wire field. */
-    val login: String? = null,
-    /** Optional `integer` value serialized in the `id` wire field. */
-    val id: Long? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `string` value serialized in the `avatar_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /** Optional `string` value serialized in the `gravatar_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /** Optional `string` value serialized in the `url` wire field. */
-    val url: String? = null,
-    /** Optional `string` value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `followers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
-    val followersUrl: String? = null,
-    /** Optional `string` value serialized in the `following_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
-    val followingUrl: String? = null,
-    /** Optional `string` value serialized in the `gists_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /** Optional `string` value serialized in the `starred_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /** Optional `string` value serialized in the `subscriptions_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
-    val subscriptionsUrl: String? = null,
-    /** Optional `string` value serialized in the `organizations_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
-    val organizationsUrl: String? = null,
-    /** Optional `string` value serialized in the `repos_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /** Optional `string` value serialized in the `events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `string` value serialized in the `received_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
-    val receivedEventsUrl: String? = null,
-    /** Optional `string` value serialized in the `type` wire field. */
-    val type: String? = null,
-    /** Optional `boolean` value serialized in the `site_admin` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-)
-
-/** Optional object value serialized in the `permissions` wire field. */
-data class NullableRepositoryWebhooksTemplateRepositoryPermissions(
-    /** Optional `boolean` value serialized in the `admin` wire field. */
-    val admin: Boolean? = null,
-    /** Optional `boolean` value serialized in the `maintain` wire field. */
-    val maintain: Boolean? = null,
-    /** Optional `boolean` value serialized in the `push` wire field. */
-    val push: Boolean? = null,
-    /** Optional `boolean` value serialized in the `triage` wire field. */
-    val triage: Boolean? = null,
-    /** Optional `boolean` value serialized in the `pull` wire field. */
-    val pull: Boolean? = null,
-)
-
-/** Optional object value serialized in the `template_repository` wire field. */
-class NullableRepositoryWebhooksTemplateRepository(
-    /** Optional `integer` value serialized in the `id` wire field. */
-    val id: Long? = null,
-    /** Optional `string` value serialized in the `node_id` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /** Optional `string` value serialized in the `name` wire field. */
-    val name: String? = null,
-    /** Optional `string` value serialized in the `full_name` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("full_name") val fullName: String? = null,
-    /** Optional object value serialized in the `owner` wire field. */
-    val owner: NullableRepositoryWebhooksTemplateRepositoryOwner? = null,
-    /** Optional `boolean` value serialized in the `private` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean? = null,
-    /** Optional `string` value serialized in the `html_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /** Optional `string` value serialized in the `description` wire field. */
-    val description: String? = null,
-    /** Optional `boolean` value serialized in the `fork` wire field. */
-    val fork: Boolean? = null,
-    /** Optional `string` value serialized in the `url` wire field. */
-    val url: String? = null,
-    /** Optional `string` value serialized in the `archive_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("archive_url") val archiveUrl: String? = null,
-    /** Optional `string` value serialized in the `assignees_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("assignees_url")
-    val assigneesUrl: String? = null,
-    /** Optional `string` value serialized in the `blobs_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("blobs_url") val blobsUrl: String? = null,
-    /** Optional `string` value serialized in the `branches_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("branches_url") val branchesUrl: String? = null,
-    /** Optional `string` value serialized in the `collaborators_url` wire field. */
+/**
+ * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+ * property when the event occurs from activity in a repository.
+ *
+ * @property id Unique identifier of the repository
+ * @property nodeId Required `string` value serialized in the `node_id` wire field.
+ * @property name The name of the repository.
+ * @property fullName Required `string` value serialized in the `full_name` wire field.
+ * @property license License Simple
+ * @property forks Required `integer` value serialized in the `forks` wire field.
+ * @property owner A GitHub user.
+ * @property `private` Whether the repository is private or public.
+ * @property htmlUrl Required `uri`-formatted value serialized in the `html_url` wire field.
+ * @property description Required `string` value serialized in the `description` wire field.
+ * @property fork Required `boolean` value serialized in the `fork` wire field.
+ * @property url Required `uri`-formatted value serialized in the `url` wire field.
+ * @property archiveUrl Required `string` value serialized in the `archive_url` wire field.
+ * @property assigneesUrl Required `string` value serialized in the `assignees_url` wire field.
+ * @property blobsUrl Required `string` value serialized in the `blobs_url` wire field.
+ * @property branchesUrl Required `string` value serialized in the `branches_url` wire field.
+ * @property collaboratorsUrl Required `string` value serialized in the `collaborators_url` wire
+ *   field.
+ * @property commentsUrl Required `string` value serialized in the `comments_url` wire field.
+ * @property commitsUrl Required `string` value serialized in the `commits_url` wire field.
+ * @property compareUrl Required `string` value serialized in the `compare_url` wire field.
+ * @property contentsUrl Required `string` value serialized in the `contents_url` wire field.
+ * @property contributorsUrl Required `uri`-formatted value serialized in the `contributors_url`
+ *   wire field.
+ * @property deploymentsUrl Required `uri`-formatted value serialized in the `deployments_url` wire
+ *   field.
+ * @property downloadsUrl Required `uri`-formatted value serialized in the `downloads_url` wire
+ *   field.
+ * @property eventsUrl Required `uri`-formatted value serialized in the `events_url` wire field.
+ * @property forksUrl Required `uri`-formatted value serialized in the `forks_url` wire field.
+ * @property gitCommitsUrl Required `string` value serialized in the `git_commits_url` wire field.
+ * @property gitRefsUrl Required `string` value serialized in the `git_refs_url` wire field.
+ * @property gitTagsUrl Required `string` value serialized in the `git_tags_url` wire field.
+ * @property gitUrl Required `string` value serialized in the `git_url` wire field.
+ * @property issueCommentUrl Required `string` value serialized in the `issue_comment_url` wire
+ *   field.
+ * @property issueEventsUrl Required `string` value serialized in the `issue_events_url` wire field.
+ * @property issuesUrl Required `string` value serialized in the `issues_url` wire field.
+ * @property keysUrl Required `string` value serialized in the `keys_url` wire field.
+ * @property labelsUrl Required `string` value serialized in the `labels_url` wire field.
+ * @property languagesUrl Required `uri`-formatted value serialized in the `languages_url` wire
+ *   field.
+ * @property mergesUrl Required `uri`-formatted value serialized in the `merges_url` wire field.
+ * @property milestonesUrl Required `string` value serialized in the `milestones_url` wire field.
+ * @property notificationsUrl Required `string` value serialized in the `notifications_url` wire
+ *   field.
+ * @property pullsUrl Required `string` value serialized in the `pulls_url` wire field.
+ * @property releasesUrl Required `string` value serialized in the `releases_url` wire field.
+ * @property sshUrl Required `string` value serialized in the `ssh_url` wire field.
+ * @property stargazersUrl Required `uri`-formatted value serialized in the `stargazers_url` wire
+ *   field.
+ * @property statusesUrl Required `string` value serialized in the `statuses_url` wire field.
+ * @property subscribersUrl Required `uri`-formatted value serialized in the `subscribers_url` wire
+ *   field.
+ * @property subscriptionUrl Required `uri`-formatted value serialized in the `subscription_url`
+ *   wire field.
+ * @property tagsUrl Required `uri`-formatted value serialized in the `tags_url` wire field.
+ * @property teamsUrl Required `uri`-formatted value serialized in the `teams_url` wire field.
+ * @property treesUrl Required `string` value serialized in the `trees_url` wire field.
+ * @property cloneUrl Required `string` value serialized in the `clone_url` wire field.
+ * @property mirrorUrl Required `uri`-formatted value serialized in the `mirror_url` wire field.
+ * @property hooksUrl Required `uri`-formatted value serialized in the `hooks_url` wire field.
+ * @property svnUrl Required `uri`-formatted value serialized in the `svn_url` wire field.
+ * @property homepage Required `uri`-formatted value serialized in the `homepage` wire field.
+ * @property language Required `string` value serialized in the `language` wire field.
+ * @property forksCount Required `integer` value serialized in the `forks_count` wire field.
+ * @property stargazersCount Required `integer` value serialized in the `stargazers_count` wire
+ *   field.
+ * @property watchersCount Required `integer` value serialized in the `watchers_count` wire field.
+ * @property size The size of the repository, in kilobytes. Size is calculated hourly. When a
+ *   repository is initially created, the size is 0.
+ * @property defaultBranch The default branch of the repository.
+ * @property openIssuesCount Required `integer` value serialized in the `open_issues_count` wire
+ *   field.
+ * @property hasIssues Whether issues are enabled.
+ * @property hasProjects Whether projects are enabled.
+ * @property hasWiki Whether the wiki is enabled.
+ * @property hasPages Required `boolean` value serialized in the `has_pages` wire field.
+ * @property hasDownloads Whether downloads are enabled.
+ * @property archived Whether the repository is archived.
+ * @property disabled Returns whether or not this repository disabled.
+ * @property pushedAt Required `date-time`-formatted value serialized in the `pushed_at` wire field.
+ * @property createdAt Required `date-time`-formatted value serialized in the `created_at` wire
+ *   field.
+ * @property updatedAt Required `date-time`-formatted value serialized in the `updated_at` wire
+ *   field.
+ * @property openIssues Required `integer` value serialized in the `open_issues` wire field.
+ * @property watchers Required `integer` value serialized in the `watchers` wire field.
+ * @property organization A GitHub user.
+ * @property permissions Optional object value serialized in the `permissions` wire field.
+ * @property isTemplate Whether this repository acts as a template that can be used to generate new
+ *   repositories.
+ * @property topics Optional array value serialized in the `topics` wire field.
+ * @property customProperties The custom properties that were defined for the repository. The keys
+ *   are the custom property names, and the values are the corresponding custom property values.
+ * @property hasDiscussions Whether discussions are enabled.
+ * @property hasPullRequests Whether pull requests are enabled.
+ * @property pullRequestCreationPolicy The policy controlling who can create pull requests: all or
+ *   collaborators_only.
+ * @property visibility The repository visibility: public, private, or internal.
+ * @property allowRebaseMerge Whether to allow rebase merges for pull requests.
+ * @property templateRepository Optional object value serialized in the `template_repository` wire
+ *   field.
+ * @property tempCloneToken Optional `string` value serialized in the `temp_clone_token` wire field.
+ * @property allowSquashMerge Whether to allow squash merges for pull requests.
+ * @property allowAutoMerge Whether to allow Auto-merge to be used on pull requests.
+ * @property deleteBranchOnMerge Whether to delete head branches when pull requests are merged
+ * @property allowUpdateBranch Whether or not a pull request head branch that is behind its base
+ *   branch can always be updated even if it is not required to be up to date before merging.
+ * @property useSquashPrTitleAsDefault Whether a squash merge commit can use the pull request title
+ *   as default. **This property is closing down. Please use `squash_merge_commit_title` instead.
+ * @property squashMergeCommitTitle The default value for a squash merge commit title: -
+ *   `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the
+ *   commit's title (if only one commit) or the pull request's title (when more than one commit).
+ * @property squashMergeCommitMessage The default value for a squash merge commit message: -
+ *   `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES`
+ *     - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+ *
+ * @property mergeCommitTitle The default value for a merge commit title. - `PR_TITLE` - default to
+ *   the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message
+ *   (e.g., Merge pull request #123 from branch-name).
+ * @property mergeCommitMessage The default value for a merge commit message. - `PR_TITLE` - default
+ *   to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` -
+ *   default to a blank commit message.
+ * @property allowMergeCommit Whether to allow merge commits for pull requests.
+ * @property allowForking Whether to allow forking this repo
+ * @property webCommitSignoffRequired Whether to require contributors to sign off on web-based
+ *   commits
+ * @property subscribersCount Optional `integer` value serialized in the `subscribers_count` wire
+ *   field.
+ * @property networkCount Optional `integer` value serialized in the `network_count` wire field.
+ * @property masterBranch Optional `string` value serialized in the `master_branch` wire field.
+ * @property starredAt Optional `string` value serialized in the `starred_at` wire field.
+ * @property anonymousAccessEnabled Whether anonymous git access is enabled for this repository
+ */
+class NullableRepositoryWebhooks(
+    val id: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+    val name: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("full_name") val fullName: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("license", required = true)
+    val license: NullableLicenseSimple?,
+    val forks: Long,
+    val owner: SimpleUser,
+    @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    val fork: Boolean,
+    val url: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("archive_url") val archiveUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("assignees_url") val assigneesUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("blobs_url") val blobsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("branches_url") val branchesUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("collaborators_url")
-    val collaboratorsUrl: String? = null,
-    /** Optional `string` value serialized in the `comments_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String? = null,
-    /** Optional `string` value serialized in the `commits_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String? = null,
-    /** Optional `string` value serialized in the `compare_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("compare_url") val compareUrl: String? = null,
-    /** Optional `string` value serialized in the `contents_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("contents_url") val contentsUrl: String? = null,
-    /** Optional `string` value serialized in the `contributors_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("contributors_url")
-    val contributorsUrl: String? = null,
-    /** Optional `string` value serialized in the `deployments_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("deployments_url")
-    val deploymentsUrl: String? = null,
-    /** Optional `string` value serialized in the `downloads_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("downloads_url")
-    val downloadsUrl: String? = null,
-    /** Optional `string` value serialized in the `events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /** Optional `string` value serialized in the `forks_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("forks_url") val forksUrl: String? = null,
-    /** Optional `string` value serialized in the `git_commits_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("git_commits_url")
-    val gitCommitsUrl: String? = null,
-    /** Optional `string` value serialized in the `git_refs_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("git_refs_url") val gitRefsUrl: String? = null,
-    /** Optional `string` value serialized in the `git_tags_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("git_tags_url") val gitTagsUrl: String? = null,
-    /** Optional `string` value serialized in the `git_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("git_url") val gitUrl: String? = null,
-    /** Optional `string` value serialized in the `issue_comment_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_comment_url")
-    val issueCommentUrl: String? = null,
-    /** Optional `string` value serialized in the `issue_events_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_events_url")
-    val issueEventsUrl: String? = null,
-    /** Optional `string` value serialized in the `issues_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("issues_url") val issuesUrl: String? = null,
-    /** Optional `string` value serialized in the `keys_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("keys_url") val keysUrl: String? = null,
-    /** Optional `string` value serialized in the `labels_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("labels_url") val labelsUrl: String? = null,
-    /** Optional `string` value serialized in the `languages_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("languages_url")
-    val languagesUrl: String? = null,
-    /** Optional `string` value serialized in the `merges_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("merges_url") val mergesUrl: String? = null,
-    /** Optional `string` value serialized in the `milestones_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("milestones_url")
-    val milestonesUrl: String? = null,
-    /** Optional `string` value serialized in the `notifications_url` wire field. */
+    val collaboratorsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("compare_url") val compareUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("contents_url") val contentsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("contributors_url") val contributorsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("deployments_url") val deploymentsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("downloads_url") val downloadsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("forks_url") val forksUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("git_commits_url") val gitCommitsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("git_refs_url") val gitRefsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("git_tags_url") val gitTagsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("git_url") val gitUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_comment_url") val issueCommentUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_events_url") val issueEventsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("issues_url") val issuesUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("keys_url") val keysUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("labels_url") val labelsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("languages_url") val languagesUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("merges_url") val mergesUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("milestones_url") val milestonesUrl: String,
     @com.fasterxml.jackson.annotation.JsonProperty("notifications_url")
-    val notificationsUrl: String? = null,
-    /** Optional `string` value serialized in the `pulls_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pulls_url") val pullsUrl: String? = null,
-    /** Optional `string` value serialized in the `releases_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("releases_url") val releasesUrl: String? = null,
-    /** Optional `string` value serialized in the `ssh_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("ssh_url") val sshUrl: String? = null,
-    /** Optional `string` value serialized in the `stargazers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("stargazers_url")
-    val stargazersUrl: String? = null,
-    /** Optional `string` value serialized in the `statuses_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String? = null,
-    /** Optional `string` value serialized in the `subscribers_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscribers_url")
-    val subscribersUrl: String? = null,
-    /** Optional `string` value serialized in the `subscription_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscription_url")
-    val subscriptionUrl: String? = null,
-    /** Optional `string` value serialized in the `tags_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("tags_url") val tagsUrl: String? = null,
-    /** Optional `string` value serialized in the `teams_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("teams_url") val teamsUrl: String? = null,
-    /** Optional `string` value serialized in the `trees_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("trees_url") val treesUrl: String? = null,
-    /** Optional `string` value serialized in the `clone_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("clone_url") val cloneUrl: String? = null,
-    /** Optional `string` value serialized in the `mirror_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("mirror_url") val mirrorUrl: String? = null,
-    /** Optional `string` value serialized in the `hooks_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String? = null,
-    /** Optional `string` value serialized in the `svn_url` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("svn_url") val svnUrl: String? = null,
-    /** Optional `string` value serialized in the `homepage` wire field. */
-    val homepage: String? = null,
-    /** Optional `string` value serialized in the `language` wire field. */
-    val language: String? = null,
-    /** Optional `integer` value serialized in the `forks_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("forks_count") val forksCount: Long? = null,
-    /** Optional `integer` value serialized in the `stargazers_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("stargazers_count")
-    val stargazersCount: Long? = null,
-    /** Optional `integer` value serialized in the `watchers_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("watchers_count")
-    val watchersCount: Long? = null,
-    /** Optional `integer` value serialized in the `size` wire field. */
-    val size: Long? = null,
-    /** Optional `string` value serialized in the `default_branch` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_branch")
-    val defaultBranch: String? = null,
-    /** Optional `integer` value serialized in the `open_issues_count` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("open_issues_count")
-    val openIssuesCount: Long? = null,
-    /** Optional `boolean` value serialized in the `is_template` wire field. */
+    val notificationsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("pulls_url") val pullsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("releases_url") val releasesUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("ssh_url") val sshUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("stargazers_url") val stargazersUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("subscribers_url") val subscribersUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("subscription_url") val subscriptionUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("tags_url") val tagsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("teams_url") val teamsUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("trees_url") val treesUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("clone_url") val cloneUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("mirror_url", required = true)
+    val mirrorUrl: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("hooks_url") val hooksUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("svn_url") val svnUrl: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("homepage", required = true)
+    val homepage: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("language", required = true)
+    val language: String?,
+    @com.fasterxml.jackson.annotation.JsonProperty("forks_count") val forksCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("stargazers_count") val stargazersCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("watchers_count") val watchersCount: Long,
+    val size: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("default_branch") val defaultBranch: String,
+    @com.fasterxml.jackson.annotation.JsonProperty("open_issues_count") val openIssuesCount: Long,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_issues") val hasIssues: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_projects") val hasProjects: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_wiki") val hasWiki: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_pages") val hasPages: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_downloads") val hasDownloads: Boolean,
+    val archived: Boolean,
+    val disabled: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at", required = true)
+    val pushedAt: OffsetDateTime?,
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true)
+    val createdAt: OffsetDateTime?,
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true)
+    val updatedAt: OffsetDateTime?,
+    @com.fasterxml.jackson.annotation.JsonProperty("open_issues") val openIssues: Long,
+    val watchers: Long,
+    val organization: NullableSimpleUser? = null,
+    val permissions: NullableRepositoryWebhooksPermissions? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("is_template") val isTemplate: Boolean? = null,
-    /** Optional array value serialized in the `topics` wire field. */
     val topics: List<String>? = null,
-    /** Optional `boolean` value serialized in the `has_issues` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_issues") val hasIssues: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_projects` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_projects") val hasProjects: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_wiki` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_wiki") val hasWiki: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_pages` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_pages") val hasPages: Boolean? = null,
-    /** Optional `boolean` value serialized in the `has_downloads` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_downloads")
-    val hasDownloads: Boolean? = null,
-    /** Optional `boolean` value serialized in the `archived` wire field. */
-    val archived: Boolean? = null,
-    /** Optional `boolean` value serialized in the `disabled` wire field. */
-    val disabled: Boolean? = null,
-    /** Optional `string` value serialized in the `visibility` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_properties")
+    val customProperties: Map<String, Any>? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_discussions")
+    val hasDiscussions: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("has_pull_requests")
+    val hasPullRequests: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_creation_policy")
+    val pullRequestCreationPolicy: NullableRepositoryWebhooksPullRequestCreationPolicyEnum? = null,
     val visibility: String? = null,
-    /** Optional `string` value serialized in the `pushed_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("pushed_at") val pushedAt: String? = null,
-    /** Optional `string` value serialized in the `created_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String? = null,
-    /** Optional `string` value serialized in the `updated_at` wire field. */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: String? = null,
-    /** Optional object value serialized in the `permissions` wire field. */
-    val permissions: NullableRepositoryWebhooksTemplateRepositoryPermissions? = null,
-    /** Optional `boolean` value serialized in the `allow_rebase_merge` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("allow_rebase_merge")
     val allowRebaseMerge: Boolean? = null,
-    /** Optional `string` value serialized in the `temp_clone_token` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("template_repository")
+    val templateRepository: NullableRepositoryWebhooksTemplateRepository? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("temp_clone_token")
     val tempCloneToken: String? = null,
-    /** Optional `boolean` value serialized in the `allow_squash_merge` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("allow_squash_merge")
     val allowSquashMerge: Boolean? = null,
-    /** Optional `boolean` value serialized in the `allow_auto_merge` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("allow_auto_merge")
     val allowAutoMerge: Boolean? = null,
-    /** Optional `boolean` value serialized in the `delete_branch_on_merge` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("delete_branch_on_merge")
     val deleteBranchOnMerge: Boolean? = null,
-    /** Optional `boolean` value serialized in the `allow_update_branch` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("allow_update_branch")
     val allowUpdateBranch: Boolean? = null,
-    /** Optional `boolean` value serialized in the `use_squash_pr_title_as_default` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("use_squash_pr_title_as_default")
     val useSquashPrTitleAsDefault: Boolean? = null,
-    /**
-     * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull
-     * request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit)
-     * or the pull request's title (when more than one commit).
-     */
     @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_title")
-    val squashMergeCommitTitle:
-        NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum? =
-        null,
-    /**
-     * The default value for a squash merge commit message: - `PR_BODY` - default to the pull
-     * request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` -
-     * default to a blank commit message.
-     */
+    val squashMergeCommitTitle: NullableRepositoryWebhooksSquashMergeCommitTitleEnum? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("squash_merge_commit_message")
-    val squashMergeCommitMessage:
-        NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum? =
-        null,
-    /**
-     * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's
-     * title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull
-     * request #123 from branch-name).
-     */
+    val squashMergeCommitMessage: NullableRepositoryWebhooksSquashMergeCommitMessageEnum? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_title")
-    val mergeCommitTitle: NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum? = null,
-    /**
-     * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
-     * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank
-     * commit message.
-     */
+    val mergeCommitTitle: NullableRepositoryWebhooksMergeCommitTitleEnum? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_message")
-    val mergeCommitMessage: NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum? =
-        null,
-    /** Optional `boolean` value serialized in the `allow_merge_commit` wire field. */
+    val mergeCommitMessage: NullableRepositoryWebhooksMergeCommitMessageEnum? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("allow_merge_commit")
     val allowMergeCommit: Boolean? = null,
-    /** Optional `integer` value serialized in the `subscribers_count` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("allow_forking")
+    val allowForking: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("web_commit_signoff_required")
+    val webCommitSignoffRequired: Boolean? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("subscribers_count")
     val subscribersCount: Long? = null,
-    /** Optional `integer` value serialized in the `network_count` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("network_count") val networkCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("master_branch")
+    val masterBranch: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("starred_at") val starredAt: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("anonymous_access_enabled")
+    val anonymousAccessEnabled: Boolean? = null,
 )
