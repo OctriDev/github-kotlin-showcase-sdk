@@ -14,8 +14,8 @@ object Gitignore {
     /**
      * List all templates available to pass as an option when creating a repository.
      */
-    fun gitignoreGetAllTemplates(clientConfig: ClientConfig, options: RequestOptions? = null): List<String> {
-        return SdkClient.request<List<String>>(SdkClient.RequestSpec("GET", "/gitignore/templates", config = clientConfig, operationId = "gitignoreGetAllTemplates", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun listTemplates(clientConfig: ClientConfig, options: RequestOptions? = null): List<String> {
+        return SdkClient.request<List<String>>(SdkClient.RequestSpec("GET", "/gitignore/templates", config = clientConfig, operationId = "listTemplates", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
     }
 
 
