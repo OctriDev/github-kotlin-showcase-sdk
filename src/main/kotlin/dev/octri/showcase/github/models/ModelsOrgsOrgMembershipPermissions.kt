@@ -3,54 +3,40 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Optional object value serialized in the `permissions` wire field.
- */
+/** Optional object value serialized in the `permissions` wire field. */
 data class OrgMembershipPermissions(
-    /**
-     * Required `boolean` value serialized in the `can_create_repository` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("can_create_repository") val canCreateRepository: Boolean
+    /** Required `boolean` value serialized in the `can_create_repository` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("can_create_repository")
+    val canCreateRepository: Boolean
 )
 
-/**
- * Org Membership
- */
+/** Org Membership */
 data class OrgMembership(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
     /**
-     * The state of the member in the organization. The `pending` state indicates the user has not yet accepted an invitation.
+     * The state of the member in the organization. The `pending` state indicates the user has not
+     * yet accepted an invitation.
      */
     val state: OrgMembershipStateEnum,
-    /**
-     * The user's membership type in the organization.
-     */
+    /** The user's membership type in the organization. */
     val role: OrgMembershipRoleEnum,
-    /**
-     * Required `uri`-formatted value serialized in the `organization_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `organization_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("organization_url") val organizationUrl: String,
-    /**
-     * A GitHub organization.
-     */
+    /** A GitHub organization. */
     val organization: OrganizationSimple,
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: NullableSimpleUser?,
+    /** Whether the user has direct membership in the organization. */
+    @com.fasterxml.jackson.annotation.JsonProperty("direct_membership")
+    val directMembership: Boolean? = null,
     /**
-     * A GitHub user.
+     * The slugs of the enterprise teams providing the user with indirect membership in the
+     * organization. A limit of 100 enterprise team slugs is returned.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: NullableSimpleUser?,
-    /**
-     * Whether the user has direct membership in the organization.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("direct_membership") val directMembership: Boolean? = null,
-    /**
-     * The slugs of the enterprise teams providing the user with indirect membership in the organization. A limit of 100 enterprise team slugs is returned.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("enterprise_teams_providing_indirect_membership") val enterpriseTeamsProvidingIndirectMembership: List<String>? = null,
-    /**
-     * Optional object value serialized in the `permissions` wire field.
-     */
-    val permissions: OrgMembershipPermissions? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("enterprise_teams_providing_indirect_membership")
+    val enterpriseTeamsProvidingIndirectMembership: List<String>? = null,
+    /** Optional object value serialized in the `permissions` wire field. */
+    val permissions: OrgMembershipPermissions? = null,
 )

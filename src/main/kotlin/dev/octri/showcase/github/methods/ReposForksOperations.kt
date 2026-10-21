@@ -14,39 +14,98 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposListForksOperation {
     /**
-     * Lists forks of a repository. Use `sort` to order forks by newest, oldest, stargazers, or watchers. Use `page` and `per_page` to paginate the results.
+     * Lists forks of a repository. Use `sort` to order forks by newest, oldest, stargazers, or
+     * watchers. Use `page` and `per_page` to paginate the results.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param sort The sort order. `stargazers` will sort by star count.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListForks(clientConfig: ClientConfig, owner: String, repo: String, sort: ReposListForksParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> {
-        return SdkClient.request<List<MinimalRepository>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/forks", config = clientConfig, query = mapOf("sort" to SdkClient.queryValue(sort, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListForks", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java))).data
+    fun reposListForks(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        sort: ReposListForksParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MinimalRepository> {
+        return SdkClient.request<List<MinimalRepository>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/forks",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "sort" to SdkClient.queryValue(sort, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListForks",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("400" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateForkOperation {
     /**
-     * Create a fork for the authenticated user. > !NOTE] > Forking a Repository happens asynchronously. You may have to wait a short period of time before you can access the git objects. If this takes longer than 5 minutes, be sure to contact \[GitHub Support. > \[!NOTE\] > Although this endpoint works with GitHub Apps, the GitHub App must be installed on the destination account with access to all repositories and on the source account with access to the source repository.
+     * Create a fork for the authenticated user. > !NOTE] > Forking a Repository happens
+     * asynchronously. You may have to wait a short period of time before you can access the git
+     * objects. If this takes longer than 5 minutes, be sure to contact \[GitHub Support. >
+     * \[!NOTE\] > Although this endpoint works with GitHub Apps, the GitHub App must be installed
+     * on the destination account with access to all repositories and on the source account with
+     * access to the source repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param organization Optional parameter to specify the organization name if
-     *   forking into an organization.
+     * @param organization Optional parameter to specify the organization name if forking into an
+     *   organization.
      * @param name When forking from an existing repository, a new name for the fork.
-     * @param defaultBranchOnly When forking from an existing repository, fork with
-     *   only the default branch.
+     * @param defaultBranchOnly When forking from an existing repository, fork with only the default
+     *   branch.
      */
-    fun reposCreateFork(clientConfig: ClientConfig, owner: String, repo: String, organization: String? = null, name: String? = null, defaultBranchOnly: Boolean? = null, options: RequestOptions? = null): FullRepository {
-        return SdkClient.request<FullRepository>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/forks", config = clientConfig, body = SdkClient.bodyMap("organization" to (SdkClient.omitIfNull(organization)), "name" to (SdkClient.omitIfNull(name)), "default_branch_only" to
-    (SdkClient.omitIfNull(defaultBranchOnly))), operationId = "reposCreateFork", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposCreateFork(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        organization: String? = null,
+        name: String? = null,
+        defaultBranchOnly: Boolean? = null,
+        options: RequestOptions? = null,
+    ): FullRepository {
+        return SdkClient.request<FullRepository>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/forks",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "organization" to (SdkClient.omitIfNull(organization)),
+                            "name" to (SdkClient.omitIfNull(name)),
+                            "default_branch_only" to (SdkClient.omitIfNull(defaultBranchOnly)),
+                        ),
+                    operationId = "reposCreateFork",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

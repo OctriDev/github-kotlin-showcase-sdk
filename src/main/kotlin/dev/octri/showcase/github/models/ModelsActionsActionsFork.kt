@@ -3,56 +3,65 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `ActionsForkPrContributorApproval` API schema.
- */
+/** Typed representation of the `ActionsForkPrContributorApproval` API schema. */
 data class ActionsForkPrContributorApproval(
-    /**
-     * The policy that controls when fork PR workflows require approval from a maintainer.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("approval_policy") val approvalPolicy: ActionsForkPrContributorApprovalApprovalPolicyEnum
+    /** The policy that controls when fork PR workflows require approval from a maintainer. */
+    @com.fasterxml.jackson.annotation.JsonProperty("approval_policy")
+    val approvalPolicy: ActionsForkPrContributorApprovalApprovalPolicyEnum
 )
 
-/**
- * Typed representation of the `ActionsForkPrWorkflowsPrivateRepos` API schema.
- */
+/** Typed representation of the `ActionsForkPrWorkflowsPrivateRepos` API schema. */
 data class ActionsForkPrWorkflowsPrivateRepos(
     /**
-     * Whether workflows triggered by pull requests from forks are allowed to run on private repositories.
+     * Whether workflows triggered by pull requests from forks are allowed to run on private
+     * repositories.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("run_workflows_from_fork_pull_requests") val runWorkflowsFromForkPullRequests: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("run_workflows_from_fork_pull_requests")
+    val runWorkflowsFromForkPullRequests: Boolean,
     /**
-     * Whether GitHub Actions can create pull requests or submit approving pull request reviews from a workflow triggered by a fork pull request.
+     * Whether GitHub Actions can create pull requests or submit approving pull request reviews from
+     * a workflow triggered by a fork pull request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("send_write_tokens_to_workflows") val sendWriteTokensToWorkflows: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("send_write_tokens_to_workflows")
+    val sendWriteTokensToWorkflows: Boolean,
     /**
-     * Whether to make secrets and variables available to workflows triggered by pull requests from forks.
+     * Whether to make secrets and variables available to workflows triggered by pull requests from
+     * forks.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("send_secrets_and_variables") val sendSecretsAndVariables: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("send_secrets_and_variables")
+    val sendSecretsAndVariables: Boolean,
     /**
-     * Whether workflows triggered by pull requests from forks require approval from a repository administrator to run.
+     * Whether workflows triggered by pull requests from forks require approval from a repository
+     * administrator to run.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_approval_for_fork_pr_workflows") val requireApprovalForForkPrWorkflows: Boolean
+    @com.fasterxml.jackson.annotation.JsonProperty("require_approval_for_fork_pr_workflows")
+    val requireApprovalForForkPrWorkflows: Boolean,
 )
 
-/**
- * Typed representation of the `ActionsForkPrWorkflowsPrivateReposRequest` API schema.
- */
+/** Typed representation of the `ActionsForkPrWorkflowsPrivateReposRequest` API schema. */
 data class ActionsForkPrWorkflowsPrivateReposRequest(
     /**
-     * Whether workflows triggered by pull requests from forks are allowed to run on private repositories.
+     * Whether workflows triggered by pull requests from forks are allowed to run on private
+     * repositories.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("run_workflows_from_fork_pull_requests") val runWorkflowsFromForkPullRequests: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("run_workflows_from_fork_pull_requests")
+    val runWorkflowsFromForkPullRequests: Boolean,
     /**
-     * Whether GitHub Actions can create pull requests or submit approving pull request reviews from a workflow triggered by a fork pull request.
+     * Whether GitHub Actions can create pull requests or submit approving pull request reviews from
+     * a workflow triggered by a fork pull request.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("send_write_tokens_to_workflows") val sendWriteTokensToWorkflows: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("send_write_tokens_to_workflows")
+    val sendWriteTokensToWorkflows: Boolean? = null,
     /**
-     * Whether to make secrets and variables available to workflows triggered by pull requests from forks.
+     * Whether to make secrets and variables available to workflows triggered by pull requests from
+     * forks.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("send_secrets_and_variables") val sendSecretsAndVariables: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("send_secrets_and_variables")
+    val sendSecretsAndVariables: Boolean? = null,
     /**
-     * Whether workflows triggered by pull requests from forks require approval from a repository administrator to run.
+     * Whether workflows triggered by pull requests from forks require approval from a repository
+     * administrator to run.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_approval_for_fork_pr_workflows") val requireApprovalForForkPrWorkflows: Boolean? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("require_approval_for_fork_pr_workflows")
+    val requireApprovalForForkPrWorkflows: Boolean? = null,
 )

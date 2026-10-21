@@ -3,62 +3,148 @@
 
 package dev.octri.showcase.github
 
-
 class OidcNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists the repository custom properties that are included in the OIDC token for repository actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Lists the repository custom properties that are included in the OIDC token for repository
+     * actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration"
+     * fine-grained permission is not available to callers. To use this API, you must use an OAuth
+     * app token or a personal access token (classic).
      */
-    fun listOidcCustomPropertyInclusionsForEnterprise(enterprise: String, options: RequestOptions? = null): List<OidcCustomPropertyInclusion> {
-        return dev.octri.showcase.github.methods.Oidc.oidcListOidcCustomPropertyInclusionsForEnterprise(clientConfig, enterprise, options)
+    fun listOidcCustomPropertyInclusionsForEnterprise(
+        enterprise: String,
+        options: RequestOptions? = null,
+    ): List<OidcCustomPropertyInclusion> {
+        return dev.octri.showcase.github.methods.Oidc
+            .oidcListOidcCustomPropertyInclusionsForEnterprise(clientConfig, enterprise, options)
     }
 
     /**
-     * Adds a repository custom property to be included in the OIDC token for repository actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Adds a repository custom property to be included in the OIDC token for repository actions in
+     * an enterprise. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration"
+     * fine-grained permission is not available to callers. To use this API, you must use an OAuth
+     * app token or a personal access token (classic).
      */
-    fun createOidcCustomPropertyInclusionForEnterprise(enterprise: String, customPropertyName: String, options: RequestOptions? = null): OidcCustomPropertyInclusion {
-        return dev.octri.showcase.github.methods.Oidc.oidcCreateOidcCustomPropertyInclusionForEnterprise(clientConfig, enterprise, customPropertyName, options)
+    fun createOidcCustomPropertyInclusionForEnterprise(
+        enterprise: String,
+        customPropertyName: String,
+        options: RequestOptions? = null,
+    ): OidcCustomPropertyInclusion {
+        return dev.octri.showcase.github.methods.Oidc
+            .oidcCreateOidcCustomPropertyInclusionForEnterprise(
+                clientConfig,
+                enterprise,
+                customPropertyName,
+                options,
+            )
     }
 
     /**
-     * Removes a repository custom property from being included in the OIDC token for repository actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Removes a repository custom property from being included in the OIDC token for repository
+     * actions in an enterprise. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration"
+     * fine-grained permission is not available to callers. To use this API, you must use an OAuth
+     * app token or a personal access token (classic).
      */
-    fun deleteOidcCustomPropertyInclusionForEnterprise(enterprise: String, customPropertyName: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.Oidc.oidcDeleteOidcCustomPropertyInclusionForEnterprise(clientConfig, enterprise, customPropertyName, options)
+    fun deleteOidcCustomPropertyInclusionForEnterprise(
+        enterprise: String,
+        customPropertyName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.github.methods.Oidc
+            .oidcDeleteOidcCustomPropertyInclusionForEnterprise(
+                clientConfig,
+                enterprise,
+                customPropertyName,
+                options,
+            )
     }
 
     /**
-     * Lists the repository custom properties that are included in the OIDC token for repository actions in an organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Lists the repository custom properties that are included in the OIDC token for repository
+     * actions in an organization. OAuth app tokens and personal access tokens (classic) need the
+     * `read:org` scope to use this endpoint.
      */
-    fun listOidcCustomPropertyInclusionsForOrg(org: String, options: RequestOptions? = null): List<OidcCustomPropertyInclusion> {
-        return dev.octri.showcase.github.methods.Oidc.oidcListOidcCustomPropertyInclusionsForOrg(clientConfig, org, options)
+    fun listOidcCustomPropertyInclusionsForOrg(
+        org: String,
+        options: RequestOptions? = null,
+    ): List<OidcCustomPropertyInclusion> {
+        return dev.octri.showcase.github.methods.Oidc.oidcListOidcCustomPropertyInclusionsForOrg(
+            clientConfig,
+            org,
+            options,
+        )
     }
 
     /**
-     * Adds a repository custom property to be included in the OIDC token for repository actions in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Adds a repository custom property to be included in the OIDC token for repository actions in
+     * an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org`
+     * scope to use this endpoint.
      */
-    fun createOidcCustomPropertyInclusionForOrg(org: String, customPropertyName: String, options: RequestOptions? = null): OidcCustomPropertyInclusion {
-        return dev.octri.showcase.github.methods.Oidc.oidcCreateOidcCustomPropertyInclusionForOrg(clientConfig, org, customPropertyName, options)
+    fun createOidcCustomPropertyInclusionForOrg(
+        org: String,
+        customPropertyName: String,
+        options: RequestOptions? = null,
+    ): OidcCustomPropertyInclusion {
+        return dev.octri.showcase.github.methods.Oidc.oidcCreateOidcCustomPropertyInclusionForOrg(
+            clientConfig,
+            org,
+            customPropertyName,
+            options,
+        )
     }
 
     /**
-     * Removes a repository custom property from being included in the OIDC token for repository actions in an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Removes a repository custom property from being included in the OIDC token for repository
+     * actions in an organization. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint.
      */
-    fun deleteOidcCustomPropertyInclusionForOrg(org: String, customPropertyName: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.Oidc.oidcDeleteOidcCustomPropertyInclusionForOrg(clientConfig, org, customPropertyName, options)
+    fun deleteOidcCustomPropertyInclusionForOrg(
+        org: String,
+        customPropertyName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.github.methods.Oidc.oidcDeleteOidcCustomPropertyInclusionForOrg(
+            clientConfig,
+            org,
+            customPropertyName,
+            options,
+        )
     }
 
     /**
-     * Gets the customization template for an OpenID Connect (OIDC) subject claim. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Gets the customization template for an OpenID Connect (OIDC) subject claim. OAuth app tokens
+     * and personal access tokens (classic) need the `read:org` scope to use this endpoint.
      */
-    fun getOidcCustomSubTemplateForOrg(org: String, options: RequestOptions? = null): OidcCustomSub {
-        return dev.octri.showcase.github.methods.Oidc.oidcGetOidcCustomSubTemplateForOrg(clientConfig, org, options)
+    fun getOidcCustomSubTemplateForOrg(
+        org: String,
+        options: RequestOptions? = null,
+    ): OidcCustomSub {
+        return dev.octri.showcase.github.methods.Oidc.oidcGetOidcCustomSubTemplateForOrg(
+            clientConfig,
+            org,
+            options,
+        )
     }
 
     /**
-     * Creates or updates the customization template for an OpenID Connect (OIDC) subject claim. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Creates or updates the customization template for an OpenID Connect (OIDC) subject claim.
+     * OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this
+     * endpoint.
      */
-    fun updateOidcCustomSubTemplateForOrg(org: String, includeClaimKeys: List<String>? = null, useImmutableSubject: Boolean? = null, options: RequestOptions? = null): EmptyObject {
-        return dev.octri.showcase.github.methods.Oidc.oidcUpdateOidcCustomSubTemplateForOrg(clientConfig, org, includeClaimKeys, useImmutableSubject, options)
+    fun updateOidcCustomSubTemplateForOrg(
+        org: String,
+        includeClaimKeys: List<String>? = null,
+        useImmutableSubject: Boolean? = null,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return dev.octri.showcase.github.methods.Oidc.oidcUpdateOidcCustomSubTemplateForOrg(
+            clientConfig,
+            org,
+            includeClaimKeys,
+            useImmutableSubject,
+            options,
+        )
     }
-
 }

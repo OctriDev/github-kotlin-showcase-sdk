@@ -13,83 +13,207 @@ import dev.octri.showcase.github.TeamsAddOrUpdateMembershipForUserLegacyRoleEnum
 
 internal object TeamsGetMembershipForUserInOrgOperation {
     /**
-     * Team members will include the members of child teams. To get a user's membership with a team, the team must be visible to the authenticated user. > !NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/memberships/{username}`. > \[!NOTE\] > The response contains the `state` of the membership and the member's `role`. The `role` for organization owners is set to `maintainer`. For more information about…
+     * Team members will include the members of child teams. To get a user's membership with a team,
+     * the team must be visible to the authenticated user. > !NOTE] > You can also specify a team by
+     * `org_id` and `team_id` using the route `GET
+     * /organizations/{org_id}/team/{team_id}/memberships/{username}`. > \[!NOTE\] > The response
+     * contains the `state` of the membership and the member's `role`. The `role` for organization
+     * owners is set to `maintainer`. For more information about…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param username The handle for the GitHub user account.
      */
-    fun teamsGetMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, options: RequestOptions? = null): TeamMembership {
-        return SdkClient.request<TeamMembership>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsGetMembershipForUserInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun teamsGetMembershipForUserInOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        teamSlug: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): TeamMembership {
+        return SdkClient.request<TeamMembership>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}",
+                    config = clientConfig,
+                    operationId = "teamsGetMembershipForUserInOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object TeamsAddOrUpdateMembershipForUserInOrgOperation {
     /**
-     * Adds an organization member to a team. An authenticated organization owner or team maintainer can add organization members to a team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. > !NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes…
+     * Adds an organization member to a team. An authenticated organization owner or team maintainer
+     * can add organization members to a team. Team synchronization is available for organizations
+     * using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help
+     * documentation. > !NOTE] > When you have team synchronization set up for a team with your
+     * organization's identity provider (IdP), you will see an error if you attempt to use the API
+     * for making changes…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param username The handle for the GitHub user account.
      * @param role The role that this user should have in the team.
      */
-    fun teamsAddOrUpdateMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, role: TeamsAddOrUpdateMembershipForUserInOrgRoleEnum? = null, options: RequestOptions? = null): TeamMembership {
-        return SdkClient.request<TeamMembership>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))), operationId = "teamsAddOrUpdateMembershipForUserInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun teamsAddOrUpdateMembershipForUserInOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        teamSlug: String,
+        username: String,
+        role: TeamsAddOrUpdateMembershipForUserInOrgRoleEnum? = null,
+        options: RequestOptions? = null,
+    ): TeamMembership {
+        return SdkClient.request<TeamMembership>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))),
+                    operationId = "teamsAddOrUpdateMembershipForUserInOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object TeamsRemoveMembershipForUserInOrgOperation {
     /**
-     * To remove a membership between a user and a team, the authenticated user must have 'admin' permissions to the team or be an owner of the organization that the team is associated with. Removing team membership does not delete the user, it just removes their membership from the team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. > !NOTE] > When you have team…
+     * To remove a membership between a user and a team, the authenticated user must have 'admin'
+     * permissions to the team or be an owner of the organization that the team is associated with.
+     * Removing team membership does not delete the user, it just removes their membership from the
+     * team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For
+     * more information, see GitHub's products in the GitHub Help documentation. > !NOTE] > When you
+     * have team…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param username The handle for the GitHub user account.
      */
-    fun teamsRemoveMembershipForUserInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsRemoveMembershipForUserInOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun teamsRemoveMembershipForUserInOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        teamSlug: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/memberships/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "teamsRemoveMembershipForUserInOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object TeamsGetMembershipForUserLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Get team membership for a user endpoint. Team members will include the members of child teams. To get a user's membership with a team, the team must be visible to the authenticated user. **Note:** The response contains the `state` of the membership and the member's `role`. The `role` for…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
+     * > be removed from the Teams API. We recommend migrating your existing code to use the new
+     * > \[Get team membership for a user endpoint. Team members will include the members of child
+     * > teams. To get a user's membership with a team, the team must be visible to the
+     * > authenticated user. **Note:** The response contains the `state` of the membership and the
+     * > member's `role`. The `role` for…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun teamsGetMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): TeamMembership {
-        return SdkClient.request<TeamMembership>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsGetMembershipForUserLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun teamsGetMembershipForUserLegacy(
+        clientConfig: ClientConfig,
+        teamId: Long,
+        username: String,
+        options: RequestOptions? = null,
+    ): TeamMembership {
+        return SdkClient.request<TeamMembership>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}",
+                    config = clientConfig,
+                    operationId = "teamsGetMembershipForUserLegacy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object TeamsAddOrUpdateMembershipForUserLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Add or update team membership for a user endpoint. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. If the user is already a member of the team's organization, this endpoint will add…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
+     * > be removed from the Teams API. We recommend migrating your existing code to use the new
+     * > \[Add or update team membership for a user endpoint. Team synchronization is available for
+     * > organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in
+     * > the GitHub Help documentation. If the user is already a member of the team's organization,
+     * > this endpoint will add…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
      * @param role The role that this user should have in the team.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun teamsAddOrUpdateMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, role: TeamsAddOrUpdateMembershipForUserLegacyRoleEnum? = null, options: RequestOptions? = null): TeamMembership {
-        return SdkClient.request<TeamMembership>(SdkClient.RequestSpec("PUT", "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))), operationId = "teamsAddOrUpdateMembershipForUserLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun teamsAddOrUpdateMembershipForUserLegacy(
+        clientConfig: ClientConfig,
+        teamId: Long,
+        username: String,
+        role: TeamsAddOrUpdateMembershipForUserLegacyRoleEnum? = null,
+        options: RequestOptions? = null,
+    ): TeamMembership {
+        return SdkClient.request<TeamMembership>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("role" to (SdkClient.omitIfNull(role))),
+                    operationId = "teamsAddOrUpdateMembershipForUserLegacy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object TeamsRemoveMembershipForUserLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[Remove team membership for a user endpoint. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To remove a membership between a user and a team, the authenticated user must have 'admin'…
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
+     * > be removed from the Teams API. We recommend migrating your existing code to use the new
+     * > \[Remove team membership for a user endpoint. Team synchronization is available for
+     * > organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in
+     * > the GitHub Help documentation. To remove a membership between a user and a team, the
+     * > authenticated user must have 'admin'…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun teamsRemoveMembershipForUserLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsRemoveMembershipForUserLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun teamsRemoveMembershipForUserLegacy(
+        clientConfig: ClientConfig,
+        teamId: Long,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/teams/${SdkClient.encodePathSegment(teamId)}/memberships/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "teamsRemoveMembershipForUserLegacy",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

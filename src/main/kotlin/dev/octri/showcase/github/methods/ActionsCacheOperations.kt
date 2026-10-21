@@ -18,203 +18,530 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ActionsGetActionsCacheRetentionLimitForEnterpriseOperation {
     /**
-     * Gets GitHub Actions cache retention limit for an enterprise. All organizations and repositories under this enterprise may not set a higher cache retention limit. OAuth tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Gets GitHub Actions cache retention limit for an enterprise. All organizations and
+     * repositories under this enterprise may not set a higher cache retention limit. OAuth tokens
+     * and personal access tokens (classic) need the `admin:enterprise` scope to use this
+     * endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not
+     * available to callers. To use this API, you must use an OAuth app token or a personal access
+     * token (classic).
      *
      * @param enterprise The slug version of the enterprise name.
      */
-    fun actionsGetActionsCacheRetentionLimitForEnterprise(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): ActionsCacheRetentionLimitForEnterprise {
-        return SdkClient.request<ActionsCacheRetentionLimitForEnterprise>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/cache/retention-limit", config = clientConfig, operationId = "actionsGetActionsCacheRetentionLimitForEnterprise", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun actionsGetActionsCacheRetentionLimitForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        options: RequestOptions? = null,
+    ): ActionsCacheRetentionLimitForEnterprise {
+        return SdkClient.request<ActionsCacheRetentionLimitForEnterprise>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/cache/retention-limit",
+                    config = clientConfig,
+                    operationId = "actionsGetActionsCacheRetentionLimitForEnterprise",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetActionsCacheRetentionLimitForEnterpriseOperation {
     /**
-     * Sets GitHub Actions cache retention limit for an enterprise. All organizations and repositories under this enterprise may not set a higher cache retention limit. OAuth tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Sets GitHub Actions cache retention limit for an enterprise. All organizations and
+     * repositories under this enterprise may not set a higher cache retention limit. OAuth tokens
+     * and personal access tokens (classic) need the `admin:enterprise` scope to use this
+     * endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not
+     * available to callers. To use this API, you must use an OAuth app token or a personal access
+     * token (classic).
      *
      * @param enterprise The slug version of the enterprise name.
-     * @param maxCacheRetentionDays For repositories & organizations in an
-     *   enterprise, the maximum duration, in days, for which caches in a repository
-     *   may be retained.
+     * @param maxCacheRetentionDays For repositories & organizations in an enterprise, the maximum
+     *   duration, in days, for which caches in a repository may be retained.
      */
-    fun actionsSetActionsCacheRetentionLimitForEnterprise(clientConfig: ClientConfig, enterprise: String, maxCacheRetentionDays: Long? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/cache/retention-limit", config = clientConfig, body = SdkClient.bodyMap("max_cache_retention_days" to
-    (SdkClient.omitIfNull(maxCacheRetentionDays))), operationId = "actionsSetActionsCacheRetentionLimitForEnterprise", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun actionsSetActionsCacheRetentionLimitForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        maxCacheRetentionDays: Long? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/cache/retention-limit",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "max_cache_retention_days" to (SdkClient.omitIfNull(maxCacheRetentionDays))
+                    ),
+                operationId = "actionsSetActionsCacheRetentionLimitForEnterprise",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ActionsGetActionsCacheStorageLimitForEnterpriseOperation {
     /**
-     * Gets GitHub Actions cache storage limit for an enterprise. All organizations and repositories under this enterprise may not set a higher cache storage limit. OAuth tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Gets GitHub Actions cache storage limit for an enterprise. All organizations and repositories
+     * under this enterprise may not set a higher cache storage limit. OAuth tokens and personal
+     * access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] >
+     * The "Enterprise administration" fine-grained permission is not available to callers. To use
+     * this API, you must use an OAuth app token or a personal access token (classic).
      *
      * @param enterprise The slug version of the enterprise name.
      */
-    fun actionsGetActionsCacheStorageLimitForEnterprise(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): ActionsCacheStorageLimitForEnterprise {
-        return SdkClient.request<ActionsCacheStorageLimitForEnterprise>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/cache/storage-limit", config = clientConfig, operationId = "actionsGetActionsCacheStorageLimitForEnterprise", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun actionsGetActionsCacheStorageLimitForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        options: RequestOptions? = null,
+    ): ActionsCacheStorageLimitForEnterprise {
+        return SdkClient.request<ActionsCacheStorageLimitForEnterprise>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/cache/storage-limit",
+                    config = clientConfig,
+                    operationId = "actionsGetActionsCacheStorageLimitForEnterprise",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetActionsCacheStorageLimitForEnterpriseOperation {
     /**
-     * Sets GitHub Actions cache storage limit for an enterprise. All organizations and repositories under this enterprise may not set a higher cache storage limit. OAuth tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] > The "Enterprise administration" fine-grained permission is not available to callers. To use this API, you must use an OAuth app token or a personal access token (classic).
+     * Sets GitHub Actions cache storage limit for an enterprise. All organizations and repositories
+     * under this enterprise may not set a higher cache storage limit. OAuth tokens and personal
+     * access tokens (classic) need the `admin:enterprise` scope to use this endpoint. > \[!NOTE\] >
+     * The "Enterprise administration" fine-grained permission is not available to callers. To use
+     * this API, you must use an OAuth app token or a personal access token (classic).
      *
      * @param enterprise The slug version of the enterprise name.
-     * @param maxCacheSizeGb For repositories & organizations in an enterprise, the
-     *   maximum size limit for the sum of all caches in a repository, in gigabytes.
+     * @param maxCacheSizeGb For repositories & organizations in an enterprise, the maximum size
+     *   limit for the sum of all caches in a repository, in gigabytes.
      */
-    fun actionsSetActionsCacheStorageLimitForEnterprise(clientConfig: ClientConfig, enterprise: String, maxCacheSizeGb: Long? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/cache/storage-limit", config = clientConfig, body = SdkClient.bodyMap("max_cache_size_gb" to
-    (SdkClient.omitIfNull(maxCacheSizeGb))), operationId = "actionsSetActionsCacheStorageLimitForEnterprise", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun actionsSetActionsCacheStorageLimitForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        maxCacheSizeGb: Long? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/enterprises/${SdkClient.encodePathSegment(enterprise)}/actions/cache/storage-limit",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "max_cache_size_gb" to (SdkClient.omitIfNull(maxCacheSizeGb))
+                    ),
+                operationId = "actionsSetActionsCacheStorageLimitForEnterprise",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ActionsGetActionsCacheRetentionLimitForOrganizationOperation {
     /**
-     * Gets GitHub Actions cache retention limit for an organization. All repositories under this organization may not set a higher cache retention limit. OAuth tokens and personal access tokens (classic) need the `admin:organization` scope to use this endpoint.
+     * Gets GitHub Actions cache retention limit for an organization. All repositories under this
+     * organization may not set a higher cache retention limit. OAuth tokens and personal access
+     * tokens (classic) need the `admin:organization` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetActionsCacheRetentionLimitForOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsCacheRetentionLimitForOrganization {
-        return SdkClient.request<ActionsCacheRetentionLimitForOrganization>(SdkClient.RequestSpec("GET", "/organizations/${SdkClient.encodePathSegment(org)}/actions/cache/retention-limit", config = clientConfig, operationId = "actionsGetActionsCacheRetentionLimitForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun actionsGetActionsCacheRetentionLimitForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): ActionsCacheRetentionLimitForOrganization {
+        return SdkClient.request<ActionsCacheRetentionLimitForOrganization>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/organizations/${SdkClient.encodePathSegment(org)}/actions/cache/retention-limit",
+                    config = clientConfig,
+                    operationId = "actionsGetActionsCacheRetentionLimitForOrganization",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetActionsCacheRetentionLimitForOrganizationOperation {
     /**
-     * Sets GitHub Actions cache retention limit for an organization. All repositories under this organization may not set a higher cache retention limit. OAuth tokens and personal access tokens (classic) need the `admin:organization` scope to use this endpoint.
+     * Sets GitHub Actions cache retention limit for an organization. All repositories under this
+     * organization may not set a higher cache retention limit. OAuth tokens and personal access
+     * tokens (classic) need the `admin:organization` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param maxCacheRetentionDays For repositories in this organization, the
-     *   maximum duration, in days, for which caches in a repository may be retained.
+     * @param maxCacheRetentionDays For repositories in this organization, the maximum duration, in
+     *   days, for which caches in a repository may be retained.
      */
-    fun actionsSetActionsCacheRetentionLimitForOrganization(clientConfig: ClientConfig, org: String, maxCacheRetentionDays: Long? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/organizations/${SdkClient.encodePathSegment(org)}/actions/cache/retention-limit", config = clientConfig, body = SdkClient.bodyMap("max_cache_retention_days" to
-    (SdkClient.omitIfNull(maxCacheRetentionDays))), operationId = "actionsSetActionsCacheRetentionLimitForOrganization", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun actionsSetActionsCacheRetentionLimitForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        maxCacheRetentionDays: Long? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/organizations/${SdkClient.encodePathSegment(org)}/actions/cache/retention-limit",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "max_cache_retention_days" to (SdkClient.omitIfNull(maxCacheRetentionDays))
+                    ),
+                operationId = "actionsSetActionsCacheRetentionLimitForOrganization",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ActionsGetActionsCacheStorageLimitForOrganizationOperation {
     /**
-     * Gets GitHub Actions cache storage limit for an organization. All repositories under this organization may not set a higher cache storage limit. OAuth tokens and personal access tokens (classic) need the `admin:organization` scope to use this endpoint.
+     * Gets GitHub Actions cache storage limit for an organization. All repositories under this
+     * organization may not set a higher cache storage limit. OAuth tokens and personal access
+     * tokens (classic) need the `admin:organization` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetActionsCacheStorageLimitForOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsCacheStorageLimitForOrganization {
-        return SdkClient.request<ActionsCacheStorageLimitForOrganization>(SdkClient.RequestSpec("GET", "/organizations/${SdkClient.encodePathSegment(org)}/actions/cache/storage-limit", config = clientConfig, operationId = "actionsGetActionsCacheStorageLimitForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun actionsGetActionsCacheStorageLimitForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): ActionsCacheStorageLimitForOrganization {
+        return SdkClient.request<ActionsCacheStorageLimitForOrganization>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/organizations/${SdkClient.encodePathSegment(org)}/actions/cache/storage-limit",
+                    config = clientConfig,
+                    operationId = "actionsGetActionsCacheStorageLimitForOrganization",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetActionsCacheStorageLimitForOrganizationOperation {
     /**
-     * Sets GitHub Actions cache storage limit for an organization. All organizations and repositories under this organization may not set a higher cache storage limit. OAuth tokens and personal access tokens (classic) need the `admin:organization` scope to use this endpoint.
+     * Sets GitHub Actions cache storage limit for an organization. All organizations and
+     * repositories under this organization may not set a higher cache storage limit. OAuth tokens
+     * and personal access tokens (classic) need the `admin:organization` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param maxCacheSizeGb For repositories in the organization, the maximum size
-     *   limit for the sum of all caches in a repository, in gigabytes.
+     * @param maxCacheSizeGb For repositories in the organization, the maximum size limit for the
+     *   sum of all caches in a repository, in gigabytes.
      */
-    fun actionsSetActionsCacheStorageLimitForOrganization(clientConfig: ClientConfig, org: String, maxCacheSizeGb: Long? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/organizations/${SdkClient.encodePathSegment(org)}/actions/cache/storage-limit", config = clientConfig, body = SdkClient.bodyMap("max_cache_size_gb" to
-    (SdkClient.omitIfNull(maxCacheSizeGb))), operationId = "actionsSetActionsCacheStorageLimitForOrganization", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun actionsSetActionsCacheStorageLimitForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        maxCacheSizeGb: Long? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/organizations/${SdkClient.encodePathSegment(org)}/actions/cache/storage-limit",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "max_cache_size_gb" to (SdkClient.omitIfNull(maxCacheSizeGb))
+                    ),
+                operationId = "actionsSetActionsCacheStorageLimitForOrganization",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ActionsGetActionsCacheUsageForOrgOperation {
     /**
-     * Gets the total GitHub Actions cache usage for an organization. The data fetched using this API is refreshed approximately every 5 minutes, so values returned from this endpoint may take at least 5 minutes to get updated. OAuth tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Gets the total GitHub Actions cache usage for an organization. The data fetched using this
+     * API is refreshed approximately every 5 minutes, so values returned from this endpoint may
+     * take at least 5 minutes to get updated. OAuth tokens and personal access tokens (classic)
+     * need the `read:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetActionsCacheUsageForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsCacheUsageOrgEnterprise {
-        return SdkClient.request<ActionsCacheUsageOrgEnterprise>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/cache/usage", config = clientConfig, operationId = "actionsGetActionsCacheUsageForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetActionsCacheUsageForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): ActionsCacheUsageOrgEnterprise {
+        return SdkClient.request<ActionsCacheUsageOrgEnterprise>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/cache/usage",
+                    config = clientConfig,
+                    operationId = "actionsGetActionsCacheUsageForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetActionsCacheUsageByRepoForOrgOperation {
     /**
-     * Lists repositories and their GitHub Actions cache usage for an organization. The data fetched using this API is refreshed approximately every 5 minutes, so values returned from this endpoint may take at least 5 minutes to get updated. OAuth tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Lists repositories and their GitHub Actions cache usage for an organization. The data fetched
+     * using this API is refreshed approximately every 5 minutes, so values returned from this
+     * endpoint may take at least 5 minutes to get updated. OAuth tokens and personal access tokens
+     * (classic) need the `read:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsGetActionsCacheUsageByRepoForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsGetActionsCacheUsageByRepoForOrgResponse {
-        return SdkClient.request<Actions.ActionsGetActionsCacheUsageByRepoForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/cache/usage-by-repository", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsGetActionsCacheUsageByRepoForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetActionsCacheUsageByRepoForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsGetActionsCacheUsageByRepoForOrgResponse {
+        return SdkClient.request<Actions.ActionsGetActionsCacheUsageByRepoForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/cache/usage-by-repository",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsGetActionsCacheUsageByRepoForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetActionsCacheRetentionLimitForRepositoryOperation {
     /**
-     * Gets GitHub Actions cache retention limit for a repository. This determines how long caches will be retained for, if not manually removed or evicted due to size constraints. OAuth tokens and personal access tokens (classic) need the `admin:repository` scope to use this endpoint.
+     * Gets GitHub Actions cache retention limit for a repository. This determines how long caches
+     * will be retained for, if not manually removed or evicted due to size constraints. OAuth
+     * tokens and personal access tokens (classic) need the `admin:repository` scope to use this
+     * endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetActionsCacheRetentionLimitForRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsCacheRetentionLimitForRepository {
-        return SdkClient.request<ActionsCacheRetentionLimitForRepository>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/retention-limit", config = clientConfig, operationId = "actionsGetActionsCacheRetentionLimitForRepository", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun actionsGetActionsCacheRetentionLimitForRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsCacheRetentionLimitForRepository {
+        return SdkClient.request<ActionsCacheRetentionLimitForRepository>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/retention-limit",
+                    config = clientConfig,
+                    operationId = "actionsGetActionsCacheRetentionLimitForRepository",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetActionsCacheRetentionLimitForRepositoryOperation {
     /**
-     * Sets GitHub Actions cache retention limit for a repository. This determines how long caches will be retained for, if not manually removed or evicted due to size constraints. OAuth tokens and personal access tokens (classic) need the `admin:repository` scope to use this endpoint.
+     * Sets GitHub Actions cache retention limit for a repository. This determines how long caches
+     * will be retained for, if not manually removed or evicted due to size constraints. OAuth
+     * tokens and personal access tokens (classic) need the `admin:repository` scope to use this
+     * endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param maxCacheRetentionDays The maximum number of days to keep caches in this
-     *   repository.
+     * @param maxCacheRetentionDays The maximum number of days to keep caches in this repository.
      */
-    fun actionsSetActionsCacheRetentionLimitForRepository(clientConfig: ClientConfig, owner: String, repo: String, maxCacheRetentionDays: Long? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/retention-limit", config = clientConfig, body = SdkClient.bodyMap("max_cache_retention_days" to
-    (SdkClient.omitIfNull(maxCacheRetentionDays))), operationId = "actionsSetActionsCacheRetentionLimitForRepository", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun actionsSetActionsCacheRetentionLimitForRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        maxCacheRetentionDays: Long? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/retention-limit",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "max_cache_retention_days" to (SdkClient.omitIfNull(maxCacheRetentionDays))
+                    ),
+                operationId = "actionsSetActionsCacheRetentionLimitForRepository",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ActionsGetActionsCacheStorageLimitForRepositoryOperation {
     /**
-     * Gets GitHub Actions cache storage limit for a repository. This determines the maximum size of caches that can be stored before eviction occurs. OAuth tokens and personal access tokens (classic) need the `admin:repository` scope to use this endpoint.
+     * Gets GitHub Actions cache storage limit for a repository. This determines the maximum size of
+     * caches that can be stored before eviction occurs. OAuth tokens and personal access tokens
+     * (classic) need the `admin:repository` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetActionsCacheStorageLimitForRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsCacheStorageLimitForRepository {
-        return SdkClient.request<ActionsCacheStorageLimitForRepository>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/storage-limit", config = clientConfig, operationId = "actionsGetActionsCacheStorageLimitForRepository", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun actionsGetActionsCacheStorageLimitForRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsCacheStorageLimitForRepository {
+        return SdkClient.request<ActionsCacheStorageLimitForRepository>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/storage-limit",
+                    config = clientConfig,
+                    operationId = "actionsGetActionsCacheStorageLimitForRepository",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetActionsCacheStorageLimitForRepositoryOperation {
     /**
-     * Sets GitHub Actions cache storage limit for a repository. This determines the maximum size of caches that can be stored before eviction occurs. OAuth tokens and personal access tokens (classic) need the `admin:repository` scope to use this endpoint.
+     * Sets GitHub Actions cache storage limit for a repository. This determines the maximum size of
+     * caches that can be stored before eviction occurs. OAuth tokens and personal access tokens
+     * (classic) need the `admin:repository` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param maxCacheSizeGb The maximum total cache size for this repository, in
-     *   gigabytes.
+     * @param maxCacheSizeGb The maximum total cache size for this repository, in gigabytes.
      */
-    fun actionsSetActionsCacheStorageLimitForRepository(clientConfig: ClientConfig, owner: String, repo: String, maxCacheSizeGb: Long? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/storage-limit", config = clientConfig, body = SdkClient.bodyMap("max_cache_size_gb" to
-    (SdkClient.omitIfNull(maxCacheSizeGb))), operationId = "actionsSetActionsCacheStorageLimitForRepository", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun actionsSetActionsCacheStorageLimitForRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        maxCacheSizeGb: Long? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/storage-limit",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "max_cache_size_gb" to (SdkClient.omitIfNull(maxCacheSizeGb))
+                    ),
+                operationId = "actionsSetActionsCacheStorageLimitForRepository",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ActionsGetActionsCacheUsageOperation {
     /**
-     * Gets GitHub Actions cache usage for a repository. The data fetched using this API is refreshed approximately every 5 minutes, so values returned from this endpoint may take at least 5 minutes to get updated. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets GitHub Actions cache usage for a repository. The data fetched using this API is
+     * refreshed approximately every 5 minutes, so values returned from this endpoint may take at
+     * least 5 minutes to get updated. Anyone with read access to the repository can use this
+     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetActionsCacheUsage(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsCacheUsageByRepository {
-        return SdkClient.request<ActionsCacheUsageByRepository>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/usage", config = clientConfig, operationId = "actionsGetActionsCacheUsage", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetActionsCacheUsage(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsCacheUsageByRepository {
+        return SdkClient.request<ActionsCacheUsageByRepository>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/cache/usage",
+                    config = clientConfig,
+                    operationId = "actionsGetActionsCacheUsage",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

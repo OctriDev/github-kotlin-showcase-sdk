@@ -14,21 +14,48 @@ import dev.octri.showcase.github.ValidationError
 
 internal object OrgsListMembersOperation {
     /**
-     * List all users who are members of an organization. If the authenticated user is also a member of this organization then both concealed and public members will be returned.
+     * List all users who are members of an organization. If the authenticated user is also a member
+     * of this organization then both concealed and public members will be returned.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param filter Filter members returned in the list. `2fa_disabled` means that
-     *   only members without two-factor authentication enabled will be returned.
-     *   `2fa_insecure` means that only members with insecure 2FA methods will be
-     *   returned. These options are only available for organization owners.
+     * @param filter Filter members returned in the list. `2fa_disabled` means that only members
+     *   without two-factor authentication enabled will be returned. `2fa_insecure` means that only
+     *   members with insecure 2FA methods will be returned. These options are only available for
+     *   organization owners.
      * @param role Filter members returned by their role.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun orgsListMembers(clientConfig: ClientConfig, org: String, filter: OrgsListMembersParameterEnum? = null, role: OrgsListMembersParameterEnumc4d42bd8? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/members", config = clientConfig, query = mapOf("filter" to SdkClient.queryValue(filter, "form", true), "role" to SdkClient.queryValue(role, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun orgsListMembers(
+        clientConfig: ClientConfig,
+        org: String,
+        filter: OrgsListMembersParameterEnum? = null,
+        role: OrgsListMembersParameterEnumc4d42bd8? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/members",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "filter" to SdkClient.queryValue(filter, "form", true),
+                            "role" to SdkClient.queryValue(role, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "orgsListMembers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
@@ -39,19 +66,52 @@ internal object OrgsCheckMembershipForUserOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsCheckMembershipForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsCheckMembershipForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsCheckMembershipForUser(
+        clientConfig: ClientConfig,
+        org: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "orgsCheckMembershipForUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object OrgsRemoveMemberOperation {
     /**
-     * Removing a user from this list will remove them from all teams and they will no longer have any access to the organization's repositories. > \[!NOTE\] > If a user has both direct membership in the organization as well as indirect membership via an enterprise team, only their direct membership will be removed. Their indirect membership via an enterprise team remains until the user is removed from the enterprise team.
+     * Removing a user from this list will remove them from all teams and they will no longer have
+     * any access to the organization's repositories. > \[!NOTE\] > If a user has both direct
+     * membership in the organization as well as indirect membership via an enterprise team, only
+     * their direct membership will be removed. Their indirect membership via an enterprise team
+     * remains until the user is removed from the enterprise team.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsRemoveMember(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsRemoveMember", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
+    fun orgsRemoveMember(
+        clientConfig: ClientConfig,
+        org: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/members/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "orgsRemoveMember",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 }

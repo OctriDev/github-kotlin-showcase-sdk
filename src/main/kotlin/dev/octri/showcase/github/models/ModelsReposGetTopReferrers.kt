@@ -3,20 +3,12 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Referrer Traffic
- */
+/** Referrer Traffic */
 data class ReferrerTraffic(
-    /**
-     * Required `string` value serialized in the `referrer` wire field.
-     */
+    /** Required `string` value serialized in the `referrer` wire field. */
     val referrer: String,
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Long,
-    /**
-     * Required `integer` value serialized in the `uniques` wire field.
-     */
-    val uniques: Long
+    /** Required `integer` value serialized in the `uniques` wire field. */
+    val uniques: Long,
 )

@@ -12,21 +12,49 @@ import dev.octri.showcase.github.ValidationError
 
 internal object IssuesLockOperation {
     /**
-     * Locks the conversation on an issue or pull request in a repository. Use `owner`, `repo`, and `issue_number` to identify the conversation, and set `lock_reason` to explain the lock. Users with push access can lock conversations; if you omit the request body, send a `Content-Length` header with a value of zero.
+     * Locks the conversation on an issue or pull request in a repository. Use `owner`, `repo`, and
+     * `issue_number` to identify the conversation, and set `lock_reason` to explain the lock. Users
+     * with push access can lock conversations; if you omit the request body, send a
+     * `Content-Length` header with a value of zero.
      *
-     * Users with push access can lock an issue or pull request's conversation. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "HTTP method."
+     * Users with push access can lock an issue or pull request's conversation. Note that, if you
+     * choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling
+     * out to this endpoint. For more information, see "HTTP method."
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param lockReason The reason for locking the issue or pull request
-     *   conversation. Lock will fail if you don't use one of these reasons: *
-     *   `off-topic` * `too heated` * `resolved` * `spam`
+     * @param lockReason The reason for locking the issue or pull request conversation. Lock will
+     *   fail if you don't use one of these reasons: * `off-topic` * `too heated` * `resolved` *
+     *   `spam`
      */
-    fun issuesLock(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, lockReason: IssuesLockLockReasonEnum? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/lock", config = clientConfig, body = SdkClient.bodyMap("lock_reason" to (SdkClient.omitIfNull(lockReason))), operationId = "issuesLock", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun issuesLock(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        lockReason: IssuesLockLockReasonEnum? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/lock",
+                config = clientConfig,
+                body = SdkClient.bodyMap("lock_reason" to (SdkClient.omitIfNull(lockReason))),
+                operationId = "issuesLock",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "410" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                    ),
+            )
+        )
     }
 }
 
@@ -34,13 +62,28 @@ internal object IssuesUnlockOperation {
     /**
      * Users with push access can unlock an issue's conversation.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesUnlock(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/lock", config = clientConfig, operationId = "issuesUnlock", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun issuesUnlock(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/lock",
+                config = clientConfig,
+                operationId = "issuesUnlock",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }

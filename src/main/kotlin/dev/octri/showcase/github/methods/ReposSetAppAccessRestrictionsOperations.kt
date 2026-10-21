@@ -15,192 +15,443 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposSetAppAccessRestrictionsOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Replaces the list of apps that have push access to this branch. This removes all apps that previously had push access and grants push access to the new list of apps.…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Replaces the list of apps that have push access to this
+     * branch. This removes all apps that previously had push access and grants push access to the
+     * new list of apps.…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
-     * @param apps The GitHub Apps that have push access to this branch. Use the
-     *   slugified version of the app name. **Note**: The list of users, apps, and
-     *   teams in total is limited to 100 items.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
+     * @param apps The GitHub Apps that have push access to this branch. Use the slugified version
+     *   of the app name. **Note**: The list of users, apps, and teams in total is limited to 100
+     *   items.
      */
-    fun reposSetAppAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, apps: List<String>, options: RequestOptions? = null): List<Integration?> {
-        return SdkClient.request<List<Integration?>>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/apps", config = clientConfig, body = SdkClient.bodyMap("apps" to (apps)), operationId = "reposSetAppAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposSetAppAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        apps: List<String>,
+        options: RequestOptions? = null,
+    ): List<Integration?> {
+        return SdkClient.request<List<Integration?>>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/apps",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("apps" to (apps)),
+                    operationId = "reposSetAppAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRemoveAppAccessRestrictionsOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Removes the ability of an app to push to this branch. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Removes the ability of an app to push to this branch. Only
+     * GitHub Apps that are installed on the repository and that have been granted write access to
+     * the repository…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
-     * @param apps The GitHub Apps that have push access to this branch. Use the
-     *   slugified version of the app name. **Note**: The list of users, apps, and
-     *   teams in total is limited to 100 items.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
+     * @param apps The GitHub Apps that have push access to this branch. Use the slugified version
+     *   of the app name. **Note**: The list of users, apps, and teams in total is limited to 100
+     *   items.
      */
-    fun reposRemoveAppAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, apps: List<String>, options: RequestOptions? = null): List<Integration?> {
-        return SdkClient.request<List<Integration?>>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/apps", config = clientConfig, body = SdkClient.bodyMap("apps" to (apps)), operationId = "reposRemoveAppAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposRemoveAppAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        apps: List<String>,
+        options: RequestOptions? = null,
+    ): List<Integration?> {
+        return SdkClient.request<List<Integration?>>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/apps",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("apps" to (apps)),
+                    operationId = "reposRemoveAppAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetTeamsWithAccessToProtectedBranchOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Lists the teams who have push access to this branch. The list includes child teams.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Lists the teams who have push access to this branch. The
+     * list includes child teams.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposGetTeamsWithAccessToProtectedBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): List<Team> {
-        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams", config = clientConfig, operationId = "reposGetTeamsWithAccessToProtectedBranch", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetTeamsWithAccessToProtectedBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): List<Team> {
+        return SdkClient.request<List<Team>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams",
+                    config = clientConfig,
+                    operationId = "reposGetTeamsWithAccessToProtectedBranch",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposAddTeamAccessRestrictionsOperation {
     /**
-     * Grants the specified teams push access to a protected branch, including access for child teams. Provide team slugs in `teams` to add those teams to the branch's access restrictions.
+     * Grants the specified teams push access to a protected branch, including access for child
+     * teams. Provide team slugs in `teams` to add those teams to the branch's access restrictions.
      *
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Grants the specified teams push access for this branch. You can also give push access to child teams.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Grants the specified teams push access for this branch. You
+     * can also give push access to child teams.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposAddTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> {
-        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams", config = clientConfig, body = body, operationId = "reposAddTeamAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposAddTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> {
+        return SdkClient.request<List<Team>>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "reposAddTeamAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposSetTeamAccessRestrictionsOperation {
     /**
-     * Replaces the list of teams that have push access to a protected branch, including access for child teams. Provide the complete list in `teams`; teams not included in the new list lose push access.
+     * Replaces the list of teams that have push access to a protected branch, including access for
+     * child teams. Provide the complete list in `teams`; teams not included in the new list lose
+     * push access.
      *
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Replaces the list of teams that have push access to this branch. This removes all teams that previously had push access and grants push access to the new list of teams.…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Replaces the list of teams that have push access to this
+     * branch. This removes all teams that previously had push access and grants push access to the
+     * new list of teams.…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposSetTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> {
-        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams", config = clientConfig, body = body, operationId = "reposSetTeamAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposSetTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> {
+        return SdkClient.request<List<Team>>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "reposSetTeamAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRemoveTeamAccessRestrictionsOperation {
     /**
-     * Removes the specified team's push access to a protected branch, including access for child teams. Provide team slugs in `teams` to identify the teams whose access you want to remove.
+     * Removes the specified team's push access to a protected branch, including access for child
+     * teams. Provide team slugs in `teams` to identify the teams whose access you want to remove.
      *
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Removes the ability of a team to push to this branch. You can also remove push access for child teams.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Removes the ability of a team to push to this branch. You
+     * can also remove push access for child teams.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposRemoveTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> {
-        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams", config = clientConfig, body = body, operationId = "reposRemoveTeamAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposRemoveTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> {
+        return SdkClient.request<List<Team>>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "reposRemoveTeamAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetUsersWithAccessToProtectedBranchOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Lists the people who have push access to this branch.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Lists the people who have push access to this branch.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposGetUsersWithAccessToProtectedBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users", config = clientConfig, operationId = "reposGetUsersWithAccessToProtectedBranch", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetUsersWithAccessToProtectedBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users",
+                    config = clientConfig,
+                    operationId = "reposGetUsersWithAccessToProtectedBranch",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposAddUserAccessRestrictionsOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Grants the specified people push access for this branch. | Type | Description | | ------- |…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Grants the specified people push access for this branch. |
+     * Type | Description | | ------- |…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      * @param users The username for users
      */
-    fun reposAddUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users", config = clientConfig, body = SdkClient.bodyMap("users" to (users)), operationId = "reposAddUserAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposAddUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("users" to (users)),
+                    operationId = "reposAddUserAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposSetUserAccessRestrictionsOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Replaces the list of people that have push access to this branch. This removes all people that previously had push access and grants push access to the new list of…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Replaces the list of people that have push access to this
+     * branch. This removes all people that previously had push access and grants push access to the
+     * new list of…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      * @param users The username for users
      */
-    fun reposSetUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users", config = clientConfig, body = SdkClient.bodyMap("users" to (users)), operationId = "reposSetUserAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposSetUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("users" to (users)),
+                    operationId = "reposSetUserAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRemoveUserAccessRestrictionsOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Removes the ability of a user to push to this branch. | Type | Description | | ------- |…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Removes the ability of a user to push to this branch. |
+     * Type | Description | | ------- |…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      * @param users The username for users
      */
-    fun reposRemoveUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users", config = clientConfig, body = SdkClient.bodyMap("users" to (users)), operationId = "reposRemoveUserAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposRemoveUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("users" to (users)),
+                    operationId = "reposRemoveUserAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRenameBranchOperation {
     /**
-     * Renames a branch in a repository. > !NOTE] > Although the API responds immediately, the branch rename process might take some extra time to complete in the background. You won't be able to push to the old branch name while the rename process is in progress. For more information, see "\[Renaming a branch". The authenticated user must have push access to the branch. If the branch is the default branch, the authenticated user must also have admin or owner permissions. In order…
+     * Renames a branch in a repository. > !NOTE] > Although the API responds immediately, the
+     * branch rename process might take some extra time to complete in the background. You won't be
+     * able to push to the old branch name while the rename process is in progress. For more
+     * information, see "\[Renaming a branch". The authenticated user must have push access to the
+     * branch. If the branch is the default branch, the authenticated user must also have admin or
+     * owner permissions. In order…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      * @param newName The new name of the branch.
      */
-    fun reposRenameBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, newName: String, options: RequestOptions? = null): BranchWithProtection {
-        return SdkClient.request<BranchWithProtection>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/rename", config = clientConfig, body = SdkClient.bodyMap("new_name" to (newName)), operationId = "reposRenameBranch", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposRenameBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        newName: String,
+        options: RequestOptions? = null,
+    ): BranchWithProtection {
+        return SdkClient.request<BranchWithProtection>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/rename",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("new_name" to (newName)),
+                    operationId = "reposRenameBranch",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

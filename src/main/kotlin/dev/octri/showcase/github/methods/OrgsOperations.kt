@@ -5,9 +5,9 @@ package dev.octri.showcase.github.methods
 
 import dev.octri.showcase.github.BasicError
 import dev.octri.showcase.github.ClientConfig
+import dev.octri.showcase.github.OrgMembership
 import dev.octri.showcase.github.OrganizationFull
 import dev.octri.showcase.github.OrganizationSimple
-import dev.octri.showcase.github.OrgMembership
 import dev.octri.showcase.github.OrgsEnableOrDisableSecurityProductOnAllOrgReposQuerySuiteEnum
 import dev.octri.showcase.github.OrgsListMembershipsForAuthenticatedUserParameterEnum
 import dev.octri.showcase.github.OrgsUpdateMembershipForAuthenticatedUserStateEnum
@@ -19,20 +19,49 @@ import dev.octri.showcase.github.ValidationError
 
 internal object OrgsGetOperation {
     /**
-     * Gets information about an organization. When the value of `two_factor_requirement_enabled` is `true`, the organization requires all members, billing managers, outside collaborators, guest collaborators, repository collaborators, or everyone with access to any repository within the organization to enable two-factor authentication. To see the full details about an organization, the authenticated user must be an organization owner. OAuth app tokens and personal access tokens…
+     * Gets information about an organization. When the value of `two_factor_requirement_enabled` is
+     * `true`, the organization requires all members, billing managers, outside collaborators, guest
+     * collaborators, repository collaborators, or everyone with access to any repository within the
+     * organization to enable two-factor authentication. To see the full details about an
+     * organization, the authenticated user must be an organization owner. OAuth app tokens and
+     * personal access tokens…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsGet(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): OrganizationFull {
-        return SdkClient.request<OrganizationFull>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}", config = clientConfig, operationId = "orgsGet", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun orgsGet(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): OrganizationFull {
+        return SdkClient.request<OrganizationFull>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}",
+                    config = clientConfig,
+                    operationId = "orgsGet",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsUpdateOperation {
     /**
-     * Updates an organization's profile and member privileges. Use the profile fields and repository-creation settings to change organization details and member permissions; `members_allowed_repository_creation_type` is closing down in favor of more granular settings. The authenticated user must be an organization owner, and OAuth app tokens and personal access tokens (classic) must have the `admin:org` or `repo` scope.
+     * Updates an organization's profile and member privileges. Use the profile fields and
+     * repository-creation settings to change organization details and member permissions;
+     * `members_allowed_repository_creation_type` is closing down in favor of more granular
+     * settings. The authenticated user must be an organization owner, and OAuth app tokens and
+     * personal access tokens (classic) must have the `admin:org` or `repo` scope.
      *
-     * > !WARNING] > **Closing down notice:** GitHub will replace and discontinue `members_allowed_repository_creation_type` in favor of more granular permissions. The new input parameters are `members_can_create_public_repositories`, `members_can_create_private_repositories` for all organizations and `members_can_create_internal_repositories` for organizations associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+. For more…
+     * > !WARNING] > **Closing down notice:** GitHub will replace and discontinue
+     * > `members_allowed_repository_creation_type` in favor of more granular permissions. The new
+     * > input parameters are `members_can_create_public_repositories`,
+     * > `members_can_create_private_repositories` for all organizations and
+     * > `members_can_create_internal_repositories` for organizations associated with an enterprise
+     * > account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+. For more…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param billingEmail Billing email address. This address is not publicized.
@@ -41,218 +70,249 @@ internal object OrgsUpdateOperation {
      * @param twitterUsername The Twitter username of the company.
      * @param location The location.
      * @param name The shorthand name of the company.
-     * @param description The description of the company. The maximum size is 160
-     *   characters.
-     * @param hasOrganizationProjects Whether an organization can use organization
-     *   projects.
-     * @param hasRepositoryProjects Whether repositories that belong to the
-     *   organization can use repository projects.
-     * @param defaultRepositoryPermission Default permission level members have for
-     *   organization repositories.
-     * @param membersCanCreateRepositories Whether of non-admin organization members
-     *   can create repositories. **Note:** A parameter can override this parameter.
-     *   See `members_allowed_repository_creation_type` in this table for details.
-     * @param membersCanCreateInternalRepositories Whether organization members can
-     *   create internal repositories, which are visible to all enterprise members. You
-     *   can only allow members to create internal repositories if your organization is
-     *   associated with an enterprise account using GitHub Enterprise Cloud or GitHub
-     *   Enterprise Server 2.20+. For more information, see "Restricting repository
-     *   creation in your organization" in the GitHub Help documentation.
-     * @param membersCanCreatePrivateRepositories Whether organization members can
-     *   create private repositories, which are visible to organization members with
-     *   permission. For more information, see "Restricting repository creation in your
-     *   organization" in the GitHub Help documentation.
-     * @param membersCanCreatePublicRepositories Whether organization members can
-     *   create public repositories, which are visible to anyone. For more information,
-     *   see "Restricting repository creation in your organization" in the GitHub Help
+     * @param description The description of the company. The maximum size is 160 characters.
+     * @param hasOrganizationProjects Whether an organization can use organization projects.
+     * @param hasRepositoryProjects Whether repositories that belong to the organization can use
+     *   repository projects.
+     * @param defaultRepositoryPermission Default permission level members have for organization
+     *   repositories.
+     * @param membersCanCreateRepositories Whether of non-admin organization members can create
+     *   repositories. **Note:** A parameter can override this parameter. See
+     *   `members_allowed_repository_creation_type` in this table for details.
+     * @param membersCanCreateInternalRepositories Whether organization members can create internal
+     *   repositories, which are visible to all enterprise members. You can only allow members to
+     *   create internal repositories if your organization is associated with an enterprise account
+     *   using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+. For more information, see
+     *   "Restricting repository creation in your organization" in the GitHub Help documentation.
+     * @param membersCanCreatePrivateRepositories Whether organization members can create private
+     *   repositories, which are visible to organization members with permission. For more
+     *   information, see "Restricting repository creation in your organization" in the GitHub Help
      *   documentation.
-     * @param membersAllowedRepositoryCreationType Specifies which types of
-     *   repositories non-admin organization members can create. `private` is only
-     *   available to repositories that are part of an organization on GitHub
-     *   Enterprise Cloud. **Note:** This parameter is closing down and will be removed
-     *   in the future. Its return value ignores internal repositories. Using this
-     *   parameter overrides values set in `members_can_create_repositories`. See the
-     *   parameter deprecation notice in the operation description for details.
-     * @param membersCanCreatePages Whether organization members can create GitHub
+     * @param membersCanCreatePublicRepositories Whether organization members can create public
+     *   repositories, which are visible to anyone. For more information, see "Restricting
+     *   repository creation in your organization" in the GitHub Help documentation.
+     * @param membersAllowedRepositoryCreationType Specifies which types of repositories non-admin
+     *   organization members can create. `private` is only available to repositories that are part
+     *   of an organization on GitHub Enterprise Cloud. **Note:** This parameter is closing down and
+     *   will be removed in the future. Its return value ignores internal repositories. Using this
+     *   parameter overrides values set in `members_can_create_repositories`. See the parameter
+     *   deprecation notice in the operation description for details.
+     * @param membersCanCreatePages Whether organization members can create GitHub Pages sites.
+     *   Existing published sites will not be impacted.
+     * @param membersCanCreatePublicPages Whether organization members can create public GitHub
      *   Pages sites. Existing published sites will not be impacted.
-     * @param membersCanCreatePublicPages Whether organization members can create
-     *   public GitHub Pages sites. Existing published sites will not be impacted.
-     * @param membersCanCreatePrivatePages Whether organization members can create
-     *   private GitHub Pages sites. Existing published sites will not be impacted.
-     * @param membersCanForkPrivateRepositories Whether organization members can fork
-     *   private organization repositories.
-     * @param webCommitSignoffRequired Whether contributors to organization
-     *   repositories are required to sign off on commits they make through GitHub's
-     *   web interface.
-     * @param advancedSecurityEnabledForNewRepositories **Endpoint closing down
-     *   notice.** Please use code security configurations instead. Whether GitHub
-     *   Advanced Security is automatically enabled for new repositories and
-     *   repositories transferred to this organization. To use this parameter, you must
-     *   have admin permissions for the repository or be an owner or security manager
-     *   for the organization that owns the repository. For more information, see
-     *   "Managing security managers in your organization." You can check which
-     *   security and…
-     * @param dependabotAlertsEnabledForNewRepositories **Endpoint closing down
-     *   notice.** Please use code security configurations instead. Whether Dependabot
-     *   alerts are automatically enabled for new repositories and repositories
-     *   transferred to this organization. To use this parameter, you must have admin
-     *   permissions for the repository or be an owner or security manager for the
-     *   organization that owns the repository. For more information, see "Managing
+     * @param membersCanCreatePrivatePages Whether organization members can create private GitHub
+     *   Pages sites. Existing published sites will not be impacted.
+     * @param membersCanForkPrivateRepositories Whether organization members can fork private
+     *   organization repositories.
+     * @param webCommitSignoffRequired Whether contributors to organization repositories are
+     *   required to sign off on commits they make through GitHub's web interface.
+     * @param advancedSecurityEnabledForNewRepositories **Endpoint closing down notice.** Please use
+     *   code security configurations instead. Whether GitHub Advanced Security is automatically
+     *   enabled for new repositories and repositories transferred to this organization. To use this
+     *   parameter, you must have admin permissions for the repository or be an owner or security
+     *   manager for the organization that owns the repository. For more information, see "Managing
      *   security managers in your organization." You can check which security and…
-     * @param dependabotSecurityUpdatesEnabledForNewRepositories **Endpoint closing
-     *   down notice.** Please use code security configurations instead. Whether
-     *   Dependabot security updates are automatically enabled for new repositories and
-     *   repositories transferred to this organization. To use this parameter, you must
-     *   have admin permissions for the repository or be an owner or security manager
-     *   for the organization that owns the repository. For more information, see
-     *   "Managing security managers in your organization." You can check which
+     * @param dependabotAlertsEnabledForNewRepositories **Endpoint closing down notice.** Please use
+     *   code security configurations instead. Whether Dependabot alerts are automatically enabled
+     *   for new repositories and repositories transferred to this organization. To use this
+     *   parameter, you must have admin permissions for the repository or be an owner or security
+     *   manager for the organization that owns the repository. For more information, see "Managing
+     *   security managers in your organization." You can check which security and…
+     * @param dependabotSecurityUpdatesEnabledForNewRepositories **Endpoint closing down notice.**
+     *   Please use code security configurations instead. Whether Dependabot security updates are
+     *   automatically enabled for new repositories and repositories transferred to this
+     *   organization. To use this parameter, you must have admin permissions for the repository or
+     *   be an owner or security manager for the organization that owns the repository. For more
+     *   information, see "Managing security managers in your organization." You can check which
      *   security…
-     * @param dependencyGraphEnabledForNewRepositories **Endpoint closing down
-     *   notice.** Please use code security configurations instead. Whether dependency
-     *   graph is automatically enabled for new repositories and repositories
-     *   transferred to this organization. To use this parameter, you must have admin
-     *   permissions for the repository or be an owner or security manager for the
-     *   organization that owns the repository. For more information, see "Managing
-     *   security managers in your organization." You can check which security and
-     *   analysis…
-     * @param secretScanningEnabledForNewRepositories **Endpoint closing down
-     *   notice.** Please use code security configurations instead. Whether secret
-     *   scanning is automatically enabled for new repositories and repositories
-     *   transferred to this organization. To use this parameter, you must have admin
-     *   permissions for the repository or be an owner or security manager for the
-     *   organization that owns the repository. For more information, see "Managing
-     *   security managers in your organization." You can check which security and
-     *   analysis…
-     * @param secretScanningPushProtectionEnabledForNewRepositories **Endpoint
-     *   closing down notice.** Please use code security configurations instead.
-     *   Whether secret scanning push protection is automatically enabled for new
-     *   repositories and repositories transferred to this organization. To use this
-     *   parameter, you must have admin permissions for the repository or be an owner
-     *   or security manager for the organization that owns the repository. For more
-     *   information, see "Managing security managers in your organization." You can
-     *   check which…
-     * @param secretScanningPushProtectionCustomLinkEnabled Whether a custom link is
-     *   shown to contributors who are blocked from pushing a secret by push
-     *   protection.
+     * @param dependencyGraphEnabledForNewRepositories **Endpoint closing down notice.** Please use
+     *   code security configurations instead. Whether dependency graph is automatically enabled for
+     *   new repositories and repositories transferred to this organization. To use this parameter,
+     *   you must have admin permissions for the repository or be an owner or security manager for
+     *   the organization that owns the repository. For more information, see "Managing security
+     *   managers in your organization." You can check which security and analysis…
+     * @param secretScanningEnabledForNewRepositories **Endpoint closing down notice.** Please use
+     *   code security configurations instead. Whether secret scanning is automatically enabled for
+     *   new repositories and repositories transferred to this organization. To use this parameter,
+     *   you must have admin permissions for the repository or be an owner or security manager for
+     *   the organization that owns the repository. For more information, see "Managing security
+     *   managers in your organization." You can check which security and analysis…
+     * @param secretScanningPushProtectionEnabledForNewRepositories **Endpoint closing down
+     *   notice.** Please use code security configurations instead. Whether secret scanning push
+     *   protection is automatically enabled for new repositories and repositories transferred to
+     *   this organization. To use this parameter, you must have admin permissions for the
+     *   repository or be an owner or security manager for the organization that owns the
+     *   repository. For more information, see "Managing security managers in your organization."
+     *   You can check which…
+     * @param secretScanningPushProtectionCustomLinkEnabled Whether a custom link is shown to
+     *   contributors who are blocked from pushing a secret by push protection.
      * @param secretScanningPushProtectionCustomLink If
-     *   `secret_scanning_push_protection_custom_link_enabled` is true, the URL that
-     *   will be displayed to contributors who are blocked from pushing a secret.
-     * @param deployKeysEnabledForRepositories Controls whether or not deploy keys
-     *   may be added and used for repositories in the organization.
+     *   `secret_scanning_push_protection_custom_link_enabled` is true, the URL that will be
+     *   displayed to contributors who are blocked from pushing a secret.
+     * @param deployKeysEnabledForRepositories Controls whether or not deploy keys may be added and
+     *   used for repositories in the organization.
      */
-    fun orgsUpdate(clientConfig: ClientConfig, request: Orgs.OrgsUpdateRequest, options: RequestOptions? = null): OrganizationFull {
-        return SdkClient.request<OrganizationFull>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}", config = clientConfig, body = buildOrgsUpdateBody(request), operationId = "orgsUpdate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java))).data
+    fun orgsUpdate(
+        clientConfig: ClientConfig,
+        request: Orgs.OrgsUpdateRequest,
+        options: RequestOptions? = null,
+    ): OrganizationFull {
+        return SdkClient.request<OrganizationFull>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}",
+                    config = clientConfig,
+                    body = buildOrgsUpdateBody(request),
+                    operationId = "orgsUpdate",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("409" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-    private fun buildOrgsUpdateBody(request: Orgs.OrgsUpdateRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildOrgsUpdateBodyPart1(request))
-            putAll(buildOrgsUpdateBodyPart2(request))
-            putAll(buildOrgsUpdateBodyPart3(request))
-        }
+    private fun buildOrgsUpdateBody(request: Orgs.OrgsUpdateRequest): Map<String, Any?> = buildMap {
+        putAll(buildOrgsUpdateBodyPart1(request))
+        putAll(buildOrgsUpdateBodyPart2(request))
+        putAll(buildOrgsUpdateBodyPart3(request))
+    }
 
     private fun buildOrgsUpdateBodyPart1(request: Orgs.OrgsUpdateRequest): Map<String, Any?> =
         SdkClient.bodyMap(
-            "billing_email" to
-    (SdkClient.omitIfNull(request.billingEmail)),
+            "billing_email" to (SdkClient.omitIfNull(request.billingEmail)),
             "company" to (SdkClient.omitIfNull(request.company)),
             "email" to (SdkClient.omitIfNull(request.email)),
-            "twitter_username" to
-    (SdkClient.omitIfNull(request.twitterUsername)),
+            "twitter_username" to (SdkClient.omitIfNull(request.twitterUsername)),
             "location" to (SdkClient.omitIfNull(request.location)),
             "name" to (SdkClient.omitIfNull(request.name)),
             "description" to (SdkClient.omitIfNull(request.description)),
-            "has_organization_projects" to
-    (SdkClient.omitIfNull(request.hasOrganizationProjects)),
-            "has_repository_projects" to
-    (SdkClient.omitIfNull(request.hasRepositoryProjects)),
+            "has_organization_projects" to (SdkClient.omitIfNull(request.hasOrganizationProjects)),
+            "has_repository_projects" to (SdkClient.omitIfNull(request.hasRepositoryProjects)),
             "default_repository_permission" to
-    (SdkClient.omitIfNull(request.defaultRepositoryPermission)),
+                (SdkClient.omitIfNull(request.defaultRepositoryPermission)),
             "members_can_create_repositories" to
-    (SdkClient.omitIfNull(request.membersCanCreateRepositories)),
+                (SdkClient.omitIfNull(request.membersCanCreateRepositories)),
             "members_can_create_internal_repositories" to
-    (SdkClient.omitIfNull(request.membersCanCreateInternalRepositories)),
+                (SdkClient.omitIfNull(request.membersCanCreateInternalRepositories)),
         )
 
     private fun buildOrgsUpdateBodyPart2(request: Orgs.OrgsUpdateRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "members_can_create_private_repositories" to
-    (SdkClient.omitIfNull(request.membersCanCreatePrivateRepositories)),
+                (SdkClient.omitIfNull(request.membersCanCreatePrivateRepositories)),
             "members_can_create_public_repositories" to
-    (SdkClient.omitIfNull(request.membersCanCreatePublicRepositories)),
+                (SdkClient.omitIfNull(request.membersCanCreatePublicRepositories)),
             "members_allowed_repository_creation_type" to
-    (SdkClient.omitIfNull(request.membersAllowedRepositoryCreationType)),
-            "members_can_create_pages" to
-    (SdkClient.omitIfNull(request.membersCanCreatePages)),
+                (SdkClient.omitIfNull(request.membersAllowedRepositoryCreationType)),
+            "members_can_create_pages" to (SdkClient.omitIfNull(request.membersCanCreatePages)),
             "members_can_create_public_pages" to
-    (SdkClient.omitIfNull(request.membersCanCreatePublicPages)),
+                (SdkClient.omitIfNull(request.membersCanCreatePublicPages)),
             "members_can_create_private_pages" to
-    (SdkClient.omitIfNull(request.membersCanCreatePrivatePages)),
+                (SdkClient.omitIfNull(request.membersCanCreatePrivatePages)),
             "members_can_fork_private_repositories" to
-    (SdkClient.omitIfNull(request.membersCanForkPrivateRepositories)),
+                (SdkClient.omitIfNull(request.membersCanForkPrivateRepositories)),
             "web_commit_signoff_required" to
-    (SdkClient.omitIfNull(request.webCommitSignoffRequired)),
+                (SdkClient.omitIfNull(request.webCommitSignoffRequired)),
             "blog" to (SdkClient.omitIfNull(request.blog)),
             "advanced_security_enabled_for_new_repositories" to
-    (SdkClient.omitIfNull(request.advancedSecurityEnabledForNewRepositories)),
+                (SdkClient.omitIfNull(request.advancedSecurityEnabledForNewRepositories)),
             "dependabot_alerts_enabled_for_new_repositories" to
-    (SdkClient.omitIfNull(request.dependabotAlertsEnabledForNewRepositories)),
+                (SdkClient.omitIfNull(request.dependabotAlertsEnabledForNewRepositories)),
             "dependabot_security_updates_enabled_for_new_repositories" to
-    (SdkClient.omitIfNull(request.dependabotSecurityUpdatesEnabledForNewRepositories)),
+                (SdkClient.omitIfNull(request.dependabotSecurityUpdatesEnabledForNewRepositories)),
         )
 
     private fun buildOrgsUpdateBodyPart3(request: Orgs.OrgsUpdateRequest): Map<String, Any?> =
         SdkClient.bodyMap(
             "dependency_graph_enabled_for_new_repositories" to
-    (SdkClient.omitIfNull(request.dependencyGraphEnabledForNewRepositories)),
+                (SdkClient.omitIfNull(request.dependencyGraphEnabledForNewRepositories)),
             "secret_scanning_enabled_for_new_repositories" to
-    (SdkClient.omitIfNull(request.secretScanningEnabledForNewRepositories)),
+                (SdkClient.omitIfNull(request.secretScanningEnabledForNewRepositories)),
             "secret_scanning_push_protection_enabled_for_new_repositories" to
-    (SdkClient.omitIfNull(request.secretScanningPushProtectionEnabledForNewRepositories)),
+                (SdkClient.omitIfNull(
+                    request.secretScanningPushProtectionEnabledForNewRepositories
+                )),
             "secret_scanning_push_protection_custom_link_enabled" to
-    (SdkClient.omitIfNull(request.secretScanningPushProtectionCustomLinkEnabled)),
+                (SdkClient.omitIfNull(request.secretScanningPushProtectionCustomLinkEnabled)),
             "secret_scanning_push_protection_custom_link" to
-    (SdkClient.omitIfNull(request.secretScanningPushProtectionCustomLink)),
+                (SdkClient.omitIfNull(request.secretScanningPushProtectionCustomLink)),
             "deploy_keys_enabled_for_repositories" to
-    (SdkClient.omitIfNull(request.deployKeysEnabledForRepositories)),
+                (SdkClient.omitIfNull(request.deployKeysEnabledForRepositories)),
         )
 }
 
 internal object OrgsDeleteOperation {
     /**
-     * Deletes an organization and all its repositories. The organization login will be unavailable for 90 days after deletion. Please review the Terms of Service regarding account deletion before using this endpoint: docs.github.com
+     * Deletes an organization and all its repositories. The organization login will be unavailable
+     * for 90 days after deletion. Please review the Terms of Service regarding account deletion
+     * before using this endpoint: docs.github.com
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsDelete(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Map<String, Any> {
-        return SdkClient.request<Map<String, Any>>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}", config = clientConfig, operationId = "orgsDelete", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun orgsDelete(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Map<String, Any> {
+        return SdkClient.request<Map<String, Any>>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/orgs/${SdkClient.encodePathSegment(org)}",
+                    config = clientConfig,
+                    operationId = "orgsDelete",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsEnableOrDisableSecurityProductOnAllOrgReposOperation {
     /**
-     * > !WARNING] > **Closing down notice:** The ability to enable or disable a security feature for all eligible repositories in an organization is closing down. Please use \[code security configurations instead. For more information, see the changelog. Enables or disables the specified security feature for all eligible repositories in an organization. For more information, see "Managing security managers in your organization." The authenticated user must be an organization owner…
+     * > !WARNING] > **Closing down notice:** The ability to enable or disable a security feature
+     * > for all eligible repositories in an organization is closing down. Please use \[code
+     * > security configurations instead. For more information, see the changelog. Enables or
+     * > disables the specified security feature for all eligible repositories in an organization.
+     * > For more information, see "Managing security managers in your organization." The
+     * > authenticated user must be an organization owner…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param securityProduct The security feature to enable or disable.
-     * @param enablement The action to take. `enable_all` means to enable the
+     * @param enablement The action to take. `enable_all` means to enable the specified security
+     *   feature for all repositories in the organization. `disable_all` means to disable the
      *   specified security feature for all repositories in the organization.
-     *   `disable_all` means to disable the specified security feature for all
-     *   repositories in the organization.
-     * @param querySuite CodeQL query suite to be used. If you specify the
-     *   `query_suite` parameter, the default setup will be configured with this query
-     *   suite only on all repositories that didn't have default setup already
-     *   configured. It will not change the query suite on repositories that already
-     *   have default setup configured. If you don't specify any `query_suite` in your
-     *   request, the preferred query suite of the organization will be applied.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param querySuite CodeQL query suite to be used. If you specify the `query_suite` parameter,
+     *   the default setup will be configured with this query suite only on all repositories that
+     *   didn't have default setup already configured. It will not change the query suite on
+     *   repositories that already have default setup configured. If you don't specify any
+     *   `query_suite` in your request, the preferred query suite of the organization will be
+     *   applied.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun orgsEnableOrDisableSecurityProductOnAllOrgRepos(clientConfig: ClientConfig, org: String, securityProduct: SchemaSchemaEnume123ddd7, enablement: SchemaSchemaEnumd185c506, querySuite: OrgsEnableOrDisableSecurityProductOnAllOrgReposQuerySuiteEnum? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/${SdkClient.encodePathSegment(securityProduct)}/${SdkClient.encodePathSegment(enablement)}", config = clientConfig, body = SdkClient.bodyMap("query_suite" to (SdkClient.omitIfNull(querySuite))), operationId = "orgsEnableOrDisableSecurityProductOnAllOrgRepos", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsEnableOrDisableSecurityProductOnAllOrgRepos(
+        clientConfig: ClientConfig,
+        org: String,
+        securityProduct: SchemaSchemaEnume123ddd7,
+        enablement: SchemaSchemaEnumd185c506,
+        querySuite: OrgsEnableOrDisableSecurityProductOnAllOrgReposQuerySuiteEnum? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/orgs/${SdkClient.encodePathSegment(org)}/${SdkClient.encodePathSegment(securityProduct)}/${SdkClient.encodePathSegment(enablement)}",
+                config = clientConfig,
+                body = SdkClient.bodyMap("query_suite" to (SdkClient.omitIfNull(querySuite))),
+                operationId = "orgsEnableOrDisableSecurityProductOnAllOrgRepos",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
@@ -260,67 +320,187 @@ internal object OrgsListMembershipsForAuthenticatedUserOperation {
     /**
      * Lists all of the authenticated user's organization memberships.
      *
-     * @param state Indicates the state of the memberships to return. If not
-     *   specified, the API returns both active and pending memberships.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param state Indicates the state of the memberships to return. If not specified, the API
+     *   returns both active and pending memberships.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun orgsListMembershipsForAuthenticatedUser(clientConfig: ClientConfig, state: OrgsListMembershipsForAuthenticatedUserParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<OrgMembership> {
-        return SdkClient.request<List<OrgMembership>>(SdkClient.RequestSpec("GET", "/user/memberships/orgs", config = clientConfig, query = mapOf("state" to SdkClient.queryValue(state, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListMembershipsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun orgsListMembershipsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        state: OrgsListMembershipsForAuthenticatedUserParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<OrgMembership> {
+        return SdkClient.request<List<OrgMembership>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/memberships/orgs",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "state" to SdkClient.queryValue(state, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "orgsListMembershipsForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsGetMembershipForAuthenticatedUserOperation {
     /**
-     * If the authenticated user is an active or pending member of the organization, this endpoint will return the user's membership. If the authenticated user is not affiliated with the organization, a `404` is returned. This endpoint will return a `403` if the request is made by a GitHub App that is blocked by the organization.
+     * If the authenticated user is an active or pending member of the organization, this endpoint
+     * will return the user's membership. If the authenticated user is not affiliated with the
+     * organization, a `404` is returned. This endpoint will return a `403` if the request is made
+     * by a GitHub App that is blocked by the organization.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsGetMembershipForAuthenticatedUser(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): OrgMembership {
-        return SdkClient.request<OrgMembership>(SdkClient.RequestSpec("GET", "/user/memberships/orgs/${SdkClient.encodePathSegment(org)}", config = clientConfig, operationId = "orgsGetMembershipForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun orgsGetMembershipForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): OrgMembership {
+        return SdkClient.request<OrgMembership>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/memberships/orgs/${SdkClient.encodePathSegment(org)}",
+                    config = clientConfig,
+                    operationId = "orgsGetMembershipForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsUpdateMembershipForAuthenticatedUserOperation {
     /**
-     * Converts the authenticated user to an active member of the organization, if that user has a pending invitation from the organization.
+     * Converts the authenticated user to an active member of the organization, if that user has a
+     * pending invitation from the organization.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param state The state that the membership should be in. Only `"active"` will
-     *   be accepted.
+     * @param state The state that the membership should be in. Only `"active"` will be accepted.
      */
-    fun orgsUpdateMembershipForAuthenticatedUser(clientConfig: ClientConfig, org: String, state: OrgsUpdateMembershipForAuthenticatedUserStateEnum, options: RequestOptions? = null): OrgMembership {
-        return SdkClient.request<OrgMembership>(SdkClient.RequestSpec("PATCH", "/user/memberships/orgs/${SdkClient.encodePathSegment(org)}", config = clientConfig, body = SdkClient.bodyMap("state" to (state)), operationId = "orgsUpdateMembershipForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun orgsUpdateMembershipForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        org: String,
+        state: OrgsUpdateMembershipForAuthenticatedUserStateEnum,
+        options: RequestOptions? = null,
+    ): OrgMembership {
+        return SdkClient.request<OrgMembership>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/user/memberships/orgs/${SdkClient.encodePathSegment(org)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("state" to (state)),
+                    operationId = "orgsUpdateMembershipForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsListForAuthenticatedUserOperation {
     /**
-     * List organizations for the authenticated user. For OAuth app tokens and personal access tokens (classic), this endpoint only lists organizations that your authorization allows you to operate on in some way (e.g., you can list teams with `read:org` scope, you can publicize your organization membership with `user` scope, etc.). Therefore, this API requires at least `user` or `read:org` scope for OAuth app tokens and personal access tokens (classic). Requests with insufficient…
+     * List organizations for the authenticated user. For OAuth app tokens and personal access
+     * tokens (classic), this endpoint only lists organizations that your authorization allows you
+     * to operate on in some way (e.g., you can list teams with `read:org` scope, you can publicize
+     * your organization membership with `user` scope, etc.). Therefore, this API requires at least
+     * `user` or `read:org` scope for OAuth app tokens and personal access tokens (classic).
+     * Requests with insufficient…
      *
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun orgsListForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<OrganizationSimple> {
-        return SdkClient.request<List<OrganizationSimple>>(SdkClient.RequestSpec("GET", "/user/orgs", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun orgsListForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<OrganizationSimple> {
+        return SdkClient.request<List<OrganizationSimple>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/orgs",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "orgsListForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsListForUserOperation {
     /**
-     * List public organization memberships for the specified user. This method only lists _public_ memberships, regardless of authentication. If you need to fetch all of the organization memberships (public and private) for the authenticated user, use the List organizations for the authenticated user API instead.
+     * List public organization memberships for the specified user. This method only lists _public_
+     * memberships, regardless of authentication. If you need to fetch all of the organization
+     * memberships (public and private) for the authenticated user, use the List organizations for
+     * the authenticated user API instead.
      *
      * @param username The handle for the GitHub user account.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun orgsListForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<OrganizationSimple> {
-        return SdkClient.request<List<OrganizationSimple>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/orgs", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun orgsListForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<OrganizationSimple> {
+        return SdkClient.request<List<OrganizationSimple>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(username)}/orgs",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "orgsListForUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

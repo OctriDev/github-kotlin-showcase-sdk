@@ -16,27 +16,27 @@ import dev.octri.showcase.github.ProjectsV2View
 import dev.octri.showcase.github.RequestOptions
 
 object Projects {
-data class ProjectsUpdateItemForOrgFieldsItem(
-    /**
-     * The ID of the project field to update.
-     */
-    val id: Long,
-    /**
-     * The new value for the field: - For text, number, and date fields, provide the new value directly. - For single select and iteration fields, provide the ID of the option or iteration. - To clear the field, set this to null.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: Any?
-)
+    data class ProjectsUpdateItemForOrgFieldsItem(
+        /** The ID of the project field to update. */
+        val id: Long,
+        /**
+         * The new value for the field: - For text, number, and date fields, provide the new value
+         * directly. - For single select and iteration fields, provide the ID of the option or
+         * iteration. - To clear the field, set this to null.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: Any?,
+    )
 
-data class ProjectsUpdateItemForUserFieldsItem(
-    /**
-     * The ID of the project field to update.
-     */
-    val id: Long,
-    /**
-     * The new value for the field: - For text, number, and date fields, provide the new value directly. - For single select and iteration fields, provide the ID of the option or iteration. - To clear the field, set this to null.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: Any?
-)
+    data class ProjectsUpdateItemForUserFieldsItem(
+        /** The ID of the project field to update. */
+        val id: Long,
+        /**
+         * The new value for the field: - For text, number, and date fields, provide the new value
+         * directly. - For single select and iteration fields, provide the ID of the option or
+         * iteration. - To clear the field, set this to null.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: Any?,
+    )
 
     /** Parameters for [projectsListItemsForOrg]. */
     data class ProjectsListItemsForOrgRequest(
@@ -46,7 +46,7 @@ data class ProjectsUpdateItemForUserFieldsItem(
         val fields: Any? = null,
         val before: String? = null,
         val after: String? = null,
-        val perPage: Long? = null
+        val perPage: Long? = null,
     )
 
     /** Parameters for [projectsAddItemForOrg]. */
@@ -57,7 +57,7 @@ data class ProjectsUpdateItemForUserFieldsItem(
         val id: Long? = null,
         val owner: String? = null,
         val repo: String? = null,
-        val number: Long? = null
+        val number: Long? = null,
     )
 
     /** Parameters for [projectsCreateViewForOrg]. */
@@ -70,7 +70,7 @@ data class ProjectsUpdateItemForUserFieldsItem(
         val visibleFields: List<Long>? = null,
         val sortBy: List<List<Any>>? = null,
         val groupBy: List<Long>? = null,
-        val verticalGroupBy: List<Long>? = null
+        val verticalGroupBy: List<Long>? = null,
     )
 
     /** Parameters for [projectsListViewItemsForOrg]. */
@@ -81,7 +81,7 @@ data class ProjectsUpdateItemForUserFieldsItem(
         val fields: Any? = null,
         val before: String? = null,
         val after: String? = null,
-        val perPage: Long? = null
+        val perPage: Long? = null,
     )
 
     /** Parameters for [projectsCreateViewForUser]. */
@@ -94,7 +94,7 @@ data class ProjectsUpdateItemForUserFieldsItem(
         val visibleFields: List<Long>? = null,
         val sortBy: List<List<Any>>? = null,
         val groupBy: List<Long>? = null,
-        val verticalGroupBy: List<Long>? = null
+        val verticalGroupBy: List<Long>? = null,
     )
 
     /** Parameters for [projectsListItemsForUser]. */
@@ -105,7 +105,7 @@ data class ProjectsUpdateItemForUserFieldsItem(
         val after: String? = null,
         val perPage: Long? = null,
         val q: String? = null,
-        val fields: Any? = null
+        val fields: Any? = null,
     )
 
     /** Parameters for [projectsAddItemForUser]. */
@@ -116,7 +116,7 @@ data class ProjectsUpdateItemForUserFieldsItem(
         val id: Long? = null,
         val owner: String? = null,
         val repo: String? = null,
-        val number: Long? = null
+        val number: Long? = null,
     )
 
     /** Parameters for [projectsListViewItemsForUser]. */
@@ -127,13 +127,19 @@ data class ProjectsUpdateItemForUserFieldsItem(
         val fields: Any? = null,
         val before: String? = null,
         val after: String? = null,
-        val perPage: Long? = null
+        val perPage: Long? = null,
     )
 
-    /**
-     * List all projects owned by a specific organization accessible by the authenticated user.
-     */
-    fun projectsListForOrg(clientConfig: ClientConfig, org: String, q: String? = null, before: String? = null, after: String? = null, perPage: Long? = null, options: RequestOptions? = null): List<ProjectsV2> =
+    /** List all projects owned by a specific organization accessible by the authenticated user. */
+    fun projectsListForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        q: String? = null,
+        before: String? = null,
+        after: String? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): List<ProjectsV2> =
         dev.octri.showcase.github.methods.ProjectsListForOrgOperation.projectsListForOrg(
             clientConfig,
             org,
@@ -145,9 +151,16 @@ data class ProjectsUpdateItemForUserFieldsItem(
         )
 
     /**
-     * Retrieves a specific project owned by an organization. Use `org` and `project_number` to identify the organization and project. The response includes project details such as its title, owner, visibility, and state.
+     * Retrieves a specific project owned by an organization. Use `org` and `project_number` to
+     * identify the organization and project. The response includes project details such as its
+     * title, owner, visibility, and state.
      */
-    fun projectsGetForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, options: RequestOptions? = null): ProjectsV2 =
+    fun projectsGetForOrg(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        org: String,
+        options: RequestOptions? = null,
+    ): ProjectsV2 =
         dev.octri.showcase.github.methods.ProjectsGetForOrgOperation.projectsGetForOrg(
             clientConfig,
             projectNumber,
@@ -155,37 +168,58 @@ data class ProjectsUpdateItemForUserFieldsItem(
             options,
         )
 
-    /**
-     * Create draft issue item for the specified organization owned project.
-     */
-    fun projectsCreateDraftItemForOrg(clientConfig: ClientConfig, org: String, projectNumber: Long, title: String, body: String? = null, options: RequestOptions? = null): ProjectsV2ItemSimple =
-        dev.octri.showcase.github.methods.ProjectsCreateDraftItemForOrgOperation.projectsCreateDraftItemForOrg(
-            clientConfig,
-            org,
-            projectNumber,
-            title,
-            body,
-            options,
-        )
+    /** Create draft issue item for the specified organization owned project. */
+    fun projectsCreateDraftItemForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        projectNumber: Long,
+        title: String,
+        body: String? = null,
+        options: RequestOptions? = null,
+    ): ProjectsV2ItemSimple =
+        dev.octri.showcase.github.methods.ProjectsCreateDraftItemForOrgOperation
+            .projectsCreateDraftItemForOrg(
+                clientConfig,
+                org,
+                projectNumber,
+                title,
+                body,
+                options,
+            )
+
+    /** List all fields for a specific organization-owned project. */
+    fun projectsListFieldsForOrg(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        org: String,
+        perPage: Long? = null,
+        before: String? = null,
+        after: String? = null,
+        options: RequestOptions? = null,
+    ): List<ProjectsV2Field> =
+        dev.octri.showcase.github.methods.ProjectsListFieldsForOrgOperation
+            .projectsListFieldsForOrg(
+                clientConfig,
+                projectNumber,
+                org,
+                perPage,
+                before,
+                after,
+                options,
+            )
 
     /**
-     * List all fields for a specific organization-owned project.
+     * Creates a field in an organization-owned project. Supply a request body matching a supported
+     * field configuration, such as an issue field reference or a named field with its data type. A
+     * single-select field configuration includes its available options.
      */
-    fun projectsListFieldsForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): List<ProjectsV2Field> =
-        dev.octri.showcase.github.methods.ProjectsListFieldsForOrgOperation.projectsListFieldsForOrg(
-            clientConfig,
-            projectNumber,
-            org,
-            perPage,
-            before,
-            after,
-            options,
-        )
-
-    /**
-     * Creates a field in an organization-owned project. Supply a request body matching a supported field configuration, such as an issue field reference or a named field with its data type. A single-select field configuration includes its available options.
-     */
-    fun projectsAddFieldForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, body: Map<String, Any>, options: RequestOptions? = null): ProjectsV2Field =
+    fun projectsAddFieldForOrg(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        org: String,
+        body: Map<String, Any>,
+        options: RequestOptions? = null,
+    ): ProjectsV2Field =
         dev.octri.showcase.github.methods.ProjectsAddFieldForOrgOperation.projectsAddFieldForOrg(
             clientConfig,
             projectNumber,
@@ -194,10 +228,14 @@ data class ProjectsUpdateItemForUserFieldsItem(
             options,
         )
 
-    /**
-     * Get a specific field for an organization-owned project.
-     */
-    fun projectsGetFieldForOrg(clientConfig: ClientConfig, projectNumber: Long, fieldId: Long, org: String, options: RequestOptions? = null): ProjectsV2Field =
+    /** Get a specific field for an organization-owned project. */
+    fun projectsGetFieldForOrg(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        fieldId: Long,
+        org: String,
+        options: RequestOptions? = null,
+    ): ProjectsV2Field =
         dev.octri.showcase.github.methods.ProjectsGetFieldForOrgOperation.projectsGetFieldForOrg(
             clientConfig,
             projectNumber,
@@ -207,29 +245,41 @@ data class ProjectsUpdateItemForUserFieldsItem(
         )
 
     /**
-     * List all items for a specific organization-owned project accessible by the authenticated user.
+     * List all items for a specific organization-owned project accessible by the authenticated
+     * user.
      */
-    fun projectsListItemsForOrg(clientConfig: ClientConfig, request: ProjectsListItemsForOrgRequest, options: RequestOptions? = null): List<ProjectsV2ItemWithContent> =
+    fun projectsListItemsForOrg(
+        clientConfig: ClientConfig,
+        request: ProjectsListItemsForOrgRequest,
+        options: RequestOptions? = null,
+    ): List<ProjectsV2ItemWithContent> =
         dev.octri.showcase.github.methods.ProjectsListItemsForOrgOperation.projectsListItemsForOrg(
             clientConfig,
             request,
             options,
         )
 
-    /**
-     * Add an issue or pull request item to the specified organization owned project.
-     */
-    fun projectsAddItemForOrg(clientConfig: ClientConfig, request: ProjectsAddItemForOrgRequest, options: RequestOptions? = null): ProjectsV2ItemSimple =
+    /** Add an issue or pull request item to the specified organization owned project. */
+    fun projectsAddItemForOrg(
+        clientConfig: ClientConfig,
+        request: ProjectsAddItemForOrgRequest,
+        options: RequestOptions? = null,
+    ): ProjectsV2ItemSimple =
         dev.octri.showcase.github.methods.ProjectsAddItemForOrgOperation.projectsAddItemForOrg(
             clientConfig,
             request,
             options,
         )
 
-    /**
-     * Get a specific item from an organization-owned project.
-     */
-    fun projectsGetOrgItem(clientConfig: ClientConfig, projectNumber: Long, org: String, itemId: Long, fields: Any? = null, options: RequestOptions? = null): ProjectsV2ItemWithContent =
+    /** Get a specific item from an organization-owned project. */
+    fun projectsGetOrgItem(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        org: String,
+        itemId: Long,
+        fields: Any? = null,
+        options: RequestOptions? = null,
+    ): ProjectsV2ItemWithContent =
         dev.octri.showcase.github.methods.ProjectsGetOrgItemOperation.projectsGetOrgItem(
             clientConfig,
             projectNumber,
@@ -239,78 +289,116 @@ data class ProjectsUpdateItemForUserFieldsItem(
             options,
         )
 
-    /**
-     * Update a specific item in an organization-owned project.
-     */
-    fun projectsUpdateItemForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, itemId: Long, fields: List<ProjectsUpdateItemForOrgFieldsItem>, options: RequestOptions? = null): ProjectsV2ItemWithContent =
-        dev.octri.showcase.github.methods.ProjectsUpdateItemForOrgOperation.projectsUpdateItemForOrg(
-            clientConfig,
-            projectNumber,
-            org,
-            itemId,
-            fields,
-            options,
-        )
+    /** Update a specific item in an organization-owned project. */
+    fun projectsUpdateItemForOrg(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        org: String,
+        itemId: Long,
+        fields: List<ProjectsUpdateItemForOrgFieldsItem>,
+        options: RequestOptions? = null,
+    ): ProjectsV2ItemWithContent =
+        dev.octri.showcase.github.methods.ProjectsUpdateItemForOrgOperation
+            .projectsUpdateItemForOrg(
+                clientConfig,
+                projectNumber,
+                org,
+                itemId,
+                fields,
+                options,
+            )
+
+    /** Delete a specific item from an organization-owned project. */
+    fun projectsDeleteItemForOrg(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        org: String,
+        itemId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ProjectsDeleteItemForOrgOperation
+            .projectsDeleteItemForOrg(
+                clientConfig,
+                projectNumber,
+                org,
+                itemId,
+                options,
+            )
 
     /**
-     * Delete a specific item from an organization-owned project.
+     * Create a new view in an organization-owned project. Views allow you to customize how items in
+     * a project are displayed and filtered.
      */
-    fun projectsDeleteItemForOrg(clientConfig: ClientConfig, projectNumber: Long, org: String, itemId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ProjectsDeleteItemForOrgOperation.projectsDeleteItemForOrg(
-            clientConfig,
-            projectNumber,
-            org,
-            itemId,
-            options,
-        )
+    fun projectsCreateViewForOrg(
+        clientConfig: ClientConfig,
+        request: ProjectsCreateViewForOrgRequest,
+        options: RequestOptions? = null,
+    ): ProjectsV2View =
+        dev.octri.showcase.github.methods.ProjectsCreateViewForOrgOperation
+            .projectsCreateViewForOrg(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /** List items in an organization project with the saved view's filter applied. */
+    fun projectsListViewItemsForOrg(
+        clientConfig: ClientConfig,
+        request: ProjectsListViewItemsForOrgRequest,
+        options: RequestOptions? = null,
+    ): List<ProjectsV2ItemWithContent> =
+        dev.octri.showcase.github.methods.ProjectsListViewItemsForOrgOperation
+            .projectsListViewItemsForOrg(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /** Create draft issue item for the specified user owned project. */
+    fun projectsCreateDraftItemForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        userId: String,
+        projectNumber: Long,
+        title: String,
+        body: String? = null,
+        options: RequestOptions? = null,
+    ): ProjectsV2ItemSimple =
+        dev.octri.showcase.github.methods.ProjectsCreateDraftItemForAuthenticatedUserOperation
+            .projectsCreateDraftItemForAuthenticatedUser(
+                clientConfig,
+                userId,
+                projectNumber,
+                title,
+                body,
+                options,
+            )
 
     /**
-     * Create a new view in an organization-owned project. Views allow you to customize how items in a project are displayed and filtered.
+     * Create a new view in a user-owned project. Views allow you to customize how items in a
+     * project are displayed and filtered.
      */
-    fun projectsCreateViewForOrg(clientConfig: ClientConfig, request: ProjectsCreateViewForOrgRequest, options: RequestOptions? = null): ProjectsV2View =
-        dev.octri.showcase.github.methods.ProjectsCreateViewForOrgOperation.projectsCreateViewForOrg(
-            clientConfig,
-            request,
-            options,
-        )
+    fun projectsCreateViewForUser(
+        clientConfig: ClientConfig,
+        request: ProjectsCreateViewForUserRequest,
+        options: RequestOptions? = null,
+    ): ProjectsV2View =
+        dev.octri.showcase.github.methods.ProjectsCreateViewForUserOperation
+            .projectsCreateViewForUser(
+                clientConfig,
+                request,
+                options,
+            )
 
-    /**
-     * List items in an organization project with the saved view's filter applied.
-     */
-    fun projectsListViewItemsForOrg(clientConfig: ClientConfig, request: ProjectsListViewItemsForOrgRequest, options: RequestOptions? = null): List<ProjectsV2ItemWithContent> =
-        dev.octri.showcase.github.methods.ProjectsListViewItemsForOrgOperation.projectsListViewItemsForOrg(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Create draft issue item for the specified user owned project.
-     */
-    fun projectsCreateDraftItemForAuthenticatedUser(clientConfig: ClientConfig, userId: String, projectNumber: Long, title: String, body: String? = null, options: RequestOptions? = null): ProjectsV2ItemSimple =
-        dev.octri.showcase.github.methods.ProjectsCreateDraftItemForAuthenticatedUserOperation.projectsCreateDraftItemForAuthenticatedUser(
-            clientConfig,
-            userId,
-            projectNumber,
-            title,
-            body,
-            options,
-        )
-
-    /**
-     * Create a new view in a user-owned project. Views allow you to customize how items in a project are displayed and filtered.
-     */
-    fun projectsCreateViewForUser(clientConfig: ClientConfig, request: ProjectsCreateViewForUserRequest, options: RequestOptions? = null): ProjectsV2View =
-        dev.octri.showcase.github.methods.ProjectsCreateViewForUserOperation.projectsCreateViewForUser(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * List all projects owned by a specific user accessible by the authenticated user.
-     */
-    fun projectsListForUser(clientConfig: ClientConfig, username: String, q: String? = null, before: String? = null, after: String? = null, perPage: Long? = null, options: RequestOptions? = null): List<ProjectsV2> =
+    /** List all projects owned by a specific user accessible by the authenticated user. */
+    fun projectsListForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        q: String? = null,
+        before: String? = null,
+        after: String? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): List<ProjectsV2> =
         dev.octri.showcase.github.methods.ProjectsListForUserOperation.projectsListForUser(
             clientConfig,
             username,
@@ -322,9 +410,16 @@ data class ProjectsUpdateItemForUserFieldsItem(
         )
 
     /**
-     * Retrieves a Projects v2 project owned by a specified GitHub user. Use `username` and `project_number` to identify the user and project; the response includes project metadata and ownership details.
+     * Retrieves a Projects v2 project owned by a specified GitHub user. Use `username` and
+     * `project_number` to identify the user and project; the response includes project metadata and
+     * ownership details.
      */
-    fun projectsGetForUser(clientConfig: ClientConfig, projectNumber: Long, username: String, options: RequestOptions? = null): ProjectsV2 =
+    fun projectsGetForUser(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        username: String,
+        options: RequestOptions? = null,
+    ): ProjectsV2 =
         dev.octri.showcase.github.methods.ProjectsGetForUserOperation.projectsGetForUser(
             clientConfig,
             projectNumber,
@@ -332,24 +427,39 @@ data class ProjectsUpdateItemForUserFieldsItem(
             options,
         )
 
-    /**
-     * List all fields for a specific user-owned project.
-     */
-    fun projectsListFieldsForUser(clientConfig: ClientConfig, projectNumber: Long, username: String, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): List<ProjectsV2Field> =
-        dev.octri.showcase.github.methods.ProjectsListFieldsForUserOperation.projectsListFieldsForUser(
-            clientConfig,
-            projectNumber,
-            username,
-            perPage,
-            before,
-            after,
-            options,
-        )
+    /** List all fields for a specific user-owned project. */
+    fun projectsListFieldsForUser(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        username: String,
+        perPage: Long? = null,
+        before: String? = null,
+        after: String? = null,
+        options: RequestOptions? = null,
+    ): List<ProjectsV2Field> =
+        dev.octri.showcase.github.methods.ProjectsListFieldsForUserOperation
+            .projectsListFieldsForUser(
+                clientConfig,
+                projectNumber,
+                username,
+                perPage,
+                before,
+                after,
+                options,
+            )
 
     /**
-     * Creates a field in a project owned by the specified user. Choose a `data_type` of text, number, date, single_select, or iteration and provide the configuration required for that type. A 201 response returns the created field, including its identifier and project URL.
+     * Creates a field in a project owned by the specified user. Choose a `data_type` of text,
+     * number, date, single_select, or iteration and provide the configuration required for that
+     * type. A 201 response returns the created field, including its identifier and project URL.
      */
-    fun projectsAddFieldForUser(clientConfig: ClientConfig, username: String, projectNumber: Long, body: Map<String, Any>, options: RequestOptions? = null): ProjectsV2Field =
+    fun projectsAddFieldForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        projectNumber: Long,
+        body: Map<String, Any>,
+        options: RequestOptions? = null,
+    ): ProjectsV2Field =
         dev.octri.showcase.github.methods.ProjectsAddFieldForUserOperation.projectsAddFieldForUser(
             clientConfig,
             username,
@@ -359,9 +469,17 @@ data class ProjectsUpdateItemForUserFieldsItem(
         )
 
     /**
-     * Retrieves a specific field from a project owned by the specified user. Use the project number and field identifier to select the field to inspect. The response includes the field's name, data type, project URL, and any field configuration.
+     * Retrieves a specific field from a project owned by the specified user. Use the project number
+     * and field identifier to select the field to inspect. The response includes the field's name,
+     * data type, project URL, and any field configuration.
      */
-    fun projectsGetFieldForUser(clientConfig: ClientConfig, projectNumber: Long, fieldId: Long, username: String, options: RequestOptions? = null): ProjectsV2Field =
+    fun projectsGetFieldForUser(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        fieldId: Long,
+        username: String,
+        options: RequestOptions? = null,
+    ): ProjectsV2Field =
         dev.octri.showcase.github.methods.ProjectsGetFieldForUserOperation.projectsGetFieldForUser(
             clientConfig,
             projectNumber,
@@ -370,20 +488,25 @@ data class ProjectsUpdateItemForUserFieldsItem(
             options,
         )
 
-    /**
-     * List all items for a specific user-owned project accessible by the authenticated user.
-     */
-    fun projectsListItemsForUser(clientConfig: ClientConfig, request: ProjectsListItemsForUserRequest, options: RequestOptions? = null): List<ProjectsV2ItemWithContent> =
-        dev.octri.showcase.github.methods.ProjectsListItemsForUserOperation.projectsListItemsForUser(
-            clientConfig,
-            request,
-            options,
-        )
+    /** List all items for a specific user-owned project accessible by the authenticated user. */
+    fun projectsListItemsForUser(
+        clientConfig: ClientConfig,
+        request: ProjectsListItemsForUserRequest,
+        options: RequestOptions? = null,
+    ): List<ProjectsV2ItemWithContent> =
+        dev.octri.showcase.github.methods.ProjectsListItemsForUserOperation
+            .projectsListItemsForUser(
+                clientConfig,
+                request,
+                options,
+            )
 
-    /**
-     * Add an issue or pull request item to the specified user owned project.
-     */
-    fun projectsAddItemForUser(clientConfig: ClientConfig, request: ProjectsAddItemForUserRequest, options: RequestOptions? = null): ProjectsV2ItemSimple =
+    /** Add an issue or pull request item to the specified user owned project. */
+    fun projectsAddItemForUser(
+        clientConfig: ClientConfig,
+        request: ProjectsAddItemForUserRequest,
+        options: RequestOptions? = null,
+    ): ProjectsV2ItemSimple =
         dev.octri.showcase.github.methods.ProjectsAddItemForUserOperation.projectsAddItemForUser(
             clientConfig,
             request,
@@ -391,9 +514,18 @@ data class ProjectsUpdateItemForUserFieldsItem(
         )
 
     /**
-     * Retrieves a specific item from a project owned by the specified user. Use `fields` to limit the returned field values; when omitted, the response includes the title field. The item response also identifies its content type and includes item and project details.
+     * Retrieves a specific item from a project owned by the specified user. Use `fields` to limit
+     * the returned field values; when omitted, the response includes the title field. The item
+     * response also identifies its content type and includes item and project details.
      */
-    fun projectsGetUserItem(clientConfig: ClientConfig, projectNumber: Long, username: String, itemId: Long, fields: Any? = null, options: RequestOptions? = null): ProjectsV2ItemWithContent =
+    fun projectsGetUserItem(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        username: String,
+        itemId: Long,
+        fields: Any? = null,
+        options: RequestOptions? = null,
+    ): ProjectsV2ItemWithContent =
         dev.octri.showcase.github.methods.ProjectsGetUserItemOperation.projectsGetUserItem(
             clientConfig,
             projectNumber,
@@ -404,37 +536,59 @@ data class ProjectsUpdateItemForUserFieldsItem(
         )
 
     /**
-     * Updates field values on a specific item in a project owned by the specified user. Supply the field IDs and new values in `fields`; only text, number, date, single-select, and iteration fields are supported. A 200 response returns the updated project item.
+     * Updates field values on a specific item in a project owned by the specified user. Supply the
+     * field IDs and new values in `fields`; only text, number, date, single-select, and iteration
+     * fields are supported. A 200 response returns the updated project item.
      */
-    fun projectsUpdateItemForUser(clientConfig: ClientConfig, projectNumber: Long, username: String, itemId: Long, fields: List<ProjectsUpdateItemForUserFieldsItem>, options: RequestOptions? = null): ProjectsV2ItemWithContent =
-        dev.octri.showcase.github.methods.ProjectsUpdateItemForUserOperation.projectsUpdateItemForUser(
-            clientConfig,
-            projectNumber,
-            username,
-            itemId,
-            fields,
-            options,
-        )
+    fun projectsUpdateItemForUser(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        username: String,
+        itemId: Long,
+        fields: List<ProjectsUpdateItemForUserFieldsItem>,
+        options: RequestOptions? = null,
+    ): ProjectsV2ItemWithContent =
+        dev.octri.showcase.github.methods.ProjectsUpdateItemForUserOperation
+            .projectsUpdateItemForUser(
+                clientConfig,
+                projectNumber,
+                username,
+                itemId,
+                fields,
+                options,
+            )
 
     /**
-     * Deletes a specific item from a project owned by the specified user. Provide the project number, user handle, and item identifier to select the item to remove. A 204 response confirms the deletion and contains no response body.
+     * Deletes a specific item from a project owned by the specified user. Provide the project
+     * number, user handle, and item identifier to select the item to remove. A 204 response
+     * confirms the deletion and contains no response body.
      */
-    fun projectsDeleteItemForUser(clientConfig: ClientConfig, projectNumber: Long, username: String, itemId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ProjectsDeleteItemForUserOperation.projectsDeleteItemForUser(
-            clientConfig,
-            projectNumber,
-            username,
-            itemId,
-            options,
-        )
+    fun projectsDeleteItemForUser(
+        clientConfig: ClientConfig,
+        projectNumber: Long,
+        username: String,
+        itemId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ProjectsDeleteItemForUserOperation
+            .projectsDeleteItemForUser(
+                clientConfig,
+                projectNumber,
+                username,
+                itemId,
+                options,
+            )
 
-    /**
-     * List items in a user project with the saved view's filter applied.
-     */
-    fun projectsListViewItemsForUser(clientConfig: ClientConfig, request: ProjectsListViewItemsForUserRequest, options: RequestOptions? = null): List<ProjectsV2ItemWithContent> =
-        dev.octri.showcase.github.methods.ProjectsListViewItemsForUserOperation.projectsListViewItemsForUser(
-            clientConfig,
-            request,
-            options,
-        )
+    /** List items in a user project with the saved view's filter applied. */
+    fun projectsListViewItemsForUser(
+        clientConfig: ClientConfig,
+        request: ProjectsListViewItemsForUserRequest,
+        options: RequestOptions? = null,
+    ): List<ProjectsV2ItemWithContent> =
+        dev.octri.showcase.github.methods.ProjectsListViewItemsForUserOperation
+            .projectsListViewItemsForUser(
+                clientConfig,
+                request,
+                options,
+            )
 }

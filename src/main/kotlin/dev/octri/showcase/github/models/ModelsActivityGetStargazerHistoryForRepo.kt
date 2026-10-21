@@ -3,20 +3,12 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Stargazer History
- */
+/** Stargazer History */
 data class StargazerHistory(
-    /**
-     * The number of stars created on each day of the week, starting on Sunday.
-     */
+    /** The number of stars created on each day of the week, starting on Sunday. */
     val days: List<Long>,
-    /**
-     * The number of stars created during the week.
-     */
+    /** The number of stars created during the week. */
     val total: Long,
-    /**
-     * The start of the week, given as a Unix timestamp.
-     */
-    val week: Long
+    /** The start of the week, given as a Unix timestamp. */
+    val week: Long,
 )

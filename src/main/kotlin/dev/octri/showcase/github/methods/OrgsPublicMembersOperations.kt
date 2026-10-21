@@ -14,13 +14,34 @@ internal object OrgsListPublicMembersOperation {
      * Members of an organization can choose to have their membership publicized or not.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun orgsListPublicMembers(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/public_members", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListPublicMembers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun orgsListPublicMembers(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/public_members",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "orgsListPublicMembers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
@@ -31,31 +52,77 @@ internal object OrgsCheckPublicMembershipForUserOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsCheckPublicMembershipForUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/public_members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsCheckPublicMembershipForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsCheckPublicMembershipForUser(
+        clientConfig: ClientConfig,
+        org: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/public_members/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "orgsCheckPublicMembershipForUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object OrgsSetPublicMembershipForAuthenticatedUserOperation {
     /**
-     * The user can publicize their own membership. (A user cannot publicize the membership for another user.) Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "HTTP method."
+     * The user can publicize their own membership. (A user cannot publicize the membership for
+     * another user.) Note that you'll need to set `Content-Length` to zero when calling out to this
+     * endpoint. For more information, see "HTTP method."
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsSetPublicMembershipForAuthenticatedUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/public_members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsSetPublicMembershipForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
+    fun orgsSetPublicMembershipForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        org: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/public_members/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "orgsSetPublicMembershipForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object OrgsRemovePublicMembershipForAuthenticatedUserOperation {
     /**
-     * Removes the public membership for the authenticated user from the specified organization, unless public visibility is enforced by default.
+     * Removes the public membership for the authenticated user from the specified organization,
+     * unless public visibility is enforced by default.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsRemovePublicMembershipForAuthenticatedUser(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/public_members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsRemovePublicMembershipForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsRemovePublicMembershipForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        org: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/public_members/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "orgsRemovePublicMembershipForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

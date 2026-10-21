@@ -10,19 +10,44 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ReposTransferOperation {
     /**
-     * A transfer request will need to be accepted by the new owner when transferring a personal repository to another user. The response will contain the original `owner`, and the transfer will continue asynchronously. For more details on the requirements to transfer personal and organization-owned repositories, see about repository transfers.
+     * A transfer request will need to be accepted by the new owner when transferring a personal
+     * repository to another user. The response will contain the original `owner`, and the transfer
+     * will continue asynchronously. For more details on the requirements to transfer personal and
+     * organization-owned repositories, see about repository transfers.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param newOwner The username or organization name the repository will be
-     *   transferred to.
+     * @param newOwner The username or organization name the repository will be transferred to.
      * @param newName The new name to be given to the repository.
-     * @param teamIds ID of the team or teams to add to the repository. Teams can
-     *   only be added to organization-owned repositories.
+     * @param teamIds ID of the team or teams to add to the repository. Teams can only be added to
+     *   organization-owned repositories.
      */
-    fun reposTransfer(clientConfig: ClientConfig, owner: String, repo: String, newOwner: String, newName: String? = null, teamIds: List<Long>? = null, options: RequestOptions? = null): MinimalRepository {
-        return SdkClient.request<MinimalRepository>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/transfer", config = clientConfig, body = SdkClient.bodyMap("new_owner" to (newOwner), "new_name" to (SdkClient.omitIfNull(newName)), "team_ids" to (SdkClient.omitIfNull(teamIds))), operationId = "reposTransfer", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposTransfer(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        newOwner: String,
+        newName: String? = null,
+        teamIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): MinimalRepository {
+        return SdkClient.request<MinimalRepository>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/transfer",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "new_owner" to (newOwner),
+                            "new_name" to (SdkClient.omitIfNull(newName)),
+                            "team_ids" to (SdkClient.omitIfNull(teamIds)),
+                        ),
+                    operationId = "reposTransfer",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

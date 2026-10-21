@@ -26,82 +26,211 @@ import java.time.OffsetDateTime
 
 internal object AppsGetAuthenticatedOperation {
     /**
-     * Returns the GitHub App associated with the authentication credentials used. To see how many app installations are associated with this GitHub App, see the `installations_count` in the response. For more details about your app's installations, see the "List installations for the authenticated app" endpoint. You must use a JWT to access this endpoint.
+     * Returns the GitHub App associated with the authentication credentials used. To see how many
+     * app installations are associated with this GitHub App, see the `installations_count` in the
+     * response. For more details about your app's installations, see the "List installations for
+     * the authenticated app" endpoint. You must use a JWT to access this endpoint.
      */
-    fun appsGetAuthenticated(clientConfig: ClientConfig, options: RequestOptions? = null): Integration {
-        return SdkClient.request<Integration>(SdkClient.RequestSpec("GET", "/app", config = clientConfig, operationId = "appsGetAuthenticated", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun appsGetAuthenticated(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): Integration {
+        return SdkClient.request<Integration>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/app",
+                    config = clientConfig,
+                    operationId = "appsGetAuthenticated",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object AppsGetWebhookConfigForAppOperation {
     /**
-     * Returns the webhook configuration for a GitHub App. For more information about configuring a webhook for your app, see "Creating a GitHub App." You must use a JWT to access this endpoint.
+     * Returns the webhook configuration for a GitHub App. For more information about configuring a
+     * webhook for your app, see "Creating a GitHub App." You must use a JWT to access this
+     * endpoint.
      */
-    fun appsGetWebhookConfigForApp(clientConfig: ClientConfig, options: RequestOptions? = null): WebhookConfig {
-        return SdkClient.request<WebhookConfig>(SdkClient.RequestSpec("GET", "/app/hook/config", config = clientConfig, operationId = "appsGetWebhookConfigForApp", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun appsGetWebhookConfigForApp(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): WebhookConfig {
+        return SdkClient.request<WebhookConfig>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/app/hook/config",
+                    config = clientConfig,
+                    operationId = "appsGetWebhookConfigForApp",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object AppsUpdateWebhookConfigForAppOperation {
     /**
-     * Updates the webhook configuration for a GitHub App, including its payload URL and delivery settings. Supply `url` as a URI; `content_type` defaults to `form`, and `insecure_ssl` defaults to `0`. Authenticate with a GitHub App JWT to access this endpoint.
+     * Updates the webhook configuration for a GitHub App, including its payload URL and delivery
+     * settings. Supply `url` as a URI; `content_type` defaults to `form`, and `insecure_ssl`
+     * defaults to `0`. Authenticate with a GitHub App JWT to access this endpoint.
      *
-     * Updates the webhook configuration for a GitHub App. For more information about configuring a webhook for your app, see "Creating a GitHub App." You must use a JWT to access this endpoint.
+     * Updates the webhook configuration for a GitHub App. For more information about configuring a
+     * webhook for your app, see "Creating a GitHub App." You must use a JWT to access this
+     * endpoint.
      *
      * @param url The URL to which the payloads will be delivered.
-     * @param contentType The media type used to serialize the payloads. Supported
-     *   values include `json` and `form`. The default is `form`.
-     * @param secret If provided, the `secret` will be used as the `key` to generate
-     *   the HMAC hex digest value for delivery signature headers.
+     * @param contentType The media type used to serialize the payloads. Supported values include
+     *   `json` and `form`. The default is `form`.
+     * @param secret If provided, the `secret` will be used as the `key` to generate the HMAC hex
+     *   digest value for delivery signature headers.
      */
-    fun appsUpdateWebhookConfigForApp(clientConfig: ClientConfig, url: WebhookConfigUrl? = null, contentType: WebhookConfigContentType? = null, secret: WebhookConfigSecret? = null, insecureSsl: WebhookConfigInsecureSsl? = null, options: RequestOptions? = null): WebhookConfig {
+    fun appsUpdateWebhookConfigForApp(
+        clientConfig: ClientConfig,
+        url: WebhookConfigUrl? = null,
+        contentType: WebhookConfigContentType? = null,
+        secret: WebhookConfigSecret? = null,
+        insecureSsl: WebhookConfigInsecureSsl? = null,
+        options: RequestOptions? = null,
+    ): WebhookConfig {
         if (url != null) {
             Validation.validateUri("url", url)
-}
+        }
 
-        return SdkClient.request<WebhookConfig>(SdkClient.RequestSpec("PATCH", "/app/hook/config", config = clientConfig, body = SdkClient.bodyMap("url" to (SdkClient.omitIfNull(url)), "content_type" to (SdkClient.omitIfNull(contentType)), "secret" to (SdkClient.omitIfNull(secret)), "insecure_ssl" to (SdkClient.omitIfNull(insecureSsl))), operationId = "appsUpdateWebhookConfigForApp", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<WebhookConfig>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/app/hook/config",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "url" to (SdkClient.omitIfNull(url)),
+                            "content_type" to (SdkClient.omitIfNull(contentType)),
+                            "secret" to (SdkClient.omitIfNull(secret)),
+                            "insecure_ssl" to (SdkClient.omitIfNull(insecureSsl)),
+                        ),
+                    operationId = "appsUpdateWebhookConfigForApp",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object AppsListWebhookDeliveriesOperation {
     /**
-     * Returns a list of webhook deliveries for the webhook configured for a GitHub App. You must use a JWT to access this endpoint.
+     * Returns a list of webhook deliveries for the webhook configured for a GitHub App. You must
+     * use a JWT to access this endpoint.
      *
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param cursor Used for pagination: the starting delivery from which the page
-     *   of deliveries is fetched. Refer to the `link` header for the next and previous
-     *   page cursors.
-     * @param status Returns webhook deliveries filtered by delivery outcome
-     *   classification based on `status_code` range. A `status` of `success` returns
-     *   deliveries with a `status_code` in the 200-399 range (inclusive). A `status`
-     *   of `failure` returns deliveries with a `status_code` in the 400-599 range
-     *   (inclusive).
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param cursor Used for pagination: the starting delivery from which the page of deliveries is
+     *   fetched. Refer to the `link` header for the next and previous page cursors.
+     * @param status Returns webhook deliveries filtered by delivery outcome classification based on
+     *   `status_code` range. A `status` of `success` returns deliveries with a `status_code` in the
+     *   200-399 range (inclusive). A `status` of `failure` returns deliveries with a `status_code`
+     *   in the 400-599 range (inclusive).
      */
-    fun appsListWebhookDeliveries(clientConfig: ClientConfig, perPage: Long? = null, cursor: String? = null, status: SchemaSchemaEnume81e966c? = null, options: RequestOptions? = null): List<HookDeliveryItem> {
-        return SdkClient.request<List<HookDeliveryItem>>(SdkClient.RequestSpec("GET", "/app/hook/deliveries", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "cursor" to SdkClient.queryValue(cursor, "form", true), "status" to SdkClient.queryValue(status, "form", true)), operationId = "appsListWebhookDeliveries", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun appsListWebhookDeliveries(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        cursor: String? = null,
+        status: SchemaSchemaEnume81e966c? = null,
+        options: RequestOptions? = null,
+    ): List<HookDeliveryItem> {
+        return SdkClient.request<List<HookDeliveryItem>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/app/hook/deliveries",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "cursor" to SdkClient.queryValue(cursor, "form", true),
+                            "status" to SdkClient.queryValue(status, "form", true),
+                        ),
+                    operationId = "appsListWebhookDeliveries",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object AppsGetWebhookDeliveryOperation {
     /**
-     * Retrieves a delivery for a webhook configured for a GitHub App. Use `delivery_id` to identify the delivery whose request, response, and delivery status you need to inspect. Authenticate with a GitHub App JWT to access this endpoint.
+     * Retrieves a delivery for a webhook configured for a GitHub App. Use `delivery_id` to identify
+     * the delivery whose request, response, and delivery status you need to inspect. Authenticate
+     * with a GitHub App JWT to access this endpoint.
      *
-     * Returns a delivery for the webhook configured for a GitHub App. You must use a JWT to access this endpoint.
+     * Returns a delivery for the webhook configured for a GitHub App. You must use a JWT to access
+     * this endpoint.
      */
-    fun appsGetWebhookDelivery(clientConfig: ClientConfig, deliveryId: Long, options: RequestOptions? = null): HookDelivery {
-        return SdkClient.request<HookDelivery>(SdkClient.RequestSpec("GET", "/app/hook/deliveries/${SdkClient.encodePathSegment(deliveryId)}", config = clientConfig, operationId = "appsGetWebhookDelivery", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun appsGetWebhookDelivery(
+        clientConfig: ClientConfig,
+        deliveryId: Long,
+        options: RequestOptions? = null,
+    ): HookDelivery {
+        return SdkClient.request<HookDelivery>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/app/hook/deliveries/${SdkClient.encodePathSegment(deliveryId)}",
+                    config = clientConfig,
+                    operationId = "appsGetWebhookDelivery",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object AppsRedeliverWebhookDeliveryOperation {
     /**
-     * Triggers a redelivery attempt for a delivery made by a webhook configured for a GitHub App. Supply `delivery_id` to identify the delivery to attempt again. Authenticate with a GitHub App JWT to access this endpoint.
+     * Triggers a redelivery attempt for a delivery made by a webhook configured for a GitHub App.
+     * Supply `delivery_id` to identify the delivery to attempt again. Authenticate with a GitHub
+     * App JWT to access this endpoint.
      *
-     * Redeliver a delivery for the webhook configured for a GitHub App. You must use a JWT to access this endpoint.
+     * Redeliver a delivery for the webhook configured for a GitHub App. You must use a JWT to
+     * access this endpoint.
      */
-    fun appsRedeliverWebhookDelivery(clientConfig: ClientConfig, deliveryId: Long, options: RequestOptions? = null): Map<String, Any> {
-        return SdkClient.request<Map<String, Any>>(SdkClient.RequestSpec("POST", "/app/hook/deliveries/${SdkClient.encodePathSegment(deliveryId)}/attempts", config = clientConfig, operationId = "appsRedeliverWebhookDelivery", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun appsRedeliverWebhookDelivery(
+        clientConfig: ClientConfig,
+        deliveryId: Long,
+        options: RequestOptions? = null,
+    ): Map<String, Any> {
+        return SdkClient.request<Map<String, Any>>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/app/hook/deliveries/${SdkClient.encodePathSegment(deliveryId)}/attempts",
+                    config = clientConfig,
+                    operationId = "appsRedeliverWebhookDelivery",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
@@ -109,85 +238,215 @@ internal object AppsListInstallationRequestsForAuthenticatedAppOperation {
     /**
      * Lists all the pending installation requests for the authenticated GitHub App.
      *
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun appsListInstallationRequestsForAuthenticatedApp(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IntegrationInstallationRequest> {
-        return SdkClient.request<List<IntegrationInstallationRequest>>(SdkClient.RequestSpec("GET", "/app/installation-requests", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListInstallationRequestsForAuthenticatedApp", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java))).data
+    fun appsListInstallationRequestsForAuthenticatedApp(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<IntegrationInstallationRequest> {
+        return SdkClient.request<List<IntegrationInstallationRequest>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/app/installation-requests",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "appsListInstallationRequestsForAuthenticatedApp",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("401" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object AppsListInstallationsOperation {
     /**
-     * Lists installations for the authenticated GitHub App. Use `since` to filter for installations updated after a timestamp, and use `page` and `per_page` to paginate the results. Each installation includes its granted permissions; authenticate with a GitHub App JWT to access this endpoint.
+     * Lists installations for the authenticated GitHub App. Use `since` to filter for installations
+     * updated after a timestamp, and use `page` and `per_page` to paginate the results. Each
+     * installation includes its granted permissions; authenticate with a GitHub App JWT to access
+     * this endpoint.
      *
-     * The permissions the installation has are included under the `permissions` key. You must use a JWT to access this endpoint.
+     * The permissions the installation has are included under the `permissions` key. You must use a
+     * JWT to access this endpoint.
      *
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
      */
-    fun appsListInstallations(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, since: OffsetDateTime? = null, outdated: String? = null, options: RequestOptions? = null): List<Installation> {
+    fun appsListInstallations(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        since: OffsetDateTime? = null,
+        outdated: String? = null,
+        options: RequestOptions? = null,
+    ): List<Installation> {
         if (since != null) {
             Validation.validateDateTime("since", since)
-}
+        }
 
-        return SdkClient.request<List<Installation>>(SdkClient.RequestSpec("GET", "/app/installations", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true), "since" to
-    SdkClient.queryValue(since, "form", true, "date-time"), "outdated" to SdkClient.queryValue(outdated, "form", true)), operationId = "appsListInstallations", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<List<Installation>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/app/installations",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "since" to SdkClient.queryValue(since, "form", true, "date-time"),
+                            "outdated" to SdkClient.queryValue(outdated, "form", true),
+                        ),
+                    operationId = "appsListInstallations",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object AppsGetInstallationOperation {
     /**
-     * Enables an authenticated GitHub App to find an installation's information using the installation id. You must use a JWT to access this endpoint.
+     * Enables an authenticated GitHub App to find an installation's information using the
+     * installation id. You must use a JWT to access this endpoint.
      *
      * @param installationId The unique identifier of the installation.
      */
-    fun appsGetInstallation(clientConfig: ClientConfig, installationId: Long, options: RequestOptions? = null): Installation {
-        return SdkClient.request<Installation>(SdkClient.RequestSpec("GET", "/app/installations/${SdkClient.encodePathSegment(installationId)}", config = clientConfig, operationId = "appsGetInstallation", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun appsGetInstallation(
+        clientConfig: ClientConfig,
+        installationId: Long,
+        options: RequestOptions? = null,
+    ): Installation {
+        return SdkClient.request<Installation>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/app/installations/${SdkClient.encodePathSegment(installationId)}",
+                    config = clientConfig,
+                    operationId = "appsGetInstallation",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object AppsDeleteInstallationOperation {
     /**
-     * Uninstalls a GitHub App on a user, organization, or enterprise account. If you prefer to temporarily suspend an app's access to your account's resources, then we recommend the "Suspend an app installation" endpoint. You must use a JWT to access this endpoint.
+     * Uninstalls a GitHub App on a user, organization, or enterprise account. If you prefer to
+     * temporarily suspend an app's access to your account's resources, then we recommend the
+     * "Suspend an app installation" endpoint. You must use a JWT to access this endpoint.
      *
      * @param installationId The unique identifier of the installation.
      */
-    fun appsDeleteInstallation(clientConfig: ClientConfig, installationId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/app/installations/${SdkClient.encodePathSegment(installationId)}", config = clientConfig, operationId = "appsDeleteInstallation", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun appsDeleteInstallation(
+        clientConfig: ClientConfig,
+        installationId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/app/installations/${SdkClient.encodePathSegment(installationId)}",
+                config = clientConfig,
+                operationId = "appsDeleteInstallation",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object AppsCreateInstallationAccessTokenOperation {
     /**
-     * Creates an installation access token that enables a GitHub App to make authenticated API requests for the app's installation on an organization or individual account. Installation tokens expire one hour from the time you create them. Using an expired token produces a status code of `401 - Unauthorized`, and requires creating a new installation token. By default the installation token has access to all repositories that the installation can access. > !NOTE] > Starting April…
+     * Creates an installation access token that enables a GitHub App to make authenticated API
+     * requests for the app's installation on an organization or individual account. Installation
+     * tokens expire one hour from the time you create them. Using an expired token produces a
+     * status code of `401 - Unauthorized`, and requires creating a new installation token. By
+     * default the installation token has access to all repositories that the installation can
+     * access. > !NOTE] > Starting April…
      *
      * @param installationId The unique identifier of the installation.
-     * @param repositories List of repository names that the token should have access
-     *   to
-     * @param repositoryIds List of repository IDs that the token should have access
-     *   to
+     * @param repositories List of repository names that the token should have access to
+     * @param repositoryIds List of repository IDs that the token should have access to
      * @param permissions The permissions granted to the fine-grained access token.
      */
-    fun appsCreateInstallationAccessToken(clientConfig: ClientConfig, installationId: Long, repositories: List<String>? = null, repositoryIds: List<Long>? = null, permissions: AppPermissions? = null, options: RequestOptions? = null): InstallationToken {
-        return SdkClient.request<InstallationToken>(SdkClient.RequestSpec("POST", "/app/installations/${SdkClient.encodePathSegment(installationId)}/access_tokens", config = clientConfig, body = SdkClient.bodyMap("repositories" to (SdkClient.omitIfNull(repositories)), "repository_ids" to (SdkClient.omitIfNull(repositoryIds)), "permissions" to (SdkClient.omitIfNull(permissions))), operationId = "appsCreateInstallationAccessToken", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun appsCreateInstallationAccessToken(
+        clientConfig: ClientConfig,
+        installationId: Long,
+        repositories: List<String>? = null,
+        repositoryIds: List<Long>? = null,
+        permissions: AppPermissions? = null,
+        options: RequestOptions? = null,
+    ): InstallationToken {
+        return SdkClient.request<InstallationToken>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/app/installations/${SdkClient.encodePathSegment(installationId)}/access_tokens",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "repositories" to (SdkClient.omitIfNull(repositories)),
+                            "repository_ids" to (SdkClient.omitIfNull(repositoryIds)),
+                            "permissions" to (SdkClient.omitIfNull(permissions)),
+                        ),
+                    operationId = "appsCreateInstallationAccessToken",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object AppsSuspendInstallationOperation {
     /**
-     * Suspends a GitHub App on a user, organization, or enterprise account, which blocks the app from accessing the account's resources. When a GitHub App is suspended, the app's access to the GitHub API or webhook events is blocked for that account. You must use a JWT to access this endpoint.
+     * Suspends a GitHub App on a user, organization, or enterprise account, which blocks the app
+     * from accessing the account's resources. When a GitHub App is suspended, the app's access to
+     * the GitHub API or webhook events is blocked for that account. You must use a JWT to access
+     * this endpoint.
      *
      * @param installationId The unique identifier of the installation.
      */
-    fun appsSuspendInstallation(clientConfig: ClientConfig, installationId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/app/installations/${SdkClient.encodePathSegment(installationId)}/suspended", config = clientConfig, operationId = "appsSuspendInstallation", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun appsSuspendInstallation(
+        clientConfig: ClientConfig,
+        installationId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/app/installations/${SdkClient.encodePathSegment(installationId)}/suspended",
+                config = clientConfig,
+                operationId = "appsSuspendInstallation",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
@@ -197,7 +456,21 @@ internal object AppsUnsuspendInstallationOperation {
      *
      * @param installationId The unique identifier of the installation.
      */
-    fun appsUnsuspendInstallation(clientConfig: ClientConfig, installationId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/app/installations/${SdkClient.encodePathSegment(installationId)}/suspended", config = clientConfig, operationId = "appsUnsuspendInstallation", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun appsUnsuspendInstallation(
+        clientConfig: ClientConfig,
+        installationId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/app/installations/${SdkClient.encodePathSegment(installationId)}/suspended",
+                config = clientConfig,
+                operationId = "appsUnsuspendInstallation",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }

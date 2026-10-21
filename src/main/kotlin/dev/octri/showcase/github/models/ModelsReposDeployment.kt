@@ -5,150 +5,112 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Details of a deployment branch or tag policy.
- */
+/** Details of a deployment branch or tag policy. */
 data class DeploymentBranchPolicy(
-    /**
-     * The unique identifier of the branch or tag policy.
-     */
+    /** The unique identifier of the branch or tag policy. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `node_id` wire field.
-     */
+    /** Optional `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /**
-     * The name pattern that branches or tags must match in order to deploy to the environment.
-     */
+    /** The name pattern that branches or tags must match in order to deploy to the environment. */
     val name: String? = null,
-    /**
-     * Whether this rule targets a branch or tag.
-     */
-    val type: DeploymentBranchPolicyTypeEnum? = null
+    /** Whether this rule targets a branch or tag. */
+    val type: DeploymentBranchPolicyTypeEnum? = null,
 )
 
-/**
- * Typed representation of the `DeploymentBranchPolicyNamePattern` API schema.
- */
+/** Typed representation of the `DeploymentBranchPolicyNamePattern` API schema. */
 data class DeploymentBranchPolicyNamePattern(
     /**
-     * The name pattern that branches must match in order to deploy to the environment. Wildcard characters will not match `/`. For example, to match branches that begin with `release/` and contain an additional single slash, use `release/ * / *`. For more information about pattern matching syntax, see the Ruby File.fnmatch documentation.
+     * The name pattern that branches must match in order to deploy to the environment. Wildcard
+     * characters will not match `/`. For example, to match branches that begin with `release/` and
+     * contain an additional single slash, use `release/ * / *`. For more information about pattern
+     * matching syntax, see the Ruby File.fnmatch documentation.
      */
     val name: String
 )
 
-/**
- * Typed representation of the `DeploymentBranchPolicyNamePatternWithType` API schema.
- */
+/** Typed representation of the `DeploymentBranchPolicyNamePatternWithType` API schema. */
 data class DeploymentBranchPolicyNamePatternWithType(
     /**
-     * The name pattern that branches or tags must match in order to deploy to the environment. Wildcard characters will not match `/`. For example, to match branches that begin with `release/` and contain an additional single slash, use `release/ * / *`. For more information about pattern matching syntax, see the Ruby File.fnmatch documentation.
+     * The name pattern that branches or tags must match in order to deploy to the environment.
+     * Wildcard characters will not match `/`. For example, to match branches that begin with
+     * `release/` and contain an additional single slash, use `release/ * / *`. For more information
+     * about pattern matching syntax, see the Ruby File.fnmatch documentation.
      */
     val name: String,
-    /**
-     * Whether this rule targets a branch or tag
-     */
-    val type: DeploymentBranchPolicyNamePatternWithTypeTypeEnum? = null
+    /** Whether this rule targets a branch or tag */
+    val type: DeploymentBranchPolicyNamePatternWithTypeTypeEnum? = null,
 )
 
 /**
- * The type of deployment branch policy for this environment. To allow all branches to deploy, set to `null`.
+ * The type of deployment branch policy for this environment. To allow all branches to deploy, set
+ * to `null`.
  */
 data class DeploymentBranchPolicySettings(
     /**
-     * Whether only branches with branch protection rules can deploy to this environment. If `protected_branches` is `true`, `custom_branch_policies` must be `false`; if `protected_branches` is `false`, `custom_branch_policies` must be `true`.
+     * Whether only branches with branch protection rules can deploy to this environment. If
+     * `protected_branches` is `true`, `custom_branch_policies` must be `false`; if
+     * `protected_branches` is `false`, `custom_branch_policies` must be `true`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("protected_branches") val protectedBranches: Boolean,
+    @com.fasterxml.jackson.annotation.JsonProperty("protected_branches")
+    val protectedBranches: Boolean,
     /**
-     * Whether only branches that match the specified name patterns can deploy to this environment. If `custom_branch_policies` is `true`, `protected_branches` must be `false`; if `custom_branch_policies` is `false`, `protected_branches` must be `true`.
+     * Whether only branches that match the specified name patterns can deploy to this environment.
+     * If `custom_branch_policies` is `true`, `protected_branches` must be `false`; if
+     * `custom_branch_policies` is `false`, `protected_branches` must be `true`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_branch_policies") val customBranchPolicies: Boolean
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_branch_policies")
+    val customBranchPolicies: Boolean,
 )
 
-/**
- * Deployment protection rule
- */
+/** Deployment protection rule */
 data class DeploymentProtectionRule(
-    /**
-     * The unique identifier for the deployment protection rule.
-     */
+    /** The unique identifier for the deployment protection rule. */
     val id: Long,
-    /**
-     * The node ID for the deployment protection rule.
-     */
+    /** The node ID for the deployment protection rule. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Whether the deployment protection rule is enabled for the environment.
-     */
+    /** Whether the deployment protection rule is enabled for the environment. */
     val enabled: Boolean,
-    /**
-     * A GitHub App that is providing a custom deployment protection rule.
-     */
-    val app: CustomDeploymentRuleApp
+    /** A GitHub App that is providing a custom deployment protection rule. */
+    val app: CustomDeploymentRuleApp,
 )
 
-/**
- * The status of a deployment.
- */
+/** The status of a deployment. */
 data class DeploymentStatus(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * The state of the status.
-     */
+    /** The state of the status. */
     val state: DeploymentStatusStateEnum,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("creator", required = true) val creator: NullableSimpleUser?,
-    /**
-     * A short description of the status.
-     */
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("creator", required = true)
+    val creator: NullableSimpleUser?,
+    /** A short description of the status. */
     val description: String,
-    /**
-     * Closing down notice: the URL to associate with this status.
-     */
+    /** Closing down notice: the URL to associate with this status. */
     @com.fasterxml.jackson.annotation.JsonProperty("target_url") val targetUrl: String,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Required `uri`-formatted value serialized in the `deployment_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `deployment_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("deployment_url") val deploymentUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `repository_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `repository_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_url") val repositoryUrl: String,
-    /**
-     * The environment of the deployment that the status is for.
-     */
+    /** The environment of the deployment that the status is for. */
     val environment: String? = null,
-    /**
-     * The URL for accessing your environment.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("environment_url") val environmentUrl: String? = null,
-    /**
-     * The URL to associate with this status.
-     */
+    /** The URL for accessing your environment. */
+    @com.fasterxml.jackson.annotation.JsonProperty("environment_url")
+    val environmentUrl: String? = null,
+    /** The URL to associate with this status. */
     @com.fasterxml.jackson.annotation.JsonProperty("log_url") val logUrl: String? = null,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
+     * and user accounts and granted access to specific repositories. They come with granular
+     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app") val performedViaGithubApp: NullableIntegration? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app")
+    val performedViaGithubApp: NullableIntegration? = null,
 )

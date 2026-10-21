@@ -12,36 +12,81 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object ReposGetAllTopicsOperation {
     /**
-     * Retrieves the topic names associated with a repository. Use `page` and `per_page` to paginate the results.
+     * Retrieves the topic names associated with a repository. Use `page` and `per_page` to paginate
+     * the results.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposGetAllTopics(clientConfig: ClientConfig, owner: String, repo: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Topic {
-        return SdkClient.request<Topic>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/topics", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "reposGetAllTopics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetAllTopics(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Topic {
+        return SdkClient.request<Topic>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/topics",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "reposGetAllTopics",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposReplaceAllTopicsOperation {
     /**
-     * Replaces all topics associated with a repository. Supply `names` with the complete topic list; send an empty array to clear all topics, and note that topic names are saved as lowercase.
+     * Replaces all topics associated with a repository. Supply `names` with the complete topic
+     * list; send an empty array to clear all topics, and note that topic names are saved as
+     * lowercase.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param names An array of topics to add to the repository. Pass one or more
-     *   topics to _replace_ the set of existing topics. Send an empty array (`[]`) to
-     *   clear all topics from the repository. **Note:** Topic `names` will be saved as
-     *   lowercase.
+     * @param names An array of topics to add to the repository. Pass one or more topics to
+     *   _replace_ the set of existing topics. Send an empty array (`[]`) to clear all topics from
+     *   the repository. **Note:** Topic `names` will be saved as lowercase.
      */
-    fun reposReplaceAllTopics(clientConfig: ClientConfig, owner: String, repo: String, names: List<String>, options: RequestOptions? = null): Topic {
-        return SdkClient.request<Topic>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/topics", config = clientConfig, body = SdkClient.bodyMap("names" to (names)), operationId = "reposReplaceAllTopics", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java))).data
+    fun reposReplaceAllTopics(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        names: List<String>,
+        options: RequestOptions? = null,
+    ): Topic {
+        return SdkClient.request<Topic>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/topics",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("names" to (names)),
+                    operationId = "reposReplaceAllTopics",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationErrorSimple::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

@@ -7,12 +7,18 @@ data class ApiInsightsUserStatsItem(
     @com.fasterxml.jackson.annotation.JsonProperty("actor_type") val actorType: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("actor_name") val actorName: String? = null,
     @com.fasterxml.jackson.annotation.JsonProperty("actor_id") val actorId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("integration_id") val integrationId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("oauth_application_id") val oauthApplicationId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp") val lastRateLimitedTimestamp: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp") val lastRequestTimestamp: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("integration_id")
+    val integrationId: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("oauth_application_id")
+    val oauthApplicationId: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
+    val totalRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
+    val rateLimitedRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp")
+    val lastRateLimitedTimestamp: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp")
+    val lastRequestTimestamp: String? = null,
 )
 
 typealias ApiInsightsUserStats = List<ApiInsightsUserStatsItem>

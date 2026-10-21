@@ -3,24 +3,15 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * List of custom property values for a repository
- */
+/** List of custom property values for a repository */
 data class OrgRepoCustomPropertyValues(
-    /**
-     * Required `integer` value serialized in the `repository_id` wire field.
-     */
+    /** Required `integer` value serialized in the `repository_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long,
-    /**
-     * Required `string` value serialized in the `repository_name` wire field.
-     */
+    /** Required `string` value serialized in the `repository_name` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: String,
-    /**
-     * Required `string` value serialized in the `repository_full_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_full_name") val repositoryFullName: String,
-    /**
-     * List of custom property names and associated values
-     */
-    val properties: List<CustomPropertyValue>
+    /** Required `string` value serialized in the `repository_full_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_full_name")
+    val repositoryFullName: String,
+    /** List of custom property names and associated values */
+    val properties: List<CustomPropertyValue>,
 )

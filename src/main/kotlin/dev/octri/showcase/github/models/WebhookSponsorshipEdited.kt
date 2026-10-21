@@ -3,60 +3,53 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Optional object value serialized in the `privacy_level` wire field.
- */
+/** Optional object value serialized in the `privacy_level` wire field. */
 data class WebhookSponsorshipEditedChangesPrivacyLevel(
     /**
-     * The `edited` event types include the details about the change when someone edits a sponsorship to change the privacy.
+     * The `edited` event types include the details about the change when someone edits a
+     * sponsorship to change the privacy.
      */
     val from: String
 )
 
-/**
- * Required object value serialized in the `changes` wire field.
- */
+/** Required object value serialized in the `changes` wire field. */
 data class WebhookSponsorshipEditedChanges(
-    /**
-     * Optional object value serialized in the `privacy_level` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("privacy_level") val privacyLevel: WebhookSponsorshipEditedChangesPrivacyLevel? = null
+    /** Optional object value serialized in the `privacy_level` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("privacy_level")
+    val privacyLevel: WebhookSponsorshipEditedChangesPrivacyLevel? = null
 )
 
-/**
- * Typed representation of the `WebhookSponsorshipEdited` API schema.
- */
+/** Typed representation of the `WebhookSponsorshipEdited` API schema. */
 data class WebhookSponsorshipEdited(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookSponsorshipEditedActionEnum,
-    /**
-     * Required object value serialized in the `changes` wire field.
-     */
+    /** Required object value serialized in the `changes` wire field. */
     val changes: WebhookSponsorshipEditedChanges,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser,
-    /**
-     * Required object value serialized in the `sponsorship` wire field.
-     */
+    /** Required object value serialized in the `sponsorship` wire field. */
     val sponsorship: WebhooksSponsorship,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
+     * is configured on an enterprise account or an organization that's part of an enterprise
+     * account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
-    val repository: RepositoryWebhooks? = null
+    val repository: RepositoryWebhooks? = null,
 )

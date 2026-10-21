@@ -6,589 +6,339 @@ package dev.octri.showcase.github.models
 import java.time.LocalDate
 import java.time.OffsetDateTime
 
-/**
- * An item belonging to a project
- */
+/** An item belonging to a project */
 data class ProjectsV2ItemWithContent(
-    /**
-     * The unique identifier of the project item.
-     */
+    /** The unique identifier of the project item. */
     val id: Double,
-    /**
-     * The type of content tracked in a project item
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_type") val contentType: ProjectsV2ItemContentType,
-    /**
-     * The time when the item was created.
-     */
+    /** The type of content tracked in a project item */
+    @com.fasterxml.jackson.annotation.JsonProperty("content_type")
+    val contentType: ProjectsV2ItemContentType,
+    /** The time when the item was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * The time when the item was last updated.
-     */
+    /** The time when the item was last updated. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * The time when the item was archived.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: OffsetDateTime?,
-    /**
-     * The node ID of the project item.
-     */
+    /** The time when the item was archived. */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
+    val archivedAt: OffsetDateTime?,
+    /** The node ID of the project item. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /**
-     * The API URL of the project that contains this item.
-     */
+    /** The API URL of the project that contains this item. */
     @com.fasterxml.jackson.annotation.JsonProperty("project_url") val projectUrl: String? = null,
-    /**
-     * The content of the item, which varies by content type.
-     */
+    /** The content of the item, which varies by content type. */
     val content: Map<String, Any>? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val creator: SimpleUser? = null,
-    /**
-     * The API URL of this item.
-     */
+    /** The API URL of this item. */
     @com.fasterxml.jackson.annotation.JsonProperty("item_url") val itemUrl: String? = null,
-    /**
-     * The fields and values associated with this item.
-     */
-    val fields: List<Map<String, Any>>? = null
+    /** The fields and values associated with this item. */
+    val fields: List<Map<String, Any>>? = null,
 )
 
-/**
- * An iteration setting for an iteration field
- */
+/** An iteration setting for an iteration field */
 data class ProjectsV2IterationSetting(
-    /**
-     * The unique identifier of the iteration setting.
-     */
+    /** The unique identifier of the iteration setting. */
     val id: String,
-    /**
-     * The iteration title.
-     */
+    /** The iteration title. */
     val title: String,
-    /**
-     * The iteration title, rendered as HTML.
-     */
+    /** The iteration title, rendered as HTML. */
     @com.fasterxml.jackson.annotation.JsonProperty("title_html") val titleHtml: String? = null,
-    /**
-     * The duration of the iteration in days.
-     */
+    /** The duration of the iteration in days. */
     val duration: Double? = null,
-    /**
-     * The start date of the iteration.
-     */
+    /** The start date of the iteration. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_date") val startDate: String? = null,
-    /**
-     * Whether the iteration has been completed.
-     */
-    val completed: Boolean? = null
+    /** Whether the iteration has been completed. */
+    val completed: Boolean? = null,
 )
 
-/**
- * The iteration title, in raw text and HTML formats.
- */
+/** The iteration title, in raw text and HTML formats. */
 data class ProjectsV2IterationSettingsTitle(
-    /**
-     * Required `string` value serialized in the `raw` wire field.
-     */
+    /** Required `string` value serialized in the `raw` wire field. */
     val raw: String,
-    /**
-     * Required `string` value serialized in the `html` wire field.
-     */
-    val html: String
+    /** Required `string` value serialized in the `html` wire field. */
+    val html: String,
 )
 
-/**
- * An iteration setting for an iteration field
- */
+/** An iteration setting for an iteration field */
 data class ProjectsV2IterationSettings(
-    /**
-     * The unique identifier of the iteration setting.
-     */
+    /** The unique identifier of the iteration setting. */
     val id: String,
-    /**
-     * The start date of the iteration.
-     */
+    /** The start date of the iteration. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_date") val startDate: LocalDate,
-    /**
-     * The duration of the iteration in days.
-     */
+    /** The duration of the iteration in days. */
     val duration: Long,
-    /**
-     * The iteration title, in raw text and HTML formats.
-     */
+    /** The iteration title, in raw text and HTML formats. */
     val title: ProjectsV2IterationSettingsTitle,
-    /**
-     * Whether the iteration has been completed.
-     */
-    val completed: Boolean
+    /** Whether the iteration has been completed. */
+    val completed: Boolean,
 )
 
-/**
- * An option for a single select field
- */
+/** An option for a single select field */
 data class ProjectsV2SingleSelectOption(
-    /**
-     * The unique identifier of the option.
-     */
+    /** The unique identifier of the option. */
     val id: String,
-    /**
-     * The display name of the option.
-     */
+    /** The display name of the option. */
     val name: String,
-    /**
-     * The color associated with the option.
-     */
+    /** The color associated with the option. */
     val color: String? = null,
-    /**
-     * A short description of the option.
-     */
-    val description: String? = null
+    /** A short description of the option. */
+    val description: String? = null,
 )
 
-/**
- * The display name of the option, in raw text and HTML formats.
- */
+/** The display name of the option, in raw text and HTML formats. */
 data class ProjectsV2SingleSelectOptionsName(
-    /**
-     * Required `string` value serialized in the `raw` wire field.
-     */
+    /** Required `string` value serialized in the `raw` wire field. */
     val raw: String,
-    /**
-     * Required `string` value serialized in the `html` wire field.
-     */
-    val html: String
+    /** Required `string` value serialized in the `html` wire field. */
+    val html: String,
 )
 
-/**
- * The description of the option, in raw text and HTML formats.
- */
+/** The description of the option, in raw text and HTML formats. */
 data class ProjectsV2SingleSelectOptionsDescription(
-    /**
-     * Required `string` value serialized in the `raw` wire field.
-     */
+    /** Required `string` value serialized in the `raw` wire field. */
     val raw: String,
-    /**
-     * Required `string` value serialized in the `html` wire field.
-     */
-    val html: String
+    /** Required `string` value serialized in the `html` wire field. */
+    val html: String,
 )
 
-/**
- * An option for a single select field
- */
+/** An option for a single select field */
 data class ProjectsV2SingleSelectOptions(
-    /**
-     * The unique identifier of the option.
-     */
+    /** The unique identifier of the option. */
     val id: String,
-    /**
-     * The display name of the option, in raw text and HTML formats.
-     */
+    /** The display name of the option, in raw text and HTML formats. */
     val name: ProjectsV2SingleSelectOptionsName,
-    /**
-     * The description of the option, in raw text and HTML formats.
-     */
+    /** The description of the option, in raw text and HTML formats. */
     val description: ProjectsV2SingleSelectOptionsDescription,
-    /**
-     * The color associated with the option.
-     */
-    val color: String
+    /** The color associated with the option. */
+    val color: String,
 )
 
-/**
- * An status update belonging to a project
- */
+/** An status update belonging to a project */
 data class ProjectsV2StatusUpdate(
-    /**
-     * The unique identifier of the status update.
-     */
+    /** The unique identifier of the status update. */
     val id: Double,
-    /**
-     * The node ID of the status update.
-     */
+    /** The node ID of the status update. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * The time when the status update was created.
-     */
+    /** The time when the status update was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * The time when the status update was last updated.
-     */
+    /** The time when the status update was last updated. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * The node ID of the project that this status update belongs to.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("project_node_id") val projectNodeId: String? = null,
-    /**
-     * A GitHub user.
-     */
+    /** The node ID of the project that this status update belongs to. */
+    @com.fasterxml.jackson.annotation.JsonProperty("project_node_id")
+    val projectNodeId: String? = null,
+    /** A GitHub user. */
     val creator: SimpleUser? = null,
-    /**
-     * The current status.
-     */
+    /** The current status. */
     val status: ProjectsV2StatusUpdateStatusEnum? = null,
-    /**
-     * The start date of the period covered by the update.
-     */
+    /** The start date of the period covered by the update. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_date") val startDate: LocalDate? = null,
-    /**
-     * The target date associated with the update.
-     */
+    /** The target date associated with the update. */
     @com.fasterxml.jackson.annotation.JsonProperty("target_date") val targetDate: LocalDate? = null,
-    /**
-     * Body of the status update
-     */
-    val body: String? = null
+    /** Body of the status update */
+    val body: String? = null,
 )
 
-/**
- * A view inside a projects v2 project
- */
+/** A view inside a projects v2 project */
 data class ProjectsV2View(
-    /**
-     * The unique identifier of the view.
-     */
+    /** The unique identifier of the view. */
     val id: Long,
-    /**
-     * The number of the view within the project.
-     */
+    /** The number of the view within the project. */
     val number: Long,
-    /**
-     * The name of the view.
-     */
+    /** The name of the view. */
     val name: String,
-    /**
-     * The layout of the view.
-     */
+    /** The layout of the view. */
     val layout: ProjectsV2ViewLayoutEnum,
-    /**
-     * The node ID of the view.
-     */
+    /** The node ID of the view. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * The API URL of the project that contains the view.
-     */
+    /** The API URL of the project that contains the view. */
     @com.fasterxml.jackson.annotation.JsonProperty("project_url") val projectUrl: String,
-    /**
-     * The web URL of the view.
-     */
+    /** The web URL of the view. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val creator: SimpleUser,
-    /**
-     * The time when the view was created.
-     */
+    /** The time when the view was created. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * The time when the view was last updated.
-     */
+    /** The time when the view was last updated. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * The list of field IDs that are visible in the view.
-     */
+    /** The list of field IDs that are visible in the view. */
     @com.fasterxml.jackson.annotation.JsonProperty("visible_fields") val visibleFields: List<Long>,
     /**
-     * The sorting configuration for the view. Each element is a tuple of \[field_id, direction\] where direction is "asc" or "desc".
+     * The sorting configuration for the view. Each element is a tuple of \[field_id, direction\]
+     * where direction is "asc" or "desc".
      */
     @com.fasterxml.jackson.annotation.JsonProperty("sort_by") val sortBy: List<List<Any>>,
-    /**
-     * The list of field IDs used for horizontal grouping.
-     */
+    /** The list of field IDs used for horizontal grouping. */
     @com.fasterxml.jackson.annotation.JsonProperty("group_by") val groupBy: List<Long>,
-    /**
-     * The list of field IDs used for vertical grouping (board layout).
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vertical_group_by") val verticalGroupBy: List<Long>,
-    /**
-     * The filter query for the view.
-     */
-    val filter: String? = null
+    /** The list of field IDs used for vertical grouping (board layout). */
+    @com.fasterxml.jackson.annotation.JsonProperty("vertical_group_by")
+    val verticalGroupBy: List<Long>,
+    /** The filter query for the view. */
+    val filter: String? = null,
 )
 
-/**
- * Required object value serialized in the `labels[]` wire field.
- */
+/** Required object value serialized in the `labels[]` wire field. */
 data class PullRequestSimpleLabelsItem(
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
+    /** Required `string` value serialized in the `description` wire field. */
     val description: String,
-    /**
-     * Required `string` value serialized in the `color` wire field.
-     */
+    /** Required `string` value serialized in the `color` wire field. */
     val color: String,
-    /**
-     * Required `boolean` value serialized in the `default` wire field.
-     */
+    /** Required `boolean` value serialized in the `default` wire field. */
     val default: Boolean,
-    /**
-     * The user who archived the label, or `null` if it has not been archived.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_by", required = true) val archivedBy: SimpleUser?
+    /** The user who archived the label, or `null` if it has not been archived. */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_by", required = true)
+    val archivedBy: SimpleUser?,
 )
 
-/**
- * Required object value serialized in the `head` wire field.
- */
+/** Required object value serialized in the `head` wire field. */
 data class PullRequestSimpleHead(
-    /**
-     * Required `string` value serialized in the `label` wire field.
-     */
+    /** Required `string` value serialized in the `label` wire field. */
     val label: String,
-    /**
-     * Required `string` value serialized in the `ref` wire field.
-     */
+    /** Required `string` value serialized in the `ref` wire field. */
     val ref: String,
-    /**
-     * A repository on GitHub.
-     */
+    /** A repository on GitHub. */
     val repo: Repository,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: NullableSimpleUser?
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: NullableSimpleUser?,
 )
 
-/**
- * Required object value serialized in the `base` wire field.
- */
+/** Required object value serialized in the `base` wire field. */
 data class PullRequestSimpleBase(
-    /**
-     * Required `string` value serialized in the `label` wire field.
-     */
+    /** Required `string` value serialized in the `label` wire field. */
     val label: String,
-    /**
-     * Required `string` value serialized in the `ref` wire field.
-     */
+    /** Required `string` value serialized in the `ref` wire field. */
     val ref: String,
-    /**
-     * A repository on GitHub.
-     */
+    /** A repository on GitHub. */
     val repo: Repository,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: NullableSimpleUser?
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: NullableSimpleUser?,
 )
 
-/**
- * Required object value serialized in the `_links` wire field.
- */
+/** Required object value serialized in the `_links` wire field. */
 data class PullRequestSimpleLinks(
-    /**
-     * Hypermedia Link
-     */
+    /** Hypermedia Link */
     val comments: Link,
-    /**
-     * Hypermedia Link
-     */
+    /** Hypermedia Link */
     val commits: Link,
-    /**
-     * Hypermedia Link
-     */
+    /** Hypermedia Link */
     val statuses: Link,
-    /**
-     * Hypermedia Link
-     */
+    /** Hypermedia Link */
     val html: Link,
-    /**
-     * Hypermedia Link
-     */
+    /** Hypermedia Link */
     val issue: Link,
-    /**
-     * Hypermedia Link
-     */
+    /** Hypermedia Link */
     @com.fasterxml.jackson.annotation.JsonProperty("review_comments") val reviewComments: Link,
-    /**
-     * Hypermedia Link
-     */
+    /** Hypermedia Link */
     @com.fasterxml.jackson.annotation.JsonProperty("review_comment") val reviewComment: Link,
-    /**
-     * Hypermedia Link
-     */
-    val self: Link
+    /** Hypermedia Link */
+    val self: Link,
 )
 
-/**
- * Pull Request Simple
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Pull Request Simple */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 class PullRequestSimple(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `diff_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `diff_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("diff_url") val diffUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `patch_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `patch_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("patch_url") val patchUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `issue_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `issue_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("issue_url") val issueUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `commits_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `commits_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("commits_url") val commitsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `review_comments_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comments_url") val reviewCommentsUrl: String,
-    /**
-     * Required `string` value serialized in the `review_comment_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("review_comment_url") val reviewCommentUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `comments_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `review_comments_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comments_url")
+    val reviewCommentsUrl: String,
+    /** Required `string` value serialized in the `review_comment_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("review_comment_url")
+    val reviewCommentUrl: String,
+    /** Required `uri`-formatted value serialized in the `comments_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("comments_url") val commentsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `statuses_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `statuses_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String,
-    /**
-     * Required `integer` value serialized in the `number` wire field.
-     */
+    /** Required `integer` value serialized in the `number` wire field. */
     val number: Long,
-    /**
-     * Required `string` value serialized in the `state` wire field.
-     */
+    /** Required `string` value serialized in the `state` wire field. */
     val state: String,
-    /**
-     * Required `boolean` value serialized in the `locked` wire field.
-     */
+    /** Required `boolean` value serialized in the `locked` wire field. */
     val locked: Boolean,
-    /**
-     * Required `string` value serialized in the `title` wire field.
-     */
+    /** Required `string` value serialized in the `title` wire field. */
     val title: String,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: NullableSimpleUser?,
-    /**
-     * Required `string` value serialized in the `body` wire field.
-     */
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: NullableSimpleUser?,
+    /** Required `string` value serialized in the `body` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("body", required = true) val body: String?,
-    /**
-     * Required array value serialized in the `labels` wire field.
-     */
+    /** Required array value serialized in the `labels` wire field. */
     val labels: List<PullRequestSimpleLabelsItem>,
-    /**
-     * A collection of related issues and pull requests.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("milestone", required = true) val milestone: NullableMilestone?,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** A collection of related issues and pull requests. */
+    @com.fasterxml.jackson.annotation.JsonProperty("milestone", required = true)
+    val milestone: NullableMilestone?,
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `closed_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true) val closedAt: OffsetDateTime?,
-    /**
-     * Required `date-time`-formatted value serialized in the `merged_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true) val mergedAt: OffsetDateTime?,
-    /**
-     * Required `string` value serialized in the `merge_commit_sha` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_sha", required = true) val mergeCommitSha: String?,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("assignee", required = true) val assignee: NullableSimpleUser?,
-    /**
-     * Required object value serialized in the `head` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `closed_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true)
+    val closedAt: OffsetDateTime?,
+    /** Required `date-time`-formatted value serialized in the `merged_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("merged_at", required = true)
+    val mergedAt: OffsetDateTime?,
+    /** Required `string` value serialized in the `merge_commit_sha` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_commit_sha", required = true)
+    val mergeCommitSha: String?,
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("assignee", required = true)
+    val assignee: NullableSimpleUser?,
+    /** Required object value serialized in the `head` wire field. */
     val head: PullRequestSimpleHead,
-    /**
-     * Required object value serialized in the `base` wire field.
-     */
+    /** Required object value serialized in the `base` wire field. */
     val base: PullRequestSimpleBase,
-    /**
-     * Required object value serialized in the `_links` wire field.
-     */
+    /** Required object value serialized in the `_links` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: PullRequestSimpleLinks,
-    /**
-     * How the author is associated with the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: AuthorAssociation,
-    /**
-     * The status of auto merging a pull request.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_merge", required = true) val autoMerge: AutoMerge?,
-    /**
-     * Optional `string` value serialized in the `active_lock_reason` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("active_lock_reason") val activeLockReason: String? = null,
-    /**
-     * Optional array value serialized in the `assignees` wire field.
-     */
+    /** How the author is associated with the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
+    val authorAssociation: AuthorAssociation,
+    /** The status of auto merging a pull request. */
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_merge", required = true)
+    val autoMerge: AutoMerge?,
+    /** Optional `string` value serialized in the `active_lock_reason` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("active_lock_reason")
+    val activeLockReason: String? = null,
+    /** Optional array value serialized in the `assignees` wire field. */
     val assignees: List<SimpleUser>? = null,
-    /**
-     * Optional array value serialized in the `requested_reviewers` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_reviewers") val requestedReviewers: List<SimpleUser>? = null,
-    /**
-     * Optional array value serialized in the `requested_teams` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("requested_teams") val requestedTeams: List<Team>? = null,
-    /**
-     * The stack information associated with a pull request.
-     */
+    /** Optional array value serialized in the `requested_reviewers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_reviewers")
+    val requestedReviewers: List<SimpleUser>? = null,
+    /** Optional array value serialized in the `requested_teams` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("requested_teams")
+    val requestedTeams: List<Team>? = null,
+    /** The stack information associated with a pull request. */
     val stack: PullRequestStack? = null,
-    /**
-     * Indicates whether or not the pull request is a draft.
-     */
-    val draft: Boolean? = null
+    /** Indicates whether or not the pull request is a draft. */
+    val draft: Boolean? = null,
 ) : ProjectsV2ItemSimpleContent

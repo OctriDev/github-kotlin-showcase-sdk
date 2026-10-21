@@ -3,42 +3,24 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Required object value serialized in the `commit` wire field.
- */
+/** Required object value serialized in the `commit` wire field. */
 data class TagCommit(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Tag
- */
+/** Tag */
 data class Tag(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required object value serialized in the `commit` wire field.
-     */
+    /** Required object value serialized in the `commit` wire field. */
     val commit: TagCommit,
-    /**
-     * Required `uri`-formatted value serialized in the `zipball_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `zipball_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("zipball_url") val zipballUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `tarball_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `tarball_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("tarball_url") val tarballUrl: String,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String
+    /** Required `string` value serialized in the `node_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
 )

@@ -14,120 +14,259 @@ import dev.octri.showcase.github.Validation
 
 internal object ActionsListHostedRunnersForOrgOperation {
     /**
-     * Lists all GitHub-hosted runners configured in an organization. OAuth app tokens and personal access tokens (classic) need the `manage_runner:org` scope to use this endpoint.
+     * Lists all GitHub-hosted runners configured in an organization. OAuth app tokens and personal
+     * access tokens (classic) need the `manage_runner:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListHostedRunnersForOrg(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListHostedRunnersForOrgResponse {
-        return SdkClient.request<Actions.ActionsListHostedRunnersForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListHostedRunnersForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListHostedRunnersForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListHostedRunnersForOrgResponse {
+        return SdkClient.request<Actions.ActionsListHostedRunnersForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsListHostedRunnersForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsCreateHostedRunnerForOrgOperation {
     /**
-     * Creates a GitHub-hosted runner for an organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Creates a GitHub-hosted runner for an organization. OAuth tokens and personal access tokens
+     * (classic) need the `manage_runners:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param name Name of the runner. Must be between 1 and 64 characters and may
-     *   only contain upper and lowercase letters a-z, numbers 0-9, '.', '-', and '_'.
+     * @param name Name of the runner. Must be between 1 and 64 characters and may only contain
+     *   upper and lowercase letters a-z, numbers 0-9, '.', '-', and '_'.
      * @param image The image of runner. To list all available images, use `GET
      *   /actions/hosted-runners/images/github-owned` or `GET
      *   /actions/hosted-runners/images/partner`.
      * @param size The machine size of the runner. To list available sizes, use `GET
      *   actions/hosted-runners/machine-sizes`
      * @param runnerGroupId The existing runner group to add this runner to.
-     * @param maximumRunners The maximum amount of runners to scale up to. Runners
-     *   will not auto-scale above this number. Use this setting to limit your cost.
-     * @param enableStaticIp Whether this runner should be created with a static
-     *   public IP. Note limit on account. To list limits on account, use `GET
-     *   actions/hosted-runners/limits`
+     * @param maximumRunners The maximum amount of runners to scale up to. Runners will not
+     *   auto-scale above this number. Use this setting to limit your cost.
+     * @param enableStaticIp Whether this runner should be created with a static public IP. Note
+     *   limit on account. To list limits on account, use `GET actions/hosted-runners/limits`
      * @param imageGen Whether this runner should be used to generate custom images.
      */
-    fun actionsCreateHostedRunnerForOrg(clientConfig: ClientConfig, request: Actions.ActionsCreateHostedRunnerForOrgRequest, options: RequestOptions? = null): ActionsHostedRunner {
-        return SdkClient.request<ActionsHostedRunner>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/hosted-runners", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "image" to (request.image), "size" to (request.size), "runner_group_id" to (request.runnerGroupId), "maximum_runners" to
-    (SdkClient.omitIfNull(request.maximumRunners)), "enable_static_ip" to
-    (SdkClient.omitIfNull(request.enableStaticIp)), "image_gen" to (SdkClient.omitIfNull(request.imageGen))), operationId = "actionsCreateHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsCreateHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsCreateHostedRunnerForOrgRequest,
+        options: RequestOptions? = null,
+    ): ActionsHostedRunner {
+        return SdkClient.request<ActionsHostedRunner>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/hosted-runners",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (request.name),
+                            "image" to (request.image),
+                            "size" to (request.size),
+                            "runner_group_id" to (request.runnerGroupId),
+                            "maximum_runners" to (SdkClient.omitIfNull(request.maximumRunners)),
+                            "enable_static_ip" to (SdkClient.omitIfNull(request.enableStaticIp)),
+                            "image_gen" to (SdkClient.omitIfNull(request.imageGen)),
+                        ),
+                    operationId = "actionsCreateHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsListCustomImagesForOrgOperation {
     /**
-     * List custom images for an organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * List custom images for an organization. OAuth tokens and personal access tokens (classic)
+     * need the `manage_runners:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsListCustomImagesForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Actions.ActionsListCustomImagesForOrgResponse {
-        return SdkClient.request<Actions.ActionsListCustomImagesForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom", config = clientConfig, operationId = "actionsListCustomImagesForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListCustomImagesForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListCustomImagesForOrgResponse {
+        return SdkClient.request<Actions.ActionsListCustomImagesForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom",
+                    config = clientConfig,
+                    operationId = "actionsListCustomImagesForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetCustomImageForOrgOperation {
     /**
-     * Get a custom image definition for GitHub Actions Hosted Runners. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Get a custom image definition for GitHub Actions Hosted Runners. OAuth tokens and personal
+     * access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param imageDefinitionId Image definition ID of custom image
      */
-    fun actionsGetCustomImageForOrg(clientConfig: ClientConfig, org: String, imageDefinitionId: Long, options: RequestOptions? = null): ActionsHostedRunnerCustomImage {
-        return SdkClient.request<ActionsHostedRunnerCustomImage>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}", config = clientConfig, operationId = "actionsGetCustomImageForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetCustomImageForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        imageDefinitionId: Long,
+        options: RequestOptions? = null,
+    ): ActionsHostedRunnerCustomImage {
+        return SdkClient.request<ActionsHostedRunnerCustomImage>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}",
+                    config = clientConfig,
+                    operationId = "actionsGetCustomImageForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsDeleteCustomImageFromOrgOperation {
     /**
-     * Delete a custom image from the organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Delete a custom image from the organization. OAuth tokens and personal access tokens
+     * (classic) need the `manage_runners:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param imageDefinitionId Image definition ID of custom image
      */
-    fun actionsDeleteCustomImageFromOrg(clientConfig: ClientConfig, org: String, imageDefinitionId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}", config = clientConfig, operationId = "actionsDeleteCustomImageFromOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsDeleteCustomImageFromOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        imageDefinitionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}",
+                config = clientConfig,
+                operationId = "actionsDeleteCustomImageFromOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListCustomImageVersionsForOrgOperation {
     /**
-     * List image versions of a custom image for an organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * List image versions of a custom image for an organization. OAuth tokens and personal access
+     * tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      *
      * @param imageDefinitionId Image definition ID of custom image
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsListCustomImageVersionsForOrg(clientConfig: ClientConfig, imageDefinitionId: Long, org: String, options: RequestOptions? = null): Actions.ActionsListCustomImageVersionsForOrgResponse {
-        return SdkClient.request<Actions.ActionsListCustomImageVersionsForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}/versions", config = clientConfig, operationId = "actionsListCustomImageVersionsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListCustomImageVersionsForOrg(
+        clientConfig: ClientConfig,
+        imageDefinitionId: Long,
+        org: String,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListCustomImageVersionsForOrgResponse {
+        return SdkClient.request<Actions.ActionsListCustomImageVersionsForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}/versions",
+                    config = clientConfig,
+                    operationId = "actionsListCustomImageVersionsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetCustomImageVersionForOrgOperation {
     /**
-     * Get an image version of a custom image for GitHub Actions Hosted Runners. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Get an image version of a custom image for GitHub Actions Hosted Runners. OAuth tokens and
+     * personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param imageDefinitionId Image definition ID of custom image
      * @param version Version of a custom image
      */
-    fun actionsGetCustomImageVersionForOrg(clientConfig: ClientConfig, org: String, imageDefinitionId: Long, version: String, options: RequestOptions? = null): ActionsHostedRunnerCustomImageVersion {
+    fun actionsGetCustomImageVersionForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        imageDefinitionId: Long,
+        version: String,
+        options: RequestOptions? = null,
+    ): ActionsHostedRunnerCustomImageVersion {
         Validation.validatePattern("version", version, "^\\d+\\.\\d+\\.\\d+$")
 
-        return SdkClient.request<ActionsHostedRunnerCustomImageVersion>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}/versions/${SdkClient.encodePathSegment(version)}", config = clientConfig, operationId = "actionsGetCustomImageVersionForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<ActionsHostedRunnerCustomImageVersion>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}/versions/${SdkClient.encodePathSegment(version)}",
+                    config = clientConfig,
+                    operationId = "actionsGetCustomImageVersionForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsDeleteCustomImageVersionFromOrgOperation {
     /**
-     * Delete an image version of custom image from the organization. OAuth tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Delete an image version of custom image from the organization. OAuth tokens and personal
+     * access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param imageDefinitionId Image definition ID of custom image
      * @param version Version of a custom image
      */
-    fun actionsDeleteCustomImageVersionFromOrg(clientConfig: ClientConfig, org: String, imageDefinitionId: Long, version: String, options: RequestOptions? = null): Unit {
+    fun actionsDeleteCustomImageVersionFromOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        imageDefinitionId: Long,
+        version: String,
+        options: RequestOptions? = null,
+    ): Unit {
         Validation.validatePattern("version", version, "^\\d+\\.\\d+\\.\\d+$")
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}/versions/${SdkClient.encodePathSegment(version)}", config = clientConfig, operationId = "actionsDeleteCustomImageVersionFromOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/custom/${SdkClient.encodePathSegment(imageDefinitionId)}/versions/${SdkClient.encodePathSegment(version)}",
+                config = clientConfig,
+                operationId = "actionsDeleteCustomImageVersionFromOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
@@ -137,8 +276,22 @@ internal object ActionsGetHostedRunnersGithubOwnedImagesForOrgOperation {
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetHostedRunnersGithubOwnedImagesForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Actions.ActionsGetHostedRunnersGithubOwnedImagesForOrgResponse {
-        return SdkClient.request<Actions.ActionsGetHostedRunnersGithubOwnedImagesForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/github-owned", config = clientConfig, operationId = "actionsGetHostedRunnersGithubOwnedImagesForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetHostedRunnersGithubOwnedImagesForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Actions.ActionsGetHostedRunnersGithubOwnedImagesForOrgResponse {
+        return SdkClient.request<Actions.ActionsGetHostedRunnersGithubOwnedImagesForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/github-owned",
+                    config = clientConfig,
+                    operationId = "actionsGetHostedRunnersGithubOwnedImagesForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
@@ -148,8 +301,22 @@ internal object ActionsGetHostedRunnersPartnerImagesForOrgOperation {
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetHostedRunnersPartnerImagesForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Actions.ActionsGetHostedRunnersPartnerImagesForOrgResponse {
-        return SdkClient.request<Actions.ActionsGetHostedRunnersPartnerImagesForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/partner", config = clientConfig, operationId = "actionsGetHostedRunnersPartnerImagesForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetHostedRunnersPartnerImagesForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Actions.ActionsGetHostedRunnersPartnerImagesForOrgResponse {
+        return SdkClient.request<Actions.ActionsGetHostedRunnersPartnerImagesForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/images/partner",
+                    config = clientConfig,
+                    operationId = "actionsGetHostedRunnersPartnerImagesForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
@@ -159,8 +326,22 @@ internal object ActionsGetHostedRunnersLimitsForOrgOperation {
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetHostedRunnersLimitsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsHostedRunnerLimits {
-        return SdkClient.request<ActionsHostedRunnerLimits>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/limits", config = clientConfig, operationId = "actionsGetHostedRunnersLimitsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetHostedRunnersLimitsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): ActionsHostedRunnerLimits {
+        return SdkClient.request<ActionsHostedRunnerLimits>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/limits",
+                    config = clientConfig,
+                    operationId = "actionsGetHostedRunnersLimitsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
@@ -170,8 +351,22 @@ internal object ActionsGetHostedRunnersMachineSpecsForOrgOperation {
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetHostedRunnersMachineSpecsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Actions.ActionsGetHostedRunnersMachineSpecsForOrgResponse {
-        return SdkClient.request<Actions.ActionsGetHostedRunnersMachineSpecsForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/machine-sizes", config = clientConfig, operationId = "actionsGetHostedRunnersMachineSpecsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetHostedRunnersMachineSpecsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Actions.ActionsGetHostedRunnersMachineSpecsForOrgResponse {
+        return SdkClient.request<Actions.ActionsGetHostedRunnersMachineSpecsForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/machine-sizes",
+                    config = clientConfig,
+                    operationId = "actionsGetHostedRunnersMachineSpecsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
@@ -181,58 +376,108 @@ internal object ActionsGetHostedRunnersPlatformsForOrgOperation {
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetHostedRunnersPlatformsForOrg(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Actions.ActionsGetHostedRunnersPlatformsForOrgResponse {
-        return SdkClient.request<Actions.ActionsGetHostedRunnersPlatformsForOrgResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/platforms", config = clientConfig, operationId = "actionsGetHostedRunnersPlatformsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetHostedRunnersPlatformsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Actions.ActionsGetHostedRunnersPlatformsForOrgResponse {
+        return SdkClient.request<Actions.ActionsGetHostedRunnersPlatformsForOrgResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/platforms",
+                    config = clientConfig,
+                    operationId = "actionsGetHostedRunnersPlatformsForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetHostedRunnerForOrgOperation {
     /**
-     * Gets a GitHub-hosted runner configured in an organization. OAuth app tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Gets a GitHub-hosted runner configured in an organization. OAuth app tokens and personal
+     * access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param hostedRunnerId Unique identifier of the GitHub-hosted runner.
      */
-    fun actionsGetHostedRunnerForOrg(clientConfig: ClientConfig, org: String, hostedRunnerId: Long, options: RequestOptions? = null): ActionsHostedRunner {
-        return SdkClient.request<ActionsHostedRunner>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/${SdkClient.encodePathSegment(hostedRunnerId)}", config = clientConfig, operationId = "actionsGetHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        hostedRunnerId: Long,
+        options: RequestOptions? = null,
+    ): ActionsHostedRunner {
+        return SdkClient.request<ActionsHostedRunner>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/${SdkClient.encodePathSegment(hostedRunnerId)}",
+                    config = clientConfig,
+                    operationId = "actionsGetHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsUpdateHostedRunnerForOrgOperation {
     /**
-     * Updates a GitHub-hosted runner for an organization. OAuth app tokens and personal access tokens (classic) need the `manage_runners:org` scope to use this endpoint.
+     * Updates a GitHub-hosted runner for an organization. OAuth app tokens and personal access
+     * tokens (classic) need the `manage_runners:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param hostedRunnerId Unique identifier of the GitHub-hosted runner.
-     * @param name Name of the runner. Must be between 1 and 64 characters and may
-     *   only contain upper and lowercase letters a-z, numbers 0-9, '.', '-', and '_'.
+     * @param name Name of the runner. Must be between 1 and 64 characters and may only contain
+     *   upper and lowercase letters a-z, numbers 0-9, '.', '-', and '_'.
      * @param runnerGroupId The existing runner group to add this runner to.
-     * @param maximumRunners The maximum amount of runners to scale up to. Runners
-     *   will not auto-scale above this number. Use this setting to limit your cost.
-     * @param enableStaticIp Whether this runner should be updated with a static
-     *   public IP. Note limit on account. To list limits on account, use `GET
-     *   actions/hosted-runners/limits`
+     * @param maximumRunners The maximum amount of runners to scale up to. Runners will not
+     *   auto-scale above this number. Use this setting to limit your cost.
+     * @param enableStaticIp Whether this runner should be updated with a static public IP. Note
+     *   limit on account. To list limits on account, use `GET actions/hosted-runners/limits`
      * @param size The machine size of the runner. To list available sizes, use `GET
      *   actions/hosted-runners/machine-sizes`
-     * @param imageSource The source type of the runner image to use. Must match the
-     *   source of the image specified by `image_id`. Can be one of `github`,
-     *   `partner`, or `custom`.
-     * @param imageId The unique identifier of the runner image. To list available
-     *   images, use `GET /actions/hosted-runners/images/github-owned`, `GET
-     *   /actions/hosted-runners/images/partner`, or `GET
-     *   /actions/hosted-runners/images/custom`.
-     * @param imageVersion The version of the runner image to deploy. This is
-     *   relevant only for runners using custom images.
-     * @param imageGen Whether to enable image generation for this runner pool. When
-     *   enabled, the runner pool is used to build and publish custom runner images.
+     * @param imageSource The source type of the runner image to use. Must match the source of the
+     *   image specified by `image_id`. Can be one of `github`, `partner`, or `custom`.
+     * @param imageId The unique identifier of the runner image. To list available images, use `GET
+     *   /actions/hosted-runners/images/github-owned`, `GET /actions/hosted-runners/images/partner`,
+     *   or `GET /actions/hosted-runners/images/custom`.
+     * @param imageVersion The version of the runner image to deploy. This is relevant only for
+     *   runners using custom images.
+     * @param imageGen Whether to enable image generation for this runner pool. When enabled, the
+     *   runner pool is used to build and publish custom runner images.
      */
-    fun actionsUpdateHostedRunnerForOrg(clientConfig: ClientConfig, request: Actions.ActionsUpdateHostedRunnerForOrgRequest, options: RequestOptions? = null): ActionsHostedRunner {
-        return SdkClient.request<ActionsHostedRunner>(SdkClient.RequestSpec("PATCH", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/hosted-runners/${SdkClient.encodePathSegment(request.hostedRunnerId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (SdkClient.omitIfNull(request.name)), "runner_group_id" to
-    (SdkClient.omitIfNull(request.runnerGroupId)), "maximum_runners" to
-    (SdkClient.omitIfNull(request.maximumRunners)), "enable_static_ip" to
-    (SdkClient.omitIfNull(request.enableStaticIp)), "size" to (SdkClient.omitIfNull(request.size)), "image_source" to
-    (SdkClient.omitIfNull(request.imageSource)), "image_id" to (SdkClient.omitIfNull(request.imageId)), "image_version" to
-    (request.imageVersion ?: SdkClient.SdkOptional.Omitted), "image_gen" to (SdkClient.omitIfNull(request.imageGen))), operationId = "actionsUpdateHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsUpdateHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsUpdateHostedRunnerForOrgRequest,
+        options: RequestOptions? = null,
+    ): ActionsHostedRunner {
+        return SdkClient.request<ActionsHostedRunner>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/hosted-runners/${SdkClient.encodePathSegment(request.hostedRunnerId)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (SdkClient.omitIfNull(request.name)),
+                            "runner_group_id" to (SdkClient.omitIfNull(request.runnerGroupId)),
+                            "maximum_runners" to (SdkClient.omitIfNull(request.maximumRunners)),
+                            "enable_static_ip" to (SdkClient.omitIfNull(request.enableStaticIp)),
+                            "size" to (SdkClient.omitIfNull(request.size)),
+                            "image_source" to (SdkClient.omitIfNull(request.imageSource)),
+                            "image_id" to (SdkClient.omitIfNull(request.imageId)),
+                            "image_version" to
+                                (request.imageVersion ?: SdkClient.SdkOptional.Omitted),
+                            "image_gen" to (SdkClient.omitIfNull(request.imageGen)),
+                        ),
+                    operationId = "actionsUpdateHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
@@ -243,7 +488,22 @@ internal object ActionsDeleteHostedRunnerForOrgOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param hostedRunnerId Unique identifier of the GitHub-hosted runner.
      */
-    fun actionsDeleteHostedRunnerForOrg(clientConfig: ClientConfig, org: String, hostedRunnerId: Long, options: RequestOptions? = null): ActionsHostedRunner {
-        return SdkClient.request<ActionsHostedRunner>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/${SdkClient.encodePathSegment(hostedRunnerId)}", config = clientConfig, operationId = "actionsDeleteHostedRunnerForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsDeleteHostedRunnerForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        hostedRunnerId: Long,
+        options: RequestOptions? = null,
+    ): ActionsHostedRunner {
+        return SdkClient.request<ActionsHostedRunner>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/hosted-runners/${SdkClient.encodePathSegment(hostedRunnerId)}",
+                    config = clientConfig,
+                    operationId = "actionsDeleteHostedRunnerForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

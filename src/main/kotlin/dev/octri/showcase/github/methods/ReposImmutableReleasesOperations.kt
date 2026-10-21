@@ -11,42 +11,88 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ReposCheckImmutableReleasesOperation {
     /**
-     * Shows whether immutable releases are enabled or disabled. Also identifies whether immutability is being enforced by the repository owner. The authenticated user must have admin read access to the repository.
+     * Shows whether immutable releases are enabled or disabled. Also identifies whether
+     * immutability is being enforced by the repository owner. The authenticated user must have
+     * admin read access to the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposCheckImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CheckImmutableReleases {
-        return SdkClient.request<CheckImmutableReleases>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposCheckImmutableReleases", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCheckImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CheckImmutableReleases {
+        return SdkClient.request<CheckImmutableReleases>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                    config = clientConfig,
+                    operationId = "reposCheckImmutableReleases",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposEnableImmutableReleasesOperation {
     /**
-     * Enables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Enables immutable releases for a repository. The authenticated user must have admin access to
+     * the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposEnableImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposEnableImmutableReleases", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("409" to BasicError::class.java)))
+    fun reposEnableImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                config = clientConfig,
+                operationId = "reposEnableImmutableReleases",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposDisableImmutableReleasesOperation {
     /**
-     * Disables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Disables immutable releases for a repository. The authenticated user must have admin access
+     * to the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposDisableImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposDisableImmutableReleases", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("409" to BasicError::class.java)))
+    fun reposDisableImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                config = clientConfig,
+                operationId = "reposDisableImmutableReleases",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
 }

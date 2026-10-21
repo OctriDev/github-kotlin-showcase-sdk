@@ -5,72 +5,46 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * The public key used for setting Actions Secrets.
- */
+/** The public key used for setting Actions Secrets. */
 data class ActionsPublicKey(
-    /**
-     * The identifier for the key.
-     */
+    /** The identifier for the key. */
     @com.fasterxml.jackson.annotation.JsonProperty("key_id") val keyId: String,
-    /**
-     * The Base64 encoded public key.
-     */
+    /** The Base64 encoded public key. */
     val key: String,
-    /**
-     * Optional `integer` value serialized in the `id` wire field.
-     */
+    /** Optional `integer` value serialized in the `id` wire field. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `url` wire field.
-     */
+    /** Optional `string` value serialized in the `url` wire field. */
     val url: String? = null,
-    /**
-     * Optional `string` value serialized in the `title` wire field.
-     */
+    /** Optional `string` value serialized in the `title` wire field. */
     val title: String? = null,
-    /**
-     * Optional `string` value serialized in the `created_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String? = null
+    /** Optional `string` value serialized in the `created_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String? = null,
 )
 
-/**
- * Set secrets for GitHub Actions.
- */
+/** Set secrets for GitHub Actions. */
 data class ActionsSecret(
-    /**
-     * The name of the secret.
-     */
+    /** The name of the secret. */
     val name: String,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
 )
 
-/**
- * Typed representation of the `ActionsVariable` API schema.
- */
+/** Typed representation of the `ActionsVariable` API schema. */
 data class ActionsVariable(
-    /**
-     * The name of the variable.
-     */
+    /** The name of the variable. */
     val name: String,
-    /**
-     * The value of the variable.
-     */
+    /** The value of the variable. */
     @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: String,
     /**
-     * The date and time at which the variable was created, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.
+     * The date and time at which the variable was created, in ISO 8601 format':'
+     * YYYY-MM-DDTHH:MM:SSZ.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
     /**
-     * The date and time at which the variable was last updated, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.
+     * The date and time at which the variable was last updated, in ISO 8601 format':'
+     * YYYY-MM-DDTHH:MM:SSZ.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
 )

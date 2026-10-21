@@ -10,27 +10,48 @@ import dev.octri.showcase.github.Status
 
 internal object ReposCreateCommitStatusOperation {
     /**
-     * Creates a commit status for a specific commit in a repository. You need push access to the repository, and `state` must be one of the supported values; each `sha` and `context` pair is limited to 1,000 statuses.
+     * Creates a commit status for a specific commit in a repository. You need push access to the
+     * repository, and `state` must be one of the supported values; each `sha` and `context` pair is
+     * limited to 1,000 statuses.
      *
-     * Users with push access in a repository can create commit statuses for a given SHA. Note: there is a limit of 1000 statuses per `sha` and `context` within a repository. Attempts to create more than 1000 statuses will result in a validation error.
+     * Users with push access in a repository can create commit statuses for a given SHA. Note:
+     * there is a limit of 1000 statuses per `sha` and `context` within a repository. Attempts to
+     * create more than 1000 statuses will result in a validation error.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param state The state of the status.
-     * @param targetUrl The target URL to associate with this status. This URL will
-     *   be linked from the GitHub UI to allow users to easily see the source of the
-     *   status. For example, if your continuous integration system is posting build
-     *   status, you would want to provide the deep link for the build output for this
-     *   specific SHA: `ci.example.com
+     * @param targetUrl The target URL to associate with this status. This URL will be linked from
+     *   the GitHub UI to allow users to easily see the source of the status. For example, if your
+     *   continuous integration system is posting build status, you would want to provide the deep
+     *   link for the build output for this specific SHA: `ci.example.com
      * @param description A short description of the status.
-     * @param context A string label to differentiate this status from the status of
-     *   other systems. This field is case-insensitive.
+     * @param context A string label to differentiate this status from the status of other systems.
+     *   This field is case-insensitive.
      */
-    fun reposCreateCommitStatus(clientConfig: ClientConfig, request: Repos.ReposCreateCommitStatusRequest, options: RequestOptions? = null): Status {
-        return SdkClient.request<Status>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/statuses/${SdkClient.encodePathSegment(request.sha)}", config = clientConfig, body = SdkClient.bodyMap("state" to (request.state), "target_url" to
-    (request.targetUrl ?: SdkClient.SdkOptional.Omitted), "description" to
-    (request.description ?: SdkClient.SdkOptional.Omitted), "context" to (SdkClient.omitIfNull(request.context))), operationId = "reposCreateCommitStatus", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCreateCommitStatus(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateCommitStatusRequest,
+        options: RequestOptions? = null,
+    ): Status {
+        return SdkClient.request<Status>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/statuses/${SdkClient.encodePathSegment(request.sha)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "state" to (request.state),
+                            "target_url" to (request.targetUrl ?: SdkClient.SdkOptional.Omitted),
+                            "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
+                            "context" to (SdkClient.omitIfNull(request.context)),
+                        ),
+                    operationId = "reposCreateCommitStatus",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

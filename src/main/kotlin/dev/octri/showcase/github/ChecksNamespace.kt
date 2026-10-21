@@ -3,92 +3,264 @@
 
 package dev.octri.showcase.github
 
-
 class ChecksNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Creates a new check run for a specific commit in a repository. To create a check run, you must use a GitHub App. OAuth apps and authenticated users are not able to create a check suite. In a check suite, GitHub limits the number of check runs with the same name to 1000. Once these check runs exceed 1000, GitHub will start to automatically delete older check runs. > \[!NOTE\] > The Checks API only looks for pushes in the repository where the check suite or check run were…
+     * Creates a new check run for a specific commit in a repository. To create a check run, you
+     * must use a GitHub App. OAuth apps and authenticated users are not able to create a check
+     * suite. In a check suite, GitHub limits the number of check runs with the same name to 1000.
+     * Once these check runs exceed 1000, GitHub will start to automatically delete older check
+     * runs. > \[!NOTE\] > The Checks API only looks for pushes in the repository where the check
+     * suite or check run were…
      */
-    fun create(request: dev.octri.showcase.github.methods.Checks.ChecksCreateRequest, options: RequestOptions? = null): CheckRun {
+    fun create(
+        request: dev.octri.showcase.github.methods.Checks.ChecksCreateRequest,
+        options: RequestOptions? = null,
+    ): CheckRun {
         return dev.octri.showcase.github.methods.Checks.checksCreate(clientConfig, request, options)
     }
 
     /**
-     * Gets a single check run using its `id`. > \[!NOTE\] > The Checks API only looks for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty `pull_requests` array. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint on a private repository.
+     * Gets a single check run using its `id`. > \[!NOTE\] > The Checks API only looks for pushes in
+     * the repository where the check suite or check run were created. Pushes to a branch in a
+     * forked repository are not detected and return an empty `pull_requests` array. OAuth app
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint on a
+     * private repository.
      */
-    fun get(owner: String, repo: String, checkRunId: Long, options: RequestOptions? = null): CheckRun {
-        return dev.octri.showcase.github.methods.Checks.checksGet(clientConfig, owner, repo, checkRunId, options)
+    fun get(
+        owner: String,
+        repo: String,
+        checkRunId: Long,
+        options: RequestOptions? = null,
+    ): CheckRun {
+        return dev.octri.showcase.github.methods.Checks.checksGet(
+            clientConfig,
+            owner,
+            repo,
+            checkRunId,
+            options,
+        )
     }
 
     /**
-     * Updates a check run for a specific commit in a repository. > \[!NOTE\] > The endpoints to manage checks only look for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty `pull_requests` array. OAuth apps and personal access tokens (classic) cannot use this endpoint.
+     * Updates a check run for a specific commit in a repository. > \[!NOTE\] > The endpoints to
+     * manage checks only look for pushes in the repository where the check suite or check run were
+     * created. Pushes to a branch in a forked repository are not detected and return an empty
+     * `pull_requests` array. OAuth apps and personal access tokens (classic) cannot use this
+     * endpoint.
      */
-    fun update(owner: String, repo: String, checkRunId: Long, body: Map<String, Any>, options: RequestOptions? = null): CheckRun {
-        return dev.octri.showcase.github.methods.Checks.checksUpdate(clientConfig, owner, repo, checkRunId, body, options)
+    fun update(
+        owner: String,
+        repo: String,
+        checkRunId: Long,
+        body: Map<String, Any>,
+        options: RequestOptions? = null,
+    ): CheckRun {
+        return dev.octri.showcase.github.methods.Checks.checksUpdate(
+            clientConfig,
+            owner,
+            repo,
+            checkRunId,
+            body,
+            options,
+        )
     }
 
     /**
-     * Lists annotations for a check run using the annotation `id`. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint on a private repository.
+     * Lists annotations for a check run using the annotation `id`. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint on a private repository.
      */
-    fun listAnnotations(owner: String, repo: String, checkRunId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<CheckAnnotation> {
-        return dev.octri.showcase.github.methods.Checks.checksListAnnotations(clientConfig, owner, repo, checkRunId, perPage, page, options)
+    fun listAnnotations(
+        owner: String,
+        repo: String,
+        checkRunId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<CheckAnnotation> {
+        return dev.octri.showcase.github.methods.Checks.checksListAnnotations(
+            clientConfig,
+            owner,
+            repo,
+            checkRunId,
+            perPage,
+            page,
+            options,
+        )
     }
 
     /**
-     * Triggers GitHub to rerequest an existing check run, without pushing new code to a repository. This endpoint will trigger the `check_run` webhook event with the action `rerequested`. When a check run is `rerequested`, the `status` of the check suite it belongs to is reset to `queued` and the `conclusion` is cleared. The check run itself is not updated. GitHub apps recieving the `check_run` webhook with the `rerequested` action should then decide if the check run should be…
+     * Triggers GitHub to rerequest an existing check run, without pushing new code to a repository.
+     * This endpoint will trigger the `check_run` webhook event with the action `rerequested`. When
+     * a check run is `rerequested`, the `status` of the check suite it belongs to is reset to
+     * `queued` and the `conclusion` is cleared. The check run itself is not updated. GitHub apps
+     * recieving the `check_run` webhook with the `rerequested` action should then decide if the
+     * check run should be…
      */
-    fun rerequestRun(owner: String, repo: String, checkRunId: Long, options: RequestOptions? = null): EmptyObject {
-        return dev.octri.showcase.github.methods.Checks.checksRerequestRun(clientConfig, owner, repo, checkRunId, options)
+    fun rerequestRun(
+        owner: String,
+        repo: String,
+        checkRunId: Long,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return dev.octri.showcase.github.methods.Checks.checksRerequestRun(
+            clientConfig,
+            owner,
+            repo,
+            checkRunId,
+            options,
+        )
     }
 
     /**
-     * Creates a check suite manually. By default, check suites are automatically created when you create a check run. You only need to use this endpoint for manually creating check suites when you've disabled automatic creation using "Update repository preferences for check suites". > \[!NOTE\] > The Checks API only looks for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty…
+     * Creates a check suite manually. By default, check suites are automatically created when you
+     * create a check run. You only need to use this endpoint for manually creating check suites
+     * when you've disabled automatic creation using "Update repository preferences for check
+     * suites". > \[!NOTE\] > The Checks API only looks for pushes in the repository where the check
+     * suite or check run were created. Pushes to a branch in a forked repository are not detected
+     * and return an empty…
      */
-    fun createSuite(owner: String, repo: String, headSha: String, options: RequestOptions? = null): CheckSuite {
-        return dev.octri.showcase.github.methods.Checks.checksCreateSuite(clientConfig, owner, repo, headSha, options)
+    fun createSuite(
+        owner: String,
+        repo: String,
+        headSha: String,
+        options: RequestOptions? = null,
+    ): CheckSuite {
+        return dev.octri.showcase.github.methods.Checks.checksCreateSuite(
+            clientConfig,
+            owner,
+            repo,
+            headSha,
+            options,
+        )
     }
 
     /**
-     * Changes the default automatic flow when creating check suites. By default, a check suite is automatically created each time code is pushed to a repository. When you disable the automatic creation of check suites, you can manually Create a check suite. You must have admin permissions in the repository to set preferences for check suites.
+     * Changes the default automatic flow when creating check suites. By default, a check suite is
+     * automatically created each time code is pushed to a repository. When you disable the
+     * automatic creation of check suites, you can manually Create a check suite. You must have
+     * admin permissions in the repository to set preferences for check suites.
      */
-    fun setSuitesPreferences(owner: String, repo: String, autoTriggerChecks: List<dev.octri.showcase.github.methods.Checks.ChecksSetSuitesPreferencesAutoTriggerChecksItem>? = null, options: RequestOptions? = null): CheckSuitePreference {
-        return dev.octri.showcase.github.methods.Checks.checksSetSuitesPreferences(clientConfig, owner, repo, autoTriggerChecks, options)
+    fun setSuitesPreferences(
+        owner: String,
+        repo: String,
+        autoTriggerChecks:
+            List<
+                dev.octri.showcase.github.methods.Checks.ChecksSetSuitesPreferencesAutoTriggerChecksItem
+            >? =
+            null,
+        options: RequestOptions? = null,
+    ): CheckSuitePreference {
+        return dev.octri.showcase.github.methods.Checks.checksSetSuitesPreferences(
+            clientConfig,
+            owner,
+            repo,
+            autoTriggerChecks,
+            options,
+        )
     }
 
     /**
-     * Gets a single check suite using its `id`. > \[!NOTE\] > The Checks API only looks for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty `pull_requests` array and a `null` value for `head_branch`. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint on a private repository.
+     * Gets a single check suite using its `id`. > \[!NOTE\] > The Checks API only looks for pushes
+     * in the repository where the check suite or check run were created. Pushes to a branch in a
+     * forked repository are not detected and return an empty `pull_requests` array and a `null`
+     * value for `head_branch`. OAuth app tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint on a private repository.
      */
-    fun getSuite(owner: String, repo: String, checkSuiteId: Long, options: RequestOptions? = null): CheckSuite {
-        return dev.octri.showcase.github.methods.Checks.checksGetSuite(clientConfig, owner, repo, checkSuiteId, options)
+    fun getSuite(
+        owner: String,
+        repo: String,
+        checkSuiteId: Long,
+        options: RequestOptions? = null,
+    ): CheckSuite {
+        return dev.octri.showcase.github.methods.Checks.checksGetSuite(
+            clientConfig,
+            owner,
+            repo,
+            checkSuiteId,
+            options,
+        )
     }
 
     /**
-     * Lists check runs for a check suite using its `id`. > \[!NOTE\] > The endpoints to manage checks only look for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty `pull_requests` array. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint on a private repository.
+     * Lists check runs for a check suite using its `id`. > \[!NOTE\] > The endpoints to manage
+     * checks only look for pushes in the repository where the check suite or check run were
+     * created. Pushes to a branch in a forked repository are not detected and return an empty
+     * `pull_requests` array. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint on a private repository.
      */
-    fun listForSuite(request: dev.octri.showcase.github.methods.Checks.ChecksListForSuiteRequest, options: RequestOptions? = null): dev.octri.showcase.github.methods.Checks.ChecksListForSuiteResponse {
-        return dev.octri.showcase.github.methods.Checks.checksListForSuite(clientConfig, request, options)
+    fun listForSuite(
+        request: dev.octri.showcase.github.methods.Checks.ChecksListForSuiteRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.github.methods.Checks.ChecksListForSuiteResponse {
+        return dev.octri.showcase.github.methods.Checks.checksListForSuite(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Triggers GitHub to rerequest an existing check suite, without pushing new code to a repository. This endpoint will trigger the `check_suite` webhook event with the action `rerequested`. When a check suite is `rerequested`, its `status` is reset to `queued` and the `conclusion` is cleared.
+     * Triggers GitHub to rerequest an existing check suite, without pushing new code to a
+     * repository. This endpoint will trigger the `check_suite` webhook event with the action
+     * `rerequested`. When a check suite is `rerequested`, its `status` is reset to `queued` and the
+     * `conclusion` is cleared.
      */
-    fun rerequestSuite(owner: String, repo: String, checkSuiteId: Long, options: RequestOptions? = null): EmptyObject {
-        return dev.octri.showcase.github.methods.Checks.checksRerequestSuite(clientConfig, owner, repo, checkSuiteId, options)
+    fun rerequestSuite(
+        owner: String,
+        repo: String,
+        checkSuiteId: Long,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return dev.octri.showcase.github.methods.Checks.checksRerequestSuite(
+            clientConfig,
+            owner,
+            repo,
+            checkSuiteId,
+            options,
+        )
     }
 
     /**
-     * Lists check runs for a Git reference in a repository. Set `ref` to a commit SHA, branch name, or tag name, and use `check_name`, `status`, `filter`, or `app_id` to narrow the results; use `page` and `per_page` to paginate the results. If the reference has more than 1,000 check suites, results are limited to the 1,000 most recent suites; use the check-suite endpoints to retrieve additional runs.
+     * Lists check runs for a Git reference in a repository. Set `ref` to a commit SHA, branch name,
+     * or tag name, and use `check_name`, `status`, `filter`, or `app_id` to narrow the results; use
+     * `page` and `per_page` to paginate the results. If the reference has more than 1,000 check
+     * suites, results are limited to the 1,000 most recent suites; use the check-suite endpoints to
+     * retrieve additional runs.
      *
-     * Lists check runs for a commit ref. The `ref` can be a SHA, branch name, or a tag name. > !NOTE] > The endpoints to manage checks only look for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty `pull_requests` array. If there are more than 1000 check suites on a single git reference, this endpoint will limit check runs to the 1000 most recent check suites. To iterate over…
+     * Lists check runs for a commit ref. The `ref` can be a SHA, branch name, or a tag name. >
+     * !NOTE] > The endpoints to manage checks only look for pushes in the repository where the
+     * check suite or check run were created. Pushes to a branch in a forked repository are not
+     * detected and return an empty `pull_requests` array. If there are more than 1000 check suites
+     * on a single git reference, this endpoint will limit check runs to the 1000 most recent check
+     * suites. To iterate over…
      */
-    fun listForRef(request: dev.octri.showcase.github.methods.Checks.ChecksListForRefRequest, options: RequestOptions? = null): dev.octri.showcase.github.methods.Checks.ChecksListForRefResponse {
-        return dev.octri.showcase.github.methods.Checks.checksListForRef(clientConfig, request, options)
+    fun listForRef(
+        request: dev.octri.showcase.github.methods.Checks.ChecksListForRefRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.github.methods.Checks.ChecksListForRefResponse {
+        return dev.octri.showcase.github.methods.Checks.checksListForRef(
+            clientConfig,
+            request,
+            options,
+        )
     }
 
     /**
-     * Lists check suites for a commit `ref`. The `ref` can be a SHA, branch name, or a tag name. > \[!NOTE\] > The endpoints to manage checks only look for pushes in the repository where the check suite or check run were created. Pushes to a branch in a forked repository are not detected and return an empty `pull_requests` array and a `null` value for `head_branch`. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint on a private…
+     * Lists check suites for a commit `ref`. The `ref` can be a SHA, branch name, or a tag name. >
+     * \[!NOTE\] > The endpoints to manage checks only look for pushes in the repository where the
+     * check suite or check run were created. Pushes to a branch in a forked repository are not
+     * detected and return an empty `pull_requests` array and a `null` value for `head_branch`.
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint on a private…
      */
-    fun listSuitesForRef(request: dev.octri.showcase.github.methods.Checks.ChecksListSuitesForRefRequest, options: RequestOptions? = null): dev.octri.showcase.github.methods.Checks.ChecksListSuitesForRefResponse {
-        return dev.octri.showcase.github.methods.Checks.checksListSuitesForRef(clientConfig, request, options)
+    fun listSuitesForRef(
+        request: dev.octri.showcase.github.methods.Checks.ChecksListSuitesForRefRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.github.methods.Checks.ChecksListSuitesForRefResponse {
+        return dev.octri.showcase.github.methods.Checks.checksListSuitesForRef(
+            clientConfig,
+            request,
+            options,
+        )
     }
-
 }

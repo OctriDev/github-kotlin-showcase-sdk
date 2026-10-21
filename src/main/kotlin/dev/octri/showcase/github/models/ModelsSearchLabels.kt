@@ -5,52 +5,32 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Label Search Result Item
- */
+/** Label Search Result Item */
 data class LabelSearchResultItem(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `color` wire field.
-     */
+    /** Required `string` value serialized in the `color` wire field. */
     val color: String,
-    /**
-     * Required `boolean` value serialized in the `default` wire field.
-     */
+    /** Required `boolean` value serialized in the `default` wire field. */
     val default: Boolean,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * Timestamp indicating when the label was archived, or `null` if it has not been archived.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true) val archivedAt: OffsetDateTime?,
-    /**
-     * The user who archived the label, or `null` if it has not been archived.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("archived_by", required = true) val archivedBy: SimpleUser?,
-    /**
-     * Required `number` value serialized in the `score` wire field.
-     */
+    /** Required `string` value serialized in the `description` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** Timestamp indicating when the label was archived, or `null` if it has not been archived. */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_at", required = true)
+    val archivedAt: OffsetDateTime?,
+    /** The user who archived the label, or `null` if it has not been archived. */
+    @com.fasterxml.jackson.annotation.JsonProperty("archived_by", required = true)
+    val archivedBy: SimpleUser?,
+    /** Required `number` value serialized in the `score` wire field. */
     val score: Double,
-    /**
-     * Optional array value serialized in the `text_matches` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("text_matches") val textMatches: SearchResultTextMatches? = null
+    /** Optional array value serialized in the `text_matches` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("text_matches")
+    val textMatches: SearchResultTextMatches? = null,
 )

@@ -3,16 +3,15 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Check immutable releases settings for an organization.
- */
+/** Check immutable releases settings for an organization. */
 data class ImmutableReleasesOrganizationSettings(
+    /** The policy that controls how immutable releases are enforced in the organization. */
+    @com.fasterxml.jackson.annotation.JsonProperty("enforced_repositories")
+    val enforcedRepositories: ImmutableReleasesOrganizationSettingsEnforcedRepositoriesEnum,
     /**
-     * The policy that controls how immutable releases are enforced in the organization.
+     * The API URL to use to get or set the selected repositories for immutable releases
+     * enforcement, when `enforced_repositories` is set to `selected`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("enforced_repositories") val enforcedRepositories: ImmutableReleasesOrganizationSettingsEnforcedRepositoriesEnum,
-    /**
-     * The API URL to use to get or set the selected repositories for immutable releases enforcement, when `enforced_repositories` is set to `selected`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("selected_repositories_url") val selectedRepositoriesUrl: String? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("selected_repositories_url")
+    val selectedRepositoriesUrl: String? = null,
 )

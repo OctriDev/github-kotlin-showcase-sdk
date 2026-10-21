@@ -20,195 +20,406 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ActionsSetWorkflowAccessToRepositoryOperation {
     /**
-     * Sets the level of access that workflows outside of the repository have to actions and reusable workflows in the repository. This endpoint only applies to private repositories. For more information, see "Allowing access to components in a private repository". OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Sets the level of access that workflows outside of the repository have to actions and
+     * reusable workflows in the repository. This endpoint only applies to private repositories. For
+     * more information, see "Allowing access to components in a private repository". OAuth app
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param accessLevel Defines the level of access that workflows outside of the
-     *   repository have to actions and reusable workflows within the repository.
-     *   `none` means the access is only possible from workflows in this repository.
-     *   `user` level access allows sharing across user owned private repositories
-     *   only. `organization` level access allows sharing across the organization.
+     * @param accessLevel Defines the level of access that workflows outside of the repository have
+     *   to actions and reusable workflows within the repository. `none` means the access is only
+     *   possible from workflows in this repository. `user` level access allows sharing across user
+     *   owned private repositories only. `organization` level access allows sharing across the
+     *   organization.
      */
-    fun actionsSetWorkflowAccessToRepository(clientConfig: ClientConfig, owner: String, repo: String, accessLevel: ActionsWorkflowAccessToRepositoryAccessLevelEnum, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/access", config = clientConfig, body = SdkClient.bodyMap("access_level" to (accessLevel)), operationId = "actionsSetWorkflowAccessToRepository", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsSetWorkflowAccessToRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        accessLevel: ActionsWorkflowAccessToRepositoryAccessLevelEnum,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/access",
+                config = clientConfig,
+                body = SdkClient.bodyMap("access_level" to (accessLevel)),
+                operationId = "actionsSetWorkflowAccessToRepository",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsGetArtifactAndLogRetentionSettingsRepositoryOperation {
     /**
-     * Gets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a repository. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a
+     * repository. Checks include check suites, check runs, and check annotations. These settings
+     * also apply to checks and commit statuses created by third-party integrations, and are not
+     * limited to data created by GitHub Actions. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetArtifactAndLogRetentionSettingsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsArtifactAndLogRetentionResponse {
-        return SdkClient.request<ActionsArtifactAndLogRetentionResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/artifact-and-log-retention", config = clientConfig, operationId = "actionsGetArtifactAndLogRetentionSettingsRepository", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun actionsGetArtifactAndLogRetentionSettingsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsArtifactAndLogRetentionResponse {
+        return SdkClient.request<ActionsArtifactAndLogRetentionResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/artifact-and-log-retention",
+                    config = clientConfig,
+                    operationId = "actionsGetArtifactAndLogRetentionSettingsRepository",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetArtifactAndLogRetentionSettingsRepositoryOperation {
     /**
-     * Sets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a repository. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Sets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a
+     * repository. Checks include check suites, check runs, and check annotations. These settings
+     * also apply to checks and commit statuses created by third-party integrations, and are not
+     * limited to data created by GitHub Actions. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param days The number of days to retain checks, workflow runs, commit
-     *   statuses, artifacts, and logs
+     * @param days The number of days to retain checks, workflow runs, commit statuses, artifacts,
+     *   and logs
      */
-    fun actionsSetArtifactAndLogRetentionSettingsRepository(clientConfig: ClientConfig, owner: String, repo: String, days: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/artifact-and-log-retention", config = clientConfig, body = SdkClient.bodyMap("days" to (days)), operationId = "actionsSetArtifactAndLogRetentionSettingsRepository", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun actionsSetArtifactAndLogRetentionSettingsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        days: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/artifact-and-log-retention",
+                config = clientConfig,
+                body = SdkClient.bodyMap("days" to (days)),
+                operationId = "actionsSetArtifactAndLogRetentionSettingsRepository",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsGetForkPrContributorApprovalPermissionsRepositoryOperation {
     /**
-     * Gets the fork PR contributor approval policy for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the fork PR contributor approval policy for a repository. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetForkPrContributorApprovalPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsForkPrContributorApproval {
-        return SdkClient.request<ActionsForkPrContributorApproval>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/fork-pr-contributor-approval", config = clientConfig, operationId = "actionsGetForkPrContributorApprovalPermissionsRepository", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun actionsGetForkPrContributorApprovalPermissionsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsForkPrContributorApproval {
+        return SdkClient.request<ActionsForkPrContributorApproval>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/fork-pr-contributor-approval",
+                    config = clientConfig,
+                    operationId = "actionsGetForkPrContributorApprovalPermissionsRepository",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetForkPrContributorApprovalPermissionsRepositoryOperation {
     /**
-     * Sets the fork PR contributor approval policy for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Sets the fork PR contributor approval policy for a repository. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param approvalPolicy The policy that controls when fork PR workflows require
-     *   approval from a maintainer.
+     * @param approvalPolicy The policy that controls when fork PR workflows require approval from a
+     *   maintainer.
      */
-    fun actionsSetForkPrContributorApprovalPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, approvalPolicy: ActionsForkPrContributorApprovalApprovalPolicyEnum, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/fork-pr-contributor-approval", config = clientConfig, body = SdkClient.bodyMap("approval_policy" to (approvalPolicy)), operationId = "actionsSetForkPrContributorApprovalPermissionsRepository", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun actionsSetForkPrContributorApprovalPermissionsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        approvalPolicy: ActionsForkPrContributorApprovalApprovalPolicyEnum,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/fork-pr-contributor-approval",
+                config = clientConfig,
+                body = SdkClient.bodyMap("approval_policy" to (approvalPolicy)),
+                operationId = "actionsSetForkPrContributorApprovalPermissionsRepository",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsGetPrivateRepoForkPrWorkflowsSettingsRepositoryOperation {
     /**
-     * Gets the settings for whether workflows from fork pull requests can run on a private repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the settings for whether workflows from fork pull requests can run on a private
+     * repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
+     * use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetPrivateRepoForkPrWorkflowsSettingsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsForkPrWorkflowsPrivateRepos {
-        return SdkClient.request<ActionsForkPrWorkflowsPrivateRepos>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/fork-pr-workflows-private-repos", config = clientConfig, operationId = "actionsGetPrivateRepoForkPrWorkflowsSettingsRepository", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun actionsGetPrivateRepoForkPrWorkflowsSettingsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsForkPrWorkflowsPrivateRepos {
+        return SdkClient.request<ActionsForkPrWorkflowsPrivateRepos>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/fork-pr-workflows-private-repos",
+                    config = clientConfig,
+                    operationId = "actionsGetPrivateRepoForkPrWorkflowsSettingsRepository",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetPrivateRepoForkPrWorkflowsSettingsRepositoryOperation {
     /**
-     * Sets the settings for whether workflows from fork pull requests can run on a private repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Sets the settings for whether workflows from fork pull requests can run on a private
+     * repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
+     * use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param runWorkflowsFromForkPullRequests Whether workflows triggered by pull
-     *   requests from forks are allowed to run on private repositories.
-     * @param sendWriteTokensToWorkflows Whether GitHub Actions can create pull
-     *   requests or submit approving pull request reviews from a workflow triggered by
-     *   a fork pull request.
-     * @param sendSecretsAndVariables Whether to make secrets and variables available
-     *   to workflows triggered by pull requests from forks.
-     * @param requireApprovalForForkPrWorkflows Whether workflows triggered by pull
-     *   requests from forks require approval from a repository administrator to run.
+     * @param runWorkflowsFromForkPullRequests Whether workflows triggered by pull requests from
+     *   forks are allowed to run on private repositories.
+     * @param sendWriteTokensToWorkflows Whether GitHub Actions can create pull requests or submit
+     *   approving pull request reviews from a workflow triggered by a fork pull request.
+     * @param sendSecretsAndVariables Whether to make secrets and variables available to workflows
+     *   triggered by pull requests from forks.
+     * @param requireApprovalForForkPrWorkflows Whether workflows triggered by pull requests from
+     *   forks require approval from a repository administrator to run.
      */
-    fun actionsSetPrivateRepoForkPrWorkflowsSettingsRepository(clientConfig: ClientConfig, request: Actions.ActionsSetPrivateRepoForkPrWorkflowsSettingsRepositoryRequest, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/permissions/fork-pr-workflows-private-repos", config = clientConfig, body = SdkClient.bodyMap("run_workflows_from_fork_pull_requests" to
-    (request.runWorkflowsFromForkPullRequests), "send_write_tokens_to_workflows" to
-    (SdkClient.omitIfNull(request.sendWriteTokensToWorkflows)), "send_secrets_and_variables" to
-    (SdkClient.omitIfNull(request.sendSecretsAndVariables)), "require_approval_for_fork_pr_workflows" to
-    (SdkClient.omitIfNull(request.requireApprovalForForkPrWorkflows))), operationId = "actionsSetPrivateRepoForkPrWorkflowsSettingsRepository", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun actionsSetPrivateRepoForkPrWorkflowsSettingsRepository(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsSetPrivateRepoForkPrWorkflowsSettingsRepositoryRequest,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/permissions/fork-pr-workflows-private-repos",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "run_workflows_from_fork_pull_requests" to
+                            (request.runWorkflowsFromForkPullRequests),
+                        "send_write_tokens_to_workflows" to
+                            (SdkClient.omitIfNull(request.sendWriteTokensToWorkflows)),
+                        "send_secrets_and_variables" to
+                            (SdkClient.omitIfNull(request.sendSecretsAndVariables)),
+                        "require_approval_for_fork_pr_workflows" to
+                            (SdkClient.omitIfNull(request.requireApprovalForForkPrWorkflows)),
+                    ),
+                operationId = "actionsSetPrivateRepoForkPrWorkflowsSettingsRepository",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsGetAllowedActionsRepositoryOperation {
     /**
-     * Gets the settings for selected actions and reusable workflows that are allowed in a repository. To use this endpoint, the repository policy for `allowed_actions` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for a repository." OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the settings for selected actions and reusable workflows that are allowed in a
+     * repository. To use this endpoint, the repository policy for `allowed_actions` must be
+     * configured to `selected`. For more information, see "Set GitHub Actions permissions for a
+     * repository." OAuth tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetAllowedActionsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SelectedActions {
-        return SdkClient.request<SelectedActions>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/selected-actions", config = clientConfig, operationId = "actionsGetAllowedActionsRepository", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetAllowedActionsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SelectedActions {
+        return SdkClient.request<SelectedActions>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/selected-actions",
+                    config = clientConfig,
+                    operationId = "actionsGetAllowedActionsRepository",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetAllowedActionsRepositoryOperation {
     /**
-     * Sets the actions and reusable workflows that are allowed in a repository. To use this endpoint, the repository permission policy for `allowed_actions` must be configured to `selected`. For more information, see "Set GitHub Actions permissions for a repository." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Sets the actions and reusable workflows that are allowed in a repository. To use this
+     * endpoint, the repository permission policy for `allowed_actions` must be configured to
+     * `selected`. For more information, see "Set GitHub Actions permissions for a repository."
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param githubOwnedAllowed Whether GitHub-owned actions are allowed. For
-     *   example, this includes the actions in the `actions` organization.
-     * @param verifiedAllowed Whether actions from GitHub Marketplace verified
-     *   creators are allowed. Set to `true` to allow all actions by GitHub Marketplace
-     *   verified creators.
-     * @param patternsAllowed Specifies a list of string-matching patterns to allow
-     *   specific action(s) and reusable workflow(s). Wildcards, tags, and SHAs are
-     *   allowed. For example, `monalisa/octocat@*`, `monalisa/octocat@v2`, `monalisa/
-     *   *`. > \[!NOTE\] > The `patterns_allowed` setting only applies to public
-     *   repositories.
+     * @param githubOwnedAllowed Whether GitHub-owned actions are allowed. For example, this
+     *   includes the actions in the `actions` organization.
+     * @param verifiedAllowed Whether actions from GitHub Marketplace verified creators are allowed.
+     *   Set to `true` to allow all actions by GitHub Marketplace verified creators.
+     * @param patternsAllowed Specifies a list of string-matching patterns to allow specific
+     *   action(s) and reusable workflow(s). Wildcards, tags, and SHAs are allowed. For example,
+     *   `monalisa/octocat@*`, `monalisa/octocat@v2`, `monalisa/ *`. > \[!NOTE\] > The
+     *   `patterns_allowed` setting only applies to public repositories.
      */
-    fun actionsSetAllowedActionsRepository(clientConfig: ClientConfig, owner: String, repo: String, githubOwnedAllowed: Boolean? = null, verifiedAllowed: Boolean? = null, patternsAllowed: List<String>? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/selected-actions", config = clientConfig, body = SdkClient.bodyMap("github_owned_allowed" to
-    (SdkClient.omitIfNull(githubOwnedAllowed)), "verified_allowed" to
-    (SdkClient.omitIfNull(verifiedAllowed)), "patterns_allowed" to
-    (SdkClient.omitIfNull(patternsAllowed))), operationId = "actionsSetAllowedActionsRepository", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsSetAllowedActionsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        githubOwnedAllowed: Boolean? = null,
+        verifiedAllowed: Boolean? = null,
+        patternsAllowed: List<String>? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/selected-actions",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "github_owned_allowed" to (SdkClient.omitIfNull(githubOwnedAllowed)),
+                        "verified_allowed" to (SdkClient.omitIfNull(verifiedAllowed)),
+                        "patterns_allowed" to (SdkClient.omitIfNull(patternsAllowed)),
+                    ),
+                operationId = "actionsSetAllowedActionsRepository",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsGetGithubActionsDefaultWorkflowPermissionsRepositoryOperation {
     /**
-     * Gets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in a repository, as well as if GitHub Actions can submit approving pull request reviews. For more information, see "Setting the permissions of the GITHUB_TOKEN for your repository." OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in
+     * a repository, as well as if GitHub Actions can submit approving pull request reviews. For
+     * more information, see "Setting the permissions of the GITHUB_TOKEN for your repository."
+     * OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetGithubActionsDefaultWorkflowPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsGetDefaultWorkflowPermissions {
-        return SdkClient.request<ActionsGetDefaultWorkflowPermissions>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/workflow", config = clientConfig, operationId = "actionsGetGithubActionsDefaultWorkflowPermissionsRepository", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetGithubActionsDefaultWorkflowPermissionsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsGetDefaultWorkflowPermissions {
+        return SdkClient.request<ActionsGetDefaultWorkflowPermissions>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/workflow",
+                    config = clientConfig,
+                    operationId = "actionsGetGithubActionsDefaultWorkflowPermissionsRepository",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetGithubActionsDefaultWorkflowPermissionsRepositoryOperation {
     /**
-     * Sets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in a repository, and sets if GitHub Actions can submit approving pull request reviews. For more information, see "Setting the permissions of the GITHUB_TOKEN for your repository." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Sets the default workflow permissions granted to the `GITHUB_TOKEN` when running workflows in
+     * a repository, and sets if GitHub Actions can submit approving pull request reviews. For more
+     * information, see "Setting the permissions of the GITHUB_TOKEN for your repository." OAuth app
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param defaultWorkflowPermissions The default workflow permissions granted to
-     *   the GITHUB_TOKEN when running workflows.
-     * @param canApprovePullRequestReviews Whether GitHub Actions can approve pull
-     *   requests. Enabling this can be a security risk.
+     * @param defaultWorkflowPermissions The default workflow permissions granted to the
+     *   GITHUB_TOKEN when running workflows.
+     * @param canApprovePullRequestReviews Whether GitHub Actions can approve pull requests.
+     *   Enabling this can be a security risk.
      */
-    fun actionsSetGithubActionsDefaultWorkflowPermissionsRepository(clientConfig: ClientConfig, owner: String, repo: String, defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions? = null, canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/workflow", config = clientConfig, body = SdkClient.bodyMap("default_workflow_permissions" to
-    (SdkClient.omitIfNull(defaultWorkflowPermissions)), "can_approve_pull_request_reviews" to
-    (SdkClient.omitIfNull(canApprovePullRequestReviews))), operationId = "actionsSetGithubActionsDefaultWorkflowPermissionsRepository", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsSetGithubActionsDefaultWorkflowPermissionsRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        defaultWorkflowPermissions: ActionsDefaultWorkflowPermissions? = null,
+        canApprovePullRequestReviews: ActionsCanApprovePullRequestReviews? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/permissions/workflow",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "default_workflow_permissions" to
+                            (SdkClient.omitIfNull(defaultWorkflowPermissions)),
+                        "can_approve_pull_request_reviews" to
+                            (SdkClient.omitIfNull(canApprovePullRequestReviews)),
+                    ),
+                operationId = "actionsSetGithubActionsDefaultWorkflowPermissionsRepository",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

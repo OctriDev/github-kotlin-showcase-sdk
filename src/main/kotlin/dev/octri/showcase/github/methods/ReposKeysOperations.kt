@@ -12,72 +12,151 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposListDeployKeysOperation {
     /**
-     * Lists the deploy keys associated with a repository. Use `page` and `per_page` to paginate the results; each entry contains key details and its access mode.
+     * Lists the deploy keys associated with a repository. Use `page` and `per_page` to paginate the
+     * results; each entry contains key details and its access mode.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListDeployKeys(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<DeployKey> {
-        return SdkClient.request<List<DeployKey>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/keys", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListDeployKeys", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListDeployKeys(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<DeployKey> {
+        return SdkClient.request<List<DeployKey>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/keys",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListDeployKeys",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateDeployKeyOperation {
     /**
-     * Creates a deploy key that grants access to a repository. Provide the public key in `key` and optionally set `title` and `read_only` to name the key and control its access. A 201 response returns the created deploy key.
+     * Creates a deploy key that grants access to a repository. Provide the public key in `key` and
+     * optionally set `title` and `read_only` to name the key and control its access. A 201 response
+     * returns the created deploy key.
      *
      * You can create a read-only deploy key.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param key The contents of the key.
      * @param title A name for the key.
-     * @param readOnly If `true`, the key will only be able to read repository
-     *   contents. Otherwise, the key will be able to read and write. Deploy keys with
-     *   write access can perform the same actions as an organization member with admin
-     *   access, or a collaborator on a personal repository. For more information, see
-     *   "Repository permission levels for an organization" and "Permission levels for
-     *   a user account repository."
+     * @param readOnly If `true`, the key will only be able to read repository contents. Otherwise,
+     *   the key will be able to read and write. Deploy keys with write access can perform the same
+     *   actions as an organization member with admin access, or a collaborator on a personal
+     *   repository. For more information, see "Repository permission levels for an organization"
+     *   and "Permission levels for a user account repository."
      */
-    fun reposCreateDeployKey(clientConfig: ClientConfig, owner: String, repo: String, key: String, title: String? = null, readOnly: Boolean? = null, options: RequestOptions? = null): DeployKey {
-        return SdkClient.request<DeployKey>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/keys", config = clientConfig, body = SdkClient.bodyMap("key" to (key), "title" to (SdkClient.omitIfNull(title)), "read_only" to (SdkClient.omitIfNull(readOnly))), operationId = "reposCreateDeployKey", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposCreateDeployKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        key: String,
+        title: String? = null,
+        readOnly: Boolean? = null,
+        options: RequestOptions? = null,
+    ): DeployKey {
+        return SdkClient.request<DeployKey>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/keys",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "key" to (key),
+                            "title" to (SdkClient.omitIfNull(title)),
+                            "read_only" to (SdkClient.omitIfNull(readOnly)),
+                        ),
+                    operationId = "reposCreateDeployKey",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetDeployKeyOperation {
     /**
-     * Retrieves a specific deploy key associated with a repository. Use `key_id` to identify the key whose details you need.
+     * Retrieves a specific deploy key associated with a repository. Use `key_id` to identify the
+     * key whose details you need.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param keyId The unique identifier of the key.
      */
-    fun reposGetDeployKey(clientConfig: ClientConfig, owner: String, repo: String, keyId: Long, options: RequestOptions? = null): DeployKey {
-        return SdkClient.request<DeployKey>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/keys/${SdkClient.encodePathSegment(keyId)}", config = clientConfig, operationId = "reposGetDeployKey", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetDeployKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        keyId: Long,
+        options: RequestOptions? = null,
+    ): DeployKey {
+        return SdkClient.request<DeployKey>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/keys/${SdkClient.encodePathSegment(keyId)}",
+                    config = clientConfig,
+                    operationId = "reposGetDeployKey",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDeleteDeployKeyOperation {
     /**
-     * Deploy keys are immutable. If you need to update a key, remove the key and create a new one instead.
+     * Deploy keys are immutable. If you need to update a key, remove the key and create a new one
+     * instead.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param keyId The unique identifier of the key.
      */
-    fun reposDeleteDeployKey(clientConfig: ClientConfig, owner: String, repo: String, keyId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/keys/${SdkClient.encodePathSegment(keyId)}", config = clientConfig, operationId = "reposDeleteDeployKey", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposDeleteDeployKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        keyId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/keys/${SdkClient.encodePathSegment(keyId)}",
+                config = clientConfig,
+                operationId = "reposDeleteDeployKey",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

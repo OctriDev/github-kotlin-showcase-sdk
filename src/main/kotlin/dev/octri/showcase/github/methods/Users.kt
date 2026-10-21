@@ -19,79 +19,74 @@ import dev.octri.showcase.github.UsersGetContextForUserParameterEnum
 import dev.octri.showcase.github.UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum
 
 object Users {
-/**
- * The bundle of the attestation.
- */
-data class UsersListAttestationsBulkResponseAttestationsSubjectDigestsVaX0ac5c521dd(
-    val mediaType: String? = null,
-    val verificationMaterial: Map<String, Any>? = null,
-    val dsseEnvelope: Map<String, Any>? = null
-)
+    /** The bundle of the attestation. */
+    data class UsersListAttestationsBulkResponseAttestationsSubjectDigestsVaX0ac5c521dd(
+        val mediaType: String? = null,
+        val verificationMaterial: Map<String, Any>? = null,
+        val dsseEnvelope: Map<String, Any>? = null,
+    )
 
-data class UsersListAttestationsBulkResponseAttestationsSubjectDigestsValueItem(
-    /**
-     * The bundle of the attestation.
-     */
-    val bundle: UsersListAttestationsBulkResponseAttestationsSubjectDigestsVaX0ac5c521dd? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("bundle_url") val bundleUrl: String? = null
-)
+    data class UsersListAttestationsBulkResponseAttestationsSubjectDigestsValueItem(
+        /** The bundle of the attestation. */
+        val bundle: UsersListAttestationsBulkResponseAttestationsSubjectDigestsVaX0ac5c521dd? =
+            null,
+        @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
+        val repositoryId: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("bundle_url") val bundleUrl: String? = null,
+    )
 
-/**
- * Information about the current page.
- */
-data class UsersListAttestationsBulkResponsePageInfo(
-    /**
-     * Indicates whether there is a next page.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_next") val hasNext: Boolean? = null,
-    /**
-     * Indicates whether there is a previous page.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_previous") val hasPrevious: Boolean? = null,
-    /**
-     * The cursor to the next page.
-     */
-    val next: String? = null,
-    /**
-     * The cursor to the previous page.
-     */
-    val previous: String? = null
-)
+    /** Information about the current page. */
+    data class UsersListAttestationsBulkResponsePageInfo(
+        /** Indicates whether there is a next page. */
+        @com.fasterxml.jackson.annotation.JsonProperty("has_next") val hasNext: Boolean? = null,
+        /** Indicates whether there is a previous page. */
+        @com.fasterxml.jackson.annotation.JsonProperty("has_previous")
+        val hasPrevious: Boolean? = null,
+        /** The cursor to the next page. */
+        val next: String? = null,
+        /** The cursor to the previous page. */
+        val previous: String? = null,
+    )
 
-data class UsersListAttestationsBulkResponse(
-    /**
-     * Mapping of subject digest to bundles.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("attestations_subject_digests") val attestationsSubjectDigests: Map<String, List<UsersListAttestationsBulkResponseAttestationsSubjectDigestsValueItem>>? = null,
-    /**
-     * Information about the current page.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("page_info") val pageInfo: UsersListAttestationsBulkResponsePageInfo? = null
-)
+    data class UsersListAttestationsBulkResponse(
+        /** Mapping of subject digest to bundles. */
+        @com.fasterxml.jackson.annotation.JsonProperty("attestations_subject_digests")
+        val attestationsSubjectDigests:
+            Map<
+                String,
+                List<UsersListAttestationsBulkResponseAttestationsSubjectDigestsValueItem>,
+            >? =
+            null,
+        /** Information about the current page. */
+        @com.fasterxml.jackson.annotation.JsonProperty("page_info")
+        val pageInfo: UsersListAttestationsBulkResponsePageInfo? = null,
+    )
 
-/**
- * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more information.
- */
-data class UsersListAttestationsResponseAttestationsItemBundle(
-    val mediaType: String? = null,
-    val verificationMaterial: Map<String, Any>? = null,
-    val dsseEnvelope: Map<String, Any>? = null
-)
-
-data class UsersListAttestationsResponseAttestationsItem(
     /**
-     * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more information.
+     * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more
+     * information.
      */
-    val bundle: UsersListAttestationsResponseAttestationsItemBundle? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("bundle_url") val bundleUrl: String? = null,
-    val initiator: String? = null
-)
+    data class UsersListAttestationsResponseAttestationsItemBundle(
+        val mediaType: String? = null,
+        val verificationMaterial: Map<String, Any>? = null,
+        val dsseEnvelope: Map<String, Any>? = null,
+    )
 
-data class UsersListAttestationsResponse(
-    val attestations: List<UsersListAttestationsResponseAttestationsItem>? = null
-)
+    data class UsersListAttestationsResponseAttestationsItem(
+        /**
+         * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more
+         * information.
+         */
+        val bundle: UsersListAttestationsResponseAttestationsItemBundle? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
+        val repositoryId: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("bundle_url") val bundleUrl: String? = null,
+        val initiator: String? = null,
+    )
+
+    data class UsersListAttestationsResponse(
+        val attestations: List<UsersListAttestationsResponseAttestationsItem>? = null
+    )
 
     /** Parameters for [usersUpdateAuthenticated]. */
     data class UsersUpdateAuthenticatedRequest(
@@ -102,7 +97,7 @@ data class UsersListAttestationsResponse(
         val company: String? = null,
         val location: String? = null,
         val hireable: Boolean? = null,
-        val bio: String? = null
+        val bio: String? = null,
     )
 
     /** Parameters for [usersListAttestationsBulk]. */
@@ -112,7 +107,7 @@ data class UsersListAttestationsResponse(
         val perPage: Long? = null,
         val before: String? = null,
         val after: String? = null,
-        val predicateType: String? = null
+        val predicateType: String? = null,
     )
 
     /** Parameters for [usersListAttestations]. */
@@ -122,11 +117,20 @@ data class UsersListAttestationsResponse(
         val perPage: Long? = null,
         val before: String? = null,
         val after: String? = null,
-        val predicateType: String? = null
+        val predicateType: String? = null,
     )
 
     /**
-     * OAuth app tokens and personal access tokens (classic) need the `read:user` scope, or the broader `user` scope, for this endpoint to return the private user response. The private user response includes additional fields such as `private_gists`, `total_private_repos`, `owned_private_repos`, `disk_usage`, `collaborators`, and `two_factor_authentication`. Tokens without these scopes receive the public user response. The private and public user response types are unrelated to the [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles) setting. A token without scopes still authenticates as the token's owner, so values subject to private profile visibility, such as `followers` and `following`, may differ from an unauthenticated response.
+     * OAuth app tokens and personal access tokens (classic) need the `read:user` scope, or the
+     * broader `user` scope, for this endpoint to return the private user response. The private user
+     * response includes additional fields such as `private_gists`, `total_private_repos`,
+     * `owned_private_repos`, `disk_usage`, `collaborators`, and `two_factor_authentication`. Tokens
+     * without these scopes receive the public user response. The private and public user response
+     * types are unrelated to the
+     * [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles)
+     * setting. A token without scopes still authenticates as the token's owner, so values subject
+     * to private profile visibility, such as `followers` and `following`, may differ from an
+     * unauthenticated response.
      */
     fun usersGetAuthenticated(clientConfig: ClientConfig, options: RequestOptions? = null): Any =
         dev.octri.showcase.github.methods.UsersGetAuthenticatedOperation.usersGetAuthenticated(
@@ -135,30 +139,47 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * **Note:** If your email is set to private and you send an `email` parameter as part of this request to update your profile, your privacy settings are still enforced: the email address will not be displayed on your public profile or via the API.
+     * **Note:** If your email is set to private and you send an `email` parameter as part of this
+     * request to update your profile, your privacy settings are still enforced: the email address
+     * will not be displayed on your public profile or via the API.
      */
-    fun usersUpdateAuthenticated(clientConfig: ClientConfig, request: UsersUpdateAuthenticatedRequest, options: RequestOptions? = null): PrivateUser =
-        dev.octri.showcase.github.methods.UsersUpdateAuthenticatedOperation.usersUpdateAuthenticated(
-            clientConfig,
-            request,
-            options,
-        )
+    fun usersUpdateAuthenticated(
+        clientConfig: ClientConfig,
+        request: UsersUpdateAuthenticatedRequest,
+        options: RequestOptions? = null,
+    ): PrivateUser =
+        dev.octri.showcase.github.methods.UsersUpdateAuthenticatedOperation
+            .usersUpdateAuthenticated(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /** List the users you've blocked on your personal account. */
+    fun usersListBlockedByAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.UsersListBlockedByAuthenticatedUserOperation
+            .usersListBlockedByAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * List the users you've blocked on your personal account.
+     * Returns a 204 if the given user is blocked by the authenticated user. Returns a 404 if the
+     * given user is not blocked by the authenticated user, or if the given user account has been
+     * identified as spam by GitHub.
      */
-    fun usersListBlockedByAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.UsersListBlockedByAuthenticatedUserOperation.usersListBlockedByAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
-
-    /**
-     * Returns a 204 if the given user is blocked by the authenticated user. Returns a 404 if the given user is not blocked by the authenticated user, or if the given user account has been identified as spam by GitHub.
-     */
-    fun usersCheckBlocked(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Unit =
+    fun usersCheckBlocked(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.UsersCheckBlockedOperation.usersCheckBlocked(
             clientConfig,
             username,
@@ -166,9 +187,14 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * Blocks the given user and returns a 204. If the authenticated user cannot block the given user a 422 is returned.
+     * Blocks the given user and returns a 204. If the authenticated user cannot block the given
+     * user a 422 is returned.
      */
-    fun usersBlock(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Unit =
+    fun usersBlock(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.UsersBlockOperation.usersBlock(
             clientConfig,
             username,
@@ -176,92 +202,146 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * Removes a user from the authenticated user's block list. Use `username` to identify the account to unblock; the request returns no content when the removal succeeds.
+     * Removes a user from the authenticated user's block list. Use `username` to identify the
+     * account to unblock; the request returns no content when the removal succeeds.
      */
-    fun usersUnblock(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Unit =
+    fun usersUnblock(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.UsersUnblockOperation.usersUnblock(
             clientConfig,
             username,
             options,
         )
 
-    /**
-     * Sets the visibility for your primary email addresses.
-     */
-    fun usersSetPrimaryEmailVisibilityForAuthenticatedUser(clientConfig: ClientConfig, visibility: UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum, options: RequestOptions? = null): List<Email> =
-        dev.octri.showcase.github.methods.UsersSetPrimaryEmailVisibilityForAuthenticatedUserOperation.usersSetPrimaryEmailVisibilityForAuthenticatedUser(
-            clientConfig,
-            visibility,
-            options,
-        )
+    /** Sets the visibility for your primary email addresses. */
+    fun usersSetPrimaryEmailVisibilityForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        visibility: UsersSetPrimaryEmailVisibilityForAuthenticatedUserVisibilityEnum,
+        options: RequestOptions? = null,
+    ): List<Email> =
+        dev.octri.showcase.github.methods
+            .UsersSetPrimaryEmailVisibilityForAuthenticatedUserOperation
+            .usersSetPrimaryEmailVisibilityForAuthenticatedUser(
+                clientConfig,
+                visibility,
+                options,
+            )
 
     /**
-     * Lists all of your email addresses, and specifies which one is visible to the public. OAuth app tokens and personal access tokens (classic) need the `user:email` scope to use this endpoint.
+     * Lists all of your email addresses, and specifies which one is visible to the public. OAuth
+     * app tokens and personal access tokens (classic) need the `user:email` scope to use this
+     * endpoint.
      */
-    fun usersListEmailsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Email> =
-        dev.octri.showcase.github.methods.UsersListEmailsForAuthenticatedUserOperation.usersListEmailsForAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun usersListEmailsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Email> =
+        dev.octri.showcase.github.methods.UsersListEmailsForAuthenticatedUserOperation
+            .usersListEmailsForAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Adds one or more email addresses to the authenticated user's account. Supply at least one address in `emails`; the request can also be a direct email string or array instead of an object. OAuth app tokens and personal access tokens (classic) need the `user` scope.
+     * Adds one or more email addresses to the authenticated user's account. Supply at least one
+     * address in `emails`; the request can also be a direct email string or array instead of an
+     * object. OAuth app tokens and personal access tokens (classic) need the `user` scope.
      */
-    fun usersAddEmailForAuthenticatedUser(clientConfig: ClientConfig, body: Any? = null, options: RequestOptions? = null): List<Email> =
-        dev.octri.showcase.github.methods.UsersAddEmailForAuthenticatedUserOperation.usersAddEmailForAuthenticatedUser(
-            clientConfig,
-            body,
-            options,
-        )
+    fun usersAddEmailForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Email> =
+        dev.octri.showcase.github.methods.UsersAddEmailForAuthenticatedUserOperation
+            .usersAddEmailForAuthenticatedUser(
+                clientConfig,
+                body,
+                options,
+            )
 
     /**
-     * Removes one or more email addresses from the authenticated user's account. Supply at least one address in `emails`; the request can also be a direct email string or array instead of an object. OAuth app tokens and personal access tokens (classic) need the `user` scope.
+     * Removes one or more email addresses from the authenticated user's account. Supply at least
+     * one address in `emails`; the request can also be a direct email string or array instead of an
+     * object. OAuth app tokens and personal access tokens (classic) need the `user` scope.
      */
-    fun usersDeleteEmailForAuthenticatedUser(clientConfig: ClientConfig, body: Any? = null, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersDeleteEmailForAuthenticatedUserOperation.usersDeleteEmailForAuthenticatedUser(
-            clientConfig,
-            body,
-            options,
-        )
+    fun usersDeleteEmailForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersDeleteEmailForAuthenticatedUserOperation
+            .usersDeleteEmailForAuthenticatedUser(
+                clientConfig,
+                body,
+                options,
+            )
+
+    /** Lists the people following the authenticated user. */
+    fun usersListFollowersForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.UsersListFollowersForAuthenticatedUserOperation
+            .usersListFollowersForAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
+
+    /** Lists the people who the authenticated user follows. */
+    fun usersListFollowedByAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.UsersListFollowedByAuthenticatedUserOperation
+            .usersListFollowedByAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists the people following the authenticated user.
+     * Verifies whether the authenticated user follows a specified GitHub user account. Use
+     * `username` to identify the account whose follow status you want to check; the response
+     * distinguishes followed from not followed.
      */
-    fun usersListFollowersForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.UsersListFollowersForAuthenticatedUserOperation.usersListFollowersForAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun usersCheckPersonIsFollowedByAuthenticated(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersCheckPersonIsFollowedByAuthenticatedOperation
+            .usersCheckPersonIsFollowedByAuthenticated(
+                clientConfig,
+                username,
+                options,
+            )
 
     /**
-     * Lists the people who the authenticated user follows.
+     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For
+     * more information, see "[HTTP
+     * verbs](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
+     * OAuth app tokens and personal access tokens (classic) need the `user:follow` scope to use
+     * this endpoint.
      */
-    fun usersListFollowedByAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.UsersListFollowedByAuthenticatedUserOperation.usersListFollowedByAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
-
-    /**
-     * Verifies whether the authenticated user follows a specified GitHub user account. Use `username` to identify the account whose follow status you want to check; the response distinguishes followed from not followed.
-     */
-    fun usersCheckPersonIsFollowedByAuthenticated(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersCheckPersonIsFollowedByAuthenticatedOperation.usersCheckPersonIsFollowedByAuthenticated(
-            clientConfig,
-            username,
-            options,
-        )
-
-    /**
-     * Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP verbs](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)." OAuth app tokens and personal access tokens (classic) need the `user:follow` scope to use this endpoint.
-     */
-    fun usersFollow(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Unit =
+    fun usersFollow(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.UsersFollowOperation.usersFollow(
             clientConfig,
             username,
@@ -269,9 +349,14 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * OAuth app tokens and personal access tokens (classic) need the `user:follow` scope to use this endpoint.
+     * OAuth app tokens and personal access tokens (classic) need the `user:follow` scope to use
+     * this endpoint.
      */
-    fun usersUnfollow(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Unit =
+    fun usersUnfollow(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.UsersUnfollowOperation.usersUnfollow(
             clientConfig,
             username,
@@ -279,177 +364,303 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * Lists the current user's GPG keys. OAuth app tokens and personal access tokens (classic) need the `read:gpg_key` scope to use this endpoint.
+     * Lists the current user's GPG keys. OAuth app tokens and personal access tokens (classic) need
+     * the `read:gpg_key` scope to use this endpoint.
      */
-    fun usersListGpgKeysForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<GpgKey> =
-        dev.octri.showcase.github.methods.UsersListGpgKeysForAuthenticatedUserOperation.usersListGpgKeysForAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun usersListGpgKeysForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<GpgKey> =
+        dev.octri.showcase.github.methods.UsersListGpgKeysForAuthenticatedUserOperation
+            .usersListGpgKeysForAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Adds a GPG key to the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `write:gpg_key` scope to use this endpoint.
+     * Adds a GPG key to the authenticated user's GitHub account. OAuth app tokens and personal
+     * access tokens (classic) need the `write:gpg_key` scope to use this endpoint.
      */
-    fun usersCreateGpgKeyForAuthenticatedUser(clientConfig: ClientConfig, armoredPublicKey: String, name: String? = null, options: RequestOptions? = null): GpgKey =
-        dev.octri.showcase.github.methods.UsersCreateGpgKeyForAuthenticatedUserOperation.usersCreateGpgKeyForAuthenticatedUser(
-            clientConfig,
-            armoredPublicKey,
-            name,
-            options,
-        )
+    fun usersCreateGpgKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        armoredPublicKey: String,
+        name: String? = null,
+        options: RequestOptions? = null,
+    ): GpgKey =
+        dev.octri.showcase.github.methods.UsersCreateGpgKeyForAuthenticatedUserOperation
+            .usersCreateGpgKeyForAuthenticatedUser(
+                clientConfig,
+                armoredPublicKey,
+                name,
+                options,
+            )
 
     /**
-     * View extended details for a single GPG key. OAuth app tokens and personal access tokens (classic) need the `read:gpg_key` scope to use this endpoint.
+     * View extended details for a single GPG key. OAuth app tokens and personal access tokens
+     * (classic) need the `read:gpg_key` scope to use this endpoint.
      */
-    fun usersGetGpgKeyForAuthenticatedUser(clientConfig: ClientConfig, gpgKeyId: Long, options: RequestOptions? = null): GpgKey =
-        dev.octri.showcase.github.methods.UsersGetGpgKeyForAuthenticatedUserOperation.usersGetGpgKeyForAuthenticatedUser(
-            clientConfig,
-            gpgKeyId,
-            options,
-        )
+    fun usersGetGpgKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        gpgKeyId: Long,
+        options: RequestOptions? = null,
+    ): GpgKey =
+        dev.octri.showcase.github.methods.UsersGetGpgKeyForAuthenticatedUserOperation
+            .usersGetGpgKeyForAuthenticatedUser(
+                clientConfig,
+                gpgKeyId,
+                options,
+            )
 
     /**
-     * Removes a GPG key from the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `admin:gpg_key` scope to use this endpoint.
+     * Removes a GPG key from the authenticated user's GitHub account. OAuth app tokens and personal
+     * access tokens (classic) need the `admin:gpg_key` scope to use this endpoint.
      */
-    fun usersDeleteGpgKeyForAuthenticatedUser(clientConfig: ClientConfig, gpgKeyId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersDeleteGpgKeyForAuthenticatedUserOperation.usersDeleteGpgKeyForAuthenticatedUser(
-            clientConfig,
-            gpgKeyId,
-            options,
-        )
+    fun usersDeleteGpgKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        gpgKeyId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersDeleteGpgKeyForAuthenticatedUserOperation
+            .usersDeleteGpgKeyForAuthenticatedUser(
+                clientConfig,
+                gpgKeyId,
+                options,
+            )
 
     /**
-     * Lists the public SSH keys for the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `read:public_key` scope to use this endpoint.
+     * Lists the public SSH keys for the authenticated user's GitHub account. OAuth app tokens and
+     * personal access tokens (classic) need the `read:public_key` scope to use this endpoint.
      */
-    fun usersListPublicSshKeysForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Key> =
-        dev.octri.showcase.github.methods.UsersListPublicSshKeysForAuthenticatedUserOperation.usersListPublicSshKeysForAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun usersListPublicSshKeysForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Key> =
+        dev.octri.showcase.github.methods.UsersListPublicSshKeysForAuthenticatedUserOperation
+            .usersListPublicSshKeysForAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Adds a public SSH key to the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `write:public_key` scope to use this endpoint.
+     * Adds a public SSH key to the authenticated user's GitHub account. OAuth app tokens and
+     * personal access tokens (classic) need the `write:public_key` scope to use this endpoint.
      */
-    fun usersCreatePublicSshKeyForAuthenticatedUser(clientConfig: ClientConfig, key: String, title: String? = null, options: RequestOptions? = null): Key =
-        dev.octri.showcase.github.methods.UsersCreatePublicSshKeyForAuthenticatedUserOperation.usersCreatePublicSshKeyForAuthenticatedUser(
-            clientConfig,
-            key,
-            title,
-            options,
-        )
+    fun usersCreatePublicSshKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        key: String,
+        title: String? = null,
+        options: RequestOptions? = null,
+    ): Key =
+        dev.octri.showcase.github.methods.UsersCreatePublicSshKeyForAuthenticatedUserOperation
+            .usersCreatePublicSshKeyForAuthenticatedUser(
+                clientConfig,
+                key,
+                title,
+                options,
+            )
 
     /**
-     * View extended details for a single public SSH key. OAuth app tokens and personal access tokens (classic) need the `read:public_key` scope to use this endpoint.
+     * View extended details for a single public SSH key. OAuth app tokens and personal access
+     * tokens (classic) need the `read:public_key` scope to use this endpoint.
      */
-    fun usersGetPublicSshKeyForAuthenticatedUser(clientConfig: ClientConfig, keyId: Long, options: RequestOptions? = null): Key =
-        dev.octri.showcase.github.methods.UsersGetPublicSshKeyForAuthenticatedUserOperation.usersGetPublicSshKeyForAuthenticatedUser(
-            clientConfig,
-            keyId,
-            options,
-        )
+    fun usersGetPublicSshKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        keyId: Long,
+        options: RequestOptions? = null,
+    ): Key =
+        dev.octri.showcase.github.methods.UsersGetPublicSshKeyForAuthenticatedUserOperation
+            .usersGetPublicSshKeyForAuthenticatedUser(
+                clientConfig,
+                keyId,
+                options,
+            )
 
     /**
-     * Removes a public SSH key from the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `admin:public_key` scope to use this endpoint.
+     * Removes a public SSH key from the authenticated user's GitHub account. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:public_key` scope to use this endpoint.
      */
-    fun usersDeletePublicSshKeyForAuthenticatedUser(clientConfig: ClientConfig, keyId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersDeletePublicSshKeyForAuthenticatedUserOperation.usersDeletePublicSshKeyForAuthenticatedUser(
-            clientConfig,
-            keyId,
-            options,
-        )
+    fun usersDeletePublicSshKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        keyId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersDeletePublicSshKeyForAuthenticatedUserOperation
+            .usersDeletePublicSshKeyForAuthenticatedUser(
+                clientConfig,
+                keyId,
+                options,
+            )
 
     /**
-     * Lists your publicly visible email address, which you can set with the [Set primary email visibility for the authenticated user](https://docs.github.com/rest/users/emails#set-primary-email-visibility-for-the-authenticated-user) endpoint. OAuth app tokens and personal access tokens (classic) need the `user:email` scope to use this endpoint.
+     * Lists your publicly visible email address, which you can set with the
+     * [Set primary email visibility for the authenticated user](https://docs.github.com/rest/users/emails#set-primary-email-visibility-for-the-authenticated-user)
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `user:email` scope
+     * to use this endpoint.
      */
-    fun usersListPublicEmailsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Email> =
-        dev.octri.showcase.github.methods.UsersListPublicEmailsForAuthenticatedUserOperation.usersListPublicEmailsForAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun usersListPublicEmailsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Email> =
+        dev.octri.showcase.github.methods.UsersListPublicEmailsForAuthenticatedUserOperation
+            .usersListPublicEmailsForAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists the social accounts linked to the authenticated user. Use `page` and `per_page` to paginate the results.
+     * Lists the social accounts linked to the authenticated user. Use `page` and `per_page` to
+     * paginate the results.
      */
-    fun usersListSocialAccountsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SocialAccount> =
-        dev.octri.showcase.github.methods.UsersListSocialAccountsForAuthenticatedUserOperation.usersListSocialAccountsForAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun usersListSocialAccountsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SocialAccount> =
+        dev.octri.showcase.github.methods.UsersListSocialAccountsForAuthenticatedUserOperation
+            .usersListSocialAccountsForAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Add one or more social accounts to the authenticated user's profile. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
+     * Add one or more social accounts to the authenticated user's profile. OAuth app tokens and
+     * personal access tokens (classic) need the `user` scope to use this endpoint.
      */
-    fun usersAddSocialAccountForAuthenticatedUser(clientConfig: ClientConfig, accountUrls: List<String>, options: RequestOptions? = null): List<SocialAccount> =
-        dev.octri.showcase.github.methods.UsersAddSocialAccountForAuthenticatedUserOperation.usersAddSocialAccountForAuthenticatedUser(
-            clientConfig,
-            accountUrls,
-            options,
-        )
+    fun usersAddSocialAccountForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        accountUrls: List<String>,
+        options: RequestOptions? = null,
+    ): List<SocialAccount> =
+        dev.octri.showcase.github.methods.UsersAddSocialAccountForAuthenticatedUserOperation
+            .usersAddSocialAccountForAuthenticatedUser(
+                clientConfig,
+                accountUrls,
+                options,
+            )
 
     /**
-     * Deletes one or more social accounts from the authenticated user's profile. OAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint.
+     * Deletes one or more social accounts from the authenticated user's profile. OAuth app tokens
+     * and personal access tokens (classic) need the `user` scope to use this endpoint.
      */
-    fun usersDeleteSocialAccountForAuthenticatedUser(clientConfig: ClientConfig, accountUrls: List<String>, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersDeleteSocialAccountForAuthenticatedUserOperation.usersDeleteSocialAccountForAuthenticatedUser(
-            clientConfig,
-            accountUrls,
-            options,
-        )
+    fun usersDeleteSocialAccountForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        accountUrls: List<String>,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersDeleteSocialAccountForAuthenticatedUserOperation
+            .usersDeleteSocialAccountForAuthenticatedUser(
+                clientConfig,
+                accountUrls,
+                options,
+            )
 
     /**
-     * Lists the SSH signing keys for the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `read:ssh_signing_key` scope to use this endpoint.
+     * Lists the SSH signing keys for the authenticated user's GitHub account. OAuth app tokens and
+     * personal access tokens (classic) need the `read:ssh_signing_key` scope to use this endpoint.
      */
-    fun usersListSshSigningKeysForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SshSigningKey> =
-        dev.octri.showcase.github.methods.UsersListSshSigningKeysForAuthenticatedUserOperation.usersListSshSigningKeysForAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun usersListSshSigningKeysForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SshSigningKey> =
+        dev.octri.showcase.github.methods.UsersListSshSigningKeysForAuthenticatedUserOperation
+            .usersListSshSigningKeysForAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Creates an SSH signing key for the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `write:ssh_signing_key` scope to use this endpoint.
+     * Creates an SSH signing key for the authenticated user's GitHub account. OAuth app tokens and
+     * personal access tokens (classic) need the `write:ssh_signing_key` scope to use this endpoint.
      */
-    fun usersCreateSshSigningKeyForAuthenticatedUser(clientConfig: ClientConfig, key: String, title: String? = null, options: RequestOptions? = null): SshSigningKey =
-        dev.octri.showcase.github.methods.UsersCreateSshSigningKeyForAuthenticatedUserOperation.usersCreateSshSigningKeyForAuthenticatedUser(
-            clientConfig,
-            key,
-            title,
-            options,
-        )
+    fun usersCreateSshSigningKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        key: String,
+        title: String? = null,
+        options: RequestOptions? = null,
+    ): SshSigningKey =
+        dev.octri.showcase.github.methods.UsersCreateSshSigningKeyForAuthenticatedUserOperation
+            .usersCreateSshSigningKeyForAuthenticatedUser(
+                clientConfig,
+                key,
+                title,
+                options,
+            )
 
     /**
-     * Gets extended details for an SSH signing key. OAuth app tokens and personal access tokens (classic) need the `read:ssh_signing_key` scope to use this endpoint.
+     * Gets extended details for an SSH signing key. OAuth app tokens and personal access tokens
+     * (classic) need the `read:ssh_signing_key` scope to use this endpoint.
      */
-    fun usersGetSshSigningKeyForAuthenticatedUser(clientConfig: ClientConfig, sshSigningKeyId: Long, options: RequestOptions? = null): SshSigningKey =
-        dev.octri.showcase.github.methods.UsersGetSshSigningKeyForAuthenticatedUserOperation.usersGetSshSigningKeyForAuthenticatedUser(
-            clientConfig,
-            sshSigningKeyId,
-            options,
-        )
+    fun usersGetSshSigningKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        sshSigningKeyId: Long,
+        options: RequestOptions? = null,
+    ): SshSigningKey =
+        dev.octri.showcase.github.methods.UsersGetSshSigningKeyForAuthenticatedUserOperation
+            .usersGetSshSigningKeyForAuthenticatedUser(
+                clientConfig,
+                sshSigningKeyId,
+                options,
+            )
 
     /**
-     * Deletes an SSH signing key from the authenticated user's GitHub account. OAuth app tokens and personal access tokens (classic) need the `admin:ssh_signing_key` scope to use this endpoint.
+     * Deletes an SSH signing key from the authenticated user's GitHub account. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:ssh_signing_key` scope to use this endpoint.
      */
-    fun usersDeleteSshSigningKeyForAuthenticatedUser(clientConfig: ClientConfig, sshSigningKeyId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersDeleteSshSigningKeyForAuthenticatedUserOperation.usersDeleteSshSigningKeyForAuthenticatedUser(
-            clientConfig,
-            sshSigningKeyId,
-            options,
-        )
+    fun usersDeleteSshSigningKeyForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        sshSigningKeyId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersDeleteSshSigningKeyForAuthenticatedUserOperation
+            .usersDeleteSshSigningKeyForAuthenticatedUser(
+                clientConfig,
+                sshSigningKeyId,
+                options,
+            )
 
     /**
-     * Provides publicly available information about someone with a GitHub account. This method takes their durable user `ID` instead of their `login`, which can change over time. If you are requesting information about an [Enterprise Managed User](https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users), or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users, your requests must be authenticated as a user or GitHub App that has access to the organization to view that account's information. If you are not authorized, the request will return a `404 Not Found` status. The `email` key in the following response is the publicly visible email address from your GitHub [profile page](https://github.com/settings/profile). When setting up your profile, you can select a primary email address to be public which provides an email entry for this endpoint. If you do not set a public email address for `email`, then it will have a value of `null`. You only see publicly visible email addresses when authenticated with GitHub. For more information, see [Authentication](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#authentication). The Emails API enables you to list all of your email addresses, and toggle a primary email to be visible publicly. For more information, see [Emails API](https://docs.github.com/rest/users/emails).
+     * Provides publicly available information about someone with a GitHub account. This method
+     * takes their durable user `ID` instead of their `login`, which can change over time. If you
+     * are requesting information about an
+     * [Enterprise Managed User](https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users),
+     * or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users,
+     * your requests must be authenticated as a user or GitHub App that has access to the
+     * organization to view that account's information. If you are not authorized, the request will
+     * return a `404 Not Found` status. The `email` key in the following response is the publicly
+     * visible email address from your GitHub [profile page](https://github.com/settings/profile).
+     * When setting up your profile, you can select a primary email address to be public which
+     * provides an email entry for this endpoint. If you do not set a public email address for
+     * `email`, then it will have a value of `null`. You only see publicly visible email addresses
+     * when authenticated with GitHub. For more information, see
+     * [Authentication](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#authentication).
+     * The Emails API enables you to list all of your email addresses, and toggle a primary email to
+     * be visible publicly. For more information, see
+     * [Emails API](https://docs.github.com/rest/users/emails).
      */
-    fun usersGetById(clientConfig: ClientConfig, accountId: Long, options: RequestOptions? = null): Any =
+    fun usersGetById(
+        clientConfig: ClientConfig,
+        accountId: Long,
+        options: RequestOptions? = null,
+    ): Any =
         dev.octri.showcase.github.methods.UsersGetByIdOperation.usersGetById(
             clientConfig,
             accountId,
@@ -457,9 +668,18 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * Lists all users, in the order that they signed up on GitHub. This list includes personal user accounts and organization accounts. Note: Pagination is powered exclusively by the `since` parameter. Use the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers) to get the URL for the next page of users.
+     * Lists all users, in the order that they signed up on GitHub. This list includes personal user
+     * accounts and organization accounts. Note: Pagination is powered exclusively by the `since`
+     * parameter. Use the
+     * [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers)
+     * to get the URL for the next page of users.
      */
-    fun usersList(clientConfig: ClientConfig, since: Long? = null, perPage: Long? = null, options: RequestOptions? = null): List<SimpleUser> =
+    fun usersList(
+        clientConfig: ClientConfig,
+        since: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
         dev.octri.showcase.github.methods.UsersListOperation.usersList(
             clientConfig,
             since,
@@ -468,9 +688,37 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * Provides publicly available information about someone with a GitHub account. If the specified user has a [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles), the `followers` and `following` values are `0` unless the request is authenticated as that user. A request authenticated as the specified user returns the actual values even if the token has no OAuth scopes. The `events_url` value is a URI template. Replace `{/privacy}` with `/public` to retrieve only public events. Omit it to retrieve public events and, when authenticated as the user, private events. For more information, see "[List events for the authenticated user](https://docs.github.com/rest/activity/events#list-events-for-the-authenticated-user)." If you are requesting information about an [Enterprise Managed User](https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users), or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users, your requests must be authenticated as a user or GitHub App that has access to the organization to view that account's information. If you are not authorized, the request will return a `404 Not Found` status. The `email` key in the following response is the publicly visible email address from your GitHub [profile page](https://github.com/settings/profile). When setting up your profile, you can select a primary email address to be public which provides an email entry for this endpoint. If you do not set a public email address for `email`, then it will have a value of `null`. You only see publicly visible email addresses when authenticated with GitHub. For more information, see [Authentication](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#authentication). The Emails API enables you to list all of your email addresses, and toggle a primary email to be visible publicly. For more information, see [Emails API](https://docs.github.com/rest/users/emails).
+     * Provides publicly available information about someone with a GitHub account. If the specified
+     * user has a
+     * [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles),
+     * the `followers` and `following` values are `0` unless the request is authenticated as that
+     * user. A request authenticated as the specified user returns the actual values even if the
+     * token has no OAuth scopes. The `events_url` value is a URI template. Replace `{/privacy}`
+     * with `/public` to retrieve only public events. Omit it to retrieve public events and, when
+     * authenticated as the user, private events. For more information, see "[List events for the
+     * authenticated
+     * user](https://docs.github.com/rest/activity/events#list-events-for-the-authenticated-user)."
+     * If you are requesting information about an
+     * [Enterprise Managed User](https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users),
+     * or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users,
+     * your requests must be authenticated as a user or GitHub App that has access to the
+     * organization to view that account's information. If you are not authorized, the request will
+     * return a `404 Not Found` status. The `email` key in the following response is the publicly
+     * visible email address from your GitHub [profile page](https://github.com/settings/profile).
+     * When setting up your profile, you can select a primary email address to be public which
+     * provides an email entry for this endpoint. If you do not set a public email address for
+     * `email`, then it will have a value of `null`. You only see publicly visible email addresses
+     * when authenticated with GitHub. For more information, see
+     * [Authentication](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#authentication).
+     * The Emails API enables you to list all of your email addresses, and toggle a primary email to
+     * be visible publicly. For more information, see
+     * [Emails API](https://docs.github.com/rest/users/emails).
      */
-    fun usersGetByUsername(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Any =
+    fun usersGetByUsername(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): Any =
         dev.octri.showcase.github.methods.UsersGetByUsernameOperation.usersGetByUsername(
             clientConfig,
             username,
@@ -478,52 +726,106 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * List a collection of artifact attestations associated with any entry in a list of subject digests owned by a user. The collection of attestations returned by this endpoint is filtered according to the authenticated user's permissions; if the authenticated user cannot read a repository, the attestations associated with that repository will not be included in the response. In addition, when using a fine-grained access token the `attestations:read` permission is required. **Please note:** in order to offer meaningful security benefits, an attestation's signature and timestamps **must** be cryptographically verified, and the identity of the attestation signer **must** be validated. Attestations can be verified using the [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify). For more information, see [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
+     * List a collection of artifact attestations associated with any entry in a list of subject
+     * digests owned by a user. The collection of attestations returned by this endpoint is filtered
+     * according to the authenticated user's permissions; if the authenticated user cannot read a
+     * repository, the attestations associated with that repository will not be included in the
+     * response. In addition, when using a fine-grained access token the `attestations:read`
+     * permission is required. **Please note:** in order to offer meaningful security benefits, an
+     * attestation's signature and timestamps **must** be cryptographically verified, and the
+     * identity of the attestation signer **must** be validated. Attestations can be verified using
+     * the
+     * [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify).
+     * For more information, see
+     * [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
      */
-    fun usersListAttestationsBulk(clientConfig: ClientConfig, request: UsersListAttestationsBulkRequest, options: RequestOptions? = null): UsersListAttestationsBulkResponse =
-        dev.octri.showcase.github.methods.UsersListAttestationsBulkOperation.usersListAttestationsBulk(
-            clientConfig,
-            request,
-            options,
-        )
+    fun usersListAttestationsBulk(
+        clientConfig: ClientConfig,
+        request: UsersListAttestationsBulkRequest,
+        options: RequestOptions? = null,
+    ): UsersListAttestationsBulkResponse =
+        dev.octri.showcase.github.methods.UsersListAttestationsBulkOperation
+            .usersListAttestationsBulk(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes artifact attestations for a user in bulk, identifying them by subject digest or unique attestation ID. Provide either `subject_digests` or `attestation_ids`, but not both; the selected list must contain between 1 and 1,024 entries.
+     * Deletes artifact attestations for a user in bulk, identifying them by subject digest or
+     * unique attestation ID. Provide either `subject_digests` or `attestation_ids`, but not both;
+     * the selected list must contain between 1 and 1,024 entries.
      */
-    fun usersDeleteAttestationsBulk(clientConfig: ClientConfig, username: String, body: Map<String, Any>, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersDeleteAttestationsBulkOperation.usersDeleteAttestationsBulk(
-            clientConfig,
-            username,
-            body,
-            options,
-        )
+    fun usersDeleteAttestationsBulk(
+        clientConfig: ClientConfig,
+        username: String,
+        body: Map<String, Any>,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersDeleteAttestationsBulkOperation
+            .usersDeleteAttestationsBulk(
+                clientConfig,
+                username,
+                body,
+                options,
+            )
 
     /**
-     * Deletes artifact attestations associated with a subject digest for a GitHub user account. Use `username` and `subject_digest` to identify the account and the attestation subject; a successful response confirms the deletion.
+     * Deletes artifact attestations associated with a subject digest for a GitHub user account. Use
+     * `username` and `subject_digest` to identify the account and the attestation subject; a
+     * successful response confirms the deletion.
      */
-    fun usersDeleteAttestationsBySubjectDigest(clientConfig: ClientConfig, username: String, subjectDigest: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersDeleteAttestationsBySubjectDigestOperation.usersDeleteAttestationsBySubjectDigest(
-            clientConfig,
-            username,
-            subjectDigest,
-            options,
-        )
+    fun usersDeleteAttestationsBySubjectDigest(
+        clientConfig: ClientConfig,
+        username: String,
+        subjectDigest: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersDeleteAttestationsBySubjectDigestOperation
+            .usersDeleteAttestationsBySubjectDigest(
+                clientConfig,
+                username,
+                subjectDigest,
+                options,
+            )
 
     /**
-     * Delete an artifact attestation by unique ID that is associated with a repository owned by a user.
+     * Delete an artifact attestation by unique ID that is associated with a repository owned by a
+     * user.
      */
-    fun usersDeleteAttestationsById(clientConfig: ClientConfig, username: String, attestationId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersDeleteAttestationsByIdOperation.usersDeleteAttestationsById(
-            clientConfig,
-            username,
-            attestationId,
-            options,
-        )
+    fun usersDeleteAttestationsById(
+        clientConfig: ClientConfig,
+        username: String,
+        attestationId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersDeleteAttestationsByIdOperation
+            .usersDeleteAttestationsById(
+                clientConfig,
+                username,
+                attestationId,
+                options,
+            )
 
     /**
-     * List a collection of artifact attestations with a given subject digest that are associated with repositories owned by a user. The collection of attestations returned by this endpoint is filtered according to the authenticated user's permissions; if the authenticated user cannot read a repository, the attestations associated with that repository will not be included in the response. In addition, when using a fine-grained access token the `attestations:read` permission is required. **Please note:** in order to offer meaningful security benefits, an attestation's signature and timestamps **must** be cryptographically verified, and the identity of the attestation signer **must** be validated. Attestations can be verified using the [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify). For more information, see [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
+     * List a collection of artifact attestations with a given subject digest that are associated
+     * with repositories owned by a user. The collection of attestations returned by this endpoint
+     * is filtered according to the authenticated user's permissions; if the authenticated user
+     * cannot read a repository, the attestations associated with that repository will not be
+     * included in the response. In addition, when using a fine-grained access token the
+     * `attestations:read` permission is required. **Please note:** in order to offer meaningful
+     * security benefits, an attestation's signature and timestamps **must** be cryptographically
+     * verified, and the identity of the attestation signer **must** be validated. Attestations can
+     * be verified using the
+     * [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify).
+     * For more information, see
+     * [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
      */
-    fun usersListAttestations(clientConfig: ClientConfig, request: UsersListAttestationsRequest, options: RequestOptions? = null): UsersListAttestationsResponse =
+    fun usersListAttestations(
+        clientConfig: ClientConfig,
+        request: UsersListAttestationsRequest,
+        options: RequestOptions? = null,
+    ): UsersListAttestationsResponse =
         dev.octri.showcase.github.methods.UsersListAttestationsOperation.usersListAttestations(
             clientConfig,
             request,
@@ -531,44 +833,77 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * Lists the people following the specified user. If the specified user has a [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles), this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns the list even if the token has no OAuth scopes.
+     * Lists the people following the specified user. If the specified user has a
+     * [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles),
+     * this endpoint returns an empty list unless the request is authenticated as that user. A
+     * request authenticated as the specified user returns the list even if the token has no OAuth
+     * scopes.
      */
-    fun usersListFollowersForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.UsersListFollowersForUserOperation.usersListFollowersForUser(
-            clientConfig,
-            username,
-            perPage,
-            page,
-            options,
-        )
+    fun usersListFollowersForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.UsersListFollowersForUserOperation
+            .usersListFollowersForUser(
+                clientConfig,
+                username,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists the people who the specified user follows. If the specified user has a [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles), this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns the list even if the token has no OAuth scopes.
+     * Lists the people who the specified user follows. If the specified user has a
+     * [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles),
+     * this endpoint returns an empty list unless the request is authenticated as that user. A
+     * request authenticated as the specified user returns the list even if the token has no OAuth
+     * scopes.
      */
-    fun usersListFollowingForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.UsersListFollowingForUserOperation.usersListFollowingForUser(
-            clientConfig,
-            username,
-            perPage,
-            page,
-            options,
-        )
+    fun usersListFollowingForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.UsersListFollowingForUserOperation
+            .usersListFollowingForUser(
+                clientConfig,
+                username,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Checks whether one GitHub user follows another user. Use `username` and `target_user` to identify the follower and the account being checked.
+     * Checks whether one GitHub user follows another user. Use `username` and `target_user` to
+     * identify the follower and the account being checked.
      */
-    fun usersCheckFollowingForUser(clientConfig: ClientConfig, username: String, targetUser: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.UsersCheckFollowingForUserOperation.usersCheckFollowingForUser(
-            clientConfig,
-            username,
-            targetUser,
-            options,
-        )
+    fun usersCheckFollowingForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        targetUser: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.UsersCheckFollowingForUserOperation
+            .usersCheckFollowingForUser(
+                clientConfig,
+                username,
+                targetUser,
+                options,
+            )
 
-    /**
-     * Lists the GPG keys for a user. This information is accessible by anyone.
-     */
-    fun usersListGpgKeysForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<GpgKey> =
+    /** Lists the GPG keys for a user. This information is accessible by anyone. */
+    fun usersListGpgKeysForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<GpgKey> =
         dev.octri.showcase.github.methods.UsersListGpgKeysForUserOperation.usersListGpgKeysForUser(
             clientConfig,
             username,
@@ -578,9 +913,21 @@ data class UsersListAttestationsResponse(
         )
 
     /**
-     * Provides hovercard information. You can find out more about someone in relation to their pull requests, issues, repositories, and organizations. The `subject_type` and `subject_id` parameters provide context for the person's hovercard, which returns more information than without the parameters. For example, if you wanted to find out more about `octocat` who owns the `Spoon-Knife` repository, you would use a `subject_type` value of `repository` and a `subject_id` value of `1300192` (the ID of the `Spoon-Knife` repository). OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Provides hovercard information. You can find out more about someone in relation to their pull
+     * requests, issues, repositories, and organizations. The `subject_type` and `subject_id`
+     * parameters provide context for the person's hovercard, which returns more information than
+     * without the parameters. For example, if you wanted to find out more about `octocat` who owns
+     * the `Spoon-Knife` repository, you would use a `subject_type` value of `repository` and a
+     * `subject_id` value of `1300192` (the ID of the `Spoon-Knife` repository). OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun usersGetContextForUser(clientConfig: ClientConfig, username: String, subjectType: UsersGetContextForUserParameterEnum? = null, subjectId: String? = null, options: RequestOptions? = null): Hovercard =
+    fun usersGetContextForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        subjectType: UsersGetContextForUserParameterEnum? = null,
+        subjectId: String? = null,
+        options: RequestOptions? = null,
+    ): Hovercard =
         dev.octri.showcase.github.methods.UsersGetContextForUserOperation.usersGetContextForUser(
             clientConfig,
             username,
@@ -589,39 +936,54 @@ data class UsersListAttestationsResponse(
             options,
         )
 
-    /**
-     * Lists the _verified_ public SSH keys for a user. This is accessible by anyone.
-     */
-    fun usersListPublicKeysForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<KeySimple> =
-        dev.octri.showcase.github.methods.UsersListPublicKeysForUserOperation.usersListPublicKeysForUser(
-            clientConfig,
-            username,
-            perPage,
-            page,
-            options,
-        )
+    /** Lists the _verified_ public SSH keys for a user. This is accessible by anyone. */
+    fun usersListPublicKeysForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<KeySimple> =
+        dev.octri.showcase.github.methods.UsersListPublicKeysForUserOperation
+            .usersListPublicKeysForUser(
+                clientConfig,
+                username,
+                perPage,
+                page,
+                options,
+            )
 
-    /**
-     * Lists social media accounts for a user. This endpoint is accessible by anyone.
-     */
-    fun usersListSocialAccountsForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SocialAccount> =
-        dev.octri.showcase.github.methods.UsersListSocialAccountsForUserOperation.usersListSocialAccountsForUser(
-            clientConfig,
-            username,
-            perPage,
-            page,
-            options,
-        )
+    /** Lists social media accounts for a user. This endpoint is accessible by anyone. */
+    fun usersListSocialAccountsForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SocialAccount> =
+        dev.octri.showcase.github.methods.UsersListSocialAccountsForUserOperation
+            .usersListSocialAccountsForUser(
+                clientConfig,
+                username,
+                perPage,
+                page,
+                options,
+            )
 
-    /**
-     * Lists the SSH signing keys for a user. This operation is accessible by anyone.
-     */
-    fun usersListSshSigningKeysForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SshSigningKey> =
-        dev.octri.showcase.github.methods.UsersListSshSigningKeysForUserOperation.usersListSshSigningKeysForUser(
-            clientConfig,
-            username,
-            perPage,
-            page,
-            options,
-        )
+    /** Lists the SSH signing keys for a user. This operation is accessible by anyone. */
+    fun usersListSshSigningKeysForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SshSigningKey> =
+        dev.octri.showcase.github.methods.UsersListSshSigningKeysForUserOperation
+            .usersListSshSigningKeysForUser(
+                clientConfig,
+                username,
+                perPage,
+                page,
+                options,
+            )
 }

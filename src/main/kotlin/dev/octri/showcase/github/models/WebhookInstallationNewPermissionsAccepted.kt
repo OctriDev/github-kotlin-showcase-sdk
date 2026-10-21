@@ -3,40 +3,33 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `WebhookInstallationNewPermissionsAccepted` API schema.
- */
+/** Typed representation of the `WebhookInstallationNewPermissionsAccepted` API schema. */
 data class WebhookInstallationNewPermissionsAccepted(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookInstallationNewPermissionsAcceptedActionEnum,
-    /**
-     * Installation
-     */
+    /** Installation */
     val installation: Installation,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
+     * is configured on an enterprise account or an organization that's part of an enterprise
+     * account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
-    /**
-     * An array of repository objects that the installation can access.
-     */
+    /** An array of repository objects that the installation can access. */
     val repositories: WebhooksRepositories? = null,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks? = null,
-    /**
-     * Optional API value serialized in the `requester` wire field.
-     */
-    val requester: Any? = null
+    /** Optional API value serialized in the `requester` wire field. */
+    val requester: Any? = null,
 )

@@ -6,11 +6,13 @@ package dev.octri.showcase.github.models
 /**
  * Required enumerated value serialized in the `required_deployments_enforcement_level` wire field.
  */
-class WebhooksRuleRequiredDeploymentsEnforcementLevelEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksRuleRequiredDeploymentsEnforcementLevelEnum && value == other.value
+class WebhooksRuleRequiredDeploymentsEnforcementLevelEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksRuleRequiredDeploymentsEnforcementLevelEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -19,61 +21,77 @@ class WebhooksRuleRequiredDeploymentsEnforcementLevelEnum private constructor(
         @JvmField val NON_ADMINS = WebhooksRuleRequiredDeploymentsEnforcementLevelEnum("non_admins")
         @JvmField val EVERYONE = WebhooksRuleRequiredDeploymentsEnforcementLevelEnum("everyone")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksRuleRequiredDeploymentsEnforcementLevelEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksRuleRequiredDeploymentsEnforcementLevelEnum(value)
     }
 }
 
 /**
- * Required enumerated value serialized in the `required_status_checks_enforcement_level` wire field.
+ * Required enumerated value serialized in the `required_status_checks_enforcement_level` wire
+ * field.
  */
-class WebhooksRuleRequiredStatusChecksEnforcementLevelEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksRuleRequiredStatusChecksEnforcementLevelEnum && value == other.value
+class WebhooksRuleRequiredStatusChecksEnforcementLevelEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksRuleRequiredStatusChecksEnforcementLevelEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val OFF = WebhooksRuleRequiredStatusChecksEnforcementLevelEnum("off")
-        @JvmField val NON_ADMINS = WebhooksRuleRequiredStatusChecksEnforcementLevelEnum("non_admins")
+        @JvmField
+        val NON_ADMINS = WebhooksRuleRequiredStatusChecksEnforcementLevelEnum("non_admins")
         @JvmField val EVERYONE = WebhooksRuleRequiredStatusChecksEnforcementLevelEnum("everyone")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksRuleRequiredStatusChecksEnforcementLevelEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksRuleRequiredStatusChecksEnforcementLevelEnum(value)
     }
 }
 
 /**
  * Required enumerated value serialized in the `signature_requirement_enforcement_level` wire field.
  */
-class WebhooksRuleSignatureRequirementEnforcementLevelEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksRuleSignatureRequirementEnforcementLevelEnum && value == other.value
+class WebhooksRuleSignatureRequirementEnforcementLevelEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksRuleSignatureRequirementEnforcementLevelEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val OFF = WebhooksRuleSignatureRequirementEnforcementLevelEnum("off")
-        @JvmField val NON_ADMINS = WebhooksRuleSignatureRequirementEnforcementLevelEnum("non_admins")
+        @JvmField
+        val NON_ADMINS = WebhooksRuleSignatureRequirementEnforcementLevelEnum("non_admins")
         @JvmField val EVERYONE = WebhooksRuleSignatureRequirementEnforcementLevelEnum("everyone")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksRuleSignatureRequirementEnforcementLevelEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksRuleSignatureRequirementEnforcementLevelEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `type` wire field.
- */
-class WebhooksSponsorshipSponsorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksSponsorshipSponsorTypeEnum && value == other.value
+/** Optional enumerated value serialized in the `type` wire field. */
+class WebhooksSponsorshipSponsorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksSponsorshipSponsorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -82,19 +100,22 @@ class WebhooksSponsorshipSponsorTypeEnum private constructor(
         @JvmField val USER = WebhooksSponsorshipSponsorTypeEnum("User")
         @JvmField val ORGANIZATION = WebhooksSponsorshipSponsorTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksSponsorshipSponsorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksSponsorshipSponsorTypeEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `type` wire field.
- */
-class WebhooksSponsorshipSponsorableTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksSponsorshipSponsorableTypeEnum && value == other.value
+/** Optional enumerated value serialized in the `type` wire field. */
+class WebhooksSponsorshipSponsorableTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksSponsorshipSponsorableTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -103,57 +124,66 @@ class WebhooksSponsorshipSponsorableTypeEnum private constructor(
         @JvmField val USER = WebhooksSponsorshipSponsorableTypeEnum("User")
         @JvmField val ORGANIZATION = WebhooksSponsorshipSponsorableTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksSponsorshipSponsorableTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksSponsorshipSponsorableTypeEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `action` wire field.
- */
-class WebhookStarCreatedActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookStarCreatedActionEnum && value == other.value
+/** Required enumerated value serialized in the `action` wire field. */
+class WebhookStarCreatedActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookStarCreatedActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val CREATED = WebhookStarCreatedActionEnum("created")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookStarCreatedActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookStarCreatedActionEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `action` wire field.
- */
-class WebhookStarDeletedActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookStarDeletedActionEnum && value == other.value
+/** Required enumerated value serialized in the `action` wire field. */
+class WebhookStarDeletedActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookStarDeletedActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val DELETED = WebhookStarDeletedActionEnum("deleted")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookStarDeletedActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookStarDeletedActionEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `type` wire field.
- */
-class WebhookStatusCommitAuthorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookStatusCommitAuthorTypeEnum && value == other.value
+/** Optional enumerated value serialized in the `type` wire field. */
+class WebhookStatusCommitAuthorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookStatusCommitAuthorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -162,52 +192,67 @@ class WebhookStatusCommitAuthorTypeEnum private constructor(
         @JvmField val USER = WebhookStatusCommitAuthorTypeEnum("User")
         @JvmField val ORGANIZATION = WebhookStatusCommitAuthorTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookStatusCommitAuthorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookStatusCommitAuthorTypeEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `reason` wire field.
- */
-class WebhookStatusCommitCommitVerificationReasonEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookStatusCommitCommitVerificationReasonEnum && value == other.value
+/** Required enumerated value serialized in the `reason` wire field. */
+class WebhookStatusCommitCommitVerificationReasonEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookStatusCommitCommitVerificationReasonEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val EXPIRED_KEY = WebhookStatusCommitCommitVerificationReasonEnum("expired_key")
-        @JvmField val NOT_SIGNING_KEY = WebhookStatusCommitCommitVerificationReasonEnum("not_signing_key")
-        @JvmField val GPGVERIFY_ERROR = WebhookStatusCommitCommitVerificationReasonEnum("gpgverify_error")
-        @JvmField val GPGVERIFY_UNAVAILABLE = WebhookStatusCommitCommitVerificationReasonEnum("gpgverify_unavailable")
+        @JvmField
+        val NOT_SIGNING_KEY = WebhookStatusCommitCommitVerificationReasonEnum("not_signing_key")
+        @JvmField
+        val GPGVERIFY_ERROR = WebhookStatusCommitCommitVerificationReasonEnum("gpgverify_error")
+        @JvmField
+        val GPGVERIFY_UNAVAILABLE =
+            WebhookStatusCommitCommitVerificationReasonEnum("gpgverify_unavailable")
         @JvmField val UNSIGNED = WebhookStatusCommitCommitVerificationReasonEnum("unsigned")
-        @JvmField val UNKNOWN_SIGNATURE_TYPE = WebhookStatusCommitCommitVerificationReasonEnum("unknown_signature_type")
+        @JvmField
+        val UNKNOWN_SIGNATURE_TYPE =
+            WebhookStatusCommitCommitVerificationReasonEnum("unknown_signature_type")
         @JvmField val NO_USER = WebhookStatusCommitCommitVerificationReasonEnum("no_user")
-        @JvmField val UNVERIFIED_EMAIL = WebhookStatusCommitCommitVerificationReasonEnum("unverified_email")
+        @JvmField
+        val UNVERIFIED_EMAIL = WebhookStatusCommitCommitVerificationReasonEnum("unverified_email")
         @JvmField val BAD_EMAIL = WebhookStatusCommitCommitVerificationReasonEnum("bad_email")
         @JvmField val UNKNOWN_KEY = WebhookStatusCommitCommitVerificationReasonEnum("unknown_key")
-        @JvmField val MALFORMED_SIGNATURE = WebhookStatusCommitCommitVerificationReasonEnum("malformed_signature")
+        @JvmField
+        val MALFORMED_SIGNATURE =
+            WebhookStatusCommitCommitVerificationReasonEnum("malformed_signature")
         @JvmField val INVALID = WebhookStatusCommitCommitVerificationReasonEnum("invalid")
         @JvmField val VALID = WebhookStatusCommitCommitVerificationReasonEnum("valid")
         @JvmField val BAD_CERT = WebhookStatusCommitCommitVerificationReasonEnum("bad_cert")
         @JvmField val OCSP_PENDING = WebhookStatusCommitCommitVerificationReasonEnum("ocsp_pending")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookStatusCommitCommitVerificationReasonEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookStatusCommitCommitVerificationReasonEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `type` wire field.
- */
-class WebhookStatusCommitCommitterTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookStatusCommitCommitterTypeEnum && value == other.value
+/** Optional enumerated value serialized in the `type` wire field. */
+class WebhookStatusCommitCommitterTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookStatusCommitCommitterTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -216,19 +261,22 @@ class WebhookStatusCommitCommitterTypeEnum private constructor(
         @JvmField val USER = WebhookStatusCommitCommitterTypeEnum("User")
         @JvmField val ORGANIZATION = WebhookStatusCommitCommitterTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookStatusCommitCommitterTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookStatusCommitCommitterTypeEnum(value)
     }
 }
 
-/**
- * The new state. Can be `pending`, `success`, `failure`, or `error`.
- */
-class WebhookStatusStateEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookStatusStateEnum && value == other.value
+/** The new state. Can be `pending`, `success`, `failure`, or `error`. */
+class WebhookStatusStateEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookStatusStateEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -238,59 +286,74 @@ class WebhookStatusStateEnum private constructor(
         @JvmField val FAILURE = WebhookStatusStateEnum("failure")
         @JvmField val ERROR = WebhookStatusStateEnum("error")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookStatusStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookStatusStateEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `notification_setting` wire field.
- */
-class WebhooksTeamNotificationSettingEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeamNotificationSettingEnum && value == other.value
+/** Optional enumerated value serialized in the `notification_setting` wire field. */
+class WebhooksTeamNotificationSettingEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeamNotificationSettingEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val NOTIFICATIONS_ENABLED = WebhooksTeamNotificationSettingEnum("notifications_enabled")
-        @JvmField val NOTIFICATIONS_DISABLED = WebhooksTeamNotificationSettingEnum("notifications_disabled")
+        @JvmField
+        val NOTIFICATIONS_ENABLED = WebhooksTeamNotificationSettingEnum("notifications_enabled")
+        @JvmField
+        val NOTIFICATIONS_DISABLED = WebhooksTeamNotificationSettingEnum("notifications_disabled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeamNotificationSettingEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeamNotificationSettingEnum(value)
     }
 }
 
-/**
- * Whether team members will receive notifications when their team is @mentioned
- */
-class WebhooksTeamParentNotificationSettingEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeamParentNotificationSettingEnum && value == other.value
+/** Whether team members will receive notifications when their team is @mentioned */
+class WebhooksTeamParentNotificationSettingEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeamParentNotificationSettingEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val NOTIFICATIONS_ENABLED = WebhooksTeamParentNotificationSettingEnum("notifications_enabled")
-        @JvmField val NOTIFICATIONS_DISABLED = WebhooksTeamParentNotificationSettingEnum("notifications_disabled")
+        @JvmField
+        val NOTIFICATIONS_ENABLED =
+            WebhooksTeamParentNotificationSettingEnum("notifications_enabled")
+        @JvmField
+        val NOTIFICATIONS_DISABLED =
+            WebhooksTeamParentNotificationSettingEnum("notifications_disabled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeamParentNotificationSettingEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeamParentNotificationSettingEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `privacy` wire field.
- */
-class WebhooksTeamParentPrivacyEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeamParentPrivacyEnum && value == other.value
+/** Required enumerated value serialized in the `privacy` wire field. */
+class WebhooksTeamParentPrivacyEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeamParentPrivacyEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -299,19 +362,22 @@ class WebhooksTeamParentPrivacyEnum private constructor(
         @JvmField val CLOSED = WebhooksTeamParentPrivacyEnum("closed")
         @JvmField val SECRET = WebhooksTeamParentPrivacyEnum("secret")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeamParentPrivacyEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeamParentPrivacyEnum(value)
     }
 }
 
-/**
- * The ownership type of the team
- */
-class WebhooksTeamParentTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeamParentTypeEnum && value == other.value
+/** The ownership type of the team */
+class WebhooksTeamParentTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeamParentTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -319,19 +385,22 @@ class WebhooksTeamParentTypeEnum private constructor(
         @JvmField val ENTERPRISE = WebhooksTeamParentTypeEnum("enterprise")
         @JvmField val ORGANIZATION = WebhooksTeamParentTypeEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeamParentTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeamParentTypeEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `privacy` wire field.
- */
-class WebhooksTeamPrivacyEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeamPrivacyEnum && value == other.value
+/** Optional enumerated value serialized in the `privacy` wire field. */
+class WebhooksTeamPrivacyEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeamPrivacyEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -340,19 +409,22 @@ class WebhooksTeamPrivacyEnum private constructor(
         @JvmField val CLOSED = WebhooksTeamPrivacyEnum("closed")
         @JvmField val SECRET = WebhooksTeamPrivacyEnum("secret")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeamPrivacyEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeamPrivacyEnum(value)
     }
 }
 
-/**
- * The ownership type of the team
- */
-class WebhooksTeamTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeamTypeEnum && value == other.value
+/** The ownership type of the team */
+class WebhooksTeamTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeamTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -360,59 +432,74 @@ class WebhooksTeamTypeEnum private constructor(
         @JvmField val ENTERPRISE = WebhooksTeamTypeEnum("enterprise")
         @JvmField val ORGANIZATION = WebhooksTeamTypeEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeamTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeamTypeEnum(value)
     }
 }
 
-/**
- * Whether team members will receive notifications when their team is @mentioned
- */
-class WebhooksTeam1NotificationSettingEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeam1NotificationSettingEnum && value == other.value
+/** Whether team members will receive notifications when their team is @mentioned */
+class WebhooksTeam1NotificationSettingEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeam1NotificationSettingEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val NOTIFICATIONS_ENABLED = WebhooksTeam1NotificationSettingEnum("notifications_enabled")
-        @JvmField val NOTIFICATIONS_DISABLED = WebhooksTeam1NotificationSettingEnum("notifications_disabled")
+        @JvmField
+        val NOTIFICATIONS_ENABLED = WebhooksTeam1NotificationSettingEnum("notifications_enabled")
+        @JvmField
+        val NOTIFICATIONS_DISABLED = WebhooksTeam1NotificationSettingEnum("notifications_disabled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeam1NotificationSettingEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeam1NotificationSettingEnum(value)
     }
 }
 
-/**
- * Whether team members will receive notifications when their team is @mentioned
- */
-class WebhooksTeam1ParentNotificationSettingEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeam1ParentNotificationSettingEnum && value == other.value
+/** Whether team members will receive notifications when their team is @mentioned */
+class WebhooksTeam1ParentNotificationSettingEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeam1ParentNotificationSettingEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val NOTIFICATIONS_ENABLED = WebhooksTeam1ParentNotificationSettingEnum("notifications_enabled")
-        @JvmField val NOTIFICATIONS_DISABLED = WebhooksTeam1ParentNotificationSettingEnum("notifications_disabled")
+        @JvmField
+        val NOTIFICATIONS_ENABLED =
+            WebhooksTeam1ParentNotificationSettingEnum("notifications_enabled")
+        @JvmField
+        val NOTIFICATIONS_DISABLED =
+            WebhooksTeam1ParentNotificationSettingEnum("notifications_disabled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeam1ParentNotificationSettingEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeam1ParentNotificationSettingEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `privacy` wire field.
- */
-class WebhooksTeam1ParentPrivacyEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeam1ParentPrivacyEnum && value == other.value
+/** Required enumerated value serialized in the `privacy` wire field. */
+class WebhooksTeam1ParentPrivacyEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeam1ParentPrivacyEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -421,19 +508,22 @@ class WebhooksTeam1ParentPrivacyEnum private constructor(
         @JvmField val CLOSED = WebhooksTeam1ParentPrivacyEnum("closed")
         @JvmField val SECRET = WebhooksTeam1ParentPrivacyEnum("secret")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeam1ParentPrivacyEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeam1ParentPrivacyEnum(value)
     }
 }
 
-/**
- * The ownership type of the team
- */
-class WebhooksTeam1ParentTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeam1ParentTypeEnum && value == other.value
+/** The ownership type of the team */
+class WebhooksTeam1ParentTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeam1ParentTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -441,19 +531,22 @@ class WebhooksTeam1ParentTypeEnum private constructor(
         @JvmField val ENTERPRISE = WebhooksTeam1ParentTypeEnum("enterprise")
         @JvmField val ORGANIZATION = WebhooksTeam1ParentTypeEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeam1ParentTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeam1ParentTypeEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `privacy` wire field.
- */
-class WebhooksTeam1PrivacyEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeam1PrivacyEnum && value == other.value
+/** Optional enumerated value serialized in the `privacy` wire field. */
+class WebhooksTeam1PrivacyEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeam1PrivacyEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -462,19 +555,22 @@ class WebhooksTeam1PrivacyEnum private constructor(
         @JvmField val CLOSED = WebhooksTeam1PrivacyEnum("closed")
         @JvmField val SECRET = WebhooksTeam1PrivacyEnum("secret")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeam1PrivacyEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeam1PrivacyEnum(value)
     }
 }
 
-/**
- * The ownership type of the team
- */
-class WebhooksTeam1TypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksTeam1TypeEnum && value == other.value
+/** The ownership type of the team */
+class WebhooksTeam1TypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksTeam1TypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -482,95 +578,114 @@ class WebhooksTeam1TypeEnum private constructor(
         @JvmField val ENTERPRISE = WebhooksTeam1TypeEnum("enterprise")
         @JvmField val ORGANIZATION = WebhooksTeam1TypeEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksTeam1TypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksTeam1TypeEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `action` wire field.
- */
-class WebhookSubIssuesParentIssueAddedActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookSubIssuesParentIssueAddedActionEnum && value == other.value
+/** Required enumerated value serialized in the `action` wire field. */
+class WebhookSubIssuesParentIssueAddedActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookSubIssuesParentIssueAddedActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PARENT_ISSUE_ADDED = WebhookSubIssuesParentIssueAddedActionEnum("parent_issue_added")
+        @JvmField
+        val PARENT_ISSUE_ADDED = WebhookSubIssuesParentIssueAddedActionEnum("parent_issue_added")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookSubIssuesParentIssueAddedActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookSubIssuesParentIssueAddedActionEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `action` wire field.
- */
-class WebhookSubIssuesParentIssueRemovedActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookSubIssuesParentIssueRemovedActionEnum && value == other.value
+/** Required enumerated value serialized in the `action` wire field. */
+class WebhookSubIssuesParentIssueRemovedActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookSubIssuesParentIssueRemovedActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PARENT_ISSUE_REMOVED = WebhookSubIssuesParentIssueRemovedActionEnum("parent_issue_removed")
+        @JvmField
+        val PARENT_ISSUE_REMOVED =
+            WebhookSubIssuesParentIssueRemovedActionEnum("parent_issue_removed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookSubIssuesParentIssueRemovedActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookSubIssuesParentIssueRemovedActionEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `action` wire field.
- */
-class WebhookSubIssuesSubIssueAddedActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookSubIssuesSubIssueAddedActionEnum && value == other.value
+/** Required enumerated value serialized in the `action` wire field. */
+class WebhookSubIssuesSubIssueAddedActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookSubIssuesSubIssueAddedActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val SUB_ISSUE_ADDED = WebhookSubIssuesSubIssueAddedActionEnum("sub_issue_added")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookSubIssuesSubIssueAddedActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookSubIssuesSubIssueAddedActionEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `action` wire field.
- */
-class WebhookSubIssuesSubIssueRemovedActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookSubIssuesSubIssueRemovedActionEnum && value == other.value
+/** Required enumerated value serialized in the `action` wire field. */
+class WebhookSubIssuesSubIssueRemovedActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookSubIssuesSubIssueRemovedActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val SUB_ISSUE_REMOVED = WebhookSubIssuesSubIssueRemovedActionEnum("sub_issue_removed")
+        @JvmField
+        val SUB_ISSUE_REMOVED = WebhookSubIssuesSubIssueRemovedActionEnum("sub_issue_removed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookSubIssuesSubIssueRemovedActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookSubIssuesSubIssueRemovedActionEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `type` wire field.
- */
-class WebhooksUserTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhooksUserTypeEnum && value == other.value
+/** Optional enumerated value serialized in the `type` wire field. */
+class WebhooksUserTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhooksUserTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -579,7 +694,10 @@ class WebhooksUserTypeEnum private constructor(
         @JvmField val USER = WebhooksUserTypeEnum("User")
         @JvmField val ORGANIZATION = WebhooksUserTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhooksUserTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhooksUserTypeEnum(value)
     }
 }

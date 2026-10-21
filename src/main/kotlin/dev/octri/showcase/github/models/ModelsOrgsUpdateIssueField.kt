@@ -3,50 +3,38 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Required object value serialized in the `options[]` wire field.
- */
+/** Required object value serialized in the `options[]` wire field. */
 data class OrganizationUpdateIssueFieldOptionsItem(
-    /**
-     * Name of the option.
-     */
+    /** Name of the option. */
     val name: String,
-    /**
-     * Color for the option.
-     */
+    /** Color for the option. */
     val color: OrganizationUpdateIssueFieldOptionsItemColorEnum,
-    /**
-     * Priority of the option for ordering.
-     */
+    /** Priority of the option for ordering. */
     val priority: Long,
-    /**
-     * The id of an existing option to retain or update. Omit this when creating a new option.
-     */
+    /** The id of an existing option to retain or update. Omit this when creating a new option. */
     val id: Long? = null,
-    /**
-     * Description of the option.
-     */
-    val description: String? = null
+    /** Description of the option. */
+    val description: String? = null,
 )
 
-/**
- * Typed representation of the `OrganizationUpdateIssueField` API schema.
- */
+/** Typed representation of the `OrganizationUpdateIssueField` API schema. */
 data class OrganizationUpdateIssueField(
-    /**
-     * Name of the issue field.
-     */
+    /** Name of the issue field. */
     val name: String? = null,
-    /**
-     * Description of the issue field.
-     */
+    /** Description of the issue field. */
     val description: String? = null,
     /**
-     * The visibility of the issue field. Can be `organization_members_only` (visible only within the organization) or `all` (visible to all users who can see issues). Only used when the visibility settings feature is enabled.
+     * The visibility of the issue field. Can be `organization_members_only` (visible only within
+     * the organization) or `all` (visible to all users who can see issues). Only used when the
+     * visibility settings feature is enabled.
      */
     val visibility: OrganizationUpdateIssueFieldVisibilityEnum? = null,
     /**
-     * Options for select fields. Only applicable when updating single_select or multi_select fields. When provided, this array **replaces** the entire existing set of options rather than adding to or updating individual options. To retain or update an existing option, include it in the array with its `id`. Options sent without an `id` are treated as new options and may cause existing options to be deleted and recreated.
+     * Options for select fields. Only applicable when updating single_select or multi_select
+     * fields. When provided, this array **replaces** the entire existing set of options rather than
+     * adding to or updating individual options. To retain or update an existing option, include it
+     * in the array with its `id`. Options sent without an `id` are treated as new options and may
+     * cause existing options to be deleted and recreated.
      */
-    val options: List<OrganizationUpdateIssueFieldOptionsItem>? = null
+    val options: List<OrganizationUpdateIssueFieldOptionsItem>? = null,
 )

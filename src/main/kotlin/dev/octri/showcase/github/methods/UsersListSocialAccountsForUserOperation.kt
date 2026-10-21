@@ -13,12 +13,33 @@ internal object UsersListSocialAccountsForUserOperation {
      * Lists social media accounts for a user. This endpoint is accessible by anyone.
      *
      * @param username The handle for the GitHub user account.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun usersListSocialAccountsForUser(clientConfig: ClientConfig, username: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SocialAccount> {
-        return SdkClient.request<List<SocialAccount>>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/social_accounts", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "usersListSocialAccountsForUser", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun usersListSocialAccountsForUser(
+        clientConfig: ClientConfig,
+        username: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SocialAccount> {
+        return SdkClient.request<List<SocialAccount>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/users/${SdkClient.encodePathSegment(username)}/social_accounts",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "usersListSocialAccountsForUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

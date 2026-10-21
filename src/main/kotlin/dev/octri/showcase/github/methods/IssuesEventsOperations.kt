@@ -13,57 +13,126 @@ import dev.octri.showcase.github.ValidationError
 
 internal object IssuesListEventsForRepoOperation {
     /**
-     * Lists issue events for a repository, including event details and associated issue information. Use `page` and `per_page` to paginate the results.
+     * Lists issue events for a repository, including event details and associated issue
+     * information. Use `page` and `per_page` to paginate the results.
      *
      * Lists events for a repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListEventsForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IssueEvent> {
-        return SdkClient.request<List<IssueEvent>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/events", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListEventsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun issuesListEventsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<IssueEvent> {
+        return SdkClient.request<List<IssueEvent>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/events",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListEventsForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesGetEventOperation {
     /**
-     * Retrieves a single issue event from a repository by its event identifier. Use `event_id` to select the event and `owner` and `repo` to identify the repository.
+     * Retrieves a single issue event from a repository by its event identifier. Use `event_id` to
+     * select the event and `owner` and `repo` to identify the repository.
      *
      * Gets a single event by the event id.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun issuesGetEvent(clientConfig: ClientConfig, owner: String, repo: String, eventId: Long, options: RequestOptions? = null): IssueEvent {
-        return SdkClient.request<IssueEvent>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/events/${SdkClient.encodePathSegment(eventId)}", config = clientConfig, operationId = "issuesGetEvent", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesGetEvent(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        eventId: Long,
+        options: RequestOptions? = null,
+    ): IssueEvent {
+        return SdkClient.request<IssueEvent>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/events/${SdkClient.encodePathSegment(eventId)}",
+                    config = clientConfig,
+                    operationId = "issuesGetEvent",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListEventsOperation {
     /**
-     * Lists events recorded for an issue in a repository. Use `owner`, `repo`, and `issue_number` to identify the issue, and paginate the results with `page` and `per_page`.
+     * Lists events recorded for an issue in a repository. Use `owner`, `repo`, and `issue_number`
+     * to identify the issue, and paginate the results with `page` and `per_page`.
      *
      * Lists all events for an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListEvents(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<IssueEventForIssue> {
-        return SdkClient.request<List<IssueEventForIssue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/events", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListEvents", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("410" to BasicError::class.java))).data
+    fun issuesListEvents(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<IssueEventForIssue> {
+        return SdkClient.request<List<IssueEventForIssue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/events",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListEvents",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("410" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

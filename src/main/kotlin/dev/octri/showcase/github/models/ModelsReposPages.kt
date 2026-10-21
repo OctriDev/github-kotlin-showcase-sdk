@@ -5,298 +5,195 @@ package dev.octri.showcase.github.models
 
 import java.time.LocalDate
 
-/**
- * Typed representation of the `PagesDeploymentStatus` API schema.
- */
+/** Typed representation of the `PagesDeploymentStatus` API schema. */
 data class PagesDeploymentStatus(
-    /**
-     * The current status of the deployment.
-     */
+    /** The current status of the deployment. */
     val status: PagesDeploymentStatusStatusEnum? = null
 )
 
-/**
- * Optional object value serialized in the `domain` wire field.
- */
+/** Optional object value serialized in the `domain` wire field. */
 data class PagesHealthCheckDomain(
-    /**
-     * Optional `string` value serialized in the `host` wire field.
-     */
+    /** Optional `string` value serialized in the `host` wire field. */
     val host: String? = null,
-    /**
-     * Optional `string` value serialized in the `uri` wire field.
-     */
+    /** Optional `string` value serialized in the `uri` wire field. */
     val uri: String? = null,
-    /**
-     * Optional `string` value serialized in the `nameservers` wire field.
-     */
+    /** Optional `string` value serialized in the `nameservers` wire field. */
     val nameservers: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `dns_resolves` wire field.
-     */
+    /** Optional `boolean` value serialized in the `dns_resolves` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("dns_resolves") val dnsResolves: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_proxied` wire field.
-     */
+    /** Optional `boolean` value serialized in the `is_proxied` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_proxied") val isProxied: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_cloudflare_ip` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_cloudflare_ip") val isCloudflareIp: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_fastly_ip` wire field.
-     */
+    /** Optional `boolean` value serialized in the `is_cloudflare_ip` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_cloudflare_ip")
+    val isCloudflareIp: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_fastly_ip` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_fastly_ip") val isFastlyIp: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_old_ip_address` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_old_ip_address") val isOldIpAddress: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_a_record` wire field.
-     */
+    /** Optional `boolean` value serialized in the `is_old_ip_address` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_old_ip_address")
+    val isOldIpAddress: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_a_record` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_a_record") val isARecord: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_cname_record` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_cname_record") val hasCnameRecord: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_mx_records_present` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_mx_records_present") val hasMxRecordsPresent: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_valid_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_valid_domain") val isValidDomain: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_apex_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_apex_domain") val isApexDomain: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `should_be_a_record` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("should_be_a_record") val shouldBeARecord: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_cname_to_github_user_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_github_user_domain") val isCnameToGithubUserDomain: Boolean? = null,
+    /** Optional `boolean` value serialized in the `has_cname_record` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_cname_record")
+    val hasCnameRecord: Boolean? = null,
+    /** Optional `boolean` value serialized in the `has_mx_records_present` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_mx_records_present")
+    val hasMxRecordsPresent: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_valid_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_valid_domain")
+    val isValidDomain: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_apex_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_apex_domain")
+    val isApexDomain: Boolean? = null,
+    /** Optional `boolean` value serialized in the `should_be_a_record` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("should_be_a_record")
+    val shouldBeARecord: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_cname_to_github_user_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_github_user_domain")
+    val isCnameToGithubUserDomain: Boolean? = null,
     /**
      * Optional `boolean` value serialized in the `is_cname_to_pages_dot_github_dot_com` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_pages_dot_github_dot_com") val isCnameToPagesDotGithubDotCom: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_cname_to_fastly` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_fastly") val isCnameToFastly: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_pointed_to_github_pages_ip` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_pointed_to_github_pages_ip") val isPointedToGithubPagesIp: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_non_github_pages_ip_present` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_non_github_pages_ip_present") val isNonGithubPagesIpPresent: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_pages_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_pages_domain") val isPagesDomain: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_served_by_pages` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_served_by_pages") val isServedByPages: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_valid` wire field.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_pages_dot_github_dot_com")
+    val isCnameToPagesDotGithubDotCom: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_cname_to_fastly` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_fastly")
+    val isCnameToFastly: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_pointed_to_github_pages_ip` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_pointed_to_github_pages_ip")
+    val isPointedToGithubPagesIp: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_non_github_pages_ip_present` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_non_github_pages_ip_present")
+    val isNonGithubPagesIpPresent: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_pages_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_pages_domain")
+    val isPagesDomain: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_served_by_pages` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_served_by_pages")
+    val isServedByPages: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_valid` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_valid") val isValid: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `reason` wire field.
-     */
+    /** Optional `string` value serialized in the `reason` wire field. */
     val reason: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `responds_to_https` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("responds_to_https") val respondsToHttps: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `enforces_https` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("enforces_https") val enforcesHttps: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `https_error` wire field.
-     */
+    /** Optional `boolean` value serialized in the `responds_to_https` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("responds_to_https")
+    val respondsToHttps: Boolean? = null,
+    /** Optional `boolean` value serialized in the `enforces_https` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("enforces_https")
+    val enforcesHttps: Boolean? = null,
+    /** Optional `string` value serialized in the `https_error` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("https_error") val httpsError: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_https_eligible` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_https_eligible") val isHttpsEligible: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `caa_error` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("caa_error") val caaError: String? = null
+    /** Optional `boolean` value serialized in the `is_https_eligible` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_https_eligible")
+    val isHttpsEligible: Boolean? = null,
+    /** Optional `string` value serialized in the `caa_error` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("caa_error") val caaError: String? = null,
 )
 
-/**
- * Optional object value serialized in the `alt_domain` wire field.
- */
+/** Optional object value serialized in the `alt_domain` wire field. */
 data class PagesHealthCheckAltDomain(
-    /**
-     * Optional `string` value serialized in the `host` wire field.
-     */
+    /** Optional `string` value serialized in the `host` wire field. */
     val host: String? = null,
-    /**
-     * Optional `string` value serialized in the `uri` wire field.
-     */
+    /** Optional `string` value serialized in the `uri` wire field. */
     val uri: String? = null,
-    /**
-     * Optional `string` value serialized in the `nameservers` wire field.
-     */
+    /** Optional `string` value serialized in the `nameservers` wire field. */
     val nameservers: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `dns_resolves` wire field.
-     */
+    /** Optional `boolean` value serialized in the `dns_resolves` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("dns_resolves") val dnsResolves: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_proxied` wire field.
-     */
+    /** Optional `boolean` value serialized in the `is_proxied` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_proxied") val isProxied: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_cloudflare_ip` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_cloudflare_ip") val isCloudflareIp: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_fastly_ip` wire field.
-     */
+    /** Optional `boolean` value serialized in the `is_cloudflare_ip` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_cloudflare_ip")
+    val isCloudflareIp: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_fastly_ip` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_fastly_ip") val isFastlyIp: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_old_ip_address` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_old_ip_address") val isOldIpAddress: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_a_record` wire field.
-     */
+    /** Optional `boolean` value serialized in the `is_old_ip_address` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_old_ip_address")
+    val isOldIpAddress: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_a_record` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_a_record") val isARecord: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_cname_record` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_cname_record") val hasCnameRecord: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_mx_records_present` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("has_mx_records_present") val hasMxRecordsPresent: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_valid_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_valid_domain") val isValidDomain: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_apex_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_apex_domain") val isApexDomain: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `should_be_a_record` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("should_be_a_record") val shouldBeARecord: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_cname_to_github_user_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_github_user_domain") val isCnameToGithubUserDomain: Boolean? = null,
+    /** Optional `boolean` value serialized in the `has_cname_record` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_cname_record")
+    val hasCnameRecord: Boolean? = null,
+    /** Optional `boolean` value serialized in the `has_mx_records_present` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("has_mx_records_present")
+    val hasMxRecordsPresent: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_valid_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_valid_domain")
+    val isValidDomain: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_apex_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_apex_domain")
+    val isApexDomain: Boolean? = null,
+    /** Optional `boolean` value serialized in the `should_be_a_record` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("should_be_a_record")
+    val shouldBeARecord: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_cname_to_github_user_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_github_user_domain")
+    val isCnameToGithubUserDomain: Boolean? = null,
     /**
      * Optional `boolean` value serialized in the `is_cname_to_pages_dot_github_dot_com` wire field.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_pages_dot_github_dot_com") val isCnameToPagesDotGithubDotCom: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_cname_to_fastly` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_fastly") val isCnameToFastly: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_pointed_to_github_pages_ip` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_pointed_to_github_pages_ip") val isPointedToGithubPagesIp: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_non_github_pages_ip_present` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_non_github_pages_ip_present") val isNonGithubPagesIpPresent: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_pages_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_pages_domain") val isPagesDomain: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_served_by_pages` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_served_by_pages") val isServedByPages: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_valid` wire field.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_pages_dot_github_dot_com")
+    val isCnameToPagesDotGithubDotCom: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_cname_to_fastly` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_cname_to_fastly")
+    val isCnameToFastly: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_pointed_to_github_pages_ip` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_pointed_to_github_pages_ip")
+    val isPointedToGithubPagesIp: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_non_github_pages_ip_present` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_non_github_pages_ip_present")
+    val isNonGithubPagesIpPresent: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_pages_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_pages_domain")
+    val isPagesDomain: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_served_by_pages` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_served_by_pages")
+    val isServedByPages: Boolean? = null,
+    /** Optional `boolean` value serialized in the `is_valid` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_valid") val isValid: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `reason` wire field.
-     */
+    /** Optional `string` value serialized in the `reason` wire field. */
     val reason: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `responds_to_https` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("responds_to_https") val respondsToHttps: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `enforces_https` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("enforces_https") val enforcesHttps: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `https_error` wire field.
-     */
+    /** Optional `boolean` value serialized in the `responds_to_https` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("responds_to_https")
+    val respondsToHttps: Boolean? = null,
+    /** Optional `boolean` value serialized in the `enforces_https` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("enforces_https")
+    val enforcesHttps: Boolean? = null,
+    /** Optional `string` value serialized in the `https_error` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("https_error") val httpsError: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_https_eligible` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("is_https_eligible") val isHttpsEligible: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `caa_error` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("caa_error") val caaError: String? = null
+    /** Optional `boolean` value serialized in the `is_https_eligible` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("is_https_eligible")
+    val isHttpsEligible: Boolean? = null,
+    /** Optional `string` value serialized in the `caa_error` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("caa_error") val caaError: String? = null,
 )
 
-/**
- * Pages Health Check Status
- */
+/** Pages Health Check Status */
 data class PagesHealthCheck(
-    /**
-     * Optional object value serialized in the `domain` wire field.
-     */
+    /** Optional object value serialized in the `domain` wire field. */
     val domain: PagesHealthCheckDomain? = null,
-    /**
-     * Optional object value serialized in the `alt_domain` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("alt_domain") val altDomain: PagesHealthCheckAltDomain? = null
+    /** Optional object value serialized in the `alt_domain` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("alt_domain")
+    val altDomain: PagesHealthCheckAltDomain? = null,
 )
 
-/**
- * Typed representation of the `PagesHttpsCertificate` API schema.
- */
+/** Typed representation of the `PagesHttpsCertificate` API schema. */
 data class PagesHttpsCertificate(
-    /**
-     * Required enumerated value serialized in the `state` wire field.
-     */
+    /** Required enumerated value serialized in the `state` wire field. */
     val state: PagesHttpsCertificateStateEnum,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
+    /** Required `string` value serialized in the `description` wire field. */
     val description: String,
-    /**
-     * Array of the domain set and its alternate name (if it is configured)
-     */
+    /** Array of the domain set and its alternate name (if it is configured) */
     val domains: List<String>,
-    /**
-     * Optional `date`-formatted value serialized in the `expires_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: LocalDate? = null
+    /** Optional `date`-formatted value serialized in the `expires_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: LocalDate? = null,
 )
 
-/**
- * Typed representation of the `PagesSourceHash` API schema.
- */
+/** Typed representation of the `PagesSourceHash` API schema. */
 data class PagesSourceHash(
-    /**
-     * Required `string` value serialized in the `branch` wire field.
-     */
+    /** Required `string` value serialized in the `branch` wire field. */
     val branch: String,
-    /**
-     * Required `string` value serialized in the `path` wire field.
-     */
-    val path: String
+    /** Required `string` value serialized in the `path` wire field. */
+    val path: String,
 )

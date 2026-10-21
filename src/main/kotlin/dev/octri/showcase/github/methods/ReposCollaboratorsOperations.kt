@@ -14,93 +14,203 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposListCollaboratorsOperation {
     /**
-     * For organization-owned repositories, the list of collaborators includes outside collaborators, organization members that are direct collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners. The `permissions` hash returned in the response contains the base role permissions of the collaborator. The `role_name` is the highest role assigned to the collaborator…
+     * For organization-owned repositories, the list of collaborators includes outside
+     * collaborators, organization members that are direct collaborators, organization members with
+     * access through team memberships, organization members with access through default
+     * organization permissions, and organization owners. The `permissions` hash returned in the
+     * response contains the base role permissions of the collaborator. The `role_name` is the
+     * highest role assigned to the collaborator…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param affiliation Filter collaborators returned by their affiliation.
-     *   `outside` means all outside collaborators of an organization-owned repository.
-     *   `direct` means all collaborators with permissions to an organization-owned
-     *   repository, regardless of organization membership status. `all` means all
-     *   collaborators the authenticated user can see.
-     * @param permission Filter collaborators by the permissions they have on the
-     *   repository. If not specified, all collaborators will be returned.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param affiliation Filter collaborators returned by their affiliation. `outside` means all
+     *   outside collaborators of an organization-owned repository. `direct` means all collaborators
+     *   with permissions to an organization-owned repository, regardless of organization membership
+     *   status. `all` means all collaborators the authenticated user can see.
+     * @param permission Filter collaborators by the permissions they have on the repository. If not
+     *   specified, all collaborators will be returned.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCollaborators(clientConfig: ClientConfig, request: Repos.ReposListCollaboratorsRequest, options: RequestOptions? = null): List<Collaborator> {
-        return SdkClient.request<List<Collaborator>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/collaborators", config = clientConfig, query = mapOf("affiliation" to
-    SdkClient.queryValue(request.affiliation, "form", true), "permission" to
-    SdkClient.queryValue(request.permission, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reposListCollaborators", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposListCollaborators(
+        clientConfig: ClientConfig,
+        request: Repos.ReposListCollaboratorsRequest,
+        options: RequestOptions? = null,
+    ): List<Collaborator> {
+        return SdkClient.request<List<Collaborator>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/collaborators",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "affiliation" to
+                                SdkClient.queryValue(request.affiliation, "form", true),
+                            "permission" to SdkClient.queryValue(request.permission, "form", true),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "reposListCollaborators",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCheckCollaboratorOperation {
     /**
-     * For organization-owned repositories, the list of collaborators includes outside collaborators, organization members that are direct collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners. Team members will include the members of child teams. The authenticated user must have push access to the repository to use this endpoint. OAuth app tokens and personal…
+     * For organization-owned repositories, the list of collaborators includes outside
+     * collaborators, organization members that are direct collaborators, organization members with
+     * access through team memberships, organization members with access through default
+     * organization permissions, and organization owners. Team members will include the members of
+     * child teams. The authenticated user must have push access to the repository to use this
+     * endpoint. OAuth app tokens and personal…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun reposCheckCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "reposCheckCollaborator", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposCheckCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "reposCheckCollaborator",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposAddCollaboratorOperation {
     /**
-     * Add a user to a repository with a specified level of access. If the repository is owned by an organization, this API does not add the user to the organization - a user that has repository access without being an organization member is called an "outside collaborator" (if they are not an Enterprise Managed User) or a "repository collaborator" if they are an Enterprise Managed User. These users are exempt from some organization policies - see "Adding outside collaborators to…
+     * Add a user to a repository with a specified level of access. If the repository is owned by an
+     * organization, this API does not add the user to the organization - a user that has repository
+     * access without being an organization member is called an "outside collaborator" (if they are
+     * not an Enterprise Managed User) or a "repository collaborator" if they are an Enterprise
+     * Managed User. These users are exempt from some organization policies - see "Adding outside
+     * collaborators to…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param username The handle for the GitHub user account.
      * @param permission The permission to grant the collaborator. **Only valid on
-     *   organization-owned repositories.** We accept the following permissions to be
-     *   set: `pull`, `triage`, `triage_plus`, `push`, `maintain`, `admin` and you can
-     *   also specify a custom repository role name, if the owning organization has
-     *   defined any.
+     *   organization-owned repositories.** We accept the following permissions to be set: `pull`,
+     *   `triage`, `triage_plus`, `push`, `maintain`, `admin` and you can also specify a custom
+     *   repository role name, if the owning organization has defined any.
      */
-    fun reposAddCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, permission: String? = null, options: RequestOptions? = null): RepositoryInvitation {
-        return SdkClient.request<RepositoryInvitation>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("permission" to (SdkClient.omitIfNull(permission))), operationId = "reposAddCollaborator", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposAddCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        permission: String? = null,
+        options: RequestOptions? = null,
+    ): RepositoryInvitation {
+        return SdkClient.request<RepositoryInvitation>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("permission" to (SdkClient.omitIfNull(permission))),
+                    operationId = "reposAddCollaborator",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRemoveCollaboratorOperation {
     /**
-     * Removes a collaborator from a repository. To use this endpoint, the authenticated user must either be an administrator of the repository or target themselves for removal. This endpoint also: - Cancels any outstanding invitations sent by the collaborator - Unassigns the user from any issues - Removes access to organization projects if the user is not an organization member and is not a collaborator on any other organization repositories. - Unstars the repository - Updates…
+     * Removes a collaborator from a repository. To use this endpoint, the authenticated user must
+     * either be an administrator of the repository or target themselves for removal. This endpoint
+     * also: - Cancels any outstanding invitations sent by the collaborator - Unassigns the user
+     * from any issues - Removes access to organization projects if the user is not an organization
+     * member and is not a collaborator on any other organization repositories. - Unstars the
+     * repository - Updates…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun reposRemoveCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "reposRemoveCollaborator", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun reposRemoveCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "reposRemoveCollaborator",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposGetCollaboratorPermissionLevelOperation {
     /**
-     * Checks the repository permission and role of a collaborator. The `permission` attribute provides the legacy base roles of `admin`, `write`, `read`, and `none`, where the `maintain` role is mapped to `write` and the `triage` role is mapped to `read`. The `role_name` attribute provides the name of the assigned role, including custom roles. The `permission` can also be used to determine which base level of access the collaborator has to the repository. The calculated…
+     * Checks the repository permission and role of a collaborator. The `permission` attribute
+     * provides the legacy base roles of `admin`, `write`, `read`, and `none`, where the `maintain`
+     * role is mapped to `write` and the `triage` role is mapped to `read`. The `role_name`
+     * attribute provides the name of the assigned role, including custom roles. The `permission`
+     * can also be used to determine which base level of access the collaborator has to the
+     * repository. The calculated…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun reposGetCollaboratorPermissionLevel(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): RepositoryCollaboratorPermission {
-        return SdkClient.request<RepositoryCollaboratorPermission>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}/permission", config = clientConfig, operationId = "reposGetCollaboratorPermissionLevel", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetCollaboratorPermissionLevel(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): RepositoryCollaboratorPermission {
+        return SdkClient.request<RepositoryCollaboratorPermission>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}/permission",
+                    config = clientConfig,
+                    operationId = "reposGetCollaboratorPermissionLevel",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

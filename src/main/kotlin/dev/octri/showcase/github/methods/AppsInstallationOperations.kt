@@ -12,21 +12,59 @@ internal object AppsListReposAccessibleToInstallationOperation {
     /**
      * List repositories that an app installation can access.
      *
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun appsListReposAccessibleToInstallation(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Apps.AppsListReposAccessibleToInstallationResponse {
-        return SdkClient.request<Apps.AppsListReposAccessibleToInstallationResponse>(SdkClient.RequestSpec("GET", "/installation/repositories", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListReposAccessibleToInstallation", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun appsListReposAccessibleToInstallation(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Apps.AppsListReposAccessibleToInstallationResponse {
+        return SdkClient.request<Apps.AppsListReposAccessibleToInstallationResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/installation/repositories",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "appsListReposAccessibleToInstallation",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object AppsRevokeInstallationAccessTokenOperation {
     /**
-     * Revokes the installation token you're using to authenticate as an installation and access this endpoint. Once an installation token is revoked, the token is invalidated and cannot be used. Other endpoints that require the revoked installation token must have a new installation token to work. You can create a new token using the "Create an installation access token for an app" endpoint.
+     * Revokes the installation token you're using to authenticate as an installation and access
+     * this endpoint. Once an installation token is revoked, the token is invalidated and cannot be
+     * used. Other endpoints that require the revoked installation token must have a new
+     * installation token to work. You can create a new token using the "Create an installation
+     * access token for an app" endpoint.
      */
-    fun appsRevokeInstallationAccessToken(clientConfig: ClientConfig, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/installation/token", config = clientConfig, operationId = "appsRevokeInstallationAccessToken", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun appsRevokeInstallationAccessToken(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/installation/token",
+                config = clientConfig,
+                operationId = "appsRevokeInstallationAccessToken",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

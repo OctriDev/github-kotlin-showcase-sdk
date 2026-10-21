@@ -3,74 +3,58 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Required object value serialized in the `repositories_removed[]` wire field.
- */
+/** Required object value serialized in the `repositories_removed[]` wire field. */
 data class WebhookInstallationRepositoriesRemovedRepositoriesRemovedItem(
-    /**
-     * Required `string` value serialized in the `full_name` wire field.
-     */
+    /** Required `string` value serialized in the `full_name` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("full_name") val fullName: String,
-    /**
-     * Unique identifier of the repository
-     */
+    /** Unique identifier of the repository */
     val id: Long,
-    /**
-     * The name of the repository.
-     */
+    /** The name of the repository. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Whether the repository is private or public.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean
+    /** Whether the repository is private or public. */
+    @com.fasterxml.jackson.annotation.JsonProperty("private") val `private`: Boolean,
 )
 
-/**
- * Typed representation of the `WebhookInstallationRepositoriesRemoved` API schema.
- */
+/** Typed representation of the `WebhookInstallationRepositoriesRemoved` API schema. */
 data class WebhookInstallationRepositoriesRemoved(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookInstallationRepositoriesRemovedActionEnum,
-    /**
-     * Installation
-     */
+    /** Installation */
     val installation: Installation,
+    /** An array of repository objects, which were added to the installation. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repositories_added")
+    val repositoriesAdded: WebhooksRepositoriesAdded,
     /**
-     * An array of repository objects, which were added to the installation.
+     * An array of repository objects, which were removed from the installation. When
+     * `repository_selection` changes from `all` to `selected`, this array is empty.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("repositories_added") val repositoriesAdded: WebhooksRepositoriesAdded,
-    /**
-     * An array of repository objects, which were removed from the installation. When `repository_selection` changes from `all` to `selected`, this array is empty.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repositories_removed") val repositoriesRemoved: List<WebhookInstallationRepositoriesRemovedRepositoriesRemovedItem>,
-    /**
-     * Describe whether all repositories have been selected or there's a selection involved
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_selection") val repositorySelection: WebhooksRepositorySelection,
-    /**
-     * Required object value serialized in the `requester` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("requester", required = true) val requester: WebhooksUser?,
-    /**
-     * A GitHub user.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("repositories_removed")
+    val repositoriesRemoved: List<WebhookInstallationRepositoriesRemovedRepositoriesRemovedItem>,
+    /** Describe whether all repositories have been selected or there's a selection involved */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_selection")
+    val repositorySelection: WebhooksRepositorySelection,
+    /** Required object value serialized in the `requester` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("requester", required = true)
+    val requester: WebhooksUser?,
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
+     * is configured on an enterprise account or an organization that's part of an enterprise
+     * account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
-    val repository: RepositoryWebhooks? = null
+    val repository: RepositoryWebhooks? = null,
 )

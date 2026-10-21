@@ -11,87 +11,197 @@ import dev.octri.showcase.github.SdkClient
 
 internal object OrgsGetImmutableReleasesSettingsOperation {
     /**
-     * Gets the immutable releases policy for repositories in an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets the immutable releases policy for repositories in an organization. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsGetImmutableReleasesSettings(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ImmutableReleasesOrganizationSettings {
-        return SdkClient.request<ImmutableReleasesOrganizationSettings>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases", config = clientConfig, operationId = "orgsGetImmutableReleasesSettings", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun orgsGetImmutableReleasesSettings(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): ImmutableReleasesOrganizationSettings {
+        return SdkClient.request<ImmutableReleasesOrganizationSettings>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases",
+                    config = clientConfig,
+                    operationId = "orgsGetImmutableReleasesSettings",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsSetImmutableReleasesSettingsOperation {
     /**
-     * Sets the immutable releases policy for repositories in an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Sets the immutable releases policy for repositories in an organization. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param enforcedRepositories The policy that controls how immutable releases
-     *   are enforced in the organization.
-     * @param selectedRepositoryIds An array of repository ids for which immutable
-     *   releases enforcement should be applied. You can only provide a list of
-     *   repository ids when the `enforced_repositories` is set to `selected`. You can
-     *   add and remove individual repositories using the Enable a selected repository
-     *   for immutable releases in an organization and Disable a selected repository
-     *   for immutable releases in an organization endpoints.
+     * @param enforcedRepositories The policy that controls how immutable releases are enforced in
+     *   the organization.
+     * @param selectedRepositoryIds An array of repository ids for which immutable releases
+     *   enforcement should be applied. You can only provide a list of repository ids when the
+     *   `enforced_repositories` is set to `selected`. You can add and remove individual
+     *   repositories using the Enable a selected repository for immutable releases in an
+     *   organization and Disable a selected repository for immutable releases in an organization
+     *   endpoints.
      */
-    fun orgsSetImmutableReleasesSettings(clientConfig: ClientConfig, org: String, enforcedRepositories: OrgsSetImmutableReleasesSettingsEnforcedRepositoriesEnum, selectedRepositoryIds: List<Long>? = null, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases", config = clientConfig, body = SdkClient.bodyMap("enforced_repositories" to (enforcedRepositories), "selected_repository_ids" to
-    (SdkClient.omitIfNull(selectedRepositoryIds))), operationId = "orgsSetImmutableReleasesSettings", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsSetImmutableReleasesSettings(
+        clientConfig: ClientConfig,
+        org: String,
+        enforcedRepositories: OrgsSetImmutableReleasesSettingsEnforcedRepositoriesEnum,
+        selectedRepositoryIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "enforced_repositories" to (enforcedRepositories),
+                        "selected_repository_ids" to (SdkClient.omitIfNull(selectedRepositoryIds)),
+                    ),
+                operationId = "orgsSetImmutableReleasesSettings",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object OrgsGetImmutableReleasesSettingsRepositoriesOperation {
     /**
-     * List all of the repositories that have been selected for immutable releases enforcement in an organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * List all of the repositories that have been selected for immutable releases enforcement in an
+     * organization. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun orgsGetImmutableReleasesSettingsRepositories(clientConfig: ClientConfig, org: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Orgs.OrgsGetImmutableReleasesSettingsRepositoriesResponse {
-        return SdkClient.request<Orgs.OrgsGetImmutableReleasesSettingsRepositoriesResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases/repositories", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "orgsGetImmutableReleasesSettingsRepositories", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun orgsGetImmutableReleasesSettingsRepositories(
+        clientConfig: ClientConfig,
+        org: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Orgs.OrgsGetImmutableReleasesSettingsRepositoriesResponse {
+        return SdkClient.request<Orgs.OrgsGetImmutableReleasesSettingsRepositoriesResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases/repositories",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "orgsGetImmutableReleasesSettingsRepositories",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsSetImmutableReleasesSettingsRepositoriesOperation {
     /**
-     * Replaces all repositories that have been selected for immutable releases enforcement in an organization. To use this endpoint, the organization immutable releases policy for `enforced_repositories` must be configured to `selected`. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Replaces all repositories that have been selected for immutable releases enforcement in an
+     * organization. To use this endpoint, the organization immutable releases policy for
+     * `enforced_repositories` must be configured to `selected`. OAuth tokens and personal access
+     * tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedRepositoryIds An array of repository ids for which immutable
-     *   releases enforcement should be applied. You can only provide a list of
-     *   repository ids when the `enforced_repositories` is set to `selected`. You can
-     *   add and remove individual repositories using the Enable a selected repository
-     *   for immutable releases in an organization and Disable a selected repository
-     *   for immutable releases in an organization endpoints.
+     * @param selectedRepositoryIds An array of repository ids for which immutable releases
+     *   enforcement should be applied. You can only provide a list of repository ids when the
+     *   `enforced_repositories` is set to `selected`. You can add and remove individual
+     *   repositories using the Enable a selected repository for immutable releases in an
+     *   organization and Disable a selected repository for immutable releases in an organization
+     *   endpoints.
      */
-    fun orgsSetImmutableReleasesSettingsRepositories(clientConfig: ClientConfig, org: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases/repositories", config = clientConfig, body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)), operationId = "orgsSetImmutableReleasesSettingsRepositories", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsSetImmutableReleasesSettingsRepositories(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases/repositories",
+                config = clientConfig,
+                body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)),
+                operationId = "orgsSetImmutableReleasesSettingsRepositories",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object OrgsEnableSelectedRepositoryImmutableReleasesOrganizationOperation {
     /**
-     * Adds a repository to the list of selected repositories that are enforced for immutable releases in an organization. To use this endpoint, the organization immutable releases policy for `enforced_repositories` must be configured to `selected`. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Adds a repository to the list of selected repositories that are enforced for immutable
+     * releases in an organization. To use this endpoint, the organization immutable releases policy
+     * for `enforced_repositories` must be configured to `selected`. OAuth tokens and personal
+     * access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param repositoryId The unique identifier of the repository.
      */
-    fun orgsEnableSelectedRepositoryImmutableReleasesOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "orgsEnableSelectedRepositoryImmutableReleasesOrganization", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsEnableSelectedRepositoryImmutableReleasesOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "orgsEnableSelectedRepositoryImmutableReleasesOrganization",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object OrgsDisableSelectedRepositoryImmutableReleasesOrganizationOperation {
     /**
-     * Removes a repository from the list of selected repositories that are enforced for immutable releases in an organization. To use this endpoint, the organization immutable releases policy for `enforced_repositories` must be configured to `selected`. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Removes a repository from the list of selected repositories that are enforced for immutable
+     * releases in an organization. To use this endpoint, the organization immutable releases policy
+     * for `enforced_repositories` must be configured to `selected`. OAuth tokens and personal
+     * access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param repositoryId The unique identifier of the repository.
      */
-    fun orgsDisableSelectedRepositoryImmutableReleasesOrganization(clientConfig: ClientConfig, org: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "orgsDisableSelectedRepositoryImmutableReleasesOrganization", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsDisableSelectedRepositoryImmutableReleasesOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/settings/immutable-releases/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "orgsDisableSelectedRepositoryImmutableReleasesOrganization",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

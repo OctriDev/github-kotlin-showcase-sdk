@@ -5,136 +5,85 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Optional object value serialized in the `topic_relation` wire field.
- */
+/** Optional object value serialized in the `topic_relation` wire field. */
 data class TopicSearchResultItemRelatedItemTopicRelation(
-    /**
-     * Optional `integer` value serialized in the `id` wire field.
-     */
+    /** Optional `integer` value serialized in the `id` wire field. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `integer` value serialized in the `topic_id` wire field.
-     */
+    /** Optional `integer` value serialized in the `topic_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("topic_id") val topicId: Long? = null,
-    /**
-     * Optional `string` value serialized in the `relation_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("relation_type") val relationType: String? = null
+    /** Optional `string` value serialized in the `relation_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("relation_type")
+    val relationType: String? = null,
 )
 
-/**
- * Required object value serialized in the `related[]` wire field.
- */
+/** Required object value serialized in the `related[]` wire field. */
 data class TopicSearchResultItemRelatedItem(
-    /**
-     * Optional object value serialized in the `topic_relation` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("topic_relation") val topicRelation: TopicSearchResultItemRelatedItemTopicRelation? = null
+    /** Optional object value serialized in the `topic_relation` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("topic_relation")
+    val topicRelation: TopicSearchResultItemRelatedItemTopicRelation? = null
 )
 
-/**
- * Optional object value serialized in the `topic_relation` wire field.
- */
+/** Optional object value serialized in the `topic_relation` wire field. */
 data class TopicSearchResultItemAliasesItemTopicRelation(
-    /**
-     * Optional `integer` value serialized in the `id` wire field.
-     */
+    /** Optional `integer` value serialized in the `id` wire field. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `integer` value serialized in the `topic_id` wire field.
-     */
+    /** Optional `integer` value serialized in the `topic_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("topic_id") val topicId: Long? = null,
-    /**
-     * Optional `string` value serialized in the `relation_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("relation_type") val relationType: String? = null
+    /** Optional `string` value serialized in the `relation_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("relation_type")
+    val relationType: String? = null,
 )
 
-/**
- * Required object value serialized in the `aliases[]` wire field.
- */
+/** Required object value serialized in the `aliases[]` wire field. */
 data class TopicSearchResultItemAliasesItem(
-    /**
-     * Optional object value serialized in the `topic_relation` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("topic_relation") val topicRelation: TopicSearchResultItemAliasesItemTopicRelation? = null
+    /** Optional object value serialized in the `topic_relation` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("topic_relation")
+    val topicRelation: TopicSearchResultItemAliasesItemTopicRelation? = null
 )
 
-/**
- * Topic Search Result Item
- */
+/** Topic Search Result Item */
 data class TopicSearchResultItem(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `display_name` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("display_name", required = true) val displayName: String?,
-    /**
-     * Required `string` value serialized in the `short_description` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("short_description", required = true) val shortDescription: String?,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * Required `string` value serialized in the `created_by` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_by", required = true) val createdBy: String?,
-    /**
-     * Required `string` value serialized in the `released` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("released", required = true) val released: String?,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `string` value serialized in the `display_name` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("display_name", required = true)
+    val displayName: String?,
+    /** Required `string` value serialized in the `short_description` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("short_description", required = true)
+    val shortDescription: String?,
+    /** Required `string` value serialized in the `description` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** Required `string` value serialized in the `created_by` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_by", required = true)
+    val createdBy: String?,
+    /** Required `string` value serialized in the `released` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("released", required = true)
+    val released: String?,
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Required `boolean` value serialized in the `featured` wire field.
-     */
+    /** Required `boolean` value serialized in the `featured` wire field. */
     val featured: Boolean,
-    /**
-     * Required `boolean` value serialized in the `curated` wire field.
-     */
+    /** Required `boolean` value serialized in the `curated` wire field. */
     val curated: Boolean,
-    /**
-     * Required `number` value serialized in the `score` wire field.
-     */
+    /** Required `number` value serialized in the `score` wire field. */
     val score: Double,
-    /**
-     * Optional `integer` value serialized in the `repository_count` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_count") val repositoryCount: Long? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `logo_url` wire field.
-     */
+    /** Optional `integer` value serialized in the `repository_count` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_count")
+    val repositoryCount: Long? = null,
+    /** Optional `uri`-formatted value serialized in the `logo_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("logo_url") val logoUrl: String? = null,
-    /**
-     * Optional array value serialized in the `text_matches` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("text_matches") val textMatches: SearchResultTextMatches? = null,
-    /**
-     * Optional array value serialized in the `related` wire field.
-     */
+    /** Optional array value serialized in the `text_matches` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("text_matches")
+    val textMatches: SearchResultTextMatches? = null,
+    /** Optional array value serialized in the `related` wire field. */
     val related: List<TopicSearchResultItemRelatedItem>? = null,
-    /**
-     * Optional array value serialized in the `aliases` wire field.
-     */
-    val aliases: List<TopicSearchResultItemAliasesItem>? = null
+    /** Optional array value serialized in the `aliases` wire field. */
+    val aliases: List<TopicSearchResultItemAliasesItem>? = null,
 )

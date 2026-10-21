@@ -5,116 +5,83 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Required object value serialized in the `config` wire field.
- */
+/** Required object value serialized in the `config` wire field. */
 data class WebhookPingHookConfig(
     /**
-     * The media type used to serialize the payloads. Supported values include `json` and `form`. The default is `form`.
+     * The media type used to serialize the payloads. Supported values include `json` and `form`.
+     * The default is `form`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_type") val contentType: WebhookConfigContentType? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("content_type")
+    val contentType: WebhookConfigContentType? = null,
+    /** Optional API value serialized in the `insecure_ssl` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("insecure_ssl")
+    val insecureSsl: WebhookConfigInsecureSsl? = null,
     /**
-     * Optional API value serialized in the `insecure_ssl` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("insecure_ssl") val insecureSsl: WebhookConfigInsecureSsl? = null,
-    /**
-     * If provided, the `secret` will be used as the `key` to generate the HMAC hex digest value for delivery signature headers.
+     * If provided, the `secret` will be used as the `key` to generate the HMAC hex digest value for
+     * delivery signature headers.
      */
     val secret: WebhookConfigSecret? = null,
-    /**
-     * The URL to which the payloads will be delivered.
-     */
-    val url: WebhookConfigUrl? = null
+    /** The URL to which the payloads will be delivered. */
+    val url: WebhookConfigUrl? = null,
 )
 
-/**
- * The webhook that is being pinged
- */
+/** The webhook that is being pinged */
 data class WebhookPingHook(
-    /**
-     * Determines whether the hook is actually triggered for the events it subscribes to.
-     */
+    /** Determines whether the hook is actually triggered for the events it subscribes to. */
     val active: Boolean,
-    /**
-     * Required object value serialized in the `config` wire field.
-     */
+    /** Required object value serialized in the `config` wire field. */
     val config: WebhookPingHookConfig,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Determines what events the hook is triggered for. Default: \['push'\].
-     */
+    /** Determines what events the hook is triggered for. Default: \['push'\]. */
     val events: List<String>,
-    /**
-     * Unique identifier of the webhook.
-     */
+    /** Unique identifier of the webhook. */
     val id: Long,
-    /**
-     * The type of webhook. The only valid value is 'web'.
-     */
+    /** The type of webhook. The only valid value is 'web'. */
     val name: WebhookPingHookNameEnum,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: String,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
     /**
-     * Only included for GitHub Apps. When you register a new GitHub App, GitHub sends a ping event to the webhook URL you specified during registration. The GitHub App ID sent in this field is required for authenticating an app.
+     * Only included for GitHub Apps. When you register a new GitHub App, GitHub sends a ping event
+     * to the webhook URL you specified during registration. The GitHub App ID sent in this field is
+     * required for authenticating an app.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("app_id") val appId: Long? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `deliveries_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("deliveries_url") val deliveriesUrl: String? = null,
-    /**
-     * Optional object value serialized in the `last_response` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_response") val lastResponse: HookResponse? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `ping_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `deliveries_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("deliveries_url")
+    val deliveriesUrl: String? = null,
+    /** Optional object value serialized in the `last_response` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_response")
+    val lastResponse: HookResponse? = null,
+    /** Optional `uri`-formatted value serialized in the `ping_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("ping_url") val pingUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `test_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `test_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("test_url") val testUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String? = null
+    /** Optional `uri`-formatted value serialized in the `url` wire field. */
+    val url: String? = null,
 )
 
-/**
- * Typed representation of the `WebhookPing` API schema.
- */
+/** Typed representation of the `WebhookPing` API schema. */
 data class WebhookPing(
-    /**
-     * The webhook that is being pinged
-     */
+    /** The webhook that is being pinged */
     val hook: WebhookPingHook? = null,
-    /**
-     * The ID of the webhook that triggered the ping.
-     */
+    /** The ID of the webhook that triggered the ping. */
     @com.fasterxml.jackson.annotation.JsonProperty("hook_id") val hookId: Long? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks? = null,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser? = null,
-    /**
-     * Random string of GitHub zen.
-     */
-    val zen: String? = null
+    /** Random string of GitHub zen. */
+    val zen: String? = null,
 )

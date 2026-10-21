@@ -5,72 +5,60 @@ package dev.octri.showcase.github.models
 
 import java.time.LocalDate
 
-/**
- * Optional object value serialized in the `budget_alerting` wire field.
- */
+/** Optional object value serialized in the `budget_alerting` wire field. */
 data class CreateBudgetBudgetBudgetAlerting(
     /**
-     * Whether alerts are enabled for this budget. Rejected for user-scope as alerting is always disabled for them.
+     * Whether alerts are enabled for this budget. Rejected for user-scope as alerting is always
+     * disabled for them.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("will_alert") val willAlert: Boolean? = null,
     /**
-     * Array of user login names who will receive alerts. Rejected for user-scope as alerting is always disabled for them.
+     * Array of user login names who will receive alerts. Rejected for user-scope as alerting is
+     * always disabled for them.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("alert_recipients") val alertRecipients: List<String>? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("alert_recipients")
+    val alertRecipients: List<String>? = null,
 )
 
-/**
- * Required object value serialized in the `budget` wire field.
- */
+/** Required object value serialized in the `budget` wire field. */
 data class CreateBudgetBudget(
-    /**
-     * ID of the budget.
-     */
+    /** ID of the budget. */
     val id: String? = null,
+    /** The type of scope for the budget */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_scope")
+    val budgetScope: CreateBudgetBudgetBudgetScopeEnum? = null,
+    /** The name of the entity to apply the budget to */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_entity_name")
+    val budgetEntityName: String? = null,
     /**
-     * The type of scope for the budget
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_scope") val budgetScope: CreateBudgetBudgetBudgetScopeEnum? = null,
-    /**
-     * The name of the entity to apply the budget to
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_entity_name") val budgetEntityName: String? = null,
-    /**
-     * The budget amount in whole dollars. For license-based products, this represents the number of licenses.
+     * The budget amount in whole dollars. For license-based products, this represents the number of
+     * licenses.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("budget_amount") val budgetAmount: Long? = null,
+    /** Whether to prevent additional spending once the budget is exceeded */
+    @com.fasterxml.jackson.annotation.JsonProperty("prevent_further_usage")
+    val preventFurtherUsage: Boolean? = null,
+    /** A single product or sku to apply the budget to. */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_product_sku")
+    val budgetProductSku: String? = null,
+    /** The type of pricing for the budget */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_type")
+    val budgetType: CreateBudgetBudgetBudgetTypeVariant0Enum? = null,
+    /** Optional object value serialized in the `budget_alerting` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("budget_alerting")
+    val budgetAlerting: CreateBudgetBudgetBudgetAlerting? = null,
     /**
-     * Whether to prevent additional spending once the budget is exceeded
+     * The date the budget will expire in `YYYY-MM-DD` format. Only dates in the future are
+     * accepted. If not provided, the budget will not expire. Only supported for budgets with
+     * `budget_scope` of `user`
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("prevent_further_usage") val preventFurtherUsage: Boolean? = null,
-    /**
-     * A single product or sku to apply the budget to.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_product_sku") val budgetProductSku: String? = null,
-    /**
-     * The type of pricing for the budget
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_type") val budgetType: CreateBudgetBudgetBudgetTypeVariant0Enum? = null,
-    /**
-     * Optional object value serialized in the `budget_alerting` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("budget_alerting") val budgetAlerting: CreateBudgetBudgetBudgetAlerting? = null,
-    /**
-     * The date the budget will expire in `YYYY-MM-DD` format. Only dates in the future are accepted. If not provided, the budget will not expire. Only supported for budgets with `budget_scope` of `user`
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: LocalDate? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("expires_at") val expiresAt: LocalDate? = null,
 )
 
-/**
- * Typed representation of the `CreateBudget` API schema.
- */
+/** Typed representation of the `CreateBudget` API schema. */
 data class CreateBudget(
-    /**
-     * A message indicating the result of the create operation
-     */
+    /** A message indicating the result of the create operation */
     val message: String,
-    /**
-     * Required object value serialized in the `budget` wire field.
-     */
-    val budget: CreateBudgetBudget
+    /** Required object value serialized in the `budget` wire field. */
+    val budget: CreateBudgetBudget,
 )

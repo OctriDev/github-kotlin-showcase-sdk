@@ -12,20 +12,51 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposCreateDispatchEventOperation {
     /**
-     * You can use this endpoint to trigger a webhook event called `repository_dispatch` when you want activity that happens outside of GitHub to trigger a GitHub Actions workflow or GitHub App webhook. You must configure your GitHub Actions workflow or GitHub App to run when the `repository_dispatch` event occurs. For an example `repository_dispatch` webhook payload, see "RepositoryDispatchEvent." The `client_payload` parameter is available for any extra information that your…
+     * You can use this endpoint to trigger a webhook event called `repository_dispatch` when you
+     * want activity that happens outside of GitHub to trigger a GitHub Actions workflow or GitHub
+     * App webhook. You must configure your GitHub Actions workflow or GitHub App to run when the
+     * `repository_dispatch` event occurs. For an example `repository_dispatch` webhook payload, see
+     * "RepositoryDispatchEvent." The `client_payload` parameter is available for any extra
+     * information that your…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param eventType A custom webhook event name. Must be 100 characters or fewer.
-     * @param clientPayload JSON payload with extra information about the webhook
-     *   event that your action or workflow may use. The maximum number of top-level
-     *   properties is 10. The total size of the JSON payload must be less than 64KB.
+     * @param clientPayload JSON payload with extra information about the webhook event that your
+     *   action or workflow may use. The maximum number of top-level properties is 10. The total
+     *   size of the JSON payload must be less than 64KB.
      */
-    fun reposCreateDispatchEvent(clientConfig: ClientConfig, owner: String, repo: String, eventType: String, clientPayload: Map<String, Any>? = null, options: RequestOptions? = null): Unit {
-        Validation.validateLength("event_type", eventType, Validation.LengthOpts(min = 1, max = 100))
+    fun reposCreateDispatchEvent(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        eventType: String,
+        clientPayload: Map<String, Any>? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateLength(
+            "event_type",
+            eventType,
+            Validation.LengthOpts(min = 1, max = 100),
+        )
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dispatches", config = clientConfig, body = SdkClient.bodyMap("event_type" to (eventType), "client_payload" to (SdkClient.omitIfNull(clientPayload))), operationId = "reposCreateDispatchEvent", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dispatches",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "event_type" to (eventType),
+                        "client_payload" to (SdkClient.omitIfNull(clientPayload)),
+                    ),
+                operationId = "reposCreateDispatchEvent",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }

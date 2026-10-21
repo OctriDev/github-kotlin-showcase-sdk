@@ -3,24 +3,14 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `OrganizationUpdateIssueType` API schema.
- */
+/** Typed representation of the `OrganizationUpdateIssueType` API schema. */
 data class OrganizationUpdateIssueType(
-    /**
-     * Name of the issue type.
-     */
+    /** Name of the issue type. */
     val name: String,
-    /**
-     * Whether or not the issue type is enabled at the organization level.
-     */
+    /** Whether or not the issue type is enabled at the organization level. */
     @com.fasterxml.jackson.annotation.JsonProperty("is_enabled") val isEnabled: Boolean,
-    /**
-     * Description of the issue type.
-     */
+    /** Description of the issue type. */
     val description: String? = null,
-    /**
-     * Color for the issue type.
-     */
-    val color: OrganizationUpdateIssueTypeColorEnum? = null
+    /** Color for the issue type. */
+    val color: OrganizationUpdateIssueTypeColorEnum? = null,
 )

@@ -3,62 +3,34 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Required object value serialized in the `usageItems[]` wire field.
- */
+/** Required object value serialized in the `usageItems[]` wire field. */
 data class BillingUsageReportUsageItemsItem(
-    /**
-     * Date of the usage line item.
-     */
+    /** Date of the usage line item. */
     val date: String,
-    /**
-     * Product name.
-     */
+    /** Product name. */
     val product: String,
-    /**
-     * SKU name.
-     */
+    /** SKU name. */
     val sku: String,
-    /**
-     * Quantity of the usage line item.
-     */
+    /** Quantity of the usage line item. */
     val quantity: Long,
-    /**
-     * Unit type of the usage line item.
-     */
+    /** Unit type of the usage line item. */
     val unitType: String,
-    /**
-     * Price per unit of the usage line item.
-     */
+    /** Price per unit of the usage line item. */
     val pricePerUnit: Double,
-    /**
-     * Gross amount of the usage line item.
-     */
+    /** Gross amount of the usage line item. */
     val grossAmount: Double,
-    /**
-     * Discount amount of the usage line item.
-     */
+    /** Discount amount of the usage line item. */
     val discountAmount: Double,
-    /**
-     * Net amount of the usage line item.
-     */
+    /** Net amount of the usage line item. */
     val netAmount: Double,
-    /**
-     * Name of the organization.
-     */
+    /** Name of the organization. */
     val organizationName: String,
-    /**
-     * Name of the repository.
-     */
-    val repositoryName: String? = null
+    /** Name of the repository. */
+    val repositoryName: String? = null,
 )
 
-/**
- * Typed representation of the `BillingUsageReport` API schema.
- */
+/** Typed representation of the `BillingUsageReport` API schema. */
 data class BillingUsageReport(
-    /**
-     * Optional array value serialized in the `usageItems` wire field.
-     */
+    /** Optional array value serialized in the `usageItems` wire field. */
     val usageItems: List<BillingUsageReportUsageItemsItem>? = null
 )

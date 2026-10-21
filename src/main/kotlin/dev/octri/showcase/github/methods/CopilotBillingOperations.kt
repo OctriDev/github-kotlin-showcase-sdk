@@ -12,96 +12,290 @@ import dev.octri.showcase.github.Validation
 
 internal object CopilotGetCopilotOrganizationDetailsOperation {
     /**
-     * Retrieves an organization's Copilot subscription details, including its seat breakdown and feature policies. Use `org` to identify the organization; only organization owners can view these details. OAuth app tokens and classic personal access tokens need the `manage_billing:copilot` or `read:org` scope.
+     * Retrieves an organization's Copilot subscription details, including its seat breakdown and
+     * feature policies. Use `org` to identify the organization; only organization owners can view
+     * these details. OAuth app tokens and classic personal access tokens need the
+     * `manage_billing:copilot` or `read:org` scope.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Gets information about an organization's Copilot subscription, including seat breakdown and feature policies. To configure these settings, go to your organization's settings on GitHub.com. For more information, see "\[Managing policies for Copilot in your organization." Only organization owners can view details about the organization's Copilot Business or Copilot Enterprise subscription. OAuth app tokens…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Gets information
+     * > about an organization's Copilot subscription, including seat breakdown and feature
+     * > policies. To configure these settings, go to your organization's settings on GitHub.com.
+     * > For more information, see "\[Managing policies for Copilot in your organization." Only
+     * > organization owners can view details about the organization's Copilot Business or Copilot
+     * > Enterprise subscription. OAuth app tokens…
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun copilotGetCopilotOrganizationDetails(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CopilotOrganizationDetails {
-        return SdkClient.request<CopilotOrganizationDetails>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing", config = clientConfig, operationId = "copilotGetCopilotOrganizationDetails", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
+    fun copilotGetCopilotOrganizationDetails(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): CopilotOrganizationDetails {
+        return SdkClient.request<CopilotOrganizationDetails>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing",
+                    config = clientConfig,
+                    operationId = "copilotGetCopilotOrganizationDetails",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object CopilotListCopilotSeatsOperation {
     /**
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Lists all Copilot seats for which an organization with a Copilot Business or Copilot Enterprise subscription is currently being billed. Only organization owners can view assigned seats. Each seat object contains information about the assigned user's most recent Copilot activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in `last_activity_at`. For more…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Lists all Copilot
+     * > seats for which an organization with a Copilot Business or Copilot Enterprise subscription
+     * > is currently being billed. Only organization owners can view assigned seats. Each seat
+     * > object contains information about the assigned user's most recent Copilot activity. Users
+     * > must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in
+     * > `last_activity_at`. For more…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun copilotListCopilotSeats(clientConfig: ClientConfig, org: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Copilot.CopilotListCopilotSeatsResponse {
-        return SdkClient.request<Copilot.CopilotListCopilotSeatsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/seats", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "copilotListCopilotSeats", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
+    fun copilotListCopilotSeats(
+        clientConfig: ClientConfig,
+        org: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Copilot.CopilotListCopilotSeatsResponse {
+        return SdkClient.request<Copilot.CopilotListCopilotSeatsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/seats",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "copilotListCopilotSeats",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object CopilotAddCopilotSeatsForTeamsOperation {
     /**
-     * Creates Copilot seats for users in the specified organization teams. Supply `selected_teams` with at least one team name; the organization must have a Copilot Business or Copilot Enterprise subscription and a configured public code suggestions policy. The organization is billed for each seat according to its Copilot plan.
+     * Creates Copilot seats for users in the specified organization teams. Supply `selected_teams`
+     * with at least one team name; the organization must have a Copilot Business or Copilot
+     * Enterprise subscription and a configured public code suggestions policy. The organization is
+     * billed for each seat according to its Copilot plan.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Purchases a GitHub Copilot seat for all users within each specified team. The organization will be billed for each seat based on the organization's Copilot plan. For more information about Copilot pricing, see "\[About billing for GitHub Copilot in your organization." Only organization owners can purchase Copilot seats for their organization members. The organization must have a Copilot Business or…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Purchases a GitHub
+     * > Copilot seat for all users within each specified team. The organization will be billed for
+     * > each seat based on the organization's Copilot plan. For more information about Copilot
+     * > pricing, see "\[About billing for GitHub Copilot in your organization." Only organization
+     * > owners can purchase Copilot seats for their organization members. The organization must
+     * > have a Copilot Business or…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedTeams List of team names within the organization to which to
-     *   grant access to GitHub Copilot.
+     * @param selectedTeams List of team names within the organization to which to grant access to
+     *   GitHub Copilot.
      */
-    fun copilotAddCopilotSeatsForTeams(clientConfig: ClientConfig, org: String, selectedTeams: List<String>, options: RequestOptions? = null): Copilot.CopilotAddCopilotSeatsForTeamsResponse {
+    fun copilotAddCopilotSeatsForTeams(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedTeams: List<String>,
+        options: RequestOptions? = null,
+    ): Copilot.CopilotAddCopilotSeatsForTeamsResponse {
         Validation.validateItems("selected_teams", selectedTeams, Validation.LengthOpts(min = 1))
 
-        return SdkClient.request<Copilot.CopilotAddCopilotSeatsForTeamsResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_teams", config = clientConfig, body = SdkClient.bodyMap("selected_teams" to (selectedTeams)), operationId = "copilotAddCopilotSeatsForTeams", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
+        return SdkClient.request<Copilot.CopilotAddCopilotSeatsForTeamsResponse>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_teams",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("selected_teams" to (selectedTeams)),
+                    operationId = "copilotAddCopilotSeatsForTeams",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object CopilotCancelCopilotSeatAssignmentForTeamsOperation {
     /**
-     * Triggers cancellation of Copilot seats for users in the specified organization teams by setting those seats to pending cancellation. Supply `selected_teams` with at least one team name; only organization owners can cancel seats for organization members. Affected users lose Copilot access at the end of the current billing cycle unless they retain access through another team.
+     * Triggers cancellation of Copilot seats for users in the specified organization teams by
+     * setting those seats to pending cancellation. Supply `selected_teams` with at least one team
+     * name; only organization owners can cancel seats for organization members. Affected users lose
+     * Copilot access at the end of the current billing cycle unless they retain access through
+     * another team.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets seats for all members of each team specified to "pending cancellation". This will cause the members of the specified team(s) to lose access to GitHub Copilot at the end of the current billing cycle unless they retain access through another team. For more information about disabling access to Copilot, see "\[Revoking access to Copilot for members of your organization." Only organization owners can…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets seats for all
+     * > members of each team specified to "pending cancellation". This will cause the members of
+     * > the specified team(s) to lose access to GitHub Copilot at the end of the current billing
+     * > cycle unless they retain access through another team. For more information about disabling
+     * > access to Copilot, see "\[Revoking access to Copilot for members of your organization."
+     * > Only organization owners can…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedTeams The names of teams from which to revoke access to GitHub
-     *   Copilot.
+     * @param selectedTeams The names of teams from which to revoke access to GitHub Copilot.
      */
-    fun copilotCancelCopilotSeatAssignmentForTeams(clientConfig: ClientConfig, org: String, selectedTeams: List<String>, options: RequestOptions? = null): Copilot.CopilotCancelCopilotSeatAssignmentForTeamsResponse {
+    fun copilotCancelCopilotSeatAssignmentForTeams(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedTeams: List<String>,
+        options: RequestOptions? = null,
+    ): Copilot.CopilotCancelCopilotSeatAssignmentForTeamsResponse {
         Validation.validateItems("selected_teams", selectedTeams, Validation.LengthOpts(min = 1))
 
-        return SdkClient.request<Copilot.CopilotCancelCopilotSeatAssignmentForTeamsResponse>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_teams", config = clientConfig, body = SdkClient.bodyMap("selected_teams" to (selectedTeams)), operationId = "copilotCancelCopilotSeatAssignmentForTeams", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
+        return SdkClient.request<Copilot.CopilotCancelCopilotSeatAssignmentForTeamsResponse>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_teams",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("selected_teams" to (selectedTeams)),
+                    operationId = "copilotCancelCopilotSeatAssignmentForTeams",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object CopilotAddCopilotSeatsForUsersOperation {
     /**
-     * Creates Copilot seats for organization members listed in `selected_usernames`. Submit at least one username; the organization must have a Copilot Business or Copilot Enterprise subscription, billing configured, and a suggestion matching policy set. The organization is billed for each seat, and only organization owners can purchase seats.
+     * Creates Copilot seats for organization members listed in `selected_usernames`. Submit at
+     * least one username; the organization must have a Copilot Business or Copilot Enterprise
+     * subscription, billing configured, and a suggestion matching policy set. The organization is
+     * billed for each seat, and only organization owners can purchase seats.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Purchases a GitHub Copilot seat for each user specified. The organization will be billed for each seat based on the organization's Copilot plan. For more information about Copilot pricing, see "\[About billing for GitHub Copilot in your organization." Only organization owners can purchase Copilot seats for their organization members. The organization must have a Copilot Business or Copilot Enterprise…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Purchases a GitHub
+     * > Copilot seat for each user specified. The organization will be billed for each seat based
+     * > on the organization's Copilot plan. For more information about Copilot pricing, see
+     * > "\[About billing for GitHub Copilot in your organization." Only organization owners can
+     * > purchase Copilot seats for their organization members. The organization must have a Copilot
+     * > Business or Copilot Enterprise…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedUsernames The usernames of the organization members to be
-     *   granted access to GitHub Copilot.
+     * @param selectedUsernames The usernames of the organization members to be granted access to
+     *   GitHub Copilot.
      */
-    fun copilotAddCopilotSeatsForUsers(clientConfig: ClientConfig, org: String, selectedUsernames: List<String>, options: RequestOptions? = null): Copilot.CopilotAddCopilotSeatsForUsersResponse {
-        Validation.validateItems("selected_usernames", selectedUsernames, Validation.LengthOpts(min = 1))
+    fun copilotAddCopilotSeatsForUsers(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedUsernames: List<String>,
+        options: RequestOptions? = null,
+    ): Copilot.CopilotAddCopilotSeatsForUsersResponse {
+        Validation.validateItems(
+            "selected_usernames",
+            selectedUsernames,
+            Validation.LengthOpts(min = 1),
+        )
 
-        return SdkClient.request<Copilot.CopilotAddCopilotSeatsForUsersResponse>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_users", config = clientConfig, body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)), operationId = "copilotAddCopilotSeatsForUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
+        return SdkClient.request<Copilot.CopilotAddCopilotSeatsForUsersResponse>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_users",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)),
+                    operationId = "copilotAddCopilotSeatsForUsers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object CopilotCancelCopilotSeatAssignmentForUsersOperation {
     /**
-     * Cancels Copilot seat assignments for the organization members listed in `selected_usernames`. Their seats become pending cancellation, and members lose access at the end of the current billing cycle unless they retain access through team membership. Only organization owners can cancel seats for organization members.
+     * Cancels Copilot seat assignments for the organization members listed in `selected_usernames`.
+     * Their seats become pending cancellation, and members lose access at the end of the current
+     * billing cycle unless they retain access through team membership. Only organization owners can
+     * cancel seats for organization members.
      *
-     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets seats for all users specified to "pending cancellation". This will cause the specified users to lose access to GitHub Copilot at the end of the current billing cycle unless they retain access through team membership. For more information about disabling access to Copilot, see "\[Revoking access to Copilot for members of your organization." Only organization owners can cancel Copilot seats for their…
+     * > !NOTE] > This endpoint is in public preview and is subject to change. Sets seats for all
+     * > users specified to "pending cancellation". This will cause the specified users to lose
+     * > access to GitHub Copilot at the end of the current billing cycle unless they retain access
+     * > through team membership. For more information about disabling access to Copilot, see
+     * > "\[Revoking access to Copilot for members of your organization." Only organization owners
+     * > can cancel Copilot seats for their…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedUsernames The usernames of the organization members for which
-     *   to revoke access to GitHub Copilot.
+     * @param selectedUsernames The usernames of the organization members for which to revoke access
+     *   to GitHub Copilot.
      */
-    fun copilotCancelCopilotSeatAssignmentForUsers(clientConfig: ClientConfig, org: String, selectedUsernames: List<String>, options: RequestOptions? = null): Copilot.CopilotCancelCopilotSeatAssignmentForUsersResponse {
-        Validation.validateItems("selected_usernames", selectedUsernames, Validation.LengthOpts(min = 1))
+    fun copilotCancelCopilotSeatAssignmentForUsers(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedUsernames: List<String>,
+        options: RequestOptions? = null,
+    ): Copilot.CopilotCancelCopilotSeatAssignmentForUsersResponse {
+        Validation.validateItems(
+            "selected_usernames",
+            selectedUsernames,
+            Validation.LengthOpts(min = 1),
+        )
 
-        return SdkClient.request<Copilot.CopilotCancelCopilotSeatAssignmentForUsersResponse>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_users", config = clientConfig, body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)), operationId = "copilotCancelCopilotSeatAssignmentForUsers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java))).data
+        return SdkClient.request<Copilot.CopilotCancelCopilotSeatAssignmentForUsersResponse>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/copilot/billing/selected_users",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)),
+                    operationId = "copilotCancelCopilotSeatAssignmentForUsers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

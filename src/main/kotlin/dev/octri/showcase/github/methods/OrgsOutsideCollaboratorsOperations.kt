@@ -15,31 +15,77 @@ internal object OrgsListOutsideCollaboratorsOperation {
      * List all users who are outside collaborators of an organization.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param filter Filter the list of outside collaborators. `2fa_disabled` means
-     *   that only outside collaborators without two-factor authentication enabled will
-     *   be returned. `2fa_insecure` means that only outside collaborators with
-     *   insecure 2FA methods will be returned.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param filter Filter the list of outside collaborators. `2fa_disabled` means that only
+     *   outside collaborators without two-factor authentication enabled will be returned.
+     *   `2fa_insecure` means that only outside collaborators with insecure 2FA methods will be
+     *   returned.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun orgsListOutsideCollaborators(clientConfig: ClientConfig, org: String, filter: OrgsListOutsideCollaboratorsParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators", config = clientConfig, query = mapOf("filter" to SdkClient.queryValue(filter, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "orgsListOutsideCollaborators", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun orgsListOutsideCollaborators(
+        clientConfig: ClientConfig,
+        org: String,
+        filter: OrgsListOutsideCollaboratorsParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "filter" to SdkClient.queryValue(filter, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "orgsListOutsideCollaborators",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object OrgsConvertMemberToOutsideCollaboratorOperation {
     /**
-     * When an organization member is converted to an outside collaborator, they'll only have access to the repositories that their current team membership allows. The user will no longer be a member of the organization. For more information, see "Converting an organization member to an outside collaborator". Converting an organization member to an outside collaborator may be restricted by enterprise administrators. For more information, see "Enforcing repository management…
+     * When an organization member is converted to an outside collaborator, they'll only have access
+     * to the repositories that their current team membership allows. The user will no longer be a
+     * member of the organization. For more information, see "Converting an organization member to
+     * an outside collaborator". Converting an organization member to an outside collaborator may be
+     * restricted by enterprise administrators. For more information, see "Enforcing repository
+     * management…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
-     * @param async When set to `true`, the request will be performed asynchronously.
-     *   Returns a 202 status code when the job is successfully queued.
+     * @param async When set to `true`, the request will be performed asynchronously. Returns a 202
+     *   status code when the job is successfully queued.
      */
-    fun orgsConvertMemberToOutsideCollaborator(clientConfig: ClientConfig, org: String, username: String, async: Boolean? = null, options: RequestOptions? = null): Map<String, Any> {
-        return SdkClient.request<Map<String, Any>>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("async" to (SdkClient.omitIfNull(async))), operationId = "orgsConvertMemberToOutsideCollaborator", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun orgsConvertMemberToOutsideCollaborator(
+        clientConfig: ClientConfig,
+        org: String,
+        username: String,
+        async: Boolean? = null,
+        options: RequestOptions? = null,
+    ): Map<String, Any> {
+        return SdkClient.request<Map<String, Any>>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators/${SdkClient.encodePathSegment(username)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("async" to (SdkClient.omitIfNull(async))),
+                    operationId = "orgsConvertMemberToOutsideCollaborator",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
@@ -50,7 +96,21 @@ internal object OrgsRemoveOutsideCollaboratorOperation {
      * @param org The organization name. The name is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun orgsRemoveOutsideCollaborator(clientConfig: ClientConfig, org: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "orgsRemoveOutsideCollaborator", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun orgsRemoveOutsideCollaborator(
+        clientConfig: ClientConfig,
+        org: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/outside_collaborators/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "orgsRemoveOutsideCollaborator",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

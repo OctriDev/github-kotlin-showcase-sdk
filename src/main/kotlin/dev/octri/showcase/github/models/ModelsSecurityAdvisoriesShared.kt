@@ -5,482 +5,318 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Required object value serialized in the `identifiers[]` wire field.
- */
+/** Required object value serialized in the `identifiers[]` wire field. */
 data class GlobalAdvisoryIdentifiersItem(
-    /**
-     * The type of identifier.
-     */
+    /** The type of identifier. */
     val type: GlobalAdvisoryIdentifiersItemTypeEnum,
-    /**
-     * The identifier value.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: String
+    /** The identifier value. */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: String,
 )
 
-/**
- * Required object value serialized in the `cvss` wire field.
- */
+/** Required object value serialized in the `cvss` wire field. */
 data class GlobalAdvisoryCvss(
-    /**
-     * The CVSS vector.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true) val vectorString: String?,
-    /**
-     * The CVSS score.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("score", required = true) val score: Double?
+    /** The CVSS vector. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true)
+    val vectorString: String?,
+    /** The CVSS score. */
+    @com.fasterxml.jackson.annotation.JsonProperty("score", required = true) val score: Double?,
 )
 
-/**
- * Required object value serialized in the `cwes[]` wire field.
- */
+/** Required object value serialized in the `cwes[]` wire field. */
 data class GlobalAdvisoryCwesItem(
-    /**
-     * The Common Weakness Enumeration (CWE) identifier.
-     */
+    /** The Common Weakness Enumeration (CWE) identifier. */
     @com.fasterxml.jackson.annotation.JsonProperty("cwe_id") val cweId: String,
-    /**
-     * The name of the CWE.
-     */
-    val name: String
+    /** The name of the CWE. */
+    val name: String,
 )
 
-/**
- * Required object value serialized in the `credits[]` wire field.
- */
+/** Required object value serialized in the `credits[]` wire field. */
 data class GlobalAdvisoryCreditsItem(
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val user: SimpleUser,
-    /**
-     * The type of credit the user is receiving.
-     */
-    val type: SecurityAdvisoryCreditTypes
+    /** The type of credit the user is receiving. */
+    val type: SecurityAdvisoryCreditTypes,
 )
 
-/**
- * A GitHub Security Advisory.
- */
+/** A GitHub Security Advisory. */
 data class GlobalAdvisory(
-    /**
-     * The GitHub Security Advisory ID.
-     */
+    /** The GitHub Security Advisory ID. */
     @com.fasterxml.jackson.annotation.JsonProperty("ghsa_id") val ghsaId: String,
-    /**
-     * The Common Vulnerabilities and Exposures (CVE) ID.
-     */
+    /** The Common Vulnerabilities and Exposures (CVE) ID. */
     @com.fasterxml.jackson.annotation.JsonProperty("cve_id", required = true) val cveId: String?,
-    /**
-     * The API URL for the advisory.
-     */
+    /** The API URL for the advisory. */
     val url: String,
-    /**
-     * The URL for the advisory.
-     */
+    /** The URL for the advisory. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * The API URL for the repository advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_advisory_url", required = true) val repositoryAdvisoryUrl: String?,
-    /**
-     * A short summary of the advisory.
-     */
+    /** The API URL for the repository advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_advisory_url", required = true)
+    val repositoryAdvisoryUrl: String?,
+    /** A short summary of the advisory. */
     val summary: String,
-    /**
-     * A detailed description of what the advisory entails.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * The type of advisory.
-     */
+    /** A detailed description of what the advisory entails. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** The type of advisory. */
     val type: GlobalAdvisoryTypeEnum,
-    /**
-     * The severity of the advisory.
-     */
+    /** The severity of the advisory. */
     val severity: GlobalAdvisorySeverityEnum,
-    /**
-     * The URL of the advisory's source code.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("source_code_location", required = true) val sourceCodeLocation: String?,
-    /**
-     * Required array value serialized in the `identifiers` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("identifiers", required = true) val identifiers: List<GlobalAdvisoryIdentifiersItem>?,
-    /**
-     * Required array value serialized in the `references` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("references", required = true) val references: List<String>?,
-    /**
-     * The date and time of when the advisory was published, in ISO 8601 format.
-     */
+    /** The URL of the advisory's source code. */
+    @com.fasterxml.jackson.annotation.JsonProperty("source_code_location", required = true)
+    val sourceCodeLocation: String?,
+    /** Required array value serialized in the `identifiers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("identifiers", required = true)
+    val identifiers: List<GlobalAdvisoryIdentifiersItem>?,
+    /** Required array value serialized in the `references` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("references", required = true)
+    val references: List<String>?,
+    /** The date and time of when the advisory was published, in ISO 8601 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("published_at") val publishedAt: OffsetDateTime,
-    /**
-     * The date and time of when the advisory was last updated, in ISO 8601 format.
-     */
+    /** The date and time of when the advisory was last updated, in ISO 8601 format. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
+    /** The date and time of when the advisory was reviewed by GitHub, in ISO 8601 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("github_reviewed_at", required = true)
+    val githubReviewedAt: OffsetDateTime?,
     /**
-     * The date and time of when the advisory was reviewed by GitHub, in ISO 8601 format.
+     * The date and time when the advisory was published in the National Vulnerability Database, in
+     * ISO 8601 format. This field is only populated when the advisory is imported from the National
+     * Vulnerability Database.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("github_reviewed_at", required = true) val githubReviewedAt: OffsetDateTime?,
-    /**
-     * The date and time when the advisory was published in the National Vulnerability Database, in ISO 8601 format. This field is only populated when the advisory is imported from the National Vulnerability Database.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("nvd_published_at", required = true) val nvdPublishedAt: OffsetDateTime?,
-    /**
-     * The date and time of when the advisory was withdrawn, in ISO 8601 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("withdrawn_at", required = true) val withdrawnAt: OffsetDateTime?,
-    /**
-     * The products and respective version ranges affected by the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerabilities", required = true) val vulnerabilities: List<Vulnerability>?,
-    /**
-     * Required object value serialized in the `cvss` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cvss", required = true) val cvss: GlobalAdvisoryCvss?,
-    /**
-     * Required array value serialized in the `cwes` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cwes", required = true) val cwes: List<GlobalAdvisoryCwesItem>?,
-    /**
-     * The users who contributed to the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("credits", required = true) val credits: List<GlobalAdvisoryCreditsItem>?,
-    /**
-     * Optional object value serialized in the `cvss_severities` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cvss_severities") val cvssSeverities: CvssSeverities? = null,
-    /**
-     * The EPSS scores as calculated by the Exploit Prediction Scoring System.
-     */
-    val epss: SecurityAdvisoryEpss? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("nvd_published_at", required = true)
+    val nvdPublishedAt: OffsetDateTime?,
+    /** The date and time of when the advisory was withdrawn, in ISO 8601 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("withdrawn_at", required = true)
+    val withdrawnAt: OffsetDateTime?,
+    /** The products and respective version ranges affected by the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerabilities", required = true)
+    val vulnerabilities: List<Vulnerability>?,
+    /** Required object value serialized in the `cvss` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cvss", required = true)
+    val cvss: GlobalAdvisoryCvss?,
+    /** Required array value serialized in the `cwes` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cwes", required = true)
+    val cwes: List<GlobalAdvisoryCwesItem>?,
+    /** The users who contributed to the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("credits", required = true)
+    val credits: List<GlobalAdvisoryCreditsItem>?,
+    /** Optional object value serialized in the `cvss_severities` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cvss_severities")
+    val cvssSeverities: CvssSeverities? = null,
+    /** The EPSS scores as calculated by the Exploit Prediction Scoring System. */
+    val epss: SecurityAdvisoryEpss? = null,
 )
 
-/**
- * Required object value serialized in the `identifiers[]` wire field.
- */
+/** Required object value serialized in the `identifiers[]` wire field. */
 data class RepositoryAdvisoryIdentifiersItem(
-    /**
-     * The type of identifier.
-     */
+    /** The type of identifier. */
     val type: RepositoryAdvisoryIdentifiersItemTypeEnum,
-    /**
-     * The identifier value.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: String
+    /** The identifier value. */
+    @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: String,
 )
 
-/**
- * Required object value serialized in the `submission` wire field.
- */
+/** Required object value serialized in the `submission` wire field. */
 data class RepositoryAdvisorySubmission(
-    /**
-     * Whether a private vulnerability report was accepted by the repository's administrators.
-     */
+    /** Whether a private vulnerability report was accepted by the repository's administrators. */
     val accepted: Boolean
 )
 
-/**
- * Required object value serialized in the `cvss` wire field.
- */
+/** Required object value serialized in the `cvss` wire field. */
 data class RepositoryAdvisoryCvss(
-    /**
-     * The CVSS vector.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true) val vectorString: String?,
-    /**
-     * The CVSS score.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("score", required = true) val score: Double?
+    /** The CVSS vector. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true)
+    val vectorString: String?,
+    /** The CVSS score. */
+    @com.fasterxml.jackson.annotation.JsonProperty("score", required = true) val score: Double?,
 )
 
-/**
- * Required object value serialized in the `cwes[]` wire field.
- */
+/** Required object value serialized in the `cwes[]` wire field. */
 data class RepositoryAdvisoryCwesItem(
-    /**
-     * The Common Weakness Enumeration (CWE) identifier.
-     */
+    /** The Common Weakness Enumeration (CWE) identifier. */
     @com.fasterxml.jackson.annotation.JsonProperty("cwe_id") val cweId: String,
-    /**
-     * The name of the CWE.
-     */
-    val name: String
+    /** The name of the CWE. */
+    val name: String,
 )
 
-/**
- * Required object value serialized in the `credits[]` wire field.
- */
+/** Required object value serialized in the `credits[]` wire field. */
 data class RepositoryAdvisoryCreditsItem(
-    /**
-     * The username of the user credited.
-     */
+    /** The username of the user credited. */
     val login: String? = null,
-    /**
-     * The type of credit the user is receiving.
-     */
-    val type: SecurityAdvisoryCreditTypes? = null
+    /** The type of credit the user is receiving. */
+    val type: SecurityAdvisoryCreditTypes? = null,
 )
 
-/**
- * A repository security advisory.
- */
+/** A repository security advisory. */
 data class RepositoryAdvisory(
-    /**
-     * The GitHub Security Advisory ID.
-     */
+    /** The GitHub Security Advisory ID. */
     @com.fasterxml.jackson.annotation.JsonProperty("ghsa_id") val ghsaId: String,
-    /**
-     * The Common Vulnerabilities and Exposures (CVE) ID.
-     */
+    /** The Common Vulnerabilities and Exposures (CVE) ID. */
     @com.fasterxml.jackson.annotation.JsonProperty("cve_id", required = true) val cveId: String?,
-    /**
-     * The API URL for the advisory.
-     */
+    /** The API URL for the advisory. */
     val url: String,
-    /**
-     * The URL for the advisory.
-     */
+    /** The URL for the advisory. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * A short summary of the advisory.
-     */
+    /** A short summary of the advisory. */
     val summary: String,
-    /**
-     * A detailed description of what the advisory entails.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * The severity of the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("severity", required = true) val severity: RepositoryAdvisorySeverityEnum?,
-    /**
-     * The author of the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author", required = true) val author: SimpleUser?,
-    /**
-     * The publisher of the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("publisher", required = true) val publisher: SimpleUser?,
-    /**
-     * Required array value serialized in the `identifiers` wire field.
-     */
+    /** A detailed description of what the advisory entails. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** The severity of the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("severity", required = true)
+    val severity: RepositoryAdvisorySeverityEnum?,
+    /** The author of the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author", required = true)
+    val author: SimpleUser?,
+    /** The publisher of the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("publisher", required = true)
+    val publisher: SimpleUser?,
+    /** Required array value serialized in the `identifiers` wire field. */
     val identifiers: List<RepositoryAdvisoryIdentifiersItem>,
-    /**
-     * The state of the advisory.
-     */
+    /** The state of the advisory. */
     val state: RepositoryAdvisoryStateEnum,
-    /**
-     * The date and time of when the advisory was created, in ISO 8601 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
-    /**
-     * The date and time of when the advisory was last updated, in ISO 8601 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
-    /**
-     * The date and time of when the advisory was published, in ISO 8601 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("published_at", required = true) val publishedAt: OffsetDateTime?,
-    /**
-     * The date and time of when the advisory was closed, in ISO 8601 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true) val closedAt: OffsetDateTime?,
-    /**
-     * The date and time of when the advisory was withdrawn, in ISO 8601 format.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("withdrawn_at", required = true) val withdrawnAt: OffsetDateTime?,
-    /**
-     * Required object value serialized in the `submission` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("submission", required = true) val submission: RepositoryAdvisorySubmission?,
-    /**
-     * Required array value serialized in the `vulnerabilities` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerabilities", required = true) val vulnerabilities: List<RepositoryAdvisoryVulnerability>?,
-    /**
-     * Required object value serialized in the `cvss` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cvss", required = true) val cvss: RepositoryAdvisoryCvss?,
-    /**
-     * Required array value serialized in the `cwes` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cwes", required = true) val cwes: List<RepositoryAdvisoryCwesItem>?,
-    /**
-     * A list of only the CWE IDs.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cwe_ids", required = true) val cweIds: List<String>?,
-    /**
-     * Required array value serialized in the `credits` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("credits", required = true) val credits: List<RepositoryAdvisoryCreditsItem>?,
-    /**
-     * Required array value serialized in the `credits_detailed` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("credits_detailed", required = true) val creditsDetailed: List<RepositoryAdvisoryCredit>?,
-    /**
-     * A list of users that collaborate on the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("collaborating_users", required = true) val collaboratingUsers: List<SimpleUser>?,
-    /**
-     * A list of teams that collaborate on the advisory.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("collaborating_teams", required = true) val collaboratingTeams: List<Team>?,
-    /**
-     * A temporary private fork of the advisory's repository for collaborating on a fix.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("private_fork", required = true) val privateFork: SimpleRepository?,
-    /**
-     * Optional object value serialized in the `cvss_severities` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cvss_severities") val cvssSeverities: CvssSeverities? = null
+    /** The date and time of when the advisory was created, in ISO 8601 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true)
+    val createdAt: OffsetDateTime?,
+    /** The date and time of when the advisory was last updated, in ISO 8601 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true)
+    val updatedAt: OffsetDateTime?,
+    /** The date and time of when the advisory was published, in ISO 8601 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("published_at", required = true)
+    val publishedAt: OffsetDateTime?,
+    /** The date and time of when the advisory was closed, in ISO 8601 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("closed_at", required = true)
+    val closedAt: OffsetDateTime?,
+    /** The date and time of when the advisory was withdrawn, in ISO 8601 format. */
+    @com.fasterxml.jackson.annotation.JsonProperty("withdrawn_at", required = true)
+    val withdrawnAt: OffsetDateTime?,
+    /** Required object value serialized in the `submission` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("submission", required = true)
+    val submission: RepositoryAdvisorySubmission?,
+    /** Required array value serialized in the `vulnerabilities` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerabilities", required = true)
+    val vulnerabilities: List<RepositoryAdvisoryVulnerability>?,
+    /** Required object value serialized in the `cvss` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cvss", required = true)
+    val cvss: RepositoryAdvisoryCvss?,
+    /** Required array value serialized in the `cwes` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cwes", required = true)
+    val cwes: List<RepositoryAdvisoryCwesItem>?,
+    /** A list of only the CWE IDs. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cwe_ids", required = true)
+    val cweIds: List<String>?,
+    /** Required array value serialized in the `credits` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("credits", required = true)
+    val credits: List<RepositoryAdvisoryCreditsItem>?,
+    /** Required array value serialized in the `credits_detailed` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("credits_detailed", required = true)
+    val creditsDetailed: List<RepositoryAdvisoryCredit>?,
+    /** A list of users that collaborate on the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("collaborating_users", required = true)
+    val collaboratingUsers: List<SimpleUser>?,
+    /** A list of teams that collaborate on the advisory. */
+    @com.fasterxml.jackson.annotation.JsonProperty("collaborating_teams", required = true)
+    val collaboratingTeams: List<Team>?,
+    /** A temporary private fork of the advisory's repository for collaborating on a fix. */
+    @com.fasterxml.jackson.annotation.JsonProperty("private_fork", required = true)
+    val privateFork: SimpleRepository?,
+    /** Optional object value serialized in the `cvss_severities` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cvss_severities")
+    val cvssSeverities: CvssSeverities? = null,
 )
 
-/**
- * A credit given to a user for a repository security advisory.
- */
+/** A credit given to a user for a repository security advisory. */
 data class RepositoryAdvisoryCredit(
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val user: SimpleUser,
-    /**
-     * The type of credit the user is receiving.
-     */
+    /** The type of credit the user is receiving. */
     val type: SecurityAdvisoryCreditTypes,
-    /**
-     * The state of the user's acceptance of the credit.
-     */
-    val state: RepositoryAdvisoryCreditStateEnum
+    /** The state of the user's acceptance of the credit. */
+    val state: RepositoryAdvisoryCreditStateEnum,
 )
 
-/**
- * Required object value serialized in the `errors[]` wire field.
- */
+/** Required object value serialized in the `errors[]` wire field. */
 data class RepositoryAdvisoryDescriptionValidationErrorErrorsItem(
     /**
-     * A machine-readable identifier for the problem. `missing_section`, `empty_section`, `unchecked_required_option`, and `sections_out_of_order` come from validating the description against the repository's report template; other codes are shared with other validation failures on this endpoint.
+     * A machine-readable identifier for the problem. `missing_section`, `empty_section`,
+     * `unchecked_required_option`, and `sections_out_of_order` come from validating the description
+     * against the repository's report template; other codes are shared with other validation
+     * failures on this endpoint.
      */
     val code: String,
-    /**
-     * Optional `string` value serialized in the `resource` wire field.
-     */
+    /** Optional `string` value serialized in the `resource` wire field. */
     val resource: String? = null,
-    /**
-     * Optional `string` value serialized in the `field` wire field.
-     */
+    /** Optional `string` value serialized in the `field` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("field") val `field`: String? = null,
-    /**
-     * Optional `string` value serialized in the `message` wire field.
-     */
+    /** Optional `string` value serialized in the `message` wire field. */
     val message: String? = null,
-    /**
-     * Optional `integer` value serialized in the `index` wire field.
-     */
+    /** Optional `integer` value serialized in the `index` wire field. */
     val index: Long? = null,
-    /**
-     * Optional API value serialized in the `value` wire field.
-     */
+    /** Optional API value serialized in the `value` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Any? = null,
-    /**
-     * The report template section the violation concerns.
-     */
+    /** The report template section the violation concerns. */
     val section: String? = null,
     /**
      * The checkbox option left unticked. Only present when `code` is `unchecked_required_option`.
      */
-    val option: String? = null
+    val option: String? = null,
 )
 
-/**
- * The description does not answer the repository's report template.
- */
+/** The description does not answer the repository's report template. */
 data class RepositoryAdvisoryDescriptionValidationError(
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     val message: String,
-    /**
-     * Required `string` value serialized in the `documentation_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("documentation_url") val documentationUrl: String,
-    /**
-     * Optional array value serialized in the `errors` wire field.
-     */
-    val errors: List<RepositoryAdvisoryDescriptionValidationErrorErrorsItem>? = null
+    /** Required `string` value serialized in the `documentation_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("documentation_url")
+    val documentationUrl: String,
+    /** Optional array value serialized in the `errors` wire field. */
+    val errors: List<RepositoryAdvisoryDescriptionValidationErrorErrorsItem>? = null,
 ) : dev.octri.showcase.github.ErrorBody
 
-/**
- * The name of the package affected by the vulnerability.
- */
+/** The name of the package affected by the vulnerability. */
 data class RepositoryAdvisoryVulnerabilityPackage(
-    /**
-     * The package's language or package management ecosystem.
-     */
+    /** The package's language or package management ecosystem. */
     val ecosystem: SecurityAdvisoryEcosystems,
-    /**
-     * The unique package name within its ecosystem.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?
+    /** The unique package name within its ecosystem. */
+    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?,
 )
 
-/**
- * A product affected by the vulnerability detailed in a repository security advisory.
- */
+/** A product affected by the vulnerability detailed in a repository security advisory. */
 data class RepositoryAdvisoryVulnerability(
-    /**
-     * The name of the package affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("package", required = true) val `package`: RepositoryAdvisoryVulnerabilityPackage?,
-    /**
-     * The range of the package versions affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range", required = true) val vulnerableVersionRange: String?,
-    /**
-     * The package version(s) that resolve the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("patched_versions", required = true) val patchedVersions: String?,
-    /**
-     * The functions in the package that are affected.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions", required = true) val vulnerableFunctions: List<String>?
+    /** The name of the package affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("package", required = true)
+    val `package`: RepositoryAdvisoryVulnerabilityPackage?,
+    /** The range of the package versions affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range", required = true)
+    val vulnerableVersionRange: String?,
+    /** The package version(s) that resolve the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("patched_versions", required = true)
+    val patchedVersions: String?,
+    /** The functions in the package that are affected. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions", required = true)
+    val vulnerableFunctions: List<String>?,
 )
 
-/**
- * The name of the package affected by the vulnerability.
- */
+/** The name of the package affected by the vulnerability. */
 data class VulnerabilityPackage(
-    /**
-     * The package's language or package management ecosystem.
-     */
+    /** The package's language or package management ecosystem. */
     val ecosystem: SecurityAdvisoryEcosystems,
-    /**
-     * The unique package name within its ecosystem.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?
+    /** The unique package name within its ecosystem. */
+    @com.fasterxml.jackson.annotation.JsonProperty("name", required = true) val name: String?,
 )
 
 /**
- * A vulnerability describing the product and its affected versions within a GitHub Security Advisory.
+ * A vulnerability describing the product and its affected versions within a GitHub Security
+ * Advisory.
  */
 data class Vulnerability(
-    /**
-     * The name of the package affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("package", required = true) val `package`: VulnerabilityPackage?,
-    /**
-     * The range of the package versions affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range", required = true) val vulnerableVersionRange: String?,
-    /**
-     * The package version that resolves the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("first_patched_version", required = true) val firstPatchedVersion: String?,
-    /**
-     * The functions in the package that are affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions", required = true) val vulnerableFunctions: List<String>?
+    /** The name of the package affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("package", required = true)
+    val `package`: VulnerabilityPackage?,
+    /** The range of the package versions affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range", required = true)
+    val vulnerableVersionRange: String?,
+    /** The package version that resolves the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("first_patched_version", required = true)
+    val firstPatchedVersion: String?,
+    /** The functions in the package that are affected by the vulnerability. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions", required = true)
+    val vulnerableFunctions: List<String>?,
 )

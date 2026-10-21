@@ -14,225 +14,528 @@ import dev.octri.showcase.github.Validation
 
 internal object ActionsListOrgSecretsOperation {
     /**
-     * Lists all secrets available in an organization without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all secrets available in an organization without revealing their encrypted values.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListOrgSecrets(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListOrgSecretsResponse {
-        return SdkClient.request<Actions.ActionsListOrgSecretsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListOrgSecrets", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListOrgSecrets(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListOrgSecretsResponse {
+        return SdkClient.request<Actions.ActionsListOrgSecretsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsListOrgSecrets",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetOrgPublicKeyOperation {
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. The authenticated user must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. The authenticated user must have collaborator access to a
+     * repository to create, update, or read secrets. OAuth tokens and personal access tokens
+     * (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun actionsGetOrgPublicKey(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsPublicKey {
-        return SdkClient.request<ActionsPublicKey>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/public-key", config = clientConfig, operationId = "actionsGetOrgPublicKey", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetOrgPublicKey(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): ActionsPublicKey {
+        return SdkClient.request<ActionsPublicKey>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/public-key",
+                    config = clientConfig,
+                    operationId = "actionsGetOrgPublicKey",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetOrgSecretOperation {
     /**
-     * Gets a single organization secret without revealing its encrypted value. The authenticated user must have collaborator access to a repository to create, update, or read secrets OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single organization secret without revealing its encrypted value. The authenticated
+     * user must have collaborator access to a repository to create, update, or read secrets OAuth
+     * tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint.
+     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsGetOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): OrganizationActionsSecret {
-        return SdkClient.request<OrganizationActionsSecret>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "actionsGetOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): OrganizationActionsSecret {
+        return SdkClient.request<OrganizationActionsSecret>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}",
+                    config = clientConfig,
+                    operationId = "actionsGetOrgSecret",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsCreateOrUpdateOrgSecretOperation {
     /**
-     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use…
+     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using
+     * LibSodium. For more information, see "Encrypting secrets for the REST API." Authenticated
+     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint.
+     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
+     * `repo` scope to use…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param encryptedValue Value for your secret, encrypted with LibSodium using
-     *   the public key retrieved from the Get an organization public key endpoint.
+     * @param encryptedValue Value for your secret, encrypted with LibSodium using the public key
+     *   retrieved from the Get an organization public key endpoint.
      * @param keyId ID of the key you used to encrypt the secret.
-     * @param visibility Which type of organization repositories have access to the
-     *   organization secret. `selected` means only the repositories specified by
-     *   `selected_repository_ids` can access the secret.
-     * @param selectedRepositoryIds An array of repository ids that can access the
-     *   organization secret. You can only provide a list of repository ids when the
-     *   `visibility` is set to `selected`. You can manage the list of selected
-     *   repositories using the List selected repositories for an organization secret,
-     *   Set selected repositories for an organization secret, and Remove selected
-     *   repository from an organization secret endpoints.
+     * @param visibility Which type of organization repositories have access to the organization
+     *   secret. `selected` means only the repositories specified by `selected_repository_ids` can
+     *   access the secret.
+     * @param selectedRepositoryIds An array of repository ids that can access the organization
+     *   secret. You can only provide a list of repository ids when the `visibility` is set to
+     *   `selected`. You can manage the list of selected repositories using the List selected
+     *   repositories for an organization secret, Set selected repositories for an organization
+     *   secret, and Remove selected repository from an organization secret endpoints.
      */
-    fun actionsCreateOrUpdateOrgSecret(clientConfig: ClientConfig, request: Actions.ActionsCreateOrUpdateOrgSecretRequest, options: RequestOptions? = null): EmptyObject {
+    fun actionsCreateOrUpdateOrgSecret(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsCreateOrUpdateOrgSecretRequest,
+        options: RequestOptions? = null,
+    ): EmptyObject {
         validateActionsCreateOrUpdateOrgSecretRequest(request)
 
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/secrets/${SdkClient.encodePathSegment(request.secretName)}", config = clientConfig, body = SdkClient.bodyMap("encrypted_value" to (request.encryptedValue), "key_id" to (request.keyId), "visibility" to (request.visibility), "selected_repository_ids" to
-    (SdkClient.omitIfNull(request.selectedRepositoryIds))), operationId = "actionsCreateOrUpdateOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<EmptyObject>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/actions/secrets/${SdkClient.encodePathSegment(request.secretName)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "encrypted_value" to (request.encryptedValue),
+                            "key_id" to (request.keyId),
+                            "visibility" to (request.visibility),
+                            "selected_repository_ids" to
+                                (SdkClient.omitIfNull(request.selectedRepositoryIds)),
+                        ),
+                    operationId = "actionsCreateOrUpdateOrgSecret",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateActionsCreateOrUpdateOrgSecretRequest(request: Actions.ActionsCreateOrUpdateOrgSecretRequest) {
-        Validation.validatePattern("encrypted_value", request.encryptedValue, "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$")
+    private fun validateActionsCreateOrUpdateOrgSecretRequest(
+        request: Actions.ActionsCreateOrUpdateOrgSecretRequest
+    ) {
+        Validation.validatePattern(
+            "encrypted_value",
+            request.encryptedValue,
+            "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$",
+        )
     }
 }
 
 internal object ActionsDeleteOrgSecretOperation {
     /**
-     * Deletes a secret in an organization using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in an organization using the secret name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
+     * personal access tokens (classic) need the`admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsDeleteOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "actionsDeleteOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsDeleteOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}",
+                config = clientConfig,
+                operationId = "actionsDeleteOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListSelectedReposForOrgSecretOperation {
     /**
-     * Lists all repositories that have been selected when the `visibility` for repository access to a secret is set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all repositories that have been selected when the `visibility` for repository access to
+     * a secret is set to `selected`. Authenticated users must have collaborator access to a
+     * repository to create, update, or read secrets. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Actions.ActionsListSelectedReposForOrgSecretResponse {
-        return SdkClient.request<Actions.ActionsListSelectedReposForOrgSecretResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "actionsListSelectedReposForOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListSelectedReposForOrgSecretResponse {
+        return SdkClient.request<Actions.ActionsListSelectedReposForOrgSecretResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "actionsListSelectedReposForOrgSecret",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsSetSelectedReposForOrgSecretOperation {
     /**
-     * Replaces all repositories for an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you Create or update an organization secret. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Replaces all repositories for an organization secret when the `visibility` for repository
+     * access is set to `selected`. The visibility is set when you Create or update an organization
+     * secret. Authenticated users must have collaborator access to a repository to create, update,
+     * or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org`
+     * scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param selectedRepositoryIds An array of repository ids that can access the
-     *   organization secret. You can only provide a list of repository ids when the
-     *   `visibility` is set to `selected`. You can add and remove individual
-     *   repositories using the Add selected repository to an organization secret and
-     *   Remove selected repository from an organization secret endpoints.
+     * @param selectedRepositoryIds An array of repository ids that can access the organization
+     *   secret. You can only provide a list of repository ids when the `visibility` is set to
+     *   `selected`. You can add and remove individual repositories using the Add selected
+     *   repository to an organization secret and Remove selected repository from an organization
+     *   secret endpoints.
      */
-    fun actionsSetSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories", config = clientConfig, body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)), operationId = "actionsSetSelectedReposForOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsSetSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories",
+                config = clientConfig,
+                body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)),
+                operationId = "actionsSetSelectedReposForOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsAddSelectedRepoToOrgSecretOperation {
     /**
-     * Adds a repository to an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth tokens and personal access tokens (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
+     * Adds a repository to an organization secret's selected repository list. Use this operation
+     * when the secret's `visibility` is set to `selected`; the authenticated user must have
+     * collaborator access to the repository. OAuth tokens and personal access tokens (classic) need
+     * the `admin:org` scope, plus the `repo` scope for private repositories.
      *
-     * Adds a repository to an organization secret when the `visibility` for repository access is set to `selected`. For more information about setting the visibility, see Create or update an organization secret. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens…
+     * Adds a repository to an organization secret when the `visibility` for repository access is
+     * set to `selected`. For more information about setting the visibility, see Create or update an
+     * organization secret. Authenticated users must have collaborator access to a repository to
+     * create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and
+     * personal access tokens…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsAddSelectedRepoToOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "actionsAddSelectedRepoToOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsAddSelectedRepoToOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "actionsAddSelectedRepoToOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsRemoveSelectedRepoFromOrgSecretOperation {
     /**
-     * Removes a repository from an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
+     * Removes a repository from an organization secret's selected repository list. Use this
+     * operation when the secret's `visibility` is set to `selected`; the authenticated user must
+     * have collaborator access to the repository. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope, plus the `repo` scope for private repositories.
      *
-     * Removes a repository from an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you Create or update an organization secret. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Removes a repository from an organization secret when the `visibility` for repository access
+     * is set to `selected`. The visibility is set when you Create or update an organization secret.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, the `repo` scope is also required.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsRemoveSelectedRepoFromOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "actionsRemoveSelectedRepoFromOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsRemoveSelectedRepoFromOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "actionsRemoveSelectedRepoFromOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListRepoSecretsOperation {
     /**
-     * Lists all secrets available in a repository without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all secrets available in a repository without revealing their encrypted values.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListRepoSecrets(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Actions.ActionsListRepoSecretsResponse {
-        return SdkClient.request<Actions.ActionsListRepoSecretsResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "actionsListRepoSecrets", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsListRepoSecrets(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListRepoSecretsResponse {
+        return SdkClient.request<Actions.ActionsListRepoSecretsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "actionsListRepoSecrets",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetRepoPublicKeyOperation {
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. Anyone with read access to the repository can use this
+     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun actionsGetRepoPublicKey(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsPublicKey {
-        return SdkClient.request<ActionsPublicKey>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets/public-key", config = clientConfig, operationId = "actionsGetRepoPublicKey", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetRepoPublicKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsPublicKey {
+        return SdkClient.request<ActionsPublicKey>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets/public-key",
+                    config = clientConfig,
+                    operationId = "actionsGetRepoPublicKey",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsGetRepoSecretOperation {
     /**
-     * Gets a single repository secret without revealing its encrypted value. The authenticated user must have collaborator access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single repository secret without revealing its encrypted value. The authenticated user
+     * must have collaborator access to the repository to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsGetRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): ActionsSecret {
-        return SdkClient.request<ActionsSecret>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "actionsGetRepoSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun actionsGetRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): ActionsSecret {
+        return SdkClient.request<ActionsSecret>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}",
+                    config = clientConfig,
+                    operationId = "actionsGetRepoSecret",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsCreateOrUpdateRepoSecretOperation {
     /**
-     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using
+     * LibSodium. For more information, see "Encrypting secrets for the REST API." Authenticated
+     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param secretName The name of the secret.
-     * @param encryptedValue Value for your secret, encrypted with LibSodium using
-     *   the public key retrieved from the Get a repository public key endpoint.
+     * @param encryptedValue Value for your secret, encrypted with LibSodium using the public key
+     *   retrieved from the Get a repository public key endpoint.
      * @param keyId ID of the key you used to encrypt the secret.
      */
-    fun actionsCreateOrUpdateRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, encryptedValue: String, keyId: String, options: RequestOptions? = null): EmptyObject {
-        Validation.validatePattern("encrypted_value", encryptedValue, "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$")
+    fun actionsCreateOrUpdateRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        encryptedValue: String,
+        keyId: String,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        Validation.validatePattern(
+            "encrypted_value",
+            encryptedValue,
+            "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$",
+        )
 
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, body = SdkClient.bodyMap("encrypted_value" to (encryptedValue), "key_id" to (keyId)), operationId = "actionsCreateOrUpdateRepoSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<EmptyObject>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "encrypted_value" to (encryptedValue),
+                            "key_id" to (keyId),
+                        ),
+                    operationId = "actionsCreateOrUpdateRepoSecret",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ActionsDeleteRepoSecretOperation {
     /**
-     * Deletes a secret in a repository using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in a repository using the secret name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun actionsDeleteRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "actionsDeleteRepoSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun actionsDeleteRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/secrets/${SdkClient.encodePathSegment(secretName)}",
+                config = clientConfig,
+                operationId = "actionsDeleteRepoSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
