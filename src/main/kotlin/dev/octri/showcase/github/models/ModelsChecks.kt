@@ -5,398 +5,275 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Check Annotation
- */
+/** Check Annotation */
 data class CheckAnnotation(
-    /**
-     * Required `string` value serialized in the `path` wire field.
-     */
+    /** Required `string` value serialized in the `path` wire field. */
     val path: String,
-    /**
-     * Required `integer` value serialized in the `start_line` wire field.
-     */
+    /** Required `integer` value serialized in the `start_line` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("start_line") val startLine: Long,
-    /**
-     * Required `integer` value serialized in the `end_line` wire field.
-     */
+    /** Required `integer` value serialized in the `end_line` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("end_line") val endLine: Long,
-    /**
-     * Required `integer` value serialized in the `start_column` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_column", required = true) val startColumn: Long?,
-    /**
-     * Required `integer` value serialized in the `end_column` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("end_column", required = true) val endColumn: Long?,
-    /**
-     * Required `string` value serialized in the `annotation_level` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("annotation_level", required = true) val annotationLevel: String?,
-    /**
-     * Required `string` value serialized in the `title` wire field.
-     */
+    /** Required `integer` value serialized in the `start_column` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_column", required = true)
+    val startColumn: Long?,
+    /** Required `integer` value serialized in the `end_column` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("end_column", required = true)
+    val endColumn: Long?,
+    /** Required `string` value serialized in the `annotation_level` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("annotation_level", required = true)
+    val annotationLevel: String?,
+    /** Required `string` value serialized in the `title` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
+    /** Required `string` value serialized in the `message` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("message", required = true) val message: String?,
-    /**
-     * Required `string` value serialized in the `raw_details` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("raw_details", required = true) val rawDetails: String?,
-    /**
-     * Required `string` value serialized in the `blob_href` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("blob_href") val blobHref: String
+    /** Required `string` value serialized in the `raw_details` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("raw_details", required = true)
+    val rawDetails: String?,
+    /** Required `string` value serialized in the `blob_href` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("blob_href") val blobHref: String,
 )
 
-/**
- * Required object value serialized in the `output` wire field.
- */
+/** Required object value serialized in the `output` wire field. */
 data class CheckRunOutput(
-    /**
-     * Required `string` value serialized in the `title` wire field.
-     */
+    /** Required `string` value serialized in the `title` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("title", required = true) val title: String?,
-    /**
-     * Required `string` value serialized in the `summary` wire field.
-     */
+    /** Required `string` value serialized in the `summary` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("summary", required = true) val summary: String?,
-    /**
-     * Required `string` value serialized in the `text` wire field.
-     */
+    /** Required `string` value serialized in the `text` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("text", required = true) val text: String?,
-    /**
-     * Required `integer` value serialized in the `annotations_count` wire field.
-     */
+    /** Required `integer` value serialized in the `annotations_count` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("annotations_count") val annotationsCount: Long,
-    /**
-     * Required `uri`-formatted value serialized in the `annotations_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("annotations_url") val annotationsUrl: String
+    /** Required `uri`-formatted value serialized in the `annotations_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("annotations_url") val annotationsUrl: String,
 )
 
-/**
- * Required object value serialized in the `check_suite` wire field.
- */
+/** Required object value serialized in the `check_suite` wire field. */
 data class CheckRunCheckSuite(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long
 )
 
-/**
- * A check performed on the code of a given code change
- */
+/** A check performed on the code of a given code change */
 data class CheckRun(
-    /**
-     * The id of the check.
-     */
+    /** The id of the check. */
     val id: Long,
-    /**
-     * The SHA of the commit that is being checked.
-     */
+    /** The SHA of the commit that is being checked. */
     @com.fasterxml.jackson.annotation.JsonProperty("head_sha") val headSha: String,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `external_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("external_id", required = true) val externalId: String?,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `external_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("external_id", required = true)
+    val externalId: String?,
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
+    /** Required `string` value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
+    val htmlUrl: String?,
+    /** Required `string` value serialized in the `details_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("details_url", required = true)
+    val detailsUrl: String?,
     /**
-     * Required `string` value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
-    /**
-     * Required `string` value serialized in the `details_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("details_url", required = true) val detailsUrl: String?,
-    /**
-     * The phase of the lifecycle that the check is currently in. Statuses of waiting, requested, and pending are reserved for GitHub Actions check runs.
+     * The phase of the lifecycle that the check is currently in. Statuses of waiting, requested,
+     * and pending are reserved for GitHub Actions check runs.
      */
     val status: CheckRunStatusEnum,
-    /**
-     * Required enumerated value serialized in the `conclusion` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true) val conclusion: CheckRunConclusionEnum?,
-    /**
-     * Required `date-time`-formatted value serialized in the `started_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("started_at", required = true) val startedAt: OffsetDateTime?,
-    /**
-     * Required `date-time`-formatted value serialized in the `completed_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("completed_at", required = true) val completedAt: OffsetDateTime?,
-    /**
-     * Required object value serialized in the `output` wire field.
-     */
+    /** Required enumerated value serialized in the `conclusion` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true)
+    val conclusion: CheckRunConclusionEnum?,
+    /** Required `date-time`-formatted value serialized in the `started_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("started_at", required = true)
+    val startedAt: OffsetDateTime?,
+    /** Required `date-time`-formatted value serialized in the `completed_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("completed_at", required = true)
+    val completedAt: OffsetDateTime?,
+    /** Required object value serialized in the `output` wire field. */
     val output: CheckRunOutput,
-    /**
-     * The name of the check.
-     */
+    /** The name of the check. */
     val name: String,
+    /** Required object value serialized in the `check_suite` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("check_suite", required = true)
+    val checkSuite: CheckRunCheckSuite?,
     /**
-     * Required object value serialized in the `check_suite` wire field.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
+     * and user accounts and granted access to specific repositories. They come with granular
+     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("check_suite", required = true) val checkSuite: CheckRunCheckSuite?,
+    @com.fasterxml.jackson.annotation.JsonProperty("app", required = true)
+    val app: NullableIntegration?,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * Pull requests that are open with a `head_sha` or `head_branch` that matches the check. The
+     * returned pull requests do not necessarily indicate pull requests that triggered the check.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("app", required = true) val app: NullableIntegration?,
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
+    val pullRequests: List<PullRequestMinimal>,
     /**
-     * Pull requests that are open with a `head_sha` or `head_branch` that matches the check. The returned pull requests do not necessarily indicate pull requests that triggered the check.
+     * A deployment created as the result of an Actions check run from a workflow that references an
+     * environment
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: List<PullRequestMinimal>,
-    /**
-     * A deployment created as the result of an Actions check run from a workflow that references an environment
-     */
-    val deployment: DeploymentSimple? = null
+    val deployment: DeploymentSimple? = null,
 )
 
-/**
- * A suite of checks performed on the code of a given code change
- */
+/** A suite of checks performed on the code of a given code change */
 data class CheckSuite(
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `head_branch` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("head_branch", required = true) val headBranch: String?,
-    /**
-     * The SHA of the head commit that is being checked.
-     */
+    /** Required `string` value serialized in the `head_branch` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("head_branch", required = true)
+    val headBranch: String?,
+    /** The SHA of the head commit that is being checked. */
     @com.fasterxml.jackson.annotation.JsonProperty("head_sha") val headSha: String,
     /**
-     * The phase of the lifecycle that the check suite is currently in. Statuses of waiting, requested, and pending are reserved for GitHub Actions check suites.
+     * The phase of the lifecycle that the check suite is currently in. Statuses of waiting,
+     * requested, and pending are reserved for GitHub Actions check suites.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("status", required = true) val status: CheckSuiteStatusEnum?,
-    /**
-     * Required enumerated value serialized in the `conclusion` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true) val conclusion: CheckSuiteConclusionEnum?,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("status", required = true)
+    val status: CheckSuiteStatusEnum?,
+    /** Required enumerated value serialized in the `conclusion` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true)
+    val conclusion: CheckSuiteConclusionEnum?,
+    /** Required `string` value serialized in the `url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("url", required = true) val url: String?,
-    /**
-     * Required `string` value serialized in the `before` wire field.
-     */
+    /** Required `string` value serialized in the `before` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("before", required = true) val before: String?,
-    /**
-     * Required `string` value serialized in the `after` wire field.
-     */
+    /** Required `string` value serialized in the `after` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("after", required = true) val after: String?,
+    /** Required array value serialized in the `pull_requests` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests", required = true)
+    val pullRequests: List<PullRequestMinimal>?,
     /**
-     * Required array value serialized in the `pull_requests` wire field.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
+     * and user accounts and granted access to specific repositories. They come with granular
+     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests", required = true) val pullRequests: List<PullRequestMinimal>?,
-    /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("app", required = true) val app: NullableIntegration?,
-    /**
-     * Minimal Repository
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("app", required = true)
+    val app: NullableIntegration?,
+    /** Minimal Repository */
     val repository: MinimalRepository,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true) val createdAt: OffsetDateTime?,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true) val updatedAt: OffsetDateTime?,
-    /**
-     * A commit.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("created_at", required = true)
+    val createdAt: OffsetDateTime?,
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at", required = true)
+    val updatedAt: OffsetDateTime?,
+    /** A commit. */
     @com.fasterxml.jackson.annotation.JsonProperty("head_commit") val headCommit: SimpleCommit,
-    /**
-     * Required `integer` value serialized in the `latest_check_runs_count` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("latest_check_runs_count") val latestCheckRunsCount: Long,
-    /**
-     * Required `string` value serialized in the `check_runs_url` wire field.
-     */
+    /** Required `integer` value serialized in the `latest_check_runs_count` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("latest_check_runs_count")
+    val latestCheckRunsCount: Long,
+    /** Required `string` value serialized in the `check_runs_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("check_runs_url") val checkRunsUrl: String,
-    /**
-     * Optional `boolean` value serialized in the `rerequestable` wire field.
-     */
+    /** Optional `boolean` value serialized in the `rerequestable` wire field. */
     val rerequestable: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `runs_rerequestable` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("runs_rerequestable") val runsRerequestable: Boolean? = null
+    /** Optional `boolean` value serialized in the `runs_rerequestable` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("runs_rerequestable")
+    val runsRerequestable: Boolean? = null,
 )
 
-/**
- * Required object value serialized in the `auto_trigger_checks[]` wire field.
- */
+/** Required object value serialized in the `auto_trigger_checks[]` wire field. */
 data class CheckSuitePreferencePreferencesAutoTriggerChecksItem(
-    /**
-     * Required `integer` value serialized in the `app_id` wire field.
-     */
+    /** Required `integer` value serialized in the `app_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("app_id") val appId: Long,
-    /**
-     * Required `boolean` value serialized in the `setting` wire field.
-     */
-    val setting: Boolean
+    /** Required `boolean` value serialized in the `setting` wire field. */
+    val setting: Boolean,
 )
 
-/**
- * Required object value serialized in the `preferences` wire field.
- */
+/** Required object value serialized in the `preferences` wire field. */
 data class CheckSuitePreferencePreferences(
-    /**
-     * Optional array value serialized in the `auto_trigger_checks` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_trigger_checks") val autoTriggerChecks: List<CheckSuitePreferencePreferencesAutoTriggerChecksItem>? = null
+    /** Optional array value serialized in the `auto_trigger_checks` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_trigger_checks")
+    val autoTriggerChecks: List<CheckSuitePreferencePreferencesAutoTriggerChecksItem>? = null
 )
 
-/**
- * Check suite configuration preferences for a repository.
- */
+/** Check suite configuration preferences for a repository. */
 data class CheckSuitePreference(
-    /**
-     * Required object value serialized in the `preferences` wire field.
-     */
+    /** Required object value serialized in the `preferences` wire field. */
     val preferences: CheckSuitePreferencePreferences,
-    /**
-     * Minimal Repository
-     */
-    val repository: MinimalRepository
+    /** Minimal Repository */
+    val repository: MinimalRepository,
 )
 
 /**
- * A deployment created as the result of an Actions check run from a workflow that references an environment
+ * A deployment created as the result of an Actions check run from a workflow that references an
+ * environment
  */
 data class DeploymentSimple(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Unique identifier of the deployment
-     */
+    /** Unique identifier of the deployment */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Parameter to specify a task to execute
-     */
+    /** Parameter to specify a task to execute */
     val task: String,
-    /**
-     * Name for the target deployment environment.
-     */
+    /** Name for the target deployment environment. */
     val environment: String,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true) val description: String?,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `string` value serialized in the `description` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("description", required = true)
+    val description: String?,
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Required `uri`-formatted value serialized in the `statuses_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `statuses_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("statuses_url") val statusesUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `repository_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `repository_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_url") val repositoryUrl: String,
+    /** Optional `string` value serialized in the `original_environment` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("original_environment")
+    val originalEnvironment: String? = null,
     /**
-     * Optional `string` value serialized in the `original_environment` wire field.
+     * Specifies if the given environment is will no longer exist at some point in the future.
+     * Default: false.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("original_environment") val originalEnvironment: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("transient_environment")
+    val transientEnvironment: Boolean? = null,
     /**
-     * Specifies if the given environment is will no longer exist at some point in the future. Default: false.
+     * Specifies if the given environment is one that end-users directly interact with. Default:
+     * false.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("transient_environment") val transientEnvironment: Boolean? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("production_environment")
+    val productionEnvironment: Boolean? = null,
     /**
-     * Specifies if the given environment is one that end-users directly interact with. Default: false.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
+     * and user accounts and granted access to specific repositories. They come with granular
+     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("production_environment") val productionEnvironment: Boolean? = null,
-    /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app") val performedViaGithubApp: NullableIntegration? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app")
+    val performedViaGithubApp: NullableIntegration? = null,
 )
 
-/**
- * Information about the Git author
- */
+/** Information about the Git author */
 data class SimpleCommitAuthor(
-    /**
-     * Name of the commit's author
-     */
+    /** Name of the commit's author */
     val name: String,
-    /**
-     * Git email address of the commit's author
-     */
-    val email: String
+    /** Git email address of the commit's author */
+    val email: String,
 )
 
-/**
- * Information about the Git committer
- */
+/** Information about the Git committer */
 data class SimpleCommitCommitter(
-    /**
-     * Name of the commit's committer
-     */
+    /** Name of the commit's committer */
     val name: String,
-    /**
-     * Git email address of the commit's committer
-     */
-    val email: String
+    /** Git email address of the commit's committer */
+    val email: String,
 )
 
-/**
- * A commit.
- */
+/** A commit. */
 data class SimpleCommit(
-    /**
-     * SHA for the commit
-     */
+    /** SHA for the commit */
     val id: String,
-    /**
-     * SHA for the commit's tree
-     */
+    /** SHA for the commit's tree */
     @com.fasterxml.jackson.annotation.JsonProperty("tree_id") val treeId: String,
-    /**
-     * Message describing the purpose of the commit
-     */
+    /** Message describing the purpose of the commit */
     val message: String,
-    /**
-     * Timestamp of the commit
-     */
+    /** Timestamp of the commit */
     val timestamp: OffsetDateTime,
-    /**
-     * Information about the Git author
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author", required = true) val author: SimpleCommitAuthor?,
-    /**
-     * Information about the Git committer
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("committer", required = true) val committer: SimpleCommitCommitter?
+    /** Information about the Git author */
+    @com.fasterxml.jackson.annotation.JsonProperty("author", required = true)
+    val author: SimpleCommitAuthor?,
+    /** Information about the Git committer */
+    @com.fasterxml.jackson.annotation.JsonProperty("committer", required = true)
+    val committer: SimpleCommitCommitter?,
 )

@@ -10,18 +10,48 @@ import dev.octri.showcase.github.SdkClient
 
 internal object CodespacesPreFlightWithRepoForAuthenticatedUserOperation {
     /**
-     * Gets the default attributes for codespaces created by the user with the repository. OAuth app tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
+     * Gets the default attributes for codespaces created by the user with the repository. OAuth app
+     * tokens and personal access tokens (classic) need the `codespace` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The branch or commit to check for a default devcontainer path. If
-     *   not specified, the default branch will be checked.
-     * @param clientIp An alternative IP for default location auto-detection, such as
-     *   when proxying a request.
+     * @param ref The branch or commit to check for a default devcontainer path. If not specified,
+     *   the default branch will be checked.
+     * @param clientIp An alternative IP for default location auto-detection, such as when proxying
+     *   a request.
      */
-    fun codespacesPreFlightWithRepoForAuthenticatedUser(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, clientIp: String? = null, options: RequestOptions? = null): Codespaces.CodespacesPreFlightWithRepoForAuthenticatedUserResponse {
-        return SdkClient.request<Codespaces.CodespacesPreFlightWithRepoForAuthenticatedUserResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codespaces/new", config = clientConfig, query = mapOf("ref" to SdkClient.queryValue(ref, "form", true), "client_ip" to SdkClient.queryValue(clientIp, "form", true)), operationId = "codespacesPreFlightWithRepoForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun codespacesPreFlightWithRepoForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        clientIp: String? = null,
+        options: RequestOptions? = null,
+    ): Codespaces.CodespacesPreFlightWithRepoForAuthenticatedUserResponse {
+        return SdkClient.request<
+                Codespaces.CodespacesPreFlightWithRepoForAuthenticatedUserResponse
+            >(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codespaces/new",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "ref" to SdkClient.queryValue(ref, "form", true),
+                            "client_ip" to SdkClient.queryValue(clientIp, "form", true),
+                        ),
+                    operationId = "codespacesPreFlightWithRepoForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

@@ -5,486 +5,288 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Required object value serialized in the `html` wire field.
- */
+/** Required object value serialized in the `html` wire field. */
 data class WebhooksReviewLinksHtml(
-    /**
-     * Required `uri-template`-formatted value serialized in the `href` wire field.
-     */
+    /** Required `uri-template`-formatted value serialized in the `href` wire field. */
     val href: String
 )
 
-/**
- * Required object value serialized in the `pull_request` wire field.
- */
+/** Required object value serialized in the `pull_request` wire field. */
 data class WebhooksReviewLinksPullRequest(
-    /**
-     * Required `uri-template`-formatted value serialized in the `href` wire field.
-     */
+    /** Required `uri-template`-formatted value serialized in the `href` wire field. */
     val href: String
 )
 
-/**
- * Required object value serialized in the `_links` wire field.
- */
+/** Required object value serialized in the `_links` wire field. */
 data class WebhooksReviewLinks(
-    /**
-     * Required object value serialized in the `html` wire field.
-     */
+    /** Required object value serialized in the `html` wire field. */
     val html: WebhooksReviewLinksHtml,
-    /**
-     * Required object value serialized in the `pull_request` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request") val pullRequest: WebhooksReviewLinksPullRequest
+    /** Required object value serialized in the `pull_request` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request")
+    val pullRequest: WebhooksReviewLinksPullRequest,
 )
 
-/**
- * Required object value serialized in the `user` wire field.
- */
+/** Required object value serialized in the `user` wire field. */
 data class WebhooksReviewUser(
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `login` wire field.
-     */
+    /** Required `string` value serialized in the `login` wire field. */
     val login: String,
-    /**
-     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `deleted` wire field.
-     */
+    /** Optional `boolean` value serialized in the `deleted` wire field. */
     val deleted: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `email` wire field.
-     */
+    /** Optional `string` value serialized in the `email` wire field. */
     val email: String? = null,
-    /**
-     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
-     */
+    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
-    /**
-     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
-    /**
-     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
+    val followersUrl: String? = null,
+    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
+    val followingUrl: String? = null,
+    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `gravatar_id` wire field.
-     */
+    /** Optional `string` value serialized in the `gravatar_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `string` value serialized in the `node_id` wire field.
-     */
+    /** Optional `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
+    val organizationsUrl: String? = null,
+    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
+    val receivedEventsUrl: String? = null,
+    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `site_admin` wire field.
-     */
+    /** Optional `boolean` value serialized in the `site_admin` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /**
-     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
-     */
+    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
-    /**
-     * Optional enumerated value serialized in the `type` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
+    val subscriptionsUrl: String? = null,
+    /** Optional enumerated value serialized in the `type` wire field. */
     val type: WebhooksReviewUserTypeEnum? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `url` wire field. */
     val url: String? = null,
-    /**
-     * Optional `string` value serialized in the `user_view_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
+    /** Optional `string` value serialized in the `user_view_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
+    val userViewType: String? = null,
 )
 
-/**
- * The review that was affected.
- */
+/** The review that was affected. */
 data class WebhooksReview(
-    /**
-     * Required object value serialized in the `_links` wire field.
-     */
+    /** Required object value serialized in the `_links` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: WebhooksReviewLinks,
-    /**
-     * How the author is associated with the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: WebhooksReviewAuthorAssociationEnum,
-    /**
-     * The text of the review.
-     */
+    /** How the author is associated with the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
+    val authorAssociation: WebhooksReviewAuthorAssociationEnum,
+    /** The text of the review. */
     @com.fasterxml.jackson.annotation.JsonProperty("body", required = true) val body: String?,
-    /**
-     * A commit SHA for the review.
-     */
+    /** A commit SHA for the review. */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_id") val commitId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Unique identifier of the review
-     */
+    /** Unique identifier of the review */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `pull_request_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `pull_request_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("pull_request_url") val pullRequestUrl: String,
-    /**
-     * Required `string` value serialized in the `state` wire field.
-     */
+    /** Required `string` value serialized in the `state` wire field. */
     val state: String,
-    /**
-     * Required `date-time`-formatted value serialized in the `submitted_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("submitted_at", required = true) val submittedAt: OffsetDateTime?,
-    /**
-     * Required object value serialized in the `user` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: WebhooksReviewUser?,
-    /**
-     * Optional `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null
+    /** Required `date-time`-formatted value serialized in the `submitted_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("submitted_at", required = true)
+    val submittedAt: OffsetDateTime?,
+    /** Required object value serialized in the `user` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: WebhooksReviewUser?,
+    /** Optional `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: OffsetDateTime? = null,
 )
 
-/**
- * Required object value serialized in the `html` wire field.
- */
+/** Required object value serialized in the `html` wire field. */
 data class WebhooksReviewCommentLinksHtml(
-    /**
-     * Required `uri-template`-formatted value serialized in the `href` wire field.
-     */
+    /** Required `uri-template`-formatted value serialized in the `href` wire field. */
     val href: String
 )
 
-/**
- * Required object value serialized in the `pull_request` wire field.
- */
+/** Required object value serialized in the `pull_request` wire field. */
 data class WebhooksReviewCommentLinksPullRequest(
-    /**
-     * Required `uri-template`-formatted value serialized in the `href` wire field.
-     */
+    /** Required `uri-template`-formatted value serialized in the `href` wire field. */
     val href: String
 )
 
-/**
- * Required object value serialized in the `self` wire field.
- */
+/** Required object value serialized in the `self` wire field. */
 data class WebhooksReviewCommentLinksSelf(
-    /**
-     * Required `uri-template`-formatted value serialized in the `href` wire field.
-     */
+    /** Required `uri-template`-formatted value serialized in the `href` wire field. */
     val href: String
 )
 
-/**
- * Required object value serialized in the `_links` wire field.
- */
+/** Required object value serialized in the `_links` wire field. */
 data class WebhooksReviewCommentLinks(
-    /**
-     * Required object value serialized in the `html` wire field.
-     */
+    /** Required object value serialized in the `html` wire field. */
     val html: WebhooksReviewCommentLinksHtml,
-    /**
-     * Required object value serialized in the `pull_request` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request") val pullRequest: WebhooksReviewCommentLinksPullRequest,
-    /**
-     * Required object value serialized in the `self` wire field.
-     */
-    val self: WebhooksReviewCommentLinksSelf
+    /** Required object value serialized in the `pull_request` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request")
+    val pullRequest: WebhooksReviewCommentLinksPullRequest,
+    /** Required object value serialized in the `self` wire field. */
+    val self: WebhooksReviewCommentLinksSelf,
 )
 
-/**
- * Required object value serialized in the `reactions` wire field.
- */
+/** Required object value serialized in the `reactions` wire field. */
 data class WebhooksReviewCommentReactions(
-    /**
-     * Required `integer` value serialized in the `+1` wire field.
-     */
+    /** Required `integer` value serialized in the `+1` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("+1") val plus1: Long,
-    /**
-     * Required `integer` value serialized in the `-1` wire field.
-     */
+    /** Required `integer` value serialized in the `-1` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("-1") val minus1: Long,
-    /**
-     * Required `integer` value serialized in the `confused` wire field.
-     */
+    /** Required `integer` value serialized in the `confused` wire field. */
     val confused: Long,
-    /**
-     * Required `integer` value serialized in the `eyes` wire field.
-     */
+    /** Required `integer` value serialized in the `eyes` wire field. */
     val eyes: Long,
-    /**
-     * Required `integer` value serialized in the `heart` wire field.
-     */
+    /** Required `integer` value serialized in the `heart` wire field. */
     val heart: Long,
-    /**
-     * Required `integer` value serialized in the `hooray` wire field.
-     */
+    /** Required `integer` value serialized in the `hooray` wire field. */
     val hooray: Long,
-    /**
-     * Required `integer` value serialized in the `laugh` wire field.
-     */
+    /** Required `integer` value serialized in the `laugh` wire field. */
     val laugh: Long,
-    /**
-     * Required `integer` value serialized in the `rocket` wire field.
-     */
+    /** Required `integer` value serialized in the `rocket` wire field. */
     val rocket: Long,
-    /**
-     * Required `integer` value serialized in the `total_count` wire field.
-     */
+    /** Required `integer` value serialized in the `total_count` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
-    val url: String
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
+    val url: String,
 )
 
-/**
- * Required object value serialized in the `user` wire field.
- */
+/** Required object value serialized in the `user` wire field. */
 data class WebhooksReviewCommentUser(
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `login` wire field.
-     */
+    /** Required `string` value serialized in the `login` wire field. */
     val login: String,
-    /**
-     * Optional `uri`-formatted value serialized in the `avatar_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `avatar_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("avatar_url") val avatarUrl: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `deleted` wire field.
-     */
+    /** Optional `boolean` value serialized in the `deleted` wire field. */
     val deleted: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `email` wire field.
-     */
+    /** Optional `string` value serialized in the `email` wire field. */
     val email: String? = null,
-    /**
-     * Optional `uri-template`-formatted value serialized in the `events_url` wire field.
-     */
+    /** Optional `uri-template`-formatted value serialized in the `events_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("events_url") val eventsUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `followers_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("followers_url") val followersUrl: String? = null,
-    /**
-     * Optional `uri-template`-formatted value serialized in the `following_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("following_url") val followingUrl: String? = null,
-    /**
-     * Optional `uri-template`-formatted value serialized in the `gists_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `followers_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("followers_url")
+    val followersUrl: String? = null,
+    /** Optional `uri-template`-formatted value serialized in the `following_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("following_url")
+    val followingUrl: String? = null,
+    /** Optional `uri-template`-formatted value serialized in the `gists_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("gists_url") val gistsUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `gravatar_id` wire field.
-     */
+    /** Optional `string` value serialized in the `gravatar_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("gravatar_id") val gravatarId: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `string` value serialized in the `node_id` wire field.
-     */
+    /** Optional `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `organizations_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url") val organizationsUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `received_events_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url") val receivedEventsUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `repos_url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `organizations_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organizations_url")
+    val organizationsUrl: String? = null,
+    /** Optional `uri`-formatted value serialized in the `received_events_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("received_events_url")
+    val receivedEventsUrl: String? = null,
+    /** Optional `uri`-formatted value serialized in the `repos_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("repos_url") val reposUrl: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `site_admin` wire field.
-     */
+    /** Optional `boolean` value serialized in the `site_admin` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("site_admin") val siteAdmin: Boolean? = null,
-    /**
-     * Optional `uri-template`-formatted value serialized in the `starred_url` wire field.
-     */
+    /** Optional `uri-template`-formatted value serialized in the `starred_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_url") val starredUrl: String? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `subscriptions_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url") val subscriptionsUrl: String? = null,
-    /**
-     * Optional enumerated value serialized in the `type` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `subscriptions_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("subscriptions_url")
+    val subscriptionsUrl: String? = null,
+    /** Optional enumerated value serialized in the `type` wire field. */
     val type: WebhooksReviewCommentUserTypeEnum? = null,
-    /**
-     * Optional `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Optional `uri`-formatted value serialized in the `url` wire field. */
     val url: String? = null,
-    /**
-     * Optional `string` value serialized in the `user_view_type` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type") val userViewType: String? = null
+    /** Optional `string` value serialized in the `user_view_type` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user_view_type")
+    val userViewType: String? = null,
 )
 
-/**
- * The comment itself.
- */
+/** The comment itself. */
 data class WebhooksReviewComment(
-    /**
-     * Required object value serialized in the `_links` wire field.
-     */
+    /** Required object value serialized in the `_links` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: WebhooksReviewCommentLinks,
-    /**
-     * How the author is associated with the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: WebhooksReviewCommentAuthorAssociationEnum,
-    /**
-     * The text of the comment.
-     */
+    /** How the author is associated with the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
+    val authorAssociation: WebhooksReviewCommentAuthorAssociationEnum,
+    /** The text of the comment. */
     val body: String,
-    /**
-     * The SHA of the commit to which the comment applies.
-     */
+    /** The SHA of the commit to which the comment applies. */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_id") val commitId: String,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * The diff of the line that the comment refers to.
-     */
+    /** The diff of the line that the comment refers to. */
     @com.fasterxml.jackson.annotation.JsonProperty("diff_hunk") val diffHunk: String,
-    /**
-     * HTML URL for the pull request review comment.
-     */
+    /** HTML URL for the pull request review comment. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * The ID of the pull request review comment.
-     */
+    /** The ID of the pull request review comment. */
     val id: Long,
     /**
-     * The line of the blob to which the comment applies. The last line of the range for a multi-line comment
+     * The line of the blob to which the comment applies. The last line of the range for a
+     * multi-line comment
      */
     @com.fasterxml.jackson.annotation.JsonProperty("line", required = true) val line: Long?,
-    /**
-     * The node ID of the pull request review comment.
-     */
+    /** The node ID of the pull request review comment. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
+    /** The SHA of the original commit to which the comment applies. */
+    @com.fasterxml.jackson.annotation.JsonProperty("original_commit_id")
+    val originalCommitId: String,
     /**
-     * The SHA of the original commit to which the comment applies.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("original_commit_id") val originalCommitId: String,
-    /**
-     * The line of the blob to which the comment applies. The last line of the range for a multi-line comment
+     * The line of the blob to which the comment applies. The last line of the range for a
+     * multi-line comment
      */
     @com.fasterxml.jackson.annotation.JsonProperty("original_line") val originalLine: Long,
-    /**
-     * The index of the original line in the diff to which the comment applies.
-     */
+    /** The index of the original line in the diff to which the comment applies. */
     @com.fasterxml.jackson.annotation.JsonProperty("original_position") val originalPosition: Long,
-    /**
-     * The first line of the range for a multi-line comment.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("original_start_line", required = true) val originalStartLine: Long?,
-    /**
-     * The relative path of the file to which the comment applies.
-     */
+    /** The first line of the range for a multi-line comment. */
+    @com.fasterxml.jackson.annotation.JsonProperty("original_start_line", required = true)
+    val originalStartLine: Long?,
+    /** The relative path of the file to which the comment applies. */
     val path: String,
-    /**
-     * The line index in the diff to which the comment applies.
-     */
+    /** The line index in the diff to which the comment applies. */
     @com.fasterxml.jackson.annotation.JsonProperty("position", required = true) val position: Long?,
-    /**
-     * The ID of the pull request review to which the comment belongs.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_review_id", required = true) val pullRequestReviewId: Long?,
-    /**
-     * URL for the pull request that the review comment belongs to.
-     */
+    /** The ID of the pull request review to which the comment belongs. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_request_review_id", required = true)
+    val pullRequestReviewId: Long?,
+    /** URL for the pull request that the review comment belongs to. */
     @com.fasterxml.jackson.annotation.JsonProperty("pull_request_url") val pullRequestUrl: String,
-    /**
-     * Required object value serialized in the `reactions` wire field.
-     */
+    /** Required object value serialized in the `reactions` wire field. */
     val reactions: WebhooksReviewCommentReactions,
-    /**
-     * The side of the first line of the range for a multi-line comment.
-     */
+    /** The side of the first line of the range for a multi-line comment. */
     val side: WebhooksReviewCommentSideEnum,
-    /**
-     * The first line of the range for a multi-line comment.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_line", required = true) val startLine: Long?,
-    /**
-     * The side of the first line of the range for a multi-line comment.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("start_side", required = true) val startSide: WebhooksReviewCommentStartSideEnum?,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** The first line of the range for a multi-line comment. */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_line", required = true)
+    val startLine: Long?,
+    /** The side of the first line of the range for a multi-line comment. */
+    @com.fasterxml.jackson.annotation.JsonProperty("start_side", required = true)
+    val startSide: WebhooksReviewCommentStartSideEnum?,
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * URL for the pull request review comment
-     */
+    /** URL for the pull request review comment */
     val url: String,
-    /**
-     * Required object value serialized in the `user` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: WebhooksReviewCommentUser?,
-    /**
-     * The comment ID to reply to.
-     */
+    /** Required object value serialized in the `user` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: WebhooksReviewCommentUser?,
+    /** The comment ID to reply to. */
     @com.fasterxml.jackson.annotation.JsonProperty("in_reply_to_id") val inReplyToId: Long? = null,
-    /**
-     * The level at which the comment is targeted, can be a diff line or a file.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("subject_type") val subjectType: WebhooksReviewCommentSubjectTypeEnum? = null
+    /** The level at which the comment is targeted, can be a diff line or a file. */
+    @com.fasterxml.jackson.annotation.JsonProperty("subject_type")
+    val subjectType: WebhooksReviewCommentSubjectTypeEnum? = null,
 )

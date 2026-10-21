@@ -4,13 +4,17 @@
 package dev.octri.showcase.github.models
 
 /**
- * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
+ * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. -
+ * `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123
+ * from branch-name).
  */
-class NullableRepositoryMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryMergeCommitTitleEnum && value == other.value
+class NullableRepositoryMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryMergeCommitTitleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -18,80 +22,108 @@ class NullableRepositoryMergeCommitTitleEnum private constructor(
         @JvmField val PR_TITLE = NullableRepositoryMergeCommitTitleEnum("PR_TITLE")
         @JvmField val MERGE_MESSAGE = NullableRepositoryMergeCommitTitleEnum("MERGE_MESSAGE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableRepositoryMergeCommitTitleEnum(value)
     }
 }
 
-/**
- * The policy controlling who can create pull requests: all or collaborators_only.
- */
-class NullableRepositoryPullRequestCreationPolicyEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryPullRequestCreationPolicyEnum && value == other.value
+/** The policy controlling who can create pull requests: all or collaborators_only. */
+class NullableRepositoryPullRequestCreationPolicyEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryPullRequestCreationPolicyEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val ALL = NullableRepositoryPullRequestCreationPolicyEnum("all")
-        @JvmField val COLLABORATORS_ONLY = NullableRepositoryPullRequestCreationPolicyEnum("collaborators_only")
+        @JvmField
+        val COLLABORATORS_ONLY =
+            NullableRepositoryPullRequestCreationPolicyEnum("collaborators_only")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryPullRequestCreationPolicyEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableRepositoryPullRequestCreationPolicyEnum(value)
     }
 }
 
 /**
- * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+ * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's
+ * body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a
+ * blank commit message.
  */
-class NullableRepositorySquashMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositorySquashMergeCommitMessageEnum && value == other.value
+class NullableRepositorySquashMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositorySquashMergeCommitMessageEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PR_BODY = NullableRepositorySquashMergeCommitMessageEnum("PR_BODY")
-        @JvmField val COMMIT_MESSAGES = NullableRepositorySquashMergeCommitMessageEnum("COMMIT_MESSAGES")
+        @JvmField
+        val COMMIT_MESSAGES = NullableRepositorySquashMergeCommitMessageEnum("COMMIT_MESSAGES")
         @JvmField val BLANK = NullableRepositorySquashMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositorySquashMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableRepositorySquashMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+ * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's
+ * title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull
+ * request's title (when more than one commit).
  */
-class NullableRepositorySquashMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositorySquashMergeCommitTitleEnum && value == other.value
+class NullableRepositorySquashMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositorySquashMergeCommitTitleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PR_TITLE = NullableRepositorySquashMergeCommitTitleEnum("PR_TITLE")
-        @JvmField val COMMIT_OR_PR_TITLE = NullableRepositorySquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
+        @JvmField
+        val COMMIT_OR_PR_TITLE = NullableRepositorySquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositorySquashMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableRepositorySquashMergeCommitTitleEnum(value)
     }
 }
 
 /**
- * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
+ * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
+ * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit
+ * message.
  */
-class NullableRepositoryWebhooksMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksMergeCommitMessageEnum && value == other.value
+class NullableRepositoryWebhooksMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksMergeCommitMessageEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -100,182 +132,274 @@ class NullableRepositoryWebhooksMergeCommitMessageEnum private constructor(
         @JvmField val PR_TITLE = NullableRepositoryWebhooksMergeCommitMessageEnum("PR_TITLE")
         @JvmField val BLANK = NullableRepositoryWebhooksMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableRepositoryWebhooksMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
+ * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. -
+ * `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123
+ * from branch-name).
  */
-class NullableRepositoryWebhooksMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksMergeCommitTitleEnum && value == other.value
+class NullableRepositoryWebhooksMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksMergeCommitTitleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PR_TITLE = NullableRepositoryWebhooksMergeCommitTitleEnum("PR_TITLE")
-        @JvmField val MERGE_MESSAGE = NullableRepositoryWebhooksMergeCommitTitleEnum("MERGE_MESSAGE")
+        @JvmField
+        val MERGE_MESSAGE = NullableRepositoryWebhooksMergeCommitTitleEnum("MERGE_MESSAGE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableRepositoryWebhooksMergeCommitTitleEnum(value)
     }
 }
 
-/**
- * The policy controlling who can create pull requests: all or collaborators_only.
- */
-class NullableRepositoryWebhooksPullRequestCreationPolicyEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksPullRequestCreationPolicyEnum && value == other.value
+/** The policy controlling who can create pull requests: all or collaborators_only. */
+class NullableRepositoryWebhooksPullRequestCreationPolicyEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksPullRequestCreationPolicyEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val ALL = NullableRepositoryWebhooksPullRequestCreationPolicyEnum("all")
-        @JvmField val COLLABORATORS_ONLY = NullableRepositoryWebhooksPullRequestCreationPolicyEnum("collaborators_only")
+        @JvmField
+        val COLLABORATORS_ONLY =
+            NullableRepositoryWebhooksPullRequestCreationPolicyEnum("collaborators_only")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksPullRequestCreationPolicyEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            NullableRepositoryWebhooksPullRequestCreationPolicyEnum(value)
     }
 }
 
 /**
- * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+ * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's
+ * body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a
+ * blank commit message.
  */
-class NullableRepositoryWebhooksSquashMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksSquashMergeCommitMessageEnum && value == other.value
+class NullableRepositoryWebhooksSquashMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksSquashMergeCommitMessageEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PR_BODY = NullableRepositoryWebhooksSquashMergeCommitMessageEnum("PR_BODY")
-        @JvmField val COMMIT_MESSAGES = NullableRepositoryWebhooksSquashMergeCommitMessageEnum("COMMIT_MESSAGES")
+        @JvmField
+        val COMMIT_MESSAGES =
+            NullableRepositoryWebhooksSquashMergeCommitMessageEnum("COMMIT_MESSAGES")
         @JvmField val BLANK = NullableRepositoryWebhooksSquashMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksSquashMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableRepositoryWebhooksSquashMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+ * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's
+ * title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull
+ * request's title (when more than one commit).
  */
-class NullableRepositoryWebhooksSquashMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksSquashMergeCommitTitleEnum && value == other.value
+class NullableRepositoryWebhooksSquashMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksSquashMergeCommitTitleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PR_TITLE = NullableRepositoryWebhooksSquashMergeCommitTitleEnum("PR_TITLE")
-        @JvmField val COMMIT_OR_PR_TITLE = NullableRepositoryWebhooksSquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
+        @JvmField
+        val COMMIT_OR_PR_TITLE =
+            NullableRepositoryWebhooksSquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksSquashMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableRepositoryWebhooksSquashMergeCommitTitleEnum(value)
     }
 }
 
 /**
- * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
+ * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
+ * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit
+ * message.
  */
-class NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum && value == other.value
+class NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PR_BODY = NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum("PR_BODY")
-        @JvmField val PR_TITLE = NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum("PR_TITLE")
-        @JvmField val BLANK = NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum("BLANK")
+        @JvmField
+        val PR_BODY = NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum("PR_BODY")
+        @JvmField
+        val PR_TITLE =
+            NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum("PR_TITLE")
+        @JvmField
+        val BLANK = NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            NullableRepositoryWebhooksTemplateRepositoryMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
+ * The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. -
+ * `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123
+ * from branch-name).
  */
-class NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum && value == other.value
+class NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PR_TITLE = NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum("PR_TITLE")
-        @JvmField val MERGE_MESSAGE = NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum("MERGE_MESSAGE")
+        @JvmField
+        val PR_TITLE = NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum("PR_TITLE")
+        @JvmField
+        val MERGE_MESSAGE =
+            NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum("MERGE_MESSAGE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            NullableRepositoryWebhooksTemplateRepositoryMergeCommitTitleEnum(value)
     }
 }
 
 /**
- * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+ * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's
+ * body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a
+ * blank commit message.
  */
-class NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum && value == other.value
+class NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PR_BODY = NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum("PR_BODY")
-        @JvmField val COMMIT_MESSAGES = NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum("COMMIT_MESSAGES")
-        @JvmField val BLANK = NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum("BLANK")
+        @JvmField
+        val PR_BODY =
+            NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum("PR_BODY")
+        @JvmField
+        val COMMIT_MESSAGES =
+            NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum(
+                "COMMIT_MESSAGES"
+            )
+        @JvmField
+        val BLANK =
+            NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+ * The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's
+ * title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull
+ * request's title (when more than one commit).
  */
-class NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum && value == other.value
+class NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PR_TITLE = NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum("PR_TITLE")
-        @JvmField val COMMIT_OR_PR_TITLE = NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
+        @JvmField
+        val PR_TITLE =
+            NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum("PR_TITLE")
+        @JvmField
+        val COMMIT_OR_PR_TITLE =
+            NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum(
+                "COMMIT_OR_PR_TITLE"
+            )
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            NullableRepositoryWebhooksTemplateRepositorySquashMergeCommitTitleEnum(value)
     }
 }
 
-/**
- * Describe whether all repositories have been selected or there's a selection involved
- */
-class NullableScopedInstallationRepositorySelectionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableScopedInstallationRepositorySelectionEnum && value == other.value
+/** Describe whether all repositories have been selected or there's a selection involved */
+class NullableScopedInstallationRepositorySelectionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableScopedInstallationRepositorySelectionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -283,19 +407,22 @@ class NullableScopedInstallationRepositorySelectionEnum private constructor(
         @JvmField val ALL = NullableScopedInstallationRepositorySelectionEnum("all")
         @JvmField val SELECTED = NullableScopedInstallationRepositorySelectionEnum("selected")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableScopedInstallationRepositorySelectionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableScopedInstallationRepositorySelectionEnum(value)
     }
 }
 
-/**
- * The ownership type of the team
- */
-class NullableTeamSimpleTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is NullableTeamSimpleTypeEnum && value == other.value
+/** The ownership type of the team */
+class NullableTeamSimpleTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is NullableTeamSimpleTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -303,19 +430,22 @@ class NullableTeamSimpleTypeEnum private constructor(
         @JvmField val ENTERPRISE = NullableTeamSimpleTypeEnum("enterprise")
         @JvmField val ORGANIZATION = NullableTeamSimpleTypeEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = NullableTeamSimpleTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = NullableTeamSimpleTypeEnum(value)
     }
 }
 
-/**
- * Whether the inclusion was defined at the organization or enterprise level
- */
-class OidcCustomPropertyInclusionInclusionSourceEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OidcCustomPropertyInclusionInclusionSourceEnum && value == other.value
+/** Whether the inclusion was defined at the organization or enterprise level */
+class OidcCustomPropertyInclusionInclusionSourceEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OidcCustomPropertyInclusionInclusionSourceEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -323,19 +453,22 @@ class OidcCustomPropertyInclusionInclusionSourceEnum private constructor(
         @JvmField val ORGANIZATION = OidcCustomPropertyInclusionInclusionSourceEnum("organization")
         @JvmField val ENTERPRISE = OidcCustomPropertyInclusionInclusionSourceEnum("enterprise")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OidcCustomPropertyInclusionInclusionSourceEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OidcCustomPropertyInclusionInclusionSourceEnum(value)
     }
 }
 
-/**
- * Visibility of a secret
- */
-class OrganizationActionsSecretVisibilityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationActionsSecretVisibilityEnum && value == other.value
+/** Visibility of a secret */
+class OrganizationActionsSecretVisibilityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationActionsSecretVisibilityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -344,19 +477,22 @@ class OrganizationActionsSecretVisibilityEnum private constructor(
         @JvmField val PRIVATE = OrganizationActionsSecretVisibilityEnum("private")
         @JvmField val SELECTED = OrganizationActionsSecretVisibilityEnum("selected")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationActionsSecretVisibilityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationActionsSecretVisibilityEnum(value)
     }
 }
 
-/**
- * Visibility of a variable
- */
-class OrganizationActionsVariableVisibilityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationActionsVariableVisibilityEnum && value == other.value
+/** Visibility of a variable */
+class OrganizationActionsVariableVisibilityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationActionsVariableVisibilityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -365,19 +501,22 @@ class OrganizationActionsVariableVisibilityEnum private constructor(
         @JvmField val PRIVATE = OrganizationActionsVariableVisibilityEnum("private")
         @JvmField val SELECTED = OrganizationActionsVariableVisibilityEnum("selected")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationActionsVariableVisibilityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationActionsVariableVisibilityEnum(value)
     }
 }
 
-/**
- * The data type of the issue field.
- */
-class OrganizationCreateIssueFieldDataTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationCreateIssueFieldDataTypeEnum && value == other.value
+/** The data type of the issue field. */
+class OrganizationCreateIssueFieldDataTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationCreateIssueFieldDataTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -388,19 +527,22 @@ class OrganizationCreateIssueFieldDataTypeEnum private constructor(
         @JvmField val MULTI_SELECT = OrganizationCreateIssueFieldDataTypeEnum("multi_select")
         @JvmField val NUMBER = OrganizationCreateIssueFieldDataTypeEnum("number")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationCreateIssueFieldDataTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationCreateIssueFieldDataTypeEnum(value)
     }
 }
 
-/**
- * Color for the option.
- */
-class OrganizationCreateIssueFieldOptionsItemColorEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationCreateIssueFieldOptionsItemColorEnum && value == other.value
+/** Color for the option. */
+class OrganizationCreateIssueFieldOptionsItemColorEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationCreateIssueFieldOptionsItemColorEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -414,39 +556,51 @@ class OrganizationCreateIssueFieldOptionsItemColorEnum private constructor(
         @JvmField val PINK = OrganizationCreateIssueFieldOptionsItemColorEnum("pink")
         @JvmField val PURPLE = OrganizationCreateIssueFieldOptionsItemColorEnum("purple")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationCreateIssueFieldOptionsItemColorEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationCreateIssueFieldOptionsItemColorEnum(value)
     }
 }
 
 /**
- * The visibility of the issue field. Can be `organization_members_only` (visible only within the organization) or `all` (visible to all users who can see issues). Only used when the visibility settings feature is enabled. Defaults to `organization_members_only`.
+ * The visibility of the issue field. Can be `organization_members_only` (visible only within the
+ * organization) or `all` (visible to all users who can see issues). Only used when the visibility
+ * settings feature is enabled. Defaults to `organization_members_only`.
  */
-class OrganizationCreateIssueFieldVisibilityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationCreateIssueFieldVisibilityEnum && value == other.value
+class OrganizationCreateIssueFieldVisibilityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationCreateIssueFieldVisibilityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val ORGANIZATION_MEMBERS_ONLY = OrganizationCreateIssueFieldVisibilityEnum("organization_members_only")
+        @JvmField
+        val ORGANIZATION_MEMBERS_ONLY =
+            OrganizationCreateIssueFieldVisibilityEnum("organization_members_only")
         @JvmField val ALL = OrganizationCreateIssueFieldVisibilityEnum("all")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationCreateIssueFieldVisibilityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationCreateIssueFieldVisibilityEnum(value)
     }
 }
 
-/**
- * Color for the issue type.
- */
-class OrganizationCreateIssueTypeColorEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationCreateIssueTypeColorEnum && value == other.value
+/** Color for the issue type. */
+class OrganizationCreateIssueTypeColorEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationCreateIssueTypeColorEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -460,19 +614,22 @@ class OrganizationCreateIssueTypeColorEnum private constructor(
         @JvmField val PINK = OrganizationCreateIssueTypeColorEnum("pink")
         @JvmField val PURPLE = OrganizationCreateIssueTypeColorEnum("purple")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationCreateIssueTypeColorEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationCreateIssueTypeColorEnum(value)
     }
 }
 
-/**
- * Visibility of a secret
- */
-class OrganizationDependabotSecretVisibilityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationDependabotSecretVisibilityEnum && value == other.value
+/** Visibility of a secret */
+class OrganizationDependabotSecretVisibilityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationDependabotSecretVisibilityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -481,19 +638,22 @@ class OrganizationDependabotSecretVisibilityEnum private constructor(
         @JvmField val PRIVATE = OrganizationDependabotSecretVisibilityEnum("private")
         @JvmField val SELECTED = OrganizationDependabotSecretVisibilityEnum("selected")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationDependabotSecretVisibilityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationDependabotSecretVisibilityEnum(value)
     }
 }
 
-/**
- * Type of repository selection requested.
- */
-class OrganizationProgrammaticAccessGrantRepositorySelectionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationProgrammaticAccessGrantRepositorySelectionEnum && value == other.value
+/** Type of repository selection requested. */
+class OrganizationProgrammaticAccessGrantRepositorySelectionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationProgrammaticAccessGrantRepositorySelectionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -502,40 +662,51 @@ class OrganizationProgrammaticAccessGrantRepositorySelectionEnum private constru
         @JvmField val ALL = OrganizationProgrammaticAccessGrantRepositorySelectionEnum("all")
         @JvmField val SUBSET = OrganizationProgrammaticAccessGrantRepositorySelectionEnum("subset")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationProgrammaticAccessGrantRepositorySelectionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            OrganizationProgrammaticAccessGrantRepositorySelectionEnum(value)
     }
 }
 
-/**
- * Type of repository selection requested.
- */
-class OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum && value == other.value
+/** Type of repository selection requested. */
+class OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val NONE = OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum("none")
+        @JvmField
+        val NONE = OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum("none")
         @JvmField val ALL = OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum("all")
-        @JvmField val SUBSET = OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum("subset")
+        @JvmField
+        val SUBSET = OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum("subset")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            OrganizationProgrammaticAccessGrantRequestRepositorySelectionEnum(value)
     }
 }
 
-/**
- * The system role from which this role inherits permissions.
- */
-class OrganizationRoleBaseRoleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationRoleBaseRoleEnum && value == other.value
+/** The system role from which this role inherits permissions. */
+class OrganizationRoleBaseRoleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationRoleBaseRoleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -546,19 +717,22 @@ class OrganizationRoleBaseRoleEnum private constructor(
         @JvmField val MAINTAIN = OrganizationRoleBaseRoleEnum("maintain")
         @JvmField val ADMIN = OrganizationRoleBaseRoleEnum("admin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationRoleBaseRoleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationRoleBaseRoleEnum(value)
     }
 }
 
-/**
- * Source answers the question, "where did this role come from?"
- */
-class OrganizationRoleSourceEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationRoleSourceEnum && value == other.value
+/** Source answers the question, "where did this role come from?" */
+class OrganizationRoleSourceEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationRoleSourceEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -567,19 +741,22 @@ class OrganizationRoleSourceEnum private constructor(
         @JvmField val ENTERPRISE = OrganizationRoleSourceEnum("Enterprise")
         @JvmField val PREDEFINED = OrganizationRoleSourceEnum("Predefined")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationRoleSourceEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationRoleSourceEnum(value)
     }
 }
 
-/**
- * The token status as of the latest validity check.
- */
-class OrganizationSecretScanningAlertValidityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrganizationSecretScanningAlertValidityEnum && value == other.value
+/** The token status as of the latest validity check. */
+class OrganizationSecretScanningAlertValidityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrganizationSecretScanningAlertValidityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -588,7 +765,10 @@ class OrganizationSecretScanningAlertValidityEnum private constructor(
         @JvmField val INACTIVE = OrganizationSecretScanningAlertValidityEnum("inactive")
         @JvmField val UNKNOWN = OrganizationSecretScanningAlertValidityEnum("unknown")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrganizationSecretScanningAlertValidityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrganizationSecretScanningAlertValidityEnum(value)
     }
 }

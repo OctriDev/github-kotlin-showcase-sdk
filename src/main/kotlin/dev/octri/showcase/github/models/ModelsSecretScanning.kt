@@ -4,596 +4,445 @@
 package dev.octri.showcase.github.models
 
 import com.fasterxml.jackson.annotation.JsonProperty as JacksonJsonProperty
-
 import java.time.OffsetDateTime
 
 typealias NullableAlertUpdatedAt = OffsetDateTime
 
 /**
- * Details on the location where the token was initially detected. This can be a commit, wiki commit, issue, discussion, pull request.
+ * Details on the location where the token was initially detected. This can be a commit, wiki
+ * commit, issue, discussion, pull request.
  */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
     com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationCommit::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationWikiCommit::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationIssueTitle::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationIssueBody::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationIssueComment::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationDiscussionTitle::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationDiscussionBody::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationDiscussionComment::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestTitle::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestBody::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestComment::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestReview::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = SecretScanningLocationPullRequestReviewComment::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationWikiCommit::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationIssueTitle::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationIssueBody::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationIssueComment::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationDiscussionTitle::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationDiscussionBody::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationDiscussionComment::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationPullRequestTitle::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationPullRequestBody::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationPullRequestComment::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationPullRequestReview::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = SecretScanningLocationPullRequestReviewComment::class
+    ),
 )
 sealed interface NullableSecretScanningFirstDetectedLocation
 
-/**
- * Typed representation of the `OrganizationSecretScanningAlert` API schema.
- */
+/** Typed representation of the `OrganizationSecretScanningAlert` API schema. */
 class OrganizationSecretScanningAlert(
-    /**
-     * The security alert number.
-     */
+    /** The security alert number. */
     val number: AlertNumber? = null,
-    /**
-     * The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("created_at") val createdAt: AlertCreatedAt? = null,
-    /**
-     * The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("updated_at") val updatedAt: NullableAlertUpdatedAt? = null,
-    /**
-     * The REST API URL of the alert resource.
-     */
+    /** The REST API URL of the alert resource. */
     val url: AlertUrl? = null,
-    /**
-     * The GitHub URL of the alert resource.
-     */
+    /** The GitHub URL of the alert resource. */
     @JacksonJsonProperty("html_url") val htmlUrl: AlertHtmlUrl? = null,
-    /**
-     * The REST API URL of the code locations for this alert.
-     */
+    /** The REST API URL of the code locations for this alert. */
     @JacksonJsonProperty("locations_url") val locationsUrl: String? = null,
     /**
-     * Sets the state of the secret scanning alert. You must provide `resolution` when you set the state to `resolved`.
+     * Sets the state of the secret scanning alert. You must provide `resolution` when you set the
+     * state to `resolved`.
      */
     val state: SecretScanningAlertState? = null,
-    /**
-     * **Required when the `state` is `resolved`.** The reason for resolving the alert.
-     */
+    /** **Required when the `state` is `resolved`.** The reason for resolving the alert. */
     val resolution: SecretScanningAlertResolution? = null,
-    /**
-     * The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("resolved_at") val resolvedAt: OffsetDateTime? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @JacksonJsonProperty("resolved_by") val resolvedBy: NullableSimpleUser? = null,
-    /**
-     * The type of secret that secret scanning detected.
-     */
+    /** The type of secret that secret scanning detected. */
     @JacksonJsonProperty("secret_type") val secretType: String? = null,
     /**
-     * User-friendly name for the detected secret, matching the `secret_type`. For a list of built-in patterns, see "Supported secret scanning patterns."
+     * User-friendly name for the detected secret, matching the `secret_type`. For a list of
+     * built-in patterns, see "Supported secret scanning patterns."
      */
     @JacksonJsonProperty("secret_type_display_name") val secretTypeDisplayName: String? = null,
-    /**
-     * The provider of the secret that was detected.
-     */
+    /** The provider of the secret that was detected. */
     val provider: String? = null,
     /**
-     * The slug identifier for the provider of the secret that was detected. Use this value for filtering by provider with the `providers` or `exclude_providers` parameters.
+     * The slug identifier for the provider of the secret that was detected. Use this value for
+     * filtering by provider with the `providers` or `exclude_providers` parameters.
      */
     @JacksonJsonProperty("provider_slug") val providerSlug: String? = null,
-    /**
-     * The secret that was detected.
-     */
+    /** The secret that was detected. */
     val secret: String? = null,
-    /**
-     * A GitHub repository.
-     */
+    /** A GitHub repository. */
     val repository: SimpleRepository? = null,
-    /**
-     * Whether push protection was bypassed for the detected secret.
-     */
+    /** Whether push protection was bypassed for the detected secret. */
     @JacksonJsonProperty("push_protection_bypassed") val pushProtectionBypassed: Boolean? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("push_protection_bypassed_by") val pushProtectionBypassedBy: NullableSimpleUser? = null,
-    /**
-     * The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @JacksonJsonProperty("push_protection_bypassed_at") val pushProtectionBypassedAt: OffsetDateTime? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_reviewer") val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
-    /**
-     * An optional comment when reviewing a push protection bypass.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_reviewer_comment") val pushProtectionBypassRequestReviewerComment: String? = null,
-    /**
-     * An optional comment when requesting a push protection bypass.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_comment") val pushProtectionBypassRequestComment: String? = null,
-    /**
-     * The URL to a push protection bypass request.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_html_url") val pushProtectionBypassRequestHtmlUrl: String? = null,
-    /**
-     * The comment that was optionally added when this alert was closed
-     */
+    /** A GitHub user. */
+    @JacksonJsonProperty("push_protection_bypassed_by")
+    val pushProtectionBypassedBy: NullableSimpleUser? = null,
+    /** The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @JacksonJsonProperty("push_protection_bypassed_at")
+    val pushProtectionBypassedAt: OffsetDateTime? = null,
+    /** A GitHub user. */
+    @JacksonJsonProperty("push_protection_bypass_request_reviewer")
+    val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
+    /** An optional comment when reviewing a push protection bypass. */
+    @JacksonJsonProperty("push_protection_bypass_request_reviewer_comment")
+    val pushProtectionBypassRequestReviewerComment: String? = null,
+    /** An optional comment when requesting a push protection bypass. */
+    @JacksonJsonProperty("push_protection_bypass_request_comment")
+    val pushProtectionBypassRequestComment: String? = null,
+    /** The URL to a push protection bypass request. */
+    @JacksonJsonProperty("push_protection_bypass_request_html_url")
+    val pushProtectionBypassRequestHtmlUrl: String? = null,
+    /** The comment that was optionally added when this alert was closed */
     @JacksonJsonProperty("resolution_comment") val resolutionComment: String? = null,
-    /**
-     * The token status as of the latest validity check.
-     */
+    /** The token status as of the latest validity check. */
     val validity: OrganizationSecretScanningAlertValidityEnum? = null,
-    /**
-     * Whether the secret was publicly leaked.
-     */
+    /** Whether the secret was publicly leaked. */
     @JacksonJsonProperty("publicly_leaked") val publiclyLeaked: Boolean? = null,
     /**
-     * Whether the detected secret was found in multiple repositories in the same organization or enterprise.
+     * Whether the detected secret was found in multiple repositories in the same organization or
+     * enterprise.
      */
     @JacksonJsonProperty("multi_repo") val multiRepo: Boolean? = null,
-    /**
-     * A boolean value representing whether or not alert is base64 encoded
-     */
+    /** A boolean value representing whether or not alert is base64 encoded */
     @JacksonJsonProperty("is_base64_encoded") val isBase64Encoded: Boolean? = null,
     /**
-     * Details on the location where the token was initially detected. This can be a commit, wiki commit, issue, discussion, pull request.
+     * Details on the location where the token was initially detected. This can be a commit, wiki
+     * commit, issue, discussion, pull request.
      */
-    @JacksonJsonProperty("first_location_detected") val firstLocationDetected: NullableSecretScanningFirstDetectedLocation? = null,
+    @JacksonJsonProperty("first_location_detected")
+    val firstLocationDetected: NullableSecretScanningFirstDetectedLocation? = null,
     /**
-     * A boolean value representing whether or not the token in the alert was detected in more than one location.
+     * A boolean value representing whether or not the token in the alert was detected in more than
+     * one location.
      */
     @JacksonJsonProperty("has_more_locations") val hasMoreLocations: Boolean? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @JacksonJsonProperty("assigned_to") val assignedTo: NullableSimpleUser? = null,
-    /**
-     * An optional comment from the closure request author.
-     */
+    /** An optional comment from the closure request author. */
     @JacksonJsonProperty("closure_request_comment") val closureRequestComment: String? = null,
-    /**
-     * An optional comment from the closure request reviewer.
-     */
-    @JacksonJsonProperty("closure_request_reviewer_comment") val closureRequestReviewerComment: String? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("closure_request_reviewer") val closureRequestReviewer: NullableSimpleUser? = null
+    /** An optional comment from the closure request reviewer. */
+    @JacksonJsonProperty("closure_request_reviewer_comment")
+    val closureRequestReviewerComment: String? = null,
+    /** A GitHub user. */
+    @JacksonJsonProperty("closure_request_reviewer")
+    val closureRequestReviewer: NullableSimpleUser? = null,
 )
 
-/**
- * Typed representation of the `SecretScanningAlert` API schema.
- */
+/** Typed representation of the `SecretScanningAlert` API schema. */
 class SecretScanningAlert(
-    /**
-     * The security alert number.
-     */
+    /** The security alert number. */
     val number: AlertNumber? = null,
-    /**
-     * The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("created_at") val createdAt: AlertCreatedAt? = null,
-    /**
-     * The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("updated_at") val updatedAt: NullableAlertUpdatedAt? = null,
-    /**
-     * The REST API URL of the alert resource.
-     */
+    /** The REST API URL of the alert resource. */
     val url: AlertUrl? = null,
-    /**
-     * The GitHub URL of the alert resource.
-     */
+    /** The GitHub URL of the alert resource. */
     @JacksonJsonProperty("html_url") val htmlUrl: AlertHtmlUrl? = null,
-    /**
-     * The REST API URL of the code locations for this alert.
-     */
+    /** The REST API URL of the code locations for this alert. */
     @JacksonJsonProperty("locations_url") val locationsUrl: String? = null,
     /**
-     * Sets the state of the secret scanning alert. You must provide `resolution` when you set the state to `resolved`.
+     * Sets the state of the secret scanning alert. You must provide `resolution` when you set the
+     * state to `resolved`.
      */
     val state: SecretScanningAlertState? = null,
-    /**
-     * **Required when the `state` is `resolved`.** The reason for resolving the alert.
-     */
+    /** **Required when the `state` is `resolved`.** The reason for resolving the alert. */
     val resolution: SecretScanningAlertResolution? = null,
-    /**
-     * The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("resolved_at") val resolvedAt: OffsetDateTime? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @JacksonJsonProperty("resolved_by") val resolvedBy: NullableSimpleUser? = null,
-    /**
-     * An optional comment to resolve an alert.
-     */
+    /** An optional comment to resolve an alert. */
     @JacksonJsonProperty("resolution_comment") val resolutionComment: String? = null,
-    /**
-     * The type of secret that secret scanning detected.
-     */
+    /** The type of secret that secret scanning detected. */
     @JacksonJsonProperty("secret_type") val secretType: String? = null,
     /**
-     * User-friendly name for the detected secret, matching the `secret_type`. For a list of built-in patterns, see "Supported secret scanning patterns."
+     * User-friendly name for the detected secret, matching the `secret_type`. For a list of
+     * built-in patterns, see "Supported secret scanning patterns."
      */
     @JacksonJsonProperty("secret_type_display_name") val secretTypeDisplayName: String? = null,
-    /**
-     * The provider of the secret that was detected.
-     */
+    /** The provider of the secret that was detected. */
     val provider: String? = null,
     /**
-     * The slug identifier for the provider of the secret that was detected. Use this value for filtering by provider with the `providers` or `exclude_providers` parameters.
+     * The slug identifier for the provider of the secret that was detected. Use this value for
+     * filtering by provider with the `providers` or `exclude_providers` parameters.
      */
     @JacksonJsonProperty("provider_slug") val providerSlug: String? = null,
-    /**
-     * The secret that was detected.
-     */
+    /** The secret that was detected. */
     val secret: String? = null,
-    /**
-     * Whether push protection was bypassed for the detected secret.
-     */
+    /** Whether push protection was bypassed for the detected secret. */
     @JacksonJsonProperty("push_protection_bypassed") val pushProtectionBypassed: Boolean? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("push_protection_bypassed_by") val pushProtectionBypassedBy: NullableSimpleUser? = null,
-    /**
-     * The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @JacksonJsonProperty("push_protection_bypassed_at") val pushProtectionBypassedAt: OffsetDateTime? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_reviewer") val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
-    /**
-     * An optional comment when reviewing a push protection bypass.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_reviewer_comment") val pushProtectionBypassRequestReviewerComment: String? = null,
-    /**
-     * An optional comment when requesting a push protection bypass.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_comment") val pushProtectionBypassRequestComment: String? = null,
-    /**
-     * The URL to a push protection bypass request.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_html_url") val pushProtectionBypassRequestHtmlUrl: String? = null,
-    /**
-     * The token status as of the latest validity check.
-     */
+    /** A GitHub user. */
+    @JacksonJsonProperty("push_protection_bypassed_by")
+    val pushProtectionBypassedBy: NullableSimpleUser? = null,
+    /** The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @JacksonJsonProperty("push_protection_bypassed_at")
+    val pushProtectionBypassedAt: OffsetDateTime? = null,
+    /** A GitHub user. */
+    @JacksonJsonProperty("push_protection_bypass_request_reviewer")
+    val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
+    /** An optional comment when reviewing a push protection bypass. */
+    @JacksonJsonProperty("push_protection_bypass_request_reviewer_comment")
+    val pushProtectionBypassRequestReviewerComment: String? = null,
+    /** An optional comment when requesting a push protection bypass. */
+    @JacksonJsonProperty("push_protection_bypass_request_comment")
+    val pushProtectionBypassRequestComment: String? = null,
+    /** The URL to a push protection bypass request. */
+    @JacksonJsonProperty("push_protection_bypass_request_html_url")
+    val pushProtectionBypassRequestHtmlUrl: String? = null,
+    /** The token status as of the latest validity check. */
     val validity: SecretScanningAlertValidityEnum? = null,
-    /**
-     * Whether the detected secret was publicly leaked.
-     */
+    /** Whether the detected secret was publicly leaked. */
     @JacksonJsonProperty("publicly_leaked") val publiclyLeaked: Boolean? = null,
     /**
-     * Whether the detected secret was found in multiple repositories under the same organization or enterprise.
+     * Whether the detected secret was found in multiple repositories under the same organization or
+     * enterprise.
      */
     @JacksonJsonProperty("multi_repo") val multiRepo: Boolean? = null,
-    /**
-     * A boolean value representing whether or not alert is base64 encoded
-     */
+    /** A boolean value representing whether or not alert is base64 encoded */
     @JacksonJsonProperty("is_base64_encoded") val isBase64Encoded: Boolean? = null,
     /**
-     * Details on the location where the token was initially detected. This can be a commit, wiki commit, issue, discussion, pull request.
+     * Details on the location where the token was initially detected. This can be a commit, wiki
+     * commit, issue, discussion, pull request.
      */
-    @JacksonJsonProperty("first_location_detected") val firstLocationDetected: NullableSecretScanningFirstDetectedLocation? = null,
+    @JacksonJsonProperty("first_location_detected")
+    val firstLocationDetected: NullableSecretScanningFirstDetectedLocation? = null,
     /**
-     * A boolean value representing whether or not the token in the alert was detected in more than one location.
+     * A boolean value representing whether or not the token in the alert was detected in more than
+     * one location.
      */
     @JacksonJsonProperty("has_more_locations") val hasMoreLocations: Boolean? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @JacksonJsonProperty("assigned_to") val assignedTo: NullableSimpleUser? = null,
-    /**
-     * An optional comment from the closure request author.
-     */
+    /** An optional comment from the closure request author. */
     @JacksonJsonProperty("closure_request_comment") val closureRequestComment: String? = null,
-    /**
-     * An optional comment from the closure request reviewer.
-     */
-    @JacksonJsonProperty("closure_request_reviewer_comment") val closureRequestReviewerComment: String? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("closure_request_reviewer") val closureRequestReviewer: NullableSimpleUser? = null
+    /** An optional comment from the closure request reviewer. */
+    @JacksonJsonProperty("closure_request_reviewer_comment")
+    val closureRequestReviewerComment: String? = null,
+    /** A GitHub user. */
+    @JacksonJsonProperty("closure_request_reviewer")
+    val closureRequestReviewer: NullableSimpleUser? = null,
 )
 
 typealias SecretScanningAlertAssignee = String
 
-/**
- * Required object value serialized in the `metadata[]` wire field.
- */
+/** Required object value serialized in the `metadata[]` wire field. */
 data class SecretScanningAlertMetadataItem(
-    /**
-     * The metadata key.
-     */
+    /** The metadata key. */
     val key: String,
-    /**
-     * The metadata value.
-     */
-    @JacksonJsonProperty("value") val `value`: String
+    /** The metadata value. */
+    @JacksonJsonProperty("value") val `value`: String,
 )
 
 typealias SecretScanningAlertMetadata = List<SecretScanningAlertMetadataItem>
 
 typealias SecretScanningAlertResolutionComment = String
 
-/**
- * Typed representation of the `SecretScanningAlertWebhook` API schema.
- */
+/** Typed representation of the `SecretScanningAlertWebhook` API schema. */
 data class SecretScanningAlertWebhook(
-    /**
-     * The security alert number.
-     */
+    /** The security alert number. */
     val number: AlertNumber? = null,
-    /**
-     * The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("created_at") val createdAt: AlertCreatedAt? = null,
-    /**
-     * The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("updated_at") val updatedAt: NullableAlertUpdatedAt? = null,
-    /**
-     * The REST API URL of the alert resource.
-     */
+    /** The REST API URL of the alert resource. */
     val url: AlertUrl? = null,
-    /**
-     * The GitHub URL of the alert resource.
-     */
+    /** The GitHub URL of the alert resource. */
     @JacksonJsonProperty("html_url") val htmlUrl: AlertHtmlUrl? = null,
-    /**
-     * The REST API URL of the code locations for this alert.
-     */
+    /** The REST API URL of the code locations for this alert. */
     @JacksonJsonProperty("locations_url") val locationsUrl: String? = null,
-    /**
-     * The reason for resolving the alert.
-     */
+    /** The reason for resolving the alert. */
     val resolution: SecretScanningAlertResolutionWebhook? = null,
-    /**
-     * The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("resolved_at") val resolvedAt: OffsetDateTime? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @JacksonJsonProperty("resolved_by") val resolvedBy: NullableSimpleUser? = null,
-    /**
-     * An optional comment to resolve an alert.
-     */
+    /** An optional comment to resolve an alert. */
     @JacksonJsonProperty("resolution_comment") val resolutionComment: String? = null,
-    /**
-     * The type of secret that secret scanning detected.
-     */
+    /** The type of secret that secret scanning detected. */
     @JacksonJsonProperty("secret_type") val secretType: String? = null,
     /**
-     * User-friendly name for the detected secret, matching the `secret_type`. For a list of built-in patterns, see "Supported secret scanning patterns."
+     * User-friendly name for the detected secret, matching the `secret_type`. For a list of
+     * built-in patterns, see "Supported secret scanning patterns."
      */
     @JacksonJsonProperty("secret_type_display_name") val secretTypeDisplayName: String? = null,
-    /**
-     * The provider of the secret that was detected.
-     */
+    /** The provider of the secret that was detected. */
     val provider: String? = null,
-    /**
-     * The slug identifier for the provider of the secret that was detected.
-     */
+    /** The slug identifier for the provider of the secret that was detected. */
     @JacksonJsonProperty("provider_slug") val providerSlug: String? = null,
     /**
-     * The category of the detected secret. `default` covers specific provider patterns and custom patterns; `generic` covers non-specific patterns and AI-detected secrets.
+     * The category of the detected secret. `default` covers specific provider patterns and custom
+     * patterns; `generic` covers non-specific patterns and AI-detected secrets.
      */
-    @JacksonJsonProperty("secret_category") val secretCategory: SecretScanningAlertWebhookSecretCategoryEnum? = null,
-    /**
-     * The token status as of the latest validity check.
-     */
+    @JacksonJsonProperty("secret_category")
+    val secretCategory: SecretScanningAlertWebhookSecretCategoryEnum? = null,
+    /** The token status as of the latest validity check. */
     val validity: SecretScanningAlertWebhookValidityEnum? = null,
-    /**
-     * Whether push protection was bypassed for the detected secret.
-     */
+    /** Whether push protection was bypassed for the detected secret. */
     @JacksonJsonProperty("push_protection_bypassed") val pushProtectionBypassed: Boolean? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("push_protection_bypassed_by") val pushProtectionBypassedBy: NullableSimpleUser? = null,
-    /**
-     * The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @JacksonJsonProperty("push_protection_bypassed_at") val pushProtectionBypassedAt: OffsetDateTime? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_reviewer") val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
-    /**
-     * An optional comment when reviewing a push protection bypass.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_reviewer_comment") val pushProtectionBypassRequestReviewerComment: String? = null,
-    /**
-     * An optional comment when requesting a push protection bypass.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_comment") val pushProtectionBypassRequestComment: String? = null,
-    /**
-     * The URL to a push protection bypass request.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_html_url") val pushProtectionBypassRequestHtmlUrl: String? = null,
-    /**
-     * Whether the detected secret was publicly leaked.
-     */
+    /** A GitHub user. */
+    @JacksonJsonProperty("push_protection_bypassed_by")
+    val pushProtectionBypassedBy: NullableSimpleUser? = null,
+    /** The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @JacksonJsonProperty("push_protection_bypassed_at")
+    val pushProtectionBypassedAt: OffsetDateTime? = null,
+    /** A GitHub user. */
+    @JacksonJsonProperty("push_protection_bypass_request_reviewer")
+    val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
+    /** An optional comment when reviewing a push protection bypass. */
+    @JacksonJsonProperty("push_protection_bypass_request_reviewer_comment")
+    val pushProtectionBypassRequestReviewerComment: String? = null,
+    /** An optional comment when requesting a push protection bypass. */
+    @JacksonJsonProperty("push_protection_bypass_request_comment")
+    val pushProtectionBypassRequestComment: String? = null,
+    /** The URL to a push protection bypass request. */
+    @JacksonJsonProperty("push_protection_bypass_request_html_url")
+    val pushProtectionBypassRequestHtmlUrl: String? = null,
+    /** Whether the detected secret was publicly leaked. */
     @JacksonJsonProperty("publicly_leaked") val publiclyLeaked: Boolean? = null,
     /**
-     * Whether the detected secret was found in multiple repositories in the same organization or business.
+     * Whether the detected secret was found in multiple repositories in the same organization or
+     * business.
      */
     @JacksonJsonProperty("multi_repo") val multiRepo: Boolean? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @JacksonJsonProperty("assigned_to") val assignedTo: NullableSimpleUser? = null,
-    /**
-     * An optional comment from the closure request author.
-     */
+    /** An optional comment from the closure request author. */
     @JacksonJsonProperty("closure_request_comment") val closureRequestComment: String? = null,
-    /**
-     * An optional comment from the closure request reviewer.
-     */
-    @JacksonJsonProperty("closure_request_reviewer_comment") val closureRequestReviewerComment: String? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("closure_request_reviewer") val closureRequestReviewer: NullableSimpleUser? = null,
-    /**
-     * A list of metadata key/value pairs associated with the secret scanning alert.
-     */
-    val metadata: SecretScanningAlertMetadata? = null
+    /** An optional comment from the closure request reviewer. */
+    @JacksonJsonProperty("closure_request_reviewer_comment")
+    val closureRequestReviewerComment: String? = null,
+    /** A GitHub user. */
+    @JacksonJsonProperty("closure_request_reviewer")
+    val closureRequestReviewer: NullableSimpleUser? = null,
+    /** A list of metadata key/value pairs associated with the secret scanning alert. */
+    val metadata: SecretScanningAlertMetadata? = null,
 )
 
-/**
- * Typed representation of the `SecretScanningAlertWithMetadata` API schema.
- */
+/** Typed representation of the `SecretScanningAlertWithMetadata` API schema. */
 class SecretScanningAlertWithMetadata(
-    /**
-     * The security alert number.
-     */
+    /** The security alert number. */
     val number: AlertNumber? = null,
-    /**
-     * The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was created in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("created_at") val createdAt: AlertCreatedAt? = null,
-    /**
-     * The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was last updated in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("updated_at") val updatedAt: NullableAlertUpdatedAt? = null,
-    /**
-     * The REST API URL of the alert resource.
-     */
+    /** The REST API URL of the alert resource. */
     val url: AlertUrl? = null,
-    /**
-     * The GitHub URL of the alert resource.
-     */
+    /** The GitHub URL of the alert resource. */
     @JacksonJsonProperty("html_url") val htmlUrl: AlertHtmlUrl? = null,
-    /**
-     * The REST API URL of the code locations for this alert.
-     */
+    /** The REST API URL of the code locations for this alert. */
     @JacksonJsonProperty("locations_url") val locationsUrl: String? = null,
     /**
-     * Sets the state of the secret scanning alert. You must provide `resolution` when you set the state to `resolved`.
+     * Sets the state of the secret scanning alert. You must provide `resolution` when you set the
+     * state to `resolved`.
      */
     val state: SecretScanningAlertState? = null,
-    /**
-     * **Required when the `state` is `resolved`.** The reason for resolving the alert.
-     */
+    /** **Required when the `state` is `resolved`.** The reason for resolving the alert. */
     val resolution: SecretScanningAlertResolution? = null,
-    /**
-     * The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
+    /** The time that the alert was resolved in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
     @JacksonJsonProperty("resolved_at") val resolvedAt: OffsetDateTime? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @JacksonJsonProperty("resolved_by") val resolvedBy: NullableSimpleUser? = null,
-    /**
-     * An optional comment to resolve an alert.
-     */
+    /** An optional comment to resolve an alert. */
     @JacksonJsonProperty("resolution_comment") val resolutionComment: String? = null,
-    /**
-     * The type of secret that secret scanning detected.
-     */
+    /** The type of secret that secret scanning detected. */
     @JacksonJsonProperty("secret_type") val secretType: String? = null,
     /**
-     * User-friendly name for the detected secret, matching the `secret_type`. For a list of built-in patterns, see "Supported secret scanning patterns."
+     * User-friendly name for the detected secret, matching the `secret_type`. For a list of
+     * built-in patterns, see "Supported secret scanning patterns."
      */
     @JacksonJsonProperty("secret_type_display_name") val secretTypeDisplayName: String? = null,
-    /**
-     * The provider of the secret that was detected.
-     */
+    /** The provider of the secret that was detected. */
     val provider: String? = null,
     /**
-     * The slug identifier for the provider of the secret that was detected. Use this value for filtering by provider with the `providers` or `exclude_providers` parameters.
+     * The slug identifier for the provider of the secret that was detected. Use this value for
+     * filtering by provider with the `providers` or `exclude_providers` parameters.
      */
     @JacksonJsonProperty("provider_slug") val providerSlug: String? = null,
-    /**
-     * The secret that was detected.
-     */
+    /** The secret that was detected. */
     val secret: String? = null,
-    /**
-     * Whether push protection was bypassed for the detected secret.
-     */
+    /** Whether push protection was bypassed for the detected secret. */
     @JacksonJsonProperty("push_protection_bypassed") val pushProtectionBypassed: Boolean? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("push_protection_bypassed_by") val pushProtectionBypassedBy: NullableSimpleUser? = null,
-    /**
-     * The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @JacksonJsonProperty("push_protection_bypassed_at") val pushProtectionBypassedAt: OffsetDateTime? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_reviewer") val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
-    /**
-     * An optional comment when reviewing a push protection bypass.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_reviewer_comment") val pushProtectionBypassRequestReviewerComment: String? = null,
-    /**
-     * An optional comment when requesting a push protection bypass.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_comment") val pushProtectionBypassRequestComment: String? = null,
-    /**
-     * The URL to a push protection bypass request.
-     */
-    @JacksonJsonProperty("push_protection_bypass_request_html_url") val pushProtectionBypassRequestHtmlUrl: String? = null,
-    /**
-     * The token status as of the latest validity check.
-     */
+    /** A GitHub user. */
+    @JacksonJsonProperty("push_protection_bypassed_by")
+    val pushProtectionBypassedBy: NullableSimpleUser? = null,
+    /** The time that push protection was bypassed in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @JacksonJsonProperty("push_protection_bypassed_at")
+    val pushProtectionBypassedAt: OffsetDateTime? = null,
+    /** A GitHub user. */
+    @JacksonJsonProperty("push_protection_bypass_request_reviewer")
+    val pushProtectionBypassRequestReviewer: NullableSimpleUser? = null,
+    /** An optional comment when reviewing a push protection bypass. */
+    @JacksonJsonProperty("push_protection_bypass_request_reviewer_comment")
+    val pushProtectionBypassRequestReviewerComment: String? = null,
+    /** An optional comment when requesting a push protection bypass. */
+    @JacksonJsonProperty("push_protection_bypass_request_comment")
+    val pushProtectionBypassRequestComment: String? = null,
+    /** The URL to a push protection bypass request. */
+    @JacksonJsonProperty("push_protection_bypass_request_html_url")
+    val pushProtectionBypassRequestHtmlUrl: String? = null,
+    /** The token status as of the latest validity check. */
     val validity: SecretScanningAlertWithMetadataValidityEnum? = null,
-    /**
-     * Whether the detected secret was publicly leaked.
-     */
+    /** Whether the detected secret was publicly leaked. */
     @JacksonJsonProperty("publicly_leaked") val publiclyLeaked: Boolean? = null,
     /**
-     * Whether the detected secret was found in multiple repositories under the same organization or enterprise.
+     * Whether the detected secret was found in multiple repositories under the same organization or
+     * enterprise.
      */
     @JacksonJsonProperty("multi_repo") val multiRepo: Boolean? = null,
-    /**
-     * A boolean value representing whether or not alert is base64 encoded
-     */
+    /** A boolean value representing whether or not alert is base64 encoded */
     @JacksonJsonProperty("is_base64_encoded") val isBase64Encoded: Boolean? = null,
     /**
-     * Details on the location where the token was initially detected. This can be a commit, wiki commit, issue, discussion, pull request.
+     * Details on the location where the token was initially detected. This can be a commit, wiki
+     * commit, issue, discussion, pull request.
      */
-    @JacksonJsonProperty("first_location_detected") val firstLocationDetected: NullableSecretScanningFirstDetectedLocation? = null,
+    @JacksonJsonProperty("first_location_detected")
+    val firstLocationDetected: NullableSecretScanningFirstDetectedLocation? = null,
     /**
-     * A boolean value representing whether or not the token in the alert was detected in more than one location.
+     * A boolean value representing whether or not the token in the alert was detected in more than
+     * one location.
      */
     @JacksonJsonProperty("has_more_locations") val hasMoreLocations: Boolean? = null,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @JacksonJsonProperty("assigned_to") val assignedTo: NullableSimpleUser? = null,
-    /**
-     * An optional comment from the closure request author.
-     */
+    /** An optional comment from the closure request author. */
     @JacksonJsonProperty("closure_request_comment") val closureRequestComment: String? = null,
-    /**
-     * An optional comment from the closure request reviewer.
-     */
-    @JacksonJsonProperty("closure_request_reviewer_comment") val closureRequestReviewerComment: String? = null,
-    /**
-     * A GitHub user.
-     */
-    @JacksonJsonProperty("closure_request_reviewer") val closureRequestReviewer: NullableSimpleUser? = null,
-    /**
-     * A list of metadata key/value pairs associated with the secret scanning alert.
-     */
-    val metadata: SecretScanningAlertMetadata? = null
+    /** An optional comment from the closure request reviewer. */
+    @JacksonJsonProperty("closure_request_reviewer_comment")
+    val closureRequestReviewerComment: String? = null,
+    /** A GitHub user. */
+    @JacksonJsonProperty("closure_request_reviewer")
+    val closureRequestReviewer: NullableSimpleUser? = null,
+    /** A list of metadata key/value pairs associated with the secret scanning alert. */
+    val metadata: SecretScanningAlertMetadata? = null,
 )

@@ -11,25 +11,48 @@ import dev.octri.showcase.github.TimelineIssueEvents
 
 internal object IssuesListEventsForTimelineOperation {
     /**
-     * Lists timeline events recorded for a repository issue. Use `exclude` to omit selected event types, and `page` and `per_page` to paginate the results.
+     * Lists timeline events recorded for a repository issue. Use `exclude` to omit selected event
+     * types, and `page` and `per_page` to paginate the results.
      *
      * List all timeline events for an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param exclude A comma-separated list of timeline event names to exclude from
-     *   the response.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param exclude A comma-separated list of timeline event names to exclude from the response.
      */
-    fun issuesListEventsForTimeline(clientConfig: ClientConfig, request: Issues.IssuesListEventsForTimelineRequest, options: RequestOptions? = null): List<TimelineIssueEvents> {
-        return SdkClient.request<List<TimelineIssueEvents>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/timeline", config = clientConfig, query = mapOf("per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "exclude" to
-    SdkClient.queryValue(request.exclude, "form", true)), operationId = "issuesListEventsForTimeline", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListEventsForTimeline(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListEventsForTimelineRequest,
+        options: RequestOptions? = null,
+    ): List<TimelineIssueEvents> {
+        return SdkClient.request<List<TimelineIssueEvents>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/timeline",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "exclude" to SdkClient.queryValue(request.exclude, "form", true),
+                        ),
+                    operationId = "issuesListEventsForTimeline",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

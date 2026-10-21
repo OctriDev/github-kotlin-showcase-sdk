@@ -3,24 +3,31 @@
 
 package dev.octri.showcase.github
 
-
 class CodesOfConductNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists all codes of conduct available on GitHub. Use the response's `key`, `name`, and URL fields to identify a code and retrieve its details.
+     * Lists all codes of conduct available on GitHub. Use the response's `key`, `name`, and URL
+     * fields to identify a code and retrieve its details.
      *
      * Returns array of all GitHub's codes of conduct.
      */
     fun getAllCodesOfConduct(options: RequestOptions? = null): List<CodeOfConduct> {
-        return dev.octri.showcase.github.methods.CodesOfConduct.codesOfConductGetAllCodesOfConduct(clientConfig, options)
+        return dev.octri.showcase.github.methods.CodesOfConduct.codesOfConductGetAllCodesOfConduct(
+            clientConfig,
+            options,
+        )
     }
 
     /**
-     * Retrieves information about a specific code of conduct. Supply the code's `key` to select the code whose details you need.
+     * Retrieves information about a specific code of conduct. Supply the code's `key` to select the
+     * code whose details you need.
      *
      * Returns information about the specified GitHub code of conduct.
      */
     fun getConductCode(key: String, options: RequestOptions? = null): CodeOfConduct {
-        return dev.octri.showcase.github.methods.CodesOfConduct.codesOfConductGetConductCode(clientConfig, key, options)
+        return dev.octri.showcase.github.methods.CodesOfConduct.codesOfConductGetConductCode(
+            clientConfig,
+            key,
+            options,
+        )
     }
-
 }

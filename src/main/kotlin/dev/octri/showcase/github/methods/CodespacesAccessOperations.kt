@@ -13,58 +13,143 @@ import dev.octri.showcase.github.ValidationError
 
 internal object CodespacesSetCodespacesAccessOperation {
     /**
-     * Sets which users can access codespaces in an organization. This is synonymous with granting or revoking codespaces access permissions for users according to the visibility. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Sets which users can access codespaces in an organization. This is synonymous with granting
+     * or revoking codespaces access permissions for users according to the visibility. OAuth app
+     * tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param visibility Which users can access codespaces in the organization.
-     *   `disabled` means that no users can access codespaces in the organization.
-     * @param selectedUsernames The usernames of the organization members who should
-     *   have access to codespaces in the organization. Required when `visibility` is
-     *   `selected_members`. The provided list of usernames will replace any existing
-     *   value.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param visibility Which users can access codespaces in the organization. `disabled` means
+     *   that no users can access codespaces in the organization.
+     * @param selectedUsernames The usernames of the organization members who should have access to
+     *   codespaces in the organization. Required when `visibility` is `selected_members`. The
+     *   provided list of usernames will replace any existing value.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun codespacesSetCodespacesAccess(clientConfig: ClientConfig, org: String, visibility: CodespacesSetCodespacesAccessVisibilityEnum, selectedUsernames: List<String>? = null, options: RequestOptions? = null): Unit {
+    fun codespacesSetCodespacesAccess(
+        clientConfig: ClientConfig,
+        org: String,
+        visibility: CodespacesSetCodespacesAccessVisibilityEnum,
+        selectedUsernames: List<String>? = null,
+        options: RequestOptions? = null,
+    ): Unit {
         if (selectedUsernames != null) {
-            Validation.validateItems("selected_usernames", selectedUsernames, Validation.LengthOpts(max = 100))
-}
+            Validation.validateItems(
+                "selected_usernames",
+                selectedUsernames,
+                Validation.LengthOpts(max = 100),
+            )
+        }
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/codespaces/access", config = clientConfig, body = SdkClient.bodyMap("visibility" to (visibility), "selected_usernames" to
-    (SdkClient.omitIfNull(selectedUsernames))), operationId = "codespacesSetCodespacesAccess", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java)))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/codespaces/access",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "visibility" to (visibility),
+                        "selected_usernames" to (SdkClient.omitIfNull(selectedUsernames)),
+                    ),
+                operationId = "codespacesSetCodespacesAccess",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "404" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                        "500" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object CodespacesSetCodespacesAccessUsersOperation {
     /**
-     * Codespaces for the specified users will be billed to the organization. To use this endpoint, the access settings for the organization must be set to `selected_members`. For information on how to change this setting, see "Manage access control for organization codespaces." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Codespaces for the specified users will be billed to the organization. To use this endpoint,
+     * the access settings for the organization must be set to `selected_members`. For information
+     * on how to change this setting, see "Manage access control for organization codespaces." OAuth
+     * app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedUsernames The usernames of the organization members and outside
-     *   collaborators whose codespaces should be billed to the organization.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param selectedUsernames The usernames of the organization members and outside collaborators
+     *   whose codespaces should be billed to the organization.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun codespacesSetCodespacesAccessUsers(clientConfig: ClientConfig, org: String, selectedUsernames: List<String>, options: RequestOptions? = null): Unit {
-        Validation.validateItems("selected_usernames", selectedUsernames, Validation.LengthOpts(max = 100))
+    fun codespacesSetCodespacesAccessUsers(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedUsernames: List<String>,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateItems(
+            "selected_usernames",
+            selectedUsernames,
+            Validation.LengthOpts(max = 100),
+        )
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/codespaces/access/selected_users", config = clientConfig, body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)), operationId = "codespacesSetCodespacesAccessUsers", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java)))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/orgs/${SdkClient.encodePathSegment(org)}/codespaces/access/selected_users",
+                config = clientConfig,
+                body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)),
+                operationId = "codespacesSetCodespacesAccessUsers",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "404" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                        "500" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object CodespacesDeleteCodespacesAccessUsersOperation {
     /**
-     * Codespaces for the specified users will no longer be billed to the organization. To use this endpoint, the access settings for the organization must be set to `selected_members`. For information on how to change this setting, see "Manage access control for organization codespaces." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Codespaces for the specified users will no longer be billed to the organization. To use this
+     * endpoint, the access settings for the organization must be set to `selected_members`. For
+     * information on how to change this setting, see "Manage access control for organization
+     * codespaces." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
+     * to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param selectedUsernames The usernames of the organization members and outside
-     *   collaborators whose codespaces should not be billed to the organization.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param selectedUsernames The usernames of the organization members and outside collaborators
+     *   whose codespaces should not be billed to the organization.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun codespacesDeleteCodespacesAccessUsers(clientConfig: ClientConfig, org: String, selectedUsernames: List<String>, options: RequestOptions? = null): Unit {
-        Validation.validateItems("selected_usernames", selectedUsernames, Validation.LengthOpts(max = 100))
+    fun codespacesDeleteCodespacesAccessUsers(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedUsernames: List<String>,
+        options: RequestOptions? = null,
+    ): Unit {
+        Validation.validateItems(
+            "selected_usernames",
+            selectedUsernames,
+            Validation.LengthOpts(max = 100),
+        )
 
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/codespaces/access/selected_users", config = clientConfig, body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)), operationId = "codespacesDeleteCodespacesAccessUsers", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java, "500" to BasicError::class.java)))
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/codespaces/access/selected_users",
+                config = clientConfig,
+                body = SdkClient.bodyMap("selected_usernames" to (selectedUsernames)),
+                operationId = "codespacesDeleteCodespacesAccessUsers",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "404" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                        "500" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }

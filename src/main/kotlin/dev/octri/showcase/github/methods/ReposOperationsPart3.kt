@@ -25,477 +25,1076 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposAddTeamAccessRestrictionsOperation {
     /**
-     * Grants the specified teams push access to a protected branch, including access for child teams. Provide team slugs in `teams` to add those teams to the branch's access restrictions.
+     * Grants the specified teams push access to a protected branch, including access for child
+     * teams. Provide team slugs in `teams` to add those teams to the branch's access restrictions.
      *
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Grants the specified teams push access for this branch. You can also give push access to child teams.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Grants the specified teams push access for this branch. You
+     * can also give push access to child teams.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposAddTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> {
-        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams", config = clientConfig, body = body, operationId = "reposAddTeamAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposAddTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> {
+        return SdkClient.request<List<Team>>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "reposAddTeamAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposSetTeamAccessRestrictionsOperation {
     /**
-     * Replaces the list of teams that have push access to a protected branch, including access for child teams. Provide the complete list in `teams`; teams not included in the new list lose push access.
+     * Replaces the list of teams that have push access to a protected branch, including access for
+     * child teams. Provide the complete list in `teams`; teams not included in the new list lose
+     * push access.
      *
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Replaces the list of teams that have push access to this branch. This removes all teams that previously had push access and grants push access to the new list of teams.…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Replaces the list of teams that have push access to this
+     * branch. This removes all teams that previously had push access and grants push access to the
+     * new list of teams.…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposSetTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> {
-        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams", config = clientConfig, body = body, operationId = "reposSetTeamAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposSetTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> {
+        return SdkClient.request<List<Team>>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "reposSetTeamAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRemoveTeamAccessRestrictionsOperation {
     /**
-     * Removes the specified team's push access to a protected branch, including access for child teams. Provide team slugs in `teams` to identify the teams whose access you want to remove.
+     * Removes the specified team's push access to a protected branch, including access for child
+     * teams. Provide team slugs in `teams` to identify the teams whose access you want to remove.
      *
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Removes the ability of a team to push to this branch. You can also remove push access for child teams.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Removes the ability of a team to push to this branch. You
+     * can also remove push access for child teams.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposRemoveTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> {
-        return SdkClient.request<List<Team>>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams", config = clientConfig, body = body, operationId = "reposRemoveTeamAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposRemoveTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> {
+        return SdkClient.request<List<Team>>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/teams",
+                    config = clientConfig,
+                    body = body,
+                    operationId = "reposRemoveTeamAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetUsersWithAccessToProtectedBranchOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Lists the people who have push access to this branch.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Lists the people who have push access to this branch.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      */
-    fun reposGetUsersWithAccessToProtectedBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users", config = clientConfig, operationId = "reposGetUsersWithAccessToProtectedBranch", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetUsersWithAccessToProtectedBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users",
+                    config = clientConfig,
+                    operationId = "reposGetUsersWithAccessToProtectedBranch",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposAddUserAccessRestrictionsOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Grants the specified people push access for this branch. | Type | Description | | ------- |…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Grants the specified people push access for this branch. |
+     * Type | Description | | ------- |…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      * @param users The username for users
      */
-    fun reposAddUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users", config = clientConfig, body = SdkClient.bodyMap("users" to (users)), operationId = "reposAddUserAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposAddUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("users" to (users)),
+                    operationId = "reposAddUserAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposSetUserAccessRestrictionsOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Replaces the list of people that have push access to this branch. This removes all people that previously had push access and grants push access to the new list of…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Replaces the list of people that have push access to this
+     * branch. This removes all people that previously had push access and grants push access to the
+     * new list of…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      * @param users The username for users
      */
-    fun reposSetUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users", config = clientConfig, body = SdkClient.bodyMap("users" to (users)), operationId = "reposSetUserAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposSetUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("users" to (users)),
+                    operationId = "reposSetUserAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRemoveUserAccessRestrictionsOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Removes the ability of a user to push to this branch. | Type | Description | | ------- |…
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Removes the ability of a user to push to this branch. |
+     * Type | Description | | ------- |…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      * @param users The username for users
      */
-    fun reposRemoveUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users", config = clientConfig, body = SdkClient.bodyMap("users" to (users)), operationId = "reposRemoveUserAccessRestrictions", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun reposRemoveUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return SdkClient.request<List<SimpleUser>>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/protection/restrictions/users",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("users" to (users)),
+                    operationId = "reposRemoveUserAccessRestrictions",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRenameBranchOperation {
     /**
-     * Renames a branch in a repository. > !NOTE] > Although the API responds immediately, the branch rename process might take some extra time to complete in the background. You won't be able to push to the old branch name while the rename process is in progress. For more information, see "\[Renaming a branch". The authenticated user must have push access to the branch. If the branch is the default branch, the authenticated user must also have admin or owner permissions. In order…
+     * Renames a branch in a repository. > !NOTE] > Although the API responds immediately, the
+     * branch rename process might take some extra time to complete in the background. You won't be
+     * able to push to the old branch name while the rename process is in progress. For more
+     * information, see "\[Renaming a branch". The authenticated user must have push access to the
+     * branch. If the branch is the default branch, the authenticated user must also have admin or
+     * owner permissions. In order…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch. Cannot contain wildcard characters. To
-     *   use wildcard characters in branch names, use the GraphQL API.
+     * @param branch The name of the branch. Cannot contain wildcard characters. To use wildcard
+     *   characters in branch names, use the GraphQL API.
      * @param newName The new name of the branch.
      */
-    fun reposRenameBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, newName: String, options: RequestOptions? = null): BranchWithProtection {
-        return SdkClient.request<BranchWithProtection>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/rename", config = clientConfig, body = SdkClient.bodyMap("new_name" to (newName)), operationId = "reposRenameBranch", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposRenameBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        newName: String,
+        options: RequestOptions? = null,
+    ): BranchWithProtection {
+        return SdkClient.request<BranchWithProtection>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/branches/${SdkClient.encodePathSegment(branch)}/rename",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("new_name" to (newName)),
+                    operationId = "reposRenameBranch",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCodeownersErrorsOperation {
     /**
-     * List any syntax errors that are detected in the CODEOWNERS file. For more information about the correct CODEOWNERS syntax, see "About code owners."
+     * List any syntax errors that are detected in the CODEOWNERS file. For more information about
+     * the correct CODEOWNERS syntax, see "About code owners."
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref A branch, tag or commit name used to determine which version of the
-     *   CODEOWNERS file to use. Default: the repository's default branch (e.g. `main`)
+     * @param ref A branch, tag or commit name used to determine which version of the CODEOWNERS
+     *   file to use. Default: the repository's default branch (e.g. `main`)
      */
-    fun reposCodeownersErrors(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): CodeownersErrors {
-        return SdkClient.request<CodeownersErrors>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codeowners/errors", config = clientConfig, query = mapOf("ref" to SdkClient.queryValue(ref, "form", true)), operationId = "reposCodeownersErrors", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCodeownersErrors(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): CodeownersErrors {
+        return SdkClient.request<CodeownersErrors>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codeowners/errors",
+                    config = clientConfig,
+                    query = mapOf("ref" to SdkClient.queryValue(ref, "form", true)),
+                    operationId = "reposCodeownersErrors",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListCollaboratorsOperation {
     /**
-     * For organization-owned repositories, the list of collaborators includes outside collaborators, organization members that are direct collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners. The `permissions` hash returned in the response contains the base role permissions of the collaborator. The `role_name` is the highest role assigned to the collaborator…
+     * For organization-owned repositories, the list of collaborators includes outside
+     * collaborators, organization members that are direct collaborators, organization members with
+     * access through team memberships, organization members with access through default
+     * organization permissions, and organization owners. The `permissions` hash returned in the
+     * response contains the base role permissions of the collaborator. The `role_name` is the
+     * highest role assigned to the collaborator…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param affiliation Filter collaborators returned by their affiliation.
-     *   `outside` means all outside collaborators of an organization-owned repository.
-     *   `direct` means all collaborators with permissions to an organization-owned
-     *   repository, regardless of organization membership status. `all` means all
-     *   collaborators the authenticated user can see.
-     * @param permission Filter collaborators by the permissions they have on the
-     *   repository. If not specified, all collaborators will be returned.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param affiliation Filter collaborators returned by their affiliation. `outside` means all
+     *   outside collaborators of an organization-owned repository. `direct` means all collaborators
+     *   with permissions to an organization-owned repository, regardless of organization membership
+     *   status. `all` means all collaborators the authenticated user can see.
+     * @param permission Filter collaborators by the permissions they have on the repository. If not
+     *   specified, all collaborators will be returned.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCollaborators(clientConfig: ClientConfig, request: Repos.ReposListCollaboratorsRequest, options: RequestOptions? = null): List<Collaborator> {
-        return SdkClient.request<List<Collaborator>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/collaborators", config = clientConfig, query = mapOf("affiliation" to
-    SdkClient.queryValue(request.affiliation, "form", true), "permission" to
-    SdkClient.queryValue(request.permission, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reposListCollaborators", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposListCollaborators(
+        clientConfig: ClientConfig,
+        request: Repos.ReposListCollaboratorsRequest,
+        options: RequestOptions? = null,
+    ): List<Collaborator> {
+        return SdkClient.request<List<Collaborator>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/collaborators",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "affiliation" to
+                                SdkClient.queryValue(request.affiliation, "form", true),
+                            "permission" to SdkClient.queryValue(request.permission, "form", true),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "reposListCollaborators",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCheckCollaboratorOperation {
     /**
-     * For organization-owned repositories, the list of collaborators includes outside collaborators, organization members that are direct collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners. Team members will include the members of child teams. The authenticated user must have push access to the repository to use this endpoint. OAuth app tokens and personal…
+     * For organization-owned repositories, the list of collaborators includes outside
+     * collaborators, organization members that are direct collaborators, organization members with
+     * access through team memberships, organization members with access through default
+     * organization permissions, and organization owners. Team members will include the members of
+     * child teams. The authenticated user must have push access to the repository to use this
+     * endpoint. OAuth app tokens and personal…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun reposCheckCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "reposCheckCollaborator", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposCheckCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "reposCheckCollaborator",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposAddCollaboratorOperation {
     /**
-     * Add a user to a repository with a specified level of access. If the repository is owned by an organization, this API does not add the user to the organization - a user that has repository access without being an organization member is called an "outside collaborator" (if they are not an Enterprise Managed User) or a "repository collaborator" if they are an Enterprise Managed User. These users are exempt from some organization policies - see "Adding outside collaborators to…
+     * Add a user to a repository with a specified level of access. If the repository is owned by an
+     * organization, this API does not add the user to the organization - a user that has repository
+     * access without being an organization member is called an "outside collaborator" (if they are
+     * not an Enterprise Managed User) or a "repository collaborator" if they are an Enterprise
+     * Managed User. These users are exempt from some organization policies - see "Adding outside
+     * collaborators to…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param username The handle for the GitHub user account.
      * @param permission The permission to grant the collaborator. **Only valid on
-     *   organization-owned repositories.** We accept the following permissions to be
-     *   set: `pull`, `triage`, `triage_plus`, `push`, `maintain`, `admin` and you can
-     *   also specify a custom repository role name, if the owning organization has
-     *   defined any.
+     *   organization-owned repositories.** We accept the following permissions to be set: `pull`,
+     *   `triage`, `triage_plus`, `push`, `maintain`, `admin` and you can also specify a custom
+     *   repository role name, if the owning organization has defined any.
      */
-    fun reposAddCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, permission: String? = null, options: RequestOptions? = null): RepositoryInvitation {
-        return SdkClient.request<RepositoryInvitation>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, body = SdkClient.bodyMap("permission" to (SdkClient.omitIfNull(permission))), operationId = "reposAddCollaborator", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposAddCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        permission: String? = null,
+        options: RequestOptions? = null,
+    ): RepositoryInvitation {
+        return SdkClient.request<RepositoryInvitation>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("permission" to (SdkClient.omitIfNull(permission))),
+                    operationId = "reposAddCollaborator",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRemoveCollaboratorOperation {
     /**
-     * Removes a collaborator from a repository. To use this endpoint, the authenticated user must either be an administrator of the repository or target themselves for removal. This endpoint also: - Cancels any outstanding invitations sent by the collaborator - Unassigns the user from any issues - Removes access to organization projects if the user is not an organization member and is not a collaborator on any other organization repositories. - Unstars the repository - Updates…
+     * Removes a collaborator from a repository. To use this endpoint, the authenticated user must
+     * either be an administrator of the repository or target themselves for removal. This endpoint
+     * also: - Cancels any outstanding invitations sent by the collaborator - Unassigns the user
+     * from any issues - Removes access to organization projects if the user is not an organization
+     * member and is not a collaborator on any other organization repositories. - Unstars the
+     * repository - Updates…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun reposRemoveCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "reposRemoveCollaborator", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun reposRemoveCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "reposRemoveCollaborator",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposGetCollaboratorPermissionLevelOperation {
     /**
-     * Checks the repository permission and role of a collaborator. The `permission` attribute provides the legacy base roles of `admin`, `write`, `read`, and `none`, where the `maintain` role is mapped to `write` and the `triage` role is mapped to `read`. The `role_name` attribute provides the name of the assigned role, including custom roles. The `permission` can also be used to determine which base level of access the collaborator has to the repository. The calculated…
+     * Checks the repository permission and role of a collaborator. The `permission` attribute
+     * provides the legacy base roles of `admin`, `write`, `read`, and `none`, where the `maintain`
+     * role is mapped to `write` and the `triage` role is mapped to `read`. The `role_name`
+     * attribute provides the name of the assigned role, including custom roles. The `permission`
+     * can also be used to determine which base level of access the collaborator has to the
+     * repository. The calculated…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param username The handle for the GitHub user account.
      */
-    fun reposGetCollaboratorPermissionLevel(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): RepositoryCollaboratorPermission {
-        return SdkClient.request<RepositoryCollaboratorPermission>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}/permission", config = clientConfig, operationId = "reposGetCollaboratorPermissionLevel", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetCollaboratorPermissionLevel(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): RepositoryCollaboratorPermission {
+        return SdkClient.request<RepositoryCollaboratorPermission>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/collaborators/${SdkClient.encodePathSegment(username)}/permission",
+                    config = clientConfig,
+                    operationId = "reposGetCollaboratorPermissionLevel",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListCommitCommentsForRepoOperation {
     /**
-     * Lists the commit comments for a specified repository. Comments are ordered by ascending ID. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown…
+     * Lists the commit comments for a specified repository. Comments are ordered by ascending ID.
+     * This endpoint supports the following custom media types. For more information, see "Media
+     * types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body.
+     * Response will include `body`. This is the default if you do not pass any specific media
+     * type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only
+     * representation of the markdown…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCommitCommentsForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<CommitComment> {
-        return SdkClient.request<List<CommitComment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListCommitCommentsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListCommitCommentsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<CommitComment> {
+        return SdkClient.request<List<CommitComment>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListCommitCommentsForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetCommitCommentOperation {
     /**
-     * Gets a specified commit comment. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
+     * Gets a specified commit comment. This endpoint supports the following custom media types. For
+     * more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**:
+     * Returns the raw markdown body. Response will include `body`. This is the default if you do
+     * not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**:
+     * Returns a text only representation of the markdown body. Response will include `body_text`.
+     * -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      */
-    fun reposGetCommitComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): CommitComment {
-        return SdkClient.request<CommitComment>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, operationId = "reposGetCommitComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetCommitComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): CommitComment {
+        return SdkClient.request<CommitComment>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}",
+                    config = clientConfig,
+                    operationId = "reposGetCommitComment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposUpdateCommitCommentOperation {
     /**
-     * Updates the contents of a specified commit comment. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
+     * Updates the contents of a specified commit comment. This endpoint supports the following
+     * custom media types. For more information, see "Media types." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param body The contents of the comment
      */
-    fun reposUpdateCommitComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, body: String, options: RequestOptions? = null): CommitComment {
-        return SdkClient.request<CommitComment>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, body = SdkClient.bodyMap("body" to (body)), operationId = "reposUpdateCommitComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposUpdateCommitComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        body: String,
+        options: RequestOptions? = null,
+    ): CommitComment {
+        return SdkClient.request<CommitComment>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("body" to (body)),
+                    operationId = "reposUpdateCommitComment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDeleteCommitCommentOperation {
     /**
-     * Deletes a commit comment from the specified repository. Use `owner`, `repo`, and `comment_id` to identify the repository and comment to remove.
+     * Deletes a commit comment from the specified repository. Use `owner`, `repo`, and `comment_id`
+     * to identify the repository and comment to remove.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      */
-    fun reposDeleteCommitComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}", config = clientConfig, operationId = "reposDeleteCommitComment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun reposDeleteCommitComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}",
+                config = clientConfig,
+                operationId = "reposDeleteCommitComment",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposListCommitsOperation {
     /**
-     * **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are…
+     * **Signature verification object** The response will include a `verification` object that
+     * describes the result of verifying the commit's signature. The following fields are included
+     * in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | |
+     * `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to
+     * be verified. | | `reason` | `string` | The reason for verified value. Possible values and
+     * their meanings are…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param sha SHA or branch to start listing commits from. Default: the
-     *   repository’s default branch (usually `main`).
+     * @param sha SHA or branch to start listing commits from. Default: the repository’s default
+     *   branch (usually `main`).
      * @param path Only commits containing this file path will be returned.
-     * @param author GitHub username or email address to use to filter by commit
-     *   author.
-     * @param committer GitHub username or email address to use to filter by commit
-     *   committer.
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Due to
-     *   limitations of Git, timestamps must be between 1970-01-01 and 2099-12-31
-     *   (inclusive) or unexpected results may be returned.
-     * @param until Only commits before this date will be returned. This is a
-     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Due to limitations of
-     *   Git, timestamps must be between 1970-01-01 and 2099-12-31 (inclusive) or
-     *   unexpected results may be returned.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param author GitHub username or email address to use to filter by commit author.
+     * @param committer GitHub username or email address to use to filter by commit committer.
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Due to limitations of Git, timestamps
+     *   must be between 1970-01-01 and 2099-12-31 (inclusive) or unexpected results may be
+     *   returned.
+     * @param until Only commits before this date will be returned. This is a timestamp in ISO 8601
+     *   format: `YYYY-MM-DDTHH:MM:SSZ`. Due to limitations of Git, timestamps must be between
+     *   1970-01-01 and 2099-12-31 (inclusive) or unexpected results may be returned.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCommits(clientConfig: ClientConfig, request: Repos.ReposListCommitsRequest, options: RequestOptions? = null): List<Commit> {
+    fun reposListCommits(
+        clientConfig: ClientConfig,
+        request: Repos.ReposListCommitsRequest,
+        options: RequestOptions? = null,
+    ): List<Commit> {
         validateReposListCommitsRequest(request)
 
-        return SdkClient.request<List<Commit>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/commits", config = clientConfig, query = mapOf("sha" to SdkClient.queryValue(request.sha, "form", true), "path" to SdkClient.queryValue(request.path, "form", true), "author" to
-    SdkClient.queryValue(request.author, "form", true), "committer" to
-    SdkClient.queryValue(request.committer, "form", true), "since" to
-    SdkClient.queryValue(request.since, "form", true, "date-time"), "until" to
-    SdkClient.queryValue(request.until, "form", true, "date-time"), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reposListCommits", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java, "429" to BasicError::class.java, "500" to BasicError::class.java))).data
+        return SdkClient.request<List<Commit>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/commits",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "sha" to SdkClient.queryValue(request.sha, "form", true),
+                            "path" to SdkClient.queryValue(request.path, "form", true),
+                            "author" to SdkClient.queryValue(request.author, "form", true),
+                            "committer" to SdkClient.queryValue(request.committer, "form", true),
+                            "since" to
+                                SdkClient.queryValue(request.since, "form", true, "date-time"),
+                            "until" to
+                                SdkClient.queryValue(request.until, "form", true, "date-time"),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "reposListCommits",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "429" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateReposListCommitsRequest(request: Repos.ReposListCommitsRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-}
+        }
 
         if (request.until != null) {
             Validation.validateDateTime("until", request.until)
-}
+        }
     }
 }
 
 internal object ReposListBranchesForHeadCommitOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Returns all branches where the given commit SHA is the HEAD, or latest commit for the branch.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Returns all branches where the given commit SHA is the
+     * HEAD, or latest commit for the branch.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
      */
-    fun reposListBranchesForHeadCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, options: RequestOptions? = null): List<BranchShort> {
-        return SdkClient.request<List<BranchShort>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/branches-where-head", config = clientConfig, operationId = "reposListBranchesForHeadCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposListBranchesForHeadCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        options: RequestOptions? = null,
+    ): List<BranchShort> {
+        return SdkClient.request<List<BranchShort>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/branches-where-head",
+                    config = clientConfig,
+                    operationId = "reposListBranchesForHeadCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListCommentsForCommitOperation {
     /**
-     * Lists the comments for a specified commit. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
+     * Lists the comments for a specified commit. This endpoint supports the following custom media
+     * types. For more information, see "Media types." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCommentsForCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<CommitComment> {
-        return SdkClient.request<List<CommitComment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/comments", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListCommentsForCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListCommentsForCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<CommitComment> {
+        return SdkClient.request<List<CommitComment>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/comments",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListCommentsForCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateCommitCommentOperation {
     /**
-     * Create a comment for a commit using its `:commit_sha`. Access to commit comments can be controlled by organization owners. For more information, see "Managing commit comments for your organization". This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types.…
+     * Create a comment for a commit using its `:commit_sha`. Access to commit comments can be
+     * controlled by organization owners. For more information, see "Managing commit comments for
+     * your organization". This endpoint triggers notifications. Creating content too quickly using
+     * this endpoint may result in secondary rate limiting. For more information, see "Rate limits
+     * for the API" and "Best practices for using the REST API." This endpoint supports the
+     * following custom media types.…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
      * @param body The contents of the comment.
      * @param path Relative path of the file to comment on.
      * @param position Line index in the diff to comment on.
-     * @param line **Closing down notice**. Use **position** parameter instead. Line
-     *   number in the file to comment on.
+     * @param line **Closing down notice**. Use **position** parameter instead. Line number in the
+     *   file to comment on.
      */
-    fun reposCreateCommitComment(clientConfig: ClientConfig, request: Repos.ReposCreateCommitCommentRequest, options: RequestOptions? = null): CommitComment {
-        return SdkClient.request<CommitComment>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/commits/${SdkClient.encodePathSegment(request.commitSha)}/comments", config = clientConfig, body = SdkClient.bodyMap("body" to (request.body), "path" to (SdkClient.omitIfNull(request.path)), "position" to (SdkClient.omitIfNull(request.position)), "line" to (SdkClient.omitIfNull(request.line))), operationId = "reposCreateCommitComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposCreateCommitComment(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateCommitCommentRequest,
+        options: RequestOptions? = null,
+    ): CommitComment {
+        return SdkClient.request<CommitComment>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/commits/${SdkClient.encodePathSegment(request.commitSha)}/comments",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "body" to (request.body),
+                            "path" to (SdkClient.omitIfNull(request.path)),
+                            "position" to (SdkClient.omitIfNull(request.position)),
+                            "line" to (SdkClient.omitIfNull(request.line)),
+                        ),
+                    operationId = "reposCreateCommitComment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListPullRequestsAssociatedWithCommitOperation {
     /**
-     * Lists the merged pull request that introduced the commit to the repository. If the commit is not present in the default branch, it will return merged and open pull requests associated with the commit. To list the open or merged pull requests associated with a branch, you can set the `commit_sha` parameter to the branch name.
+     * Lists the merged pull request that introduced the commit to the repository. If the commit is
+     * not present in the default branch, it will return merged and open pull requests associated
+     * with the commit. To list the open or merged pull requests associated with a branch, you can
+     * set the `commit_sha` parameter to the branch name.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListPullRequestsAssociatedWithCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PullRequestSimple> {
-        return SdkClient.request<List<PullRequestSimple>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/pulls", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListPullRequestsAssociatedWithCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java))).data
+    fun reposListPullRequestsAssociatedWithCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<PullRequestSimple> {
+        return SdkClient.request<List<PullRequestSimple>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/pulls",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListPullRequestsAssociatedWithCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("409" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetCommitOperation {
     /**
-     * Returns the contents of a single commit reference. You must have `read` access for the repository to use this endpoint. > !NOTE] > If there are more than 300 files in the commit diff and the default JSON media type is requested, the response will include pagination link headers for the remaining files, up to a limit of 3000 files. Each page contains the static commit information, and the only changes are to the file listing. This endpoint supports the following custom media…
+     * Returns the contents of a single commit reference. You must have `read` access for the
+     * repository to use this endpoint. > !NOTE] > If there are more than 300 files in the commit
+     * diff and the default JSON media type is requested, the response will include pagination link
+     * headers for the remaining files, up to a limit of 3000 files. Each page contains the static
+     * commit information, and the only changes are to the file listing. This endpoint supports the
+     * following custom media…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The commit reference. Can be a commit SHA, branch name
-     *   (`heads/BRANCH_NAME`), or tag name (`tags/TAG_NAME`). For more information,
-     *   see "Git References" in the Git documentation.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param ref The commit reference. Can be a commit SHA, branch name (`heads/BRANCH_NAME`), or
+     *   tag name (`tags/TAG_NAME`). For more information, see "Git References" in the Git
+     *   documentation.
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposGetCommit(clientConfig: ClientConfig, owner: String, repo: String, ref: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Commit {
-        return SdkClient.request<Commit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "reposGetCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java, "429" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
+    fun reposGetCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Commit {
+        return SdkClient.request<Commit>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "reposGetCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "429" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetCombinedStatusForRefOperation {
     /**
-     * Users with pull access in a repository can access a combined view of commit statuses for a given ref. The ref can be a SHA, a branch name, or a tag name. Additionally, a combined `state` is returned. The `state` is one of: * **failure** if any of the contexts report as `error` or `failure` * **pending** if there are no statuses or a context is `pending` * **success** if the latest status for all contexts is `success`
+     * Users with pull access in a repository can access a combined view of commit statuses for a
+     * given ref. The ref can be a SHA, a branch name, or a tag name. Additionally, a combined
+     * `state` is returned. The `state` is one of: * **failure** if any of the contexts report as
+     * `error` or `failure` * **pending** if there are no statuses or a context is `pending` *
+     * **success** if the latest status for all contexts is `success`
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The commit reference. Can be a commit SHA, branch name
-     *   (`heads/BRANCH_NAME`), or tag name (`tags/TAG_NAME`). For more information,
-     *   see "Git References" in the Git documentation.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param ref The commit reference. Can be a commit SHA, branch name (`heads/BRANCH_NAME`), or
+     *   tag name (`tags/TAG_NAME`). For more information, see "Git References" in the Git
+     *   documentation.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposGetCombinedStatusForRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): CombinedCommitStatus {
-        return SdkClient.request<CombinedCommitStatus>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}/status", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposGetCombinedStatusForRef", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetCombinedStatusForRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): CombinedCommitStatus {
+        return SdkClient.request<CombinedCommitStatus>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}/status",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposGetCombinedStatusForRef",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

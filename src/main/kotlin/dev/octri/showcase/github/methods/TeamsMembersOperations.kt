@@ -13,77 +13,186 @@ import dev.octri.showcase.github.TeamsListMembersLegacyParameterEnum
 
 internal object TeamsListMembersInOrgOperation {
     /**
-     * Team members will include the members of child teams. Each member includes their `role` on the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership is inherited from a child team (`true`) or is a direct membership (`false`). These fields let you read a member's role and direct/inherited status without additional requests. To list members in a team, the team must be visible to the authenticated user. > \[!NOTE\] > You can also specify a team…
+     * Team members will include the members of child teams. Each member includes their `role` on
+     * the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership
+     * is inherited from a child team (`true`) or is a direct membership (`false`). These fields let
+     * you read a member's role and direct/inherited status without additional requests. To list
+     * members in a team, the team must be visible to the authenticated user. > \[!NOTE\] > You can
+     * also specify a team…
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
      * @param role Filters members returned by their role in the team.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun teamsListMembersInOrg(clientConfig: ClientConfig, org: String, teamSlug: String, role: TeamsListMembersInOrgParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamMember> {
-        return SdkClient.request<List<TeamMember>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/members", config = clientConfig, query = mapOf("role" to SdkClient.queryValue(role, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListMembersInOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun teamsListMembersInOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        teamSlug: String,
+        role: TeamsListMembersInOrgParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<TeamMember> {
+        return SdkClient.request<List<TeamMember>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/teams/${SdkClient.encodePathSegment(teamSlug)}/members",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "role" to SdkClient.queryValue(role, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "teamsListMembersInOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object TeamsListMembersLegacyOperation {
     /**
-     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will be removed from the Teams API. We recommend migrating your existing code to use the new \[`List team members` endpoint. Team members will include the members of child teams. Each member includes their `role` on the team (`member` or `maintainer`) and an `inherited` flag indicating whether the membership is inherited from a child team (`true`) or is a direct membership (`false`).
+     * > !WARNING] > **Endpoint closing down notice:** This endpoint route is closing down and will
+     * > be removed from the Teams API. We recommend migrating your existing code to use the new
+     * > \[`List team members` endpoint. Team members will include the members of child teams. Each
+     * > member includes their `role` on the team (`member` or `maintainer`) and an `inherited` flag
+     * > indicating whether the membership is inherited from a child team (`true`) or is a direct
+     * > membership (`false`).
      *
      * @param teamId The unique identifier of the team.
      * @param role Filters members returned by their role in the team.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun teamsListMembersLegacy(clientConfig: ClientConfig, teamId: Long, role: TeamsListMembersLegacyParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<TeamMember> {
-        return SdkClient.request<List<TeamMember>>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/members", config = clientConfig, query = mapOf("role" to SdkClient.queryValue(role, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "teamsListMembersLegacy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun teamsListMembersLegacy(
+        clientConfig: ClientConfig,
+        teamId: Long,
+        role: TeamsListMembersLegacyParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<TeamMember> {
+        return SdkClient.request<List<TeamMember>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/teams/${SdkClient.encodePathSegment(teamId)}/members",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "role" to SdkClient.queryValue(role, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "teamsListMembersLegacy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object TeamsGetMemberLegacyOperation {
     /**
-     * The "Get team member" endpoint (described below) is closing down. We recommend using the Get team membership for a user endpoint instead. It allows you to get both active and pending memberships. To list members in a team, the team must be visible to the authenticated user.
+     * The "Get team member" endpoint (described below) is closing down. We recommend using the Get
+     * team membership for a user endpoint instead. It allows you to get both active and pending
+     * memberships. To list members in a team, the team must be visible to the authenticated user.
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun teamsGetMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsGetMemberLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun teamsGetMemberLegacy(
+        clientConfig: ClientConfig,
+        teamId: Long,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "teamsGetMemberLegacy",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object TeamsAddMemberLegacyOperation {
     /**
-     * The "Add team member" endpoint (described below) is closing down. We recommend using the Add or update team membership for a user endpoint instead. It allows you to invite new organization members to your teams. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To add someone to a team, the authenticated user must be an organization owner or a team maintainer in the…
+     * The "Add team member" endpoint (described below) is closing down. We recommend using the Add
+     * or update team membership for a user endpoint instead. It allows you to invite new
+     * organization members to your teams. Team synchronization is available for organizations using
+     * GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help
+     * documentation. To add someone to a team, the authenticated user must be an organization owner
+     * or a team maintainer in the…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun teamsAddMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsAddMemberLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
+    fun teamsAddMemberLegacy(
+        clientConfig: ClientConfig,
+        teamId: Long,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "teamsAddMemberLegacy",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object TeamsRemoveMemberLegacyOperation {
     /**
-     * The "Remove team member" endpoint (described below) is closing down. We recommend using the Remove team membership for a user endpoint instead. It allows you to remove both active and pending memberships. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see GitHub's products in the GitHub Help documentation. To remove a team member, the authenticated user must have 'admin' permissions to the team or be an owner of the…
+     * The "Remove team member" endpoint (described below) is closing down. We recommend using the
+     * Remove team membership for a user endpoint instead. It allows you to remove both active and
+     * pending memberships. Team synchronization is available for organizations using GitHub
+     * Enterprise Cloud. For more information, see GitHub's products in the GitHub Help
+     * documentation. To remove a team member, the authenticated user must have 'admin' permissions
+     * to the team or be an owner of the…
      *
      * @param teamId The unique identifier of the team.
      * @param username The handle for the GitHub user account.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun teamsRemoveMemberLegacy(clientConfig: ClientConfig, teamId: Long, username: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}", config = clientConfig, operationId = "teamsRemoveMemberLegacy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun teamsRemoveMemberLegacy(
+        clientConfig: ClientConfig,
+        teamId: Long,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/teams/${SdkClient.encodePathSegment(teamId)}/members/${SdkClient.encodePathSegment(username)}",
+                config = clientConfig,
+                operationId = "teamsRemoveMemberLegacy",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

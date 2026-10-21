@@ -10,33 +10,45 @@ import dev.octri.showcase.github.SdkClient
 
 object Gitignore {
 
-
-    /**
-     * List all templates available to pass as an option when creating a repository.
-     */
+    /** List all templates available to pass as an option when creating a repository. */
     fun listTemplates(clientConfig: ClientConfig, options: RequestOptions? = null): List<String> {
-        return SdkClient.request<List<String>>(SdkClient.RequestSpec("GET", "/gitignore/templates", config = clientConfig, operationId = "listTemplates", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<List<String>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gitignore/templates",
+                    config = clientConfig,
+                    operationId = "listTemplates",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * Retrieves the content of a gitignore template by name. The `application/vnd.github.raw+json` media type returns the raw `.gitignore` contents; the response object includes the template name and source.
+     * Retrieves the content of a gitignore template by name. The `application/vnd.github.raw+json`
+     * media type returns the raw `.gitignore` contents; the response object includes the template
+     * name and source.
      *
-     * Get the content of a gitignore template. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw .gitignore contents.
+     * Get the content of a gitignore template. This endpoint supports the following custom media
+     * types. For more information, see "Media types." - **`application/vnd.github.raw+json`**:
+     * Returns the raw .gitignore contents.
      */
-    fun gitignoreGetTemplate(clientConfig: ClientConfig, name: String, options: RequestOptions? = null): GitignoreTemplate {
-        return SdkClient.request<GitignoreTemplate>(SdkClient.RequestSpec("GET", "/gitignore/templates/${SdkClient.encodePathSegment(name)}", config = clientConfig, operationId = "gitignoreGetTemplate", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun gitignoreGetTemplate(
+        clientConfig: ClientConfig,
+        name: String,
+        options: RequestOptions? = null,
+    ): GitignoreTemplate {
+        return SdkClient.request<GitignoreTemplate>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/gitignore/templates/${SdkClient.encodePathSegment(name)}",
+                    config = clientConfig,
+                    operationId = "gitignoreGetTemplate",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

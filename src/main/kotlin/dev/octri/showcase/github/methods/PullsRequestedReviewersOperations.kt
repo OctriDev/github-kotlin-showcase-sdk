@@ -14,33 +14,80 @@ import dev.octri.showcase.github.ValidationError
 
 internal object PullsListRequestedReviewersOperation {
     /**
-     * Gets the users or teams whose review is requested for a pull request. Once a requested reviewer submits a review, they are no longer considered a requested reviewer. Their review will instead be returned by the List reviews for a pull request operation.
+     * Gets the users or teams whose review is requested for a pull request. Once a requested
+     * reviewer submits a review, they are no longer considered a requested reviewer. Their review
+     * will instead be returned by the List reviews for a pull request operation.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      */
-    fun pullsListRequestedReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, options: RequestOptions? = null): PullRequestReviewRequest {
-        return SdkClient.request<PullRequestReviewRequest>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers", config = clientConfig, operationId = "pullsListRequestedReviewers", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun pullsListRequestedReviewers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        options: RequestOptions? = null,
+    ): PullRequestReviewRequest {
+        return SdkClient.request<PullRequestReviewRequest>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers",
+                    config = clientConfig,
+                    operationId = "pullsListRequestedReviewers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object PullsRequestReviewersOperation {
     /**
-     * Requests reviews for a pull request from a given set of users and/or teams. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API."
+     * Requests reviews for a pull request from a given set of users and/or teams. This endpoint
+     * triggers notifications. Creating content too quickly using this endpoint may result in
+     * secondary rate limiting. For more information, see "Rate limits for the API" and "Best
+     * practices for using the REST API."
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewers An array of user `login`s that will be requested.
      * @param teamReviewers An array of team `slug`s that will be requested.
      */
-    fun pullsRequestReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>? = null, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple {
-        return SdkClient.request<PullRequestSimple>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers", config = clientConfig, body = SdkClient.bodyMap("reviewers" to (SdkClient.omitIfNull(reviewers)), "team_reviewers" to (SdkClient.omitIfNull(teamReviewers))), operationId = "pullsRequestReviewers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
+    fun pullsRequestReviewers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewers: List<String>? = null,
+        teamReviewers: List<String>? = null,
+        options: RequestOptions? = null,
+    ): PullRequestSimple {
+        return SdkClient.request<PullRequestSimple>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "reviewers" to (SdkClient.omitIfNull(reviewers)),
+                            "team_reviewers" to (SdkClient.omitIfNull(teamReviewers)),
+                        ),
+                    operationId = "pullsRequestReviewers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
@@ -48,33 +95,81 @@ internal object PullsRemoveRequestedReviewersOperation {
     /**
      * Removes review requests from a pull request for a given set of users and/or teams.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewers An array of user `login`s that will be removed.
      * @param teamReviewers An array of team `slug`s that will be removed.
      */
-    fun pullsRemoveRequestedReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple {
-        return SdkClient.request<PullRequestSimple>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers", config = clientConfig, body = SdkClient.bodyMap("reviewers" to (reviewers), "team_reviewers" to (SdkClient.omitIfNull(teamReviewers))), operationId = "pullsRemoveRequestedReviewers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java))).data
+    fun pullsRemoveRequestedReviewers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewers: List<String>,
+        teamReviewers: List<String>? = null,
+        options: RequestOptions? = null,
+    ): PullRequestSimple {
+        return SdkClient.request<PullRequestSimple>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "reviewers" to (reviewers),
+                            "team_reviewers" to (SdkClient.omitIfNull(teamReviewers)),
+                        ),
+                    operationId = "pullsRemoveRequestedReviewers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to ValidationError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object PullsRerequestReviewersOperation {
     /**
-     * Rerequests reviews for a pull request from a given set of users and/or teams. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API."
+     * Rerequests reviews for a pull request from a given set of users and/or teams. This endpoint
+     * triggers notifications. Creating content too quickly using this endpoint may result in
+     * secondary rate limiting. For more information, see "Rate limits for the API" and "Best
+     * practices for using the REST API."
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
      * @param reviewers An array of user `login`s whose reviews will be rerequested.
-     * @param teamReviewers An array of team `slug`s whose reviews will be
-     *   rerequested.
+     * @param teamReviewers An array of team `slug`s whose reviews will be rerequested.
      */
-    fun pullsRerequestReviewers(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, reviewers: List<String>? = null, teamReviewers: List<String>? = null, options: RequestOptions? = null): PullRequestSimple {
-        return SdkClient.request<PullRequestSimple>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers/rerequest", config = clientConfig, body = SdkClient.bodyMap("reviewers" to (SdkClient.omitIfNull(reviewers)), "team_reviewers" to (SdkClient.omitIfNull(teamReviewers))), operationId = "pullsRerequestReviewers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java))).data
+    fun pullsRerequestReviewers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        reviewers: List<String>? = null,
+        teamReviewers: List<String>? = null,
+        options: RequestOptions? = null,
+    ): PullRequestSimple {
+        return SdkClient.request<PullRequestSimple>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/requested_reviewers/rerequest",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "reviewers" to (SdkClient.omitIfNull(reviewers)),
+                            "team_reviewers" to (SdkClient.omitIfNull(teamReviewers)),
+                        ),
+                    operationId = "pullsRerequestReviewers",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

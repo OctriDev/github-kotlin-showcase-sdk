@@ -12,54 +12,104 @@ import dev.octri.showcase.github.ValidationError
 
 internal object PullsMergeAsyncOperation {
     /**
-     * Merges a pull request into the base branch in the background or adds it to a merge queue. Background processing allows certain types of errors to be retried and reduces the risk of timeouts for complex merges. This is the required API for merging stacked pull requests. For a stacked pull request, the operation includes all open downstack pull requests. A new asynchronous merge request returns a `202` response with a UUID that can be used to fetch the result of the merge. If…
+     * Merges a pull request into the base branch in the background or adds it to a merge queue.
+     * Background processing allows certain types of errors to be retried and reduces the risk of
+     * timeouts for complex merges. This is the required API for merging stacked pull requests. For
+     * a stacked pull request, the operation includes all open downstack pull requests. A new
+     * asynchronous merge request returns a `202` response with a UUID that can be used to fetch the
+     * result of the merge. If…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param commitTitle Title for the automatic commit message. Only supported for
+     * @param commitTitle Title for the automatic commit message. Only supported for direct merges.
+     * @param commitMessage Extra detail to append to automatic commit message. Only supported for
      *   direct merges.
-     * @param commitMessage Extra detail to append to automatic commit message. Only
-     *   supported for direct merges.
-     * @param sha SHA that pull request head must match to allow merge. If not
-     *   provided, the current head of the PR at the time of the request will be used;
-     *   if the PR is pushed in between the merge being requested and being executed,
-     *   the merge will be cancelled.
-     * @param mergeMethod The merge method to use for a direct merge. Only supported
-     *   for direct merges.
-     * @param mergeAction The action that will be taken to merge the pull request.
-     *   `direct_merge` merges the pull request directly without using a merge queue;
-     *   `merge_queue` adds the pull request to a merge queue; `default` uses a merge
-     *   queue if one is configured for the target branch, or merges directly
-     *   otherwise. If omitted, defaults to `default`.
-     * @param bypassRules Whether to bypass repository rules that the authenticated
-     *   actor is permitted to bypass.
+     * @param sha SHA that pull request head must match to allow merge. If not provided, the current
+     *   head of the PR at the time of the request will be used; if the PR is pushed in between the
+     *   merge being requested and being executed, the merge will be cancelled.
+     * @param mergeMethod The merge method to use for a direct merge. Only supported for direct
+     *   merges.
+     * @param mergeAction The action that will be taken to merge the pull request. `direct_merge`
+     *   merges the pull request directly without using a merge queue; `merge_queue` adds the pull
+     *   request to a merge queue; `default` uses a merge queue if one is configured for the target
+     *   branch, or merges directly otherwise. If omitted, defaults to `default`.
+     * @param bypassRules Whether to bypass repository rules that the authenticated actor is
+     *   permitted to bypass.
      */
-    fun pullsMergeAsync(clientConfig: ClientConfig, request: Pulls.PullsMergeAsyncRequest, options: RequestOptions? = null): PullRequestMergeAsyncResult {
-        return SdkClient.request<PullRequestMergeAsyncResult>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/merge-async", config = clientConfig, body = SdkClient.bodyMap("commit_title" to
-    (SdkClient.omitIfNull(request.commitTitle)), "commit_message" to
-    (SdkClient.omitIfNull(request.commitMessage)), "sha" to (SdkClient.omitIfNull(request.sha)), "merge_method" to
-    (SdkClient.omitIfNull(request.mergeMethod)), "merge_action" to
-    (SdkClient.omitIfNull(request.mergeAction)), "bypass_rules" to
-    (SdkClient.omitIfNull(request.bypassRules))), operationId = "pullsMergeAsync", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to PullRequestMergeAsyncResult::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to PullRequestMergeAsyncResult::class.java, "422" to ValidationError::class.java))).data
+    fun pullsMergeAsync(
+        clientConfig: ClientConfig,
+        request: Pulls.PullsMergeAsyncRequest,
+        options: RequestOptions? = null,
+    ): PullRequestMergeAsyncResult {
+        return SdkClient.request<PullRequestMergeAsyncResult>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/${SdkClient.encodePathSegment(request.pullNumber)}/merge-async",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "commit_title" to (SdkClient.omitIfNull(request.commitTitle)),
+                            "commit_message" to (SdkClient.omitIfNull(request.commitMessage)),
+                            "sha" to (SdkClient.omitIfNull(request.sha)),
+                            "merge_method" to (SdkClient.omitIfNull(request.mergeMethod)),
+                            "merge_action" to (SdkClient.omitIfNull(request.mergeAction)),
+                            "bypass_rules" to (SdkClient.omitIfNull(request.bypassRules)),
+                        ),
+                    operationId = "pullsMergeAsync",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to PullRequestMergeAsyncResult::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "409" to PullRequestMergeAsyncResult::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object PullsGetMergeAsyncResultOperation {
     /**
-     * Fetches the current result of an asynchronous merge request, identified by the UUID that was returned when the merge was requested. While the request's status is `pending`, the response includes the UUID, merge method, merge action, and expected head SHA of the request. Once the asynchronous request completes, its status is one of: - `merged`: The pull request was merged into the base branch. The response includes the merge commit OID. - `enqueued`: The pull request was…
+     * Fetches the current result of an asynchronous merge request, identified by the UUID that was
+     * returned when the merge was requested. While the request's status is `pending`, the response
+     * includes the UUID, merge method, merge action, and expected head SHA of the request. Once the
+     * asynchronous request completes, its status is one of: - `merged`: The pull request was merged
+     * into the base branch. The response includes the merge commit OID. - `enqueued`: The pull
+     * request was…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param uuid The UUID of the asynchronous merge request, as returned when the
-     *   merge was requested.
+     * @param uuid The UUID of the asynchronous merge request, as returned when the merge was
+     *   requested.
      */
-    fun pullsGetMergeAsyncResult(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, uuid: String, options: RequestOptions? = null): PullRequestMergeAsyncResult {
-        return SdkClient.request<PullRequestMergeAsyncResult>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/merge-async/${SdkClient.encodePathSegment(uuid)}", config = clientConfig, operationId = "pullsGetMergeAsyncResult", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun pullsGetMergeAsyncResult(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        uuid: String,
+        options: RequestOptions? = null,
+    ): PullRequestMergeAsyncResult {
+        return SdkClient.request<PullRequestMergeAsyncResult>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/merge-async/${SdkClient.encodePathSegment(uuid)}",
+                    config = clientConfig,
+                    operationId = "pullsGetMergeAsyncResult",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

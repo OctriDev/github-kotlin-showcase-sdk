@@ -14,53 +14,107 @@ internal object IssuesAddAssigneesOperation {
     /**
      * Adds up to 10 assignees to an issue. Users already assigned to an issue are not replaced.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param assignees Usernames of people to assign this issue to. _NOTE: Only
-     *   users with push access can add assignees to an issue. Assignees are silently
-     *   ignored otherwise._
+     * @param assignees Usernames of people to assign this issue to. _NOTE: Only users with push
+     *   access can add assignees to an issue. Assignees are silently ignored otherwise._
      */
-    fun issuesAddAssignees(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, assignees: List<IssuesAddAssigneesRequestAssigneesItem>? = null, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/assignees", config = clientConfig, body = SdkClient.bodyMap("assignees" to (SdkClient.omitIfNull(assignees))), operationId = "issuesAddAssignees", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun issuesAddAssignees(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        assignees: List<IssuesAddAssigneesRequestAssigneesItem>? = null,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/assignees",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("assignees" to (SdkClient.omitIfNull(assignees))),
+                    operationId = "issuesAddAssignees",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesRemoveAssigneesOperation {
     /**
-     * Removes specified assignees from an issue in a repository. Use `assignees` to identify the usernames to remove; users without push access cannot remove assignees, and those changes are silently ignored.
+     * Removes specified assignees from an issue in a repository. Use `assignees` to identify the
+     * usernames to remove; users without push access cannot remove assignees, and those changes are
+     * silently ignored.
      *
      * Removes one or more assignees from an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param assignees Usernames of assignees to remove from an issue. _NOTE: Only
-     *   users with push access can remove assignees from an issue. Assignees are
-     *   silently ignored otherwise._
+     * @param assignees Usernames of assignees to remove from an issue. _NOTE: Only users with push
+     *   access can remove assignees from an issue. Assignees are silently ignored otherwise._
      */
-    fun issuesRemoveAssignees(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, assignees: List<String>? = null, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/assignees", config = clientConfig, body = SdkClient.bodyMap("assignees" to (SdkClient.omitIfNull(assignees))), operationId = "issuesRemoveAssignees", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun issuesRemoveAssignees(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        assignees: List<String>? = null,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/assignees",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("assignees" to (SdkClient.omitIfNull(assignees))),
+                    operationId = "issuesRemoveAssignees",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesCheckUserCanBeAssignedToIssueOperation {
     /**
-     * Checks whether a user can be assigned to a specific issue in a repository. Use `assignee` to identify the user and the repository and issue parameters to specify where you want to assign them.
+     * Checks whether a user can be assigned to a specific issue in a repository. Use `assignee` to
+     * identify the user and the repository and issue parameters to specify where you want to assign
+     * them.
      *
-     * Checks if a user has permission to be assigned to a specific issue. If the `assignee` can be assigned to this issue, a `204` status code with no content is returned. Otherwise a `404` status code is returned.
+     * Checks if a user has permission to be assigned to a specific issue. If the `assignee` can be
+     * assigned to this issue, a `204` status code with no content is returned. Otherwise a `404`
+     * status code is returned.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesCheckUserCanBeAssignedToIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, assignee: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/assignees/${SdkClient.encodePathSegment(assignee)}", config = clientConfig, operationId = "issuesCheckUserCanBeAssignedToIssue", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun issuesCheckUserCanBeAssignedToIssue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        assignee: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/assignees/${SdkClient.encodePathSegment(assignee)}",
+                config = clientConfig,
+                operationId = "issuesCheckUserCanBeAssignedToIssue",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }

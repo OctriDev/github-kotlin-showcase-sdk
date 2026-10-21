@@ -18,207 +18,457 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposGetPagesOperation {
     /**
-     * Gets information about a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets information about a GitHub Pages site. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetPages(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Page {
-        return SdkClient.request<Page>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages", config = clientConfig, operationId = "reposGetPages", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetPages(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Page {
+        return SdkClient.request<Page>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages",
+                    config = clientConfig,
+                    operationId = "reposGetPages",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreatePagesSiteOperation {
     /**
-     * Configures a GitHub Pages site. For more information, see "About GitHub Pages." The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Configures a GitHub Pages site. For more information, see "About GitHub Pages." The
+     * authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub
+     * Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param buildType The process in which the Page will be built. Possible values
-     *   are `"legacy"` and `"workflow"`.
+     * @param buildType The process in which the Page will be built. Possible values are `"legacy"`
+     *   and `"workflow"`.
      * @param source The source branch and directory used to publish your Pages site.
      */
-    fun reposCreatePagesSite(clientConfig: ClientConfig, owner: String, repo: String, buildType: ReposCreatePagesSiteBuildTypeEnum? = null, source: Repos.ReposCreatePagesSiteSource? = null, options: RequestOptions? = null): Page {
-        return SdkClient.request<Page>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages", config = clientConfig, body = SdkClient.bodyMap("build_type" to (SdkClient.omitIfNull(buildType)), "source" to (SdkClient.omitIfNull(source))), operationId = "reposCreatePagesSite", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposCreatePagesSite(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        buildType: ReposCreatePagesSiteBuildTypeEnum? = null,
+        source: Repos.ReposCreatePagesSiteSource? = null,
+        options: RequestOptions? = null,
+    ): Page {
+        return SdkClient.request<Page>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "build_type" to (SdkClient.omitIfNull(buildType)),
+                            "source" to (SdkClient.omitIfNull(source)),
+                        ),
+                    operationId = "reposCreatePagesSite",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposUpdateInformationAboutPagesSiteOperation {
     /**
-     * Updates GitHub Pages settings for a repository. Provide at least one of `build_type`, `source`, or `cname`; `build_type` accepts `legacy` or `workflow`, and `source` accepts a branch name with an optional `/docs` path or an object containing `branch` and `path`. The authenticated user must be a repository administrator, maintainer, or have the `manage GitHub Pages settings` permission.
+     * Updates GitHub Pages settings for a repository. Provide at least one of `build_type`,
+     * `source`, or `cname`; `build_type` accepts `legacy` or `workflow`, and `source` accepts a
+     * branch name with an optional `/docs` path or an object containing `branch` and `path`. The
+     * authenticated user must be a repository administrator, maintainer, or have the `manage GitHub
+     * Pages settings` permission.
      *
-     * Updates information for a GitHub Pages site. For more information, see "About GitHub Pages. The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Updates information for a GitHub Pages site. For more information, see "About GitHub Pages.
+     * The authenticated user must be a repository administrator, maintainer, or have the 'manage
+     * GitHub Pages settings' permission. OAuth app tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param cname Specify a custom domain for the repository. Sending a `null`
-     *   value will remove the custom domain. For more about custom domains, see "Using
-     *   a custom domain with GitHub Pages."
-     * @param httpsEnforced Specify whether HTTPS should be enforced for the
-     *   repository.
-     * @param buildType The process by which the GitHub Pages site will be built.
-     *   `workflow` means that the site is built by a custom GitHub Actions workflow.
-     *   `legacy` means that the site is built by GitHub when changes are pushed to a
-     *   specific branch.
-     * @param source Typed representation of the
-     *   `ReposUpdateInformationAboutPagesSiteRequestSource` API schema.
+     * @param cname Specify a custom domain for the repository. Sending a `null` value will remove
+     *   the custom domain. For more about custom domains, see "Using a custom domain with GitHub
+     *   Pages."
+     * @param httpsEnforced Specify whether HTTPS should be enforced for the repository.
+     * @param buildType The process by which the GitHub Pages site will be built. `workflow` means
+     *   that the site is built by a custom GitHub Actions workflow. `legacy` means that the site is
+     *   built by GitHub when changes are pushed to a specific branch.
+     * @param source Typed representation of the `ReposUpdateInformationAboutPagesSiteRequestSource`
+     *   API schema.
      */
-    fun reposUpdateInformationAboutPagesSite(clientConfig: ClientConfig, request: Repos.ReposUpdateInformationAboutPagesSiteRequest, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pages", config = clientConfig, body = SdkClient.bodyMap("cname" to (request.cname ?: SdkClient.SdkOptional.Omitted), "https_enforced" to
-    (SdkClient.omitIfNull(request.httpsEnforced)), "build_type" to (SdkClient.omitIfNull(request.buildType)), "source" to (SdkClient.omitIfNull(request.source))), operationId = "reposUpdateInformationAboutPagesSite", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("400" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun reposUpdateInformationAboutPagesSite(
+        clientConfig: ClientConfig,
+        request: Repos.ReposUpdateInformationAboutPagesSiteRequest,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pages",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "cname" to (request.cname ?: SdkClient.SdkOptional.Omitted),
+                        "https_enforced" to (SdkClient.omitIfNull(request.httpsEnforced)),
+                        "build_type" to (SdkClient.omitIfNull(request.buildType)),
+                        "source" to (SdkClient.omitIfNull(request.source)),
+                    ),
+                operationId = "reposUpdateInformationAboutPagesSite",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "409" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ReposDeletePagesSiteOperation {
     /**
-     * Deletes a GitHub Pages site. For more information, see "About GitHub Pages. The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a GitHub Pages site. For more information, see "About GitHub Pages. The authenticated
+     * user must be a repository administrator, maintainer, or have the 'manage GitHub Pages
+     * settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposDeletePagesSite(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages", config = clientConfig, operationId = "reposDeletePagesSite", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java)))
+    fun reposDeletePagesSite(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages",
+                config = clientConfig,
+                operationId = "reposDeletePagesSite",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "404" to BasicError::class.java,
+                        "409" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object ReposListPagesBuildsOperation {
     /**
-     * Lists builts of a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists builts of a GitHub Pages site. OAuth app tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListPagesBuilds(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PageBuild> {
-        return SdkClient.request<List<PageBuild>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/builds", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListPagesBuilds", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListPagesBuilds(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<PageBuild> {
+        return SdkClient.request<List<PageBuild>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/builds",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListPagesBuilds",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposRequestPagesBuildOperation {
     /**
-     * You can request that your site be built from the latest revision on the default branch. This has the same effect as pushing a commit to your default branch, but does not require an additional commit. Manually triggering page builds can be helpful when diagnosing build warnings and failures. Build requests are limited to one concurrent build per repository and one concurrent build per requester. If you request a build while another is still in progress, the second request…
+     * You can request that your site be built from the latest revision on the default branch. This
+     * has the same effect as pushing a commit to your default branch, but does not require an
+     * additional commit. Manually triggering page builds can be helpful when diagnosing build
+     * warnings and failures. Build requests are limited to one concurrent build per repository and
+     * one concurrent build per requester. If you request a build while another is still in
+     * progress, the second request…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposRequestPagesBuild(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): PageBuildStatus {
-        return SdkClient.request<PageBuildStatus>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/builds", config = clientConfig, operationId = "reposRequestPagesBuild", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposRequestPagesBuild(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): PageBuildStatus {
+        return SdkClient.request<PageBuildStatus>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/builds",
+                    config = clientConfig,
+                    operationId = "reposRequestPagesBuild",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetLatestPagesBuildOperation {
     /**
-     * Gets information about the single most recent build of a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets information about the single most recent build of a GitHub Pages site. OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetLatestPagesBuild(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): PageBuild {
-        return SdkClient.request<PageBuild>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/builds/latest", config = clientConfig, operationId = "reposGetLatestPagesBuild", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetLatestPagesBuild(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): PageBuild {
+        return SdkClient.request<PageBuild>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/builds/latest",
+                    config = clientConfig,
+                    operationId = "reposGetLatestPagesBuild",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetPagesBuildOperation {
     /**
-     * Retrieves information about a GitHub Pages build in a repository. Use `owner`, `repo`, and `build_id` to identify the repository and build; the response includes the build status, commit, duration, timestamps, error details, and pusher.
+     * Retrieves information about a GitHub Pages build in a repository. Use `owner`, `repo`, and
+     * `build_id` to identify the repository and build; the response includes the build status,
+     * commit, duration, timestamps, error details, and pusher.
      *
-     * Gets information about a GitHub Pages build. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets information about a GitHub Pages build. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetPagesBuild(clientConfig: ClientConfig, owner: String, repo: String, buildId: Long, options: RequestOptions? = null): PageBuild {
-        return SdkClient.request<PageBuild>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/builds/${SdkClient.encodePathSegment(buildId)}", config = clientConfig, operationId = "reposGetPagesBuild", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetPagesBuild(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        buildId: Long,
+        options: RequestOptions? = null,
+    ): PageBuild {
+        return SdkClient.request<PageBuild>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/builds/${SdkClient.encodePathSegment(buildId)}",
+                    config = clientConfig,
+                    operationId = "reposGetPagesBuild",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreatePagesDeploymentOperation {
     /**
-     * Create a GitHub Pages deployment for a repository. The authenticated user must have write permission to the repository.
+     * Create a GitHub Pages deployment for a repository. The authenticated user must have write
+     * permission to the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param pagesBuildVersion A unique string that represents the version of the
-     *   build for this deployment.
-     * @param oidcToken The OIDC token issued by GitHub Actions certifying the origin
-     *   of the deployment.
-     * @param artifactId The ID of an artifact that contains the .zip or .tar of
-     *   static assets to deploy. The artifact belongs to the repository. Either
-     *   `artifact_id` or `artifact_url` are required.
-     * @param artifactUrl The URL of an artifact that contains the .zip or .tar of
-     *   static assets to deploy. The artifact belongs to the repository. Either
-     *   `artifact_id` or `artifact_url` are required.
+     * @param pagesBuildVersion A unique string that represents the version of the build for this
+     *   deployment.
+     * @param oidcToken The OIDC token issued by GitHub Actions certifying the origin of the
+     *   deployment.
+     * @param artifactId The ID of an artifact that contains the .zip or .tar of static assets to
+     *   deploy. The artifact belongs to the repository. Either `artifact_id` or `artifact_url` are
+     *   required.
+     * @param artifactUrl The URL of an artifact that contains the .zip or .tar of static assets to
+     *   deploy. The artifact belongs to the repository. Either `artifact_id` or `artifact_url` are
+     *   required.
      * @param environment The target environment for this GitHub Pages deployment.
      */
-    fun reposCreatePagesDeployment(clientConfig: ClientConfig, request: Repos.ReposCreatePagesDeploymentRequest, options: RequestOptions? = null): PageDeployment {
-        return SdkClient.request<PageDeployment>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pages/deployments", config = clientConfig, body = SdkClient.bodyMap("pages_build_version" to (request.pagesBuildVersion), "oidc_token" to (request.oidcToken), "artifact_id" to (SdkClient.omitIfNull(request.artifactId)), "artifact_url" to
-    (SdkClient.omitIfNull(request.artifactUrl)), "environment" to (SdkClient.omitIfNull(request.environment))), operationId = "reposCreatePagesDeployment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposCreatePagesDeployment(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreatePagesDeploymentRequest,
+        options: RequestOptions? = null,
+    ): PageDeployment {
+        return SdkClient.request<PageDeployment>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pages/deployments",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "pages_build_version" to (request.pagesBuildVersion),
+                            "oidc_token" to (request.oidcToken),
+                            "artifact_id" to (SdkClient.omitIfNull(request.artifactId)),
+                            "artifact_url" to (SdkClient.omitIfNull(request.artifactUrl)),
+                            "environment" to (SdkClient.omitIfNull(request.environment)),
+                        ),
+                    operationId = "reposCreatePagesDeployment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetPagesDeploymentOperation {
     /**
-     * Gets the current status of a GitHub Pages deployment. The authenticated user must have read permission for the GitHub Pages site.
+     * Gets the current status of a GitHub Pages deployment. The authenticated user must have read
+     * permission for the GitHub Pages site.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param pagesDeploymentId The ID of the Pages deployment. You can also give the
-     *   commit SHA of the deployment.
+     * @param pagesDeploymentId The ID of the Pages deployment. You can also give the commit SHA of
+     *   the deployment.
      */
-    fun reposGetPagesDeployment(clientConfig: ClientConfig, owner: String, repo: String, pagesDeploymentId: Any, options: RequestOptions? = null): PagesDeploymentStatus {
-        return SdkClient.request<PagesDeploymentStatus>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/deployments/${SdkClient.encodePathSegment(pagesDeploymentId)}", config = clientConfig, operationId = "reposGetPagesDeployment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetPagesDeployment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pagesDeploymentId: Any,
+        options: RequestOptions? = null,
+    ): PagesDeploymentStatus {
+        return SdkClient.request<PagesDeploymentStatus>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/deployments/${SdkClient.encodePathSegment(pagesDeploymentId)}",
+                    config = clientConfig,
+                    operationId = "reposGetPagesDeployment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCancelPagesDeploymentOperation {
     /**
-     * Cancels a GitHub Pages deployment. The authenticated user must have write permissions for the GitHub Pages site.
+     * Cancels a GitHub Pages deployment. The authenticated user must have write permissions for the
+     * GitHub Pages site.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param pagesDeploymentId The ID of the Pages deployment. You can also give the
-     *   commit SHA of the deployment.
+     * @param pagesDeploymentId The ID of the Pages deployment. You can also give the commit SHA of
+     *   the deployment.
      */
-    fun reposCancelPagesDeployment(clientConfig: ClientConfig, owner: String, repo: String, pagesDeploymentId: Any, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/deployments/${SdkClient.encodePathSegment(pagesDeploymentId)}/cancel", config = clientConfig, operationId = "reposCancelPagesDeployment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    fun reposCancelPagesDeployment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pagesDeploymentId: Any,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/deployments/${SdkClient.encodePathSegment(pagesDeploymentId)}/cancel",
+                config = clientConfig,
+                operationId = "reposCancelPagesDeployment",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposGetPagesHealthCheckOperation {
     /**
-     * Gets a health check of the DNS settings for the `CNAME` record configured for a repository's GitHub Pages. The first request to this endpoint returns a `202 Accepted` status and starts an asynchronous background task to get the results for the domain. After the background task completes, subsequent requests to this endpoint return a `200 OK` status with the health check results in the response. The authenticated user must be a repository administrator, maintainer, or have…
+     * Gets a health check of the DNS settings for the `CNAME` record configured for a repository's
+     * GitHub Pages. The first request to this endpoint returns a `202 Accepted` status and starts
+     * an asynchronous background task to get the results for the domain. After the background task
+     * completes, subsequent requests to this endpoint return a `200 OK` status with the health
+     * check results in the response. The authenticated user must be a repository administrator,
+     * maintainer, or have…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetPagesHealthCheck(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): PagesHealthCheck {
-        return SdkClient.request<PagesHealthCheck>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/health", config = clientConfig, operationId = "reposGetPagesHealthCheck", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetPagesHealthCheck(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): PagesHealthCheck {
+        return SdkClient.request<PagesHealthCheck>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pages/health",
+                    config = clientConfig,
+                    operationId = "reposGetPagesHealthCheck",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

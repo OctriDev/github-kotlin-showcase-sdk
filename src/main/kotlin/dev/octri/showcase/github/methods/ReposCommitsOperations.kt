@@ -19,187 +19,414 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposListCommitsOperation {
     /**
-     * **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are…
+     * **Signature verification object** The response will include a `verification` object that
+     * describes the result of verifying the commit's signature. The following fields are included
+     * in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | |
+     * `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to
+     * be verified. | | `reason` | `string` | The reason for verified value. Possible values and
+     * their meanings are…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param sha SHA or branch to start listing commits from. Default: the
-     *   repository’s default branch (usually `main`).
+     * @param sha SHA or branch to start listing commits from. Default: the repository’s default
+     *   branch (usually `main`).
      * @param path Only commits containing this file path will be returned.
-     * @param author GitHub username or email address to use to filter by commit
-     *   author.
-     * @param committer GitHub username or email address to use to filter by commit
-     *   committer.
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Due to
-     *   limitations of Git, timestamps must be between 1970-01-01 and 2099-12-31
-     *   (inclusive) or unexpected results may be returned.
-     * @param until Only commits before this date will be returned. This is a
-     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Due to limitations of
-     *   Git, timestamps must be between 1970-01-01 and 2099-12-31 (inclusive) or
-     *   unexpected results may be returned.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param author GitHub username or email address to use to filter by commit author.
+     * @param committer GitHub username or email address to use to filter by commit committer.
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Due to limitations of Git, timestamps
+     *   must be between 1970-01-01 and 2099-12-31 (inclusive) or unexpected results may be
+     *   returned.
+     * @param until Only commits before this date will be returned. This is a timestamp in ISO 8601
+     *   format: `YYYY-MM-DDTHH:MM:SSZ`. Due to limitations of Git, timestamps must be between
+     *   1970-01-01 and 2099-12-31 (inclusive) or unexpected results may be returned.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCommits(clientConfig: ClientConfig, request: Repos.ReposListCommitsRequest, options: RequestOptions? = null): List<Commit> {
+    fun reposListCommits(
+        clientConfig: ClientConfig,
+        request: Repos.ReposListCommitsRequest,
+        options: RequestOptions? = null,
+    ): List<Commit> {
         validateReposListCommitsRequest(request)
 
-        return SdkClient.request<List<Commit>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/commits", config = clientConfig, query = mapOf("sha" to SdkClient.queryValue(request.sha, "form", true), "path" to SdkClient.queryValue(request.path, "form", true), "author" to
-    SdkClient.queryValue(request.author, "form", true), "committer" to
-    SdkClient.queryValue(request.committer, "form", true), "since" to
-    SdkClient.queryValue(request.since, "form", true, "date-time"), "until" to
-    SdkClient.queryValue(request.until, "form", true, "date-time"), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reposListCommits", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java, "429" to BasicError::class.java, "500" to BasicError::class.java))).data
+        return SdkClient.request<List<Commit>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/commits",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "sha" to SdkClient.queryValue(request.sha, "form", true),
+                            "path" to SdkClient.queryValue(request.path, "form", true),
+                            "author" to SdkClient.queryValue(request.author, "form", true),
+                            "committer" to SdkClient.queryValue(request.committer, "form", true),
+                            "since" to
+                                SdkClient.queryValue(request.since, "form", true, "date-time"),
+                            "until" to
+                                SdkClient.queryValue(request.until, "form", true, "date-time"),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "reposListCommits",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "429" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateReposListCommitsRequest(request: Repos.ReposListCommitsRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-}
+        }
 
         if (request.until != null) {
             Validation.validateDateTime("until", request.until)
-}
+        }
     }
 }
 
 internal object ReposListBranchesForHeadCommitOperation {
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products in the GitHub Help documentation. Returns all branches where the given commit SHA is the HEAD, or latest commit for the branch.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see GitHub's products
+     * in the GitHub Help documentation. Returns all branches where the given commit SHA is the
+     * HEAD, or latest commit for the branch.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
      */
-    fun reposListBranchesForHeadCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, options: RequestOptions? = null): List<BranchShort> {
-        return SdkClient.request<List<BranchShort>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/branches-where-head", config = clientConfig, operationId = "reposListBranchesForHeadCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposListBranchesForHeadCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        options: RequestOptions? = null,
+    ): List<BranchShort> {
+        return SdkClient.request<List<BranchShort>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/branches-where-head",
+                    config = clientConfig,
+                    operationId = "reposListBranchesForHeadCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListCommentsForCommitOperation {
     /**
-     * Lists the comments for a specified commit. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
+     * Lists the comments for a specified commit. This endpoint supports the following custom media
+     * types. For more information, see "Media types." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCommentsForCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<CommitComment> {
-        return SdkClient.request<List<CommitComment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/comments", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListCommentsForCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListCommentsForCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<CommitComment> {
+        return SdkClient.request<List<CommitComment>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/comments",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListCommentsForCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateCommitCommentOperation {
     /**
-     * Create a comment for a commit using its `:commit_sha`. Access to commit comments can be controlled by organization owners. For more information, see "Managing commit comments for your organization". This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types.…
+     * Create a comment for a commit using its `:commit_sha`. Access to commit comments can be
+     * controlled by organization owners. For more information, see "Managing commit comments for
+     * your organization". This endpoint triggers notifications. Creating content too quickly using
+     * this endpoint may result in secondary rate limiting. For more information, see "Rate limits
+     * for the API" and "Best practices for using the REST API." This endpoint supports the
+     * following custom media types.…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
      * @param body The contents of the comment.
      * @param path Relative path of the file to comment on.
      * @param position Line index in the diff to comment on.
-     * @param line **Closing down notice**. Use **position** parameter instead. Line
-     *   number in the file to comment on.
+     * @param line **Closing down notice**. Use **position** parameter instead. Line number in the
+     *   file to comment on.
      */
-    fun reposCreateCommitComment(clientConfig: ClientConfig, request: Repos.ReposCreateCommitCommentRequest, options: RequestOptions? = null): CommitComment {
-        return SdkClient.request<CommitComment>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/commits/${SdkClient.encodePathSegment(request.commitSha)}/comments", config = clientConfig, body = SdkClient.bodyMap("body" to (request.body), "path" to (SdkClient.omitIfNull(request.path)), "position" to (SdkClient.omitIfNull(request.position)), "line" to (SdkClient.omitIfNull(request.line))), operationId = "reposCreateCommitComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposCreateCommitComment(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateCommitCommentRequest,
+        options: RequestOptions? = null,
+    ): CommitComment {
+        return SdkClient.request<CommitComment>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/commits/${SdkClient.encodePathSegment(request.commitSha)}/comments",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "body" to (request.body),
+                            "path" to (SdkClient.omitIfNull(request.path)),
+                            "position" to (SdkClient.omitIfNull(request.position)),
+                            "line" to (SdkClient.omitIfNull(request.line)),
+                        ),
+                    operationId = "reposCreateCommitComment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListPullRequestsAssociatedWithCommitOperation {
     /**
-     * Lists the merged pull request that introduced the commit to the repository. If the commit is not present in the default branch, it will return merged and open pull requests associated with the commit. To list the open or merged pull requests associated with a branch, you can set the `commit_sha` parameter to the branch name.
+     * Lists the merged pull request that introduced the commit to the repository. If the commit is
+     * not present in the default branch, it will return merged and open pull requests associated
+     * with the commit. To list the open or merged pull requests associated with a branch, you can
+     * set the `commit_sha` parameter to the branch name.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListPullRequestsAssociatedWithCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PullRequestSimple> {
-        return SdkClient.request<List<PullRequestSimple>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/pulls", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListPullRequestsAssociatedWithCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java))).data
+    fun reposListPullRequestsAssociatedWithCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<PullRequestSimple> {
+        return SdkClient.request<List<PullRequestSimple>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(commitSha)}/pulls",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListPullRequestsAssociatedWithCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("409" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetCommitOperation {
     /**
-     * Returns the contents of a single commit reference. You must have `read` access for the repository to use this endpoint. > !NOTE] > If there are more than 300 files in the commit diff and the default JSON media type is requested, the response will include pagination link headers for the remaining files, up to a limit of 3000 files. Each page contains the static commit information, and the only changes are to the file listing. This endpoint supports the following custom media…
+     * Returns the contents of a single commit reference. You must have `read` access for the
+     * repository to use this endpoint. > !NOTE] > If there are more than 300 files in the commit
+     * diff and the default JSON media type is requested, the response will include pagination link
+     * headers for the remaining files, up to a limit of 3000 files. Each page contains the static
+     * commit information, and the only changes are to the file listing. This endpoint supports the
+     * following custom media…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The commit reference. Can be a commit SHA, branch name
-     *   (`heads/BRANCH_NAME`), or tag name (`tags/TAG_NAME`). For more information,
-     *   see "Git References" in the Git documentation.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param ref The commit reference. Can be a commit SHA, branch name (`heads/BRANCH_NAME`), or
+     *   tag name (`tags/TAG_NAME`). For more information, see "Git References" in the Git
+     *   documentation.
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposGetCommit(clientConfig: ClientConfig, owner: String, repo: String, ref: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Commit {
-        return SdkClient.request<Commit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "reposGetCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java, "429" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
+    fun reposGetCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Commit {
+        return SdkClient.request<Commit>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "reposGetCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "429" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetCombinedStatusForRefOperation {
     /**
-     * Users with pull access in a repository can access a combined view of commit statuses for a given ref. The ref can be a SHA, a branch name, or a tag name. Additionally, a combined `state` is returned. The `state` is one of: * **failure** if any of the contexts report as `error` or `failure` * **pending** if there are no statuses or a context is `pending` * **success** if the latest status for all contexts is `success`
+     * Users with pull access in a repository can access a combined view of commit statuses for a
+     * given ref. The ref can be a SHA, a branch name, or a tag name. Additionally, a combined
+     * `state` is returned. The `state` is one of: * **failure** if any of the contexts report as
+     * `error` or `failure` * **pending** if there are no statuses or a context is `pending` *
+     * **success** if the latest status for all contexts is `success`
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The commit reference. Can be a commit SHA, branch name
-     *   (`heads/BRANCH_NAME`), or tag name (`tags/TAG_NAME`). For more information,
-     *   see "Git References" in the Git documentation.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param ref The commit reference. Can be a commit SHA, branch name (`heads/BRANCH_NAME`), or
+     *   tag name (`tags/TAG_NAME`). For more information, see "Git References" in the Git
+     *   documentation.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposGetCombinedStatusForRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): CombinedCommitStatus {
-        return SdkClient.request<CombinedCommitStatus>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}/status", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposGetCombinedStatusForRef", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+    fun reposGetCombinedStatusForRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): CombinedCommitStatus {
+        return SdkClient.request<CombinedCommitStatus>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}/status",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposGetCombinedStatusForRef",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListCommitStatusesForRefOperation {
     /**
-     * Users with pull access in a repository can view commit statuses for a given ref. The ref can be a SHA, a branch name, or a tag name. Statuses are returned in reverse chronological order. The first status in the list will be the latest one. This resource is also available via a legacy route: `GET /repos/:owner/:repo/statuses/:ref`.
+     * Users with pull access in a repository can view commit statuses for a given ref. The ref can
+     * be a SHA, a branch name, or a tag name. Statuses are returned in reverse chronological order.
+     * The first status in the list will be the latest one. This resource is also available via a
+     * legacy route: `GET /repos/:owner/:repo/statuses/:ref`.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The commit reference. Can be a commit SHA, branch name
-     *   (`heads/BRANCH_NAME`), or tag name (`tags/TAG_NAME`). For more information,
-     *   see "Git References" in the Git documentation.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param ref The commit reference. Can be a commit SHA, branch name (`heads/BRANCH_NAME`), or
+     *   tag name (`tags/TAG_NAME`). For more information, see "Git References" in the Git
+     *   documentation.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCommitStatusesForRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Status> {
-        return SdkClient.request<List<Status>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}/statuses", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListCommitStatusesForRef", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java))).data
+    fun reposListCommitStatusesForRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Status> {
+        return SdkClient.request<List<Status>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/commits/${SdkClient.encodePathSegment(ref)}/statuses",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListCommitStatusesForRef",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("301" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }

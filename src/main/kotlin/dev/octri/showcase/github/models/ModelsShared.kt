@@ -3,68 +3,71 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * The permissions granted to the fine-grained access token.
- */
+/** The permissions granted to the fine-grained access token. */
 class AppPermissions(
     /**
-     * The level of permission to grant the access token for GitHub Actions workflows, workflow runs, and artifacts.
+     * The level of permission to grant the access token for GitHub Actions workflows, workflow
+     * runs, and artifacts.
      */
     val actions: AppPermissionsActionsEnum? = null,
     /**
-     * The level of permission to grant the access token for repository creation, deletion, settings, teams, and collaborators creation.
+     * The level of permission to grant the access token for repository creation, deletion,
+     * settings, teams, and collaborators creation.
      */
     val administration: AppPermissionsAdministrationEnum? = null,
     /**
-     * The level of permission to grant the access token to create and retrieve build artifact metadata records.
+     * The level of permission to grant the access token to create and retrieve build artifact
+     * metadata records.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("artifact_metadata") val artifactMetadata: AppPermissionsArtifactMetadataEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("artifact_metadata")
+    val artifactMetadata: AppPermissionsArtifactMetadataEnum? = null,
     /**
      * The level of permission to create and retrieve the access token for repository attestations.
      */
     val attestations: AppPermissionsAttestationsEnum? = null,
-    /**
-     * The level of permission to grant the access token for checks on code.
-     */
+    /** The level of permission to grant the access token for checks on code. */
     val checks: AppPermissionsChecksEnum? = null,
+    /** The level of permission to grant the access token to view and manage code quality data. */
+    @com.fasterxml.jackson.annotation.JsonProperty("code_quality")
+    val codeQuality: AppPermissionsCodeQualityEnum? = null,
     /**
-     * The level of permission to grant the access token to view and manage code quality data.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("code_quality") val codeQuality: AppPermissionsCodeQualityEnum? = null,
-    /**
-     * The level of permission to grant the access token to create, edit, delete, and list Codespaces.
+     * The level of permission to grant the access token to create, edit, delete, and list
+     * Codespaces.
      */
     val codespaces: AppPermissionsCodespacesEnum? = null,
     /**
-     * The level of permission to grant the access token for repository contents, commits, branches, downloads, releases, and merges.
+     * The level of permission to grant the access token for repository contents, commits, branches,
+     * downloads, releases, and merges.
      */
     val contents: AppPermissionsContentsEnum? = null,
-    /**
-     * The level of permission to grant the access token to manage Dependabot secrets.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dependabot_secrets") val dependabotSecrets: AppPermissionsDependabotSecretsEnum? = null,
+    /** The level of permission to grant the access token to manage Dependabot secrets. */
+    @com.fasterxml.jackson.annotation.JsonProperty("dependabot_secrets")
+    val dependabotSecrets: AppPermissionsDependabotSecretsEnum? = null,
     /**
      * The level of permission to grant the access token for deployments and deployment statuses.
      */
     val deployments: AppPermissionsDeploymentsEnum? = null,
     /**
-     * The level of permission to grant the access token for discussions and related comments and labels.
+     * The level of permission to grant the access token for discussions and related comments and
+     * labels.
      */
     val discussions: AppPermissionsDiscussionsEnum? = null,
-    /**
-     * The level of permission to grant the access token for managing repository environments.
-     */
+    /** The level of permission to grant the access token for managing repository environments. */
     val environments: AppPermissionsEnvironmentsEnum? = null,
     /**
-     * The level of permission to grant the access token for issues and related comments, assignees, labels, and milestones.
+     * The level of permission to grant the access token for issues and related comments, assignees,
+     * labels, and milestones.
      */
     val issues: AppPermissionsIssuesEnum? = null,
     /**
-     * The level of permission to grant the access token to manage the merge queues for a repository.
+     * The level of permission to grant the access token to manage the merge queues for a
+     * repository.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_queues") val mergeQueues: AppPermissionsMergeQueuesEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_queues")
+    val mergeQueues: AppPermissionsMergeQueuesEnum? = null,
     /**
-     * The level of permission to grant the access token to search repositories, list collaborators, and access repository metadata.
+     * The level of permission to grant the access token to search repositories, list collaborators,
+     * and access repository metadata.
      */
     val metadata: AppPermissionsMetadataEnum? = null,
     /**
@@ -72,343 +75,323 @@ class AppPermissions(
      */
     val packages: AppPermissionsPackagesEnum? = null,
     /**
-     * The level of permission to grant the access token to retrieve Pages statuses, configuration, and builds, as well as create new builds.
+     * The level of permission to grant the access token to retrieve Pages statuses, configuration,
+     * and builds, as well as create new builds.
      */
     val pages: AppPermissionsPagesEnum? = null,
     /**
-     * The level of permission to grant the access token for pull requests and related comments, assignees, labels, milestones, and merges.
+     * The level of permission to grant the access token for pull requests and related comments,
+     * assignees, labels, milestones, and merges.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests") val pullRequests: AppPermissionsPullRequestsEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests")
+    val pullRequests: AppPermissionsPullRequestsEnum? = null,
     /**
-     * The level of permission to grant the access token to view and edit custom properties for a repository, when allowed by the property.
+     * The level of permission to grant the access token to view and edit custom properties for a
+     * repository, when allowed by the property.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_custom_properties") val repositoryCustomProperties: AppPermissionsRepositoryCustomPropertiesEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_custom_properties")
+    val repositoryCustomProperties: AppPermissionsRepositoryCustomPropertiesEnum? = null,
     /**
-     * The level of permission to grant the access token to manage the post-receive hooks for a repository.
+     * The level of permission to grant the access token to manage the post-receive hooks for a
+     * repository.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_hooks") val repositoryHooks: AppPermissionsRepositoryHooksEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_hooks")
+    val repositoryHooks: AppPermissionsRepositoryHooksEnum? = null,
     /**
-     * The level of permission to grant the access token to manage repository projects, columns, and cards.
+     * The level of permission to grant the access token to manage repository projects, columns, and
+     * cards.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_projects") val repositoryProjects: AppPermissionsRepositoryProjectsEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("repository_projects")
+    val repositoryProjects: AppPermissionsRepositoryProjectsEnum? = null,
     /**
      * The level of permission to grant the access token to view and manage secret scanning alerts.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_alerts") val secretScanningAlerts: AppPermissionsSecretScanningAlertsEnum? = null,
-    /**
-     * The level of permission to grant the access token to manage repository secrets.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_alerts")
+    val secretScanningAlerts: AppPermissionsSecretScanningAlertsEnum? = null,
+    /** The level of permission to grant the access token to manage repository secrets. */
     val secrets: AppPermissionsSecretsEnum? = null,
     /**
-     * The level of permission to grant the access token to view and manage security events like code scanning alerts.
+     * The level of permission to grant the access token to view and manage security events like
+     * code scanning alerts.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("security_events") val securityEvents: AppPermissionsSecurityEventsEnum? = null,
-    /**
-     * The level of permission to grant the access token to manage just a single file.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("single_file") val singleFile: AppPermissionsSingleFileEnum? = null,
-    /**
-     * The level of permission to grant the access token for commit statuses.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("security_events")
+    val securityEvents: AppPermissionsSecurityEventsEnum? = null,
+    /** The level of permission to grant the access token to manage just a single file. */
+    @com.fasterxml.jackson.annotation.JsonProperty("single_file")
+    val singleFile: AppPermissionsSingleFileEnum? = null,
+    /** The level of permission to grant the access token for commit statuses. */
     val statuses: AppPermissionsStatusesEnum? = null,
-    /**
-     * The level of permission to grant the access token to manage Dependabot alerts.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerability_alerts") val vulnerabilityAlerts: AppPermissionsVulnerabilityAlertsEnum? = null,
+    /** The level of permission to grant the access token to manage Dependabot alerts. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vulnerability_alerts")
+    val vulnerabilityAlerts: AppPermissionsVulnerabilityAlertsEnum? = null,
     /**
      * The level of permission to grant the access token to update GitHub Actions workflow files.
      */
     val workflows: AppPermissionsWorkflowsEnum? = null,
     /**
-     * The level of permission to grant the access token to view and edit custom properties for an organization, when allowed by the property.
+     * The level of permission to grant the access token to view and edit custom properties for an
+     * organization, when allowed by the property.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_properties_for_organizations") val customPropertiesForOrganizations: AppPermissionsCustomPropertiesForOrganizationsEnum? = null,
-    /**
-     * The level of permission to grant the access token for organization teams and members.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("custom_properties_for_organizations")
+    val customPropertiesForOrganizations: AppPermissionsCustomPropertiesForOrganizationsEnum? =
+        null,
+    /** The level of permission to grant the access token for organization teams and members. */
     val members: AppPermissionsMembersEnum? = null,
-    /**
-     * The level of permission to grant the access token to manage access to an organization.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_administration") val organizationAdministration: AppPermissionsOrganizationAdministrationEnum? = null,
-    /**
-     * The level of permission to grant the access token for custom repository roles management.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_custom_roles") val organizationCustomRoles: AppPermissionsOrganizationCustomRolesEnum? = null,
+    /** The level of permission to grant the access token to manage access to an organization. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_administration")
+    val organizationAdministration: AppPermissionsOrganizationAdministrationEnum? = null,
+    /** The level of permission to grant the access token for custom repository roles management. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_custom_roles")
+    val organizationCustomRoles: AppPermissionsOrganizationCustomRolesEnum? = null,
     /**
      * The level of permission to grant the access token for custom organization roles management.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_custom_org_roles") val organizationCustomOrgRoles: AppPermissionsOrganizationCustomOrgRolesEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_custom_org_roles")
+    val organizationCustomOrgRoles: AppPermissionsOrganizationCustomOrgRolesEnum? = null,
     /**
-     * The level of permission to grant the access token for repository custom properties management at the organization level.
+     * The level of permission to grant the access token for repository custom properties management
+     * at the organization level.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_custom_properties") val organizationCustomProperties: AppPermissionsOrganizationCustomPropertiesEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_custom_properties")
+    val organizationCustomProperties: AppPermissionsOrganizationCustomPropertiesEnum? = null,
     /**
-     * The level of permission to grant the access token for managing access to GitHub Copilot for members of an organization with a Copilot Business subscription. This property is in public preview and is subject to change.
+     * The level of permission to grant the access token for managing access to GitHub Copilot for
+     * members of an organization with a Copilot Business subscription. This property is in public
+     * preview and is subject to change.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_copilot_seat_management") val organizationCopilotSeatManagement: AppPermissionsOrganizationCopilotSeatManagementEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_copilot_seat_management")
+    val organizationCopilotSeatManagement: AppPermissionsOrganizationCopilotSeatManagementEnum? =
+        null,
     /**
-     * The level of permission to grant the access token to view and manage Copilot cloud agent settings for an organization.
+     * The level of permission to grant the access token to view and manage Copilot cloud agent
+     * settings for an organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_copilot_agent_settings") val organizationCopilotAgentSettings: AppPermissionsOrganizationCopilotAgentSettingsEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_copilot_agent_settings")
+    val organizationCopilotAgentSettings: AppPermissionsOrganizationCopilotAgentSettingsEnum? =
+        null,
     /**
-     * The level of permission to grant the access token to make Copilot requests billed to the organization where the app is installed. This property is in public preview and is subject to change.
+     * The level of permission to grant the access token to make Copilot requests billed to the
+     * organization where the app is installed. This property is in public preview and is subject to
+     * change.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_copilot_requests") val organizationCopilotRequests: AppPermissionsOrganizationCopilotRequestsEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_copilot_requests")
+    val organizationCopilotRequests: AppPermissionsOrganizationCopilotRequestsEnum? = null,
     /**
-     * The level of permission to grant the access token for managing external custom properties for repositories in an organization.
+     * The level of permission to grant the access token for managing external custom properties for
+     * repositories in an organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_external_properties_for_repos") val organizationExternalPropertiesForRepos: AppPermissionsOrganizationExternalPropertiesForReposEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_external_properties_for_repos")
+    val organizationExternalPropertiesForRepos:
+        AppPermissionsOrganizationExternalPropertiesForReposEnum? =
+        null,
     /**
-     * The level of permission to grant the access token to view and manage announcement banners for an organization.
+     * The level of permission to grant the access token to view and manage announcement banners for
+     * an organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_announcement_banners") val organizationAnnouncementBanners: AppPermissionsOrganizationAnnouncementBannersEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_announcement_banners")
+    val organizationAnnouncementBanners: AppPermissionsOrganizationAnnouncementBannersEnum? = null,
     /**
-     * The level of permission to grant the access token to view events triggered by an activity in an organization.
+     * The level of permission to grant the access token to view events triggered by an activity in
+     * an organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_events") val organizationEvents: AppPermissionsOrganizationEventsEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_events")
+    val organizationEvents: AppPermissionsOrganizationEventsEnum? = null,
     /**
-     * The level of permission to grant the access token to manage the post-receive hooks for an organization.
+     * The level of permission to grant the access token to manage the post-receive hooks for an
+     * organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_hooks") val organizationHooks: AppPermissionsOrganizationHooksEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_hooks")
+    val organizationHooks: AppPermissionsOrganizationHooksEnum? = null,
     /**
-     * The level of permission to grant the access token for viewing and managing fine-grained personal access token requests to an organization.
+     * The level of permission to grant the access token for viewing and managing fine-grained
+     * personal access token requests to an organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_personal_access_tokens") val organizationPersonalAccessTokens: AppPermissionsOrganizationPersonalAccessTokensEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_personal_access_tokens")
+    val organizationPersonalAccessTokens: AppPermissionsOrganizationPersonalAccessTokensEnum? =
+        null,
     /**
-     * The level of permission to grant the access token for viewing and managing fine-grained personal access tokens that have been approved by an organization.
+     * The level of permission to grant the access token for viewing and managing fine-grained
+     * personal access tokens that have been approved by an organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_personal_access_token_requests") val organizationPersonalAccessTokenRequests: AppPermissionsOrganizationPersonalAccessTokenRequestsEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_personal_access_token_requests")
+    val organizationPersonalAccessTokenRequests:
+        AppPermissionsOrganizationPersonalAccessTokenRequestsEnum? =
+        null,
+    /** The level of permission to grant the access token for viewing an organization's plan. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_plan")
+    val organizationPlan: AppPermissionsOrganizationPlanEnum? = null,
     /**
-     * The level of permission to grant the access token for viewing an organization's plan.
+     * The level of permission to grant the access token to manage organization projects and
+     * projects public preview (where available).
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_plan") val organizationPlan: AppPermissionsOrganizationPlanEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_projects")
+    val organizationProjects: AppPermissionsOrganizationProjectsEnum? = null,
     /**
-     * The level of permission to grant the access token to manage organization projects and projects public preview (where available).
+     * The level of permission to grant the access token for organization packages published to
+     * GitHub Packages.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_projects") val organizationProjects: AppPermissionsOrganizationProjectsEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_packages")
+    val organizationPackages: AppPermissionsOrganizationPackagesEnum? = null,
+    /** The level of permission to grant the access token to manage organization secrets. */
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_secrets")
+    val organizationSecrets: AppPermissionsOrganizationSecretsEnum? = null,
     /**
-     * The level of permission to grant the access token for organization packages published to GitHub Packages.
+     * The level of permission to grant the access token to view and manage GitHub Actions
+     * self-hosted runners available to an organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_packages") val organizationPackages: AppPermissionsOrganizationPackagesEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_self_hosted_runners")
+    val organizationSelfHostedRunners: AppPermissionsOrganizationSelfHostedRunnersEnum? = null,
     /**
-     * The level of permission to grant the access token to manage organization secrets.
+     * The level of permission to grant the access token to view and manage users blocked by the
+     * organization.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_secrets") val organizationSecrets: AppPermissionsOrganizationSecretsEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("organization_user_blocking")
+    val organizationUserBlocking: AppPermissionsOrganizationUserBlockingEnum? = null,
     /**
-     * The level of permission to grant the access token to view and manage GitHub Actions self-hosted runners available to an organization.
+     * The level of permission to grant the access token to manage the email addresses belonging to
+     * a user.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_self_hosted_runners") val organizationSelfHostedRunners: AppPermissionsOrganizationSelfHostedRunnersEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("email_addresses")
+    val emailAddresses: AppPermissionsEmailAddressesEnum? = null,
     /**
-     * The level of permission to grant the access token to view and manage users blocked by the organization.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("organization_user_blocking") val organizationUserBlocking: AppPermissionsOrganizationUserBlockingEnum? = null,
-    /**
-     * The level of permission to grant the access token to manage the email addresses belonging to a user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("email_addresses") val emailAddresses: AppPermissionsEmailAddressesEnum? = null,
-    /**
-     * The level of permission to grant the access token to manage the followers belonging to a user.
+     * The level of permission to grant the access token to manage the followers belonging to a
+     * user.
      */
     val followers: AppPermissionsFollowersEnum? = null,
+    /** The level of permission to grant the access token to manage git SSH keys. */
+    @com.fasterxml.jackson.annotation.JsonProperty("git_ssh_keys")
+    val gitSshKeys: AppPermissionsGitSshKeysEnum? = null,
     /**
-     * The level of permission to grant the access token to manage git SSH keys.
+     * The level of permission to grant the access token to view and manage GPG keys belonging to a
+     * user.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("git_ssh_keys") val gitSshKeys: AppPermissionsGitSshKeysEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("gpg_keys")
+    val gpgKeys: AppPermissionsGpgKeysEnum? = null,
     /**
-     * The level of permission to grant the access token to view and manage GPG keys belonging to a user.
+     * The level of permission to grant the access token to view and manage interaction limits on a
+     * repository.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("gpg_keys") val gpgKeys: AppPermissionsGpgKeysEnum? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("interaction_limits")
+    val interactionLimits: AppPermissionsInteractionLimitsEnum? = null,
     /**
-     * The level of permission to grant the access token to view and manage interaction limits on a repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("interaction_limits") val interactionLimits: AppPermissionsInteractionLimitsEnum? = null,
-    /**
-     * The level of permission to grant the access token to manage the profile settings belonging to a user.
+     * The level of permission to grant the access token to manage the profile settings belonging to
+     * a user.
      */
     val profile: AppPermissionsProfileEnum? = null,
     /**
-     * The level of permission to grant the access token to list and manage repositories a user is starring.
+     * The level of permission to grant the access token to list and manage repositories a user is
+     * starring.
      */
     val starring: AppPermissionsStarringEnum? = null,
     /**
-     * The level of permission to grant the access token for organization custom properties management at the enterprise level.
+     * The level of permission to grant the access token for organization custom properties
+     * management at the enterprise level.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("enterprise_custom_properties_for_organizations") val enterpriseCustomPropertiesForOrganizations: AppPermissionsEnterpriseCustomPropertiesForOrganizationsEnum? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("enterprise_custom_properties_for_organizations")
+    val enterpriseCustomPropertiesForOrganizations:
+        AppPermissionsEnterpriseCustomPropertiesForOrganizationsEnum? =
+        null,
 )
 
-/**
- * The status of auto merging a pull request.
- */
+/** The status of auto merging a pull request. */
 data class AutoMerge(
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     @com.fasterxml.jackson.annotation.JsonProperty("enabled_by") val enabledBy: SimpleUser,
-    /**
-     * The merge method to use.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("merge_method") val mergeMethod: AutoMergeMergeMethodEnum,
-    /**
-     * Title for the merge commit message.
-     */
+    /** The merge method to use. */
+    @com.fasterxml.jackson.annotation.JsonProperty("merge_method")
+    val mergeMethod: AutoMergeMergeMethodEnum,
+    /** Title for the merge commit message. */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_title") val commitTitle: String,
-    /**
-     * Commit message for the merge commit.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_message") val commitMessage: String
+    /** Commit message for the merge commit. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_message") val commitMessage: String,
 )
 
-/**
- * Basic Error
- */
+/** Basic Error */
 data class BasicError(
-    /**
-     * Optional `string` value serialized in the `message` wire field.
-     */
+    /** Optional `string` value serialized in the `message` wire field. */
     val message: String? = null,
-    /**
-     * Optional `string` value serialized in the `documentation_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("documentation_url") val documentationUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `url` wire field.
-     */
+    /** Optional `string` value serialized in the `documentation_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("documentation_url")
+    val documentationUrl: String? = null,
+    /** Optional `string` value serialized in the `url` wire field. */
     val url: String? = null,
-    /**
-     * Optional `string` value serialized in the `status` wire field.
-     */
-    val status: String? = null
+    /** Optional `string` value serialized in the `status` wire field. */
+    val status: String? = null,
 ) : dev.octri.showcase.github.ErrorBody
 
-/**
- * Custom property name and associated value
- */
+/** Custom property name and associated value */
 data class CustomPropertyValue(
-    /**
-     * The name of the property
-     */
+    /** The name of the property */
     @com.fasterxml.jackson.annotation.JsonProperty("property_name") val propertyName: String,
-    /**
-     * The value assigned to the property
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: Any?
+    /** The value assigned to the property */
+    @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: Any?,
 )
 
-/**
- * Optional object value serialized in the `cvss_v3` wire field.
- */
+/** Optional object value serialized in the `cvss_v3` wire field. */
 data class CvssSeveritiesCvssV3(
-    /**
-     * The CVSS 3 vector string.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true) val vectorString: String?,
-    /**
-     * The CVSS 3 score.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("score", required = true) val score: Double?
+    /** The CVSS 3 vector string. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true)
+    val vectorString: String?,
+    /** The CVSS 3 score. */
+    @com.fasterxml.jackson.annotation.JsonProperty("score", required = true) val score: Double?,
 )
 
-/**
- * Optional object value serialized in the `cvss_v4` wire field.
- */
+/** Optional object value serialized in the `cvss_v4` wire field. */
 data class CvssSeveritiesCvssV4(
-    /**
-     * The CVSS 4 vector string.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true) val vectorString: String?,
-    /**
-     * The CVSS 4 score.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("score", required = true) val score: Double?
+    /** The CVSS 4 vector string. */
+    @com.fasterxml.jackson.annotation.JsonProperty("vector_string", required = true)
+    val vectorString: String?,
+    /** The CVSS 4 score. */
+    @com.fasterxml.jackson.annotation.JsonProperty("score", required = true) val score: Double?,
 )
 
-/**
- * Typed representation of the `CvssSeverities` API schema.
- */
+/** Typed representation of the `CvssSeverities` API schema. */
 data class CvssSeverities(
-    /**
-     * Optional object value serialized in the `cvss_v3` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cvss_v3") val cvssV3: CvssSeveritiesCvssV3? = null,
-    /**
-     * Optional object value serialized in the `cvss_v4` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("cvss_v4") val cvssV4: CvssSeveritiesCvssV4? = null
+    /** Optional object value serialized in the `cvss_v3` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cvss_v3")
+    val cvssV3: CvssSeveritiesCvssV3? = null,
+    /** Optional object value serialized in the `cvss_v4` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("cvss_v4")
+    val cvssV4: CvssSeveritiesCvssV4? = null,
 )
 
-/**
- * Diff Entry
- */
+/** Diff Entry */
 data class DiffEntry(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("sha", required = true) val sha: String?,
-    /**
-     * Required `string` value serialized in the `filename` wire field.
-     */
+    /** Required `string` value serialized in the `filename` wire field. */
     val filename: String,
-    /**
-     * Required enumerated value serialized in the `status` wire field.
-     */
+    /** Required enumerated value serialized in the `status` wire field. */
     val status: DiffEntryStatusEnum,
-    /**
-     * Required `integer` value serialized in the `additions` wire field.
-     */
+    /** Required `integer` value serialized in the `additions` wire field. */
     val additions: Long,
-    /**
-     * Required `integer` value serialized in the `deletions` wire field.
-     */
+    /** Required `integer` value serialized in the `deletions` wire field. */
     val deletions: Long,
-    /**
-     * Required `integer` value serialized in the `changes` wire field.
-     */
+    /** Required `integer` value serialized in the `changes` wire field. */
     val changes: Long,
-    /**
-     * Required `uri`-formatted value serialized in the `blob_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `blob_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("blob_url") val blobUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `raw_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `raw_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("raw_url") val rawUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `contents_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `contents_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("contents_url") val contentsUrl: String,
-    /**
-     * Optional `string` value serialized in the `patch` wire field.
-     */
+    /** Optional `string` value serialized in the `patch` wire field. */
     val patch: String? = null,
-    /**
-     * Optional `string` value serialized in the `previous_filename` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_filename") val previousFilename: String? = null
+    /** Optional `string` value serialized in the `previous_filename` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_filename")
+    val previousFilename: String? = null,
 )
 
-/**
- * Optional object value serialized in the `permissions` wire field.
- */
+/** Optional object value serialized in the `permissions` wire field. */
 data class FullRepositoryPermissions(
-    /**
-     * Required `boolean` value serialized in the `admin` wire field.
-     */
+    /** Required `boolean` value serialized in the `admin` wire field. */
     val admin: Boolean,
-    /**
-     * Required `boolean` value serialized in the `push` wire field.
-     */
+    /** Required `boolean` value serialized in the `push` wire field. */
     val push: Boolean,
-    /**
-     * Required `boolean` value serialized in the `pull` wire field.
-     */
+    /** Required `boolean` value serialized in the `pull` wire field. */
     val pull: Boolean,
-    /**
-     * Optional `boolean` value serialized in the `maintain` wire field.
-     */
+    /** Optional `boolean` value serialized in the `maintain` wire field. */
     val maintain: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `triage` wire field.
-     */
-    val triage: Boolean? = null
+    /** Optional `boolean` value serialized in the `triage` wire field. */
+    val triage: Boolean? = null,
 )

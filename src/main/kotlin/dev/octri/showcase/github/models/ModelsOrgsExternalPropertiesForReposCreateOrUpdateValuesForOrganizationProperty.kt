@@ -3,16 +3,12 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Repository name and associated external custom property value
- */
+/** Repository name and associated external custom property value */
 data class RepositoryExternalPropertyPayload(
-    /**
-     * The name of the repository
-     */
+    /** The name of the repository */
     @com.fasterxml.jackson.annotation.JsonProperty("repository_name") val repositoryName: String,
     /**
      * The value assigned to the repository. Set to `null` to unset the value for this repository.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: String?
+    @com.fasterxml.jackson.annotation.JsonProperty("value", required = true) val `value`: String?,
 )

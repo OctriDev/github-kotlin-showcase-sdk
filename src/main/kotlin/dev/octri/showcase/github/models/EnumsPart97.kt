@@ -4,456 +4,756 @@
 package dev.octri.showcase.github.models
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX901c2b8547(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd960c73306(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6f96d379d2(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1335277b4c(value)
     }
 }
 
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TIMELINE_COMMENT = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19("timeline_comment")
-        @JvmField val REVIEW_COMMENT = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19("review_comment")
+        @JvmField
+        val TIMELINE_COMMENT =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19(
+                "timeline_comment"
+            )
+        @JvmField
+        val REVIEW_COMMENT =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19(
+                "review_comment"
+            )
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX5732dd2c19(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX6726425a96(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXc89700e411(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXacefed4018(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8852cd0b07(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX43029a133d(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8c6971e133(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX1e8aff464d(value)
     }
 }
 
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val APPROVED = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e("approved")
-        @JvmField val CHANGES_REQUESTED = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e("changes_requested")
-        @JvmField val COMMENTED = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e("commented")
+        @JvmField
+        val APPROVED =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e("approved")
+        @JvmField
+        val CHANGES_REQUESTED =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e(
+                "changes_requested"
+            )
+        @JvmField
+        val COMMENTED =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e("commented")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXd280a7fc9e(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXdb6d8e649c(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX8e627bab94(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriXb2518c01ed(value)
     }
 }
 
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val FAILURE = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8("failure")
+        @JvmField
+        val FAILURE =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8("failure")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8(value)
-    }
-}
-
-/**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
- */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459 && value == other.value
-    override fun hashCode(): Int = value.hashCode()
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459("repository")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459(value)
-    }
-}
-
-/**
- * Controls which repository resources a run may modify. `trigger` limits writes to the resource that started the run, when one exists, and resources created during the run; `repository` allows writes to any resource in the repository. Supported values: `trigger`, `repository`.
- */
-class AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum && value == other.value
-    override fun hashCode(): Int = value.hashCode()
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField val TRIGGER = AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum("repository")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX79cfa26ed8(value)
     }
 }
 
 /**
- * Machine-readable error code
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MISSING = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("missing")
-        @JvmField val MISSING_FIELD = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("missing_field")
-        @JvmField val INVALID = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("invalid")
-        @JvmField val ALREADY_EXISTS = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("already_exists")
-        @JvmField val UNPROCESSABLE = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("unprocessable")
-        @JvmField val CUSTOM = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("custom")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemTriX7f6406a459(value)
     }
 }
 
 /**
- * Machine-readable error code
+ * Controls which repository resources a run may modify. `trigger` limits writes to the resource
+ * that started the run, when one exists, and resources created during the run; `repository` allows
+ * writes to any resource in the repository. Supported values: `trigger`, `repository`.
  */
-class AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998 && value == other.value
+class AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MISSING = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("missing")
-        @JvmField val MISSING_FIELD = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("missing_field")
-        @JvmField val INVALID = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("invalid")
-        @JvmField val ALREADY_EXISTS = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("already_exists")
-        @JvmField val UNPROCESSABLE = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("unprocessable")
-        @JvmField val CUSTOM = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("custom")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseAutomationsItemWriteScopeEnum(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76 && value == other.value
+/** Machine-readable error code */
+class AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MISSING = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("missing")
-        @JvmField val MISSING_FIELD = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("missing_field")
-        @JvmField val INVALID = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("invalid")
-        @JvmField val ALREADY_EXISTS = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("already_exists")
-        @JvmField val UNPROCESSABLE = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("unprocessable")
-        @JvmField val CUSTOM = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("custom")
+        @JvmField
+        val MISSING = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("missing")
+        @JvmField
+        val MISSING_FIELD =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("missing_field")
+        @JvmField
+        val INVALID = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("invalid")
+        @JvmField
+        val ALREADY_EXISTS =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("already_exists")
+        @JvmField
+        val UNPROCESSABLE =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("unprocessable")
+        @JvmField
+        val CUSTOM = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum(value)
+    }
+}
+
+/** Machine-readable error code */
+class AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998 &&
+            value == other.value
+
+    override fun hashCode(): Int = value.hashCode()
+
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField
+        val MISSING =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("missing")
+        @JvmField
+        val MISSING_FIELD =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("missing_field")
+        @JvmField
+        val INVALID =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("invalid")
+        @JvmField
+        val ALREADY_EXISTS =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("already_exists")
+        @JvmField
+        val UNPROCESSABLE =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("unprocessable")
+        @JvmField
+        val CUSTOM = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998("custom")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnuma38a3998(value)
+    }
+}
+
+/** Machine-readable error code */
+class AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76 &&
+            value == other.value
+
+    override fun hashCode(): Int = value.hashCode()
+
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField
+        val MISSING =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("missing")
+        @JvmField
+        val MISSING_FIELD =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("missing_field")
+        @JvmField
+        val INVALID =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("invalid")
+        @JvmField
+        val ALREADY_EXISTS =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("already_exists")
+        @JvmField
+        val UNPROCESSABLE =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("unprocessable")
+        @JvmField
+        val CUSTOM = AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76("custom")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListRepoAutomationsResponseErrorsItemCodeEnum9ea78c76(value)
     }
 }
 
 /**
- * Who owns the automation, fixed at creation. `user` keeps it private to its creator and its runs act as that user. `repository` makes it belong to the repository, visible to anyone with read access to the repository and maintainable by anyone with write access to the repository, and its runs act as the Copilot app rather than as a person. `repository` is rejected when repository ownership is not available for the repository. Supported values: `user`, `repository`. Defaults to…
+ * Who owns the automation, fixed at creation. `user` keeps it private to its creator and its runs
+ * act as that user. `repository` makes it belong to the repository, visible to anyone with read
+ * access to the repository and maintainable by anyone with write access to the repository, and its
+ * runs act as the Copilot app rather than as a person. `repository` is rejected when repository
+ * ownership is not available for the repository. Supported values: `user`, `repository`. Defaults
+ * to…
  */
-class AgentAutomationsCreateRepoAutomationOwnerTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsCreateRepoAutomationOwnerTypeEnum && value == other.value
+class AgentAutomationsCreateRepoAutomationOwnerTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsCreateRepoAutomationOwnerTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -461,125 +761,200 @@ class AgentAutomationsCreateRepoAutomationOwnerTypeEnum private constructor(
         @JvmField val USER = AgentAutomationsCreateRepoAutomationOwnerTypeEnum("user")
         @JvmField val REPOSITORY = AgentAutomationsCreateRepoAutomationOwnerTypeEnum("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsCreateRepoAutomationOwnerTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentAutomationsCreateRepoAutomationOwnerTypeEnum(value)
     }
 }
 
-class AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum && value == other.value
+class AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val NONE = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum("none")
         @JvmField val LOW = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum("low")
-        @JvmField val MEDIUM = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum("medium")
+        @JvmField
+        val MEDIUM = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum("medium")
         @JvmField val HIGH = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum("high")
-        @JvmField val XHIGH = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum("xhigh")
+        @JvmField
+        val XHIGH = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum("xhigh")
         @JvmField val MAX = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum("max")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsCreateRepoAutomationReasoningEffortVariant1Enum(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f && value == other.value
+class AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsCreateRepoAutomationTriggersAutomationCompletXa82fea834f(value)
     }
 }
 
-class AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6 && value == other.value
+class AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val COMMENT = AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6("comment")
-        @JvmField val REPLY = AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6("reply")
+        @JvmField
+        val COMMENT =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6("comment")
+        @JvmField
+        val REPLY =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6("reply")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6(value)
-    }
-}
-
-/**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
- */
-class AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5 && value == other.value
-    override fun hashCode(): Int = value.hashCode()
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField val TRIGGER = AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5("repository")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5(value)
-    }
-}
-
-/**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
- */
-class AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97 && value == other.value
-    override fun hashCode(): Int = value.hashCode()
-    override fun toString(): String = value
-
-    companion object {
-
-        @JvmField val TRIGGER = AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97("repository")
-
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentXc4f73d39b6(value)
     }
 }
 
 /**
- * Override the Automation `write_scope` for runs started by this trigger. If omitted, the automation's `write_scope` is used. Organization or repository policy may restrict the effective scope to `trigger`.
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
  */
-class AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da && value == other.value
+class AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIGGER = AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da("trigger")
-        @JvmField val REPOSITORY = AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da("repository")
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionCommentX820b7496b5(value)
+    }
+}
+
+/**
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
+ */
+class AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97 &&
+            value == other.value
+
+    override fun hashCode(): Int = value.hashCode()
+
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97("repository")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionOpenedWXd1fa87ca97(value)
+    }
+}
+
+/**
+ * Override the Automation `write_scope` for runs started by this trigger. If omitted, the
+ * automation's `write_scope` is used. Organization or repository policy may restrict the effective
+ * scope to `trigger`.
+ */
+class AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da &&
+            value == other.value
+
+    override fun hashCode(): Int = value.hashCode()
+
+    override fun toString(): String = value
+
+    companion object {
+
+        @JvmField
+        val TRIGGER =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da("trigger")
+        @JvmField
+        val REPOSITORY =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da("repository")
+
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsCreateRepoAutomationTriggersDiscussionUpdatedX89ce0778da(value)
     }
 }

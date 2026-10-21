@@ -5,408 +5,251 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * A GitHub Actions workflow
- */
+/** A GitHub Actions workflow */
 data class Workflow(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `path` wire field.
-     */
+    /** Required `string` value serialized in the `path` wire field. */
     val path: String,
-    /**
-     * Required enumerated value serialized in the `state` wire field.
-     */
+    /** Required enumerated value serialized in the `state` wire field. */
     val state: WorkflowStateEnum,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `html_url` wire field.
-     */
+    /** Required `string` value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `string` value serialized in the `badge_url` wire field.
-     */
+    /** Required `string` value serialized in the `badge_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("badge_url") val badgeUrl: String,
-    /**
-     * Optional `date-time`-formatted value serialized in the `deleted_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("deleted_at") val deletedAt: OffsetDateTime? = null
+    /** Optional `date-time`-formatted value serialized in the `deleted_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("deleted_at")
+    val deletedAt: OffsetDateTime? = null,
 )
 
-/**
- * Response containing the workflow run ID and URLs.
- */
+/** Response containing the workflow run ID and URLs. */
 data class WorkflowDispatchResponse(
-    /**
-     * The ID of the workflow run.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("workflow_run_id") val workflowRunId: WorkflowRunId,
-    /**
-     * The URL to the workflow run.
-     */
+    /** The ID of the workflow run. */
+    @com.fasterxml.jackson.annotation.JsonProperty("workflow_run_id")
+    val workflowRunId: WorkflowRunId,
+    /** The URL to the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_url") val runUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
 )
 
-/**
- * An invocation of a workflow
- */
+/** An invocation of a workflow */
 class WorkflowRun(
-    /**
-     * The ID of the workflow run.
-     */
+    /** The ID of the workflow run. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `head_branch` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("head_branch", required = true) val headBranch: String?,
-    /**
-     * The SHA of the head commit that points to the version of the workflow being run.
-     */
+    /** Required `string` value serialized in the `head_branch` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("head_branch", required = true)
+    val headBranch: String?,
+    /** The SHA of the head commit that points to the version of the workflow being run. */
     @com.fasterxml.jackson.annotation.JsonProperty("head_sha") val headSha: String,
-    /**
-     * The full path of the workflow
-     */
+    /** The full path of the workflow */
     val path: String,
-    /**
-     * The auto incrementing run number for the workflow run.
-     */
+    /** The auto incrementing run number for the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_number") val runNumber: Long,
-    /**
-     * Required `string` value serialized in the `event` wire field.
-     */
+    /** Required `string` value serialized in the `event` wire field. */
     val event: String,
-    /**
-     * Required `string` value serialized in the `status` wire field.
-     */
+    /** Required `string` value serialized in the `status` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("status", required = true) val status: String?,
-    /**
-     * Required `string` value serialized in the `conclusion` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true) val conclusion: String?,
-    /**
-     * The ID of the parent workflow.
-     */
+    /** Required `string` value serialized in the `conclusion` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("conclusion", required = true)
+    val conclusion: String?,
+    /** The ID of the parent workflow. */
     @com.fasterxml.jackson.annotation.JsonProperty("workflow_id") val workflowId: Long,
-    /**
-     * The URL to the workflow run.
-     */
+    /** The URL to the workflow run. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `html_url` wire field.
-     */
+    /** Required `string` value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
     /**
-     * Pull requests that are open with a `head_sha` or `head_branch` that matches the workflow run. The returned pull requests do not necessarily indicate pull requests that triggered the run.
+     * Pull requests that are open with a `head_sha` or `head_branch` that matches the workflow run.
+     * The returned pull requests do not necessarily indicate pull requests that triggered the run.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests", required = true) val pullRequests: List<PullRequestMinimal>?,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("pull_requests", required = true)
+    val pullRequests: List<PullRequestMinimal>?,
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * The URL to the jobs for the workflow run.
-     */
+    /** The URL to the jobs for the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("jobs_url") val jobsUrl: String,
-    /**
-     * The URL to download the logs for the workflow run.
-     */
+    /** The URL to download the logs for the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("logs_url") val logsUrl: String,
-    /**
-     * The URL to the associated check suite.
-     */
+    /** The URL to the associated check suite. */
     @com.fasterxml.jackson.annotation.JsonProperty("check_suite_url") val checkSuiteUrl: String,
-    /**
-     * The URL to the artifacts for the workflow run.
-     */
+    /** The URL to the artifacts for the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("artifacts_url") val artifactsUrl: String,
-    /**
-     * The URL to cancel the workflow run.
-     */
+    /** The URL to cancel the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("cancel_url") val cancelUrl: String,
-    /**
-     * The URL to rerun the workflow run.
-     */
+    /** The URL to rerun the workflow run. */
     @com.fasterxml.jackson.annotation.JsonProperty("rerun_url") val rerunUrl: String,
-    /**
-     * The URL to the workflow.
-     */
+    /** The URL to the workflow. */
     @com.fasterxml.jackson.annotation.JsonProperty("workflow_url") val workflowUrl: String,
-    /**
-     * A commit.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("head_commit", required = true) val headCommit: NullableSimpleCommit?,
-    /**
-     * Minimal Repository
-     */
+    /** A commit. */
+    @com.fasterxml.jackson.annotation.JsonProperty("head_commit", required = true)
+    val headCommit: NullableSimpleCommit?,
+    /** Minimal Repository */
     val repository: MinimalRepository,
+    /** Minimal Repository */
+    @com.fasterxml.jackson.annotation.JsonProperty("head_repository")
+    val headRepository: MinimalRepository,
     /**
-     * Minimal Repository
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("head_repository") val headRepository: MinimalRepository,
-    /**
-     * The event-specific title associated with the run or the run-name if set, or the value of `run-name` if it is set in the workflow.
+     * The event-specific title associated with the run or the run-name if set, or the value of
+     * `run-name` if it is set in the workflow.
      */
     @com.fasterxml.jackson.annotation.JsonProperty("display_title") val displayTitle: String,
-    /**
-     * The name of the workflow run.
-     */
+    /** The name of the workflow run. */
     val name: String? = null,
-    /**
-     * The ID of the associated check suite.
-     */
+    /** The ID of the associated check suite. */
     @com.fasterxml.jackson.annotation.JsonProperty("check_suite_id") val checkSuiteId: Long? = null,
-    /**
-     * The node ID of the associated check suite.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("check_suite_node_id") val checkSuiteNodeId: String? = null,
-    /**
-     * Attempt number of the run, 1 for first attempt and higher if the workflow was re-run.
-     */
+    /** The node ID of the associated check suite. */
+    @com.fasterxml.jackson.annotation.JsonProperty("check_suite_node_id")
+    val checkSuiteNodeId: String? = null,
+    /** Attempt number of the run, 1 for first attempt and higher if the workflow was re-run. */
     @com.fasterxml.jackson.annotation.JsonProperty("run_attempt") val runAttempt: Long? = null,
-    /**
-     * Optional array value serialized in the `referenced_workflows` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("referenced_workflows") val referencedWorkflows: List<ReferencedWorkflow>? = null,
-    /**
-     * A GitHub user.
-     */
+    /** Optional array value serialized in the `referenced_workflows` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("referenced_workflows")
+    val referencedWorkflows: List<ReferencedWorkflow>? = null,
+    /** A GitHub user. */
     val actor: SimpleUser? = null,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("triggering_actor") val triggeringActor: SimpleUser? = null,
-    /**
-     * The start time of the latest run. Resets on re-run.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("run_started_at") val runStartedAt: OffsetDateTime? = null,
-    /**
-     * The URL to the previous attempted run of this workflow, if one exists.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("previous_attempt_url") val previousAttemptUrl: String? = null,
-    /**
-     * Optional `integer` value serialized in the `head_repository_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("head_repository_id") val headRepositoryId: Long? = null
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("triggering_actor")
+    val triggeringActor: SimpleUser? = null,
+    /** The start time of the latest run. Resets on re-run. */
+    @com.fasterxml.jackson.annotation.JsonProperty("run_started_at")
+    val runStartedAt: OffsetDateTime? = null,
+    /** The URL to the previous attempted run of this workflow, if one exists. */
+    @com.fasterxml.jackson.annotation.JsonProperty("previous_attempt_url")
+    val previousAttemptUrl: String? = null,
+    /** Optional `integer` value serialized in the `head_repository_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("head_repository_id")
+    val headRepositoryId: Long? = null,
 )
 
 typealias WorkflowRunId = Long
 
-/**
- * Required object value serialized in the `job_runs[]` wire field.
- */
+/** Required object value serialized in the `job_runs[]` wire field. */
 data class WorkflowRunUsageBillableUBUNTUJobRunsItem(
-    /**
-     * Required `integer` value serialized in the `job_id` wire field.
-     */
+    /** Required `integer` value serialized in the `job_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("job_id") val jobId: Long,
-    /**
-     * Required `integer` value serialized in the `duration_ms` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("duration_ms") val durationMs: Long
+    /** Required `integer` value serialized in the `duration_ms` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("duration_ms") val durationMs: Long,
 )
 
-/**
- * Optional object value serialized in the `UBUNTU` wire field.
- */
+/** Optional object value serialized in the `UBUNTU` wire field. */
 data class WorkflowRunUsageBillableUBUNTU(
-    /**
-     * Required `integer` value serialized in the `total_ms` wire field.
-     */
+    /** Required `integer` value serialized in the `total_ms` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_ms") val totalMs: Long,
-    /**
-     * Required `integer` value serialized in the `jobs` wire field.
-     */
+    /** Required `integer` value serialized in the `jobs` wire field. */
     val jobs: Long,
-    /**
-     * Optional array value serialized in the `job_runs` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("job_runs") val jobRuns: List<WorkflowRunUsageBillableUBUNTUJobRunsItem>? = null
+    /** Optional array value serialized in the `job_runs` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("job_runs")
+    val jobRuns: List<WorkflowRunUsageBillableUBUNTUJobRunsItem>? = null,
 )
 
-/**
- * Required object value serialized in the `job_runs[]` wire field.
- */
+/** Required object value serialized in the `job_runs[]` wire field. */
 data class WorkflowRunUsageBillableMACOSJobRunsItem(
-    /**
-     * Required `integer` value serialized in the `job_id` wire field.
-     */
+    /** Required `integer` value serialized in the `job_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("job_id") val jobId: Long,
-    /**
-     * Required `integer` value serialized in the `duration_ms` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("duration_ms") val durationMs: Long
+    /** Required `integer` value serialized in the `duration_ms` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("duration_ms") val durationMs: Long,
 )
 
-/**
- * Optional object value serialized in the `MACOS` wire field.
- */
+/** Optional object value serialized in the `MACOS` wire field. */
 data class WorkflowRunUsageBillableMACOS(
-    /**
-     * Required `integer` value serialized in the `total_ms` wire field.
-     */
+    /** Required `integer` value serialized in the `total_ms` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_ms") val totalMs: Long,
-    /**
-     * Required `integer` value serialized in the `jobs` wire field.
-     */
+    /** Required `integer` value serialized in the `jobs` wire field. */
     val jobs: Long,
-    /**
-     * Optional array value serialized in the `job_runs` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("job_runs") val jobRuns: List<WorkflowRunUsageBillableMACOSJobRunsItem>? = null
+    /** Optional array value serialized in the `job_runs` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("job_runs")
+    val jobRuns: List<WorkflowRunUsageBillableMACOSJobRunsItem>? = null,
 )
 
-/**
- * Required object value serialized in the `job_runs[]` wire field.
- */
+/** Required object value serialized in the `job_runs[]` wire field. */
 data class WorkflowRunUsageBillableWINDOWSJobRunsItem(
-    /**
-     * Required `integer` value serialized in the `job_id` wire field.
-     */
+    /** Required `integer` value serialized in the `job_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("job_id") val jobId: Long,
-    /**
-     * Required `integer` value serialized in the `duration_ms` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("duration_ms") val durationMs: Long
+    /** Required `integer` value serialized in the `duration_ms` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("duration_ms") val durationMs: Long,
 )
 
-/**
- * Optional object value serialized in the `WINDOWS` wire field.
- */
+/** Optional object value serialized in the `WINDOWS` wire field. */
 data class WorkflowRunUsageBillableWINDOWS(
-    /**
-     * Required `integer` value serialized in the `total_ms` wire field.
-     */
+    /** Required `integer` value serialized in the `total_ms` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_ms") val totalMs: Long,
-    /**
-     * Required `integer` value serialized in the `jobs` wire field.
-     */
+    /** Required `integer` value serialized in the `jobs` wire field. */
     val jobs: Long,
-    /**
-     * Optional array value serialized in the `job_runs` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("job_runs") val jobRuns: List<WorkflowRunUsageBillableWINDOWSJobRunsItem>? = null
+    /** Optional array value serialized in the `job_runs` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("job_runs")
+    val jobRuns: List<WorkflowRunUsageBillableWINDOWSJobRunsItem>? = null,
 )
 
-/**
- * Required object value serialized in the `billable` wire field.
- */
+/** Required object value serialized in the `billable` wire field. */
 data class WorkflowRunUsageBillable(
-    /**
-     * Optional object value serialized in the `UBUNTU` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("UBUNTU") val ubuntu: WorkflowRunUsageBillableUBUNTU? = null,
-    /**
-     * Optional object value serialized in the `MACOS` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("MACOS") val macos: WorkflowRunUsageBillableMACOS? = null,
-    /**
-     * Optional object value serialized in the `WINDOWS` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("WINDOWS") val windows: WorkflowRunUsageBillableWINDOWS? = null
+    /** Optional object value serialized in the `UBUNTU` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("UBUNTU")
+    val ubuntu: WorkflowRunUsageBillableUBUNTU? = null,
+    /** Optional object value serialized in the `MACOS` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("MACOS")
+    val macos: WorkflowRunUsageBillableMACOS? = null,
+    /** Optional object value serialized in the `WINDOWS` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("WINDOWS")
+    val windows: WorkflowRunUsageBillableWINDOWS? = null,
 )
 
-/**
- * Workflow Run Usage
- */
+/** Workflow Run Usage */
 data class WorkflowRunUsage(
-    /**
-     * Required object value serialized in the `billable` wire field.
-     */
+    /** Required object value serialized in the `billable` wire field. */
     val billable: WorkflowRunUsageBillable,
-    /**
-     * Optional `integer` value serialized in the `run_duration_ms` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("run_duration_ms") val runDurationMs: Long? = null
+    /** Optional `integer` value serialized in the `run_duration_ms` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("run_duration_ms")
+    val runDurationMs: Long? = null,
 )
 
-/**
- * Optional object value serialized in the `UBUNTU` wire field.
- */
+/** Optional object value serialized in the `UBUNTU` wire field. */
 data class WorkflowUsageBillableUBUNTU(
-    /**
-     * Optional `integer` value serialized in the `total_ms` wire field.
-     */
+    /** Optional `integer` value serialized in the `total_ms` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_ms") val totalMs: Long? = null
 )
 
-/**
- * Optional object value serialized in the `MACOS` wire field.
- */
+/** Optional object value serialized in the `MACOS` wire field. */
 data class WorkflowUsageBillableMACOS(
-    /**
-     * Optional `integer` value serialized in the `total_ms` wire field.
-     */
+    /** Optional `integer` value serialized in the `total_ms` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_ms") val totalMs: Long? = null
 )
 
-/**
- * Optional object value serialized in the `WINDOWS` wire field.
- */
+/** Optional object value serialized in the `WINDOWS` wire field. */
 data class WorkflowUsageBillableWINDOWS(
-    /**
-     * Optional `integer` value serialized in the `total_ms` wire field.
-     */
+    /** Optional `integer` value serialized in the `total_ms` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("total_ms") val totalMs: Long? = null
 )
 
-/**
- * Required object value serialized in the `billable` wire field.
- */
+/** Required object value serialized in the `billable` wire field. */
 data class WorkflowUsageBillable(
-    /**
-     * Optional object value serialized in the `UBUNTU` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("UBUNTU") val ubuntu: WorkflowUsageBillableUBUNTU? = null,
-    /**
-     * Optional object value serialized in the `MACOS` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("MACOS") val macos: WorkflowUsageBillableMACOS? = null,
-    /**
-     * Optional object value serialized in the `WINDOWS` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("WINDOWS") val windows: WorkflowUsageBillableWINDOWS? = null
+    /** Optional object value serialized in the `UBUNTU` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("UBUNTU")
+    val ubuntu: WorkflowUsageBillableUBUNTU? = null,
+    /** Optional object value serialized in the `MACOS` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("MACOS")
+    val macos: WorkflowUsageBillableMACOS? = null,
+    /** Optional object value serialized in the `WINDOWS` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("WINDOWS")
+    val windows: WorkflowUsageBillableWINDOWS? = null,
 )
 
-/**
- * Workflow Usage
- */
+/** Workflow Usage */
 data class WorkflowUsage(
-    /**
-     * Required object value serialized in the `billable` wire field.
-     */
+    /** Required object value serialized in the `billable` wire field. */
     val billable: WorkflowUsageBillable
 )

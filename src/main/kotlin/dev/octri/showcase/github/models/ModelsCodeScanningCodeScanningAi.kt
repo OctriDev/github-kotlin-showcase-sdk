@@ -3,42 +3,38 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * AI Scan enablement for a repository.
- */
+/** AI Scan enablement for a repository. */
 data class CodeScanningAiScanEnablement(
-    /**
-     * Whether AI Scan is enabled for the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pr_scan") val prScan: CodeScanningAiScanEnablementPrScanEnum
+    /** Whether AI Scan is enabled for the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pr_scan")
+    val prScan: CodeScanningAiScanEnablementPrScanEnum
 )
 
-/**
- * AI Scan enablement update for a repository.
- */
+/** AI Scan enablement update for a repository. */
 data class CodeScanningAiScanEnablementUpdate(
-    /**
-     * Whether to enable or disable AI Scan for the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("pr_scan") val prScan: CodeScanningAiScanEnablementUpdatePrScanEnum? = null
+    /** Whether to enable or disable AI Scan for the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("pr_scan")
+    val prScan: CodeScanningAiScanEnablementUpdatePrScanEnum? = null
 )
 
-/**
- * The AI Scan organization setting to apply
- */
+/** The AI Scan organization setting to apply */
 data class CodeScanningAiScanOrgEnablementUpdate(
     /**
-     * Whether AI Scan is enabled for the organization. Organization respects enterprise policy. Disabled organizations prevent repositories from enabling AI Scan. Enabled organizations enable AI Scan for their repositories, but individual repositories can opt out.
+     * Whether AI Scan is enabled for the organization. Organization respects enterprise policy.
+     * Disabled organizations prevent repositories from enabling AI Scan. Enabled organizations
+     * enable AI Scan for their repositories, but individual repositories can opt out.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pr_scan") val prScan: CodeScanningAiScanOrgEnablementUpdatePrScanEnum? = null
+    @com.fasterxml.jackson.annotation.JsonProperty("pr_scan")
+    val prScan: CodeScanningAiScanOrgEnablementUpdatePrScanEnum? = null
 )
 
-/**
- * The AI Scan organization setting
- */
+/** The AI Scan organization setting */
 data class CodeScanningAiScanOrgSettings(
     /**
-     * Whether AI Scan on pull requests is enabled for the organization. The organization setting respects enterprise policy, and repositories inherit it: when disabled, repositories cannot enable AI Scan; when enabled, repositories can still opt out.
+     * Whether AI Scan on pull requests is enabled for the organization. The organization setting
+     * respects enterprise policy, and repositories inherit it: when disabled, repositories cannot
+     * enable AI Scan; when enabled, repositories can still opt out.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("pr_scan") val prScan: CodeScanningAiScanOrgSettingsPrScanEnum
+    @com.fasterxml.jackson.annotation.JsonProperty("pr_scan")
+    val prScan: CodeScanningAiScanOrgSettingsPrScanEnum
 )

@@ -21,128 +21,165 @@ import java.time.OffsetDateTime
 
 object Git {
 
-/**
- * Information about the author of the commit. By default, the `author` will be the authenticated user and the current date. See the `author` and `committer` object below for details.
- */
-data class GitCreateCommitAuthor(
     /**
-     * The name of the author (or committer) of the commit
+     * Information about the author of the commit. By default, the `author` will be the
+     * authenticated user and the current date. See the `author` and `committer` object below for
+     * details.
      */
-    val name: String,
-    /**
-     * The email of the author (or committer) of the commit
-     */
-    val email: String,
-    /**
-     * Indicates when this commit was authored (or committed). This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    val date: OffsetDateTime? = null
-)
-
-/**
- * Information about the person who is making the commit. By default, `committer` will use the information set in `author`. See the `author` and `committer` object below for details.
- */
-data class GitCreateCommitCommitter(
-    /**
-     * The name of the author (or committer) of the commit
-     */
-    val name: String? = null,
-    /**
-     * The email of the author (or committer) of the commit
-     */
-    val email: String? = null,
-    /**
-     * Indicates when this commit was authored (or committed). This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    val date: OffsetDateTime? = null
-)
-
-/**
- * An object with information about the individual creating the tag.
- */
-data class GitCreateTagTagger(
-    /**
-     * The name of the author of the tag
-     */
-    val name: String,
-    /**
-     * The email of the author of the tag
-     */
-    val email: String,
-    /**
-     * When this object was tagged. This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    val date: OffsetDateTime? = null
-)
-
-
-
-
-
-data class GitCreateTreeTreeItem(
-    /**
-     * The file referenced in the tree.
-     */
-    val path: String? = null,
-    /**
-     * The file mode; one of `100644` for file (blob), `100755` for executable (blob), `040000` for subdirectory (tree), `160000` for submodule (commit), or `120000` for a blob that specifies the path of a symlink.
-     */
-    val mode: GitCreateTreeTreeItemModeEnum? = null,
-    /**
-     * Either `blob`, `tree`, or `commit`.
-     */
-    val type: GitCreateTreeTreeItemTypeEnum? = null,
-    /**
-     * The SHA1 checksum ID of the object in the tree. Also called `tree.sha`. If the value is `null` then the file will be deleted. **Note:** Use either `tree.sha` or `content` to specify the contents of the entry. Using both `tree.sha` and `content` will return an error.
-     */
-    val sha: String? = null,
-    /**
-     * The content you want this file to have. GitHub will write this blob out and use that SHA for this entry. Use either this, or `tree.sha`. **Note:** Use either `tree.sha` or `content` to specify the contents of the entry. Using both `tree.sha` and `content` will return an error.
-     */
-    val content: String? = null
-)
-
+    data class GitCreateCommitAuthor(
+        /** The name of the author (or committer) of the commit */
+        val name: String,
+        /** The email of the author (or committer) of the commit */
+        val email: String,
+        /**
+         * Indicates when this commit was authored (or committed). This is a timestamp in ISO 8601
+         * format: `YYYY-MM-DDTHH:MM:SSZ`.
+         */
+        val date: OffsetDateTime? = null,
+    )
 
     /**
-     * Creates a Git blob in a repository from the supplied content. Provide `content` and, if needed, set `encoding` to control how the content is decoded; the default encoding is UTF-8. A 201 response returns the blob's URL and SHA.
+     * Information about the person who is making the commit. By default, `committer` will use the
+     * information set in `author`. See the `author` and `committer` object below for details.
+     */
+    data class GitCreateCommitCommitter(
+        /** The name of the author (or committer) of the commit */
+        val name: String? = null,
+        /** The email of the author (or committer) of the commit */
+        val email: String? = null,
+        /**
+         * Indicates when this commit was authored (or committed). This is a timestamp in ISO 8601
+         * format: `YYYY-MM-DDTHH:MM:SSZ`.
+         */
+        val date: OffsetDateTime? = null,
+    )
+
+    /** An object with information about the individual creating the tag. */
+    data class GitCreateTagTagger(
+        /** The name of the author of the tag */
+        val name: String,
+        /** The email of the author of the tag */
+        val email: String,
+        /**
+         * When this object was tagged. This is a timestamp in ISO 8601 format:
+         * `YYYY-MM-DDTHH:MM:SSZ`.
+         */
+        val date: OffsetDateTime? = null,
+    )
+
+    data class GitCreateTreeTreeItem(
+        /** The file referenced in the tree. */
+        val path: String? = null,
+        /**
+         * The file mode; one of `100644` for file (blob), `100755` for executable (blob), `040000`
+         * for subdirectory (tree), `160000` for submodule (commit), or `120000` for a blob that
+         * specifies the path of a symlink.
+         */
+        val mode: GitCreateTreeTreeItemModeEnum? = null,
+        /** Either `blob`, `tree`, or `commit`. */
+        val type: GitCreateTreeTreeItemTypeEnum? = null,
+        /**
+         * The SHA1 checksum ID of the object in the tree. Also called `tree.sha`. If the value is
+         * `null` then the file will be deleted. **Note:** Use either `tree.sha` or `content` to
+         * specify the contents of the entry. Using both `tree.sha` and `content` will return an
+         * error.
+         */
+        val sha: String? = null,
+        /**
+         * The content you want this file to have. GitHub will write this blob out and use that SHA
+         * for this entry. Use either this, or `tree.sha`. **Note:** Use either `tree.sha` or
+         * `content` to specify the contents of the entry. Using both `tree.sha` and `content` will
+         * return an error.
+         */
+        val content: String? = null,
+    )
+
+    /**
+     * Creates a Git blob in a repository from the supplied content. Provide `content` and, if
+     * needed, set `encoding` to control how the content is decoded; the default encoding is UTF-8.
+     * A 201 response returns the blob's URL and SHA.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param content The new blob's content.
-     * @param encoding The encoding used for `content`. Currently, `"utf-8"` and
-     *   `"base64"` are supported.
+     * @param encoding The encoding used for `content`. Currently, `"utf-8"` and `"base64"` are
+     *   supported.
      */
-    fun gitCreateBlob(clientConfig: ClientConfig, owner: String, repo: String, content: String, encoding: String? = null, options: RequestOptions? = null): ShortBlob {
-        return SdkClient.request<ShortBlob>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/blobs", config = clientConfig, body = SdkClient.bodyMap("content" to (content), "encoding" to (SdkClient.omitIfNull(encoding))), operationId = "gitCreateBlob", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java))).data
+    fun gitCreateBlob(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        content: String,
+        encoding: String? = null,
+        options: RequestOptions? = null,
+    ): ShortBlob {
+        return SdkClient.request<ShortBlob>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/blobs",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "content" to (content),
+                            "encoding" to (SdkClient.omitIfNull(encoding)),
+                        ),
+                    operationId = "gitCreateBlob",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /**
-     * Retrieves a Git blob from a repository using its file SHA. The JSON response encodes `content` as Base64; request `application/vnd.github.raw+json` for raw blob data instead. Blobs can be up to 100 megabytes.
+     * Retrieves a Git blob from a repository using its file SHA. The JSON response encodes
+     * `content` as Base64; request `application/vnd.github.raw+json` for raw blob data instead.
+     * Blobs can be up to 100 megabytes.
      *
-     * The `content` in the response will always be Base64 encoded. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw blob data. - **`application/vnd.github+json`**: Returns a JSON representation of the blob with `content` as a base64 encoded string. This is the default if no media type is specified. **Note** This endpoint supports blobs up to 100 megabytes in size.
+     * The `content` in the response will always be Base64 encoded. This endpoint supports the
+     * following custom media types. For more information, see "Media types." -
+     * **`application/vnd.github.raw+json`**: Returns the raw blob data. -
+     * **`application/vnd.github+json`**: Returns a JSON representation of the blob with `content`
+     * as a base64 encoded string. This is the default if no media type is specified. **Note** This
+     * endpoint supports blobs up to 100 megabytes in size.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun gitGetBlob(clientConfig: ClientConfig, owner: String, repo: String, fileSha: String, options: RequestOptions? = null): Blob {
-        return SdkClient.request<Blob>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/blobs/${SdkClient.encodePathSegment(fileSha)}", config = clientConfig, operationId = "gitGetBlob", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gitGetBlob(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        fileSha: String,
+        options: RequestOptions? = null,
+    ): Blob {
+        return SdkClient.request<Blob>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/blobs/${SdkClient.encodePathSegment(fileSha)}",
+                    config = clientConfig,
+                    operationId = "gitGetBlob",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [gitCreateCommit]. */
     data class GitCreateCommitRequest(
@@ -153,172 +190,289 @@ data class GitCreateTreeTreeItem(
         val parents: List<String>? = null,
         val author: GitCreateCommitAuthor? = null,
         val committer: GitCreateCommitCommitter? = null,
-        val signature: String? = null
+        val signature: String? = null,
     )
 
     /**
-     * Creates a new Git commit object. **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible…
+     * Creates a new Git commit object. **Signature verification object** The response will include
+     * a `verification` object that describes the result of verifying the commit's signature. The
+     * following fields are included in the `verification` object: | Name | Type | Description | |
+     * ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the
+     * signature in this commit to be verified. | | `reason` | `string` | The reason for verified
+     * value. Possible…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param message The commit message
      * @param tree The SHA of the tree object this commit points to
-     * @param parents The full SHAs of the commits that were the parents of this
-     *   commit. If omitted or empty, the commit will be written as a root commit. For
-     *   a single parent, an array of one SHA should be provided; for a merge commit,
-     *   an array of more than one should be provided.
-     * @param author Information about the author of the commit. By default, the
-     *   `author` will be the authenticated user and the current date. See the `author`
-     *   and `committer` object below for details.
-     * @param committer Information about the person who is making the commit. By
-     *   default, `committer` will use the information set in `author`. See the
-     *   `author` and `committer` object below for details.
-     * @param signature The PGP signature of the commit. GitHub adds the signature to
-     *   the `gpgsig` header of the created commit. For a commit signature to be
-     *   verifiable by Git or GitHub, it must be an ASCII-armored detached PGP
-     *   signature over the string commit as it would be written to the object
-     *   database. To pass a `signature` parameter, you need to first manually create a
-     *   valid PGP signature, which can be complicated. You may find it easier to use
-     *   the command line to create signed commits.
+     * @param parents The full SHAs of the commits that were the parents of this commit. If omitted
+     *   or empty, the commit will be written as a root commit. For a single parent, an array of one
+     *   SHA should be provided; for a merge commit, an array of more than one should be provided.
+     * @param author Information about the author of the commit. By default, the `author` will be
+     *   the authenticated user and the current date. See the `author` and `committer` object below
+     *   for details.
+     * @param committer Information about the person who is making the commit. By default,
+     *   `committer` will use the information set in `author`. See the `author` and `committer`
+     *   object below for details.
+     * @param signature The PGP signature of the commit. GitHub adds the signature to the `gpgsig`
+     *   header of the created commit. For a commit signature to be verifiable by Git or GitHub, it
+     *   must be an ASCII-armored detached PGP signature over the string commit as it would be
+     *   written to the object database. To pass a `signature` parameter, you need to first manually
+     *   create a valid PGP signature, which can be complicated. You may find it easier to use the
+     *   command line to create signed commits.
      */
-    fun gitCreateCommit(clientConfig: ClientConfig, request: GitCreateCommitRequest, options: RequestOptions? = null): GitCommit {
-        return SdkClient.request<GitCommit>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/git/commits", config = clientConfig, body = SdkClient.bodyMap("message" to (request.message), "tree" to (request.tree), "parents" to (SdkClient.omitIfNull(request.parents)), "author" to (SdkClient.omitIfNull(request.author)), "committer" to (SdkClient.omitIfNull(request.committer)), "signature" to (SdkClient.omitIfNull(request.signature))), operationId = "gitCreateCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gitCreateCommit(
+        clientConfig: ClientConfig,
+        request: GitCreateCommitRequest,
+        options: RequestOptions? = null,
+    ): GitCommit {
+        return SdkClient.request<GitCommit>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/git/commits",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "message" to (request.message),
+                            "tree" to (request.tree),
+                            "parents" to (SdkClient.omitIfNull(request.parents)),
+                            "author" to (SdkClient.omitIfNull(request.author)),
+                            "committer" to (SdkClient.omitIfNull(request.committer)),
+                            "signature" to (SdkClient.omitIfNull(request.signature)),
+                        ),
+                    operationId = "gitCreateCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Gets a Git commit object. To get the contents of a commit, see "Get a commit." **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` |…
+     * Gets a Git commit object. To get the contents of a commit, see "Get a commit." **Signature
+     * verification object** The response will include a `verification` object that describes the
+     * result of verifying the commit's signature. The following fields are included in the
+     * `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | |
+     * `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to
+     * be verified. | | `reason` |…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commitSha The SHA of the commit.
      */
-    fun gitGetCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, options: RequestOptions? = null): GitCommit {
-        return SdkClient.request<GitCommit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/commits/${SdkClient.encodePathSegment(commitSha)}", config = clientConfig, operationId = "gitGetCommit", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java))).data
+    fun gitGetCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        options: RequestOptions? = null,
+    ): GitCommit {
+        return SdkClient.request<GitCommit>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/commits/${SdkClient.encodePathSegment(commitSha)}",
+                    config = clientConfig,
+                    operationId = "gitGetCommit",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("404" to BasicError::class.java, "409" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Returns an array of references from your Git database that match the supplied name. The `:ref` in the URL must be formatted as `heads/<branch name>` for branches and `tags/<tag name>` for tags. If the `:ref` doesn't exist in the repository, but existing refs start with `:ref`, they will be returned as an array. When you use this endpoint without providing a `:ref`, it will return an array of all the references from your Git database, including notes and stashes if they exist…
+     * Returns an array of references from your Git database that match the supplied name. The
+     * `:ref` in the URL must be formatted as `heads/<branch name>` for branches and `tags/<tag
+     * name>` for tags. If the `:ref` doesn't exist in the repository, but existing refs start with
+     * `:ref`, they will be returned as an array. When you use this endpoint without providing a
+     * `:ref`, it will return an array of all the references from your Git database, including notes
+     * and stashes if they exist…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The Git reference. For more information, see "Git References" in
-     *   the Git documentation.
+     * @param ref The Git reference. For more information, see "Git References" in the Git
+     *   documentation.
      */
-    fun gitListMatchingRefs(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): List<GitRef> {
-        return SdkClient.request<List<GitRef>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/matching-refs/${SdkClient.encodePathSegment(ref)}", config = clientConfig, operationId = "gitListMatchingRefs", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java))).data
+    fun gitListMatchingRefs(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): List<GitRef> {
+        return SdkClient.request<List<GitRef>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/matching-refs/${SdkClient.encodePathSegment(ref)}",
+                    config = clientConfig,
+                    operationId = "gitListMatchingRefs",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("409" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Returns a single reference from your Git database. The `:ref` in the URL must be formatted as `heads/<branch name>` for branches and `tags/<tag name>` for tags. If the `:ref` doesn't match an existing ref, a `404` is returned. > !NOTE] > You need to explicitly \[request a pull request to trigger a test merge commit, which checks the mergeability of pull requests. For more information, see "Checking mergeability of pull requests".
+     * Returns a single reference from your Git database. The `:ref` in the URL must be formatted as
+     * `heads/<branch name>` for branches and `tags/<tag name>` for tags. If the `:ref` doesn't
+     * match an existing ref, a `404` is returned. > !NOTE] > You need to explicitly \[request a
+     * pull request to trigger a test merge commit, which checks the mergeability of pull requests.
+     * For more information, see "Checking mergeability of pull requests".
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The Git reference. For more information, see "Git References" in
-     *   the Git documentation.
+     * @param ref The Git reference. For more information, see "Git References" in the Git
+     *   documentation.
      */
-    fun gitGetRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): GitRef {
-        return SdkClient.request<GitRef>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/ref/${SdkClient.encodePathSegment(ref)}", config = clientConfig, operationId = "gitGetRef", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java))).data
+    fun gitGetRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): GitRef {
+        return SdkClient.request<GitRef>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/ref/${SdkClient.encodePathSegment(ref)}",
+                    config = clientConfig,
+                    operationId = "gitGetRef",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("404" to BasicError::class.java, "409" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Creates a reference for your repository. You are unable to create new references for empty repositories, even if the commit SHA-1 hash used exists. Empty repositories are repositories without branches.
+     * Creates a reference for your repository. You are unable to create new references for empty
+     * repositories, even if the commit SHA-1 hash used exists. Empty repositories are repositories
+     * without branches.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The name of the fully qualified reference (ie:
-     *   `refs/heads/master`). If it doesn't start with 'refs' and have at least two
-     *   slashes, it will be rejected.
+     * @param ref The name of the fully qualified reference (ie: `refs/heads/master`). If it doesn't
+     *   start with 'refs' and have at least two slashes, it will be rejected.
      * @param sha The SHA1 value for this reference.
      */
-    fun gitCreateRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, sha: String, options: RequestOptions? = null): GitRef {
-        return SdkClient.request<GitRef>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/refs", config = clientConfig, body = SdkClient.bodyMap("ref" to (ref), "sha" to (sha)), operationId = "gitCreateRef", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gitCreateRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        sha: String,
+        options: RequestOptions? = null,
+    ): GitRef {
+        return SdkClient.request<GitRef>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/refs",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("ref" to (ref), "sha" to (sha)),
+                    operationId = "gitCreateRef",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Updates the provided reference to point to a new SHA. For more information, see "Git References" in the Git documentation.
+     * Updates the provided reference to point to a new SHA. For more information, see "Git
+     * References" in the Git documentation.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The Git reference. For more information, see "Git References" in
-     *   the Git documentation.
+     * @param ref The Git reference. For more information, see "Git References" in the Git
+     *   documentation.
      * @param sha The SHA1 value to set this reference to
-     * @param force Indicates whether to force the update or to make sure the update
-     *   is a fast-forward update. Leaving this out or setting it to `false` will make
-     *   sure you're not overwriting work.
+     * @param force Indicates whether to force the update or to make sure the update is a
+     *   fast-forward update. Leaving this out or setting it to `false` will make sure you're not
+     *   overwriting work.
      */
-    fun gitUpdateRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, sha: String, force: Boolean? = null, options: RequestOptions? = null): GitRef {
-        return SdkClient.request<GitRef>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/refs/${SdkClient.encodePathSegment(ref)}", config = clientConfig, body = SdkClient.bodyMap("sha" to (sha), "force" to (SdkClient.omitIfNull(force))), operationId = "gitUpdateRef", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gitUpdateRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        sha: String,
+        force: Boolean? = null,
+        options: RequestOptions? = null,
+    ): GitRef {
+        return SdkClient.request<GitRef>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/refs/${SdkClient.encodePathSegment(ref)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap("sha" to (sha), "force" to (SdkClient.omitIfNull(force))),
+                    operationId = "gitUpdateRef",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Deletes a Git reference from a repository. Use `owner` and `repo` to identify the repository and `ref` to select the reference to remove. The default branch cannot be deleted.
+     * Deletes a Git reference from a repository. Use `owner` and `repo` to identify the repository
+     * and `ref` to select the reference to remove. The default branch cannot be deleted.
      *
      * Deletes the provided reference.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The Git reference. For more information, see "Git References" in
-     *   the Git documentation.
+     * @param ref The Git reference. For more information, see "Git References" in the Git
+     *   documentation.
      */
-    fun gitDeleteRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/refs/${SdkClient.encodePathSegment(ref)}", config = clientConfig, operationId = "gitDeleteRef", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("409" to BasicError::class.java)))
+    fun gitDeleteRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/refs/${SdkClient.encodePathSegment(ref)}",
+                config = clientConfig,
+                operationId = "gitDeleteRef",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
-
-
-
-
-
-
 
     /** Parameters for [gitCreateTag]. */
     data class GitCreateTagRequest(
@@ -328,103 +482,190 @@ data class GitCreateTreeTreeItem(
         val message: String,
         val `object`: String,
         val type: GitCreateTagTypeEnum,
-        val tagger: GitCreateTagTagger? = null
+        val tagger: GitCreateTagTagger? = null,
     )
 
     /**
-     * Note that creating a tag object does not create the reference that makes a tag in Git. If you want to create an annotated tag in Git, you have to do this call to create the tag object, and then create the `refs/tags/tag]` reference. If you want to create a lightweight tag, you only have to \[create the tag reference - this call would be unnecessary. **Signature verification object** The response will include a `verification` object that describes the result of verifying the…
+     * Note that creating a tag object does not create the reference that makes a tag in Git. If you
+     * want to create an annotated tag in Git, you have to do this call to create the tag object,
+     * and then create the `refs/tags/tag]` reference. If you want to create a lightweight tag, you
+     * only have to \[create the tag reference - this call would be unnecessary. **Signature
+     * verification object** The response will include a `verification` object that describes the
+     * result of verifying the…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param tag The tag's name. This is typically a version (e.g., "v0.0.1").
      * @param message The tag message.
      * @param `object` The SHA of the git object this is tagging.
-     * @param type The type of the object we're tagging. Normally this is a `commit`
-     *   but it can also be a `tree` or a `blob`.
-     * @param tagger An object with information about the individual creating the
-     *   tag.
+     * @param type The type of the object we're tagging. Normally this is a `commit` but it can also
+     *   be a `tree` or a `blob`.
+     * @param tagger An object with information about the individual creating the tag.
      */
-    fun gitCreateTag(clientConfig: ClientConfig, request: GitCreateTagRequest, options: RequestOptions? = null): GitTag {
-        return SdkClient.request<GitTag>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/git/tags", config = clientConfig, body = SdkClient.bodyMap("tag" to (request.tag), "message" to (request.message), "object" to (request.`object`), "type" to (request.type), "tagger" to (SdkClient.omitIfNull(request.tagger))), operationId = "gitCreateTag", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gitCreateTag(
+        clientConfig: ClientConfig,
+        request: GitCreateTagRequest,
+        options: RequestOptions? = null,
+    ): GitTag {
+        return SdkClient.request<GitTag>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/git/tags",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "tag" to (request.tag),
+                            "message" to (request.message),
+                            "object" to (request.`object`),
+                            "type" to (request.type),
+                            "tagger" to (SdkClient.omitIfNull(request.tagger)),
+                        ),
+                    operationId = "gitCreateTag",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Retrieves metadata for a Git tag in a repository, including its target object and signature-verification result. Use `tag_sha` to identify the tag and inspect `verification.reason` to understand why GitHub considers its signature verified or unverified.
+     * Retrieves metadata for a Git tag in a repository, including its target object and
+     * signature-verification result. Use `tag_sha` to identify the tag and inspect
+     * `verification.reason` to understand why GitHub considers its signature verified or
+     * unverified.
      *
-     * **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are…
+     * **Signature verification object** The response will include a `verification` object that
+     * describes the result of verifying the commit's signature. The following fields are included
+     * in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | |
+     * `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to
+     * be verified. | | `reason` | `string` | The reason for verified value. Possible values and
+     * their meanings are…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun gitGetTag(clientConfig: ClientConfig, owner: String, repo: String, tagSha: String, options: RequestOptions? = null): GitTag {
-        return SdkClient.request<GitTag>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/tags/${SdkClient.encodePathSegment(tagSha)}", config = clientConfig, operationId = "gitGetTag", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java))).data
+    fun gitGetTag(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        tagSha: String,
+        options: RequestOptions? = null,
+    ): GitTag {
+        return SdkClient.request<GitTag>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/tags/${SdkClient.encodePathSegment(tagSha)}",
+                    config = clientConfig,
+                    operationId = "gitGetTag",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("404" to BasicError::class.java, "409" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * The tree creation API accepts nested entries. If you specify both a tree and a nested path modifying that tree, this endpoint will overwrite the contents of the tree with the new path contents, and create a new tree structure. If you use this endpoint to add, delete, or modify the file contents in a tree, you will need to commit the tree and then update a branch to point to the commit. For more information see "Create a commit" and "Update a reference." Returns an error if…
+     * The tree creation API accepts nested entries. If you specify both a tree and a nested path
+     * modifying that tree, this endpoint will overwrite the contents of the tree with the new path
+     * contents, and create a new tree structure. If you use this endpoint to add, delete, or modify
+     * the file contents in a tree, you will need to commit the tree and then update a branch to
+     * point to the commit. For more information see "Create a commit" and "Update a reference."
+     * Returns an error if…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param tree Objects (of `path`, `mode`, `type`, and `sha`) specifying a tree
-     *   structure.
-     * @param baseTree The SHA1 of an existing Git tree object which will be used as
-     *   the base for the new tree. If provided, a new Git tree object will be created
-     *   from entries in the Git tree object pointed to by `base_tree` and entries
-     *   defined in the `tree` parameter. Entries defined in the `tree` parameter will
-     *   overwrite items from `base_tree` with the same `path`. If you're creating new
-     *   changes on a branch, then normally you'd set `base_tree` to the SHA1 of the
-     *   Git tree object of the current…
+     * @param tree Objects (of `path`, `mode`, `type`, and `sha`) specifying a tree structure.
+     * @param baseTree The SHA1 of an existing Git tree object which will be used as the base for
+     *   the new tree. If provided, a new Git tree object will be created from entries in the Git
+     *   tree object pointed to by `base_tree` and entries defined in the `tree` parameter. Entries
+     *   defined in the `tree` parameter will overwrite items from `base_tree` with the same `path`.
+     *   If you're creating new changes on a branch, then normally you'd set `base_tree` to the SHA1
+     *   of the Git tree object of the current…
      */
-    fun gitCreateTree(clientConfig: ClientConfig, owner: String, repo: String, tree: List<GitCreateTreeTreeItem>, baseTree: String? = null, options: RequestOptions? = null): GitTree {
-        return SdkClient.request<GitTree>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/trees", config = clientConfig, body = SdkClient.bodyMap("tree" to (tree), "base_tree" to (SdkClient.omitIfNull(baseTree))), operationId = "gitCreateTree", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gitCreateTree(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        tree: List<GitCreateTreeTreeItem>,
+        baseTree: String? = null,
+        options: RequestOptions? = null,
+    ): GitTree {
+        return SdkClient.request<GitTree>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/trees",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "tree" to (tree),
+                            "base_tree" to (SdkClient.omitIfNull(baseTree)),
+                        ),
+                    operationId = "gitCreateTree",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Returns a single tree using the SHA1 value or ref name for that tree. If `truncated` is `true` in the response then the number of items in the `tree` array exceeded our maximum limit. If you need to fetch more items, use the non-recursive method of fetching trees, and fetch one sub-tree at a time. > \[!NOTE\] > The limit for the `tree` array is 100,000 entries with a maximum size of 7 MB when using the `recursive` parameter.
+     * Returns a single tree using the SHA1 value or ref name for that tree. If `truncated` is
+     * `true` in the response then the number of items in the `tree` array exceeded our maximum
+     * limit. If you need to fetch more items, use the non-recursive method of fetching trees, and
+     * fetch one sub-tree at a time. > \[!NOTE\] > The limit for the `tree` array is 100,000 entries
+     * with a maximum size of 7 MB when using the `recursive` parameter.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param treeSha The SHA1 value or ref (branch or tag) name of the tree.
-     * @param recursive Setting this parameter to any value returns the objects or
-     *   subtrees referenced by the tree specified in `:tree_sha`. For example, setting
-     *   `recursive` to any of the following will enable returning objects or subtrees:
-     *   `0`, `1`, `"true"`, and `"false"`. Omit this parameter to prevent recursively
-     *   returning objects or subtrees.
+     * @param recursive Setting this parameter to any value returns the objects or subtrees
+     *   referenced by the tree specified in `:tree_sha`. For example, setting `recursive` to any of
+     *   the following will enable returning objects or subtrees: `0`, `1`, `"true"`, and `"false"`.
+     *   Omit this parameter to prevent recursively returning objects or subtrees.
      */
-    fun gitGetTree(clientConfig: ClientConfig, owner: String, repo: String, treeSha: String, recursive: String? = null, options: RequestOptions? = null): GitTree {
-        return SdkClient.request<GitTree>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/trees/${SdkClient.encodePathSegment(treeSha)}", config = clientConfig, query = mapOf("recursive" to SdkClient.queryValue(recursive, "form", true)), operationId = "gitGetTree", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "409" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun gitGetTree(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        treeSha: String,
+        recursive: String? = null,
+        options: RequestOptions? = null,
+    ): GitTree {
+        return SdkClient.request<GitTree>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/git/trees/${SdkClient.encodePathSegment(treeSha)}",
+                    config = clientConfig,
+                    query = mapOf("recursive" to SdkClient.queryValue(recursive, "form", true)),
+                    operationId = "gitGetTree",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "409" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
-
 }

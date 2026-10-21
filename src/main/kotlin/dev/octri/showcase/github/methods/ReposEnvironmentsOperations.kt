@@ -14,266 +14,549 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ReposGetAllEnvironmentsOperation {
     /**
-     * Lists the environments for a repository. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists the environments for a repository. Anyone with read access to the repository can use
+     * this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
+     * use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposGetAllEnvironments(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Repos.ReposGetAllEnvironmentsResponse {
-        return SdkClient.request<Repos.ReposGetAllEnvironmentsResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposGetAllEnvironments", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetAllEnvironments(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Repos.ReposGetAllEnvironmentsResponse {
+        return SdkClient.request<Repos.ReposGetAllEnvironmentsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposGetAllEnvironments",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetEnvironmentOperation {
     /**
-     * > \[!NOTE\] > To get information about name patterns that branches must match in order to deploy to this environment, see "Get a deployment branch policy." Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * > \[!NOTE\] > To get information about name patterns that branches must match in order to
+     * > deploy to this environment, see "Get a deployment branch policy." Anyone with read access
+     * > to the repository can use this endpoint. OAuth app tokens and personal access tokens
+     * > (classic) need the `repo` scope to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
      */
-    fun reposGetEnvironment(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, options: RequestOptions? = null): Environment {
-        return SdkClient.request<Environment>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}", config = clientConfig, operationId = "reposGetEnvironment", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetEnvironment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        options: RequestOptions? = null,
+    ): Environment {
+        return SdkClient.request<Environment>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}",
+                    config = clientConfig,
+                    operationId = "reposGetEnvironment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateOrUpdateEnvironmentOperation {
     /**
-     * Create or update an environment with protection rules, such as required reviewers. For more information about environment protection rules, see "Environments." > \[!NOTE\] > To create or update name patterns that branches must match in order to deploy to this environment, see "Deployment branch policies." > \[!NOTE\] > To create or update secrets for an environment, see "GitHub Actions secrets." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use…
+     * Create or update an environment with protection rules, such as required reviewers. For more
+     * information about environment protection rules, see "Environments." > \[!NOTE\] > To create
+     * or update name patterns that branches must match in order to deploy to this environment, see
+     * "Deployment branch policies." > \[!NOTE\] > To create or update secrets for an environment,
+     * see "GitHub Actions secrets." OAuth app tokens and personal access tokens (classic) need the
+     * `repo` scope to use…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param waitTimer The amount of time to delay a job after the job is initially
-     *   triggered. The time (in minutes) must be an integer between 0 and 43,200 (30
-     *   days).
-     * @param preventSelfReview Whether or not a user who created the job is
-     *   prevented from approving their own job.
-     * @param reviewers The people or teams that may review jobs that reference the
-     *   environment. You can list up to six users or teams as reviewers. The reviewers
-     *   must have at least read access to the repository. Only one of the required
-     *   reviewers needs to approve the job for it to proceed.
-     * @param deploymentBranchPolicy The type of deployment branch policy for this
-     *   environment. To allow all branches to deploy, set to `null`.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param waitTimer The amount of time to delay a job after the job is initially triggered. The
+     *   time (in minutes) must be an integer between 0 and 43,200 (30 days).
+     * @param preventSelfReview Whether or not a user who created the job is prevented from
+     *   approving their own job.
+     * @param reviewers The people or teams that may review jobs that reference the environment. You
+     *   can list up to six users or teams as reviewers. The reviewers must have at least read
+     *   access to the repository. Only one of the required reviewers needs to approve the job for
+     *   it to proceed.
+     * @param deploymentBranchPolicy The type of deployment branch policy for this environment. To
+     *   allow all branches to deploy, set to `null`.
      */
-    fun reposCreateOrUpdateEnvironment(clientConfig: ClientConfig, request: Repos.ReposCreateOrUpdateEnvironmentRequest, options: RequestOptions? = null): Environment {
-        return SdkClient.request<Environment>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/environments/${SdkClient.encodePathSegment(request.environmentName)}", config = clientConfig, body = SdkClient.bodyMap("wait_timer" to (SdkClient.omitIfNull(request.waitTimer)), "prevent_self_review" to
-    (SdkClient.omitIfNull(request.preventSelfReview)), "reviewers" to
-    (request.reviewers ?: SdkClient.SdkOptional.Omitted), "deployment_branch_policy" to
-    (request.deploymentBranchPolicy ?: SdkClient.SdkOptional.Omitted)), operationId = "reposCreateOrUpdateEnvironment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to BasicError::class.java))).data
+    fun reposCreateOrUpdateEnvironment(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateOrUpdateEnvironmentRequest,
+        options: RequestOptions? = null,
+    ): Environment {
+        return SdkClient.request<Environment>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/environments/${SdkClient.encodePathSegment(request.environmentName)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "wait_timer" to (SdkClient.omitIfNull(request.waitTimer)),
+                            "prevent_self_review" to
+                                (SdkClient.omitIfNull(request.preventSelfReview)),
+                            "reviewers" to (request.reviewers ?: SdkClient.SdkOptional.Omitted),
+                            "deployment_branch_policy" to
+                                (request.deploymentBranchPolicy ?: SdkClient.SdkOptional.Omitted),
+                        ),
+                    operationId = "reposCreateOrUpdateEnvironment",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("422" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDeleteAnEnvironmentOperation {
     /**
-     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
      */
-    fun reposDeleteAnEnvironment(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}", config = clientConfig, operationId = "reposDeleteAnEnvironment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposDeleteAnEnvironment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}",
+                config = clientConfig,
+                operationId = "reposDeleteAnEnvironment",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposListDeploymentBranchPoliciesOperation {
     /**
-     * Lists the deployment branch policies for an environment. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists the deployment branch policies for an environment. Anyone with read access to the
+     * repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListDeploymentBranchPolicies(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Repos.ReposListDeploymentBranchPoliciesResponse {
-        return SdkClient.request<Repos.ReposListDeploymentBranchPoliciesResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListDeploymentBranchPolicies", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListDeploymentBranchPolicies(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Repos.ReposListDeploymentBranchPoliciesResponse {
+        return SdkClient.request<Repos.ReposListDeploymentBranchPoliciesResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListDeploymentBranchPolicies",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateDeploymentBranchPolicyOperation {
     /**
-     * Creates a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param name The name pattern that branches or tags must match in order to
-     *   deploy to the environment. Wildcard characters will not match `/`. For
-     *   example, to match branches that begin with `release/` and contain an
-     *   additional single slash, use `release/ * / *`. For more information about
-     *   pattern matching syntax, see the Ruby File.fnmatch documentation.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param name The name pattern that branches or tags must match in order to deploy to the
+     *   environment. Wildcard characters will not match `/`. For example, to match branches that
+     *   begin with `release/` and contain an additional single slash, use `release/ * / *`. For
+     *   more information about pattern matching syntax, see the Ruby File.fnmatch documentation.
      * @param type Whether this rule targets a branch or tag
      */
-    fun reposCreateDeploymentBranchPolicy(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, name: String, type: DeploymentBranchPolicyNamePatternWithTypeTypeEnum? = null, options: RequestOptions? = null): DeploymentBranchPolicy {
-        return SdkClient.request<DeploymentBranchPolicy>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies", config = clientConfig, body = SdkClient.bodyMap("name" to (name), "type" to (SdkClient.omitIfNull(type))), operationId = "reposCreateDeploymentBranchPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCreateDeploymentBranchPolicy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        name: String,
+        type: DeploymentBranchPolicyNamePatternWithTypeTypeEnum? = null,
+        options: RequestOptions? = null,
+    ): DeploymentBranchPolicy {
+        return SdkClient.request<DeploymentBranchPolicy>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap("name" to (name), "type" to (SdkClient.omitIfNull(type))),
+                    operationId = "reposCreateDeploymentBranchPolicy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetDeploymentBranchPolicyOperation {
     /**
-     * Gets a deployment branch or tag policy for an environment. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets a deployment branch or tag policy for an environment. Anyone with read access to the
+     * repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
      * @param branchPolicyId The unique identifier of the branch policy.
      */
-    fun reposGetDeploymentBranchPolicy(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, options: RequestOptions? = null): DeploymentBranchPolicy {
-        return SdkClient.request<DeploymentBranchPolicy>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies/${SdkClient.encodePathSegment(branchPolicyId)}", config = clientConfig, operationId = "reposGetDeploymentBranchPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetDeploymentBranchPolicy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        options: RequestOptions? = null,
+    ): DeploymentBranchPolicy {
+        return SdkClient.request<DeploymentBranchPolicy>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies/${SdkClient.encodePathSegment(branchPolicyId)}",
+                    config = clientConfig,
+                    operationId = "reposGetDeploymentBranchPolicy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposUpdateDeploymentBranchPolicyOperation {
     /**
-     * Updates a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Updates a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
      * @param branchPolicyId The unique identifier of the branch policy.
-     * @param name The name pattern that branches must match in order to deploy to
-     *   the environment. Wildcard characters will not match `/`. For example, to match
-     *   branches that begin with `release/` and contain an additional single slash,
-     *   use `release/ * / *`. For more information about pattern matching syntax, see
-     *   the Ruby File.fnmatch documentation.
+     * @param name The name pattern that branches must match in order to deploy to the environment.
+     *   Wildcard characters will not match `/`. For example, to match branches that begin with
+     *   `release/` and contain an additional single slash, use `release/ * / *`. For more
+     *   information about pattern matching syntax, see the Ruby File.fnmatch documentation.
      */
-    fun reposUpdateDeploymentBranchPolicy(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, name: String, options: RequestOptions? = null): DeploymentBranchPolicy {
-        return SdkClient.request<DeploymentBranchPolicy>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies/${SdkClient.encodePathSegment(branchPolicyId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (name)), operationId = "reposUpdateDeploymentBranchPolicy", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposUpdateDeploymentBranchPolicy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        name: String,
+        options: RequestOptions? = null,
+    ): DeploymentBranchPolicy {
+        return SdkClient.request<DeploymentBranchPolicy>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies/${SdkClient.encodePathSegment(branchPolicyId)}",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("name" to (name)),
+                    operationId = "reposUpdateDeploymentBranchPolicy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDeleteDeploymentBranchPolicyOperation {
     /**
-     * Deletes a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
      * @param branchPolicyId The unique identifier of the branch policy.
      */
-    fun reposDeleteDeploymentBranchPolicy(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies/${SdkClient.encodePathSegment(branchPolicyId)}", config = clientConfig, operationId = "reposDeleteDeploymentBranchPolicy", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposDeleteDeploymentBranchPolicy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment-branch-policies/${SdkClient.encodePathSegment(branchPolicyId)}",
+                config = clientConfig,
+                operationId = "reposDeleteDeploymentBranchPolicy",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposGetAllDeploymentProtectionRulesOperation {
     /**
-     * Gets all custom deployment protection rules that are enabled for an environment. Anyone with read access to the repository can use this endpoint. For more information about environments, see "Using environments for deployment." For more information about the app that is providing this custom deployment rule, see the documentation for the `GET /apps/{app_slug}` endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a…
+     * Gets all custom deployment protection rules that are enabled for an environment. Anyone with
+     * read access to the repository can use this endpoint. For more information about environments,
+     * see "Using environments for deployment." For more information about the app that is providing
+     * this custom deployment rule, see the documentation for the `GET /apps/{app_slug}` endpoint.
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint with a…
      *
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param owner The account owner of the repository. The name is not case
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
+     * @param owner The account owner of the repository. The name is not case sensitive.
      */
-    fun reposGetAllDeploymentProtectionRules(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, options: RequestOptions? = null): Repos.ReposGetAllDeploymentProtectionRulesResponse {
-        return SdkClient.request<Repos.ReposGetAllDeploymentProtectionRulesResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules", config = clientConfig, operationId = "reposGetAllDeploymentProtectionRules", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetAllDeploymentProtectionRules(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        options: RequestOptions? = null,
+    ): Repos.ReposGetAllDeploymentProtectionRulesResponse {
+        return SdkClient.request<Repos.ReposGetAllDeploymentProtectionRulesResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules",
+                    config = clientConfig,
+                    operationId = "reposGetAllDeploymentProtectionRules",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposCreateDeploymentProtectionRuleOperation {
     /**
-     * Enable a custom deployment protection rule for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. For more information about the app that is providing this custom deployment rule, see the documentation for the `GET /apps/{app_slug}` endpoint, as well as the guide to creating custom deployment protection rules. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Enable a custom deployment protection rule for an environment. The authenticated user must
+     * have admin or owner permissions to the repository to use this endpoint. For more information
+     * about the app that is providing this custom deployment rule, see the documentation for the
+     * `GET /apps/{app_slug}` endpoint, as well as the guide to creating custom deployment
+     * protection rules. OAuth app tokens and personal access tokens (classic) need the `repo` scope
+     * to use this endpoint.
      *
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param owner The account owner of the repository. The name is not case
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param integrationId The ID of the custom app that will be enabled on the
-     *   environment.
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param integrationId The ID of the custom app that will be enabled on the environment.
      */
-    fun reposCreateDeploymentProtectionRule(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, integrationId: Long? = null, options: RequestOptions? = null): DeploymentProtectionRule {
-        return SdkClient.request<DeploymentProtectionRule>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules", config = clientConfig, body = SdkClient.bodyMap("integration_id" to (SdkClient.omitIfNull(integrationId))), operationId = "reposCreateDeploymentProtectionRule", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCreateDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        integrationId: Long? = null,
+        options: RequestOptions? = null,
+    ): DeploymentProtectionRule {
+        return SdkClient.request<DeploymentProtectionRule>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "integration_id" to (SdkClient.omitIfNull(integrationId))
+                        ),
+                    operationId = "reposCreateDeploymentProtectionRule",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposListCustomDeploymentRuleIntegrationsOperation {
     /**
-     * Gets all custom deployment protection rule integrations that are available for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. For more information about environments, see "Using environments for deployment." For more information about the app that is providing this custom deployment rule, see "GET an app". OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with…
+     * Gets all custom deployment protection rule integrations that are available for an
+     * environment. The authenticated user must have admin or owner permissions to the repository to
+     * use this endpoint. For more information about environments, see "Using environments for
+     * deployment." For more information about the app that is providing this custom deployment
+     * rule, see "GET an app". OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint with…
      *
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param owner The account owner of the repository. The name is not case
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListCustomDeploymentRuleIntegrations(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Repos.ReposListCustomDeploymentRuleIntegrationsResponse {
-        return SdkClient.request<Repos.ReposListCustomDeploymentRuleIntegrationsResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/apps", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "reposListCustomDeploymentRuleIntegrations", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListCustomDeploymentRuleIntegrations(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Repos.ReposListCustomDeploymentRuleIntegrationsResponse {
+        return SdkClient.request<Repos.ReposListCustomDeploymentRuleIntegrationsResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/apps",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "page" to SdkClient.queryValue(page, "form", true),
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        ),
+                    operationId = "reposListCustomDeploymentRuleIntegrations",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposGetCustomDeploymentProtectionRuleOperation {
     /**
-     * Gets an enabled custom deployment protection rule for an environment. Anyone with read access to the repository can use this endpoint. For more information about environments, see "Using environments for deployment." For more information about the app that is providing this custom deployment rule, see `GET /apps/{app_slug}`. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets an enabled custom deployment protection rule for an environment. Anyone with read access
+     * to the repository can use this endpoint. For more information about environments, see "Using
+     * environments for deployment." For more information about the app that is providing this
+     * custom deployment rule, see `GET /apps/{app_slug}`. OAuth app tokens and personal access
+     * tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
      * @param protectionRuleId The unique identifier of the protection rule.
      */
-    fun reposGetCustomDeploymentProtectionRule(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, protectionRuleId: Long, options: RequestOptions? = null): DeploymentProtectionRule {
-        return SdkClient.request<DeploymentProtectionRule>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/${SdkClient.encodePathSegment(protectionRuleId)}", config = clientConfig, operationId = "reposGetCustomDeploymentProtectionRule", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetCustomDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        protectionRuleId: Long,
+        options: RequestOptions? = null,
+    ): DeploymentProtectionRule {
+        return SdkClient.request<DeploymentProtectionRule>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/${SdkClient.encodePathSegment(protectionRuleId)}",
+                    config = clientConfig,
+                    operationId = "reposGetCustomDeploymentProtectionRule",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
 
 internal object ReposDisableDeploymentProtectionRuleOperation {
     /**
-     * Disables a custom deployment protection rule for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Disables a custom deployment protection rule for an environment. The authenticated user must
+     * have admin or owner permissions to the repository to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param environmentName The name of the environment. The name must be URL
-     *   encoded. For example, any slashes in the name must be replaced with `%2F`.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param owner The account owner of the repository. The name is not case
+     * @param environmentName The name of the environment. The name must be URL encoded. For
+     *   example, any slashes in the name must be replaced with `%2F`.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
+     * @param owner The account owner of the repository. The name is not case sensitive.
      * @param protectionRuleId The unique identifier of the protection rule.
      */
-    fun reposDisableDeploymentProtectionRule(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, protectionRuleId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/${SdkClient.encodePathSegment(protectionRuleId)}", config = clientConfig, operationId = "reposDisableDeploymentProtectionRule", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun reposDisableDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        protectionRuleId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/environments/${SdkClient.encodePathSegment(environmentName)}/deployment_protection_rules/${SdkClient.encodePathSegment(protectionRuleId)}",
+                config = clientConfig,
+                operationId = "reposDisableDeploymentProtectionRule",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

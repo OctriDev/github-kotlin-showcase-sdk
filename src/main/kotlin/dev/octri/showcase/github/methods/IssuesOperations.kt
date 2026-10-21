@@ -14,39 +14,65 @@ import dev.octri.showcase.github.ValidationError
 
 internal object IssuesListOperation {
     /**
-     * Lists issues assigned to the authenticated user across repositories the user can access, including owned, member, and organization repositories. Use `filter`, `state`, and `labels` to narrow the results, and use `page` and `per_page` to paginate the results. Responses can include pull requests; identify them by the `pull_request` key, and use the pull requests endpoint to retrieve a pull request ID.
+     * Lists issues assigned to the authenticated user across repositories the user can access,
+     * including owned, member, and organization repositories. Use `filter`, `state`, and `labels`
+     * to narrow the results, and use `page` and `per_page` to paginate the results. Responses can
+     * include pull requests; identify them by the `pull_request` key, and use the pull requests
+     * endpoint to retrieve a pull request ID.
      *
-     * List issues assigned to the authenticated user across all visible repositories including owned repositories, member repositories, and organization repositories. You can use the `filter` query parameter to fetch issues that are not necessarily assigned to you. > !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, "Issues" endpoints may return both issues and pull requests in the response. You can identify…
+     * List issues assigned to the authenticated user across all visible repositories including
+     * owned repositories, member repositories, and organization repositories. You can use the
+     * `filter` query parameter to fetch issues that are not necessarily assigned to you. > !NOTE] >
+     * GitHub's REST API considers every pull request an issue, but not every issue is a pull
+     * request. For this reason, "Issues" endpoints may return both issues and pull requests in the
+     * response. You can identify…
      *
-     * @param filter Indicates which sorts of issues to return. `assigned` means
-     *   issues assigned to you. `created` means issues created by you. `mentioned`
-     *   means issues mentioning you. `subscribed` means issues you're subscribed to
-     *   updates for. `all` or `repos` means all issues you can see, regardless of
-     *   participation or creation.
+     * @param filter Indicates which sorts of issues to return. `assigned` means issues assigned to
+     *   you. `created` means issues created by you. `mentioned` means issues mentioning you.
+     *   `subscribed` means issues you're subscribed to updates for. `all` or `repos` means all
+     *   issues you can see, regardless of participation or creation.
      * @param state Indicates the state of the issues to return.
      * @param labels A list of comma separated label names. Example: `bug,ui,@high`
      * @param sort What to sort results by.
      * @param direction The direction to sort the results by.
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesList(clientConfig: ClientConfig, request: Issues.IssuesListRequest, options: RequestOptions? = null): List<Issue> {
+    fun issuesList(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListRequest,
+        options: RequestOptions? = null,
+    ): List<Issue> {
         validateIssuesListRequest(request)
 
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/issues", config = clientConfig, query = buildIssuesListQuery(request), operationId = "issuesList", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/issues",
+                    config = clientConfig,
+                    query = buildIssuesListQuery(request),
+                    operationId = "issuesList",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateIssuesListRequest(request: Issues.IssuesListRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-}
+        }
     }
-
 
     private fun buildIssuesListQuery(request: Issues.IssuesListRequest): Map<String, Any?> =
         buildMap {
@@ -55,296 +81,461 @@ internal object IssuesListOperation {
 
     private fun buildIssuesListQueryPart1(request: Issues.IssuesListRequest): Map<String, Any?> =
         mapOf(
-            "filter" to
-    SdkClient.queryValue(request.filter, "form", true),
+            "filter" to SdkClient.queryValue(request.filter, "form", true),
             "state" to SdkClient.queryValue(request.state, "form", true),
-            "labels" to
-    SdkClient.queryValue(request.labels, "form", true),
+            "labels" to SdkClient.queryValue(request.labels, "form", true),
             "sort" to SdkClient.queryValue(request.sort, "form", true),
-            "direction" to
-    SdkClient.queryValue(request.direction, "form", true),
-            "since" to
-    SdkClient.queryValue(request.since, "form", true, "date-time"),
-            "collab" to
-    SdkClient.queryValue(request.collab, "form", true),
+            "direction" to SdkClient.queryValue(request.direction, "form", true),
+            "since" to SdkClient.queryValue(request.since, "form", true, "date-time"),
+            "collab" to SdkClient.queryValue(request.collab, "form", true),
             "orgs" to SdkClient.queryValue(request.orgs, "form", true),
             "owned" to SdkClient.queryValue(request.owned, "form", true),
             "pulls" to SdkClient.queryValue(request.pulls, "form", true),
-            "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true),
+            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
             "page" to SdkClient.queryValue(request.page, "form", true),
         )
 }
 
 internal object IssuesListForOrgOperation {
     /**
-     * List issues in an organization assigned to the authenticated user. > !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, "Issues" endpoints may return both issues and pull requests in the response. You can identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use the "\[List pull…
+     * List issues in an organization assigned to the authenticated user. > !NOTE] > GitHub's REST
+     * API considers every pull request an issue, but not every issue is a pull request. For this
+     * reason, "Issues" endpoints may return both issues and pull requests in the response. You can
+     * identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request
+     * returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use
+     * the "\[List pull…
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param filter Indicates which sorts of issues to return. `assigned` means
-     *   issues assigned to you. `created` means issues created by you. `mentioned`
-     *   means issues mentioning you. `subscribed` means issues you're subscribed to
-     *   updates for. `all` or `repos` means all issues you can see, regardless of
-     *   participation or creation.
+     * @param filter Indicates which sorts of issues to return. `assigned` means issues assigned to
+     *   you. `created` means issues created by you. `mentioned` means issues mentioning you.
+     *   `subscribed` means issues you're subscribed to updates for. `all` or `repos` means all
+     *   issues you can see, regardless of participation or creation.
      * @param state Indicates the state of the issues to return.
      * @param labels A list of comma separated label names. Example: `bug,ui,@high`
      * @param type Can be the name of an issue type.
      * @param sort What to sort results by.
      * @param direction The direction to sort the results by.
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListForOrg(clientConfig: ClientConfig, request: Issues.IssuesListForOrgRequest, options: RequestOptions? = null): List<Issue> {
+    fun issuesListForOrg(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListForOrgRequest,
+        options: RequestOptions? = null,
+    ): List<Issue> {
         validateIssuesListForOrgRequest(request)
 
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/issues", config = clientConfig, query = mapOf("filter" to
-    SdkClient.queryValue(request.filter, "form", true), "state" to SdkClient.queryValue(request.state, "form", true), "labels" to
-    SdkClient.queryValue(request.labels, "form", true), "type" to SdkClient.queryValue(request.type, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
-    SdkClient.queryValue(request.direction, "form", true), "since" to
-    SdkClient.queryValue(request.since, "form", true, "date-time"), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "issuesListForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(request.org)}/issues",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "filter" to SdkClient.queryValue(request.filter, "form", true),
+                            "state" to SdkClient.queryValue(request.state, "form", true),
+                            "labels" to SdkClient.queryValue(request.labels, "form", true),
+                            "type" to SdkClient.queryValue(request.type, "form", true),
+                            "sort" to SdkClient.queryValue(request.sort, "form", true),
+                            "direction" to SdkClient.queryValue(request.direction, "form", true),
+                            "since" to
+                                SdkClient.queryValue(request.since, "form", true, "date-time"),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "issuesListForOrg",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
-
 
     private fun validateIssuesListForOrgRequest(request: Issues.IssuesListForOrgRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-}
+        }
     }
 }
 
 internal object IssuesListForRepoOperation {
     /**
-     * List issues in a repository. Only open issues will be listed. > !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, "Issues" endpoints may return both issues and pull requests in the response. You can identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use the "\[List pull…
+     * List issues in a repository. Only open issues will be listed. > !NOTE] > GitHub's REST API
+     * considers every pull request an issue, but not every issue is a pull request. For this
+     * reason, "Issues" endpoints may return both issues and pull requests in the response. You can
+     * identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request
+     * returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use
+     * the "\[List pull…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param milestone If an `integer` is passed, it should refer to a milestone by
-     *   its `number` field. If the string `*` is passed, issues with any milestone are
-     *   accepted. If the string `none` is passed, issues without milestones are
-     *   returned.
+     * @param milestone If an `integer` is passed, it should refer to a milestone by its `number`
+     *   field. If the string `*` is passed, issues with any milestone are accepted. If the string
+     *   `none` is passed, issues without milestones are returned.
      * @param state Indicates the state of the issues to return.
-     * @param assignee Can be the name of a user. Pass in `none` for issues with no
-     *   assigned user, and `*` for issues assigned to any user.
-     * @param type Can be the name of an issue type. If the string `*` is passed,
-     *   issues with any type are accepted. If the string `none` is passed, issues
-     *   without type are returned.
+     * @param assignee Can be the name of a user. Pass in `none` for issues with no assigned user,
+     *   and `*` for issues assigned to any user.
+     * @param type Can be the name of an issue type. If the string `*` is passed, issues with any
+     *   type are accepted. If the string `none` is passed, issues without type are returned.
      * @param creator The user that created the issue.
      * @param mentioned A user that's mentioned in the issue.
-     * @param issueFieldValues A comma-separated list of issue field filters in
-     *   `field_slug:value` format. Only issues matching all specified field values are
-     *   returned. Requires issue fields to be enabled for the repository. Issue fields
-     *   are not available for user-owned repositories, and field availability for
-     *   organization-owned public repositories depends on the organization's
-     *   visibility settings. For example, `priority:Urgent,severity:High` filters
-     *   issues where the `priority` field is `Urgent` AND the…
+     * @param issueFieldValues A comma-separated list of issue field filters in `field_slug:value`
+     *   format. Only issues matching all specified field values are returned. Requires issue fields
+     *   to be enabled for the repository. Issue fields are not available for user-owned
+     *   repositories, and field availability for organization-owned public repositories depends on
+     *   the organization's visibility settings. For example, `priority:Urgent,severity:High`
+     *   filters issues where the `priority` field is `Urgent` AND the…
      * @param labels A list of comma separated label names. Example: `bug,ui,@high`
      * @param sort What to sort results by.
      * @param direction The direction to sort the results by.
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListForRepo(clientConfig: ClientConfig, request: Issues.IssuesListForRepoRequest, options: RequestOptions? = null): List<Issue> {
+    fun issuesListForRepo(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListForRepoRequest,
+        options: RequestOptions? = null,
+    ): List<Issue> {
         validateIssuesListForRepoRequest(request)
 
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues", config = clientConfig, query = buildIssuesListForRepoQuery(request), operationId = "issuesListForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java))).data
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues",
+                    config = clientConfig,
+                    query = buildIssuesListForRepoQuery(request),
+                    operationId = "issuesListForRepo",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
-
 
     private fun validateIssuesListForRepoRequest(request: Issues.IssuesListForRepoRequest) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-}
+        }
     }
 
+    private fun buildIssuesListForRepoQuery(
+        request: Issues.IssuesListForRepoRequest
+    ): Map<String, Any?> = buildMap {
+        putAll(buildIssuesListForRepoQueryPart1(request))
+        putAll(buildIssuesListForRepoQueryPart2(request))
+    }
 
-    private fun buildIssuesListForRepoQuery(request: Issues.IssuesListForRepoRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildIssuesListForRepoQueryPart1(request))
-            putAll(buildIssuesListForRepoQueryPart2(request))
-        }
-
-    private fun buildIssuesListForRepoQueryPart1(request: Issues.IssuesListForRepoRequest): Map<String, Any?> =
+    private fun buildIssuesListForRepoQueryPart1(
+        request: Issues.IssuesListForRepoRequest
+    ): Map<String, Any?> =
         mapOf(
-            "milestone" to
-    SdkClient.queryValue(request.milestone, "form", true),
+            "milestone" to SdkClient.queryValue(request.milestone, "form", true),
             "state" to SdkClient.queryValue(request.state, "form", true),
-            "assignee" to
-    SdkClient.queryValue(request.assignee, "form", true),
+            "assignee" to SdkClient.queryValue(request.assignee, "form", true),
             "type" to SdkClient.queryValue(request.type, "form", true),
-            "creator" to
-    SdkClient.queryValue(request.creator, "form", true),
-            "mentioned" to
-    SdkClient.queryValue(request.mentioned, "form", true),
-            "issue_field_values" to
-    SdkClient.queryValue(request.issueFieldValues, "form", true),
-            "labels" to
-    SdkClient.queryValue(request.labels, "form", true),
+            "creator" to SdkClient.queryValue(request.creator, "form", true),
+            "mentioned" to SdkClient.queryValue(request.mentioned, "form", true),
+            "issue_field_values" to SdkClient.queryValue(request.issueFieldValues, "form", true),
+            "labels" to SdkClient.queryValue(request.labels, "form", true),
             "sort" to SdkClient.queryValue(request.sort, "form", true),
-            "direction" to
-    SdkClient.queryValue(request.direction, "form", true),
-            "since" to
-    SdkClient.queryValue(request.since, "form", true, "date-time"),
-            "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true),
+            "direction" to SdkClient.queryValue(request.direction, "form", true),
+            "since" to SdkClient.queryValue(request.since, "form", true, "date-time"),
+            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
         )
 
-    private fun buildIssuesListForRepoQueryPart2(request: Issues.IssuesListForRepoRequest): Map<String, Any?> =
-        mapOf(
-            "page" to SdkClient.queryValue(request.page, "form", true),
-        )
+    private fun buildIssuesListForRepoQueryPart2(
+        request: Issues.IssuesListForRepoRequest
+    ): Map<String, Any?> = mapOf("page" to SdkClient.queryValue(request.page, "form", true))
 }
 
 internal object IssuesCreateOperation {
     /**
-     * Creates an issue in a repository. Provide a `title`; you can also include a body, labels, assignees, milestone, issue type, parent issue, or issue field values. Creating an issue triggers notifications, and creating content too quickly may result in secondary rate limiting.
+     * Creates an issue in a repository. Provide a `title`; you can also include a body, labels,
+     * assignees, milestone, issue type, parent issue, or issue field values. Creating an issue
+     * triggers notifications, and creating content too quickly may result in secondary rate
+     * limiting.
      *
-     * Any user with pull access to a repository can create an issue. If issues are disabled in the repository, the API returns a `410 Gone` status. This endpoint triggers notifications. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." -…
+     * Any user with pull access to a repository can create an issue. If issues are disabled in the
+     * repository, the API returns a `410 Gone` status. This endpoint triggers notifications.
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "Rate limits for the API" and "Best practices for using the REST API."
+     * This endpoint supports the following custom media types. For more information, see "Media
+     * types." -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param title The title of the issue.
      * @param body The contents of the issue.
-     * @param assignee Login for the user that this issue should be assigned to.
-     *   _NOTE: Only users with push access can set the assignee for new issues. The
-     *   assignee is silently dropped otherwise. **This field is closing down.**_
-     * @param labels Labels to associate with this issue. _NOTE: Only users with push
-     *   access can set labels for new issues. Labels are silently dropped otherwise._
-     * @param assignees Logins for Users to assign to this issue. _NOTE: Only users
-     *   with push access can set assignees for new issues. Assignees are silently
-     *   dropped otherwise._
-     * @param issueFieldValues An array of issue field values to set on this issue.
-     *   Each field value must include the field ID and the value to set. Issue fields
-     *   are only available for organization-owned repositories with the feature
-     *   enabled. Field values are silently dropped otherwise.
-     * @param type The name of the issue type to associate with this issue. _NOTE:
-     *   Only users with push access can set the type for new issues. The type is
-     *   silently dropped otherwise._
-     * @param parentIssueId The id of the parent issue to add this issue to as a
-     *   sub-issue. _NOTE: Only users with triage access to both the parent issue's
-     *   repository and this repository can set the parent issue._
+     * @param assignee Login for the user that this issue should be assigned to. _NOTE: Only users
+     *   with push access can set the assignee for new issues. The assignee is silently dropped
+     *   otherwise. **This field is closing down.**_
+     * @param labels Labels to associate with this issue. _NOTE: Only users with push access can set
+     *   labels for new issues. Labels are silently dropped otherwise._
+     * @param assignees Logins for Users to assign to this issue. _NOTE: Only users with push access
+     *   can set assignees for new issues. Assignees are silently dropped otherwise._
+     * @param issueFieldValues An array of issue field values to set on this issue. Each field value
+     *   must include the field ID and the value to set. Issue fields are only available for
+     *   organization-owned repositories with the feature enabled. Field values are silently dropped
+     *   otherwise.
+     * @param type The name of the issue type to associate with this issue. _NOTE: Only users with
+     *   push access can set the type for new issues. The type is silently dropped otherwise._
+     * @param parentIssueId The id of the parent issue to add this issue to as a sub-issue. _NOTE:
+     *   Only users with triage access to both the parent issue's repository and this repository can
+     *   set the parent issue._
      */
-    fun issuesCreate(clientConfig: ClientConfig, request: Issues.IssuesCreateRequest, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues", config = clientConfig, body = SdkClient.bodyMap("title" to (request.title), "body" to (SdkClient.omitIfNull(request.body)), "assignee" to
-    (request.assignee ?: SdkClient.SdkOptional.Omitted), "milestone" to
-    (request.milestone ?: SdkClient.SdkOptional.Omitted), "labels" to (SdkClient.omitIfNull(request.labels)), "assignees" to (SdkClient.omitIfNull(request.assignees)), "issue_field_values" to
-    (SdkClient.omitIfNull(request.issueFieldValues)), "type" to (request.type ?: SdkClient.SdkOptional.Omitted), "parent_issue_id" to
-    (SdkClient.omitIfNull(request.parentIssueId))), operationId = "issuesCreate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
+    fun issuesCreate(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesCreateRequest,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "title" to (request.title),
+                            "body" to (SdkClient.omitIfNull(request.body)),
+                            "assignee" to (request.assignee ?: SdkClient.SdkOptional.Omitted),
+                            "milestone" to (request.milestone ?: SdkClient.SdkOptional.Omitted),
+                            "labels" to (SdkClient.omitIfNull(request.labels)),
+                            "assignees" to (SdkClient.omitIfNull(request.assignees)),
+                            "issue_field_values" to
+                                (SdkClient.omitIfNull(request.issueFieldValues)),
+                            "type" to (request.type ?: SdkClient.SdkOptional.Omitted),
+                            "parent_issue_id" to (SdkClient.omitIfNull(request.parentIssueId)),
+                        ),
+                    operationId = "issuesCreate",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesGetOperation {
     /**
-     * Retrieves an issue from a repository by its issue number. Use `owner`, `repo`, and `issue_number` to identify the repository and issue; the response may also represent a pull request. Transferred issues return a 301 redirect, while deleted issues return 404 or 410 depending on the authenticated user's read access.
+     * Retrieves an issue from a repository by its issue number. Use `owner`, `repo`, and
+     * `issue_number` to identify the repository and issue; the response may also represent a pull
+     * request. Transferred issues return a 301 redirect, while deleted issues return 404 or 410
+     * depending on the authenticated user's read access.
      *
-     * The API returns a `301 Moved Permanently` status if the issue was transferred to another repository. If the issue was transferred to or deleted from a repository where the authenticated user lacks read access, the API returns a `404 Not Found` status. If the issue was deleted from a repository where the authenticated user has read access, the API returns a `410 Gone` status. To receive webhook events for transferred and deleted issues, subscribe to the `issues` webhook. >…
+     * The API returns a `301 Moved Permanently` status if the issue was transferred to another
+     * repository. If the issue was transferred to or deleted from a repository where the
+     * authenticated user lacks read access, the API returns a `404 Not Found` status. If the issue
+     * was deleted from a repository where the authenticated user has read access, the API returns a
+     * `410 Gone` status. To receive webhook events for transferred and deleted issues, subscribe to
+     * the `issues` webhook. >…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      */
-    fun issuesGet(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}", config = clientConfig, operationId = "issuesGet", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesGet(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}",
+                    config = clientConfig,
+                    operationId = "issuesGet",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesUpdateOperation {
     /**
-     * Updates the title, body, state, assignees, labels, milestone, type, or field values of an issue. Supply only the properties you want to change; `state_reason` applies only when you change `state`, and `duplicate_issue_id` applies only when `state_reason` is `duplicate`. Users with push access or the Triage role can edit issues, but milestone, label, type, and field-value changes require push access.
+     * Updates the title, body, state, assignees, labels, milestone, type, or field values of an
+     * issue. Supply only the properties you want to change; `state_reason` applies only when you
+     * change `state`, and `duplicate_issue_id` applies only when `state_reason` is `duplicate`.
+     * Users with push access or the Triage role can edit issues, but milestone, label, type, and
+     * field-value changes require push access.
      *
-     * Issue owners and users with push access or Triage role can edit an issue. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. -…
+     * Issue owners and users with push access or Triage role can edit an issue. This endpoint
+     * supports the following custom media types. For more information, see "Media types." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the markdown
+     * body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param title The title of the issue.
      * @param body The contents of the issue.
-     * @param assignee Username to assign to this issue. **This field is closing
-     *   down.**
+     * @param assignee Username to assign to this issue. **This field is closing down.**
      * @param state The open or closed state of the issue.
-     * @param stateReason The reason for the state change. Ignored unless `state` is
-     *   changed.
-     * @param duplicateIssueId The ID of the issue to mark as the canonical duplicate
-     *   when `state_reason` is `duplicate`. The issue must exist and be accessible to
-     *   the authenticated user. Ignored when `state_reason` is not `duplicate`.
-     * @param labels Labels to associate with this issue. Pass one or more labels to
-     *   _replace_ the set of labels on this issue. Send an empty array (`[]`) to clear
-     *   all labels from the issue. Only users with push access can set labels for
-     *   issues. Without push access to the repository, label changes are silently
+     * @param stateReason The reason for the state change. Ignored unless `state` is changed.
+     * @param duplicateIssueId The ID of the issue to mark as the canonical duplicate when
+     *   `state_reason` is `duplicate`. The issue must exist and be accessible to the authenticated
+     *   user. Ignored when `state_reason` is not `duplicate`.
+     * @param labels Labels to associate with this issue. Pass one or more labels to _replace_ the
+     *   set of labels on this issue. Send an empty array (`[]`) to clear all labels from the issue.
+     *   Only users with push access can set labels for issues. Without push access to the
+     *   repository, label changes are silently dropped.
+     * @param assignees Usernames to assign to this issue. Pass one or more user logins to _replace_
+     *   the set of assignees on this issue. Send an empty array (`[]`) to clear all assignees from
+     *   the issue. Only users with push access can set assignees for new issues. Without push
+     *   access to the repository, assignee changes are silently dropped.
+     * @param issueFieldValues An array of issue field values to set on this issue. Each field value
+     *   must include the field ID and the value to set. Only users with push access can set field
+     *   values for issues
+     * @param type The issue type to associate with this issue. Only users with push access can set
+     *   the type for issues. Without push access to the repository, type changes are silently
      *   dropped.
-     * @param assignees Usernames to assign to this issue. Pass one or more user
-     *   logins to _replace_ the set of assignees on this issue. Send an empty array
-     *   (`[]`) to clear all assignees from the issue. Only users with push access can
-     *   set assignees for new issues. Without push access to the repository, assignee
-     *   changes are silently dropped.
-     * @param issueFieldValues An array of issue field values to set on this issue.
-     *   Each field value must include the field ID and the value to set. Only users
-     *   with push access can set field values for issues
-     * @param type The issue type to associate with this issue. Only users with push
-     *   access can set the type for issues. Without push access to the repository,
-     *   type changes are silently dropped.
      */
-    fun issuesUpdate(clientConfig: ClientConfig, request: Issues.IssuesUpdateRequest, options: RequestOptions? = null): Issues.IssuesUpdateResponse {
-        return SdkClient.request<Issues.IssuesUpdateResponse>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}", config = clientConfig, body = SdkClient.bodyMap("title" to (request.title ?: SdkClient.SdkOptional.Omitted), "body" to (request.body ?: SdkClient.SdkOptional.Omitted), "assignee" to
-    (request.assignee ?: SdkClient.SdkOptional.Omitted), "state" to (SdkClient.omitIfNull(request.state)), "state_reason" to
-    (request.stateReason ?: SdkClient.SdkOptional.Omitted), "duplicate_issue_id" to
-    (SdkClient.omitIfNull(request.duplicateIssueId)), "milestone" to
-    (request.milestone ?: SdkClient.SdkOptional.Omitted), "labels" to (SdkClient.omitIfNull(request.labels)), "assignees" to (SdkClient.omitIfNull(request.assignees)), "issue_field_values" to
-    (SdkClient.omitIfNull(request.issueFieldValues)), "type" to (request.type ?: SdkClient.SdkOptional.Omitted)), operationId = "issuesUpdate", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java, "503" to ServiceUnavailable::class.java))).data
+    fun issuesUpdate(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesUpdateRequest,
+        options: RequestOptions? = null,
+    ): Issues.IssuesUpdateResponse {
+        return SdkClient.request<Issues.IssuesUpdateResponse>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "title" to (request.title ?: SdkClient.SdkOptional.Omitted),
+                            "body" to (request.body ?: SdkClient.SdkOptional.Omitted),
+                            "assignee" to (request.assignee ?: SdkClient.SdkOptional.Omitted),
+                            "state" to (SdkClient.omitIfNull(request.state)),
+                            "state_reason" to
+                                (request.stateReason ?: SdkClient.SdkOptional.Omitted),
+                            "duplicate_issue_id" to
+                                (SdkClient.omitIfNull(request.duplicateIssueId)),
+                            "milestone" to (request.milestone ?: SdkClient.SdkOptional.Omitted),
+                            "labels" to (SdkClient.omitIfNull(request.labels)),
+                            "assignees" to (SdkClient.omitIfNull(request.assignees)),
+                            "issue_field_values" to
+                                (SdkClient.omitIfNull(request.issueFieldValues)),
+                            "type" to (request.type ?: SdkClient.SdkOptional.Omitted),
+                        ),
+                    operationId = "issuesUpdate",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListForAuthenticatedUserOperation {
     /**
-     * List issues across owned and member repositories assigned to the authenticated user. > !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a pull request. For this reason, "Issues" endpoints may return both issues and pull requests in the response. You can identify pull requests by the `pull_request` key. Be aware that the `id` of a pull request returned from "Issues" endpoints will be an _issue id_. To find out the pull request id, use…
+     * List issues across owned and member repositories assigned to the authenticated user. >
+     * !NOTE] > GitHub's REST API considers every pull request an issue, but not every issue is a
+     * pull request. For this reason, "Issues" endpoints may return both issues and pull requests in
+     * the response. You can identify pull requests by the `pull_request` key. Be aware that the
+     * `id` of a pull request returned from "Issues" endpoints will be an _issue id_. To find out
+     * the pull request id, use…
      *
-     * @param filter Indicates which sorts of issues to return. `assigned` means
-     *   issues assigned to you. `created` means issues created by you. `mentioned`
-     *   means issues mentioning you. `subscribed` means issues you're subscribed to
-     *   updates for. `all` or `repos` means all issues you can see, regardless of
-     *   participation or creation.
+     * @param filter Indicates which sorts of issues to return. `assigned` means issues assigned to
+     *   you. `created` means issues created by you. `mentioned` means issues mentioning you.
+     *   `subscribed` means issues you're subscribed to updates for. `all` or `repos` means all
+     *   issues you can see, regardless of participation or creation.
      * @param state Indicates the state of the issues to return.
      * @param labels A list of comma separated label names. Example: `bug,ui,@high`
      * @param sort What to sort results by.
      * @param direction The direction to sort the results by.
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param since Only show results that were last updated after the given time. This is a
+     *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListForAuthenticatedUser(clientConfig: ClientConfig, request: Issues.IssuesListForAuthenticatedUserRequest, options: RequestOptions? = null): List<Issue> {
+    fun issuesListForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListForAuthenticatedUserRequest,
+        options: RequestOptions? = null,
+    ): List<Issue> {
         validateIssuesListForAuthenticatedUserRequest(request)
 
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/user/issues", config = clientConfig, query = mapOf("filter" to
-    SdkClient.queryValue(request.filter, "form", true), "state" to SdkClient.queryValue(request.state, "form", true), "labels" to
-    SdkClient.queryValue(request.labels, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
-    SdkClient.queryValue(request.direction, "form", true), "since" to
-    SdkClient.queryValue(request.since, "form", true, "date-time"), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "issuesListForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java))).data
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/user/issues",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "filter" to SdkClient.queryValue(request.filter, "form", true),
+                            "state" to SdkClient.queryValue(request.state, "form", true),
+                            "labels" to SdkClient.queryValue(request.labels, "form", true),
+                            "sort" to SdkClient.queryValue(request.sort, "form", true),
+                            "direction" to SdkClient.queryValue(request.direction, "form", true),
+                            "since" to
+                                SdkClient.queryValue(request.since, "form", true, "date-time"),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                        ),
+                    operationId = "issuesListForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors = mapOf("404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-    private fun validateIssuesListForAuthenticatedUserRequest(request: Issues.IssuesListForAuthenticatedUserRequest) {
+    private fun validateIssuesListForAuthenticatedUserRequest(
+        request: Issues.IssuesListForAuthenticatedUserRequest
+    ) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-}
+        }
     }
 }

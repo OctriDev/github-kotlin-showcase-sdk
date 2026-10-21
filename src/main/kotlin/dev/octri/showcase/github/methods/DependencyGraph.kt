@@ -17,149 +17,194 @@ import java.time.OffsetDateTime
 
 object DependencyGraph {
 
-data class DependencyGraphGenerateSbomReportResponse(
-    /**
-     * URL to poll for the SBOM export result.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("sbom_url") val sbomUrl: String? = null
-)
+    data class DependencyGraphGenerateSbomReportResponse(
+        /** URL to poll for the SBOM export result. */
+        @com.fasterxml.jackson.annotation.JsonProperty("sbom_url") val sbomUrl: String? = null
+    )
 
-/**
- * Required object value serialized in the `job` wire field.
- */
-data class SnapshotJob(
-    /**
-     * The external ID of the job.
-     */
-    val id: String,
-    /**
-     * Correlator provides a key that is used to group snapshots submitted over time. Only the "latest" submitted snapshot for a given combination of `job.correlator` and `detector.name` will be considered when calculating a repository's current dependencies. Correlator should be as unique as it takes to distinguish all detection runs for a given "wave" of CI workflow you run. If you're using GitHub Actions, a good default value for this could be the environment variables…
-     */
-    val correlator: String,
-    /**
-     * The url for the job.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null
-)
+    /** Required object value serialized in the `job` wire field. */
+    data class SnapshotJob(
+        /** The external ID of the job. */
+        val id: String,
+        /**
+         * Correlator provides a key that is used to group snapshots submitted over time. Only the
+         * "latest" submitted snapshot for a given combination of `job.correlator` and
+         * `detector.name` will be considered when calculating a repository's current dependencies.
+         * Correlator should be as unique as it takes to distinguish all detection runs for a given
+         * "wave" of CI workflow you run. If you're using GitHub Actions, a good default value for
+         * this could be the environment variables…
+         */
+        val correlator: String,
+        /** The url for the job. */
+        @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String? = null,
+    )
 
-/**
- * A description of the detector used.
- */
-data class SnapshotDetector(
-    /**
-     * The name of the detector used.
-     */
-    val name: String,
-    /**
-     * The version of the detector used.
-     */
-    val version: String,
-    /**
-     * The url of the detector used.
-     */
-    val url: String
-)
+    /** A description of the detector used. */
+    data class SnapshotDetector(
+        /** The name of the detector used. */
+        val name: String,
+        /** The version of the detector used. */
+        val version: String,
+        /** The url of the detector used. */
+        val url: String,
+    )
 
-data class DependencyGraphCreateRepositorySnapshotResponse(
-    /**
-     * ID of the created snapshot.
-     */
-    val id: Long,
-    /**
-     * The time at which the snapshot was created.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
-    /**
-     * Either "SUCCESS", "ACCEPTED", or "INVALID". "SUCCESS" indicates that the snapshot was successfully created and the repository's dependencies were updated. "ACCEPTED" indicates that the snapshot was successfully created, but the repository's dependencies were not updated. "INVALID" indicates that the snapshot was malformed.
-     */
-    val result: String,
-    /**
-     * A message providing further details about the result, such as why the dependencies were not updated.
-     */
-    val message: String
-)
-
+    data class DependencyGraphCreateRepositorySnapshotResponse(
+        /** ID of the created snapshot. */
+        val id: Long,
+        /** The time at which the snapshot was created. */
+        @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
+        /**
+         * Either "SUCCESS", "ACCEPTED", or "INVALID". "SUCCESS" indicates that the snapshot was
+         * successfully created and the repository's dependencies were updated. "ACCEPTED" indicates
+         * that the snapshot was successfully created, but the repository's dependencies were not
+         * updated. "INVALID" indicates that the snapshot was malformed.
+         */
+        val result: String,
+        /**
+         * A message providing further details about the result, such as why the dependencies were
+         * not updated.
+         */
+        val message: String,
+    )
 
     /**
-     * Gets the diff of the dependency changes between two commits of a repository, based on the changes to the dependency manifests made in those commits.
+     * Gets the diff of the dependency changes between two commits of a repository, based on the
+     * changes to the dependency manifests made in those commits.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param basehead The base and head Git revisions to compare. The Git revisions
-     *   will be resolved to commit SHAs. Named revisions will be resolved to their
-     *   corresponding HEAD commits, and an appropriate merge base will be determined.
-     *   This parameter expects the format `{base}...{head}`.
-     * @param name The full path, relative to the repository root, of the dependency
-     *   manifest file.
+     * @param basehead The base and head Git revisions to compare. The Git revisions will be
+     *   resolved to commit SHAs. Named revisions will be resolved to their corresponding HEAD
+     *   commits, and an appropriate merge base will be determined. This parameter expects the
+     *   format `{base}...{head}`.
+     * @param name The full path, relative to the repository root, of the dependency manifest file.
      */
-    fun dependencyGraphDiffRange(clientConfig: ClientConfig, owner: String, repo: String, basehead: String, name: String? = null, options: RequestOptions? = null): DependencyGraphDiff {
-        return SdkClient.request<DependencyGraphDiff>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependency-graph/compare/${SdkClient.encodePathSegment(basehead)}", config = clientConfig, query = mapOf("name" to SdkClient.queryValue(name, "form", true)), operationId = "dependencyGraphDiffRange", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java, "503" to ServiceUnavailable::class.java))).data
+    fun dependencyGraphDiffRange(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        basehead: String,
+        name: String? = null,
+        options: RequestOptions? = null,
+    ): DependencyGraphDiff {
+        return SdkClient.request<DependencyGraphDiff>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependency-graph/compare/${SdkClient.encodePathSegment(basehead)}",
+                    config = clientConfig,
+                    query = mapOf("name" to SdkClient.queryValue(name, "form", true)),
+                    operationId = "dependencyGraphDiffRange",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "400" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "500" to BasicError::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * > !WARNING] > **Closing down notice:** This operation is closing down and will not be accessible after November 13, 2026. Please migrate to the asynchronous flow. Use "\[Request generation of a software bill of materials (SBOM) for a repository" to trigger the report, then "Fetch a software bill of materials (SBOM) for a repository" to retrieve it. For more information, see the changelog. Exports the software bill of materials (SBOM) for a repository in SPDX JSON format.
+     * > !WARNING] > **Closing down notice:** This operation is closing down and will not be
+     * > accessible after November 13, 2026. Please migrate to the asynchronous flow. Use "\[Request
+     * > generation of a software bill of materials (SBOM) for a repository" to trigger the report,
+     * > then "Fetch a software bill of materials (SBOM) for a repository" to retrieve it. For more
+     * > information, see the changelog. Exports the software bill of materials (SBOM) for a
+     * > repository in SPDX JSON format.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun dependencyGraphExportSbom(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): DependencyGraphSpdxSbom {
-        return SdkClient.request<DependencyGraphSpdxSbom>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependency-graph/sbom", config = clientConfig, operationId = "dependencyGraphExportSbom", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun dependencyGraphExportSbom(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): DependencyGraphSpdxSbom {
+        return SdkClient.request<DependencyGraphSpdxSbom>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependency-graph/sbom",
+                    config = clientConfig,
+                    operationId = "dependencyGraphExportSbom",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
 
-
-
-
-
-
-
     /**
-     * Fetches a previously generated software bill of materials (SBOM) for a repository. When the SBOM is ready, the response is a 302 redirect to a temporary download URL for the SBOM in SPDX JSON format. The generated SBOM report may be retained for up to one week from the original request. The temporary download URL returned by this endpoint expires separately, and its expiry is set when the fetch request is made.
+     * Fetches a previously generated software bill of materials (SBOM) for a repository. When the
+     * SBOM is ready, the response is a 302 redirect to a temporary download URL for the SBOM in
+     * SPDX JSON format. The generated SBOM report may be retained for up to one week from the
+     * original request. The temporary download URL returned by this endpoint expires separately,
+     * and its expiry is set when the fetch request is made.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param sbomUuid The unique identifier of the SBOM export.
      */
-    fun dependencyGraphFetchSbomReport(clientConfig: ClientConfig, owner: String, repo: String, sbomUuid: String, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependency-graph/sbom/fetch-report/${SdkClient.encodePathSegment(sbomUuid)}", config = clientConfig, operationId = "dependencyGraphFetchSbomReport", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    fun dependencyGraphFetchSbomReport(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        sbomUuid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependency-graph/sbom/fetch-report/${SdkClient.encodePathSegment(sbomUuid)}",
+                config = clientConfig,
+                operationId = "dependencyGraphFetchSbomReport",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
-
-
-
-
-
-
 
     /**
-     * Triggers a job to generate a software bill of materials (SBOM) for a repository in SPDX JSON format.
+     * Triggers a job to generate a software bill of materials (SBOM) for a repository in SPDX JSON
+     * format.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun dependencyGraphGenerateSbomReport(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): DependencyGraphGenerateSbomReportResponse {
-        return SdkClient.request<DependencyGraphGenerateSbomReportResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependency-graph/sbom/generate-report", config = clientConfig, operationId = "dependencyGraphGenerateSbomReport", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java))).data
+    fun dependencyGraphGenerateSbomReport(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): DependencyGraphGenerateSbomReportResponse {
+        return SdkClient.request<DependencyGraphGenerateSbomReportResponse>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependency-graph/sbom/generate-report",
+                    config = clientConfig,
+                    operationId = "dependencyGraphGenerateSbomReport",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+                )
+            )
+            .data
     }
-
-
-
-
-
-
 
     /** Parameters for [dependencyGraphCreateRepositorySnapshot]. */
     data class DependencyGraphCreateRepositorySnapshotRequest(
@@ -172,49 +217,73 @@ data class DependencyGraphCreateRepositorySnapshotResponse(
         val detector: SnapshotDetector,
         val scanned: OffsetDateTime,
         val metadata: Metadata? = null,
-        val manifests: Map<String, Manifest>? = null
+        val manifests: Map<String, Manifest>? = null,
     )
 
     /**
-     * Creates a dependency snapshot for a repository, recording the dependencies detected at a specific commit and ref. Supply the required `detector`, `version`, `ref`, `sha`, `job`, and `scanned` fields; `ref` must begin with `refs/`, and `sha` must be 40–64 characters. Add `manifests` and up to eight scalar-valued `metadata` entries when you need to include dependency details or domain-specific information.
+     * Creates a dependency snapshot for a repository, recording the dependencies detected at a
+     * specific commit and ref. Supply the required `detector`, `version`, `ref`, `sha`, `job`, and
+     * `scanned` fields; `ref` must begin with `refs/`, and `sha` must be 40–64 characters. Add
+     * `manifests` and up to eight scalar-valued `metadata` entries when you need to include
+     * dependency details or domain-specific information.
      *
-     * Create a new snapshot of a repository's dependencies. The authenticated user must have access to the repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Create a new snapshot of a repository's dependencies. The authenticated user must have access
+     * to the repository. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param version The version of the repository snapshot submission.
      * @param job Required object value serialized in the `job` wire field.
-     * @param sha The commit SHA associated with this dependency snapshot. Maximum
-     *   length: 64 characters.
+     * @param sha The commit SHA associated with this dependency snapshot. Maximum length: 64
+     *   characters.
      * @param ref The repository branch that triggered this snapshot.
      * @param detector A description of the detector used.
      * @param scanned The time at which the snapshot was scanned.
-     * @param metadata User-defined metadata to store domain-specific information
-     *   limited to 8 keys with scalar values.
-     * @param manifests A collection of package manifests, which are a collection of
-     *   related dependencies declared in a file or representing a logical group of
-     *   dependencies.
+     * @param metadata User-defined metadata to store domain-specific information limited to 8 keys
+     *   with scalar values.
+     * @param manifests A collection of package manifests, which are a collection of related
+     *   dependencies declared in a file or representing a logical group of dependencies.
      */
-    fun dependencyGraphCreateRepositorySnapshot(clientConfig: ClientConfig, request: DependencyGraphCreateRepositorySnapshotRequest, options: RequestOptions? = null): DependencyGraphCreateRepositorySnapshotResponse {
+    fun dependencyGraphCreateRepositorySnapshot(
+        clientConfig: ClientConfig,
+        request: DependencyGraphCreateRepositorySnapshotRequest,
+        options: RequestOptions? = null,
+    ): DependencyGraphCreateRepositorySnapshotResponse {
         validateDependencyGraphCreateRepositorySnapshotRequest(request)
 
-        return SdkClient.request<DependencyGraphCreateRepositorySnapshotResponse>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/dependency-graph/snapshots", config = clientConfig, body = SdkClient.bodyMap("version" to (request.version), "job" to (request.job), "sha" to (request.sha), "ref" to (request.ref), "detector" to (request.detector), "scanned" to (request.scanned), "metadata" to (SdkClient.omitIfNull(request.metadata)), "manifests" to (SdkClient.omitIfNull(request.manifests))), operationId = "dependencyGraphCreateRepositorySnapshot", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+        return SdkClient.request<DependencyGraphCreateRepositorySnapshotResponse>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/dependency-graph/snapshots",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "version" to (request.version),
+                            "job" to (request.job),
+                            "sha" to (request.sha),
+                            "ref" to (request.ref),
+                            "detector" to (request.detector),
+                            "scanned" to (request.scanned),
+                            "metadata" to (SdkClient.omitIfNull(request.metadata)),
+                            "manifests" to (SdkClient.omitIfNull(request.manifests)),
+                        ),
+                    operationId = "dependencyGraphCreateRepositorySnapshot",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 
-
-    private fun validateDependencyGraphCreateRepositorySnapshotRequest(request: DependencyGraphCreateRepositorySnapshotRequest) {
+    private fun validateDependencyGraphCreateRepositorySnapshotRequest(
+        request: DependencyGraphCreateRepositorySnapshotRequest
+    ) {
         Validation.validateLength("sha", request.sha, Validation.LengthOpts(min = 40, max = 64))
 
         Validation.validatePattern("ref", request.ref, "^refs/")
 
         Validation.validateDateTime("scanned", request.scanned)
     }
-
-
-
-
-
-
 }

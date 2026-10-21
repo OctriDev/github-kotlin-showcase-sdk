@@ -3,159 +3,140 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Issue Type Added Issue Event
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Issue Type Added Issue Event */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class IssueTypeAddedIssueEvent(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val actor: SimpleUser,
-    /**
-     * Required `string` value serialized in the `event` wire field.
-     */
+    /** Required `string` value serialized in the `event` wire field. */
     val event: String,
-    /**
-     * Required `string` value serialized in the `commit_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
-    /**
-     * Required `string` value serialized in the `commit_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
-    /**
-     * Required `string` value serialized in the `created_at` wire field.
-     */
+    /** Required `string` value serialized in the `commit_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
+    val commitId: String?,
+    /** Required `string` value serialized in the `commit_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
+    val commitUrl: String?,
+    /** Required `string` value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
+     * and user accounts and granted access to specific repositories. They come with granular
+     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
+    val performedViaGithubApp: NullableIntegration?,
+    /** The type of issue. */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_type", required = true)
+    val issueType: IssueTypeWebhook?,
     /**
-     * The type of issue.
+     * The intent behind an agent's action on an issue, including the rationale and confidence.
+     * Present (and `null` when the event carried no agent intent) on supported event types while
+     * the issue suggestions feature is enabled for the repository; the property is omitted entirely
+     * when the feature is disabled or the event type does not support intent.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_type", required = true) val issueType: IssueTypeWebhook?,
-    /**
-     * The intent behind an agent's action on an issue, including the rationale and confidence. Present (and `null` when the event carried no agent intent) on supported event types while the issue suggestions feature is enabled for the repository; the property is omitted entirely when the feature is disabled or the event type does not support intent.
-     */
-    val intent: NullableIssueEventIntent? = null
+    val intent: NullableIssueEventIntent? = null,
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/**
- * Issue Type Changed Issue Event
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Issue Type Changed Issue Event */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class IssueTypeChangedIssueEvent(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val actor: SimpleUser,
-    /**
-     * Required `string` value serialized in the `event` wire field.
-     */
+    /** Required `string` value serialized in the `event` wire field. */
     val event: String,
-    /**
-     * Required `string` value serialized in the `commit_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
-    /**
-     * Required `string` value serialized in the `commit_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
-    /**
-     * Required `string` value serialized in the `created_at` wire field.
-     */
+    /** Required `string` value serialized in the `commit_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
+    val commitId: String?,
+    /** Required `string` value serialized in the `commit_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
+    val commitUrl: String?,
+    /** Required `string` value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
+     * and user accounts and granted access to specific repositories. They come with granular
+     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
+    val performedViaGithubApp: NullableIntegration?,
+    /** The type of issue. */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_type", required = true)
+    val issueType: IssueTypeWebhook?,
+    /** The type of issue. */
+    @com.fasterxml.jackson.annotation.JsonProperty("prev_issue_type", required = true)
+    val prevIssueType: IssueTypeWebhook?,
     /**
-     * The type of issue.
+     * The intent behind an agent's action on an issue, including the rationale and confidence.
+     * Present (and `null` when the event carried no agent intent) on supported event types while
+     * the issue suggestions feature is enabled for the repository; the property is omitted entirely
+     * when the feature is disabled or the event type does not support intent.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_type", required = true) val issueType: IssueTypeWebhook?,
-    /**
-     * The type of issue.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("prev_issue_type", required = true) val prevIssueType: IssueTypeWebhook?,
-    /**
-     * The intent behind an agent's action on an issue, including the rationale and confidence. Present (and `null` when the event carried no agent intent) on supported event types while the issue suggestions feature is enabled for the repository; the property is omitted entirely when the feature is disabled or the event type does not support intent.
-     */
-    val intent: NullableIssueEventIntent? = null
+    val intent: NullableIssueEventIntent? = null,
 ) : IssueEventForIssue, TimelineIssueEvents
 
-/**
- * Issue Type Removed Issue Event
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Issue Type Removed Issue Event */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class IssueTypeRemovedIssueEvent(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val actor: SimpleUser,
-    /**
-     * Required `string` value serialized in the `event` wire field.
-     */
+    /** Required `string` value serialized in the `event` wire field. */
     val event: String,
-    /**
-     * Required `string` value serialized in the `commit_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
-    /**
-     * Required `string` value serialized in the `commit_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
-    /**
-     * Required `string` value serialized in the `created_at` wire field.
-     */
+    /** Required `string` value serialized in the `commit_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
+    val commitId: String?,
+    /** Required `string` value serialized in the `commit_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
+    val commitUrl: String?,
+    /** Required `string` value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
+     * and user accounts and granted access to specific repositories. They come with granular
+     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
+    val performedViaGithubApp: NullableIntegration?,
+    /** The type of issue. */
+    @com.fasterxml.jackson.annotation.JsonProperty("prev_issue_type", required = true)
+    val prevIssueType: IssueTypeWebhook?,
     /**
-     * The type of issue.
+     * The intent behind an agent's action on an issue, including the rationale and confidence.
+     * Present (and `null` when the event carried no agent intent) on supported event types while
+     * the issue suggestions feature is enabled for the repository; the property is omitted entirely
+     * when the feature is disabled or the event type does not support intent.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("prev_issue_type", required = true) val prevIssueType: IssueTypeWebhook?,
-    /**
-     * The intent behind an agent's action on an issue, including the rationale and confidence. Present (and `null` when the event carried no agent intent) on supported event types while the issue suggestions feature is enabled for the repository; the property is omitted entirely when the feature is disabled or the event type does not support intent.
-     */
-    val intent: NullableIssueEventIntent? = null
+    val intent: NullableIssueEventIntent? = null,
 ) : IssueEventForIssue, TimelineIssueEvents

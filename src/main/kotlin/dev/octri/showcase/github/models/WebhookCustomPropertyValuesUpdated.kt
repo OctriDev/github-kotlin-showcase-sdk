@@ -3,40 +3,39 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Typed representation of the `WebhookCustomPropertyValuesUpdated` API schema.
- */
+/** Typed representation of the `WebhookCustomPropertyValuesUpdated` API schema. */
 data class WebhookCustomPropertyValuesUpdated(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookCustomPropertyValuesUpdatedActionEnum,
     /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
     val organization: OrganizationSimpleWebhooks,
+    /** The new custom property values for the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("new_property_values")
+    val newPropertyValues: List<CustomPropertyValue>,
+    /** The old custom property values for the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("old_property_values")
+    val oldPropertyValues: List<CustomPropertyValue>,
     /**
-     * The new custom property values for the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("new_property_values") val newPropertyValues: List<CustomPropertyValue>,
-    /**
-     * The old custom property values for the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("old_property_values") val oldPropertyValues: List<CustomPropertyValue>,
-    /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
+     * is configured on an enterprise account or an organization that's part of an enterprise
+     * account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
-    /**
-     * A GitHub user.
-     */
-    val sender: SimpleUser? = null
+    /** A GitHub user. */
+    val sender: SimpleUser? = null,
 )

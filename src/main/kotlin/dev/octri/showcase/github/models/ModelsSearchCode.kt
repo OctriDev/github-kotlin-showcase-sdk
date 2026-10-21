@@ -5,60 +5,35 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Code Search Result Item
- */
+/** Code Search Result Item */
 data class CodeSearchResultItem(
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `path` wire field.
-     */
+    /** Required `string` value serialized in the `path` wire field. */
     val path: String,
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `uri`-formatted value serialized in the `git_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `git_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("git_url") val gitUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Minimal Repository
-     */
+    /** Minimal Repository */
     val repository: MinimalRepository,
-    /**
-     * Required `number` value serialized in the `score` wire field.
-     */
+    /** Required `number` value serialized in the `score` wire field. */
     val score: Double,
-    /**
-     * Optional `integer` value serialized in the `file_size` wire field.
-     */
+    /** Optional `integer` value serialized in the `file_size` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("file_size") val fileSize: Long? = null,
-    /**
-     * Optional `string` value serialized in the `language` wire field.
-     */
+    /** Optional `string` value serialized in the `language` wire field. */
     val language: String? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `last_modified_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("last_modified_at") val lastModifiedAt: OffsetDateTime? = null,
-    /**
-     * Optional array value serialized in the `line_numbers` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("line_numbers") val lineNumbers: List<String>? = null,
-    /**
-     * Optional array value serialized in the `text_matches` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("text_matches") val textMatches: SearchResultTextMatches? = null
+    /** Optional `date-time`-formatted value serialized in the `last_modified_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("last_modified_at")
+    val lastModifiedAt: OffsetDateTime? = null,
+    /** Optional array value serialized in the `line_numbers` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("line_numbers")
+    val lineNumbers: List<String>? = null,
+    /** Optional array value serialized in the `text_matches` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("text_matches")
+    val textMatches: SearchResultTextMatches? = null,
 )

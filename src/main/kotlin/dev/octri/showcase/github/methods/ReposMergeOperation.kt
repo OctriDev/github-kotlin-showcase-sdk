@@ -12,18 +12,48 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposMergeOperation {
     /**
-     * Merges a branch or commit into a base branch in a repository. Supply `base` and `head`; `commit_message` is optional and defaults to a generated message when omitted. If the changes are already merged, the endpoint returns 204 without a merge commit body.
+     * Merges a branch or commit into a base branch in a repository. Supply `base` and `head`;
+     * `commit_message` is optional and defaults to a generated message when omitted. If the changes
+     * are already merged, the endpoint returns 204 without a merge commit body.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param base The name of the base branch that the head will be merged into.
      * @param head The head to merge. This can be a branch name or a commit SHA1.
-     * @param commitMessage Commit message to use for the merge commit. If omitted, a
-     *   default message will be used.
+     * @param commitMessage Commit message to use for the merge commit. If omitted, a default
+     *   message will be used.
      */
-    fun reposMerge(clientConfig: ClientConfig, owner: String, repo: String, base: String, head: String, commitMessage: String? = null, options: RequestOptions? = null): Commit {
-        return SdkClient.request<Commit>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/merges", config = clientConfig, body = SdkClient.bodyMap("base" to (base), "head" to (head), "commit_message" to (SdkClient.omitIfNull(commitMessage))), operationId = "reposMerge", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun reposMerge(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        base: String,
+        head: String,
+        commitMessage: String? = null,
+        options: RequestOptions? = null,
+    ): Commit {
+        return SdkClient.request<Commit>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/merges",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "base" to (base),
+                            "head" to (head),
+                            "commit_message" to (SdkClient.omitIfNull(commitMessage)),
+                        ),
+                    operationId = "reposMerge",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

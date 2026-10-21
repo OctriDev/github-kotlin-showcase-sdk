@@ -4,605 +4,317 @@
 package dev.octri.showcase.github.models
 
 import com.fasterxml.jackson.annotation.JsonProperty as JacksonJsonProperty
-
 import java.time.OffsetDateTime
 
-/**
- * Minimal Repository
- */
+/** Minimal Repository */
 class MinimalRepository(
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `string` value serialized in the `full_name` wire field.
-     */
+    /** Required `string` value serialized in the `full_name` wire field. */
     @JacksonJsonProperty("full_name") val fullName: String,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val owner: SimpleUser,
-    /**
-     * Required `boolean` value serialized in the `private` wire field.
-     */
+    /** Required `boolean` value serialized in the `private` wire field. */
     @JacksonJsonProperty("private") val `private`: Boolean,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @JacksonJsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `string` value serialized in the `description` wire field.
-     */
+    /** Required `string` value serialized in the `description` wire field. */
     @JacksonJsonProperty("description", required = true) val description: String?,
-    /**
-     * Required `boolean` value serialized in the `fork` wire field.
-     */
+    /** Required `boolean` value serialized in the `fork` wire field. */
     val fork: Boolean,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `archive_url` wire field.
-     */
+    /** Required `string` value serialized in the `archive_url` wire field. */
     @JacksonJsonProperty("archive_url") val archiveUrl: String,
-    /**
-     * Required `string` value serialized in the `assignees_url` wire field.
-     */
+    /** Required `string` value serialized in the `assignees_url` wire field. */
     @JacksonJsonProperty("assignees_url") val assigneesUrl: String,
-    /**
-     * Required `string` value serialized in the `blobs_url` wire field.
-     */
+    /** Required `string` value serialized in the `blobs_url` wire field. */
     @JacksonJsonProperty("blobs_url") val blobsUrl: String,
-    /**
-     * Required `string` value serialized in the `branches_url` wire field.
-     */
+    /** Required `string` value serialized in the `branches_url` wire field. */
     @JacksonJsonProperty("branches_url") val branchesUrl: String,
-    /**
-     * Required `string` value serialized in the `collaborators_url` wire field.
-     */
+    /** Required `string` value serialized in the `collaborators_url` wire field. */
     @JacksonJsonProperty("collaborators_url") val collaboratorsUrl: String,
-    /**
-     * Required `string` value serialized in the `comments_url` wire field.
-     */
+    /** Required `string` value serialized in the `comments_url` wire field. */
     @JacksonJsonProperty("comments_url") val commentsUrl: String,
-    /**
-     * Required `string` value serialized in the `commits_url` wire field.
-     */
+    /** Required `string` value serialized in the `commits_url` wire field. */
     @JacksonJsonProperty("commits_url") val commitsUrl: String,
-    /**
-     * Required `string` value serialized in the `compare_url` wire field.
-     */
+    /** Required `string` value serialized in the `compare_url` wire field. */
     @JacksonJsonProperty("compare_url") val compareUrl: String,
-    /**
-     * Required `string` value serialized in the `contents_url` wire field.
-     */
+    /** Required `string` value serialized in the `contents_url` wire field. */
     @JacksonJsonProperty("contents_url") val contentsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `contributors_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `contributors_url` wire field. */
     @JacksonJsonProperty("contributors_url") val contributorsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `deployments_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `deployments_url` wire field. */
     @JacksonJsonProperty("deployments_url") val deploymentsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `downloads_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `downloads_url` wire field. */
     @JacksonJsonProperty("downloads_url") val downloadsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `events_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `events_url` wire field. */
     @JacksonJsonProperty("events_url") val eventsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `forks_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `forks_url` wire field. */
     @JacksonJsonProperty("forks_url") val forksUrl: String,
-    /**
-     * Required `string` value serialized in the `git_commits_url` wire field.
-     */
+    /** Required `string` value serialized in the `git_commits_url` wire field. */
     @JacksonJsonProperty("git_commits_url") val gitCommitsUrl: String,
-    /**
-     * Required `string` value serialized in the `git_refs_url` wire field.
-     */
+    /** Required `string` value serialized in the `git_refs_url` wire field. */
     @JacksonJsonProperty("git_refs_url") val gitRefsUrl: String,
-    /**
-     * Required `string` value serialized in the `git_tags_url` wire field.
-     */
+    /** Required `string` value serialized in the `git_tags_url` wire field. */
     @JacksonJsonProperty("git_tags_url") val gitTagsUrl: String,
-    /**
-     * Required `string` value serialized in the `issue_comment_url` wire field.
-     */
+    /** Required `string` value serialized in the `issue_comment_url` wire field. */
     @JacksonJsonProperty("issue_comment_url") val issueCommentUrl: String,
-    /**
-     * Required `string` value serialized in the `issue_events_url` wire field.
-     */
+    /** Required `string` value serialized in the `issue_events_url` wire field. */
     @JacksonJsonProperty("issue_events_url") val issueEventsUrl: String,
-    /**
-     * Required `string` value serialized in the `issues_url` wire field.
-     */
+    /** Required `string` value serialized in the `issues_url` wire field. */
     @JacksonJsonProperty("issues_url") val issuesUrl: String,
-    /**
-     * Required `string` value serialized in the `keys_url` wire field.
-     */
+    /** Required `string` value serialized in the `keys_url` wire field. */
     @JacksonJsonProperty("keys_url") val keysUrl: String,
-    /**
-     * Required `string` value serialized in the `labels_url` wire field.
-     */
+    /** Required `string` value serialized in the `labels_url` wire field. */
     @JacksonJsonProperty("labels_url") val labelsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `languages_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `languages_url` wire field. */
     @JacksonJsonProperty("languages_url") val languagesUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `merges_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `merges_url` wire field. */
     @JacksonJsonProperty("merges_url") val mergesUrl: String,
-    /**
-     * Required `string` value serialized in the `milestones_url` wire field.
-     */
+    /** Required `string` value serialized in the `milestones_url` wire field. */
     @JacksonJsonProperty("milestones_url") val milestonesUrl: String,
-    /**
-     * Required `string` value serialized in the `notifications_url` wire field.
-     */
+    /** Required `string` value serialized in the `notifications_url` wire field. */
     @JacksonJsonProperty("notifications_url") val notificationsUrl: String,
-    /**
-     * Required `string` value serialized in the `pulls_url` wire field.
-     */
+    /** Required `string` value serialized in the `pulls_url` wire field. */
     @JacksonJsonProperty("pulls_url") val pullsUrl: String,
-    /**
-     * Required `string` value serialized in the `releases_url` wire field.
-     */
+    /** Required `string` value serialized in the `releases_url` wire field. */
     @JacksonJsonProperty("releases_url") val releasesUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `stargazers_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `stargazers_url` wire field. */
     @JacksonJsonProperty("stargazers_url") val stargazersUrl: String,
-    /**
-     * Required `string` value serialized in the `statuses_url` wire field.
-     */
+    /** Required `string` value serialized in the `statuses_url` wire field. */
     @JacksonJsonProperty("statuses_url") val statusesUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `subscribers_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `subscribers_url` wire field. */
     @JacksonJsonProperty("subscribers_url") val subscribersUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `subscription_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `subscription_url` wire field. */
     @JacksonJsonProperty("subscription_url") val subscriptionUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `tags_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `tags_url` wire field. */
     @JacksonJsonProperty("tags_url") val tagsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `teams_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `teams_url` wire field. */
     @JacksonJsonProperty("teams_url") val teamsUrl: String,
-    /**
-     * Required `string` value serialized in the `trees_url` wire field.
-     */
+    /** Required `string` value serialized in the `trees_url` wire field. */
     @JacksonJsonProperty("trees_url") val treesUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `hooks_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `hooks_url` wire field. */
     @JacksonJsonProperty("hooks_url") val hooksUrl: String,
-    /**
-     * Optional `string` value serialized in the `git_url` wire field.
-     */
+    /** Optional `string` value serialized in the `git_url` wire field. */
     @JacksonJsonProperty("git_url") val gitUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `ssh_url` wire field.
-     */
+    /** Optional `string` value serialized in the `ssh_url` wire field. */
     @JacksonJsonProperty("ssh_url") val sshUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `clone_url` wire field.
-     */
+    /** Optional `string` value serialized in the `clone_url` wire field. */
     @JacksonJsonProperty("clone_url") val cloneUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `mirror_url` wire field.
-     */
+    /** Optional `string` value serialized in the `mirror_url` wire field. */
     @JacksonJsonProperty("mirror_url") val mirrorUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `svn_url` wire field.
-     */
+    /** Optional `string` value serialized in the `svn_url` wire field. */
     @JacksonJsonProperty("svn_url") val svnUrl: String? = null,
-    /**
-     * Optional `string` value serialized in the `homepage` wire field.
-     */
+    /** Optional `string` value serialized in the `homepage` wire field. */
     val homepage: String? = null,
-    /**
-     * Optional `string` value serialized in the `language` wire field.
-     */
+    /** Optional `string` value serialized in the `language` wire field. */
     val language: String? = null,
-    /**
-     * Optional `integer` value serialized in the `forks_count` wire field.
-     */
+    /** Optional `integer` value serialized in the `forks_count` wire field. */
     @JacksonJsonProperty("forks_count") val forksCount: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `stargazers_count` wire field.
-     */
+    /** Optional `integer` value serialized in the `stargazers_count` wire field. */
     @JacksonJsonProperty("stargazers_count") val stargazersCount: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `watchers_count` wire field.
-     */
+    /** Optional `integer` value serialized in the `watchers_count` wire field. */
     @JacksonJsonProperty("watchers_count") val watchersCount: Long? = null,
     /**
-     * The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0.
+     * The size of the repository, in kilobytes. Size is calculated hourly. When a repository is
+     * initially created, the size is 0.
      */
     val size: Long? = null,
-    /**
-     * Optional `string` value serialized in the `default_branch` wire field.
-     */
+    /** Optional `string` value serialized in the `default_branch` wire field. */
     @JacksonJsonProperty("default_branch") val defaultBranch: String? = null,
-    /**
-     * Optional `integer` value serialized in the `open_issues_count` wire field.
-     */
+    /** Optional `integer` value serialized in the `open_issues_count` wire field. */
     @JacksonJsonProperty("open_issues_count") val openIssuesCount: Long? = null,
-    /**
-     * Optional `boolean` value serialized in the `is_template` wire field.
-     */
+    /** Optional `boolean` value serialized in the `is_template` wire field. */
     @JacksonJsonProperty("is_template") val isTemplate: Boolean? = null,
-    /**
-     * Optional array value serialized in the `topics` wire field.
-     */
+    /** Optional array value serialized in the `topics` wire field. */
     val topics: List<String>? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_issues` wire field.
-     */
+    /** Optional `boolean` value serialized in the `has_issues` wire field. */
     @JacksonJsonProperty("has_issues") val hasIssues: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_projects` wire field.
-     */
+    /** Optional `boolean` value serialized in the `has_projects` wire field. */
     @JacksonJsonProperty("has_projects") val hasProjects: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_wiki` wire field.
-     */
+    /** Optional `boolean` value serialized in the `has_wiki` wire field. */
     @JacksonJsonProperty("has_wiki") val hasWiki: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_pages` wire field.
-     */
+    /** Optional `boolean` value serialized in the `has_pages` wire field. */
     @JacksonJsonProperty("has_pages") val hasPages: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_downloads` wire field.
-     */
+    /** Optional `boolean` value serialized in the `has_downloads` wire field. */
     @JacksonJsonProperty("has_downloads") val hasDownloads: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_discussions` wire field.
-     */
+    /** Optional `boolean` value serialized in the `has_discussions` wire field. */
     @JacksonJsonProperty("has_discussions") val hasDiscussions: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `has_pull_requests` wire field.
-     */
+    /** Optional `boolean` value serialized in the `has_pull_requests` wire field. */
     @JacksonJsonProperty("has_pull_requests") val hasPullRequests: Boolean? = null,
-    /**
-     * The policy controlling who can create pull requests: all or collaborators_only.
-     */
-    @JacksonJsonProperty("pull_request_creation_policy") val pullRequestCreationPolicy: MinimalRepositoryPullRequestCreationPolicyEnum? = null,
-    /**
-     * Optional `boolean` value serialized in the `archived` wire field.
-     */
+    /** The policy controlling who can create pull requests: all or collaborators_only. */
+    @JacksonJsonProperty("pull_request_creation_policy")
+    val pullRequestCreationPolicy: MinimalRepositoryPullRequestCreationPolicyEnum? = null,
+    /** Optional `boolean` value serialized in the `archived` wire field. */
     val archived: Boolean? = null,
-    /**
-     * Optional `boolean` value serialized in the `disabled` wire field.
-     */
+    /** Optional `boolean` value serialized in the `disabled` wire field. */
     val disabled: Boolean? = null,
-    /**
-     * Optional `string` value serialized in the `visibility` wire field.
-     */
+    /** Optional `string` value serialized in the `visibility` wire field. */
     val visibility: String? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `pushed_at` wire field.
-     */
+    /** Optional `date-time`-formatted value serialized in the `pushed_at` wire field. */
     @JacksonJsonProperty("pushed_at") val pushedAt: OffsetDateTime? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Optional `date-time`-formatted value serialized in the `created_at` wire field. */
     @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Optional `date-time`-formatted value serialized in the `updated_at` wire field. */
     @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
-    /**
-     * Optional object value serialized in the `permissions` wire field.
-     */
+    /** Optional object value serialized in the `permissions` wire field. */
     val permissions: MinimalRepositoryPermissions? = null,
-    /**
-     * Optional `string` value serialized in the `role_name` wire field.
-     */
+    /** Optional `string` value serialized in the `role_name` wire field. */
     @JacksonJsonProperty("role_name") val roleName: String? = null,
-    /**
-     * Optional `string` value serialized in the `temp_clone_token` wire field.
-     */
+    /** Optional `string` value serialized in the `temp_clone_token` wire field. */
     @JacksonJsonProperty("temp_clone_token") val tempCloneToken: String? = null,
-    /**
-     * Optional `boolean` value serialized in the `delete_branch_on_merge` wire field.
-     */
+    /** Optional `boolean` value serialized in the `delete_branch_on_merge` wire field. */
     @JacksonJsonProperty("delete_branch_on_merge") val deleteBranchOnMerge: Boolean? = null,
-    /**
-     * Optional `integer` value serialized in the `subscribers_count` wire field.
-     */
+    /** Optional `integer` value serialized in the `subscribers_count` wire field. */
     @JacksonJsonProperty("subscribers_count") val subscribersCount: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `network_count` wire field.
-     */
+    /** Optional `integer` value serialized in the `network_count` wire field. */
     @JacksonJsonProperty("network_count") val networkCount: Long? = null,
-    /**
-     * Code Of Conduct
-     */
+    /** Code Of Conduct */
     @JacksonJsonProperty("code_of_conduct") val codeOfConduct: CodeOfConduct? = null,
-    /**
-     * Optional object value serialized in the `license` wire field.
-     */
+    /** Optional object value serialized in the `license` wire field. */
     val license: MinimalRepositoryLicense? = null,
-    /**
-     * Optional `integer` value serialized in the `forks` wire field.
-     */
+    /** Optional `integer` value serialized in the `forks` wire field. */
     val forks: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `open_issues` wire field.
-     */
+    /** Optional `integer` value serialized in the `open_issues` wire field. */
     @JacksonJsonProperty("open_issues") val openIssues: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `watchers` wire field.
-     */
+    /** Optional `integer` value serialized in the `watchers` wire field. */
     val watchers: Long? = null,
-    /**
-     * Optional `boolean` value serialized in the `allow_forking` wire field.
-     */
+    /** Optional `boolean` value serialized in the `allow_forking` wire field. */
     @JacksonJsonProperty("allow_forking") val allowForking: Boolean? = null,
+    /** Optional `boolean` value serialized in the `web_commit_signoff_required` wire field. */
+    @JacksonJsonProperty("web_commit_signoff_required")
+    val webCommitSignoffRequired: Boolean? = null,
+    /** Optional object value serialized in the `security_and_analysis` wire field. */
+    @JacksonJsonProperty("security_and_analysis")
+    val securityAndAnalysis: SecurityAndAnalysis? = null,
     /**
-     * Optional `boolean` value serialized in the `web_commit_signoff_required` wire field.
+     * The custom properties that were defined for the repository. The keys are the custom property
+     * names, and the values are the corresponding custom property values.
      */
-    @JacksonJsonProperty("web_commit_signoff_required") val webCommitSignoffRequired: Boolean? = null,
-    /**
-     * Optional object value serialized in the `security_and_analysis` wire field.
-     */
-    @JacksonJsonProperty("security_and_analysis") val securityAndAnalysis: SecurityAndAnalysis? = null,
-    /**
-     * The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values.
-     */
-    @JacksonJsonProperty("custom_properties") val customProperties: Map<String, Any>? = null
+    @JacksonJsonProperty("custom_properties") val customProperties: Map<String, Any>? = null,
 )
 
-/**
- * Optional object value serialized in the `plan` wire field.
- */
+/** Optional object value serialized in the `plan` wire field. */
 data class PublicUserPlan(
-    /**
-     * Required `integer` value serialized in the `collaborators` wire field.
-     */
+    /** Required `integer` value serialized in the `collaborators` wire field. */
     val collaborators: Long,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `integer` value serialized in the `space` wire field.
-     */
+    /** Required `integer` value serialized in the `space` wire field. */
     val space: Long,
-    /**
-     * Required `integer` value serialized in the `private_repos` wire field.
-     */
-    @JacksonJsonProperty("private_repos") val privateRepos: Long
+    /** Required `integer` value serialized in the `private_repos` wire field. */
+    @JacksonJsonProperty("private_repos") val privateRepos: Long,
 )
 
-/**
- * Public User
- */
+/** Public User */
 class PublicUser(
-    /**
-     * Required `string` value serialized in the `login` wire field.
-     */
+    /** Required `string` value serialized in the `login` wire field. */
     val login: String,
-    /**
-     * Required `int64`-formatted value serialized in the `id` wire field.
-     */
+    /** Required `int64`-formatted value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @JacksonJsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `uri`-formatted value serialized in the `avatar_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `avatar_url` wire field. */
     @JacksonJsonProperty("avatar_url") val avatarUrl: String,
-    /**
-     * Required `string` value serialized in the `gravatar_id` wire field.
-     */
+    /** Required `string` value serialized in the `gravatar_id` wire field. */
     @JacksonJsonProperty("gravatar_id", required = true) val gravatarId: String?,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @JacksonJsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `followers_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `followers_url` wire field. */
     @JacksonJsonProperty("followers_url") val followersUrl: String,
-    /**
-     * Required `string` value serialized in the `following_url` wire field.
-     */
+    /** Required `string` value serialized in the `following_url` wire field. */
     @JacksonJsonProperty("following_url") val followingUrl: String,
-    /**
-     * Required `string` value serialized in the `gists_url` wire field.
-     */
+    /** Required `string` value serialized in the `gists_url` wire field. */
     @JacksonJsonProperty("gists_url") val gistsUrl: String,
-    /**
-     * Required `string` value serialized in the `starred_url` wire field.
-     */
+    /** Required `string` value serialized in the `starred_url` wire field. */
     @JacksonJsonProperty("starred_url") val starredUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `subscriptions_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `subscriptions_url` wire field. */
     @JacksonJsonProperty("subscriptions_url") val subscriptionsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `organizations_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `organizations_url` wire field. */
     @JacksonJsonProperty("organizations_url") val organizationsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `repos_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `repos_url` wire field. */
     @JacksonJsonProperty("repos_url") val reposUrl: String,
-    /**
-     * Required `string` value serialized in the `events_url` wire field.
-     */
+    /** Required `string` value serialized in the `events_url` wire field. */
     @JacksonJsonProperty("events_url") val eventsUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `received_events_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `received_events_url` wire field. */
     @JacksonJsonProperty("received_events_url") val receivedEventsUrl: String,
-    /**
-     * Required `string` value serialized in the `type` wire field.
-     */
+    /** Required `string` value serialized in the `type` wire field. */
     val type: String,
-    /**
-     * Required `boolean` value serialized in the `site_admin` wire field.
-     */
+    /** Required `boolean` value serialized in the `site_admin` wire field. */
     @JacksonJsonProperty("site_admin") val siteAdmin: Boolean,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     @JacksonJsonProperty("name", required = true) val name: String?,
-    /**
-     * Required `string` value serialized in the `company` wire field.
-     */
+    /** Required `string` value serialized in the `company` wire field. */
     @JacksonJsonProperty("company", required = true) val company: String?,
-    /**
-     * Required `string` value serialized in the `blog` wire field.
-     */
+    /** Required `string` value serialized in the `blog` wire field. */
     @JacksonJsonProperty("blog", required = true) val blog: String?,
-    /**
-     * Required `string` value serialized in the `location` wire field.
-     */
+    /** Required `string` value serialized in the `location` wire field. */
     @JacksonJsonProperty("location", required = true) val location: String?,
-    /**
-     * Required `email`-formatted value serialized in the `email` wire field.
-     */
+    /** Required `email`-formatted value serialized in the `email` wire field. */
     @JacksonJsonProperty("email", required = true) val email: String?,
-    /**
-     * Required `boolean` value serialized in the `hireable` wire field.
-     */
+    /** Required `boolean` value serialized in the `hireable` wire field. */
     @JacksonJsonProperty("hireable", required = true) val hireable: Boolean?,
-    /**
-     * Required `string` value serialized in the `bio` wire field.
-     */
+    /** Required `string` value serialized in the `bio` wire field. */
     @JacksonJsonProperty("bio", required = true) val bio: String?,
-    /**
-     * Required `integer` value serialized in the `public_repos` wire field.
-     */
+    /** Required `integer` value serialized in the `public_repos` wire field. */
     @JacksonJsonProperty("public_repos") val publicRepos: Long,
-    /**
-     * Required `integer` value serialized in the `public_gists` wire field.
-     */
+    /** Required `integer` value serialized in the `public_gists` wire field. */
     @JacksonJsonProperty("public_gists") val publicGists: Long,
-    /**
-     * Required `integer` value serialized in the `followers` wire field.
-     */
+    /** Required `integer` value serialized in the `followers` wire field. */
     val followers: Long,
-    /**
-     * Required `integer` value serialized in the `following` wire field.
-     */
+    /** Required `integer` value serialized in the `following` wire field. */
     val following: Long,
-    /**
-     * Required `date-time`-formatted value serialized in the `created_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `created_at` wire field. */
     @JacksonJsonProperty("created_at") val createdAt: OffsetDateTime,
-    /**
-     * Required `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `updated_at` wire field. */
     @JacksonJsonProperty("updated_at") val updatedAt: OffsetDateTime,
-    /**
-     * Optional `string` value serialized in the `user_view_type` wire field.
-     */
+    /** Optional `string` value serialized in the `user_view_type` wire field. */
     @JacksonJsonProperty("user_view_type") val userViewType: String? = null,
-    /**
-     * Optional `email`-formatted value serialized in the `notification_email` wire field.
-     */
+    /** Optional `email`-formatted value serialized in the `notification_email` wire field. */
     @JacksonJsonProperty("notification_email") val notificationEmail: String? = null,
-    /**
-     * Optional `string` value serialized in the `twitter_username` wire field.
-     */
+    /** Optional `string` value serialized in the `twitter_username` wire field. */
     @JacksonJsonProperty("twitter_username") val twitterUsername: String? = null,
-    /**
-     * Optional object value serialized in the `plan` wire field.
-     */
+    /** Optional object value serialized in the `plan` wire field. */
     val plan: PublicUserPlan? = null,
-    /**
-     * Optional `integer` value serialized in the `private_gists` wire field.
-     */
+    /** Optional `integer` value serialized in the `private_gists` wire field. */
     @JacksonJsonProperty("private_gists") val privateGists: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `total_private_repos` wire field.
-     */
+    /** Optional `integer` value serialized in the `total_private_repos` wire field. */
     @JacksonJsonProperty("total_private_repos") val totalPrivateRepos: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `owned_private_repos` wire field.
-     */
+    /** Optional `integer` value serialized in the `owned_private_repos` wire field. */
     @JacksonJsonProperty("owned_private_repos") val ownedPrivateRepos: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `disk_usage` wire field.
-     */
+    /** Optional `integer` value serialized in the `disk_usage` wire field. */
     @JacksonJsonProperty("disk_usage") val diskUsage: Long? = null,
-    /**
-     * Optional `integer` value serialized in the `collaborators` wire field.
-     */
-    val collaborators: Long? = null
+    /** Optional `integer` value serialized in the `collaborators` wire field. */
+    val collaborators: Long? = null,
 )
 
-/**
- * Typed representation of the `ReactionRollup` API schema.
- */
+/** Typed representation of the `ReactionRollup` API schema. */
 data class ReactionRollup(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `integer` value serialized in the `total_count` wire field.
-     */
+    /** Required `integer` value serialized in the `total_count` wire field. */
     @JacksonJsonProperty("total_count") val totalCount: Long,
-    /**
-     * Required `integer` value serialized in the `+1` wire field.
-     */
+    /** Required `integer` value serialized in the `+1` wire field. */
     @JacksonJsonProperty("+1") val plus1: Long,
-    /**
-     * Required `integer` value serialized in the `-1` wire field.
-     */
+    /** Required `integer` value serialized in the `-1` wire field. */
     @JacksonJsonProperty("-1") val minus1: Long,
-    /**
-     * Required `integer` value serialized in the `laugh` wire field.
-     */
+    /** Required `integer` value serialized in the `laugh` wire field. */
     val laugh: Long,
-    /**
-     * Required `integer` value serialized in the `confused` wire field.
-     */
+    /** Required `integer` value serialized in the `confused` wire field. */
     val confused: Long,
-    /**
-     * Required `integer` value serialized in the `heart` wire field.
-     */
+    /** Required `integer` value serialized in the `heart` wire field. */
     val heart: Long,
-    /**
-     * Required `integer` value serialized in the `hooray` wire field.
-     */
+    /** Required `integer` value serialized in the `hooray` wire field. */
     val hooray: Long,
-    /**
-     * Required `integer` value serialized in the `eyes` wire field.
-     */
+    /** Required `integer` value serialized in the `eyes` wire field. */
     val eyes: Long,
-    /**
-     * Required `integer` value serialized in the `rocket` wire field.
-     */
-    val rocket: Long
+    /** Required `integer` value serialized in the `rocket` wire field. */
+    val rocket: Long,
 )

@@ -5,40 +5,24 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Activity
- */
+/** Activity */
 data class Activity(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * The SHA of the commit before the activity.
-     */
+    /** The SHA of the commit before the activity. */
     val before: String,
-    /**
-     * The SHA of the commit after the activity.
-     */
+    /** The SHA of the commit after the activity. */
     val after: String,
-    /**
-     * The full Git reference, formatted as `refs/heads/<branch name>`.
-     */
+    /** The full Git reference, formatted as `refs/heads/<branch name>`. */
     val ref: String,
-    /**
-     * The time when the activity occurred.
-     */
+    /** The time when the activity occurred. */
     val timestamp: OffsetDateTime,
-    /**
-     * The type of the activity that was performed.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("activity_type") val activityType: ActivityActivityTypeEnum,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("actor", required = true) val actor: NullableSimpleUser?
+    /** The type of the activity that was performed. */
+    @com.fasterxml.jackson.annotation.JsonProperty("activity_type")
+    val activityType: ActivityActivityTypeEnum,
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("actor", required = true)
+    val actor: NullableSimpleUser?,
 )

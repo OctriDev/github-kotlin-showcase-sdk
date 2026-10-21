@@ -3,20 +3,12 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Pull Request Merge Result
- */
+/** Pull Request Merge Result */
 data class PullRequestMergeResult(
-    /**
-     * Required `string` value serialized in the `sha` wire field.
-     */
+    /** Required `string` value serialized in the `sha` wire field. */
     val sha: String,
-    /**
-     * Required `boolean` value serialized in the `merged` wire field.
-     */
+    /** Required `boolean` value serialized in the `merged` wire field. */
     val merged: Boolean,
-    /**
-     * Required `string` value serialized in the `message` wire field.
-     */
-    val message: String
+    /** Required `string` value serialized in the `message` wire field. */
+    val message: String,
 )

@@ -3,234 +3,153 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * The issue field whose value was set or updated on the issue.
- */
+/** The issue field whose value was set or updated on the issue. */
 data class WebhookIssuesFieldAddedIssueField(
-    /**
-     * The unique identifier of the issue field.
-     */
+    /** The unique identifier of the issue field. */
     val id: Long,
-    /**
-     * The name of the issue field.
-     */
+    /** The name of the issue field. */
     val name: String,
-    /**
-     * The data type of the issue field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("field_type") val fieldType: WebhookIssuesFieldAddedIssueFieldFieldTypeEnum
+    /** The data type of the issue field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("field_type")
+    val fieldType: WebhookIssuesFieldAddedIssueFieldFieldTypeEnum,
 )
 
-/**
- * The selected option details. Present for single_select field types.
- */
+/** The selected option details. Present for single_select field types. */
 data class WebhookIssuesFieldAddedIssueFieldValueOption(
-    /**
-     * Optional `integer` value serialized in the `id` wire field.
-     */
+    /** Optional `integer` value serialized in the `id` wire field. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `string` value serialized in the `color` wire field.
-     */
+    /** Optional `string` value serialized in the `color` wire field. */
     val color: String? = null,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
-    val description: String? = null
+    /** Optional `string` value serialized in the `description` wire field. */
+    val description: String? = null,
 )
 
-/**
- * Required object value serialized in the `options[]` wire field.
- */
+/** Required object value serialized in the `options[]` wire field. */
 data class WebhookIssuesFieldAddedIssueFieldValueOptionsItem(
-    /**
-     * Optional `integer` value serialized in the `id` wire field.
-     */
+    /** Optional `integer` value serialized in the `id` wire field. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `string` value serialized in the `color` wire field.
-     */
+    /** Optional `string` value serialized in the `color` wire field. */
     val color: String? = null,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
-    val description: String? = null
+    /** Optional `string` value serialized in the `description` wire field. */
+    val description: String? = null,
 )
 
 /**
- * The value that was set or updated for the issue field. When updating an existing value, the previous value is available in `changes`.
+ * The value that was set or updated for the issue field. When updating an existing value, the
+ * previous value is available in `changes`.
  */
 data class WebhookIssuesFieldAddedIssueFieldValue(
-    /**
-     * The unique identifier of the issue field value.
-     */
+    /** The unique identifier of the issue field value. */
     val id: Long,
-    /**
-     * The value of the field. Present for text, date, and number field types.
-     */
+    /** The value of the field. Present for text, date, and number field types. */
     @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Any? = null,
-    /**
-     * The identifier of the selected option. Present for single_select field types.
-     */
+    /** The identifier of the selected option. Present for single_select field types. */
     @com.fasterxml.jackson.annotation.JsonProperty("value_id") val valueId: Long? = null,
-    /**
-     * The selected option details. Present for single_select field types.
-     */
+    /** The selected option details. Present for single_select field types. */
     val option: WebhookIssuesFieldAddedIssueFieldValueOption? = null,
-    /**
-     * The identifiers of the selected options. Present for multi_select field types.
-     */
+    /** The identifiers of the selected options. Present for multi_select field types. */
     @com.fasterxml.jackson.annotation.JsonProperty("value_ids") val valueIds: List<Long>? = null,
-    /**
-     * The selected option details. Present for multi_select field types.
-     */
-    val options: List<WebhookIssuesFieldAddedIssueFieldValueOptionsItem>? = null
+    /** The selected option details. Present for multi_select field types. */
+    val options: List<WebhookIssuesFieldAddedIssueFieldValueOptionsItem>? = null,
 )
 
-/**
- * The previously selected option details. Present for single_select field types.
- */
+/** The previously selected option details. Present for single_select field types. */
 data class WebhookIssuesFieldAddedChangesIssueFieldValueFromOption(
-    /**
-     * Optional `integer` value serialized in the `id` wire field.
-     */
+    /** Optional `integer` value serialized in the `id` wire field. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `string` value serialized in the `color` wire field.
-     */
+    /** Optional `string` value serialized in the `color` wire field. */
     val color: String? = null,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
-    val description: String? = null
+    /** Optional `string` value serialized in the `description` wire field. */
+    val description: String? = null,
 )
 
-/**
- * Required object value serialized in the `options[]` wire field.
- */
+/** Required object value serialized in the `options[]` wire field. */
 data class WebhookIssuesFieldAddedChangesIssueFieldValueFromOptionsItem(
-    /**
-     * Optional `integer` value serialized in the `id` wire field.
-     */
+    /** Optional `integer` value serialized in the `id` wire field. */
     val id: Long? = null,
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `string` value serialized in the `color` wire field.
-     */
+    /** Optional `string` value serialized in the `color` wire field. */
     val color: String? = null,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
-    val description: String? = null
+    /** Optional `string` value serialized in the `description` wire field. */
+    val description: String? = null,
 )
 
-/**
- * The previous value of the issue field before the update.
- */
+/** The previous value of the issue field before the update. */
 data class WebhookIssuesFieldAddedChangesIssueFieldValueFrom(
-    /**
-     * The unique identifier of the issue field value.
-     */
+    /** The unique identifier of the issue field value. */
     val id: Long,
-    /**
-     * The previous value. Present for text, date, and number field types.
-     */
+    /** The previous value. Present for text, date, and number field types. */
     @com.fasterxml.jackson.annotation.JsonProperty("value") val `value`: Any? = null,
-    /**
-     * The identifier of the previously selected option. Present for single_select field types.
-     */
+    /** The identifier of the previously selected option. Present for single_select field types. */
     @com.fasterxml.jackson.annotation.JsonProperty("value_id") val valueId: Long? = null,
-    /**
-     * The previously selected option details. Present for single_select field types.
-     */
+    /** The previously selected option details. Present for single_select field types. */
     val option: WebhookIssuesFieldAddedChangesIssueFieldValueFromOption? = null,
-    /**
-     * The identifiers of the previously selected options. Present for multi_select field types.
-     */
+    /** The identifiers of the previously selected options. Present for multi_select field types. */
     @com.fasterxml.jackson.annotation.JsonProperty("value_ids") val valueIds: List<Long>? = null,
-    /**
-     * The previously selected option details. Present for multi_select field types.
-     */
-    val options: List<WebhookIssuesFieldAddedChangesIssueFieldValueFromOptionsItem>? = null
+    /** The previously selected option details. Present for multi_select field types. */
+    val options: List<WebhookIssuesFieldAddedChangesIssueFieldValueFromOptionsItem>? = null,
 )
 
-/**
- * The previous issue field value data.
- */
+/** The previous issue field value data. */
 data class WebhookIssuesFieldAddedChangesIssueFieldValue(
-    /**
-     * The previous value of the issue field before the update.
-     */
+    /** The previous value of the issue field before the update. */
     val from: WebhookIssuesFieldAddedChangesIssueFieldValueFrom
 )
 
-/**
- * The previous field value, present when an existing value was updated.
- */
+/** The previous field value, present when an existing value was updated. */
 data class WebhookIssuesFieldAddedChanges(
-    /**
-     * The previous issue field value data.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_field_value") val issueFieldValue: WebhookIssuesFieldAddedChangesIssueFieldValue? = null
+    /** The previous issue field value data. */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_field_value")
+    val issueFieldValue: WebhookIssuesFieldAddedChangesIssueFieldValue? = null
 )
 
-/**
- * Typed representation of the `WebhookIssuesFieldAdded` API schema.
- */
+/** Typed representation of the `WebhookIssuesFieldAdded` API schema. */
 data class WebhookIssuesFieldAdded(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookIssuesFieldAddedActionEnum,
-    /**
-     * The issue itself.
-     */
+    /** The issue itself. */
     val issue: WebhooksIssue,
+    /** The issue field whose value was set or updated on the issue. */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_field")
+    val issueField: WebhookIssuesFieldAddedIssueField,
     /**
-     * The issue field whose value was set or updated on the issue.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_field") val issueField: WebhookIssuesFieldAddedIssueField,
-    /**
-     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository` property when the event occurs from activity in a repository.
+     * The repository on GitHub where the event occurred. Webhook payloads contain the `repository`
+     * property when the event occurs from activity in a repository.
      */
     val repository: RepositoryWebhooks,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val sender: SimpleUser,
     /**
-     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook is configured on an enterprise account or an organization that's part of an enterprise account. For more information, see "About enterprise accounts."
+     * An enterprise on GitHub. Webhook payloads contain the `enterprise` property when the webhook
+     * is configured on an enterprise account or an organization that's part of an enterprise
+     * account. For more information, see "About enterprise accounts."
      */
     val enterprise: EnterpriseWebhooks? = null,
     /**
-     * The GitHub App installation. Webhook payloads contain the `installation` property when the event is configured for and sent to a GitHub App. For more information, see "Using webhooks with GitHub Apps."
+     * The GitHub App installation. Webhook payloads contain the `installation` property when the
+     * event is configured for and sent to a GitHub App. For more information, see "Using webhooks
+     * with GitHub Apps."
      */
     val installation: SimpleInstallation? = null,
     /**
-     * The value that was set or updated for the issue field. When updating an existing value, the previous value is available in `changes`.
+     * The value that was set or updated for the issue field. When updating an existing value, the
+     * previous value is available in `changes`.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("issue_field_value") val issueFieldValue: WebhookIssuesFieldAddedIssueFieldValue? = null,
-    /**
-     * The previous field value, present when an existing value was updated.
-     */
+    @com.fasterxml.jackson.annotation.JsonProperty("issue_field_value")
+    val issueFieldValue: WebhookIssuesFieldAddedIssueFieldValue? = null,
+    /** The previous field value, present when an existing value was updated. */
     val changes: WebhookIssuesFieldAddedChanges? = null,
     /**
-     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook is configured for an organization, or when the event occurs from activity in a repository owned by an organization.
+     * A GitHub organization. Webhook payloads contain the `organization` property when the webhook
+     * is configured for an organization, or when the event occurs from activity in a repository
+     * owned by an organization.
      */
-    val organization: OrganizationSimpleWebhooks? = null
+    val organization: OrganizationSimpleWebhooks? = null,
 )

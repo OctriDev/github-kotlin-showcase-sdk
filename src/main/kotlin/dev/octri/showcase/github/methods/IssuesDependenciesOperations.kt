@@ -12,78 +12,210 @@ import dev.octri.showcase.github.ValidationError
 
 internal object IssuesListDependenciesBlockedByOperation {
     /**
-     * Lists the issues that block a specified issue in a repository. Use `page` and `per_page` to paginate the results; returned issues include their issue details.
+     * Lists the issues that block a specified issue in a repository. Use `page` and `per_page` to
+     * paginate the results; returned issues include their issue details.
      *
-     * You can use the REST API to list the dependencies an issue is blocked by. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
+     * You can use the REST API to list the dependencies an issue is blocked by. This endpoint
+     * supports the following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
+     * body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListDependenciesBlockedBy(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/dependencies/blocked_by", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListDependenciesBlockedBy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListDependenciesBlockedBy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Issue> {
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/dependencies/blocked_by",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListDependenciesBlockedBy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesAddBlockedByDependencyOperation {
     /**
-     * Adds a “blocked by” dependency between an issue and another issue in a repository. Provide the blocking issue's ID in `issue_id`; creating content too quickly may result in secondary rate limiting.
+     * Adds a “blocked by” dependency between an issue and another issue in a repository. Provide
+     * the blocking issue's ID in `issue_id`; creating content too quickly may result in secondary
+     * rate limiting.
      *
-     * You can use the REST API to add a 'blocked by' relationship to an issue. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see Rate limits for the API and Best practices for using the REST API. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you…
+     * You can use the REST API to add a 'blocked by' relationship to an issue. Creating content too
+     * quickly using this endpoint may result in secondary rate limiting. For more information, see
+     * Rate limits for the API and Best practices for using the REST API. This endpoint supports the
+     * following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the default if you…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param issueId The id of the issue that blocks the current issue
      */
-    fun issuesAddBlockedByDependency(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueId: Long, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/dependencies/blocked_by", config = clientConfig, body = SdkClient.bodyMap("issue_id" to (issueId)), operationId = "issuesAddBlockedByDependency", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesAddBlockedByDependency(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        issueId: Long,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/dependencies/blocked_by",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("issue_id" to (issueId)),
+                    operationId = "issuesAddBlockedByDependency",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesRemoveDependencyBlockedByOperation {
     /**
-     * Removes a blocking dependency from an issue in a repository. Specify the issue being blocked with `issue_number` and the blocking issue with `issue_id`; removing content too quickly may result in secondary rate limiting.
+     * Removes a blocking dependency from an issue in a repository. Specify the issue being blocked
+     * with `issue_number` and the blocking issue with `issue_id`; removing content too quickly may
+     * result in secondary rate limiting.
      *
-     * You can use the REST API to remove a dependency that an issue is blocked by. Removing content too quickly using this endpoint may result in secondary rate limiting. For more information, see Rate limits for the API and Best practices for using the REST API. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if…
+     * You can use the REST API to remove a dependency that an issue is blocked by. Removing content
+     * too quickly using this endpoint may result in secondary rate limiting. For more information,
+     * see Rate limits for the API and Best practices for using the REST API. This endpoint supports
+     * the following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the default if…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param issueId The id of the blocking issue to remove as a dependency
      */
-    fun issuesRemoveDependencyBlockedBy(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, issueId: Long, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/dependencies/blocked_by/${SdkClient.encodePathSegment(issueId)}", config = clientConfig, operationId = "issuesRemoveDependencyBlockedBy", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "400" to BasicError::class.java, "401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesRemoveDependencyBlockedBy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        issueId: Long,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "DELETE",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/dependencies/blocked_by/${SdkClient.encodePathSegment(issueId)}",
+                    config = clientConfig,
+                    operationId = "issuesRemoveDependencyBlockedBy",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "400" to BasicError::class.java,
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesListDependenciesBlockingOperation {
     /**
-     * Lists the issues that a specified issue blocks in a repository. Use `page` and `per_page` to paginate the results; returned issues include their issue details.
+     * Lists the issues that a specified issue blocks in a repository. Use `page` and `per_page` to
+     * paginate the results; returned issues include their issue details.
      *
-     * You can use the REST API to list the dependencies an issue is blocking. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
+     * You can use the REST API to list the dependencies an issue is blocking. This endpoint
+     * supports the following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
+     * body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListDependenciesBlocking(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/dependencies/blocking", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListDependenciesBlocking", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListDependenciesBlocking(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Issue> {
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/dependencies/blocking",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListDependenciesBlocking",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "301" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

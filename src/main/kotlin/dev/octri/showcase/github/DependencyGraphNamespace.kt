@@ -3,46 +3,107 @@
 
 package dev.octri.showcase.github
 
-
 class DependencyGraphNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Gets the diff of the dependency changes between two commits of a repository, based on the changes to the dependency manifests made in those commits.
+     * Gets the diff of the dependency changes between two commits of a repository, based on the
+     * changes to the dependency manifests made in those commits.
      */
-    fun diffRange(owner: String, repo: String, basehead: String, name: String? = null, options: RequestOptions? = null): DependencyGraphDiff {
-        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphDiffRange(clientConfig, owner, repo, basehead, name, options)
+    fun diffRange(
+        owner: String,
+        repo: String,
+        basehead: String,
+        name: String? = null,
+        options: RequestOptions? = null,
+    ): DependencyGraphDiff {
+        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphDiffRange(
+            clientConfig,
+            owner,
+            repo,
+            basehead,
+            name,
+            options,
+        )
     }
 
     /**
-     * > !WARNING] > **Closing down notice:** This operation is closing down and will not be accessible after November 13, 2026. Please migrate to the asynchronous flow. Use "\[Request generation of a software bill of materials (SBOM) for a repository" to trigger the report, then "Fetch a software bill of materials (SBOM) for a repository" to retrieve it. For more information, see the changelog. Exports the software bill of materials (SBOM) for a repository in SPDX JSON format.
+     * > !WARNING] > **Closing down notice:** This operation is closing down and will not be
+     * > accessible after November 13, 2026. Please migrate to the asynchronous flow. Use "\[Request
+     * > generation of a software bill of materials (SBOM) for a repository" to trigger the report,
+     * > then "Fetch a software bill of materials (SBOM) for a repository" to retrieve it. For more
+     * > information, see the changelog. Exports the software bill of materials (SBOM) for a
+     * > repository in SPDX JSON format.
      *
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun exportSbom(owner: String, repo: String, options: RequestOptions? = null): DependencyGraphSpdxSbom {
-        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphExportSbom(clientConfig, owner, repo, options)
+    fun exportSbom(
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): DependencyGraphSpdxSbom {
+        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphExportSbom(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
     }
 
     /**
-     * Fetches a previously generated software bill of materials (SBOM) for a repository. When the SBOM is ready, the response is a 302 redirect to a temporary download URL for the SBOM in SPDX JSON format. The generated SBOM report may be retained for up to one week from the original request. The temporary download URL returned by this endpoint expires separately, and its expiry is set when the fetch request is made.
+     * Fetches a previously generated software bill of materials (SBOM) for a repository. When the
+     * SBOM is ready, the response is a 302 redirect to a temporary download URL for the SBOM in
+     * SPDX JSON format. The generated SBOM report may be retained for up to one week from the
+     * original request. The temporary download URL returned by this endpoint expires separately,
+     * and its expiry is set when the fetch request is made.
      */
-    fun fetchSbomReport(owner: String, repo: String, sbomUuid: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphFetchSbomReport(clientConfig, owner, repo, sbomUuid, options)
+    fun fetchSbomReport(
+        owner: String,
+        repo: String,
+        sbomUuid: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphFetchSbomReport(
+            clientConfig,
+            owner,
+            repo,
+            sbomUuid,
+            options,
+        )
     }
 
     /**
-     * Triggers a job to generate a software bill of materials (SBOM) for a repository in SPDX JSON format.
+     * Triggers a job to generate a software bill of materials (SBOM) for a repository in SPDX JSON
+     * format.
      */
-    fun generateSbomReport(owner: String, repo: String, options: RequestOptions? = null): dev.octri.showcase.github.methods.DependencyGraph.DependencyGraphGenerateSbomReportResponse {
-        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphGenerateSbomReport(clientConfig, owner, repo, options)
+    fun generateSbomReport(
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.github.methods.DependencyGraph.DependencyGraphGenerateSbomReportResponse {
+        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphGenerateSbomReport(
+            clientConfig,
+            owner,
+            repo,
+            options,
+        )
     }
 
     /**
-     * Creates a dependency snapshot for a repository, recording the dependencies detected at a specific commit and ref. Supply the required `detector`, `version`, `ref`, `sha`, `job`, and `scanned` fields; `ref` must begin with `refs/`, and `sha` must be 40–64 characters. Add `manifests` and up to eight scalar-valued `metadata` entries when you need to include dependency details or domain-specific information.
+     * Creates a dependency snapshot for a repository, recording the dependencies detected at a
+     * specific commit and ref. Supply the required `detector`, `version`, `ref`, `sha`, `job`, and
+     * `scanned` fields; `ref` must begin with `refs/`, and `sha` must be 40–64 characters. Add
+     * `manifests` and up to eight scalar-valued `metadata` entries when you need to include
+     * dependency details or domain-specific information.
      *
-     * Create a new snapshot of a repository's dependencies. The authenticated user must have access to the repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Create a new snapshot of a repository's dependencies. The authenticated user must have access
+     * to the repository. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun createRepositorySnapshot(request: dev.octri.showcase.github.methods.DependencyGraph.DependencyGraphCreateRepositorySnapshotRequest, options: RequestOptions? = null): dev.octri.showcase.github.methods.DependencyGraph.DependencyGraphCreateRepositorySnapshotResponse {
-        return dev.octri.showcase.github.methods.DependencyGraph.dependencyGraphCreateRepositorySnapshot(clientConfig, request, options)
+    fun createRepositorySnapshot(
+        request:
+            dev.octri.showcase.github.methods.DependencyGraph.DependencyGraphCreateRepositorySnapshotRequest,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.github.methods.DependencyGraph.DependencyGraphCreateRepositorySnapshotResponse {
+        return dev.octri.showcase.github.methods.DependencyGraph
+            .dependencyGraphCreateRepositorySnapshot(clientConfig, request, options)
     }
-
 }

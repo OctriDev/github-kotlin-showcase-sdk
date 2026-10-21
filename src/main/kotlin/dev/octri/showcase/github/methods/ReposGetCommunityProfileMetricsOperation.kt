@@ -10,14 +10,33 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ReposGetCommunityProfileMetricsOperation {
     /**
-     * Returns all community profile metrics for a repository. The repository cannot be a fork. The returned metrics include an overall health score, the repository description, the presence of documentation, the detected code of conduct, the detected license, and the presence of ISSUE\_TEMPLATE, PULL\_REQUEST\_TEMPLATE, README, and CONTRIBUTING files. The `health_percentage` score is defined as a percentage of how many of the recommended community health files are present. For…
+     * Returns all community profile metrics for a repository. The repository cannot be a fork. The
+     * returned metrics include an overall health score, the repository description, the presence of
+     * documentation, the detected code of conduct, the detected license, and the presence of
+     * ISSUE\_TEMPLATE, PULL\_REQUEST\_TEMPLATE, README, and CONTRIBUTING files. The
+     * `health_percentage` score is defined as a percentage of how many of the recommended community
+     * health files are present. For…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetCommunityProfileMetrics(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CommunityProfile {
-        return SdkClient.request<CommunityProfile>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/community/profile", config = clientConfig, operationId = "reposGetCommunityProfileMetrics", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposGetCommunityProfileMetrics(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CommunityProfile {
+        return SdkClient.request<CommunityProfile>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/community/profile",
+                    config = clientConfig,
+                    operationId = "reposGetCommunityProfileMetrics",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

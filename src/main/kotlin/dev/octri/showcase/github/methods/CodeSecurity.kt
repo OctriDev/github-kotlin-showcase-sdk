@@ -101,152 +101,158 @@ import dev.octri.showcase.github.RequestOptions
 import dev.octri.showcase.github.SdkClient
 
 object CodeSecurity {
-/**
- * Feature options for Automatic dependency submission
- */
-data class CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX32e7360676(
-    /**
-     * Whether to use runners labeled with 'dependency-submission' or standard GitHub runners.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("labeled_runners") val labeledRunners: Boolean? = null
-)
+    /** Feature options for Automatic dependency submission */
+    data class CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX32e7360676(
+        /**
+         * Whether to use runners labeled with 'dependency-submission' or standard GitHub runners.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("labeled_runners")
+        val labeledRunners: Boolean? = null
+    )
 
-/**
- * Feature options for Automatic dependency submission
- */
-data class CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX88eb4f4e9e(
-    /**
-     * Whether to use runners labeled with 'dependency-submission' or standard GitHub runners.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("labeled_runners") val labeledRunners: Boolean? = null
-)
+    /** Feature options for Automatic dependency submission */
+    data class CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX88eb4f4e9e(
+        /**
+         * Whether to use runners labeled with 'dependency-submission' or standard GitHub runners.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("labeled_runners")
+        val labeledRunners: Boolean? = null
+    )
 
-data class CodeSecuritySetConfigurationAsDefaultForEnterpriseResponse(
-    /**
-     * Specifies which types of repository this security configuration is applied to by default.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_for_new_repos") val defaultForNewRepos: CodeSecuritySetConfigurationAsDefaultForEnterpriseResponseDefXfd8fa01630? = null,
-    /**
-     * A code security configuration
-     */
-    val configuration: CodeSecurityConfiguration? = null
-)
+    data class CodeSecuritySetConfigurationAsDefaultForEnterpriseResponse(
+        /**
+         * Specifies which types of repository this security configuration is applied to by default.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("default_for_new_repos")
+        val defaultForNewRepos:
+            CodeSecuritySetConfigurationAsDefaultForEnterpriseResponseDefXfd8fa01630? =
+            null,
+        /** A code security configuration */
+        val configuration: CodeSecurityConfiguration? = null,
+    )
 
-/**
- * Feature options for Automatic dependency submission
- */
-data class CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionOptions(
-    /**
-     * Whether to use runners labeled with 'dependency-submission' or standard GitHub runners.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("labeled_runners") val labeledRunners: Boolean? = null
-)
+    /** Feature options for Automatic dependency submission */
+    data class CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionOptions(
+        /**
+         * Whether to use runners labeled with 'dependency-submission' or standard GitHub runners.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("labeled_runners")
+        val labeledRunners: Boolean? = null
+    )
 
+    data class CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX64a5cf1267(
+        /** The ID of the team or role selected as a bypass reviewer */
+        @com.fasterxml.jackson.annotation.JsonProperty("reviewer_id") val reviewerId: Long,
+        /** The type of the bypass reviewer */
+        @com.fasterxml.jackson.annotation.JsonProperty("reviewer_type")
+        val reviewerType: CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX23ec1501c5,
+        /** The bypass mode for the reviewer */
+        val mode: CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOXa350f9ebc3? = null,
+    )
 
+    /** Feature options for secret scanning delegated bypass */
+    data class CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOptions(
+        /** The bypass reviewers for secret scanning delegated bypass */
+        val reviewers:
+            List<CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX64a5cf1267>? =
+            null
+    )
 
+    /** Feature options for Automatic dependency submission */
+    data class CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionOptions(
+        /**
+         * Whether to use runners labeled with 'dependency-submission' or standard GitHub runners.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("labeled_runners")
+        val labeledRunners: Boolean? = null
+    )
 
+    data class CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX70af8910aa(
+        /** The ID of the team or role selected as a bypass reviewer */
+        @com.fasterxml.jackson.annotation.JsonProperty("reviewer_id") val reviewerId: Long,
+        /** The type of the bypass reviewer */
+        @com.fasterxml.jackson.annotation.JsonProperty("reviewer_type")
+        val reviewerType: CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX215f382eed,
+        /** The bypass mode for the reviewer */
+        val mode: CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOXfc67d398b9? = null,
+    )
 
-data class CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX64a5cf1267(
-    /**
-     * The ID of the team or role selected as a bypass reviewer
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("reviewer_id") val reviewerId: Long,
-    /**
-     * The type of the bypass reviewer
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("reviewer_type") val reviewerType: CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX23ec1501c5,
-    /**
-     * The bypass mode for the reviewer
-     */
-    val mode: CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOXa350f9ebc3? = null
-)
+    /** Feature options for secret scanning delegated bypass */
+    data class CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOptions(
+        /** The bypass reviewers for secret scanning delegated bypass */
+        val reviewers:
+            List<CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX70af8910aa>? =
+            null
+    )
 
-/**
- * Feature options for secret scanning delegated bypass
- */
-data class CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOptions(
-    /**
-     * The bypass reviewers for secret scanning delegated bypass
-     */
-    val reviewers: List<CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX64a5cf1267>? = null
-)
-
-/**
- * Feature options for Automatic dependency submission
- */
-data class CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionOptions(
-    /**
-     * Whether to use runners labeled with 'dependency-submission' or standard GitHub runners.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("labeled_runners") val labeledRunners: Boolean? = null
-)
-
-
-
-
-
-data class CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX70af8910aa(
-    /**
-     * The ID of the team or role selected as a bypass reviewer
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("reviewer_id") val reviewerId: Long,
-    /**
-     * The type of the bypass reviewer
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("reviewer_type") val reviewerType: CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX215f382eed,
-    /**
-     * The bypass mode for the reviewer
-     */
-    val mode: CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOXfc67d398b9? = null
-)
-
-/**
- * Feature options for secret scanning delegated bypass
- */
-data class CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOptions(
-    /**
-     * The bypass reviewers for secret scanning delegated bypass
-     */
-    val reviewers: List<CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX70af8910aa>? = null
-)
-
-data class CodeSecuritySetConfigurationAsDefaultResponse(
-    /**
-     * Specifies which types of repository this security configuration is applied to by default.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("default_for_new_repos") val defaultForNewRepos: CodeSecuritySetConfigurationAsDefaultResponseDefaultForNewReposEnum? = null,
-    /**
-     * A code security configuration
-     */
-    val configuration: CodeSecurityConfiguration? = null
-)
+    data class CodeSecuritySetConfigurationAsDefaultResponse(
+        /**
+         * Specifies which types of repository this security configuration is applied to by default.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("default_for_new_repos")
+        val defaultForNewRepos:
+            CodeSecuritySetConfigurationAsDefaultResponseDefaultForNewReposEnum? =
+            null,
+        /** A code security configuration */
+        val configuration: CodeSecurityConfiguration? = null,
+    )
 
     /** Parameters for [codeSecurityCreateConfigurationForEnterprise]. */
     data class CodeSecurityCreateConfigurationForEnterpriseRequest(
         val enterprise: String,
         val name: String,
         val description: String? = null,
-        val advancedSecurity: CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum? = null,
+        val advancedSecurity: CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum? =
+            null,
         val codeSecurity: CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum? = null,
-        val dependencyGraph: CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum? = null,
-        val dependencyGraphAutosubmitAction: CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01? = null,
-        val dependencyGraphAutosubmitActionOptions: CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX32e7360676? = null,
-        val dependabotAlerts: CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum? = null,
-        val dependabotSecurityUpdates: CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee? = null,
+        val dependencyGraph: CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum? =
+            null,
+        val dependencyGraphAutosubmitAction:
+            CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01? =
+            null,
+        val dependencyGraphAutosubmitActionOptions:
+            CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX32e7360676? =
+            null,
+        val dependabotAlerts: CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum? =
+            null,
+        val dependabotSecurityUpdates:
+            CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee? =
+            null,
         val codeScanningOptions: SdkClient.SdkOptional<CodeScanningOptions?>? = null,
-        val codeScanningDefaultSetup: CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum? = null,
-        val codeScanningDefaultSetupOptions: SdkClient.SdkOptional<CodeScanningDefaultSetupOptions?>? = null,
-        val codeScanningDelegatedAlertDismissal: CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d? = null,
-        val secretProtection: CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum? = null,
+        val codeScanningDefaultSetup:
+            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum? =
+            null,
+        val codeScanningDefaultSetupOptions:
+            SdkClient.SdkOptional<CodeScanningDefaultSetupOptions?>? =
+            null,
+        val codeScanningDelegatedAlertDismissal:
+            CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d? =
+            null,
+        val secretProtection: CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum? =
+            null,
         val secretScanning: CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum? = null,
-        val secretScanningPushProtection: CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b? = null,
-        val secretScanningValidityChecks: CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa? = null,
-        val secretScanningNonProviderPatterns: CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732? = null,
-        val secretScanningGenericSecrets: CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041? = null,
-        val secretScanningDelegatedAlertDismissal: CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab? = null,
-        val secretScanningExtendedMetadata: CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063? = null,
-        val privateVulnerabilityReporting: CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45? = null,
-        val enforcement: CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum? = null
+        val secretScanningPushProtection:
+            CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b? =
+            null,
+        val secretScanningValidityChecks:
+            CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa? =
+            null,
+        val secretScanningNonProviderPatterns:
+            CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732? =
+            null,
+        val secretScanningGenericSecrets:
+            CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041? =
+            null,
+        val secretScanningDelegatedAlertDismissal:
+            CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab? =
+            null,
+        val secretScanningExtendedMetadata:
+            CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063? =
+            null,
+        val privateVulnerabilityReporting:
+            CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45? =
+            null,
+        val enforcement: CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum? = null,
     )
 
     /** Parameters for [codeSecurityUpdateEnterpriseConfiguration]. */
@@ -258,24 +264,50 @@ data class CodeSecuritySetConfigurationAsDefaultResponse(
         val advancedSecurity: CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum? = null,
         val codeSecurity: CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum? = null,
         val dependencyGraph: CodeSecurityUpdateEnterpriseConfigurationDependencyGraphEnum? = null,
-        val dependencyGraphAutosubmitAction: CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX15b59547c4? = null,
-        val dependencyGraphAutosubmitActionOptions: CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX88eb4f4e9e? = null,
+        val dependencyGraphAutosubmitAction:
+            CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX15b59547c4? =
+            null,
+        val dependencyGraphAutosubmitActionOptions:
+            CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX88eb4f4e9e? =
+            null,
         val dependabotAlerts: CodeSecurityUpdateEnterpriseConfigurationDependabotAlertsEnum? = null,
-        val dependabotSecurityUpdates: CodeSecurityUpdateEnterpriseConfigurationDependabotSecurityUpdatesEnum? = null,
-        val codeScanningDefaultSetup: CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum? = null,
-        val codeScanningDefaultSetupOptions: SdkClient.SdkOptional<CodeScanningDefaultSetupOptions?>? = null,
+        val dependabotSecurityUpdates:
+            CodeSecurityUpdateEnterpriseConfigurationDependabotSecurityUpdatesEnum? =
+            null,
+        val codeScanningDefaultSetup:
+            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum? =
+            null,
+        val codeScanningDefaultSetupOptions:
+            SdkClient.SdkOptional<CodeScanningDefaultSetupOptions?>? =
+            null,
         val codeScanningOptions: SdkClient.SdkOptional<CodeScanningOptions?>? = null,
-        val codeScanningDelegatedAlertDismissal: CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca? = null,
+        val codeScanningDelegatedAlertDismissal:
+            CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca? =
+            null,
         val secretProtection: CodeSecurityUpdateEnterpriseConfigurationSecretProtectionEnum? = null,
         val secretScanning: CodeSecurityUpdateEnterpriseConfigurationSecretScanningEnum? = null,
-        val secretScanningPushProtection: CodeSecurityUpdateEnterpriseConfigurationSecretScanningPushPrX253ae6a4c3? = null,
-        val secretScanningValidityChecks: CodeSecurityUpdateEnterpriseConfigurationSecretScanningValidiXe38e93de95? = null,
-        val secretScanningNonProviderPatterns: CodeSecurityUpdateEnterpriseConfigurationSecretScanningNonProXcce0995b40? = null,
-        val secretScanningGenericSecrets: CodeSecurityUpdateEnterpriseConfigurationSecretScanningGeneriX351318c9bf? = null,
-        val secretScanningDelegatedAlertDismissal: CodeSecurityUpdateEnterpriseConfigurationSecretScanningDelegaXb88010d8d4? = null,
-        val secretScanningExtendedMetadata: CodeSecurityUpdateEnterpriseConfigurationSecretScanningExtendXb9fa381fea? = null,
-        val privateVulnerabilityReporting: CodeSecurityUpdateEnterpriseConfigurationPrivateVulnerabilityXb5e07c9c62? = null,
-        val enforcement: CodeSecurityUpdateEnterpriseConfigurationEnforcementEnum? = null
+        val secretScanningPushProtection:
+            CodeSecurityUpdateEnterpriseConfigurationSecretScanningPushPrX253ae6a4c3? =
+            null,
+        val secretScanningValidityChecks:
+            CodeSecurityUpdateEnterpriseConfigurationSecretScanningValidiXe38e93de95? =
+            null,
+        val secretScanningNonProviderPatterns:
+            CodeSecurityUpdateEnterpriseConfigurationSecretScanningNonProXcce0995b40? =
+            null,
+        val secretScanningGenericSecrets:
+            CodeSecurityUpdateEnterpriseConfigurationSecretScanningGeneriX351318c9bf? =
+            null,
+        val secretScanningDelegatedAlertDismissal:
+            CodeSecurityUpdateEnterpriseConfigurationSecretScanningDelegaXb88010d8d4? =
+            null,
+        val secretScanningExtendedMetadata:
+            CodeSecurityUpdateEnterpriseConfigurationSecretScanningExtendXb9fa381fea? =
+            null,
+        val privateVulnerabilityReporting:
+            CodeSecurityUpdateEnterpriseConfigurationPrivateVulnerabilityXb5e07c9c62? =
+            null,
+        val enforcement: CodeSecurityUpdateEnterpriseConfigurationEnforcementEnum? = null,
     )
 
     /** Parameters for [codeSecurityGetRepositoriesForEnterpriseConfiguration]. */
@@ -285,7 +317,7 @@ data class CodeSecuritySetConfigurationAsDefaultResponse(
         val perPage: Long? = null,
         val before: String? = null,
         val after: String? = null,
-        val status: String? = null
+        val status: String? = null,
     )
 
     /** Parameters for [codeSecurityCreateConfiguration]. */
@@ -296,27 +328,58 @@ data class CodeSecuritySetConfigurationAsDefaultResponse(
         val advancedSecurity: CodeSecurityCreateConfigurationAdvancedSecurityEnum? = null,
         val codeSecurity: CodeSecurityCreateConfigurationCodeSecurityEnum? = null,
         val dependencyGraph: CodeSecurityCreateConfigurationDependencyGraphEnum? = null,
-        val dependencyGraphAutosubmitAction: CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionEnum? = null,
-        val dependencyGraphAutosubmitActionOptions: CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionOptions? = null,
+        val dependencyGraphAutosubmitAction:
+            CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionEnum? =
+            null,
+        val dependencyGraphAutosubmitActionOptions:
+            CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionOptions? =
+            null,
         val dependabotAlerts: CodeSecurityCreateConfigurationDependabotAlertsEnum? = null,
-        val dependabotSecurityUpdates: CodeSecurityCreateConfigurationDependabotSecurityUpdatesEnum? = null,
-        val dependabotDelegatedAlertDismissal: CodeSecurityCreateConfigurationDependabotDelegatedAlertDismissalEnum? = null,
+        val dependabotSecurityUpdates:
+            CodeSecurityCreateConfigurationDependabotSecurityUpdatesEnum? =
+            null,
+        val dependabotDelegatedAlertDismissal:
+            CodeSecurityCreateConfigurationDependabotDelegatedAlertDismissalEnum? =
+            null,
         val codeScanningOptions: SdkClient.SdkOptional<CodeScanningOptions?>? = null,
-        val codeScanningDefaultSetup: CodeSecurityCreateConfigurationCodeScanningDefaultSetupEnum? = null,
-        val codeScanningDefaultSetupOptions: SdkClient.SdkOptional<CodeScanningDefaultSetupOptions?>? = null,
-        val codeScanningDelegatedAlertDismissal: CodeSecurityCreateConfigurationCodeScanningDelegatedAlertDismissalEnum? = null,
+        val codeScanningDefaultSetup: CodeSecurityCreateConfigurationCodeScanningDefaultSetupEnum? =
+            null,
+        val codeScanningDefaultSetupOptions:
+            SdkClient.SdkOptional<CodeScanningDefaultSetupOptions?>? =
+            null,
+        val codeScanningDelegatedAlertDismissal:
+            CodeSecurityCreateConfigurationCodeScanningDelegatedAlertDismissalEnum? =
+            null,
         val secretProtection: CodeSecurityCreateConfigurationSecretProtectionEnum? = null,
         val secretScanning: CodeSecurityCreateConfigurationSecretScanningEnum? = null,
-        val secretScanningPushProtection: CodeSecurityCreateConfigurationSecretScanningPushProtectionEnum? = null,
-        val secretScanningDelegatedBypass: CodeSecurityCreateConfigurationSecretScanningDelegatedBypassEnum? = null,
-        val secretScanningDelegatedBypassOptions: CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOptions? = null,
-        val secretScanningValidityChecks: CodeSecurityCreateConfigurationSecretScanningValidityChecksEnum? = null,
-        val secretScanningNonProviderPatterns: CodeSecurityCreateConfigurationSecretScanningNonProviderPatternsEnum? = null,
-        val secretScanningGenericSecrets: CodeSecurityCreateConfigurationSecretScanningGenericSecretsEnum? = null,
-        val secretScanningDelegatedAlertDismissal: CodeSecurityCreateConfigurationSecretScanningDelegatedAlertDismissalEnum? = null,
-        val secretScanningExtendedMetadata: CodeSecurityCreateConfigurationSecretScanningExtendedMetadataEnum? = null,
-        val privateVulnerabilityReporting: CodeSecurityCreateConfigurationPrivateVulnerabilityReportingEnum? = null,
-        val enforcement: CodeSecurityCreateConfigurationEnforcementEnum? = null
+        val secretScanningPushProtection:
+            CodeSecurityCreateConfigurationSecretScanningPushProtectionEnum? =
+            null,
+        val secretScanningDelegatedBypass:
+            CodeSecurityCreateConfigurationSecretScanningDelegatedBypassEnum? =
+            null,
+        val secretScanningDelegatedBypassOptions:
+            CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOptions? =
+            null,
+        val secretScanningValidityChecks:
+            CodeSecurityCreateConfigurationSecretScanningValidityChecksEnum? =
+            null,
+        val secretScanningNonProviderPatterns:
+            CodeSecurityCreateConfigurationSecretScanningNonProviderPatternsEnum? =
+            null,
+        val secretScanningGenericSecrets:
+            CodeSecurityCreateConfigurationSecretScanningGenericSecretsEnum? =
+            null,
+        val secretScanningDelegatedAlertDismissal:
+            CodeSecurityCreateConfigurationSecretScanningDelegatedAlertDismissalEnum? =
+            null,
+        val secretScanningExtendedMetadata:
+            CodeSecurityCreateConfigurationSecretScanningExtendedMetadataEnum? =
+            null,
+        val privateVulnerabilityReporting:
+            CodeSecurityCreateConfigurationPrivateVulnerabilityReportingEnum? =
+            null,
+        val enforcement: CodeSecurityCreateConfigurationEnforcementEnum? = null,
     )
 
     /** Parameters for [codeSecurityUpdateConfiguration]. */
@@ -328,27 +391,58 @@ data class CodeSecuritySetConfigurationAsDefaultResponse(
         val advancedSecurity: CodeSecurityUpdateConfigurationAdvancedSecurityEnum? = null,
         val codeSecurity: CodeSecurityUpdateConfigurationCodeSecurityEnum? = null,
         val dependencyGraph: CodeSecurityUpdateConfigurationDependencyGraphEnum? = null,
-        val dependencyGraphAutosubmitAction: CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionEnum? = null,
-        val dependencyGraphAutosubmitActionOptions: CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionOptions? = null,
+        val dependencyGraphAutosubmitAction:
+            CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionEnum? =
+            null,
+        val dependencyGraphAutosubmitActionOptions:
+            CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionOptions? =
+            null,
         val dependabotAlerts: CodeSecurityUpdateConfigurationDependabotAlertsEnum? = null,
-        val dependabotSecurityUpdates: CodeSecurityUpdateConfigurationDependabotSecurityUpdatesEnum? = null,
-        val dependabotDelegatedAlertDismissal: CodeSecurityUpdateConfigurationDependabotDelegatedAlertDismissalEnum? = null,
-        val codeScanningDefaultSetup: CodeSecurityUpdateConfigurationCodeScanningDefaultSetupEnum? = null,
-        val codeScanningDefaultSetupOptions: SdkClient.SdkOptional<CodeScanningDefaultSetupOptions?>? = null,
+        val dependabotSecurityUpdates:
+            CodeSecurityUpdateConfigurationDependabotSecurityUpdatesEnum? =
+            null,
+        val dependabotDelegatedAlertDismissal:
+            CodeSecurityUpdateConfigurationDependabotDelegatedAlertDismissalEnum? =
+            null,
+        val codeScanningDefaultSetup: CodeSecurityUpdateConfigurationCodeScanningDefaultSetupEnum? =
+            null,
+        val codeScanningDefaultSetupOptions:
+            SdkClient.SdkOptional<CodeScanningDefaultSetupOptions?>? =
+            null,
         val codeScanningOptions: SdkClient.SdkOptional<CodeScanningOptions?>? = null,
-        val codeScanningDelegatedAlertDismissal: CodeSecurityUpdateConfigurationCodeScanningDelegatedAlertDismissalEnum? = null,
+        val codeScanningDelegatedAlertDismissal:
+            CodeSecurityUpdateConfigurationCodeScanningDelegatedAlertDismissalEnum? =
+            null,
         val secretProtection: CodeSecurityUpdateConfigurationSecretProtectionEnum? = null,
         val secretScanning: CodeSecurityUpdateConfigurationSecretScanningEnum? = null,
-        val secretScanningPushProtection: CodeSecurityUpdateConfigurationSecretScanningPushProtectionEnum? = null,
-        val secretScanningDelegatedBypass: CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassEnum? = null,
-        val secretScanningDelegatedBypassOptions: CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOptions? = null,
-        val secretScanningValidityChecks: CodeSecurityUpdateConfigurationSecretScanningValidityChecksEnum? = null,
-        val secretScanningNonProviderPatterns: CodeSecurityUpdateConfigurationSecretScanningNonProviderPatternsEnum? = null,
-        val secretScanningGenericSecrets: CodeSecurityUpdateConfigurationSecretScanningGenericSecretsEnum? = null,
-        val secretScanningDelegatedAlertDismissal: CodeSecurityUpdateConfigurationSecretScanningDelegatedAlertDismissalEnum? = null,
-        val secretScanningExtendedMetadata: CodeSecurityUpdateConfigurationSecretScanningExtendedMetadataEnum? = null,
-        val privateVulnerabilityReporting: CodeSecurityUpdateConfigurationPrivateVulnerabilityReportingEnum? = null,
-        val enforcement: CodeSecurityUpdateConfigurationEnforcementEnum? = null
+        val secretScanningPushProtection:
+            CodeSecurityUpdateConfigurationSecretScanningPushProtectionEnum? =
+            null,
+        val secretScanningDelegatedBypass:
+            CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassEnum? =
+            null,
+        val secretScanningDelegatedBypassOptions:
+            CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOptions? =
+            null,
+        val secretScanningValidityChecks:
+            CodeSecurityUpdateConfigurationSecretScanningValidityChecksEnum? =
+            null,
+        val secretScanningNonProviderPatterns:
+            CodeSecurityUpdateConfigurationSecretScanningNonProviderPatternsEnum? =
+            null,
+        val secretScanningGenericSecrets:
+            CodeSecurityUpdateConfigurationSecretScanningGenericSecretsEnum? =
+            null,
+        val secretScanningDelegatedAlertDismissal:
+            CodeSecurityUpdateConfigurationSecretScanningDelegatedAlertDismissalEnum? =
+            null,
+        val secretScanningExtendedMetadata:
+            CodeSecurityUpdateConfigurationSecretScanningExtendedMetadataEnum? =
+            null,
+        val privateVulnerabilityReporting:
+            CodeSecurityUpdateConfigurationPrivateVulnerabilityReportingEnum? =
+            null,
+        val enforcement: CodeSecurityUpdateConfigurationEnforcementEnum? = null,
     )
 
     /** Parameters for [codeSecurityGetRepositoriesForConfiguration]. */
@@ -358,228 +452,433 @@ data class CodeSecuritySetConfigurationAsDefaultResponse(
         val perPage: Long? = null,
         val before: String? = null,
         val after: String? = null,
-        val status: String? = null
+        val status: String? = null,
     )
 
     /**
-     * Lists all code security configurations available in an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
+     * Lists all code security configurations available in an enterprise. The authenticated user
+     * must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens
+     * and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
      */
-    fun codeSecurityGetConfigurationsForEnterprise(clientConfig: ClientConfig, enterprise: String, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): List<CodeSecurityConfiguration> =
-        dev.octri.showcase.github.methods.CodeSecurityGetConfigurationsForEnterpriseOperation.codeSecurityGetConfigurationsForEnterprise(
-            clientConfig,
-            enterprise,
-            perPage,
-            before,
-            after,
-            options,
-        )
+    fun codeSecurityGetConfigurationsForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        perPage: Long? = null,
+        before: String? = null,
+        after: String? = null,
+        options: RequestOptions? = null,
+    ): List<CodeSecurityConfiguration> =
+        dev.octri.showcase.github.methods.CodeSecurityGetConfigurationsForEnterpriseOperation
+            .codeSecurityGetConfigurationsForEnterprise(
+                clientConfig,
+                enterprise,
+                perPage,
+                before,
+                after,
+                options,
+            )
 
     /**
-     * Creates a code security configuration in an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
+     * Creates a code security configuration in an enterprise. The authenticated user must be an
+     * administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal
+     * access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
      */
-    fun codeSecurityCreateConfigurationForEnterprise(clientConfig: ClientConfig, request: CodeSecurityCreateConfigurationForEnterpriseRequest, options: RequestOptions? = null): CodeSecurityConfiguration =
-        dev.octri.showcase.github.methods.CodeSecurityCreateConfigurationForEnterpriseOperation.codeSecurityCreateConfigurationForEnterprise(
-            clientConfig,
-            request,
-            options,
-        )
+    fun codeSecurityCreateConfigurationForEnterprise(
+        clientConfig: ClientConfig,
+        request: CodeSecurityCreateConfigurationForEnterpriseRequest,
+        options: RequestOptions? = null,
+    ): CodeSecurityConfiguration =
+        dev.octri.showcase.github.methods.CodeSecurityCreateConfigurationForEnterpriseOperation
+            .codeSecurityCreateConfigurationForEnterprise(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists the default code security configurations for an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
+     * Lists the default code security configurations for an enterprise. The authenticated user must
+     * be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
      */
-    fun codeSecurityGetDefaultConfigurationsForEnterprise(clientConfig: ClientConfig, enterprise: String, options: RequestOptions? = null): CodeSecurityDefaultConfigurations =
-        dev.octri.showcase.github.methods.CodeSecurityGetDefaultConfigurationsForEnterpriseOperation.codeSecurityGetDefaultConfigurationsForEnterprise(
-            clientConfig,
-            enterprise,
-            options,
-        )
+    fun codeSecurityGetDefaultConfigurationsForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        options: RequestOptions? = null,
+    ): CodeSecurityDefaultConfigurations =
+        dev.octri.showcase.github.methods.CodeSecurityGetDefaultConfigurationsForEnterpriseOperation
+            .codeSecurityGetDefaultConfigurationsForEnterprise(
+                clientConfig,
+                enterprise,
+                options,
+            )
 
     /**
-     * Gets a code security configuration available in an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
+     * Gets a code security configuration available in an enterprise. The authenticated user must be
+     * an administrator of the enterprise in order to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
      */
-    fun codeSecurityGetSingleConfigurationForEnterprise(clientConfig: ClientConfig, enterprise: String, configurationId: Long, options: RequestOptions? = null): CodeSecurityConfiguration =
-        dev.octri.showcase.github.methods.CodeSecurityGetSingleConfigurationForEnterpriseOperation.codeSecurityGetSingleConfigurationForEnterprise(
-            clientConfig,
-            enterprise,
-            configurationId,
-            options,
-        )
+    fun codeSecurityGetSingleConfigurationForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        configurationId: Long,
+        options: RequestOptions? = null,
+    ): CodeSecurityConfiguration =
+        dev.octri.showcase.github.methods.CodeSecurityGetSingleConfigurationForEnterpriseOperation
+            .codeSecurityGetSingleConfigurationForEnterprise(
+                clientConfig,
+                enterprise,
+                configurationId,
+                options,
+            )
 
     /**
-     * Updates a code security configuration in an enterprise. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
+     * Updates a code security configuration in an enterprise. The authenticated user must be an
+     * administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal
+     * access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
      */
-    fun codeSecurityUpdateEnterpriseConfiguration(clientConfig: ClientConfig, request: CodeSecurityUpdateEnterpriseConfigurationRequest, options: RequestOptions? = null): CodeSecurityConfiguration =
-        dev.octri.showcase.github.methods.CodeSecurityUpdateEnterpriseConfigurationOperation.codeSecurityUpdateEnterpriseConfiguration(
-            clientConfig,
-            request,
-            options,
-        )
+    fun codeSecurityUpdateEnterpriseConfiguration(
+        clientConfig: ClientConfig,
+        request: CodeSecurityUpdateEnterpriseConfigurationRequest,
+        options: RequestOptions? = null,
+    ): CodeSecurityConfiguration =
+        dev.octri.showcase.github.methods.CodeSecurityUpdateEnterpriseConfigurationOperation
+            .codeSecurityUpdateEnterpriseConfiguration(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes a code security configuration from an enterprise. Repositories attached to the configuration will retain their settings but will no longer be associated with the configuration. The authenticated user must be an administrator for the enterprise to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
+     * Deletes a code security configuration from an enterprise. Repositories attached to the
+     * configuration will retain their settings but will no longer be associated with the
+     * configuration. The authenticated user must be an administrator for the enterprise to use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise`
+     * scope to use this endpoint.
      */
-    fun codeSecurityDeleteConfigurationForEnterprise(clientConfig: ClientConfig, enterprise: String, configurationId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CodeSecurityDeleteConfigurationForEnterpriseOperation.codeSecurityDeleteConfigurationForEnterprise(
-            clientConfig,
-            enterprise,
-            configurationId,
-            options,
-        )
+    fun codeSecurityDeleteConfigurationForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        configurationId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.CodeSecurityDeleteConfigurationForEnterpriseOperation
+            .codeSecurityDeleteConfigurationForEnterprise(
+                clientConfig,
+                enterprise,
+                configurationId,
+                options,
+            )
 
     /**
-     * Attaches an enterprise code security configuration to repositories. If the repositories specified are already attached to a configuration, they will be re-attached to the provided configuration. If insufficient GHAS licenses are available to attach the configuration to a repository, only free features will be enabled. The authenticated user must be an administrator for the enterprise to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
+     * Attaches an enterprise code security configuration to repositories. If the repositories
+     * specified are already attached to a configuration, they will be re-attached to the provided
+     * configuration. If insufficient GHAS licenses are available to attach the configuration to a
+     * repository, only free features will be enabled. The authenticated user must be an
+     * administrator for the enterprise to use this endpoint. OAuth app tokens and personal access
+     * tokens (classic) need the `admin:enterprise` scope to use this endpoint.
      */
-    fun codeSecurityAttachEnterpriseConfiguration(clientConfig: ClientConfig, enterprise: String, configurationId: Long, scope: CodeSecurityAttachEnterpriseConfigurationScopeEnum, options: RequestOptions? = null): Map<String, Any> =
-        dev.octri.showcase.github.methods.CodeSecurityAttachEnterpriseConfigurationOperation.codeSecurityAttachEnterpriseConfiguration(
-            clientConfig,
-            enterprise,
-            configurationId,
-            scope,
-            options,
-        )
+    fun codeSecurityAttachEnterpriseConfiguration(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        configurationId: Long,
+        scope: CodeSecurityAttachEnterpriseConfigurationScopeEnum,
+        options: RequestOptions? = null,
+    ): Map<String, Any> =
+        dev.octri.showcase.github.methods.CodeSecurityAttachEnterpriseConfigurationOperation
+            .codeSecurityAttachEnterpriseConfiguration(
+                clientConfig,
+                enterprise,
+                configurationId,
+                scope,
+                options,
+            )
 
     /**
-     * Sets a code security configuration as a default to be applied to new repositories in your enterprise. This configuration will be applied by default to the matching repository type when created, but only for organizations within the enterprise that do not already have a default code security configuration set. The authenticated user must be an administrator for the enterprise to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint.
+     * Sets a code security configuration as a default to be applied to new repositories in your
+     * enterprise. This configuration will be applied by default to the matching repository type
+     * when created, but only for organizations within the enterprise that do not already have a
+     * default code security configuration set. The authenticated user must be an administrator for
+     * the enterprise to use this endpoint. OAuth app tokens and personal access tokens (classic)
+     * need the `admin:enterprise` scope to use this endpoint.
      */
-    fun codeSecuritySetConfigurationAsDefaultForEnterprise(clientConfig: ClientConfig, enterprise: String, configurationId: Long, defaultForNewRepos: CodeSecuritySetConfigurationAsDefaultForEnterpriseDefaultForNewReposEnum? = null, options: RequestOptions? = null): CodeSecuritySetConfigurationAsDefaultForEnterpriseResponse =
-        dev.octri.showcase.github.methods.CodeSecuritySetConfigurationAsDefaultForEnterpriseOperation.codeSecuritySetConfigurationAsDefaultForEnterprise(
-            clientConfig,
-            enterprise,
-            configurationId,
-            defaultForNewRepos,
-            options,
-        )
+    fun codeSecuritySetConfigurationAsDefaultForEnterprise(
+        clientConfig: ClientConfig,
+        enterprise: String,
+        configurationId: Long,
+        defaultForNewRepos:
+            CodeSecuritySetConfigurationAsDefaultForEnterpriseDefaultForNewReposEnum? =
+            null,
+        options: RequestOptions? = null,
+    ): CodeSecuritySetConfigurationAsDefaultForEnterpriseResponse =
+        dev.octri.showcase.github.methods
+            .CodeSecuritySetConfigurationAsDefaultForEnterpriseOperation
+            .codeSecuritySetConfigurationAsDefaultForEnterprise(
+                clientConfig,
+                enterprise,
+                configurationId,
+                defaultForNewRepos,
+                options,
+            )
 
     /**
-     * Lists the repositories associated with an enterprise code security configuration in an organization. The authenticated user must be an administrator of the enterprise in order to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:enterprise` scope to use this endpoint.
+     * Lists the repositories associated with an enterprise code security configuration in an
+     * organization. The authenticated user must be an administrator of the enterprise in order to
+     * use this endpoint. OAuth app tokens and personal access tokens (classic) need the
+     * `read:enterprise` scope to use this endpoint.
      */
-    fun codeSecurityGetRepositoriesForEnterpriseConfiguration(clientConfig: ClientConfig, request: CodeSecurityGetRepositoriesForEnterpriseConfigurationRequest, options: RequestOptions? = null): List<CodeSecurityConfigurationRepositories> =
-        dev.octri.showcase.github.methods.CodeSecurityGetRepositoriesForEnterpriseConfigurationOperation.codeSecurityGetRepositoriesForEnterpriseConfiguration(
-            clientConfig,
-            request,
-            options,
-        )
+    fun codeSecurityGetRepositoriesForEnterpriseConfiguration(
+        clientConfig: ClientConfig,
+        request: CodeSecurityGetRepositoriesForEnterpriseConfigurationRequest,
+        options: RequestOptions? = null,
+    ): List<CodeSecurityConfigurationRepositories> =
+        dev.octri.showcase.github.methods
+            .CodeSecurityGetRepositoriesForEnterpriseConfigurationOperation
+            .codeSecurityGetRepositoriesForEnterpriseConfiguration(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists all code security configurations available in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Lists all code security configurations available in an organization. The authenticated user
+     * must be an administrator or security manager for the organization to use this endpoint. OAuth
+     * app tokens and personal access tokens (classic) need the `read:org` scope to use this
+     * endpoint.
      */
-    fun codeSecurityGetConfigurationsForOrg(clientConfig: ClientConfig, org: String, targetType: CodeSecurityGetConfigurationsForOrgParameterEnum? = null, perPage: Long? = null, before: String? = null, after: String? = null, options: RequestOptions? = null): List<CodeSecurityConfiguration> =
-        dev.octri.showcase.github.methods.CodeSecurityGetConfigurationsForOrgOperation.codeSecurityGetConfigurationsForOrg(
-            clientConfig,
-            org,
-            targetType,
-            perPage,
-            before,
-            after,
-            options,
-        )
+    fun codeSecurityGetConfigurationsForOrg(
+        clientConfig: ClientConfig,
+        org: String,
+        targetType: CodeSecurityGetConfigurationsForOrgParameterEnum? = null,
+        perPage: Long? = null,
+        before: String? = null,
+        after: String? = null,
+        options: RequestOptions? = null,
+    ): List<CodeSecurityConfiguration> =
+        dev.octri.showcase.github.methods.CodeSecurityGetConfigurationsForOrgOperation
+            .codeSecurityGetConfigurationsForOrg(
+                clientConfig,
+                org,
+                targetType,
+                perPage,
+                before,
+                after,
+                options,
+            )
 
     /**
-     * Creates a code security configuration in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Creates a code security configuration in an organization. The authenticated user must be an
+     * administrator or security manager for the organization to use this endpoint. OAuth app tokens
+     * and personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun codeSecurityCreateConfiguration(clientConfig: ClientConfig, request: CodeSecurityCreateConfigurationRequest, options: RequestOptions? = null): CodeSecurityConfiguration =
-        dev.octri.showcase.github.methods.CodeSecurityCreateConfigurationOperation.codeSecurityCreateConfiguration(
-            clientConfig,
-            request,
-            options,
-        )
+    fun codeSecurityCreateConfiguration(
+        clientConfig: ClientConfig,
+        request: CodeSecurityCreateConfigurationRequest,
+        options: RequestOptions? = null,
+    ): CodeSecurityConfiguration =
+        dev.octri.showcase.github.methods.CodeSecurityCreateConfigurationOperation
+            .codeSecurityCreateConfiguration(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists the default code security configurations for an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Lists the default code security configurations for an organization. The authenticated user
+     * must be an administrator or security manager for the organization to use this endpoint. OAuth
+     * app tokens and personal access tokens (classic) need the `read:org` scope to use this
+     * endpoint.
      */
-    fun codeSecurityGetDefaultConfigurations(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): CodeSecurityDefaultConfigurations =
-        dev.octri.showcase.github.methods.CodeSecurityGetDefaultConfigurationsOperation.codeSecurityGetDefaultConfigurations(
-            clientConfig,
-            org,
-            options,
-        )
+    fun codeSecurityGetDefaultConfigurations(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): CodeSecurityDefaultConfigurations =
+        dev.octri.showcase.github.methods.CodeSecurityGetDefaultConfigurationsOperation
+            .codeSecurityGetDefaultConfigurations(
+                clientConfig,
+                org,
+                options,
+            )
 
     /**
-     * Detach code security configuration(s) from a set of repositories. Repositories will retain their settings but will no longer be associated with the configuration. The authenticated user must be an administrator or security manager for the organization to use this endpoint. Repositories with active enterprise-enforced attachments are skipped unless the authenticated user can manage the enterprise's code security settings; the rest are detached. Inactive enterprise-enforced attachments, such as failed attachments, are detached. The request still returns `204` if every repository is skipped. OAuth app tokens and classic PATs require the `write:org` scope. Managing enterprise-enforced configurations also requires `admin:enterprise` and is not supported by fine-grained PATs or GitHub App access tokens.
+     * Detach code security configuration(s) from a set of repositories. Repositories will retain
+     * their settings but will no longer be associated with the configuration. The authenticated
+     * user must be an administrator or security manager for the organization to use this endpoint.
+     * Repositories with active enterprise-enforced attachments are skipped unless the authenticated
+     * user can manage the enterprise's code security settings; the rest are detached. Inactive
+     * enterprise-enforced attachments, such as failed attachments, are detached. The request still
+     * returns `204` if every repository is skipped. OAuth app tokens and classic PATs require the
+     * `write:org` scope. Managing enterprise-enforced configurations also requires
+     * `admin:enterprise` and is not supported by fine-grained PATs or GitHub App access tokens.
      */
-    fun codeSecurityDetachConfiguration(clientConfig: ClientConfig, org: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CodeSecurityDetachConfigurationOperation.codeSecurityDetachConfiguration(
-            clientConfig,
-            org,
-            selectedRepositoryIds,
-            options,
-        )
+    fun codeSecurityDetachConfiguration(
+        clientConfig: ClientConfig,
+        org: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.CodeSecurityDetachConfigurationOperation
+            .codeSecurityDetachConfiguration(
+                clientConfig,
+                org,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * Gets a code security configuration available in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Gets a code security configuration available in an organization. The authenticated user must
+     * be an administrator or security manager for the organization to use this endpoint. OAuth app
+     * tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun codeSecurityGetConfiguration(clientConfig: ClientConfig, org: String, configurationId: Long, options: RequestOptions? = null): CodeSecurityConfiguration =
-        dev.octri.showcase.github.methods.CodeSecurityGetConfigurationOperation.codeSecurityGetConfiguration(
-            clientConfig,
-            org,
-            configurationId,
-            options,
-        )
+    fun codeSecurityGetConfiguration(
+        clientConfig: ClientConfig,
+        org: String,
+        configurationId: Long,
+        options: RequestOptions? = null,
+    ): CodeSecurityConfiguration =
+        dev.octri.showcase.github.methods.CodeSecurityGetConfigurationOperation
+            .codeSecurityGetConfiguration(
+                clientConfig,
+                org,
+                configurationId,
+                options,
+            )
 
     /**
-     * Updates a code security configuration in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Updates a code security configuration in an organization. The authenticated user must be an
+     * administrator or security manager for the organization to use this endpoint. OAuth app tokens
+     * and personal access tokens (classic) need the `write:org` scope to use this endpoint.
      */
-    fun codeSecurityUpdateConfiguration(clientConfig: ClientConfig, request: CodeSecurityUpdateConfigurationRequest, options: RequestOptions? = null): CodeSecurityConfiguration =
-        dev.octri.showcase.github.methods.CodeSecurityUpdateConfigurationOperation.codeSecurityUpdateConfiguration(
-            clientConfig,
-            request,
-            options,
-        )
+    fun codeSecurityUpdateConfiguration(
+        clientConfig: ClientConfig,
+        request: CodeSecurityUpdateConfigurationRequest,
+        options: RequestOptions? = null,
+    ): CodeSecurityConfiguration =
+        dev.octri.showcase.github.methods.CodeSecurityUpdateConfigurationOperation
+            .codeSecurityUpdateConfiguration(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes the desired code security configuration from an organization. Repositories attached to the configuration will retain their settings but will no longer be associated with the configuration. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.
+     * Deletes the desired code security configuration from an organization. Repositories attached
+     * to the configuration will retain their settings but will no longer be associated with the
+     * configuration. The authenticated user must be an administrator or security manager for the
+     * organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `write:org` scope to use this endpoint.
      */
-    fun codeSecurityDeleteConfiguration(clientConfig: ClientConfig, org: String, configurationId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.CodeSecurityDeleteConfigurationOperation.codeSecurityDeleteConfiguration(
-            clientConfig,
-            org,
-            configurationId,
-            options,
-        )
+    fun codeSecurityDeleteConfiguration(
+        clientConfig: ClientConfig,
+        org: String,
+        configurationId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.CodeSecurityDeleteConfigurationOperation
+            .codeSecurityDeleteConfiguration(
+                clientConfig,
+                org,
+                configurationId,
+                options,
+            )
 
     /**
-     * Attach a code security configuration to a set of repositories. If the repositories specified are already attached to a configuration, they will be re-attached to the provided configuration. If insufficient GHAS licenses are available to attach the configuration to a repository, only free features will be enabled. The authenticated user must be an administrator or security manager for the organization to use this endpoint. Directly applying an enterprise-enforced configuration also requires permission to manage the enterprise's code security settings. Without it, the request returns `403` and no repositories change. When applying a different configuration, repositories with active enterprise-enforced attachments are skipped unless the authenticated user can manage the enterprise's code security settings; the remaining repositories are updated. The request still returns `202` if every repository is skipped. OAuth app tokens and classic PATs require the `write:org` scope. Directly applying an enterprise-enforced configuration also requires `admin:enterprise` and is not supported by fine-grained PATs or GitHub App access tokens.
+     * Attach a code security configuration to a set of repositories. If the repositories specified
+     * are already attached to a configuration, they will be re-attached to the provided
+     * configuration. If insufficient GHAS licenses are available to attach the configuration to a
+     * repository, only free features will be enabled. The authenticated user must be an
+     * administrator or security manager for the organization to use this endpoint. Directly
+     * applying an enterprise-enforced configuration also requires permission to manage the
+     * enterprise's code security settings. Without it, the request returns `403` and no
+     * repositories change. When applying a different configuration, repositories with active
+     * enterprise-enforced attachments are skipped unless the authenticated user can manage the
+     * enterprise's code security settings; the remaining repositories are updated. The request
+     * still returns `202` if every repository is skipped. OAuth app tokens and classic PATs require
+     * the `write:org` scope. Directly applying an enterprise-enforced configuration also requires
+     * `admin:enterprise` and is not supported by fine-grained PATs or GitHub App access tokens.
      */
-    fun codeSecurityAttachConfiguration(clientConfig: ClientConfig, org: String, configurationId: Long, scope: CodeSecurityAttachConfigurationScopeEnum, selectedRepositoryIds: List<Long>? = null, options: RequestOptions? = null): Map<String, Any> =
-        dev.octri.showcase.github.methods.CodeSecurityAttachConfigurationOperation.codeSecurityAttachConfiguration(
-            clientConfig,
-            org,
-            configurationId,
-            scope,
-            selectedRepositoryIds,
-            options,
-        )
+    fun codeSecurityAttachConfiguration(
+        clientConfig: ClientConfig,
+        org: String,
+        configurationId: Long,
+        scope: CodeSecurityAttachConfigurationScopeEnum,
+        selectedRepositoryIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): Map<String, Any> =
+        dev.octri.showcase.github.methods.CodeSecurityAttachConfigurationOperation
+            .codeSecurityAttachConfiguration(
+                clientConfig,
+                org,
+                configurationId,
+                scope,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * Sets a code security configuration as a default to be applied to new repositories in your organization. This configuration will be applied to the matching repository type (all, none, public, private and internal) by default when they are created. The authenticated user must be an administrator or security manager for the organization to use this endpoint. Setting an enterprise-enforced configuration as the default also requires permission to manage the enterprise's code security settings. A default set with this endpoint is an organization default, even if the configuration is owned or enforced by the enterprise. An enterprise-enforced configuration set as an enterprise-level default for the same repository visibility takes precedence. OAuth app tokens and classic PATs require the `write:org` scope; setting an enterprise-enforced configuration as the default also requires `admin:enterprise`. Fine-grained PATs and GitHub App access tokens cannot perform that action.
+     * Sets a code security configuration as a default to be applied to new repositories in your
+     * organization. This configuration will be applied to the matching repository type (all, none,
+     * public, private and internal) by default when they are created. The authenticated user must
+     * be an administrator or security manager for the organization to use this endpoint. Setting an
+     * enterprise-enforced configuration as the default also requires permission to manage the
+     * enterprise's code security settings. A default set with this endpoint is an organization
+     * default, even if the configuration is owned or enforced by the enterprise. An
+     * enterprise-enforced configuration set as an enterprise-level default for the same repository
+     * visibility takes precedence. OAuth app tokens and classic PATs require the `write:org` scope;
+     * setting an enterprise-enforced configuration as the default also requires `admin:enterprise`.
+     * Fine-grained PATs and GitHub App access tokens cannot perform that action.
      */
-    fun codeSecuritySetConfigurationAsDefault(clientConfig: ClientConfig, org: String, configurationId: Long, defaultForNewRepos: CodeSecuritySetConfigurationAsDefaultDefaultForNewReposEnum? = null, options: RequestOptions? = null): CodeSecuritySetConfigurationAsDefaultResponse =
-        dev.octri.showcase.github.methods.CodeSecuritySetConfigurationAsDefaultOperation.codeSecuritySetConfigurationAsDefault(
-            clientConfig,
-            org,
-            configurationId,
-            defaultForNewRepos,
-            options,
-        )
+    fun codeSecuritySetConfigurationAsDefault(
+        clientConfig: ClientConfig,
+        org: String,
+        configurationId: Long,
+        defaultForNewRepos: CodeSecuritySetConfigurationAsDefaultDefaultForNewReposEnum? = null,
+        options: RequestOptions? = null,
+    ): CodeSecuritySetConfigurationAsDefaultResponse =
+        dev.octri.showcase.github.methods.CodeSecuritySetConfigurationAsDefaultOperation
+            .codeSecuritySetConfigurationAsDefault(
+                clientConfig,
+                org,
+                configurationId,
+                defaultForNewRepos,
+                options,
+            )
 
     /**
-     * Lists the repositories associated with a code security configuration in an organization. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.
+     * Lists the repositories associated with a code security configuration in an organization. The
+     * authenticated user must be an administrator or security manager for the organization to use
+     * this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org`
+     * scope to use this endpoint.
      */
-    fun codeSecurityGetRepositoriesForConfiguration(clientConfig: ClientConfig, request: CodeSecurityGetRepositoriesForConfigurationRequest, options: RequestOptions? = null): List<CodeSecurityConfigurationRepositories> =
-        dev.octri.showcase.github.methods.CodeSecurityGetRepositoriesForConfigurationOperation.codeSecurityGetRepositoriesForConfiguration(
-            clientConfig,
-            request,
-            options,
-        )
+    fun codeSecurityGetRepositoriesForConfiguration(
+        clientConfig: ClientConfig,
+        request: CodeSecurityGetRepositoriesForConfigurationRequest,
+        options: RequestOptions? = null,
+    ): List<CodeSecurityConfigurationRepositories> =
+        dev.octri.showcase.github.methods.CodeSecurityGetRepositoriesForConfigurationOperation
+            .codeSecurityGetRepositoriesForConfiguration(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Get the code security configuration that manages a repository's code security settings. The authenticated user must be an administrator or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Get the code security configuration that manages a repository's code security settings. The
+     * authenticated user must be an administrator or security manager for the organization to use
+     * this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
+     * use this endpoint.
      */
-    fun codeSecurityGetConfigurationForRepository(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CodeSecurityConfigurationForRepository =
-        dev.octri.showcase.github.methods.CodeSecurityGetConfigurationForRepositoryOperation.codeSecurityGetConfigurationForRepository(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun codeSecurityGetConfigurationForRepository(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CodeSecurityConfigurationForRepository =
+        dev.octri.showcase.github.methods.CodeSecurityGetConfigurationForRepositoryOperation
+            .codeSecurityGetConfigurationForRepository(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 }

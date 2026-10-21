@@ -3,26 +3,18 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Require a fresh authentication before a pull request can be merged.
- */
+/** Require a fresh authentication before a pull request can be merged. */
 data class RepositoryRuleParamsProofOfPresence(
-    /**
-     * The level of authentication required before a pull request can be merged.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_authentication_level") val requiredAuthenticationLevel: RepositoryRuleParamsProofOfPresenceRequiredAuthenticationLevelEnum
+    /** The level of authentication required before a pull request can be merged. */
+    @com.fasterxml.jackson.annotation.JsonProperty("required_authentication_level")
+    val requiredAuthenticationLevel:
+        RepositoryRuleParamsProofOfPresenceRequiredAuthenticationLevelEnum
 )
 
-/**
- * Restricted commit
- */
+/** Restricted commit */
 data class RepositoryRuleParamsRestrictedCommits(
-    /**
-     * Full or abbreviated commit hash to reject
-     */
+    /** Full or abbreviated commit hash to reject */
     val oid: String,
-    /**
-     * Reason for restriction
-     */
-    val reason: String? = null
+    /** Reason for restriction */
+    val reason: String? = null,
 )

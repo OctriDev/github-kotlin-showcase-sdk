@@ -10,25 +10,51 @@ import dev.octri.showcase.github.SdkClient
 
 internal object ReposCreateUsingTemplateOperation {
     /**
-     * Creates a new repository using a repository template. Use the `template_owner` and `template_repo` route parameters to specify the repository to use as the template. If the repository is not public, the authenticated user must own or be a member of an organization that owns the repository. To check if a repository is available to use as a template, get the repository's information using the Get a repository endpoint and check that the `is_template` key is `true`. OAuth app…
+     * Creates a new repository using a repository template. Use the `template_owner` and
+     * `template_repo` route parameters to specify the repository to use as the template. If the
+     * repository is not public, the authenticated user must own or be a member of an organization
+     * that owns the repository. To check if a repository is available to use as a template, get the
+     * repository's information using the Get a repository endpoint and check that the `is_template`
+     * key is `true`. OAuth app…
      *
-     * @param templateOwner The account owner of the template repository. The name is
-     *   not case sensitive.
-     * @param templateRepo The name of the template repository without the `.git`
-     *   extension. The name is not case sensitive.
+     * @param templateOwner The account owner of the template repository. The name is not case
+     *   sensitive.
+     * @param templateRepo The name of the template repository without the `.git` extension. The
+     *   name is not case sensitive.
      * @param name The name of the new repository.
-     * @param owner The organization or person who will own the new repository. To
-     *   create a new repository in an organization, the authenticated user must be a
-     *   member of the specified organization.
+     * @param owner The organization or person who will own the new repository. To create a new
+     *   repository in an organization, the authenticated user must be a member of the specified
+     *   organization.
      * @param description A short description of the new repository.
-     * @param includeAllBranches Set to `true` to include the directory structure and
-     *   files from all branches in the template repository, and not just the default
-     *   branch. Default: `false`.
-     * @param private Either `true` to create a new private repository or `false` to
-     *   create a new public one.
+     * @param includeAllBranches Set to `true` to include the directory structure and files from all
+     *   branches in the template repository, and not just the default branch. Default: `false`.
+     * @param private Either `true` to create a new private repository or `false` to create a new
+     *   public one.
      */
-    fun reposCreateUsingTemplate(clientConfig: ClientConfig, request: Repos.ReposCreateUsingTemplateRequest, options: RequestOptions? = null): FullRepository {
-        return SdkClient.request<FullRepository>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.templateOwner)}/${SdkClient.encodePathSegment(request.templateRepo)}/generate", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "owner" to (SdkClient.omitIfNull(request.owner)), "description" to (SdkClient.omitIfNull(request.description)), "include_all_branches" to
-    (SdkClient.omitIfNull(request.includeAllBranches)), "private" to (SdkClient.omitIfNull(request.private))), operationId = "reposCreateUsingTemplate", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposCreateUsingTemplate(
+        clientConfig: ClientConfig,
+        request: Repos.ReposCreateUsingTemplateRequest,
+        options: RequestOptions? = null,
+    ): FullRepository {
+        return SdkClient.request<FullRepository>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(request.templateOwner)}/${SdkClient.encodePathSegment(request.templateRepo)}/generate",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "name" to (request.name),
+                            "owner" to (SdkClient.omitIfNull(request.owner)),
+                            "description" to (SdkClient.omitIfNull(request.description)),
+                            "include_all_branches" to
+                                (SdkClient.omitIfNull(request.includeAllBranches)),
+                            "private" to (SdkClient.omitIfNull(request.private)),
+                        ),
+                    operationId = "reposCreateUsingTemplate",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

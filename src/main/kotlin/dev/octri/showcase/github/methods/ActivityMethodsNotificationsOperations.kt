@@ -18,135 +18,296 @@ internal object ActivityMethodsActivityListNotificationsForAuthenticatedUserOper
      * List all notifications for the current user, sorted by most recently updated.
      *
      * @param all If `true`, show notifications marked as read.
-     * @param participating If `true`, only shows notifications in which the user is
-     *   directly participating or mentioned.
-     * @param since Only show results that were last updated after the given time.
-     *   This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param before Only show notifications updated before the given time. This is a
+     * @param participating If `true`, only shows notifications in which the user is directly
+     *   participating or mentioned.
+     * @param since Only show results that were last updated after the given time. This is a
      *   timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 50). For more information,
-     *   see "Using pagination in the REST API."
+     * @param before Only show notifications updated before the given time. This is a timestamp in
+     *   ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 50). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun activityListNotificationsForAuthenticatedUser(clientConfig: ClientConfig, request: ActivityMethods.ActivityListNotificationsForAuthenticatedUserRequest, options: RequestOptions? = null): List<Thread> {
+    fun activityListNotificationsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        request: ActivityMethods.ActivityListNotificationsForAuthenticatedUserRequest,
+        options: RequestOptions? = null,
+    ): List<Thread> {
         validateActivityListNotificationsForAuthenticatedUserRequest(request)
 
-        return SdkClient.request<List<Thread>>(SdkClient.RequestSpec("GET", "/notifications", config = clientConfig, query = mapOf("all" to SdkClient.queryValue(request.all, "form", true), "participating" to
-    SdkClient.queryValue(request.participating, "form", true), "since" to
-    SdkClient.queryValue(request.since, "form", true, "date-time"), "before" to
-    SdkClient.queryValue(request.before, "form", true, "date-time"), "page" to SdkClient.queryValue(request.page, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true)), operationId = "activityListNotificationsForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "422" to ValidationError::class.java))).data
+        return SdkClient.request<List<Thread>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/notifications",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "all" to SdkClient.queryValue(request.all, "form", true),
+                            "participating" to
+                                SdkClient.queryValue(request.participating, "form", true),
+                            "since" to
+                                SdkClient.queryValue(request.since, "form", true, "date-time"),
+                            "before" to
+                                SdkClient.queryValue(request.before, "form", true, "date-time"),
+                            "page" to SdkClient.queryValue(request.page, "form", true),
+                            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        ),
+                    operationId = "activityListNotificationsForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "401" to BasicError::class.java,
+                            "403" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 
-
-    private fun validateActivityListNotificationsForAuthenticatedUserRequest(request: ActivityMethods.ActivityListNotificationsForAuthenticatedUserRequest) {
+    private fun validateActivityListNotificationsForAuthenticatedUserRequest(
+        request: ActivityMethods.ActivityListNotificationsForAuthenticatedUserRequest
+    ) {
         if (request.since != null) {
             Validation.validateDateTime("since", request.since)
-}
+        }
 
         if (request.before != null) {
             Validation.validateDateTime("before", request.before)
-}
+        }
     }
 }
 
 internal object ActivityMethodsActivityMarkNotificationsAsReadOperation {
     /**
-     * Marks all notifications as "read" for the current user. If the number of notifications is too large to complete in one request, you will receive a `202 Accepted` status and GitHub will run an asynchronous process to mark notifications as "read." To check whether any "unread" notifications remain, you can use the List notifications for the authenticated user endpoint and pass the query parameter `all=false`.
+     * Marks all notifications as "read" for the current user. If the number of notifications is too
+     * large to complete in one request, you will receive a `202 Accepted` status and GitHub will
+     * run an asynchronous process to mark notifications as "read." To check whether any "unread"
+     * notifications remain, you can use the List notifications for the authenticated user endpoint
+     * and pass the query parameter `all=false`.
      *
-     * @param lastReadAt Describes the last point that notifications were checked.
-     *   Anything updated since this time will not be marked as read. If you omit this
-     *   parameter, all notifications are marked as read. This is a timestamp in ISO
-     *   8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Default: The current timestamp.
+     * @param lastReadAt Describes the last point that notifications were checked. Anything updated
+     *   since this time will not be marked as read. If you omit this parameter, all notifications
+     *   are marked as read. This is a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
+     *   Default: The current timestamp.
      * @param read Whether the notification has been read.
      */
-    fun activityMarkNotificationsAsRead(clientConfig: ClientConfig, lastReadAt: OffsetDateTime? = null, read: Boolean? = null, options: RequestOptions? = null): ActivityMethods.ActivityMarkNotificationsAsReadResponse {
+    fun activityMarkNotificationsAsRead(
+        clientConfig: ClientConfig,
+        lastReadAt: OffsetDateTime? = null,
+        read: Boolean? = null,
+        options: RequestOptions? = null,
+    ): ActivityMethods.ActivityMarkNotificationsAsReadResponse {
         if (lastReadAt != null) {
             Validation.validateDateTime("last_read_at", lastReadAt)
-}
+        }
 
-        return SdkClient.request<ActivityMethods.ActivityMarkNotificationsAsReadResponse>(SdkClient.RequestSpec("PUT", "/notifications", config = clientConfig, body = SdkClient.bodyMap("last_read_at" to (SdkClient.omitIfNull(lastReadAt)), "read" to (SdkClient.omitIfNull(read))), operationId = "activityMarkNotificationsAsRead", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+        return SdkClient.request<ActivityMethods.ActivityMarkNotificationsAsReadResponse>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/notifications",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "last_read_at" to (SdkClient.omitIfNull(lastReadAt)),
+                            "read" to (SdkClient.omitIfNull(read)),
+                        ),
+                    operationId = "activityMarkNotificationsAsRead",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActivityMethodsActivityGetThreadOperation {
     /**
-     * Retrieves a notification thread by its unique identifier. Use the `thread_id` value returned in a notification's `id` field to inspect the thread's repository, subject, unread state, and subscription URL.
+     * Retrieves a notification thread by its unique identifier. Use the `thread_id` value returned
+     * in a notification's `id` field to inspect the thread's repository, subject, unread state, and
+     * subscription URL.
      *
      * Gets information about a notification thread.
      *
-     * @param threadId The unique identifier of the notification thread. This
-     *   corresponds to the value returned in the `id` field when you retrieve
-     *   notifications (for example with the `GET /notifications` operation).
+     * @param threadId The unique identifier of the notification thread. This corresponds to the
+     *   value returned in the `id` field when you retrieve notifications (for example with the `GET
+     *   /notifications` operation).
      */
-    fun activityGetThread(clientConfig: ClientConfig, threadId: Long, options: RequestOptions? = null): Thread {
-        return SdkClient.request<Thread>(SdkClient.RequestSpec("GET", "/notifications/threads/${SdkClient.encodePathSegment(threadId)}", config = clientConfig, operationId = "activityGetThread", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun activityGetThread(
+        clientConfig: ClientConfig,
+        threadId: Long,
+        options: RequestOptions? = null,
+    ): Thread {
+        return SdkClient.request<Thread>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/notifications/threads/${SdkClient.encodePathSegment(threadId)}",
+                    config = clientConfig,
+                    operationId = "activityGetThread",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActivityMethodsActivityMarkThreadAsReadOperation {
     /**
-     * Marks a thread as "read." Marking a thread as "read" is equivalent to clicking a notification in your notification inbox on GitHub: github.com
+     * Marks a thread as "read." Marking a thread as "read" is equivalent to clicking a notification
+     * in your notification inbox on GitHub: github.com
      *
-     * @param threadId The unique identifier of the notification thread. This
-     *   corresponds to the value returned in the `id` field when you retrieve
-     *   notifications (for example with the `GET /notifications` operation).
+     * @param threadId The unique identifier of the notification thread. This corresponds to the
+     *   value returned in the `id` field when you retrieve notifications (for example with the `GET
+     *   /notifications` operation).
      */
-    fun activityMarkThreadAsRead(clientConfig: ClientConfig, threadId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("PATCH", "/notifications/threads/${SdkClient.encodePathSegment(threadId)}", config = clientConfig, operationId = "activityMarkThreadAsRead", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java)))
+    fun activityMarkThreadAsRead(
+        clientConfig: ClientConfig,
+        threadId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PATCH",
+                "/notifications/threads/${SdkClient.encodePathSegment(threadId)}",
+                config = clientConfig,
+                operationId = "activityMarkThreadAsRead",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ActivityMethodsActivityMarkThreadAsDoneOperation {
     /**
-     * Marks a thread as "done." Marking a thread as "done" is equivalent to marking a notification in your notification inbox on GitHub as done: github.com
+     * Marks a thread as "done." Marking a thread as "done" is equivalent to marking a notification
+     * in your notification inbox on GitHub as done: github.com
      *
-     * @param threadId The unique identifier of the notification thread. This
-     *   corresponds to the value returned in the `id` field when you retrieve
-     *   notifications (for example with the `GET /notifications` operation).
+     * @param threadId The unique identifier of the notification thread. This corresponds to the
+     *   value returned in the `id` field when you retrieve notifications (for example with the `GET
+     *   /notifications` operation).
      */
-    fun activityMarkThreadAsDone(clientConfig: ClientConfig, threadId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/notifications/threads/${SdkClient.encodePathSegment(threadId)}", config = clientConfig, operationId = "activityMarkThreadAsDone", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    fun activityMarkThreadAsDone(
+        clientConfig: ClientConfig,
+        threadId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/notifications/threads/${SdkClient.encodePathSegment(threadId)}",
+                config = clientConfig,
+                operationId = "activityMarkThreadAsDone",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActivityMethodsActivityGetThreadSubscriptionForAuthenticatedUX6188e1e283 {
     /**
-     * This checks to see if the current user is subscribed to a thread. You can also get a repository subscription. Note that subscriptions are only generated if a user is participating in a conversation--for example, they've replied to the thread, were **@mentioned**, or manually subscribe to a thread.
+     * This checks to see if the current user is subscribed to a thread. You can also get a
+     * repository subscription. Note that subscriptions are only generated if a user is
+     * participating in a conversation--for example, they've replied to the thread, were
+     * **@mentioned**, or manually subscribe to a thread.
      *
-     * @param threadId The unique identifier of the notification thread. This
-     *   corresponds to the value returned in the `id` field when you retrieve
-     *   notifications (for example with the `GET /notifications` operation).
+     * @param threadId The unique identifier of the notification thread. This corresponds to the
+     *   value returned in the `id` field when you retrieve notifications (for example with the `GET
+     *   /notifications` operation).
      */
-    fun activityGetThreadSubscriptionForAuthenticatedUser(clientConfig: ClientConfig, threadId: Long, options: RequestOptions? = null): ThreadSubscription {
-        return SdkClient.request<ThreadSubscription>(SdkClient.RequestSpec("GET", "/notifications/threads/${SdkClient.encodePathSegment(threadId)}/subscription", config = clientConfig, operationId = "activityGetThreadSubscriptionForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun activityGetThreadSubscriptionForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        threadId: Long,
+        options: RequestOptions? = null,
+    ): ThreadSubscription {
+        return SdkClient.request<ThreadSubscription>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/notifications/threads/${SdkClient.encodePathSegment(threadId)}/subscription",
+                    config = clientConfig,
+                    operationId = "activityGetThreadSubscriptionForAuthenticatedUser",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActivityMethodsActivitySetThreadSubscriptionOperation {
     /**
-     * If you are watching a repository, you receive notifications for all threads by default. Use this endpoint to ignore future notifications for threads until you comment on the thread or get an **@mention**. You can also use this endpoint to subscribe to threads that you are currently not receiving notifications for or to subscribed to threads that you have previously ignored. Unsubscribing from a conversation in a repository that you are not watching is functionally equivalent…
+     * If you are watching a repository, you receive notifications for all threads by default. Use
+     * this endpoint to ignore future notifications for threads until you comment on the thread or
+     * get an **@mention**. You can also use this endpoint to subscribe to threads that you are
+     * currently not receiving notifications for or to subscribed to threads that you have
+     * previously ignored. Unsubscribing from a conversation in a repository that you are not
+     * watching is functionally equivalent…
      *
-     * @param threadId The unique identifier of the notification thread. This
-     *   corresponds to the value returned in the `id` field when you retrieve
-     *   notifications (for example with the `GET /notifications` operation).
+     * @param threadId The unique identifier of the notification thread. This corresponds to the
+     *   value returned in the `id` field when you retrieve notifications (for example with the `GET
+     *   /notifications` operation).
      * @param ignored Whether to block all notifications from a thread.
      */
-    fun activitySetThreadSubscription(clientConfig: ClientConfig, threadId: Long, ignored: Boolean? = null, options: RequestOptions? = null): ThreadSubscription {
-        return SdkClient.request<ThreadSubscription>(SdkClient.RequestSpec("PUT", "/notifications/threads/${SdkClient.encodePathSegment(threadId)}/subscription", config = clientConfig, body = SdkClient.bodyMap("ignored" to (SdkClient.omitIfNull(ignored))), operationId = "activitySetThreadSubscription", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java))).data
+    fun activitySetThreadSubscription(
+        clientConfig: ClientConfig,
+        threadId: Long,
+        ignored: Boolean? = null,
+        options: RequestOptions? = null,
+    ): ThreadSubscription {
+        return SdkClient.request<ThreadSubscription>(
+                SdkClient.RequestSpec(
+                    "PUT",
+                    "/notifications/threads/${SdkClient.encodePathSegment(threadId)}/subscription",
+                    config = clientConfig,
+                    body = SdkClient.bodyMap("ignored" to (SdkClient.omitIfNull(ignored))),
+                    operationId = "activitySetThreadSubscription",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object ActivityMethodsActivityDeleteThreadSubscriptionOperation {
     /**
-     * Mutes all future notifications for a conversation until you comment on the thread or get an **@mention**. If you are watching the repository of the thread, you will still receive notifications. To ignore future notifications for a repository you are watching, use the Set a thread subscription endpoint and set `ignore` to `true`.
+     * Mutes all future notifications for a conversation until you comment on the thread or get an
+     * **@mention**. If you are watching the repository of the thread, you will still receive
+     * notifications. To ignore future notifications for a repository you are watching, use the Set
+     * a thread subscription endpoint and set `ignore` to `true`.
      *
-     * @param threadId The unique identifier of the notification thread. This
-     *   corresponds to the value returned in the `id` field when you retrieve
-     *   notifications (for example with the `GET /notifications` operation).
+     * @param threadId The unique identifier of the notification thread. This corresponds to the
+     *   value returned in the `id` field when you retrieve notifications (for example with the `GET
+     *   /notifications` operation).
      */
-    fun activityDeleteThreadSubscription(clientConfig: ClientConfig, threadId: Long, options: RequestOptions? = null): Unit {
-        SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/notifications/threads/${SdkClient.encodePathSegment(threadId)}/subscription", config = clientConfig, operationId = "activityDeleteThreadSubscription", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java)))
+    fun activityDeleteThreadSubscription(
+        clientConfig: ClientConfig,
+        threadId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/notifications/threads/${SdkClient.encodePathSegment(threadId)}/subscription",
+                config = clientConfig,
+                operationId = "activityDeleteThreadSubscription",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+            )
+        )
     }
 }

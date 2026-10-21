@@ -5,20 +5,13 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Typed representation of the `SecretScanningPushProtectionBypass` API schema.
- */
+/** Typed representation of the `SecretScanningPushProtectionBypass` API schema. */
 data class SecretScanningPushProtectionBypass(
-    /**
-     * The reason for bypassing push protection.
-     */
+    /** The reason for bypassing push protection. */
     val reason: SecretScanningPushProtectionBypassReason? = null,
-    /**
-     * The time that the bypass will expire in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("expire_at") val expireAt: OffsetDateTime? = null,
-    /**
-     * The token type this bypass is for.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("token_type") val tokenType: String? = null
+    /** The time that the bypass will expire in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`. */
+    @com.fasterxml.jackson.annotation.JsonProperty("expire_at")
+    val expireAt: OffsetDateTime? = null,
+    /** The token type this bypass is for. */
+    @com.fasterxml.jackson.annotation.JsonProperty("token_type") val tokenType: String? = null,
 )

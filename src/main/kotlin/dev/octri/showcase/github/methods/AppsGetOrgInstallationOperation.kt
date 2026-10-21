@@ -10,11 +10,26 @@ import dev.octri.showcase.github.SdkClient
 
 internal object AppsGetOrgInstallationOperation {
     /**
-     * Enables an authenticated GitHub App to find the organization's installation information. You must use a JWT to access this endpoint.
+     * Enables an authenticated GitHub App to find the organization's installation information. You
+     * must use a JWT to access this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun appsGetOrgInstallation(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Installation {
-        return SdkClient.request<Installation>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/installation", config = clientConfig, operationId = "appsGetOrgInstallation", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun appsGetOrgInstallation(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Installation {
+        return SdkClient.request<Installation>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/orgs/${SdkClient.encodePathSegment(org)}/installation",
+                    config = clientConfig,
+                    operationId = "appsGetOrgInstallation",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

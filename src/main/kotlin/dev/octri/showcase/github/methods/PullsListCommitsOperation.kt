@@ -10,19 +10,46 @@ import dev.octri.showcase.github.SdkClient
 
 internal object PullsListCommitsOperation {
     /**
-     * Lists a maximum of 250 commits for a pull request. To receive a complete commit list for pull requests with more than 250 commits, use the List commits endpoint. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a…
+     * Lists a maximum of 250 commits for a pull request. To receive a complete commit list for pull
+     * requests with more than 250 commits, use the List commits endpoint. This endpoint supports
+     * the following custom media types. For more information, see "Media types." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param pullNumber The number that identifies the pull request.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun pullsListCommits(clientConfig: ClientConfig, owner: String, repo: String, pullNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Commit> {
-        return SdkClient.request<List<Commit>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/commits", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "pullsListCommits", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun pullsListCommits(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pullNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Commit> {
+        return SdkClient.request<List<Commit>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/${SdkClient.encodePathSegment(pullNumber)}/commits",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "pullsListCommits",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }

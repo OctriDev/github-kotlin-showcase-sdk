@@ -5,116 +5,82 @@ package dev.octri.showcase.github.models
 
 import java.time.OffsetDateTime
 
-/**
- * Timeline Reviewed Event
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Timeline Reviewed Event */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class TimelineReviewedEvent(
-    /**
-     * Required `string` value serialized in the `event` wire field.
-     */
+    /** Required `string` value serialized in the `event` wire field. */
     val event: String,
-    /**
-     * Unique identifier of the review
-     */
+    /** Unique identifier of the review */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val user: SimpleUser,
-    /**
-     * The text of the review.
-     */
+    /** The text of the review. */
     @com.fasterxml.jackson.annotation.JsonProperty("body", required = true) val body: String?,
-    /**
-     * Required `string` value serialized in the `state` wire field.
-     */
+    /** Required `string` value serialized in the `state` wire field. */
     val state: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("html_url") val htmlUrl: String,
-    /**
-     * Required `uri`-formatted value serialized in the `pull_request_url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `pull_request_url` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("pull_request_url") val pullRequestUrl: String,
-    /**
-     * Required object value serialized in the `_links` wire field.
-     */
+    /** Required object value serialized in the `_links` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("_links") val links: TimelineReviewedEventLinks,
-    /**
-     * A commit SHA for the review.
-     */
+    /** A commit SHA for the review. */
     @com.fasterxml.jackson.annotation.JsonProperty("commit_id") val commitId: String,
-    /**
-     * How the author is associated with the repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("author_association") val authorAssociation: AuthorAssociation,
-    /**
-     * Optional `date-time`-formatted value serialized in the `submitted_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("submitted_at") val submittedAt: OffsetDateTime? = null,
-    /**
-     * Optional `date-time`-formatted value serialized in the `updated_at` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("updated_at") val updatedAt: OffsetDateTime? = null,
-    /**
-     * Optional `string` value serialized in the `body_html` wire field.
-     */
+    /** How the author is associated with the repository. */
+    @com.fasterxml.jackson.annotation.JsonProperty("author_association")
+    val authorAssociation: AuthorAssociation,
+    /** Optional `date-time`-formatted value serialized in the `submitted_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("submitted_at")
+    val submittedAt: OffsetDateTime? = null,
+    /** Optional `date-time`-formatted value serialized in the `updated_at` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("updated_at")
+    val updatedAt: OffsetDateTime? = null,
+    /** Optional `string` value serialized in the `body_html` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("body_html") val bodyHtml: String? = null,
-    /**
-     * Optional `string` value serialized in the `body_text` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("body_text") val bodyText: String? = null
+    /** Optional `string` value serialized in the `body_text` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("body_text") val bodyText: String? = null,
 ) : TimelineIssueEvents
 
-/**
- * Timeline Unassigned Issue Event
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+/** Timeline Unassigned Issue Event */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class TimelineUnassignedIssueEvent(
-    /**
-     * Required `integer` value serialized in the `id` wire field.
-     */
+    /** Required `integer` value serialized in the `id` wire field. */
     val id: Long,
-    /**
-     * Required `string` value serialized in the `node_id` wire field.
-     */
+    /** Required `string` value serialized in the `node_id` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("node_id") val nodeId: String,
-    /**
-     * Required `string` value serialized in the `url` wire field.
-     */
+    /** Required `string` value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * A GitHub user.
-     */
+    /** A GitHub user. */
     val actor: SimpleUser,
-    /**
-     * Required `string` value serialized in the `event` wire field.
-     */
+    /** Required `string` value serialized in the `event` wire field. */
     val event: String,
-    /**
-     * Required `string` value serialized in the `commit_id` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true) val commitId: String?,
-    /**
-     * Required `string` value serialized in the `commit_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true) val commitUrl: String?,
-    /**
-     * Required `string` value serialized in the `created_at` wire field.
-     */
+    /** Required `string` value serialized in the `commit_id` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_id", required = true)
+    val commitId: String?,
+    /** Required `string` value serialized in the `commit_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_url", required = true)
+    val commitUrl: String?,
+    /** Required `string` value serialized in the `created_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("created_at") val createdAt: String,
     /**
-     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+     * GitHub apps are a new way to extend GitHub. They can be installed directly on organizations
+     * and user accounts and granted access to specific repositories. They come with granular
+     * permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
      */
-    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true) val performedViaGithubApp: NullableIntegration?,
-    /**
-     * A GitHub user.
-     */
-    val assignee: SimpleUser
+    @com.fasterxml.jackson.annotation.JsonProperty("performed_via_github_app", required = true)
+    val performedViaGithubApp: NullableIntegration?,
+    /** A GitHub user. */
+    val assignee: SimpleUser,
 ) : TimelineIssueEvents

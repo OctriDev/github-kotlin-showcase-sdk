@@ -14,62 +14,156 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object IssuesListSubIssuesOperation {
     /**
-     * Lists the sub-issues attached to an issue in a repository. Use `owner`, `repo`, and `issue_number` to select the parent issue, and `page` and `per_page` to paginate the results.
+     * Lists the sub-issues attached to an issue in a repository. Use `owner`, `repo`, and
+     * `issue_number` to select the parent issue, and `page` and `per_page` to paginate the results.
      *
-     * You can use the REST API to list the sub-issues on an issue. This endpoint supports the following custom media types. For more information, see Media types. - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown body. Response will include `body_text`. -…
+     * You can use the REST API to list the sub-issues on an issue. This endpoint supports the
+     * following custom media types. For more information, see Media types. -
+     * **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include
+     * `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github.text+json`**: Returns a text only representation of the Markdown
+     * body. Response will include `body_text`. -…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListSubIssues(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Issue> {
-        return SdkClient.request<List<Issue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issues", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListSubIssues", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "410" to BasicError::class.java))).data
+    fun issuesListSubIssues(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Issue> {
+        return SdkClient.request<List<Issue>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issues",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "issuesListSubIssues",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf("404" to BasicError::class.java, "410" to BasicError::class.java),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesAddSubIssueOperation {
     /**
-     * Adds an existing issue as a sub-issue of a parent issue in a repository. Provide the sub-issue's `sub_issue_id`; it must belong to the same repository owner as the parent, and `replace_parent` transfers it from its current parent when true. A 201 response returns the added sub-issue.
+     * Adds an existing issue as a sub-issue of a parent issue in a repository. Provide the
+     * sub-issue's `sub_issue_id`; it must belong to the same repository owner as the parent, and
+     * `replace_parent` transfers it from its current parent when true. A 201 response returns the
+     * added sub-issue.
      *
-     * You can use the REST API to add sub-issues to issues. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "Rate limits for the API" and "Best practices for using the REST API." This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass…
+     * You can use the REST API to add sub-issues to issues. Creating content too quickly using this
+     * endpoint may result in secondary rate limiting. For more information, see "Rate limits for
+     * the API" and "Best practices for using the REST API." This endpoint supports the following
+     * custom media types. For more information, see "Media types." -
+     * **`application/vnd.github.raw+json`**: Returns the raw markdown body. Response will include
+     * `body`. This is the default if you do not pass…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param subIssueId The id of the sub-issue to add. The sub-issue must belong to
-     *   the same repository owner as the parent issue
-     * @param replaceParent Option that, when true, instructs the operation to
-     *   replace the sub-issues current parent issue
+     * @param subIssueId The id of the sub-issue to add. The sub-issue must belong to the same
+     *   repository owner as the parent issue
+     * @param replaceParent Option that, when true, instructs the operation to replace the
+     *   sub-issues current parent issue
      */
-    fun issuesAddSubIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, subIssueId: Long, replaceParent: Boolean? = null, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issues", config = clientConfig, body = SdkClient.bodyMap("sub_issue_id" to (subIssueId), "replace_parent" to (SdkClient.omitIfNull(replaceParent))), operationId = "issuesAddSubIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationError::class.java))).data
+    fun issuesAddSubIssue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        subIssueId: Long,
+        replaceParent: Boolean? = null,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "POST",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/sub_issues",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "sub_issue_id" to (subIssueId),
+                            "replace_parent" to (SdkClient.omitIfNull(replaceParent)),
+                        ),
+                    operationId = "issuesAddSubIssue",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "410" to BasicError::class.java,
+                            "422" to ValidationError::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }
 
 internal object IssuesReprioritizeSubIssueOperation {
     /**
-     * You can use the REST API to reprioritize a sub-issue to a different position in the parent list.
+     * You can use the REST API to reprioritize a sub-issue to a different position in the parent
+     * list.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param subIssueId The id of the sub-issue to reprioritize
-     * @param afterId The id of the sub-issue to be prioritized after (either
-     *   positional argument after OR before should be specified).
-     * @param beforeId The id of the sub-issue to be prioritized before (either
-     *   positional argument after OR before should be specified).
+     * @param afterId The id of the sub-issue to be prioritized after (either positional argument
+     *   after OR before should be specified).
+     * @param beforeId The id of the sub-issue to be prioritized before (either positional argument
+     *   after OR before should be specified).
      */
-    fun issuesReprioritizeSubIssue(clientConfig: ClientConfig, request: Issues.IssuesReprioritizeSubIssueRequest, options: RequestOptions? = null): Issue {
-        return SdkClient.request<Issue>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/sub_issues/priority", config = clientConfig, body = SdkClient.bodyMap("sub_issue_id" to (request.subIssueId), "after_id" to (SdkClient.omitIfNull(request.afterId)), "before_id" to (SdkClient.omitIfNull(request.beforeId))), operationId = "issuesReprioritizeSubIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java, "503" to ServiceUnavailable::class.java))).data
+    fun issuesReprioritizeSubIssue(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesReprioritizeSubIssueRequest,
+        options: RequestOptions? = null,
+    ): Issue {
+        return SdkClient.request<Issue>(
+                SdkClient.RequestSpec(
+                    "PATCH",
+                    "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/sub_issues/priority",
+                    config = clientConfig,
+                    body =
+                        SdkClient.bodyMap(
+                            "sub_issue_id" to (request.subIssueId),
+                            "after_id" to (SdkClient.omitIfNull(request.afterId)),
+                            "before_id" to (SdkClient.omitIfNull(request.beforeId)),
+                        ),
+                    operationId = "issuesReprioritizeSubIssue",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                    errors =
+                        mapOf(
+                            "403" to BasicError::class.java,
+                            "404" to BasicError::class.java,
+                            "422" to ValidationErrorSimple::class.java,
+                            "503" to ServiceUnavailable::class.java,
+                        ),
+                )
+            )
+            .data
     }
 }

@@ -10,18 +10,40 @@ import dev.octri.showcase.github.Tag
 
 internal object ReposListTagsOperation {
     /**
-     * Lists the tags for a repository. Use `page` and `per_page` to paginate the results, with up to 100 tags per page.
+     * Lists the tags for a repository. Use `page` and `per_page` to paginate the results, with up
+     * to 100 tags per page.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListTags(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Tag> {
-        return SdkClient.request<List<Tag>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/tags", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListTags", decoder = SdkClient.ResponseDecoder.JSON, options = options)).data
+    fun reposListTags(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Tag> {
+        return SdkClient.request<List<Tag>>(
+                SdkClient.RequestSpec(
+                    "GET",
+                    "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/tags",
+                    config = clientConfig,
+                    query =
+                        mapOf(
+                            "per_page" to SdkClient.queryValue(perPage, "form", true),
+                            "page" to SdkClient.queryValue(page, "form", true),
+                        ),
+                    operationId = "reposListTags",
+                    decoder = SdkClient.ResponseDecoder.JSON,
+                    options = options,
+                )
+            )
+            .data
     }
 }
