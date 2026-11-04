@@ -13,20 +13,42 @@ internal object ReposMergeUpstreamOperation {
     /**
      * Sync a branch of a forked repository to keep it up-to-date with the upstream repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param branch The name of the branch which should be updated to match
-     *   upstream.
+     * @param branch The name of the branch which should be updated to match upstream.
      */
-    fun reposMergeUpstream(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): MergedUpstream {
+    fun reposMergeUpstream(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): MergedUpstream {
         return reposMergeUpstreamWithRawResponse(clientConfig, owner, repo, branch, options).data
     }
 
-
-    /** [reposMergeUpstream], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposMergeUpstreamWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<MergedUpstream> {
-        return SdkClient.request<MergedUpstream>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/merge-upstream", config = clientConfig, body = SdkClient.bodyMap("branch" to (branch)), operationId = "reposMergeUpstream", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [reposMergeUpstream], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun reposMergeUpstreamWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<MergedUpstream> {
+        return SdkClient.request<MergedUpstream>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/merge-upstream",
+                config = clientConfig,
+                body = SdkClient.bodyMap("branch" to (branch)),
+                operationId = "reposMergeUpstream",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

@@ -83,16 +83,6 @@ import dev.octri.showcase.github.ReposCreatePagesSiteBuildTypeEnum
 import dev.octri.showcase.github.ReposCreatePagesSiteSourcePathEnum
 import dev.octri.showcase.github.ReposCreateReleaseMakeLatestEnum
 import dev.octri.showcase.github.ReposCreateRepoRulesetTargetEnum
-import dev.octri.showcase.github.Repository
-import dev.octri.showcase.github.RepositoryCollaboratorPermission
-import dev.octri.showcase.github.RepositoryHashAlgorithm
-import dev.octri.showcase.github.RepositoryInvitation
-import dev.octri.showcase.github.RepositoryRule
-import dev.octri.showcase.github.RepositoryRuleDetailed
-import dev.octri.showcase.github.RepositoryRuleEnforcement
-import dev.octri.showcase.github.RepositoryRuleset
-import dev.octri.showcase.github.RepositoryRulesetBypassActor
-import dev.octri.showcase.github.RepositoryRulesetConditions
 import dev.octri.showcase.github.ReposListActivitiesParameterEnum
 import dev.octri.showcase.github.ReposListActivitiesParameterEnumdc62da83
 import dev.octri.showcase.github.ReposListCollaboratorsParameterEnum
@@ -101,13 +91,13 @@ import dev.octri.showcase.github.ReposListForAuthenticatedUserParameterEnum
 import dev.octri.showcase.github.ReposListForAuthenticatedUserParameterEnum8dd6d868
 import dev.octri.showcase.github.ReposListForAuthenticatedUserParameterEnuma184120a
 import dev.octri.showcase.github.ReposListForAuthenticatedUserParameterEnuma1a095b2
-import dev.octri.showcase.github.ReposListForksParameterEnum
 import dev.octri.showcase.github.ReposListForOrgParameterEnum
 import dev.octri.showcase.github.ReposListForOrgParameterEnum8b436ee9
 import dev.octri.showcase.github.ReposListForOrgParameterEnumb4d9e95c
 import dev.octri.showcase.github.ReposListForUserParameterEnum
 import dev.octri.showcase.github.ReposListForUserParameterEnum098c291f
 import dev.octri.showcase.github.ReposListForUserParameterEnumf2394501
+import dev.octri.showcase.github.ReposListForksParameterEnum
 import dev.octri.showcase.github.ReposUpdateInformationAboutPagesSiteBuildTypeEnum
 import dev.octri.showcase.github.ReposUpdateInformationAboutPagesSiteRequestSource
 import dev.octri.showcase.github.ReposUpdateInvitationPermissionsEnum
@@ -122,11 +112,21 @@ import dev.octri.showcase.github.ReposUpdateSecurityAndAnalysisSecretScanningDel
 import dev.octri.showcase.github.ReposUpdateSquashMergeCommitMessageEnum
 import dev.octri.showcase.github.ReposUpdateSquashMergeCommitTitleEnum
 import dev.octri.showcase.github.ReposUpdateVisibilityEnum
+import dev.octri.showcase.github.Repository
+import dev.octri.showcase.github.RepositoryCollaboratorPermission
+import dev.octri.showcase.github.RepositoryHashAlgorithm
+import dev.octri.showcase.github.RepositoryInvitation
+import dev.octri.showcase.github.RepositoryRule
+import dev.octri.showcase.github.RepositoryRuleDetailed
+import dev.octri.showcase.github.RepositoryRuleEnforcement
+import dev.octri.showcase.github.RepositoryRuleset
+import dev.octri.showcase.github.RepositoryRulesetBypassActor
+import dev.octri.showcase.github.RepositoryRulesetConditions
 import dev.octri.showcase.github.RequestOptions
-import dev.octri.showcase.github.RulesetVersion
-import dev.octri.showcase.github.RulesetVersionWithState
 import dev.octri.showcase.github.RuleSuite
 import dev.octri.showcase.github.RuleSuites
+import dev.octri.showcase.github.RulesetVersion
+import dev.octri.showcase.github.RulesetVersionWithState
 import dev.octri.showcase.github.SchemaSchemaEnum0df64690
 import dev.octri.showcase.github.SchemaSchemaEnum11fb9123
 import dev.octri.showcase.github.SchemaSchemaEnum133f4a69
@@ -153,496 +153,485 @@ import dev.octri.showcase.github.WebhookConfigUrl
 import java.time.OffsetDateTime
 
 object Repos {
-/**
- * Use the `status` property to enable or disable GitHub Advanced Security for this repository. For more information, see "About GitHub Advanced Security." For standalone Code Scanning or Secret Protection products, this parameter cannot be used.
- */
-data class ReposUpdateSecurityAndAnalysisAdvancedSecurity(
     /**
-     * Can be `enabled` or `disabled`.
+     * Use the `status` property to enable or disable GitHub Advanced Security for this repository.
+     * For more information, see "About GitHub Advanced Security." For standalone Code Scanning or
+     * Secret Protection products, this parameter cannot be used.
      */
-    val status: String? = null
-) : SdkResource()
+    data class ReposUpdateSecurityAndAnalysisAdvancedSecurity(
+        /** Can be `enabled` or `disabled`. */
+        val status: String? = null
+    ) : SdkResource()
 
-/**
- * Use the `status` property to enable or disable GitHub Code Security for this repository.
- */
-data class ReposUpdateSecurityAndAnalysisCodeSecurity(
-    /**
-     * Can be `enabled` or `disabled`.
-     */
-    val status: String? = null
-) : SdkResource()
+    /** Use the `status` property to enable or disable GitHub Code Security for this repository. */
+    data class ReposUpdateSecurityAndAnalysisCodeSecurity(
+        /** Can be `enabled` or `disabled`. */
+        val status: String? = null
+    ) : SdkResource()
 
-/**
- * Use the `status` property to enable or disable secret scanning for this repository. For more information, see "About secret scanning."
- */
-data class ReposUpdateSecurityAndAnalysisSecretScanning(
     /**
-     * Can be `enabled` or `disabled`.
+     * Use the `status` property to enable or disable secret scanning for this repository. For more
+     * information, see "About secret scanning."
      */
-    val status: String? = null
-) : SdkResource()
+    data class ReposUpdateSecurityAndAnalysisSecretScanning(
+        /** Can be `enabled` or `disabled`. */
+        val status: String? = null
+    ) : SdkResource()
 
-/**
- * Use the `status` property to enable or disable secret scanning push protection for this repository. For more information, see "Protecting pushes with secret scanning."
- */
-data class ReposUpdateSecurityAndAnalysisSecretScanningPushProtection(
     /**
-     * Can be `enabled` or `disabled`.
+     * Use the `status` property to enable or disable secret scanning push protection for this
+     * repository. For more information, see "Protecting pushes with secret scanning."
      */
-    val status: String? = null
-) : SdkResource()
+    data class ReposUpdateSecurityAndAnalysisSecretScanningPushProtection(
+        /** Can be `enabled` or `disabled`. */
+        val status: String? = null
+    ) : SdkResource()
 
-/**
- * Use the `status` property to enable or disable secret scanning AI detection for this repository. For more information, see "Responsible detection of generic secrets with AI."
- */
-data class ReposUpdateSecurityAndAnalysisSecretScanningAiDetection(
     /**
-     * Can be `enabled` or `disabled`.
+     * Use the `status` property to enable or disable secret scanning AI detection for this
+     * repository. For more information, see "Responsible detection of generic secrets with AI."
      */
-    val status: String? = null
-) : SdkResource()
+    data class ReposUpdateSecurityAndAnalysisSecretScanningAiDetection(
+        /** Can be `enabled` or `disabled`. */
+        val status: String? = null
+    ) : SdkResource()
 
-/**
- * Use the `status` property to enable or disable secret scanning non-provider patterns for this repository. For more information, see "Supported secret scanning patterns."
- */
-data class ReposUpdateSecurityAndAnalysisSecretScanningNonProviderPatterns(
     /**
-     * Can be `enabled` or `disabled`.
+     * Use the `status` property to enable or disable secret scanning non-provider patterns for this
+     * repository. For more information, see "Supported secret scanning patterns."
      */
-    val status: String? = null
-) : SdkResource()
+    data class ReposUpdateSecurityAndAnalysisSecretScanningNonProviderPatterns(
+        /** Can be `enabled` or `disabled`. */
+        val status: String? = null
+    ) : SdkResource()
 
-/**
- * Use the `status` property to enable or disable secret scanning delegated alert dismissal for this repository.
- */
-data class ReposUpdateSecurityAndAnalysisSecretScanningDelegatedAlertDismissal(
     /**
-     * Can be `enabled` or `disabled`.
+     * Use the `status` property to enable or disable secret scanning delegated alert dismissal for
+     * this repository.
      */
-    val status: String? = null
-) : SdkResource()
+    data class ReposUpdateSecurityAndAnalysisSecretScanningDelegatedAlertDismissal(
+        /** Can be `enabled` or `disabled`. */
+        val status: String? = null
+    ) : SdkResource()
 
-/**
- * Use the `status` property to enable or disable secret scanning delegated bypass for this repository.
- */
-data class ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypass(
     /**
-     * Can be `enabled` or `disabled`.
+     * Use the `status` property to enable or disable secret scanning delegated bypass for this
+     * repository.
      */
-    val status: String? = null
-) : SdkResource()
+    data class ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypass(
+        /** Can be `enabled` or `disabled`. */
+        val status: String? = null
+    ) : SdkResource()
 
+    data class ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOpX642aa586a2(
+        /** The ID of the team or role selected as a bypass reviewer */
+        @com.fasterxml.jackson.annotation.JsonProperty("reviewer_id") val reviewerId: Long,
+        /** The type of the bypass reviewer */
+        @com.fasterxml.jackson.annotation.JsonProperty("reviewer_type")
+        val reviewerType: ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOpX34a32854c6,
+        /** The bypass mode for the reviewer */
+        val mode: ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOpXf4181c2ec3? = null,
+    ) : SdkResource()
 
+    /**
+     * Feature options for secret scanning delegated bypass. This object is only honored when
+     * `security_and_analysis.secret_scanning_delegated_bypass.status` is set to `enabled`. You can
+     * send this object in the same request as `secret_scanning_delegated_bypass`, or update just
+     * the options in a separate request.
+     */
+    data class ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOptions(
+        /**
+         * The bypass reviewers for secret scanning delegated bypass. If you omit this field, the
+         * existing set of reviewers is unchanged.
+         */
+        val reviewers:
+            List<ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOpX642aa586a2>? =
+            null
+    ) : SdkResource()
 
+    /**
+     * Specify which security and analysis features to enable or disable for the repository. To use
+     * this parameter, you must have admin permissions for the repository or be an owner or security
+     * manager for the organization that owns the repository. For more information, see "Managing
+     * security managers in your organization." For example, to enable GitHub Advanced Security, use
+     * this data in the body of the `PATCH` request: `{ "security_and_analysis":
+     * {"advanced_security": { "status":…
+     */
+    data class ReposUpdateSecurityAndAnalysis(
+        /**
+         * Use the `status` property to enable or disable GitHub Advanced Security for this
+         * repository. For more information, see "About GitHub Advanced Security." For standalone
+         * Code Scanning or Secret Protection products, this parameter cannot be used.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("advanced_security")
+        val advancedSecurity: ReposUpdateSecurityAndAnalysisAdvancedSecurity? = null,
+        /**
+         * Use the `status` property to enable or disable GitHub Code Security for this repository.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("code_security")
+        val codeSecurity: ReposUpdateSecurityAndAnalysisCodeSecurity? = null,
+        /**
+         * Use the `status` property to enable or disable secret scanning for this repository. For
+         * more information, see "About secret scanning."
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning")
+        val secretScanning: ReposUpdateSecurityAndAnalysisSecretScanning? = null,
+        /**
+         * Use the `status` property to enable or disable secret scanning push protection for this
+         * repository. For more information, see "Protecting pushes with secret scanning."
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_push_protection")
+        val secretScanningPushProtection:
+            ReposUpdateSecurityAndAnalysisSecretScanningPushProtection? =
+            null,
+        /**
+         * Use the `status` property to enable or disable secret scanning AI detection for this
+         * repository. For more information, see "Responsible detection of generic secrets with AI."
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_ai_detection")
+        val secretScanningAiDetection: ReposUpdateSecurityAndAnalysisSecretScanningAiDetection? =
+            null,
+        /**
+         * Use the `status` property to enable or disable secret scanning non-provider patterns for
+         * this repository. For more information, see "Supported secret scanning patterns."
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_non_provider_patterns")
+        val secretScanningNonProviderPatterns:
+            ReposUpdateSecurityAndAnalysisSecretScanningNonProviderPatterns? =
+            null,
+        /**
+         * Use the `status` property to enable or disable secret scanning delegated alert dismissal
+         * for this repository.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_delegated_alert_dismissal")
+        val secretScanningDelegatedAlertDismissal:
+            ReposUpdateSecurityAndAnalysisSecretScanningDelegatedAlertDismissal? =
+            null,
+        /**
+         * Use the `status` property to enable or disable secret scanning delegated bypass for this
+         * repository.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_delegated_bypass")
+        val secretScanningDelegatedBypass:
+            ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypass? =
+            null,
+        /**
+         * Feature options for secret scanning delegated bypass. This object is only honored when
+         * `security_and_analysis.secret_scanning_delegated_bypass.status` is set to `enabled`. You
+         * can send this object in the same request as `secret_scanning_delegated_bypass`, or update
+         * just the options in a separate request.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_delegated_bypass_options")
+        val secretScanningDelegatedBypassOptions:
+            ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOptions? =
+            null,
+    ) : SdkResource()
 
+    /**
+     * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more
+     * information.
+     */
+    data class ReposCreateAttestationBundle(
+        val mediaType: String? = null,
+        val verificationMaterial: Map<String, Any>? = null,
+        val dsseEnvelope: Map<String, Any>? = null,
+    ) : SdkResource()
 
-data class ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOpX642aa586a2(
-    /**
-     * The ID of the team or role selected as a bypass reviewer
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("reviewer_id") val reviewerId: Long,
-    /**
-     * The type of the bypass reviewer
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("reviewer_type") val reviewerType: ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOpX34a32854c6,
-    /**
-     * The bypass mode for the reviewer
-     */
-    val mode: ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOpXf4181c2ec3? = null
-) : SdkResource()
+    data class ReposCreateAttestationResponse(
+        /** The ID of the attestation. */
+        val id: Long? = null
+    ) : SdkResource()
 
-/**
- * Feature options for secret scanning delegated bypass. This object is only honored when `security_and_analysis.secret_scanning_delegated_bypass.status` is set to `enabled`. You can send this object in the same request as `secret_scanning_delegated_bypass`, or update just the options in a separate request.
- */
-data class ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOptions(
     /**
-     * The bypass reviewers for secret scanning delegated bypass. If you omit this field, the existing set of reviewers is unchanged.
+     * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more
+     * information.
      */
-    val reviewers: List<ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOpX642aa586a2>? = null
-) : SdkResource()
+    data class ReposListAttestationsResponseAttestationsItemBundle(
+        val mediaType: String? = null,
+        val verificationMaterial: Map<String, Any>? = null,
+        val dsseEnvelope: Map<String, Any>? = null,
+    ) : SdkResource()
 
-/**
- * Specify which security and analysis features to enable or disable for the repository. To use this parameter, you must have admin permissions for the repository or be an owner or security manager for the organization that owns the repository. For more information, see "Managing security managers in your organization." For example, to enable GitHub Advanced Security, use this data in the body of the `PATCH` request: `{ "security_and_analysis": {"advanced_security": { "status":…
- */
-data class ReposUpdateSecurityAndAnalysis(
-    /**
-     * Use the `status` property to enable or disable GitHub Advanced Security for this repository. For more information, see "About GitHub Advanced Security." For standalone Code Scanning or Secret Protection products, this parameter cannot be used.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("advanced_security") val advancedSecurity: ReposUpdateSecurityAndAnalysisAdvancedSecurity? = null,
-    /**
-     * Use the `status` property to enable or disable GitHub Code Security for this repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("code_security") val codeSecurity: ReposUpdateSecurityAndAnalysisCodeSecurity? = null,
-    /**
-     * Use the `status` property to enable or disable secret scanning for this repository. For more information, see "About secret scanning."
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning") val secretScanning: ReposUpdateSecurityAndAnalysisSecretScanning? = null,
-    /**
-     * Use the `status` property to enable or disable secret scanning push protection for this repository. For more information, see "Protecting pushes with secret scanning."
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_push_protection") val secretScanningPushProtection: ReposUpdateSecurityAndAnalysisSecretScanningPushProtection? = null,
-    /**
-     * Use the `status` property to enable or disable secret scanning AI detection for this repository. For more information, see "Responsible detection of generic secrets with AI."
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_ai_detection") val secretScanningAiDetection: ReposUpdateSecurityAndAnalysisSecretScanningAiDetection? = null,
-    /**
-     * Use the `status` property to enable or disable secret scanning non-provider patterns for this repository. For more information, see "Supported secret scanning patterns."
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_non_provider_patterns") val secretScanningNonProviderPatterns: ReposUpdateSecurityAndAnalysisSecretScanningNonProviderPatterns? = null,
-    /**
-     * Use the `status` property to enable or disable secret scanning delegated alert dismissal for this repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_delegated_alert_dismissal") val secretScanningDelegatedAlertDismissal: ReposUpdateSecurityAndAnalysisSecretScanningDelegatedAlertDismissal? = null,
-    /**
-     * Use the `status` property to enable or disable secret scanning delegated bypass for this repository.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_delegated_bypass") val secretScanningDelegatedBypass: ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypass? = null,
-    /**
-     * Feature options for secret scanning delegated bypass. This object is only honored when `security_and_analysis.secret_scanning_delegated_bypass.status` is set to `enabled`. You can send this object in the same request as `secret_scanning_delegated_bypass`, or update just the options in a separate request.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("secret_scanning_delegated_bypass_options") val secretScanningDelegatedBypassOptions: ReposUpdateSecurityAndAnalysisSecretScanningDelegatedBypassOptions? = null
-) : SdkResource()
+    data class ReposListAttestationsResponseAttestationsItem(
+        /**
+         * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more
+         * information.
+         */
+        val bundle: ReposListAttestationsResponseAttestationsItemBundle? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("repository_id")
+        val repositoryId: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("bundle_url") val bundleUrl: String? = null,
+        val initiator: String? = null,
+    ) : SdkResource()
 
-/**
- * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more information.
- */
-data class ReposCreateAttestationBundle(
-    val mediaType: String? = null,
-    val verificationMaterial: Map<String, Any>? = null,
-    val dsseEnvelope: Map<String, Any>? = null
-) : SdkResource()
+    data class ReposListAttestationsResponse(
+        val attestations: List<ReposListAttestationsResponseAttestationsItem>? = null
+    ) : SdkResource()
 
-data class ReposCreateAttestationResponse(
-    /**
-     * The ID of the attestation.
-     */
-    val id: Long? = null
-) : SdkResource()
+    data class ReposUpdateBranchProtectionRequiredStatusChecksChecksItem(
+        /** The name of the required check */
+        val context: String,
+        /**
+         * The ID of the GitHub App that must provide this check. Omit this field to automatically
+         * select the GitHub App that has recently provided this check, or any app if it was not set
+         * by a GitHub App. Pass -1 to explicitly allow any app to set the status.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("app_id") val appId: Long? = null,
+    ) : SdkResource()
 
-/**
- * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more information.
- */
-data class ReposListAttestationsResponseAttestationsItemBundle(
-    val mediaType: String? = null,
-    val verificationMaterial: Map<String, Any>? = null,
-    val dsseEnvelope: Map<String, Any>? = null
-) : SdkResource()
+    /** Require status checks to pass before merging. Set to `null` to disable. */
+    data class ReposUpdateBranchProtectionRequiredStatusChecks(
+        /** Require branches to be up to date before merging. */
+        val strict: Boolean,
+        /**
+         * **Closing down notice**: The list of status checks to require in order to merge into this
+         * branch. If any of these checks have recently been set by a particular GitHub App, they
+         * will be required to come from that app in future for the branch to merge. Use `checks`
+         * instead of `contexts` for more fine-grained control.
+         */
+        val contexts: List<String>,
+        /** The list of status checks to require in order to merge into this branch. */
+        val checks: List<ReposUpdateBranchProtectionRequiredStatusChecksChecksItem>? = null,
+    ) : SdkResource()
 
-data class ReposListAttestationsResponseAttestationsItem(
     /**
-     * The attestation's Sigstore Bundle. Refer to the Sigstore Bundle Specification for more information.
+     * Specify which users, teams, and apps can dismiss pull request reviews. Pass an empty
+     * `dismissal_restrictions` object to disable. User and team `dismissal_restrictions` are only
+     * available for organization-owned repositories. Omit this parameter for personal repositories.
      */
-    val bundle: ReposListAttestationsResponseAttestationsItemBundle? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("repository_id") val repositoryId: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("bundle_url") val bundleUrl: String? = null,
-    val initiator: String? = null
-) : SdkResource()
+    data class ReposUpdateBranchProtectionRequiredPullRequestReviewsDismissaXa608d77ef8(
+        /** The list of user `login`s with dismissal access */
+        val users: List<String>? = null,
+        /** The list of team `slug`s with dismissal access */
+        val teams: List<String>? = null,
+        /** The list of app `slug`s with dismissal access */
+        val apps: List<String>? = null,
+    ) : SdkResource()
 
-data class ReposListAttestationsResponse(
-    val attestations: List<ReposListAttestationsResponseAttestationsItem>? = null
-) : SdkResource()
+    /** Allow specific users, teams, or apps to bypass pull request requirements. */
+    data class ReposUpdateBranchProtectionRequiredPullRequestReviewsBypassPuXca647ea501(
+        /** The list of user `login`s allowed to bypass pull request requirements. */
+        val users: List<String>? = null,
+        /** The list of team `slug`s allowed to bypass pull request requirements. */
+        val teams: List<String>? = null,
+        /** The list of app `slug`s allowed to bypass pull request requirements. */
+        val apps: List<String>? = null,
+    ) : SdkResource()
 
-data class ReposUpdateBranchProtectionRequiredStatusChecksChecksItem(
     /**
-     * The name of the required check
+     * Require at least one approving review on a pull request, before merging. Set to `null` to
+     * disable.
      */
-    val context: String,
-    /**
-     * The ID of the GitHub App that must provide this check. Omit this field to automatically select the GitHub App that has recently provided this check, or any app if it was not set by a GitHub App. Pass -1 to explicitly allow any app to set the status.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("app_id") val appId: Long? = null
-) : SdkResource()
+    data class ReposUpdateBranchProtectionRequiredPullRequestReviews(
+        /**
+         * Specify which users, teams, and apps can dismiss pull request reviews. Pass an empty
+         * `dismissal_restrictions` object to disable. User and team `dismissal_restrictions` are
+         * only available for organization-owned repositories. Omit this parameter for personal
+         * repositories.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("dismissal_restrictions")
+        val dismissalRestrictions:
+            ReposUpdateBranchProtectionRequiredPullRequestReviewsDismissaXa608d77ef8? =
+            null,
+        /**
+         * Set to `true` if you want to automatically dismiss approving reviews when someone pushes
+         * a new commit.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("dismiss_stale_reviews")
+        val dismissStaleReviews: Boolean? = null,
+        /** Blocks merging pull requests until code owners review them. */
+        @com.fasterxml.jackson.annotation.JsonProperty("require_code_owner_reviews")
+        val requireCodeOwnerReviews: Boolean? = null,
+        /**
+         * Specify the number of reviewers required to approve pull requests. Use a number between 1
+         * and 6 or 0 to not require reviewers.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("required_approving_review_count")
+        val requiredApprovingReviewCount: Long? = null,
+        /**
+         * Whether the most recent push must be approved by someone other than the person who pushed
+         * it. Default: `false`.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("require_last_push_approval")
+        val requireLastPushApproval: Boolean? = null,
+        /** Allow specific users, teams, or apps to bypass pull request requirements. */
+        @com.fasterxml.jackson.annotation.JsonProperty("bypass_pull_request_allowances")
+        val bypassPullRequestAllowances:
+            ReposUpdateBranchProtectionRequiredPullRequestReviewsBypassPuXca647ea501? =
+            null,
+    ) : SdkResource()
 
-/**
- * Require status checks to pass before merging. Set to `null` to disable.
- */
-data class ReposUpdateBranchProtectionRequiredStatusChecks(
     /**
-     * Require branches to be up to date before merging.
+     * Restrict who can push to the protected branch. User, app, and team `restrictions` are only
+     * available for organization-owned repositories. Set to `null` to disable.
      */
-    val strict: Boolean,
-    /**
-     * **Closing down notice**: The list of status checks to require in order to merge into this branch. If any of these checks have recently been set by a particular GitHub App, they will be required to come from that app in future for the branch to merge. Use `checks` instead of `contexts` for more fine-grained control.
-     */
-    val contexts: List<String>,
-    /**
-     * The list of status checks to require in order to merge into this branch.
-     */
-    val checks: List<ReposUpdateBranchProtectionRequiredStatusChecksChecksItem>? = null
-) : SdkResource()
+    data class ReposUpdateBranchProtectionRestrictions(
+        /** The list of user `login`s with push access */
+        val users: List<String>,
+        /** The list of team `slug`s with push access */
+        val teams: List<String>,
+        /** The list of app `slug`s with push access */
+        val apps: List<String>? = null,
+    ) : SdkResource()
 
-/**
- * Specify which users, teams, and apps can dismiss pull request reviews. Pass an empty `dismissal_restrictions` object to disable. User and team `dismissal_restrictions` are only available for organization-owned repositories. Omit this parameter for personal repositories.
- */
-data class ReposUpdateBranchProtectionRequiredPullRequestReviewsDismissaXa608d77ef8(
     /**
-     * The list of user `login`s with dismissal access
+     * Specify which users, teams, and apps can dismiss pull request reviews. Pass an empty
+     * `dismissal_restrictions` object to disable. User and team `dismissal_restrictions` are only
+     * available for organization-owned repositories. Omit this parameter for personal repositories.
      */
-    val users: List<String>? = null,
-    /**
-     * The list of team `slug`s with dismissal access
-     */
-    val teams: List<String>? = null,
-    /**
-     * The list of app `slug`s with dismissal access
-     */
-    val apps: List<String>? = null
-) : SdkResource()
+    data class ReposUpdatePullRequestReviewProtectionDismissalRestrictions(
+        /** The list of user `login`s with dismissal access */
+        val users: List<String>? = null,
+        /** The list of team `slug`s with dismissal access */
+        val teams: List<String>? = null,
+        /** The list of app `slug`s with dismissal access */
+        val apps: List<String>? = null,
+    ) : SdkResource()
 
-/**
- * Allow specific users, teams, or apps to bypass pull request requirements.
- */
-data class ReposUpdateBranchProtectionRequiredPullRequestReviewsBypassPuXca647ea501(
-    /**
-     * The list of user `login`s allowed to bypass pull request requirements.
-     */
-    val users: List<String>? = null,
-    /**
-     * The list of team `slug`s allowed to bypass pull request requirements.
-     */
-    val teams: List<String>? = null,
-    /**
-     * The list of app `slug`s allowed to bypass pull request requirements.
-     */
-    val apps: List<String>? = null
-) : SdkResource()
+    /** Allow specific users, teams, or apps to bypass pull request requirements. */
+    data class ReposUpdatePullRequestReviewProtectionBypassPullRequestAllowances(
+        /** The list of user `login`s allowed to bypass pull request requirements. */
+        val users: List<String>? = null,
+        /** The list of team `slug`s allowed to bypass pull request requirements. */
+        val teams: List<String>? = null,
+        /** The list of app `slug`s allowed to bypass pull request requirements. */
+        val apps: List<String>? = null,
+    ) : SdkResource()
 
-/**
- * Require at least one approving review on a pull request, before merging. Set to `null` to disable.
- */
-data class ReposUpdateBranchProtectionRequiredPullRequestReviews(
-    /**
-     * Specify which users, teams, and apps can dismiss pull request reviews. Pass an empty `dismissal_restrictions` object to disable. User and team `dismissal_restrictions` are only available for organization-owned repositories. Omit this parameter for personal repositories.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismissal_restrictions") val dismissalRestrictions: ReposUpdateBranchProtectionRequiredPullRequestReviewsDismissaXa608d77ef8? = null,
-    /**
-     * Set to `true` if you want to automatically dismiss approving reviews when someone pushes a new commit.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("dismiss_stale_reviews") val dismissStaleReviews: Boolean? = null,
-    /**
-     * Blocks merging pull requests until code owners review them.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_code_owner_reviews") val requireCodeOwnerReviews: Boolean? = null,
-    /**
-     * Specify the number of reviewers required to approve pull requests. Use a number between 1 and 6 or 0 to not require reviewers.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("required_approving_review_count") val requiredApprovingReviewCount: Long? = null,
-    /**
-     * Whether the most recent push must be approved by someone other than the person who pushed it. Default: `false`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("require_last_push_approval") val requireLastPushApproval: Boolean? = null,
-    /**
-     * Allow specific users, teams, or apps to bypass pull request requirements.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("bypass_pull_request_allowances") val bypassPullRequestAllowances: ReposUpdateBranchProtectionRequiredPullRequestReviewsBypassPuXca647ea501? = null
-) : SdkResource()
+    data class ReposUpdateStatusCheckProtectionChecksItem(
+        /** The name of the required check */
+        val context: String,
+        /**
+         * The ID of the GitHub App that must provide this check. Omit this field to automatically
+         * select the GitHub App that has recently provided this check, or any app if it was not set
+         * by a GitHub App. Pass -1 to explicitly allow any app to set the status.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("app_id") val appId: Long? = null,
+    ) : SdkResource()
 
-/**
- * Restrict who can push to the protected branch. User, app, and team `restrictions` are only available for organization-owned repositories. Set to `null` to disable.
- */
-data class ReposUpdateBranchProtectionRestrictions(
-    /**
-     * The list of user `login`s with push access
-     */
-    val users: List<String>,
-    /**
-     * The list of team `slug`s with push access
-     */
-    val teams: List<String>,
-    /**
-     * The list of app `slug`s with push access
-     */
-    val apps: List<String>? = null
-) : SdkResource()
+    /** The person that committed the file. Default: the authenticated user. */
+    data class ReposCreateOrUpdateFileContentsCommitter(
+        /**
+         * The name of the author or committer of the commit. You'll receive a `422` status code if
+         * `name` is omitted.
+         */
+        val name: String,
+        /**
+         * The email of the author or committer of the commit. You'll receive a `422` status code if
+         * `email` is omitted.
+         */
+        val email: String,
+        val date: String? = null,
+    ) : SdkResource()
 
-/**
- * Specify which users, teams, and apps can dismiss pull request reviews. Pass an empty `dismissal_restrictions` object to disable. User and team `dismissal_restrictions` are only available for organization-owned repositories. Omit this parameter for personal repositories.
- */
-data class ReposUpdatePullRequestReviewProtectionDismissalRestrictions(
     /**
-     * The list of user `login`s with dismissal access
+     * The author of the file. Default: The `committer` or the authenticated user if you omit
+     * `committer`.
      */
-    val users: List<String>? = null,
-    /**
-     * The list of team `slug`s with dismissal access
-     */
-    val teams: List<String>? = null,
-    /**
-     * The list of app `slug`s with dismissal access
-     */
-    val apps: List<String>? = null
-) : SdkResource()
+    data class ReposCreateOrUpdateFileContentsAuthor(
+        /**
+         * The name of the author or committer of the commit. You'll receive a `422` status code if
+         * `name` is omitted.
+         */
+        val name: String,
+        /**
+         * The email of the author or committer of the commit. You'll receive a `422` status code if
+         * `email` is omitted.
+         */
+        val email: String,
+        val date: String? = null,
+    ) : SdkResource()
 
-/**
- * Allow specific users, teams, or apps to bypass pull request requirements.
- */
-data class ReposUpdatePullRequestReviewProtectionBypassPullRequestAllowances(
-    /**
-     * The list of user `login`s allowed to bypass pull request requirements.
-     */
-    val users: List<String>? = null,
-    /**
-     * The list of team `slug`s allowed to bypass pull request requirements.
-     */
-    val teams: List<String>? = null,
-    /**
-     * The list of app `slug`s allowed to bypass pull request requirements.
-     */
-    val apps: List<String>? = null
-) : SdkResource()
+    /** object containing information about the committer. */
+    data class ReposDeleteFileCommitter(
+        /** The name of the author (or committer) of the commit */
+        val name: String? = null,
+        /** The email of the author (or committer) of the commit */
+        val email: String? = null,
+    ) : SdkResource()
 
-data class ReposUpdateStatusCheckProtectionChecksItem(
-    /**
-     * The name of the required check
-     */
-    val context: String,
-    /**
-     * The ID of the GitHub App that must provide this check. Omit this field to automatically select the GitHub App that has recently provided this check, or any app if it was not set by a GitHub App. Pass -1 to explicitly allow any app to set the status.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("app_id") val appId: Long? = null
-) : SdkResource()
+    /** object containing information about the author. */
+    data class ReposDeleteFileAuthor(
+        /** The name of the author (or committer) of the commit */
+        val name: String? = null,
+        /** The email of the author (or committer) of the commit */
+        val email: String? = null,
+    ) : SdkResource()
 
-/**
- * The person that committed the file. Default: the authenticated user.
- */
-data class ReposCreateOrUpdateFileContentsCommitter(
-    /**
-     * The name of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted.
-     */
-    val name: String,
-    /**
-     * The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted.
-     */
-    val email: String,
-    val date: String? = null
-) : SdkResource()
+    data class ReposGetAllEnvironmentsResponse(
+        /** The number of environments in this repository */
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long? = null,
+        val environments: List<Environment>? = null,
+    ) : SdkResource()
 
-/**
- * The author of the file. Default: The `committer` or the authenticated user if you omit `committer`.
- */
-data class ReposCreateOrUpdateFileContentsAuthor(
-    /**
-     * The name of the author or committer of the commit. You'll receive a `422` status code if `name` is omitted.
-     */
-    val name: String,
-    /**
-     * The email of the author or committer of the commit. You'll receive a `422` status code if `email` is omitted.
-     */
-    val email: String,
-    val date: String? = null
-) : SdkResource()
+    data class ReposCreateOrUpdateEnvironmentReviewersItem(
+        /** The type of reviewer. */
+        val type: DeploymentReviewerType? = null,
+        /** The id of the user or team who can review the deployment */
+        val id: Long? = null,
+    ) : SdkResource()
 
-/**
- * object containing information about the committer.
- */
-data class ReposDeleteFileCommitter(
-    /**
-     * The name of the author (or committer) of the commit
-     */
-    val name: String? = null,
-    /**
-     * The email of the author (or committer) of the commit
-     */
-    val email: String? = null
-) : SdkResource()
+    data class ReposListDeploymentBranchPoliciesResponse(
+        /** The number of deployment branch policies for the environment. */
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        @com.fasterxml.jackson.annotation.JsonProperty("branch_policies")
+        val branchPolicies: List<DeploymentBranchPolicy>,
+    ) : SdkResource()
 
-/**
- * object containing information about the author.
- */
-data class ReposDeleteFileAuthor(
-    /**
-     * The name of the author (or committer) of the commit
-     */
-    val name: String? = null,
-    /**
-     * The email of the author (or committer) of the commit
-     */
-    val email: String? = null
-) : SdkResource()
+    data class ReposGetAllDeploymentProtectionRulesResponse(
+        /** The number of enabled custom deployment protection rules for this environment */
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("custom_deployment_protection_rules")
+        val customDeploymentProtectionRules: List<DeploymentProtectionRule>? = null,
+    ) : SdkResource()
 
-data class ReposGetAllEnvironmentsResponse(
-    /**
-     * The number of environments in this repository
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long? = null,
-    val environments: List<Environment>? = null
-) : SdkResource()
+    data class ReposListCustomDeploymentRuleIntegrationsResponse(
+        /**
+         * The total number of custom deployment protection rule integrations available for this
+         * environment.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty(
+            "available_custom_deployment_protection_rule_integrations"
+        )
+        val availableCustomDeploymentProtectionRuleIntegrations: List<CustomDeploymentRuleApp>? =
+            null,
+    ) : SdkResource()
 
-data class ReposCreateOrUpdateEnvironmentReviewersItem(
-    /**
-     * The type of reviewer.
-     */
-    val type: DeploymentReviewerType? = null,
-    /**
-     * The id of the user or team who can review the deployment
-     */
-    val id: Long? = null
-) : SdkResource()
+    /** Key/value pairs to provide settings for this webhook. */
+    data class ReposCreateWebhookConfig(
+        /** The URL to which the payloads will be delivered. */
+        val url: WebhookConfigUrl? = null,
+        /**
+         * The media type used to serialize the payloads. Supported values include `json` and
+         * `form`. The default is `form`.
+         */
+        @com.fasterxml.jackson.annotation.JsonProperty("content_type")
+        val contentType: WebhookConfigContentType? = null,
+        /**
+         * If provided, the `secret` will be used as the `key` to generate the HMAC hex digest value
+         * for delivery signature headers.
+         */
+        val secret: WebhookConfigSecret? = null,
+        @com.fasterxml.jackson.annotation.JsonProperty("insecure_ssl")
+        val insecureSsl: WebhookConfigInsecureSsl? = null,
+    ) : SdkResource()
 
-data class ReposListDeploymentBranchPoliciesResponse(
-    /**
-     * The number of deployment branch policies for the environment.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    @com.fasterxml.jackson.annotation.JsonProperty("branch_policies") val branchPolicies: List<DeploymentBranchPolicy>
-) : SdkResource()
+    /** The source branch and directory used to publish your Pages site. */
+    data class ReposCreatePagesSiteSource(
+        /** The repository branch used to publish your site's source files. */
+        val branch: String,
+        /**
+         * The repository directory that includes the source files for the Pages site. Allowed paths
+         * are `/` or `/docs`. Default: `/`
+         */
+        val path: ReposCreatePagesSiteSourcePathEnum? = null,
+    ) : SdkResource()
 
-data class ReposGetAllDeploymentProtectionRulesResponse(
-    /**
-     * The number of enabled custom deployment protection rules for this environment
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("custom_deployment_protection_rules") val customDeploymentProtectionRules: List<DeploymentProtectionRule>? = null
-) : SdkResource()
-
-data class ReposListCustomDeploymentRuleIntegrationsResponse(
-    /**
-     * The total number of custom deployment protection rule integrations available for this environment.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("available_custom_deployment_protection_rule_integrations") val availableCustomDeploymentProtectionRuleIntegrations: List<CustomDeploymentRuleApp>? = null
-) : SdkResource()
-
-/**
- * Key/value pairs to provide settings for this webhook.
- */
-data class ReposCreateWebhookConfig(
-    /**
-     * The URL to which the payloads will be delivered.
-     */
-    val url: WebhookConfigUrl? = null,
-    /**
-     * The media type used to serialize the payloads. Supported values include `json` and `form`. The default is `form`.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("content_type") val contentType: WebhookConfigContentType? = null,
-    /**
-     * If provided, the `secret` will be used as the `key` to generate the HMAC hex digest value for delivery signature headers.
-     */
-    val secret: WebhookConfigSecret? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("insecure_ssl") val insecureSsl: WebhookConfigInsecureSsl? = null
-) : SdkResource()
-
-/**
- * The source branch and directory used to publish your Pages site.
- */
-data class ReposCreatePagesSiteSource(
-    /**
-     * The repository branch used to publish your site's source files.
-     */
-    val branch: String,
-    /**
-     * The repository directory that includes the source files for the Pages site. Allowed paths are `/` or `/docs`. Default: `/`
-     */
-    val path: ReposCreatePagesSiteSourcePathEnum? = null
-) : SdkResource()
-
-data class ReposCheckPrivateVulnerabilityReportingResponse(
-    /**
-     * Whether or not private vulnerability reporting is enabled for the repository.
-     */
-    val enabled: Boolean
-) : SdkResource()
+    data class ReposCheckPrivateVulnerabilityReportingResponse(
+        /** Whether or not private vulnerability reporting is enabled for the repository. */
+        val enabled: Boolean
+    ) : SdkResource()
 
     /** Parameters for [reposListForOrg]. */
     data class ReposListForOrgRequest(
@@ -651,7 +640,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val sort: ReposListForOrgParameterEnumb4d9e95c? = null,
         val direction: ReposListForOrgParameterEnum8b436ee9? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [reposCreateInOrg]. */
@@ -681,7 +670,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val squashMergeCommitMessage: ReposCreateInOrgSquashMergeCommitMessageEnum? = null,
         val mergeCommitTitle: ReposCreateInOrgMergeCommitTitleEnum? = null,
         val mergeCommitMessage: ReposCreateInOrgMergeCommitMessageEnum? = null,
-        val customProperties: Map<String, Any>? = null
+        val customProperties: Map<String, Any>? = null,
     )
 
     /** Parameters for [reposCreateOrgRuleset]. */
@@ -692,7 +681,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val target: ReposCreateOrgRulesetTargetEnum? = null,
         val bypassActors: List<RepositoryRulesetBypassActor>? = null,
         val conditions: OrgRulesetConditions? = null,
-        val rules: List<OrgRules>? = null
+        val rules: List<OrgRules>? = null,
     )
 
     /** Parameters for [reposGetOrgRuleSuites]. */
@@ -705,7 +694,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val ruleSuiteResult: SchemaSchemaEnum11fb9123? = null,
         val evaluateStatus: SchemaSchemaEnum133f4a69? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [reposUpdateOrgRuleset]. */
@@ -717,7 +706,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val enforcement: RepositoryRuleEnforcement? = null,
         val bypassActors: List<RepositoryRulesetBypassActor>? = null,
         val conditions: OrgRulesetConditions? = null,
-        val rules: List<OrgRules>? = null
+        val rules: List<OrgRules>? = null,
     )
 
     /** Parameters for [reposUpdate]. */
@@ -750,7 +739,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val mergeCommitMessage: ReposUpdateMergeCommitMessageEnum? = null,
         val archived: Boolean? = null,
         val allowForking: Boolean? = null,
-        val webCommitSignoffRequired: Boolean? = null
+        val webCommitSignoffRequired: Boolean? = null,
     )
 
     /** Parameters for [reposListActivities]. */
@@ -764,7 +753,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val ref: String? = null,
         val actor: String? = null,
         val timePeriod: ReposListActivitiesParameterEnum? = null,
-        val activityType: ReposListActivitiesParameterEnumdc62da83? = null
+        val activityType: ReposListActivitiesParameterEnumdc62da83? = null,
     )
 
     /** Parameters for [reposListAttestations]. */
@@ -775,7 +764,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val perPage: Long? = null,
         val before: String? = null,
         val after: String? = null,
-        val predicateType: String? = null
+        val predicateType: String? = null,
     )
 
     /** Parameters for [reposUpdateBranchProtection]. */
@@ -793,7 +782,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val blockCreations: Boolean? = null,
         val requiredConversationResolution: Boolean? = null,
         val lockBranch: Boolean? = null,
-        val allowForkSyncing: Boolean? = null
+        val allowForkSyncing: Boolean? = null,
     )
 
     /** Parameters for [reposUpdatePullRequestReviewProtection]. */
@@ -801,12 +790,15 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val owner: String,
         val repo: String,
         val branch: String,
-        val dismissalRestrictions: ReposUpdatePullRequestReviewProtectionDismissalRestrictions? = null,
+        val dismissalRestrictions: ReposUpdatePullRequestReviewProtectionDismissalRestrictions? =
+            null,
         val dismissStaleReviews: Boolean? = null,
         val requireCodeOwnerReviews: Boolean? = null,
         val requiredApprovingReviewCount: Long? = null,
         val requireLastPushApproval: Boolean? = null,
-        val bypassPullRequestAllowances: ReposUpdatePullRequestReviewProtectionBypassPullRequestAllowances? = null
+        val bypassPullRequestAllowances:
+            ReposUpdatePullRequestReviewProtectionBypassPullRequestAllowances? =
+            null,
     )
 
     /** Parameters for [reposUpdateStatusCheckProtection]. */
@@ -816,7 +808,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val branch: String,
         val strict: Boolean? = null,
         val contexts: List<String>? = null,
-        val checks: List<ReposUpdateStatusCheckProtectionChecksItem>? = null
+        val checks: List<ReposUpdateStatusCheckProtectionChecksItem>? = null,
     )
 
     /** Parameters for [reposListCollaborators]. */
@@ -826,7 +818,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val affiliation: ReposListCollaboratorsParameterEnum? = null,
         val permission: ReposListCollaboratorsParameterEnum6d76defa? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [reposListCommits]. */
@@ -840,7 +832,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val since: OffsetDateTime? = null,
         val until: OffsetDateTime? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [reposCreateCommitComment]. */
@@ -851,7 +843,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val body: String,
         val path: String? = null,
         val position: Long? = null,
-        val line: Long? = null
+        val line: Long? = null,
     )
 
     /** Parameters for [reposCreateOrUpdateFileContents]. */
@@ -864,7 +856,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val sha: String? = null,
         val branch: String? = null,
         val committer: ReposCreateOrUpdateFileContentsCommitter? = null,
-        val author: ReposCreateOrUpdateFileContentsAuthor? = null
+        val author: ReposCreateOrUpdateFileContentsAuthor? = null,
     )
 
     /** Parameters for [reposDeleteFile]. */
@@ -876,7 +868,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val sha: String,
         val branch: String? = null,
         val committer: ReposDeleteFileCommitter? = null,
-        val author: ReposDeleteFileAuthor? = null
+        val author: ReposDeleteFileAuthor? = null,
     )
 
     /** Parameters for [reposListDeployments]. */
@@ -888,7 +880,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val task: String? = null,
         val environment: SdkClient.SdkOptional<String?>? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [reposCreateDeployment]. */
@@ -903,7 +895,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val environment: String? = null,
         val description: SdkClient.SdkOptional<String?>? = null,
         val transientEnvironment: Boolean? = null,
-        val productionEnvironment: Boolean? = null
+        val productionEnvironment: Boolean? = null,
     )
 
     /** Parameters for [reposCreateDeploymentStatus]. */
@@ -917,7 +909,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val description: String? = null,
         val environment: String? = null,
         val environmentUrl: String? = null,
-        val autoInactive: Boolean? = null
+        val autoInactive: Boolean? = null,
     )
 
     /** Parameters for [reposCreateOrUpdateEnvironment]. */
@@ -927,8 +919,9 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val environmentName: String,
         val waitTimer: WaitTimer? = null,
         val preventSelfReview: PreventSelfReview? = null,
-        val reviewers: SdkClient.SdkOptional<List<ReposCreateOrUpdateEnvironmentReviewersItem>?>? = null,
-        val deploymentBranchPolicy: SdkClient.SdkOptional<DeploymentBranchPolicySettings?>? = null
+        val reviewers: SdkClient.SdkOptional<List<ReposCreateOrUpdateEnvironmentReviewersItem>?>? =
+            null,
+        val deploymentBranchPolicy: SdkClient.SdkOptional<DeploymentBranchPolicySettings?>? = null,
     )
 
     /** Parameters for [reposCreateWebhook]. */
@@ -938,7 +931,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val name: String? = null,
         val config: ReposCreateWebhookConfig? = null,
         val events: List<String>? = null,
-        val active: Boolean? = null
+        val active: Boolean? = null,
     )
 
     /** Parameters for [reposUpdateWebhook]. */
@@ -950,7 +943,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val events: List<String>? = null,
         val addEvents: List<String>? = null,
         val removeEvents: List<String>? = null,
-        val active: Boolean? = null
+        val active: Boolean? = null,
     )
 
     /** Parameters for [reposUpdateWebhookConfigForRepo]. */
@@ -961,7 +954,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val url: WebhookConfigUrl? = null,
         val contentType: WebhookConfigContentType? = null,
         val secret: WebhookConfigSecret? = null,
-        val insecureSsl: WebhookConfigInsecureSsl? = null
+        val insecureSsl: WebhookConfigInsecureSsl? = null,
     )
 
     /** Parameters for [reposListWebhookDeliveries]. */
@@ -971,7 +964,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val hookId: Long,
         val perPage: Long? = null,
         val cursor: String? = null,
-        val status: SchemaSchemaEnume81e966c? = null
+        val status: SchemaSchemaEnume81e966c? = null,
     )
 
     /** Parameters for [reposUpdateInformationAboutPagesSite]. */
@@ -981,7 +974,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val cname: SdkClient.SdkOptional<String?>? = null,
         val httpsEnforced: Boolean? = null,
         val buildType: ReposUpdateInformationAboutPagesSiteBuildTypeEnum? = null,
-        val source: ReposUpdateInformationAboutPagesSiteRequestSource? = null
+        val source: ReposUpdateInformationAboutPagesSiteRequestSource? = null,
     )
 
     /** Parameters for [reposCreatePagesDeployment]. */
@@ -992,7 +985,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val oidcToken: String,
         val artifactId: Double? = null,
         val artifactUrl: String? = null,
-        val environment: String? = null
+        val environment: String? = null,
     )
 
     /** Parameters for [reposCreateRelease]. */
@@ -1007,7 +1000,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val prerelease: Boolean? = null,
         val discussionCategoryName: String? = null,
         val generateReleaseNotes: Boolean? = null,
-        val makeLatest: ReposCreateReleaseMakeLatestEnum? = null
+        val makeLatest: ReposCreateReleaseMakeLatestEnum? = null,
     )
 
     /** Parameters for [reposUpdateReleaseAsset]. */
@@ -1017,7 +1010,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val assetId: Long,
         val name: String? = null,
         val label: String? = null,
-        val state: String? = null
+        val state: String? = null,
     )
 
     /** Parameters for [reposGenerateReleaseNotes]. */
@@ -1027,7 +1020,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val tagName: String,
         val targetCommitish: String? = null,
         val previousTagName: String? = null,
-        val configurationFilePath: String? = null
+        val configurationFilePath: String? = null,
     )
 
     /** Parameters for [reposUpdateRelease]. */
@@ -1042,7 +1035,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val draft: Boolean? = null,
         val prerelease: Boolean? = null,
         val makeLatest: ReposUpdateReleaseMakeLatestEnum? = null,
-        val discussionCategoryName: String? = null
+        val discussionCategoryName: String? = null,
     )
 
     /** Parameters for [reposUploadReleaseAsset]. */
@@ -1052,7 +1045,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val releaseId: Long,
         val name: String,
         val label: String? = null,
-        val body: ByteArray? = null
+        val body: ByteArray? = null,
     )
 
     /** Parameters for [reposGetRepoRulesets]. */
@@ -1062,7 +1055,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val perPage: Long? = null,
         val page: Long? = null,
         val includesParents: Boolean? = null,
-        val targets: String? = null
+        val targets: String? = null,
     )
 
     /** Parameters for [reposCreateRepoRuleset]. */
@@ -1074,7 +1067,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val target: ReposCreateRepoRulesetTargetEnum? = null,
         val bypassActors: List<RepositoryRulesetBypassActor>? = null,
         val conditions: RepositoryRulesetConditions? = null,
-        val rules: List<RepositoryRule>? = null
+        val rules: List<RepositoryRule>? = null,
     )
 
     /** Parameters for [reposGetRepoRuleSuites]. */
@@ -1087,7 +1080,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val ruleSuiteResult: SchemaSchemaEnum11fb9123? = null,
         val evaluateStatus: SchemaSchemaEnum133f4a69? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /** Parameters for [reposUpdateRepoRuleset]. */
@@ -1100,7 +1093,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val enforcement: RepositoryRuleEnforcement? = null,
         val bypassActors: List<RepositoryRulesetBypassActor>? = null,
         val conditions: RepositoryRulesetConditions? = null,
-        val rules: List<RepositoryRule>? = null
+        val rules: List<RepositoryRule>? = null,
     )
 
     /** Parameters for [reposCreateCommitStatus]. */
@@ -1111,7 +1104,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val state: ReposCreateCommitStatusStateEnum,
         val targetUrl: SdkClient.SdkOptional<String?>? = null,
         val description: SdkClient.SdkOptional<String?>? = null,
-        val context: String? = null
+        val context: String? = null,
     )
 
     /** Parameters for [reposCreateUsingTemplate]. */
@@ -1122,7 +1115,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val owner: String? = null,
         val description: String? = null,
         val includeAllBranches: Boolean? = null,
-        val private: Boolean? = null
+        val private: Boolean? = null,
     )
 
     /** Parameters for [reposListForAuthenticatedUser]. */
@@ -1135,7 +1128,7 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val perPage: Long? = null,
         val page: Long? = null,
         val since: OffsetDateTime? = null,
-        val before: OffsetDateTime? = null
+        val before: OffsetDateTime? = null,
     )
 
     /** Parameters for [reposCreateForAuthenticatedUser]. */
@@ -1157,12 +1150,14 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val allowRebaseMerge: Boolean? = null,
         val allowAutoMerge: Boolean? = null,
         val deleteBranchOnMerge: Boolean? = null,
-        val squashMergeCommitTitle: ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum? = null,
-        val squashMergeCommitMessage: ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum? = null,
+        val squashMergeCommitTitle: ReposCreateForAuthenticatedUserSquashMergeCommitTitleEnum? =
+            null,
+        val squashMergeCommitMessage: ReposCreateForAuthenticatedUserSquashMergeCommitMessageEnum? =
+            null,
         val mergeCommitTitle: ReposCreateForAuthenticatedUserMergeCommitTitleEnum? = null,
         val mergeCommitMessage: ReposCreateForAuthenticatedUserMergeCommitMessageEnum? = null,
         val hasDownloads: Boolean? = null,
-        val isTemplate: Boolean? = null
+        val isTemplate: Boolean? = null,
     )
 
     /** Parameters for [reposListForUser]. */
@@ -1172,13 +1167,21 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         val sort: ReposListForUserParameterEnumf2394501? = null,
         val direction: ReposListForUserParameterEnum098c291f? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
     /**
-     * Lists repositories for the specified organization. > [!NOTE] > In order to see the `security_and_analysis` block for a repository you must have admin permissions for the repository or be an owner or security manager for the organization that owns the repository. For more information, see "[Managing security managers in your organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)."
+     * Lists repositories for the specified organization. > [!NOTE] > In order to see the
+     * `security_and_analysis` block for a repository you must have admin permissions for the
+     * repository or be an owner or security manager for the organization that owns the repository.
+     * For more information, see "[Managing security managers in your
+     * organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)."
      */
-    fun reposListForOrg(clientConfig: ClientConfig, request: ReposListForOrgRequest, options: RequestOptions? = null): List<MinimalRepository> =
+    fun reposListForOrg(
+        clientConfig: ClientConfig,
+        request: ReposListForOrgRequest,
+        options: RequestOptions? = null,
+    ): List<MinimalRepository> =
         dev.octri.showcase.github.methods.ReposListForOrgOperation.reposListForOrg(
             clientConfig,
             request,
@@ -1186,9 +1189,17 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists repositories for the specified organization. > [!NOTE] > In order to see the `security_and_analysis` block for a repository you must have admin permissions for the repository or be an owner or security manager for the organization that owns the repository. For more information, see "[Managing security managers in your organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)."
+     * Lists repositories for the specified organization. > [!NOTE] > In order to see the
+     * `security_and_analysis` block for a repository you must have admin permissions for the
+     * repository or be an owner or security manager for the organization that owns the repository.
+     * For more information, see "[Managing security managers in your
+     * organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)."
      */
-    fun reposListForOrgWithRawResponse(clientConfig: ClientConfig, request: ReposListForOrgRequest, options: RequestOptions? = null): SdkResponse<List<MinimalRepository>> =
+    fun reposListForOrgWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListForOrgRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<MinimalRepository>> =
         dev.octri.showcase.github.methods.ReposListForOrgOperation.reposListForOrgWithRawResponse(
             clientConfig,
             request,
@@ -1196,9 +1207,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Creates a new repository in the specified organization. The authenticated user must be a member of the organization. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a private repository.
+     * Creates a new repository in the specified organization. The authenticated user must be a
+     * member of the organization. OAuth app tokens and personal access tokens (classic) need the
+     * `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a
+     * private repository.
      */
-    fun reposCreateInOrg(clientConfig: ClientConfig, request: ReposCreateInOrgRequest, options: RequestOptions? = null): FullRepository =
+    fun reposCreateInOrg(
+        clientConfig: ClientConfig,
+        request: ReposCreateInOrgRequest,
+        options: RequestOptions? = null,
+    ): FullRepository =
         dev.octri.showcase.github.methods.ReposCreateInOrgOperation.reposCreateInOrg(
             clientConfig,
             request,
@@ -1206,19 +1224,31 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Creates a new repository in the specified organization. The authenticated user must be a member of the organization. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a private repository.
+     * Creates a new repository in the specified organization. The authenticated user must be a
+     * member of the organization. OAuth app tokens and personal access tokens (classic) need the
+     * `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a
+     * private repository.
      */
-    fun reposCreateInOrgWithRawResponse(clientConfig: ClientConfig, request: ReposCreateInOrgRequest, options: RequestOptions? = null): SdkResponse<FullRepository> =
+    fun reposCreateInOrgWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateInOrgRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<FullRepository> =
         dev.octri.showcase.github.methods.ReposCreateInOrgOperation.reposCreateInOrgWithRawResponse(
             clientConfig,
             request,
             options,
         )
 
-    /**
-     * Get all the repository rulesets for an organization.
-     */
-    fun reposGetOrgRulesets(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, targets: String? = null, options: RequestOptions? = null): List<RepositoryRuleset> =
+    /** Get all the repository rulesets for an organization. */
+    fun reposGetOrgRulesets(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        targets: String? = null,
+        options: RequestOptions? = null,
+    ): List<RepositoryRuleset> =
         dev.octri.showcase.github.methods.ReposGetOrgRulesetsOperation.reposGetOrgRulesets(
             clientConfig,
             org,
@@ -1228,23 +1258,36 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
             options,
         )
 
-    /**
-     * Get all the repository rulesets for an organization.
-     */
-    fun reposGetOrgRulesetsWithRawResponse(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, targets: String? = null, options: RequestOptions? = null): SdkResponse<List<RepositoryRuleset>> =
-        dev.octri.showcase.github.methods.ReposGetOrgRulesetsOperation.reposGetOrgRulesetsWithRawResponse(
-            clientConfig,
-            org,
-            perPage,
-            page,
-            targets,
-            options,
-        )
+    /** Get all the repository rulesets for an organization. */
+    fun reposGetOrgRulesetsWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        targets: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<RepositoryRuleset>> =
+        dev.octri.showcase.github.methods.ReposGetOrgRulesetsOperation
+            .reposGetOrgRulesetsWithRawResponse(
+                clientConfig,
+                org,
+                perPage,
+                page,
+                targets,
+                options,
+            )
 
     /**
-     * Creates a repository ruleset for an organization. Set the required `name` and `enforcement`, and optionally configure the target, bypass actors, conditions, and rules. Use `evaluate` to test rules before enforcing them; this enforcement level is available only with GitHub Enterprise.
+     * Creates a repository ruleset for an organization. Set the required `name` and `enforcement`,
+     * and optionally configure the target, bypass actors, conditions, and rules. Use `evaluate` to
+     * test rules before enforcing them; this enforcement level is available only with GitHub
+     * Enterprise.
      */
-    fun reposCreateOrgRuleset(clientConfig: ClientConfig, request: ReposCreateOrgRulesetRequest, options: RequestOptions? = null): RepositoryRuleset =
+    fun reposCreateOrgRuleset(
+        clientConfig: ClientConfig,
+        request: ReposCreateOrgRulesetRequest,
+        options: RequestOptions? = null,
+    ): RepositoryRuleset =
         dev.octri.showcase.github.methods.ReposCreateOrgRulesetOperation.reposCreateOrgRuleset(
             clientConfig,
             request,
@@ -1252,19 +1295,33 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Creates a repository ruleset for an organization. Set the required `name` and `enforcement`, and optionally configure the target, bypass actors, conditions, and rules. Use `evaluate` to test rules before enforcing them; this enforcement level is available only with GitHub Enterprise.
+     * Creates a repository ruleset for an organization. Set the required `name` and `enforcement`,
+     * and optionally configure the target, bypass actors, conditions, and rules. Use `evaluate` to
+     * test rules before enforcing them; this enforcement level is available only with GitHub
+     * Enterprise.
      */
-    fun reposCreateOrgRulesetWithRawResponse(clientConfig: ClientConfig, request: ReposCreateOrgRulesetRequest, options: RequestOptions? = null): SdkResponse<RepositoryRuleset> =
-        dev.octri.showcase.github.methods.ReposCreateOrgRulesetOperation.reposCreateOrgRulesetWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateOrgRulesetWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateOrgRulesetRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryRuleset> =
+        dev.octri.showcase.github.methods.ReposCreateOrgRulesetOperation
+            .reposCreateOrgRulesetWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists suites of rule evaluations at the organization level. For more information, see "[Managing rulesets for repositories in your organization](https://docs.github.com/organizations/managing-organization-settings/managing-rulesets-for-repositories-in-your-organization#viewing-insights-for-rulesets)."
+     * Lists suites of rule evaluations at the organization level. For more information, see
+     * "[Managing rulesets for repositories in your
+     * organization](https://docs.github.com/organizations/managing-organization-settings/managing-rulesets-for-repositories-in-your-organization#viewing-insights-for-rulesets)."
      */
-    fun reposGetOrgRuleSuites(clientConfig: ClientConfig, request: ReposGetOrgRuleSuitesRequest, options: RequestOptions? = null): RuleSuites =
+    fun reposGetOrgRuleSuites(
+        clientConfig: ClientConfig,
+        request: ReposGetOrgRuleSuitesRequest,
+        options: RequestOptions? = null,
+    ): RuleSuites =
         dev.octri.showcase.github.methods.ReposGetOrgRuleSuitesOperation.reposGetOrgRuleSuites(
             clientConfig,
             request,
@@ -1272,19 +1329,34 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists suites of rule evaluations at the organization level. For more information, see "[Managing rulesets for repositories in your organization](https://docs.github.com/organizations/managing-organization-settings/managing-rulesets-for-repositories-in-your-organization#viewing-insights-for-rulesets)."
+     * Lists suites of rule evaluations at the organization level. For more information, see
+     * "[Managing rulesets for repositories in your
+     * organization](https://docs.github.com/organizations/managing-organization-settings/managing-rulesets-for-repositories-in-your-organization#viewing-insights-for-rulesets)."
      */
-    fun reposGetOrgRuleSuitesWithRawResponse(clientConfig: ClientConfig, request: ReposGetOrgRuleSuitesRequest, options: RequestOptions? = null): SdkResponse<RuleSuites> =
-        dev.octri.showcase.github.methods.ReposGetOrgRuleSuitesOperation.reposGetOrgRuleSuitesWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposGetOrgRuleSuitesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposGetOrgRuleSuitesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RuleSuites> =
+        dev.octri.showcase.github.methods.ReposGetOrgRuleSuitesOperation
+            .reposGetOrgRuleSuitesWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Gets information about a suite of rule evaluations from within an organization. For more information, see "[Managing rulesets for repositories in your organization](https://docs.github.com/organizations/managing-organization-settings/managing-rulesets-for-repositories-in-your-organization#viewing-insights-for-rulesets)."
+     * Gets information about a suite of rule evaluations from within an organization. For more
+     * information, see "[Managing rulesets for repositories in your
+     * organization](https://docs.github.com/organizations/managing-organization-settings/managing-rulesets-for-repositories-in-your-organization#viewing-insights-for-rulesets)."
      */
-    fun reposGetOrgRuleSuite(clientConfig: ClientConfig, org: String, ruleSuiteId: Long, includeMetadata: Boolean? = null, options: RequestOptions? = null): RuleSuite =
+    fun reposGetOrgRuleSuite(
+        clientConfig: ClientConfig,
+        org: String,
+        ruleSuiteId: Long,
+        includeMetadata: Boolean? = null,
+        options: RequestOptions? = null,
+    ): RuleSuite =
         dev.octri.showcase.github.methods.ReposGetOrgRuleSuiteOperation.reposGetOrgRuleSuite(
             clientConfig,
             org,
@@ -1294,21 +1366,37 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets information about a suite of rule evaluations from within an organization. For more information, see "[Managing rulesets for repositories in your organization](https://docs.github.com/organizations/managing-organization-settings/managing-rulesets-for-repositories-in-your-organization#viewing-insights-for-rulesets)."
+     * Gets information about a suite of rule evaluations from within an organization. For more
+     * information, see "[Managing rulesets for repositories in your
+     * organization](https://docs.github.com/organizations/managing-organization-settings/managing-rulesets-for-repositories-in-your-organization#viewing-insights-for-rulesets)."
      */
-    fun reposGetOrgRuleSuiteWithRawResponse(clientConfig: ClientConfig, org: String, ruleSuiteId: Long, includeMetadata: Boolean? = null, options: RequestOptions? = null): SdkResponse<RuleSuite> =
-        dev.octri.showcase.github.methods.ReposGetOrgRuleSuiteOperation.reposGetOrgRuleSuiteWithRawResponse(
-            clientConfig,
-            org,
-            ruleSuiteId,
-            includeMetadata,
-            options,
-        )
+    fun reposGetOrgRuleSuiteWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        ruleSuiteId: Long,
+        includeMetadata: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<RuleSuite> =
+        dev.octri.showcase.github.methods.ReposGetOrgRuleSuiteOperation
+            .reposGetOrgRuleSuiteWithRawResponse(
+                clientConfig,
+                org,
+                ruleSuiteId,
+                includeMetadata,
+                options,
+            )
 
     /**
-     * Get a repository ruleset for an organization. **Note:** To prevent leaking sensitive information, the `bypass_actors` property is only returned if the user making the API request has write access to the ruleset.
+     * Get a repository ruleset for an organization. **Note:** To prevent leaking sensitive
+     * information, the `bypass_actors` property is only returned if the user making the API request
+     * has write access to the ruleset.
      */
-    fun reposGetOrgRuleset(clientConfig: ClientConfig, org: String, rulesetId: Long, options: RequestOptions? = null): RepositoryRuleset =
+    fun reposGetOrgRuleset(
+        clientConfig: ClientConfig,
+        org: String,
+        rulesetId: Long,
+        options: RequestOptions? = null,
+    ): RepositoryRuleset =
         dev.octri.showcase.github.methods.ReposGetOrgRulesetOperation.reposGetOrgRuleset(
             clientConfig,
             org,
@@ -1317,20 +1405,35 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Get a repository ruleset for an organization. **Note:** To prevent leaking sensitive information, the `bypass_actors` property is only returned if the user making the API request has write access to the ruleset.
+     * Get a repository ruleset for an organization. **Note:** To prevent leaking sensitive
+     * information, the `bypass_actors` property is only returned if the user making the API request
+     * has write access to the ruleset.
      */
-    fun reposGetOrgRulesetWithRawResponse(clientConfig: ClientConfig, org: String, rulesetId: Long, options: RequestOptions? = null): SdkResponse<RepositoryRuleset> =
-        dev.octri.showcase.github.methods.ReposGetOrgRulesetOperation.reposGetOrgRulesetWithRawResponse(
-            clientConfig,
-            org,
-            rulesetId,
-            options,
-        )
+    fun reposGetOrgRulesetWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        rulesetId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryRuleset> =
+        dev.octri.showcase.github.methods.ReposGetOrgRulesetOperation
+            .reposGetOrgRulesetWithRawResponse(
+                clientConfig,
+                org,
+                rulesetId,
+                options,
+            )
 
     /**
-     * Replaces an organization repository ruleset. Supply the ruleset properties you want to change, including `target` and `enforcement` where applicable; `bypass_actors`, `conditions`, and `rules` configure access and matching behavior. A 200 response returns the updated ruleset.
+     * Replaces an organization repository ruleset. Supply the ruleset properties you want to
+     * change, including `target` and `enforcement` where applicable; `bypass_actors`, `conditions`,
+     * and `rules` configure access and matching behavior. A 200 response returns the updated
+     * ruleset.
      */
-    fun reposUpdateOrgRuleset(clientConfig: ClientConfig, request: ReposUpdateOrgRulesetRequest, options: RequestOptions? = null): RepositoryRuleset =
+    fun reposUpdateOrgRuleset(
+        clientConfig: ClientConfig,
+        request: ReposUpdateOrgRulesetRequest,
+        options: RequestOptions? = null,
+    ): RepositoryRuleset =
         dev.octri.showcase.github.methods.ReposUpdateOrgRulesetOperation.reposUpdateOrgRuleset(
             clientConfig,
             request,
@@ -1338,19 +1441,34 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Replaces an organization repository ruleset. Supply the ruleset properties you want to change, including `target` and `enforcement` where applicable; `bypass_actors`, `conditions`, and `rules` configure access and matching behavior. A 200 response returns the updated ruleset.
+     * Replaces an organization repository ruleset. Supply the ruleset properties you want to
+     * change, including `target` and `enforcement` where applicable; `bypass_actors`, `conditions`,
+     * and `rules` configure access and matching behavior. A 200 response returns the updated
+     * ruleset.
      */
-    fun reposUpdateOrgRulesetWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateOrgRulesetRequest, options: RequestOptions? = null): SdkResponse<RepositoryRuleset> =
-        dev.octri.showcase.github.methods.ReposUpdateOrgRulesetOperation.reposUpdateOrgRulesetWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateOrgRulesetWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateOrgRulesetRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryRuleset> =
+        dev.octri.showcase.github.methods.ReposUpdateOrgRulesetOperation
+            .reposUpdateOrgRulesetWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes a ruleset from an organization. Use the `org` and `ruleset_id` path parameters to identify the organization ruleset to remove. A 204 response confirms deletion and has no response body.
+     * Deletes a ruleset from an organization. Use the `org` and `ruleset_id` path parameters to
+     * identify the organization ruleset to remove. A 204 response confirms deletion and has no
+     * response body.
      */
-    fun reposDeleteOrgRuleset(clientConfig: ClientConfig, org: String, rulesetId: Long, options: RequestOptions? = null): Unit =
+    fun reposDeleteOrgRuleset(
+        clientConfig: ClientConfig,
+        org: String,
+        rulesetId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteOrgRulesetOperation.reposDeleteOrgRuleset(
             clientConfig,
             org,
@@ -1359,20 +1477,41 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deletes a ruleset from an organization. Use the `org` and `ruleset_id` path parameters to identify the organization ruleset to remove. A 204 response confirms deletion and has no response body.
+     * Deletes a ruleset from an organization. Use the `org` and `ruleset_id` path parameters to
+     * identify the organization ruleset to remove. A 204 response confirms deletion and has no
+     * response body.
      */
-    fun reposDeleteOrgRulesetWithRawResponse(clientConfig: ClientConfig, org: String, rulesetId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteOrgRulesetOperation.reposDeleteOrgRulesetWithRawResponse(
-            clientConfig,
-            org,
-            rulesetId,
-            options,
-        )
+    fun reposDeleteOrgRulesetWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        rulesetId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteOrgRulesetOperation
+            .reposDeleteOrgRulesetWithRawResponse(
+                clientConfig,
+                org,
+                rulesetId,
+                options,
+            )
 
     /**
-     * The `parent` and `source` objects are present when the repository is a fork. `parent` is the repository this repository was forked from, `source` is the ultimate source for the network. > [!NOTE] > - In order to see the `security_and_analysis` block for a repository you must have admin permissions for the repository or be an owner or security manager for the organization that owns the repository. For more information, see "[Managing security managers in your organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)." > - To view merge-related settings, you must have the `contents:read` and `contents:write` permissions.
+     * The `parent` and `source` objects are present when the repository is a fork. `parent` is the
+     * repository this repository was forked from, `source` is the ultimate source for the
+     * network. > [!NOTE] > - In order to see the `security_and_analysis` block for a repository you
+     * must have admin permissions for the repository or be an owner or security manager for the
+     * organization that owns the repository. For more information, see "[Managing security managers
+     * in your
+     * organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)." > -
+     * To view merge-related settings, you must have the `contents:read` and `contents:write`
+     * permissions.
      */
-    fun reposGet(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): FullRepository =
+    fun reposGet(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): FullRepository =
         dev.octri.showcase.github.methods.ReposGetOperation.reposGet(
             clientConfig,
             owner,
@@ -1381,9 +1520,22 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * The `parent` and `source` objects are present when the repository is a fork. `parent` is the repository this repository was forked from, `source` is the ultimate source for the network. > [!NOTE] > - In order to see the `security_and_analysis` block for a repository you must have admin permissions for the repository or be an owner or security manager for the organization that owns the repository. For more information, see "[Managing security managers in your organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)." > - To view merge-related settings, you must have the `contents:read` and `contents:write` permissions.
+     * The `parent` and `source` objects are present when the repository is a fork. `parent` is the
+     * repository this repository was forked from, `source` is the ultimate source for the
+     * network. > [!NOTE] > - In order to see the `security_and_analysis` block for a repository you
+     * must have admin permissions for the repository or be an owner or security manager for the
+     * organization that owns the repository. For more information, see "[Managing security managers
+     * in your
+     * organization](https://docs.github.com/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)." > -
+     * To view merge-related settings, you must have the `contents:read` and `contents:write`
+     * permissions.
      */
-    fun reposGetWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<FullRepository> =
+    fun reposGetWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<FullRepository> =
         dev.octri.showcase.github.methods.ReposGetOperation.reposGetWithRawResponse(
             clientConfig,
             owner,
@@ -1392,9 +1544,15 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * **Note**: To edit a repository's topics, use the [Replace all repository topics](https://docs.github.com/rest/repos/repos#replace-all-repository-topics) endpoint.
+     * **Note**: To edit a repository's topics, use the
+     * [Replace all repository topics](https://docs.github.com/rest/repos/repos#replace-all-repository-topics)
+     * endpoint.
      */
-    fun reposUpdate(clientConfig: ClientConfig, request: ReposUpdateRequest, options: RequestOptions? = null): FullRepository =
+    fun reposUpdate(
+        clientConfig: ClientConfig,
+        request: ReposUpdateRequest,
+        options: RequestOptions? = null,
+    ): FullRepository =
         dev.octri.showcase.github.methods.ReposUpdateOperation.reposUpdate(
             clientConfig,
             request,
@@ -1402,9 +1560,15 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * **Note**: To edit a repository's topics, use the [Replace all repository topics](https://docs.github.com/rest/repos/repos#replace-all-repository-topics) endpoint.
+     * **Note**: To edit a repository's topics, use the
+     * [Replace all repository topics](https://docs.github.com/rest/repos/repos#replace-all-repository-topics)
+     * endpoint.
      */
-    fun reposUpdateWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateRequest, options: RequestOptions? = null): SdkResponse<FullRepository> =
+    fun reposUpdateWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<FullRepository> =
         dev.octri.showcase.github.methods.ReposUpdateOperation.reposUpdateWithRawResponse(
             clientConfig,
             request,
@@ -1412,9 +1576,17 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deleting a repository requires admin access. If an organization owner has configured the organization to prevent members from deleting organization-owned repositories, you will get a `403 Forbidden` response. OAuth app tokens and personal access tokens (classic) need the `delete_repo` scope to use this endpoint.
+     * Deleting a repository requires admin access. If an organization owner has configured the
+     * organization to prevent members from deleting organization-owned repositories, you will get a
+     * `403 Forbidden` response. OAuth app tokens and personal access tokens (classic) need the
+     * `delete_repo` scope to use this endpoint.
      */
-    fun reposDelete(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
+    fun reposDelete(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteOperation.reposDelete(
             clientConfig,
             owner,
@@ -1423,9 +1595,17 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deleting a repository requires admin access. If an organization owner has configured the organization to prevent members from deleting organization-owned repositories, you will get a `403 Forbidden` response. OAuth app tokens and personal access tokens (classic) need the `delete_repo` scope to use this endpoint.
+     * Deleting a repository requires admin access. If an organization owner has configured the
+     * organization to prevent members from deleting organization-owned repositories, you will get a
+     * `403 Forbidden` response. OAuth app tokens and personal access tokens (classic) need the
+     * `delete_repo` scope to use this endpoint.
      */
-    fun reposDeleteWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
+    fun reposDeleteWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
         dev.octri.showcase.github.methods.ReposDeleteOperation.reposDeleteWithRawResponse(
             clientConfig,
             owner,
@@ -1434,9 +1614,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists a detailed history of changes to a repository, such as pushes, merges, force pushes, and branch changes, and associates these changes with commits and users. For more information about viewing repository activity, see "[Viewing activity and data for your repository](https://docs.github.com/repositories/viewing-activity-and-data-for-your-repository)."
+     * Lists a detailed history of changes to a repository, such as pushes, merges, force pushes,
+     * and branch changes, and associates these changes with commits and users. For more information
+     * about viewing repository activity, see "[Viewing activity and data for your
+     * repository](https://docs.github.com/repositories/viewing-activity-and-data-for-your-repository)."
      */
-    fun reposListActivities(clientConfig: ClientConfig, request: ReposListActivitiesRequest, options: RequestOptions? = null): List<Activity> =
+    fun reposListActivities(
+        clientConfig: ClientConfig,
+        request: ReposListActivitiesRequest,
+        options: RequestOptions? = null,
+    ): List<Activity> =
         dev.octri.showcase.github.methods.ReposListActivitiesOperation.reposListActivities(
             clientConfig,
             request,
@@ -1444,19 +1631,38 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists a detailed history of changes to a repository, such as pushes, merges, force pushes, and branch changes, and associates these changes with commits and users. For more information about viewing repository activity, see "[Viewing activity and data for your repository](https://docs.github.com/repositories/viewing-activity-and-data-for-your-repository)."
+     * Lists a detailed history of changes to a repository, such as pushes, merges, force pushes,
+     * and branch changes, and associates these changes with commits and users. For more information
+     * about viewing repository activity, see "[Viewing activity and data for your
+     * repository](https://docs.github.com/repositories/viewing-activity-and-data-for-your-repository)."
      */
-    fun reposListActivitiesWithRawResponse(clientConfig: ClientConfig, request: ReposListActivitiesRequest, options: RequestOptions? = null): SdkResponse<List<Activity>> =
-        dev.octri.showcase.github.methods.ReposListActivitiesOperation.reposListActivitiesWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposListActivitiesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListActivitiesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Activity>> =
+        dev.octri.showcase.github.methods.ReposListActivitiesOperation
+            .reposListActivitiesWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Store an artifact attestation and associate it with a repository. The authenticated user must have write permission to the repository and, if using a fine-grained access token, the `attestations:write` permission is required. Artifact attestations are meant to be created using the [attest action](https://github.com/actions/attest). For more information, see our guide on [using artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
+     * Store an artifact attestation and associate it with a repository. The authenticated user must
+     * have write permission to the repository and, if using a fine-grained access token, the
+     * `attestations:write` permission is required. Artifact attestations are meant to be created
+     * using the [attest action](https://github.com/actions/attest). For more information, see our
+     * guide on
+     * [using artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
      */
-    fun reposCreateAttestation(clientConfig: ClientConfig, owner: String, repo: String, bundle: ReposCreateAttestationBundle, options: RequestOptions? = null): ReposCreateAttestationResponse =
+    fun reposCreateAttestation(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        bundle: ReposCreateAttestationBundle,
+        options: RequestOptions? = null,
+    ): ReposCreateAttestationResponse =
         dev.octri.showcase.github.methods.ReposCreateAttestationOperation.reposCreateAttestation(
             clientConfig,
             owner,
@@ -1466,21 +1672,46 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Store an artifact attestation and associate it with a repository. The authenticated user must have write permission to the repository and, if using a fine-grained access token, the `attestations:write` permission is required. Artifact attestations are meant to be created using the [attest action](https://github.com/actions/attest). For more information, see our guide on [using artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
+     * Store an artifact attestation and associate it with a repository. The authenticated user must
+     * have write permission to the repository and, if using a fine-grained access token, the
+     * `attestations:write` permission is required. Artifact attestations are meant to be created
+     * using the [attest action](https://github.com/actions/attest). For more information, see our
+     * guide on
+     * [using artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
      */
-    fun reposCreateAttestationWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, bundle: ReposCreateAttestationBundle, options: RequestOptions? = null): SdkResponse<ReposCreateAttestationResponse> =
-        dev.octri.showcase.github.methods.ReposCreateAttestationOperation.reposCreateAttestationWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            bundle,
-            options,
-        )
+    fun reposCreateAttestationWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        bundle: ReposCreateAttestationBundle,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReposCreateAttestationResponse> =
+        dev.octri.showcase.github.methods.ReposCreateAttestationOperation
+            .reposCreateAttestationWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                bundle,
+                options,
+            )
 
     /**
-     * List a collection of artifact attestations with a given subject digest that are associated with a repository. The authenticated user making the request must have read access to the repository. In addition, when using a fine-grained access token the `attestations:read` permission is required. **Please note:** in order to offer meaningful security benefits, an attestation's signature and timestamps **must** be cryptographically verified, and the identity of the attestation signer **must** be validated. Attestations can be verified using the [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify). For more information, see [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
+     * List a collection of artifact attestations with a given subject digest that are associated
+     * with a repository. The authenticated user making the request must have read access to the
+     * repository. In addition, when using a fine-grained access token the `attestations:read`
+     * permission is required. **Please note:** in order to offer meaningful security benefits, an
+     * attestation's signature and timestamps **must** be cryptographically verified, and the
+     * identity of the attestation signer **must** be validated. Attestations can be verified using
+     * the
+     * [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify).
+     * For more information, see
+     * [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
      */
-    fun reposListAttestations(clientConfig: ClientConfig, request: ReposListAttestationsRequest, options: RequestOptions? = null): ReposListAttestationsResponse =
+    fun reposListAttestations(
+        clientConfig: ClientConfig,
+        request: ReposListAttestationsRequest,
+        options: RequestOptions? = null,
+    ): ReposListAttestationsResponse =
         dev.octri.showcase.github.methods.ReposListAttestationsOperation.reposListAttestations(
             clientConfig,
             request,
@@ -1488,19 +1719,39 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * List a collection of artifact attestations with a given subject digest that are associated with a repository. The authenticated user making the request must have read access to the repository. In addition, when using a fine-grained access token the `attestations:read` permission is required. **Please note:** in order to offer meaningful security benefits, an attestation's signature and timestamps **must** be cryptographically verified, and the identity of the attestation signer **must** be validated. Attestations can be verified using the [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify). For more information, see [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
+     * List a collection of artifact attestations with a given subject digest that are associated
+     * with a repository. The authenticated user making the request must have read access to the
+     * repository. In addition, when using a fine-grained access token the `attestations:read`
+     * permission is required. **Please note:** in order to offer meaningful security benefits, an
+     * attestation's signature and timestamps **must** be cryptographically verified, and the
+     * identity of the attestation signer **must** be validated. Attestations can be verified using
+     * the
+     * [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify).
+     * For more information, see
+     * [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds).
      */
-    fun reposListAttestationsWithRawResponse(clientConfig: ClientConfig, request: ReposListAttestationsRequest, options: RequestOptions? = null): SdkResponse<ReposListAttestationsResponse> =
-        dev.octri.showcase.github.methods.ReposListAttestationsOperation.reposListAttestationsWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposListAttestationsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListAttestationsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReposListAttestationsResponse> =
+        dev.octri.showcase.github.methods.ReposListAttestationsOperation
+            .reposListAttestationsWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Gets all autolinks that are configured for a repository. Information about autolinks are only available to repository administrators.
+     * Gets all autolinks that are configured for a repository. Information about autolinks are only
+     * available to repository administrators.
      */
-    fun reposListAutolinks(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<Autolink> =
+    fun reposListAutolinks(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<Autolink> =
         dev.octri.showcase.github.methods.ReposListAutolinksOperation.reposListAutolinks(
             clientConfig,
             owner,
@@ -1509,20 +1760,33 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets all autolinks that are configured for a repository. Information about autolinks are only available to repository administrators.
+     * Gets all autolinks that are configured for a repository. Information about autolinks are only
+     * available to repository administrators.
      */
-    fun reposListAutolinksWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<Autolink>> =
-        dev.octri.showcase.github.methods.ReposListAutolinksOperation.reposListAutolinksWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposListAutolinksWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Autolink>> =
+        dev.octri.showcase.github.methods.ReposListAutolinksOperation
+            .reposListAutolinksWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
-    /**
-     * Users with admin access to the repository can create an autolink.
-     */
-    fun reposCreateAutolink(clientConfig: ClientConfig, owner: String, repo: String, keyPrefix: String, urlTemplate: String, isAlphanumeric: Boolean? = null, options: RequestOptions? = null): Autolink =
+    /** Users with admin access to the repository can create an autolink. */
+    fun reposCreateAutolink(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        keyPrefix: String,
+        urlTemplate: String,
+        isAlphanumeric: Boolean? = null,
+        options: RequestOptions? = null,
+    ): Autolink =
         dev.octri.showcase.github.methods.ReposCreateAutolinkOperation.reposCreateAutolink(
             clientConfig,
             owner,
@@ -1533,24 +1797,38 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
             options,
         )
 
-    /**
-     * Users with admin access to the repository can create an autolink.
-     */
-    fun reposCreateAutolinkWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, keyPrefix: String, urlTemplate: String, isAlphanumeric: Boolean? = null, options: RequestOptions? = null): SdkResponse<Autolink> =
-        dev.octri.showcase.github.methods.ReposCreateAutolinkOperation.reposCreateAutolinkWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            keyPrefix,
-            urlTemplate,
-            isAlphanumeric,
-            options,
-        )
+    /** Users with admin access to the repository can create an autolink. */
+    fun reposCreateAutolinkWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        keyPrefix: String,
+        urlTemplate: String,
+        isAlphanumeric: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Autolink> =
+        dev.octri.showcase.github.methods.ReposCreateAutolinkOperation
+            .reposCreateAutolinkWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                keyPrefix,
+                urlTemplate,
+                isAlphanumeric,
+                options,
+            )
 
     /**
-     * This returns a single autolink reference by ID that was configured for the given repository. Information about autolinks are only available to repository administrators.
+     * This returns a single autolink reference by ID that was configured for the given repository.
+     * Information about autolinks are only available to repository administrators.
      */
-    fun reposGetAutolink(clientConfig: ClientConfig, owner: String, repo: String, autolinkId: Long, options: RequestOptions? = null): Autolink =
+    fun reposGetAutolink(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        autolinkId: Long,
+        options: RequestOptions? = null,
+    ): Autolink =
         dev.octri.showcase.github.methods.ReposGetAutolinkOperation.reposGetAutolink(
             clientConfig,
             owner,
@@ -1560,9 +1838,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * This returns a single autolink reference by ID that was configured for the given repository. Information about autolinks are only available to repository administrators.
+     * This returns a single autolink reference by ID that was configured for the given repository.
+     * Information about autolinks are only available to repository administrators.
      */
-    fun reposGetAutolinkWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, autolinkId: Long, options: RequestOptions? = null): SdkResponse<Autolink> =
+    fun reposGetAutolinkWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        autolinkId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Autolink> =
         dev.octri.showcase.github.methods.ReposGetAutolinkOperation.reposGetAutolinkWithRawResponse(
             clientConfig,
             owner,
@@ -1572,9 +1857,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * This deletes a single autolink reference by ID that was configured for the given repository. Information about autolinks are only available to repository administrators.
+     * This deletes a single autolink reference by ID that was configured for the given repository.
+     * Information about autolinks are only available to repository administrators.
      */
-    fun reposDeleteAutolink(clientConfig: ClientConfig, owner: String, repo: String, autolinkId: Long, options: RequestOptions? = null): Unit =
+    fun reposDeleteAutolink(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        autolinkId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteAutolinkOperation.reposDeleteAutolink(
             clientConfig,
             owner,
@@ -1584,87 +1876,155 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * This deletes a single autolink reference by ID that was configured for the given repository. Information about autolinks are only available to repository administrators.
+     * This deletes a single autolink reference by ID that was configured for the given repository.
+     * Information about autolinks are only available to repository administrators.
      */
-    fun reposDeleteAutolinkWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, autolinkId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteAutolinkOperation.reposDeleteAutolinkWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            autolinkId,
-            options,
-        )
+    fun reposDeleteAutolinkWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        autolinkId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteAutolinkOperation
+            .reposDeleteAutolinkWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                autolinkId,
+                options,
+            )
 
     /**
-     * Shows whether Dependabot security updates are enabled, disabled or paused for a repository. The authenticated user must have admin read access to the repository. For more information, see "[Configuring Dependabot security updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
+     * Shows whether Dependabot security updates are enabled, disabled or paused for a repository.
+     * The authenticated user must have admin read access to the repository. For more information,
+     * see "[Configuring Dependabot security
+     * updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
      */
-    fun reposCheckAutomatedSecurityFixes(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CheckAutomatedSecurityFixes =
-        dev.octri.showcase.github.methods.ReposCheckAutomatedSecurityFixesOperation.reposCheckAutomatedSecurityFixes(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCheckAutomatedSecurityFixes(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CheckAutomatedSecurityFixes =
+        dev.octri.showcase.github.methods.ReposCheckAutomatedSecurityFixesOperation
+            .reposCheckAutomatedSecurityFixes(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Shows whether Dependabot security updates are enabled, disabled or paused for a repository. The authenticated user must have admin read access to the repository. For more information, see "[Configuring Dependabot security updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
+     * Shows whether Dependabot security updates are enabled, disabled or paused for a repository.
+     * The authenticated user must have admin read access to the repository. For more information,
+     * see "[Configuring Dependabot security
+     * updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
      */
-    fun reposCheckAutomatedSecurityFixesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<CheckAutomatedSecurityFixes> =
-        dev.octri.showcase.github.methods.ReposCheckAutomatedSecurityFixesOperation.reposCheckAutomatedSecurityFixesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCheckAutomatedSecurityFixesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<CheckAutomatedSecurityFixes> =
+        dev.octri.showcase.github.methods.ReposCheckAutomatedSecurityFixesOperation
+            .reposCheckAutomatedSecurityFixesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Enables Dependabot security updates for a repository. The authenticated user must have admin access to the repository. For more information, see "[Configuring Dependabot security updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
+     * Enables Dependabot security updates for a repository. The authenticated user must have admin
+     * access to the repository. For more information, see "[Configuring Dependabot security
+     * updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
      */
-    fun reposEnableAutomatedSecurityFixes(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposEnableAutomatedSecurityFixesOperation.reposEnableAutomatedSecurityFixes(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposEnableAutomatedSecurityFixes(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposEnableAutomatedSecurityFixesOperation
+            .reposEnableAutomatedSecurityFixes(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Enables Dependabot security updates for a repository. The authenticated user must have admin access to the repository. For more information, see "[Configuring Dependabot security updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
+     * Enables Dependabot security updates for a repository. The authenticated user must have admin
+     * access to the repository. For more information, see "[Configuring Dependabot security
+     * updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
      */
-    fun reposEnableAutomatedSecurityFixesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposEnableAutomatedSecurityFixesOperation.reposEnableAutomatedSecurityFixesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposEnableAutomatedSecurityFixesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposEnableAutomatedSecurityFixesOperation
+            .reposEnableAutomatedSecurityFixesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Disables Dependabot security updates for a repository. The authenticated user must have admin access to the repository. For more information, see "[Configuring Dependabot security updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
+     * Disables Dependabot security updates for a repository. The authenticated user must have admin
+     * access to the repository. For more information, see "[Configuring Dependabot security
+     * updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
      */
-    fun reposDisableAutomatedSecurityFixes(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDisableAutomatedSecurityFixesOperation.reposDisableAutomatedSecurityFixes(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDisableAutomatedSecurityFixes(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDisableAutomatedSecurityFixesOperation
+            .reposDisableAutomatedSecurityFixes(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Disables Dependabot security updates for a repository. The authenticated user must have admin access to the repository. For more information, see "[Configuring Dependabot security updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
+     * Disables Dependabot security updates for a repository. The authenticated user must have admin
+     * access to the repository. For more information, see "[Configuring Dependabot security
+     * updates](https://docs.github.com/articles/configuring-automated-security-fixes)".
      */
-    fun reposDisableAutomatedSecurityFixesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDisableAutomatedSecurityFixesOperation.reposDisableAutomatedSecurityFixesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDisableAutomatedSecurityFixesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDisableAutomatedSecurityFixesOperation
+            .reposDisableAutomatedSecurityFixesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Lists branches in a repository, including each branch's commit and protection status. Use `protected` to filter for protected or unprotected branches, or omit it to include all branches; use `page` and `per_page` to paginate the results.
+     * Lists branches in a repository, including each branch's commit and protection status. Use
+     * `protected` to filter for protected or unprotected branches, or omit it to include all
+     * branches; use `page` and `per_page` to paginate the results.
      */
-    fun reposListBranches(clientConfig: ClientConfig, owner: String, repo: String, protected: Boolean? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<ShortBranch> =
+    fun reposListBranches(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        protected: Boolean? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<ShortBranch> =
         dev.octri.showcase.github.methods.ReposListBranchesOperation.reposListBranches(
             clientConfig,
             owner,
@@ -1676,23 +2036,41 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists branches in a repository, including each branch's commit and protection status. Use `protected` to filter for protected or unprotected branches, or omit it to include all branches; use `page` and `per_page` to paginate the results.
+     * Lists branches in a repository, including each branch's commit and protection status. Use
+     * `protected` to filter for protected or unprotected branches, or omit it to include all
+     * branches; use `page` and `per_page` to paginate the results.
      */
-    fun reposListBranchesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, protected: Boolean? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<ShortBranch>> =
-        dev.octri.showcase.github.methods.ReposListBranchesOperation.reposListBranchesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            protected,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListBranchesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        protected: Boolean? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<ShortBranch>> =
+        dev.octri.showcase.github.methods.ReposListBranchesOperation
+            .reposListBranchesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                protected,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Retrieves a branch and its protection details from a repository. Use `branch` to identify the branch; its name cannot contain wildcard characters.
+     * Retrieves a branch and its protection details from a repository. Use `branch` to identify the
+     * branch; its name cannot contain wildcard characters.
      */
-    fun reposGetBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): BranchWithProtection =
+    fun reposGetBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): BranchWithProtection =
         dev.octri.showcase.github.methods.ReposGetBranchOperation.reposGetBranch(
             clientConfig,
             owner,
@@ -1702,9 +2080,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves a branch and its protection details from a repository. Use `branch` to identify the branch; its name cannot contain wildcard characters.
+     * Retrieves a branch and its protection details from a repository. Use `branch` to identify the
+     * branch; its name cannot contain wildcard characters.
      */
-    fun reposGetBranchWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<BranchWithProtection> =
+    fun reposGetBranchWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BranchWithProtection> =
         dev.octri.showcase.github.methods.ReposGetBranchOperation.reposGetBranchWithRawResponse(
             clientConfig,
             owner,
@@ -1714,813 +2099,1622 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetBranchProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): BranchProtection =
-        dev.octri.showcase.github.methods.ReposGetBranchProtectionOperation.reposGetBranchProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetBranchProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<BranchProtection> =
-        dev.octri.showcase.github.methods.ReposGetBranchProtectionOperation.reposGetBranchProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Protecting a branch requires admin or owner permissions to the repository. > [!NOTE] > Passing new arrays of `users` and `teams` replaces their previous values. > [!NOTE] > The list of users, apps, and teams in total is limited to 100 items.
-     */
-    fun reposUpdateBranchProtection(clientConfig: ClientConfig, request: ReposUpdateBranchProtectionRequest, options: RequestOptions? = null): ProtectedBranch =
-        dev.octri.showcase.github.methods.ReposUpdateBranchProtectionOperation.reposUpdateBranchProtection(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Protecting a branch requires admin or owner permissions to the repository. > [!NOTE] > Passing new arrays of `users` and `teams` replaces their previous values. > [!NOTE] > The list of users, apps, and teams in total is limited to 100 items.
-     */
-    fun reposUpdateBranchProtectionWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateBranchProtectionRequest, options: RequestOptions? = null): SdkResponse<ProtectedBranch> =
-        dev.octri.showcase.github.methods.ReposUpdateBranchProtectionOperation.reposUpdateBranchProtectionWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposDeleteBranchProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeleteBranchProtectionOperation.reposDeleteBranchProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposDeleteBranchProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteBranchProtectionOperation.reposDeleteBranchProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetAdminBranchProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): ProtectedBranchAdminEnforced =
-        dev.octri.showcase.github.methods.ReposGetAdminBranchProtectionOperation.reposGetAdminBranchProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetAdminBranchProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<ProtectedBranchAdminEnforced> =
-        dev.octri.showcase.github.methods.ReposGetAdminBranchProtectionOperation.reposGetAdminBranchProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Adding admin enforcement requires admin or owner permissions to the repository and branch protection to be enabled.
-     */
-    fun reposSetAdminBranchProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): ProtectedBranchAdminEnforced =
-        dev.octri.showcase.github.methods.ReposSetAdminBranchProtectionOperation.reposSetAdminBranchProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Adding admin enforcement requires admin or owner permissions to the repository and branch protection to be enabled.
-     */
-    fun reposSetAdminBranchProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<ProtectedBranchAdminEnforced> =
-        dev.octri.showcase.github.methods.ReposSetAdminBranchProtectionOperation.reposSetAdminBranchProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Removing admin enforcement requires admin or owner permissions to the repository and branch protection to be enabled.
-     */
-    fun reposDeleteAdminBranchProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeleteAdminBranchProtectionOperation.reposDeleteAdminBranchProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Removing admin enforcement requires admin or owner permissions to the repository and branch protection to be enabled.
-     */
-    fun reposDeleteAdminBranchProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteAdminBranchProtectionOperation.reposDeleteAdminBranchProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetPullRequestReviewProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): ProtectedBranchPullRequestReview =
-        dev.octri.showcase.github.methods.ReposGetPullRequestReviewProtectionOperation.reposGetPullRequestReviewProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetPullRequestReviewProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<ProtectedBranchPullRequestReview> =
-        dev.octri.showcase.github.methods.ReposGetPullRequestReviewProtectionOperation.reposGetPullRequestReviewProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Updating pull request review enforcement requires admin or owner permissions to the repository and branch protection to be enabled. > [!NOTE] > Passing new arrays of `users` and `teams` replaces their previous values.
-     */
-    fun reposUpdatePullRequestReviewProtection(clientConfig: ClientConfig, request: ReposUpdatePullRequestReviewProtectionRequest, options: RequestOptions? = null): ProtectedBranchPullRequestReview =
-        dev.octri.showcase.github.methods.ReposUpdatePullRequestReviewProtectionOperation.reposUpdatePullRequestReviewProtection(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Updating pull request review enforcement requires admin or owner permissions to the repository and branch protection to be enabled. > [!NOTE] > Passing new arrays of `users` and `teams` replaces their previous values.
-     */
-    fun reposUpdatePullRequestReviewProtectionWithRawResponse(clientConfig: ClientConfig, request: ReposUpdatePullRequestReviewProtectionRequest, options: RequestOptions? = null): SdkResponse<ProtectedBranchPullRequestReview> =
-        dev.octri.showcase.github.methods.ReposUpdatePullRequestReviewProtectionOperation.reposUpdatePullRequestReviewProtectionWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposDeletePullRequestReviewProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeletePullRequestReviewProtectionOperation.reposDeletePullRequestReviewProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposDeletePullRequestReviewProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeletePullRequestReviewProtectionOperation.reposDeletePullRequestReviewProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. When authenticated with admin or owner permissions to the repository, you can use this endpoint to check whether a branch requires signed commits. An enabled status of `true` indicates you must sign commits on this branch. For more information, see [Signing commits with GPG](https://docs.github.com/articles/signing-commits-with-gpg) in GitHub Help. > [!NOTE] > You must enable branch protection to require signed commits.
-     */
-    fun reposGetCommitSignatureProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): ProtectedBranchAdminEnforced =
-        dev.octri.showcase.github.methods.ReposGetCommitSignatureProtectionOperation.reposGetCommitSignatureProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. When authenticated with admin or owner permissions to the repository, you can use this endpoint to check whether a branch requires signed commits. An enabled status of `true` indicates you must sign commits on this branch. For more information, see [Signing commits with GPG](https://docs.github.com/articles/signing-commits-with-gpg) in GitHub Help. > [!NOTE] > You must enable branch protection to require signed commits.
-     */
-    fun reposGetCommitSignatureProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<ProtectedBranchAdminEnforced> =
-        dev.octri.showcase.github.methods.ReposGetCommitSignatureProtectionOperation.reposGetCommitSignatureProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. When authenticated with admin or owner permissions to the repository, you can use this endpoint to require signed commits on a branch. You must enable branch protection to require signed commits.
-     */
-    fun reposCreateCommitSignatureProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): ProtectedBranchAdminEnforced =
-        dev.octri.showcase.github.methods.ReposCreateCommitSignatureProtectionOperation.reposCreateCommitSignatureProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. When authenticated with admin or owner permissions to the repository, you can use this endpoint to require signed commits on a branch. You must enable branch protection to require signed commits.
-     */
-    fun reposCreateCommitSignatureProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<ProtectedBranchAdminEnforced> =
-        dev.octri.showcase.github.methods.ReposCreateCommitSignatureProtectionOperation.reposCreateCommitSignatureProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. When authenticated with admin or owner permissions to the repository, you can use this endpoint to disable required signed commits on a branch. You must enable branch protection to require signed commits.
-     */
-    fun reposDeleteCommitSignatureProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeleteCommitSignatureProtectionOperation.reposDeleteCommitSignatureProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. When authenticated with admin or owner permissions to the repository, you can use this endpoint to disable required signed commits on a branch. You must enable branch protection to require signed commits.
-     */
-    fun reposDeleteCommitSignatureProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteCommitSignatureProtectionOperation.reposDeleteCommitSignatureProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetStatusChecksProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): StatusCheckPolicy =
-        dev.octri.showcase.github.methods.ReposGetStatusChecksProtectionOperation.reposGetStatusChecksProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetStatusChecksProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<StatusCheckPolicy> =
-        dev.octri.showcase.github.methods.ReposGetStatusChecksProtectionOperation.reposGetStatusChecksProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Updating required status checks requires admin or owner permissions to the repository and branch protection to be enabled.
-     */
-    fun reposUpdateStatusCheckProtection(clientConfig: ClientConfig, request: ReposUpdateStatusCheckProtectionRequest, options: RequestOptions? = null): StatusCheckPolicy =
-        dev.octri.showcase.github.methods.ReposUpdateStatusCheckProtectionOperation.reposUpdateStatusCheckProtection(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Updating required status checks requires admin or owner permissions to the repository and branch protection to be enabled.
-     */
-    fun reposUpdateStatusCheckProtectionWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateStatusCheckProtectionRequest, options: RequestOptions? = null): SdkResponse<StatusCheckPolicy> =
-        dev.octri.showcase.github.methods.ReposUpdateStatusCheckProtectionOperation.reposUpdateStatusCheckProtectionWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposRemoveStatusCheckProtection(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposRemoveStatusCheckProtectionOperation.reposRemoveStatusCheckProtection(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposRemoveStatusCheckProtectionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposRemoveStatusCheckProtectionOperation.reposRemoveStatusCheckProtectionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetAllStatusCheckContexts(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): List<String> =
-        dev.octri.showcase.github.methods.ReposGetAllStatusCheckContextsOperation.reposGetAllStatusCheckContexts(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.
-     */
-    fun reposGetAllStatusCheckContextsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<List<String>> =
-        dev.octri.showcase.github.methods.ReposGetAllStatusCheckContextsOperation.reposGetAllStatusCheckContextsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Adds status check contexts to a protected branch in a repository. Supply the context names in `contexts`, either in an object or as a top-level array; the request body can be omitted. The `branch` name cannot contain wildcard characters.
-     */
-    fun reposAddStatusCheckContexts(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<String> =
-        dev.octri.showcase.github.methods.ReposAddStatusCheckContextsOperation.reposAddStatusCheckContexts(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Adds status check contexts to a protected branch in a repository. Supply the context names in `contexts`, either in an object or as a top-level array; the request body can be omitted. The `branch` name cannot contain wildcard characters.
-     */
-    fun reposAddStatusCheckContextsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): SdkResponse<List<String>> =
-        dev.octri.showcase.github.methods.ReposAddStatusCheckContextsOperation.reposAddStatusCheckContextsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Replaces the status check contexts configured for a protected branch in a repository. Supply the complete set of context names in `contexts`, either in an object or as a top-level array; the request body can be omitted. The `branch` name cannot contain wildcard characters.
-     */
-    fun reposSetStatusCheckContexts(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<String> =
-        dev.octri.showcase.github.methods.ReposSetStatusCheckContextsOperation.reposSetStatusCheckContexts(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Replaces the status check contexts configured for a protected branch in a repository. Supply the complete set of context names in `contexts`, either in an object or as a top-level array; the request body can be omitted. The `branch` name cannot contain wildcard characters.
-     */
-    fun reposSetStatusCheckContextsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): SdkResponse<List<String>> =
-        dev.octri.showcase.github.methods.ReposSetStatusCheckContextsOperation.reposSetStatusCheckContextsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Removes status check contexts from a protected branch in a repository. Supply the context names to remove in `contexts`, either in an object or as a top-level array; the request body can be omitted. The `branch` name cannot contain wildcard characters.
-     */
-    fun reposRemoveStatusCheckContexts(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<String> =
-        dev.octri.showcase.github.methods.ReposRemoveStatusCheckContextsOperation.reposRemoveStatusCheckContexts(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Removes status check contexts from a protected branch in a repository. Supply the context names to remove in `contexts`, either in an object or as a top-level array; the request body can be omitted. The `branch` name cannot contain wildcard characters.
-     */
-    fun reposRemoveStatusCheckContextsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): SdkResponse<List<String>> =
-        dev.octri.showcase.github.methods.ReposRemoveStatusCheckContextsOperation.reposRemoveStatusCheckContextsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists who has access to this protected branch. > [!NOTE] > Users, apps, and teams `restrictions` are only available for organization-owned repositories.
-     */
-    fun reposGetAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): BranchRestrictionPolicy =
-        dev.octri.showcase.github.methods.ReposGetAccessRestrictionsOperation.reposGetAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists who has access to this protected branch. > [!NOTE] > Users, apps, and teams `restrictions` are only available for organization-owned repositories.
-     */
-    fun reposGetAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<BranchRestrictionPolicy> =
-        dev.octri.showcase.github.methods.ReposGetAccessRestrictionsOperation.reposGetAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Disables the ability to restrict who can push to this branch.
-     */
-    fun reposDeleteAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeleteAccessRestrictionsOperation.reposDeleteAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Disables the ability to restrict who can push to this branch.
-     */
-    fun reposDeleteAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteAccessRestrictionsOperation.reposDeleteAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists the GitHub Apps that have push access to this branch. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository contents can be added as authorized actors on a protected branch.
-     */
-    fun reposGetAppsWithAccessToProtectedBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): List<Integration?> =
-        dev.octri.showcase.github.methods.ReposGetAppsWithAccessToProtectedBranchOperation.reposGetAppsWithAccessToProtectedBranch(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists the GitHub Apps that have push access to this branch. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository contents can be added as authorized actors on a protected branch.
-     */
-    fun reposGetAppsWithAccessToProtectedBranchWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<List<Integration?>> =
-        dev.octri.showcase.github.methods.ReposGetAppsWithAccessToProtectedBranchOperation.reposGetAppsWithAccessToProtectedBranchWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Grants the specified apps push access for this branch. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository contents can be added as authorized actors on a protected branch.
-     */
-    fun reposAddAppAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, apps: List<String>, options: RequestOptions? = null): List<Integration?> =
-        dev.octri.showcase.github.methods.ReposAddAppAccessRestrictionsOperation.reposAddAppAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            apps,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Grants the specified apps push access for this branch. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository contents can be added as authorized actors on a protected branch.
-     */
-    fun reposAddAppAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, apps: List<String>, options: RequestOptions? = null): SdkResponse<List<Integration?>> =
-        dev.octri.showcase.github.methods.ReposAddAppAccessRestrictionsOperation.reposAddAppAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            apps,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Replaces the list of apps that have push access to this branch. This removes all apps that previously had push access and grants push access to the new list of apps. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository contents can be added as authorized actors on a protected branch.
-     */
-    fun reposSetAppAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, apps: List<String>, options: RequestOptions? = null): List<Integration?> =
-        dev.octri.showcase.github.methods.ReposSetAppAccessRestrictionsOperation.reposSetAppAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            apps,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Replaces the list of apps that have push access to this branch. This removes all apps that previously had push access and grants push access to the new list of apps. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository contents can be added as authorized actors on a protected branch.
-     */
-    fun reposSetAppAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, apps: List<String>, options: RequestOptions? = null): SdkResponse<List<Integration?>> =
-        dev.octri.showcase.github.methods.ReposSetAppAccessRestrictionsOperation.reposSetAppAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            apps,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Removes the ability of an app to push to this branch. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository contents can be added as authorized actors on a protected branch.
-     */
-    fun reposRemoveAppAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, apps: List<String>, options: RequestOptions? = null): List<Integration?> =
-        dev.octri.showcase.github.methods.ReposRemoveAppAccessRestrictionsOperation.reposRemoveAppAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            apps,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Removes the ability of an app to push to this branch. Only GitHub Apps that are installed on the repository and that have been granted write access to the repository contents can be added as authorized actors on a protected branch.
-     */
-    fun reposRemoveAppAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, apps: List<String>, options: RequestOptions? = null): SdkResponse<List<Integration?>> =
-        dev.octri.showcase.github.methods.ReposRemoveAppAccessRestrictionsOperation.reposRemoveAppAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            apps,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists the teams who have push access to this branch. The list includes child teams.
-     */
-    fun reposGetTeamsWithAccessToProtectedBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): List<Team> =
-        dev.octri.showcase.github.methods.ReposGetTeamsWithAccessToProtectedBranchOperation.reposGetTeamsWithAccessToProtectedBranch(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists the teams who have push access to this branch. The list includes child teams.
-     */
-    fun reposGetTeamsWithAccessToProtectedBranchWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<List<Team>> =
-        dev.octri.showcase.github.methods.ReposGetTeamsWithAccessToProtectedBranchOperation.reposGetTeamsWithAccessToProtectedBranchWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Grants the specified teams push access to a protected branch, including access for child teams. Provide team slugs in `teams` to add those teams to the branch's access restrictions.
-     */
-    fun reposAddTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> =
-        dev.octri.showcase.github.methods.ReposAddTeamAccessRestrictionsOperation.reposAddTeamAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Grants the specified teams push access to a protected branch, including access for child teams. Provide team slugs in `teams` to add those teams to the branch's access restrictions.
-     */
-    fun reposAddTeamAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): SdkResponse<List<Team>> =
-        dev.octri.showcase.github.methods.ReposAddTeamAccessRestrictionsOperation.reposAddTeamAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Replaces the list of teams that have push access to a protected branch, including access for child teams. Provide the complete list in `teams`; teams not included in the new list lose push access.
-     */
-    fun reposSetTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> =
-        dev.octri.showcase.github.methods.ReposSetTeamAccessRestrictionsOperation.reposSetTeamAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Replaces the list of teams that have push access to a protected branch, including access for child teams. Provide the complete list in `teams`; teams not included in the new list lose push access.
-     */
-    fun reposSetTeamAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): SdkResponse<List<Team>> =
-        dev.octri.showcase.github.methods.ReposSetTeamAccessRestrictionsOperation.reposSetTeamAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Removes the specified team's push access to a protected branch, including access for child teams. Provide team slugs in `teams` to identify the teams whose access you want to remove.
-     */
-    fun reposRemoveTeamAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): List<Team> =
-        dev.octri.showcase.github.methods.ReposRemoveTeamAccessRestrictionsOperation.reposRemoveTeamAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Removes the specified team's push access to a protected branch, including access for child teams. Provide team slugs in `teams` to identify the teams whose access you want to remove.
-     */
-    fun reposRemoveTeamAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, body: Any? = null, options: RequestOptions? = null): SdkResponse<List<Team>> =
-        dev.octri.showcase.github.methods.ReposRemoveTeamAccessRestrictionsOperation.reposRemoveTeamAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            body,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists the people who have push access to this branch.
-     */
-    fun reposGetUsersWithAccessToProtectedBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.ReposGetUsersWithAccessToProtectedBranchOperation.reposGetUsersWithAccessToProtectedBranch(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Lists the people who have push access to this branch.
-     */
-    fun reposGetUsersWithAccessToProtectedBranchWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<List<SimpleUser>> =
-        dev.octri.showcase.github.methods.ReposGetUsersWithAccessToProtectedBranchOperation.reposGetUsersWithAccessToProtectedBranchWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Grants the specified people push access for this branch. | Type | Description | | ------- | ----------------------------------------------------------------------------------------------------------------------------- | | `array` | Usernames for people who can have push access. **Note**: The list of users, apps, and teams in total is limited to 100 items. |
-     */
-    fun reposAddUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.ReposAddUserAccessRestrictionsOperation.reposAddUserAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            users,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Grants the specified people push access for this branch. | Type | Description | | ------- | ----------------------------------------------------------------------------------------------------------------------------- | | `array` | Usernames for people who can have push access. **Note**: The list of users, apps, and teams in total is limited to 100 items. |
-     */
-    fun reposAddUserAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): SdkResponse<List<SimpleUser>> =
-        dev.octri.showcase.github.methods.ReposAddUserAccessRestrictionsOperation.reposAddUserAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            users,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Replaces the list of people that have push access to this branch. This removes all people that previously had push access and grants push access to the new list of people. | Type | Description | | ------- | ----------------------------------------------------------------------------------------------------------------------------- | | `array` | Usernames for people who can have push access. **Note**: The list of users, apps, and teams in total is limited to 100 items. |
-     */
-    fun reposSetUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.ReposSetUserAccessRestrictionsOperation.reposSetUserAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            users,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Replaces the list of people that have push access to this branch. This removes all people that previously had push access and grants push access to the new list of people. | Type | Description | | ------- | ----------------------------------------------------------------------------------------------------------------------------- | | `array` | Usernames for people who can have push access. **Note**: The list of users, apps, and teams in total is limited to 100 items. |
-     */
-    fun reposSetUserAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): SdkResponse<List<SimpleUser>> =
-        dev.octri.showcase.github.methods.ReposSetUserAccessRestrictionsOperation.reposSetUserAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            users,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Removes the ability of a user to push to this branch. | Type | Description | | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- | | `array` | Usernames of the people who should no longer have push access. **Note**: The list of users, apps, and teams in total is limited to 100 items. |
-     */
-    fun reposRemoveUserAccessRestrictions(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): List<SimpleUser> =
-        dev.octri.showcase.github.methods.ReposRemoveUserAccessRestrictionsOperation.reposRemoveUserAccessRestrictions(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            users,
-            options,
-        )
-
-    /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Removes the ability of a user to push to this branch. | Type | Description | | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- | | `array` | Usernames of the people who should no longer have push access. **Note**: The list of users, apps, and teams in total is limited to 100 items. |
-     */
-    fun reposRemoveUserAccessRestrictionsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, users: List<String>, options: RequestOptions? = null): SdkResponse<List<SimpleUser>> =
-        dev.octri.showcase.github.methods.ReposRemoveUserAccessRestrictionsOperation.reposRemoveUserAccessRestrictionsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            users,
-            options,
-        )
-
-    /**
-     * Renames a branch in a repository. > [!NOTE] > Although the API responds immediately, the branch rename process might take some extra time to complete in the background. You won't be able to push to the old branch name while the rename process is in progress. For more information, see "[Renaming a branch](https://docs.github.com/github/administering-a-repository/renaming-a-branch)". The authenticated user must have push access to the branch. If the branch is the default branch, the authenticated user must also have admin or owner permissions. In order to rename the default branch, fine-grained access tokens also need the `administration:write` repository permission.
-     */
-    fun reposRenameBranch(clientConfig: ClientConfig, owner: String, repo: String, branch: String, newName: String, options: RequestOptions? = null): BranchWithProtection =
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetBranchProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): BranchProtection =
+        dev.octri.showcase.github.methods.ReposGetBranchProtectionOperation
+            .reposGetBranchProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetBranchProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BranchProtection> =
+        dev.octri.showcase.github.methods.ReposGetBranchProtectionOperation
+            .reposGetBranchProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Protecting a branch requires admin or owner permissions to
+     * the repository. > [!NOTE] > Passing new arrays of `users` and `teams` replaces their previous
+     * values. > [!NOTE] > The list of users, apps, and teams in total is limited to 100 items.
+     */
+    fun reposUpdateBranchProtection(
+        clientConfig: ClientConfig,
+        request: ReposUpdateBranchProtectionRequest,
+        options: RequestOptions? = null,
+    ): ProtectedBranch =
+        dev.octri.showcase.github.methods.ReposUpdateBranchProtectionOperation
+            .reposUpdateBranchProtection(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Protecting a branch requires admin or owner permissions to
+     * the repository. > [!NOTE] > Passing new arrays of `users` and `teams` replaces their previous
+     * values. > [!NOTE] > The list of users, apps, and teams in total is limited to 100 items.
+     */
+    fun reposUpdateBranchProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateBranchProtectionRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ProtectedBranch> =
+        dev.octri.showcase.github.methods.ReposUpdateBranchProtectionOperation
+            .reposUpdateBranchProtectionWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposDeleteBranchProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeleteBranchProtectionOperation
+            .reposDeleteBranchProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposDeleteBranchProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteBranchProtectionOperation
+            .reposDeleteBranchProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetAdminBranchProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): ProtectedBranchAdminEnforced =
+        dev.octri.showcase.github.methods.ReposGetAdminBranchProtectionOperation
+            .reposGetAdminBranchProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetAdminBranchProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ProtectedBranchAdminEnforced> =
+        dev.octri.showcase.github.methods.ReposGetAdminBranchProtectionOperation
+            .reposGetAdminBranchProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Adding admin enforcement requires admin or owner
+     * permissions to the repository and branch protection to be enabled.
+     */
+    fun reposSetAdminBranchProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): ProtectedBranchAdminEnforced =
+        dev.octri.showcase.github.methods.ReposSetAdminBranchProtectionOperation
+            .reposSetAdminBranchProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Adding admin enforcement requires admin or owner
+     * permissions to the repository and branch protection to be enabled.
+     */
+    fun reposSetAdminBranchProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ProtectedBranchAdminEnforced> =
+        dev.octri.showcase.github.methods.ReposSetAdminBranchProtectionOperation
+            .reposSetAdminBranchProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Removing admin enforcement requires admin or owner
+     * permissions to the repository and branch protection to be enabled.
+     */
+    fun reposDeleteAdminBranchProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeleteAdminBranchProtectionOperation
+            .reposDeleteAdminBranchProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Removing admin enforcement requires admin or owner
+     * permissions to the repository and branch protection to be enabled.
+     */
+    fun reposDeleteAdminBranchProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteAdminBranchProtectionOperation
+            .reposDeleteAdminBranchProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetPullRequestReviewProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): ProtectedBranchPullRequestReview =
+        dev.octri.showcase.github.methods.ReposGetPullRequestReviewProtectionOperation
+            .reposGetPullRequestReviewProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetPullRequestReviewProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ProtectedBranchPullRequestReview> =
+        dev.octri.showcase.github.methods.ReposGetPullRequestReviewProtectionOperation
+            .reposGetPullRequestReviewProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Updating pull request review enforcement requires admin or
+     * owner permissions to the repository and branch protection to be enabled. > [!NOTE] > Passing
+     * new arrays of `users` and `teams` replaces their previous values.
+     */
+    fun reposUpdatePullRequestReviewProtection(
+        clientConfig: ClientConfig,
+        request: ReposUpdatePullRequestReviewProtectionRequest,
+        options: RequestOptions? = null,
+    ): ProtectedBranchPullRequestReview =
+        dev.octri.showcase.github.methods.ReposUpdatePullRequestReviewProtectionOperation
+            .reposUpdatePullRequestReviewProtection(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Updating pull request review enforcement requires admin or
+     * owner permissions to the repository and branch protection to be enabled. > [!NOTE] > Passing
+     * new arrays of `users` and `teams` replaces their previous values.
+     */
+    fun reposUpdatePullRequestReviewProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdatePullRequestReviewProtectionRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ProtectedBranchPullRequestReview> =
+        dev.octri.showcase.github.methods.ReposUpdatePullRequestReviewProtectionOperation
+            .reposUpdatePullRequestReviewProtectionWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposDeletePullRequestReviewProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeletePullRequestReviewProtectionOperation
+            .reposDeletePullRequestReviewProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposDeletePullRequestReviewProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeletePullRequestReviewProtectionOperation
+            .reposDeletePullRequestReviewProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. When authenticated with admin or owner permissions to the
+     * repository, you can use this endpoint to check whether a branch requires signed commits. An
+     * enabled status of `true` indicates you must sign commits on this branch. For more
+     * information, see
+     * [Signing commits with GPG](https://docs.github.com/articles/signing-commits-with-gpg) in
+     * GitHub Help. > [!NOTE] > You must enable branch protection to require signed commits.
+     */
+    fun reposGetCommitSignatureProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): ProtectedBranchAdminEnforced =
+        dev.octri.showcase.github.methods.ReposGetCommitSignatureProtectionOperation
+            .reposGetCommitSignatureProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. When authenticated with admin or owner permissions to the
+     * repository, you can use this endpoint to check whether a branch requires signed commits. An
+     * enabled status of `true` indicates you must sign commits on this branch. For more
+     * information, see
+     * [Signing commits with GPG](https://docs.github.com/articles/signing-commits-with-gpg) in
+     * GitHub Help. > [!NOTE] > You must enable branch protection to require signed commits.
+     */
+    fun reposGetCommitSignatureProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ProtectedBranchAdminEnforced> =
+        dev.octri.showcase.github.methods.ReposGetCommitSignatureProtectionOperation
+            .reposGetCommitSignatureProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. When authenticated with admin or owner permissions to the
+     * repository, you can use this endpoint to require signed commits on a branch. You must enable
+     * branch protection to require signed commits.
+     */
+    fun reposCreateCommitSignatureProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): ProtectedBranchAdminEnforced =
+        dev.octri.showcase.github.methods.ReposCreateCommitSignatureProtectionOperation
+            .reposCreateCommitSignatureProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. When authenticated with admin or owner permissions to the
+     * repository, you can use this endpoint to require signed commits on a branch. You must enable
+     * branch protection to require signed commits.
+     */
+    fun reposCreateCommitSignatureProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ProtectedBranchAdminEnforced> =
+        dev.octri.showcase.github.methods.ReposCreateCommitSignatureProtectionOperation
+            .reposCreateCommitSignatureProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. When authenticated with admin or owner permissions to the
+     * repository, you can use this endpoint to disable required signed commits on a branch. You
+     * must enable branch protection to require signed commits.
+     */
+    fun reposDeleteCommitSignatureProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeleteCommitSignatureProtectionOperation
+            .reposDeleteCommitSignatureProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. When authenticated with admin or owner permissions to the
+     * repository, you can use this endpoint to disable required signed commits on a branch. You
+     * must enable branch protection to require signed commits.
+     */
+    fun reposDeleteCommitSignatureProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteCommitSignatureProtectionOperation
+            .reposDeleteCommitSignatureProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetStatusChecksProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): StatusCheckPolicy =
+        dev.octri.showcase.github.methods.ReposGetStatusChecksProtectionOperation
+            .reposGetStatusChecksProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetStatusChecksProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<StatusCheckPolicy> =
+        dev.octri.showcase.github.methods.ReposGetStatusChecksProtectionOperation
+            .reposGetStatusChecksProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Updating required status checks requires admin or owner
+     * permissions to the repository and branch protection to be enabled.
+     */
+    fun reposUpdateStatusCheckProtection(
+        clientConfig: ClientConfig,
+        request: ReposUpdateStatusCheckProtectionRequest,
+        options: RequestOptions? = null,
+    ): StatusCheckPolicy =
+        dev.octri.showcase.github.methods.ReposUpdateStatusCheckProtectionOperation
+            .reposUpdateStatusCheckProtection(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Updating required status checks requires admin or owner
+     * permissions to the repository and branch protection to be enabled.
+     */
+    fun reposUpdateStatusCheckProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateStatusCheckProtectionRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<StatusCheckPolicy> =
+        dev.octri.showcase.github.methods.ReposUpdateStatusCheckProtectionOperation
+            .reposUpdateStatusCheckProtectionWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposRemoveStatusCheckProtection(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposRemoveStatusCheckProtectionOperation
+            .reposRemoveStatusCheckProtection(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposRemoveStatusCheckProtectionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposRemoveStatusCheckProtectionOperation
+            .reposRemoveStatusCheckProtectionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetAllStatusCheckContexts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): List<String> =
+        dev.octri.showcase.github.methods.ReposGetAllStatusCheckContextsOperation
+            .reposGetAllStatusCheckContexts(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation.
+     */
+    fun reposGetAllStatusCheckContextsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<String>> =
+        dev.octri.showcase.github.methods.ReposGetAllStatusCheckContextsOperation
+            .reposGetAllStatusCheckContextsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Adds status check contexts to a protected branch in a repository. Supply the context names in
+     * `contexts`, either in an object or as a top-level array; the request body can be omitted. The
+     * `branch` name cannot contain wildcard characters.
+     */
+    fun reposAddStatusCheckContexts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<String> =
+        dev.octri.showcase.github.methods.ReposAddStatusCheckContextsOperation
+            .reposAddStatusCheckContexts(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Adds status check contexts to a protected branch in a repository. Supply the context names in
+     * `contexts`, either in an object or as a top-level array; the request body can be omitted. The
+     * `branch` name cannot contain wildcard characters.
+     */
+    fun reposAddStatusCheckContextsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<String>> =
+        dev.octri.showcase.github.methods.ReposAddStatusCheckContextsOperation
+            .reposAddStatusCheckContextsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Replaces the status check contexts configured for a protected branch in a repository. Supply
+     * the complete set of context names in `contexts`, either in an object or as a top-level array;
+     * the request body can be omitted. The `branch` name cannot contain wildcard characters.
+     */
+    fun reposSetStatusCheckContexts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<String> =
+        dev.octri.showcase.github.methods.ReposSetStatusCheckContextsOperation
+            .reposSetStatusCheckContexts(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Replaces the status check contexts configured for a protected branch in a repository. Supply
+     * the complete set of context names in `contexts`, either in an object or as a top-level array;
+     * the request body can be omitted. The `branch` name cannot contain wildcard characters.
+     */
+    fun reposSetStatusCheckContextsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<String>> =
+        dev.octri.showcase.github.methods.ReposSetStatusCheckContextsOperation
+            .reposSetStatusCheckContextsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Removes status check contexts from a protected branch in a repository. Supply the context
+     * names to remove in `contexts`, either in an object or as a top-level array; the request body
+     * can be omitted. The `branch` name cannot contain wildcard characters.
+     */
+    fun reposRemoveStatusCheckContexts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<String> =
+        dev.octri.showcase.github.methods.ReposRemoveStatusCheckContextsOperation
+            .reposRemoveStatusCheckContexts(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Removes status check contexts from a protected branch in a repository. Supply the context
+     * names to remove in `contexts`, either in an object or as a top-level array; the request body
+     * can be omitted. The `branch` name cannot contain wildcard characters.
+     */
+    fun reposRemoveStatusCheckContextsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<String>> =
+        dev.octri.showcase.github.methods.ReposRemoveStatusCheckContextsOperation
+            .reposRemoveStatusCheckContextsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists who has access to this protected branch. > [!NOTE] >
+     * Users, apps, and teams `restrictions` are only available for organization-owned repositories.
+     */
+    fun reposGetAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): BranchRestrictionPolicy =
+        dev.octri.showcase.github.methods.ReposGetAccessRestrictionsOperation
+            .reposGetAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists who has access to this protected branch. > [!NOTE] >
+     * Users, apps, and teams `restrictions` are only available for organization-owned repositories.
+     */
+    fun reposGetAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BranchRestrictionPolicy> =
+        dev.octri.showcase.github.methods.ReposGetAccessRestrictionsOperation
+            .reposGetAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Disables the ability to restrict who can push to this
+     * branch.
+     */
+    fun reposDeleteAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeleteAccessRestrictionsOperation
+            .reposDeleteAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Disables the ability to restrict who can push to this
+     * branch.
+     */
+    fun reposDeleteAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteAccessRestrictionsOperation
+            .reposDeleteAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists the GitHub Apps that have push access to this branch.
+     * Only GitHub Apps that are installed on the repository and that have been granted write access
+     * to the repository contents can be added as authorized actors on a protected branch.
+     */
+    fun reposGetAppsWithAccessToProtectedBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): List<Integration?> =
+        dev.octri.showcase.github.methods.ReposGetAppsWithAccessToProtectedBranchOperation
+            .reposGetAppsWithAccessToProtectedBranch(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists the GitHub Apps that have push access to this branch.
+     * Only GitHub Apps that are installed on the repository and that have been granted write access
+     * to the repository contents can be added as authorized actors on a protected branch.
+     */
+    fun reposGetAppsWithAccessToProtectedBranchWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Integration?>> =
+        dev.octri.showcase.github.methods.ReposGetAppsWithAccessToProtectedBranchOperation
+            .reposGetAppsWithAccessToProtectedBranchWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Grants the specified apps push access for this branch. Only
+     * GitHub Apps that are installed on the repository and that have been granted write access to
+     * the repository contents can be added as authorized actors on a protected branch.
+     */
+    fun reposAddAppAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        apps: List<String>,
+        options: RequestOptions? = null,
+    ): List<Integration?> =
+        dev.octri.showcase.github.methods.ReposAddAppAccessRestrictionsOperation
+            .reposAddAppAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                apps,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Grants the specified apps push access for this branch. Only
+     * GitHub Apps that are installed on the repository and that have been granted write access to
+     * the repository contents can be added as authorized actors on a protected branch.
+     */
+    fun reposAddAppAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        apps: List<String>,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Integration?>> =
+        dev.octri.showcase.github.methods.ReposAddAppAccessRestrictionsOperation
+            .reposAddAppAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                apps,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Replaces the list of apps that have push access to this
+     * branch. This removes all apps that previously had push access and grants push access to the
+     * new list of apps. Only GitHub Apps that are installed on the repository and that have been
+     * granted write access to the repository contents can be added as authorized actors on a
+     * protected branch.
+     */
+    fun reposSetAppAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        apps: List<String>,
+        options: RequestOptions? = null,
+    ): List<Integration?> =
+        dev.octri.showcase.github.methods.ReposSetAppAccessRestrictionsOperation
+            .reposSetAppAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                apps,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Replaces the list of apps that have push access to this
+     * branch. This removes all apps that previously had push access and grants push access to the
+     * new list of apps. Only GitHub Apps that are installed on the repository and that have been
+     * granted write access to the repository contents can be added as authorized actors on a
+     * protected branch.
+     */
+    fun reposSetAppAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        apps: List<String>,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Integration?>> =
+        dev.octri.showcase.github.methods.ReposSetAppAccessRestrictionsOperation
+            .reposSetAppAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                apps,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Removes the ability of an app to push to this branch. Only
+     * GitHub Apps that are installed on the repository and that have been granted write access to
+     * the repository contents can be added as authorized actors on a protected branch.
+     */
+    fun reposRemoveAppAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        apps: List<String>,
+        options: RequestOptions? = null,
+    ): List<Integration?> =
+        dev.octri.showcase.github.methods.ReposRemoveAppAccessRestrictionsOperation
+            .reposRemoveAppAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                apps,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Removes the ability of an app to push to this branch. Only
+     * GitHub Apps that are installed on the repository and that have been granted write access to
+     * the repository contents can be added as authorized actors on a protected branch.
+     */
+    fun reposRemoveAppAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        apps: List<String>,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Integration?>> =
+        dev.octri.showcase.github.methods.ReposRemoveAppAccessRestrictionsOperation
+            .reposRemoveAppAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                apps,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists the teams who have push access to this branch. The
+     * list includes child teams.
+     */
+    fun reposGetTeamsWithAccessToProtectedBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): List<Team> =
+        dev.octri.showcase.github.methods.ReposGetTeamsWithAccessToProtectedBranchOperation
+            .reposGetTeamsWithAccessToProtectedBranch(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists the teams who have push access to this branch. The
+     * list includes child teams.
+     */
+    fun reposGetTeamsWithAccessToProtectedBranchWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Team>> =
+        dev.octri.showcase.github.methods.ReposGetTeamsWithAccessToProtectedBranchOperation
+            .reposGetTeamsWithAccessToProtectedBranchWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Grants the specified teams push access to a protected branch, including access for child
+     * teams. Provide team slugs in `teams` to add those teams to the branch's access restrictions.
+     */
+    fun reposAddTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> =
+        dev.octri.showcase.github.methods.ReposAddTeamAccessRestrictionsOperation
+            .reposAddTeamAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Grants the specified teams push access to a protected branch, including access for child
+     * teams. Provide team slugs in `teams` to add those teams to the branch's access restrictions.
+     */
+    fun reposAddTeamAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Team>> =
+        dev.octri.showcase.github.methods.ReposAddTeamAccessRestrictionsOperation
+            .reposAddTeamAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Replaces the list of teams that have push access to a protected branch, including access for
+     * child teams. Provide the complete list in `teams`; teams not included in the new list lose
+     * push access.
+     */
+    fun reposSetTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> =
+        dev.octri.showcase.github.methods.ReposSetTeamAccessRestrictionsOperation
+            .reposSetTeamAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Replaces the list of teams that have push access to a protected branch, including access for
+     * child teams. Provide the complete list in `teams`; teams not included in the new list lose
+     * push access.
+     */
+    fun reposSetTeamAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Team>> =
+        dev.octri.showcase.github.methods.ReposSetTeamAccessRestrictionsOperation
+            .reposSetTeamAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Removes the specified team's push access to a protected branch, including access for child
+     * teams. Provide team slugs in `teams` to identify the teams whose access you want to remove.
+     */
+    fun reposRemoveTeamAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): List<Team> =
+        dev.octri.showcase.github.methods.ReposRemoveTeamAccessRestrictionsOperation
+            .reposRemoveTeamAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Removes the specified team's push access to a protected branch, including access for child
+     * teams. Provide team slugs in `teams` to identify the teams whose access you want to remove.
+     */
+    fun reposRemoveTeamAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        body: Any? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Team>> =
+        dev.octri.showcase.github.methods.ReposRemoveTeamAccessRestrictionsOperation
+            .reposRemoveTeamAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                body,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists the people who have push access to this branch.
+     */
+    fun reposGetUsersWithAccessToProtectedBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.ReposGetUsersWithAccessToProtectedBranchOperation
+            .reposGetUsersWithAccessToProtectedBranch(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Lists the people who have push access to this branch.
+     */
+    fun reposGetUsersWithAccessToProtectedBranchWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<SimpleUser>> =
+        dev.octri.showcase.github.methods.ReposGetUsersWithAccessToProtectedBranchOperation
+            .reposGetUsersWithAccessToProtectedBranchWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Grants the specified people push access for this branch. |
+     * Type | Description | | ------- |
+     * -----------------------------------------------------------------------------------------------------------------------------
+     * | | `array` | Usernames for people who can have push access. **Note**: The list of users,
+     * apps, and teams in total is limited to 100 items. |
+     */
+    fun reposAddUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.ReposAddUserAccessRestrictionsOperation
+            .reposAddUserAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                users,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Grants the specified people push access for this branch. |
+     * Type | Description | | ------- |
+     * -----------------------------------------------------------------------------------------------------------------------------
+     * | | `array` | Usernames for people who can have push access. **Note**: The list of users,
+     * apps, and teams in total is limited to 100 items. |
+     */
+    fun reposAddUserAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<SimpleUser>> =
+        dev.octri.showcase.github.methods.ReposAddUserAccessRestrictionsOperation
+            .reposAddUserAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                users,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Replaces the list of people that have push access to this
+     * branch. This removes all people that previously had push access and grants push access to the
+     * new list of people. | Type | Description | | ------- |
+     * -----------------------------------------------------------------------------------------------------------------------------
+     * | | `array` | Usernames for people who can have push access. **Note**: The list of users,
+     * apps, and teams in total is limited to 100 items. |
+     */
+    fun reposSetUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.ReposSetUserAccessRestrictionsOperation
+            .reposSetUserAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                users,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Replaces the list of people that have push access to this
+     * branch. This removes all people that previously had push access and grants push access to the
+     * new list of people. | Type | Description | | ------- |
+     * -----------------------------------------------------------------------------------------------------------------------------
+     * | | `array` | Usernames for people who can have push access. **Note**: The list of users,
+     * apps, and teams in total is limited to 100 items. |
+     */
+    fun reposSetUserAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<SimpleUser>> =
+        dev.octri.showcase.github.methods.ReposSetUserAccessRestrictionsOperation
+            .reposSetUserAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                users,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Removes the ability of a user to push to this branch. |
+     * Type | Description | | ------- |
+     * ---------------------------------------------------------------------------------------------------------------------------------------------
+     * | | `array` | Usernames of the people who should no longer have push access. **Note**: The
+     * list of users, apps, and teams in total is limited to 100 items. |
+     */
+    fun reposRemoveUserAccessRestrictions(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> =
+        dev.octri.showcase.github.methods.ReposRemoveUserAccessRestrictionsOperation
+            .reposRemoveUserAccessRestrictions(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                users,
+                options,
+            )
+
+    /**
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Removes the ability of a user to push to this branch. |
+     * Type | Description | | ------- |
+     * ---------------------------------------------------------------------------------------------------------------------------------------------
+     * | | `array` | Usernames of the people who should no longer have push access. **Note**: The
+     * list of users, apps, and teams in total is limited to 100 items. |
+     */
+    fun reposRemoveUserAccessRestrictionsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        users: List<String>,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<SimpleUser>> =
+        dev.octri.showcase.github.methods.ReposRemoveUserAccessRestrictionsOperation
+            .reposRemoveUserAccessRestrictionsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                users,
+                options,
+            )
+
+    /**
+     * Renames a branch in a repository. > [!NOTE] > Although the API responds immediately, the
+     * branch rename process might take some extra time to complete in the background. You won't be
+     * able to push to the old branch name while the rename process is in progress. For more
+     * information, see "[Renaming a
+     * branch](https://docs.github.com/github/administering-a-repository/renaming-a-branch)". The
+     * authenticated user must have push access to the branch. If the branch is the default branch,
+     * the authenticated user must also have admin or owner permissions. In order to rename the
+     * default branch, fine-grained access tokens also need the `administration:write` repository
+     * permission.
+     */
+    fun reposRenameBranch(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        newName: String,
+        options: RequestOptions? = null,
+    ): BranchWithProtection =
         dev.octri.showcase.github.methods.ReposRenameBranchOperation.reposRenameBranch(
             clientConfig,
             owner,
@@ -2531,22 +3725,46 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Renames a branch in a repository. > [!NOTE] > Although the API responds immediately, the branch rename process might take some extra time to complete in the background. You won't be able to push to the old branch name while the rename process is in progress. For more information, see "[Renaming a branch](https://docs.github.com/github/administering-a-repository/renaming-a-branch)". The authenticated user must have push access to the branch. If the branch is the default branch, the authenticated user must also have admin or owner permissions. In order to rename the default branch, fine-grained access tokens also need the `administration:write` repository permission.
+     * Renames a branch in a repository. > [!NOTE] > Although the API responds immediately, the
+     * branch rename process might take some extra time to complete in the background. You won't be
+     * able to push to the old branch name while the rename process is in progress. For more
+     * information, see "[Renaming a
+     * branch](https://docs.github.com/github/administering-a-repository/renaming-a-branch)". The
+     * authenticated user must have push access to the branch. If the branch is the default branch,
+     * the authenticated user must also have admin or owner permissions. In order to rename the
+     * default branch, fine-grained access tokens also need the `administration:write` repository
+     * permission.
      */
-    fun reposRenameBranchWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, newName: String, options: RequestOptions? = null): SdkResponse<BranchWithProtection> =
-        dev.octri.showcase.github.methods.ReposRenameBranchOperation.reposRenameBranchWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            newName,
-            options,
-        )
+    fun reposRenameBranchWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        newName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<BranchWithProtection> =
+        dev.octri.showcase.github.methods.ReposRenameBranchOperation
+            .reposRenameBranchWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                newName,
+                options,
+            )
 
     /**
-     * List any syntax errors that are detected in the CODEOWNERS file. For more information about the correct CODEOWNERS syntax, see "[About code owners](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)."
+     * List any syntax errors that are detected in the CODEOWNERS file. For more information about
+     * the correct CODEOWNERS syntax, see "[About code
+     * owners](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)."
      */
-    fun reposCodeownersErrors(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): CodeownersErrors =
+    fun reposCodeownersErrors(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): CodeownersErrors =
         dev.octri.showcase.github.methods.ReposCodeownersErrorsOperation.reposCodeownersErrors(
             clientConfig,
             owner,
@@ -2556,21 +3774,46 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * List any syntax errors that are detected in the CODEOWNERS file. For more information about the correct CODEOWNERS syntax, see "[About code owners](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)."
+     * List any syntax errors that are detected in the CODEOWNERS file. For more information about
+     * the correct CODEOWNERS syntax, see "[About code
+     * owners](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)."
      */
-    fun reposCodeownersErrorsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): SdkResponse<CodeownersErrors> =
-        dev.octri.showcase.github.methods.ReposCodeownersErrorsOperation.reposCodeownersErrorsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            options,
-        )
+    fun reposCodeownersErrorsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<CodeownersErrors> =
+        dev.octri.showcase.github.methods.ReposCodeownersErrorsOperation
+            .reposCodeownersErrorsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                options,
+            )
 
     /**
-     * For organization-owned repositories, the list of collaborators includes outside collaborators, organization members that are direct collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners. The `permissions` hash returned in the response contains the base role permissions of the collaborator. The `role_name` is the highest role assigned to the collaborator after considering all sources of grants, including: repo, teams, organization, and enterprise. There is presently not a way to differentiate between an organization level grant and a repository level grant from this endpoint response. Team members will include the members of child teams. The authenticated user must have write, maintain, or admin privileges on the repository to use this endpoint. For organization-owned repositories, the authenticated user needs to be a member of the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` and `repo` scopes to use this endpoint.
+     * For organization-owned repositories, the list of collaborators includes outside
+     * collaborators, organization members that are direct collaborators, organization members with
+     * access through team memberships, organization members with access through default
+     * organization permissions, and organization owners. The `permissions` hash returned in the
+     * response contains the base role permissions of the collaborator. The `role_name` is the
+     * highest role assigned to the collaborator after considering all sources of grants, including:
+     * repo, teams, organization, and enterprise. There is presently not a way to differentiate
+     * between an organization level grant and a repository level grant from this endpoint response.
+     * Team members will include the members of child teams. The authenticated user must have write,
+     * maintain, or admin privileges on the repository to use this endpoint. For organization-owned
+     * repositories, the authenticated user needs to be a member of the organization. OAuth app
+     * tokens and personal access tokens (classic) need the `read:org` and `repo` scopes to use this
+     * endpoint.
      */
-    fun reposListCollaborators(clientConfig: ClientConfig, request: ReposListCollaboratorsRequest, options: RequestOptions? = null): List<Collaborator> =
+    fun reposListCollaborators(
+        clientConfig: ClientConfig,
+        request: ReposListCollaboratorsRequest,
+        options: RequestOptions? = null,
+    ): List<Collaborator> =
         dev.octri.showcase.github.methods.ReposListCollaboratorsOperation.reposListCollaborators(
             clientConfig,
             request,
@@ -2578,19 +3821,48 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * For organization-owned repositories, the list of collaborators includes outside collaborators, organization members that are direct collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners. The `permissions` hash returned in the response contains the base role permissions of the collaborator. The `role_name` is the highest role assigned to the collaborator after considering all sources of grants, including: repo, teams, organization, and enterprise. There is presently not a way to differentiate between an organization level grant and a repository level grant from this endpoint response. Team members will include the members of child teams. The authenticated user must have write, maintain, or admin privileges on the repository to use this endpoint. For organization-owned repositories, the authenticated user needs to be a member of the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` and `repo` scopes to use this endpoint.
+     * For organization-owned repositories, the list of collaborators includes outside
+     * collaborators, organization members that are direct collaborators, organization members with
+     * access through team memberships, organization members with access through default
+     * organization permissions, and organization owners. The `permissions` hash returned in the
+     * response contains the base role permissions of the collaborator. The `role_name` is the
+     * highest role assigned to the collaborator after considering all sources of grants, including:
+     * repo, teams, organization, and enterprise. There is presently not a way to differentiate
+     * between an organization level grant and a repository level grant from this endpoint response.
+     * Team members will include the members of child teams. The authenticated user must have write,
+     * maintain, or admin privileges on the repository to use this endpoint. For organization-owned
+     * repositories, the authenticated user needs to be a member of the organization. OAuth app
+     * tokens and personal access tokens (classic) need the `read:org` and `repo` scopes to use this
+     * endpoint.
      */
-    fun reposListCollaboratorsWithRawResponse(clientConfig: ClientConfig, request: ReposListCollaboratorsRequest, options: RequestOptions? = null): SdkResponse<List<Collaborator>> =
-        dev.octri.showcase.github.methods.ReposListCollaboratorsOperation.reposListCollaboratorsWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposListCollaboratorsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListCollaboratorsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Collaborator>> =
+        dev.octri.showcase.github.methods.ReposListCollaboratorsOperation
+            .reposListCollaboratorsWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * For organization-owned repositories, the list of collaborators includes outside collaborators, organization members that are direct collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners. Team members will include the members of child teams. The authenticated user must have push access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` and `repo` scopes to use this endpoint.
+     * For organization-owned repositories, the list of collaborators includes outside
+     * collaborators, organization members that are direct collaborators, organization members with
+     * access through team memberships, organization members with access through default
+     * organization permissions, and organization owners. Team members will include the members of
+     * child teams. The authenticated user must have push access to the repository to use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` and
+     * `repo` scopes to use this endpoint.
      */
-    fun reposCheckCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): Unit =
+    fun reposCheckCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposCheckCollaboratorOperation.reposCheckCollaborator(
             clientConfig,
             owner,
@@ -2600,21 +3872,76 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * For organization-owned repositories, the list of collaborators includes outside collaborators, organization members that are direct collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners. Team members will include the members of child teams. The authenticated user must have push access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` and `repo` scopes to use this endpoint.
+     * For organization-owned repositories, the list of collaborators includes outside
+     * collaborators, organization members that are direct collaborators, organization members with
+     * access through team memberships, organization members with access through default
+     * organization permissions, and organization owners. Team members will include the members of
+     * child teams. The authenticated user must have push access to the repository to use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `read:org` and
+     * `repo` scopes to use this endpoint.
      */
-    fun reposCheckCollaboratorWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposCheckCollaboratorOperation.reposCheckCollaboratorWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            username,
-            options,
-        )
+    fun reposCheckCollaboratorWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposCheckCollaboratorOperation
+            .reposCheckCollaboratorWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                username,
+                options,
+            )
 
     /**
-     * Add a user to a repository with a specified level of access. If the repository is owned by an organization, this API does not add the user to the organization - a user that has repository access without being an organization member is called an "outside collaborator" (if they are not an Enterprise Managed User) or a "repository collaborator" if they are an Enterprise Managed User. These users are exempt from some organization policies - see "[Adding outside collaborators to repositories](https://docs.github.com/organizations/managing-user-access-to-your-organizations-repositories/managing-outside-collaborators/adding-outside-collaborators-to-repositories-in-your-organization)" to learn more about these collaborator types. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Adding an outside collaborator may be restricted by enterprise and organization administrators. For more information, see "[Enforcing repository management policies in your enterprise](https://docs.github.com/admin/policies/enforcing-policies-for-your-enterprise/enforcing-repository-management-policies-in-your-enterprise#enforcing-a-policy-for-inviting-outside-collaborators-to-repositories)" and "[Setting permissions for adding outside collaborators](https://docs.github.com/organizations/managing-organization-settings/setting-permissions-for-adding-outside-collaborators)" for organization settings. For more information on permission levels, see "[Repository permission levels for an organization](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#permission-levels-for-repositories-owned-by-an-organization)". There are restrictions on which permissions can be granted to organization members when an organization base role is in place. In this case, the role being given must be equal to or higher than the org base permission. Otherwise, the request will fail with: ``` Cannot assign {member} permission of {role name} ``` Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)." The invitee will receive a notification that they have been invited to the repository, which they must accept or decline. They may do this via the notifications page, the email they receive, or by using the [API](https://docs.github.com/rest/collaborators/invitations). For Enterprise Managed Users, this endpoint does not send invitations - these users are automatically added to organizations and repositories. Enterprise Managed Users can only be added to organizations and repositories within their enterprise. **Updating an existing collaborator's permission level** The endpoint can also be used to change the permissions of an existing collaborator without first removing and re-adding the collaborator. To change the permissions, use the same endpoint and pass a different `permission` parameter. The response will be a `204`, with no other indication that the permission level changed. **Rate limits** You are limited to sending 50 invitations to a repository per 24 hour period. Note there is no limit if you are inviting organization members to an organization repository.
+     * Add a user to a repository with a specified level of access. If the repository is owned by an
+     * organization, this API does not add the user to the organization - a user that has repository
+     * access without being an organization member is called an "outside collaborator" (if they are
+     * not an Enterprise Managed User) or a "repository collaborator" if they are an Enterprise
+     * Managed User. These users are exempt from some organization policies - see "[Adding outside
+     * collaborators to
+     * repositories](https://docs.github.com/organizations/managing-user-access-to-your-organizations-repositories/managing-outside-collaborators/adding-outside-collaborators-to-repositories-in-your-organization)"
+     * to learn more about these collaborator types. This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Adding an outside collaborator may be restricted by enterprise and organization
+     * administrators. For more information, see "[Enforcing repository management policies in your
+     * enterprise](https://docs.github.com/admin/policies/enforcing-policies-for-your-enterprise/enforcing-repository-management-policies-in-your-enterprise#enforcing-a-policy-for-inviting-outside-collaborators-to-repositories)"
+     * and "[Setting permissions for adding outside
+     * collaborators](https://docs.github.com/organizations/managing-organization-settings/setting-permissions-for-adding-outside-collaborators)"
+     * for organization settings. For more information on permission levels, see "[Repository
+     * permission levels for an
+     * organization](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#permission-levels-for-repositories-owned-by-an-organization)".
+     * There are restrictions on which permissions can be granted to organization members when an
+     * organization base role is in place. In this case, the role being given must be equal to or
+     * higher than the org base permission. Otherwise, the request will fail with: ``` Cannot assign
+     * {member} permission of {role name} ``` Note that, if you choose not to pass any parameters,
+     * you'll need to set `Content-Length` to zero when calling out to this endpoint. For more
+     * information, see "[HTTP
+     * method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
+     * The invitee will receive a notification that they have been invited to the repository, which
+     * they must accept or decline. They may do this via the notifications page, the email they
+     * receive, or by using the [API](https://docs.github.com/rest/collaborators/invitations). For
+     * Enterprise Managed Users, this endpoint does not send invitations - these users are
+     * automatically added to organizations and repositories. Enterprise Managed Users can only be
+     * added to organizations and repositories within their enterprise. **Updating an existing
+     * collaborator's permission level** The endpoint can also be used to change the permissions of
+     * an existing collaborator without first removing and re-adding the collaborator. To change the
+     * permissions, use the same endpoint and pass a different `permission` parameter. The response
+     * will be a `204`, with no other indication that the permission level changed. **Rate limits**
+     * You are limited to sending 50 invitations to a repository per 24 hour period. Note there is
+     * no limit if you are inviting organization members to an organization repository.
      */
-    fun reposAddCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, permission: String? = null, options: RequestOptions? = null): RepositoryInvitation =
+    fun reposAddCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        permission: String? = null,
+        options: RequestOptions? = null,
+    ): RepositoryInvitation =
         dev.octri.showcase.github.methods.ReposAddCollaboratorOperation.reposAddCollaborator(
             clientConfig,
             owner,
@@ -2625,22 +3952,85 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Add a user to a repository with a specified level of access. If the repository is owned by an organization, this API does not add the user to the organization - a user that has repository access without being an organization member is called an "outside collaborator" (if they are not an Enterprise Managed User) or a "repository collaborator" if they are an Enterprise Managed User. These users are exempt from some organization policies - see "[Adding outside collaborators to repositories](https://docs.github.com/organizations/managing-user-access-to-your-organizations-repositories/managing-outside-collaborators/adding-outside-collaborators-to-repositories-in-your-organization)" to learn more about these collaborator types. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Adding an outside collaborator may be restricted by enterprise and organization administrators. For more information, see "[Enforcing repository management policies in your enterprise](https://docs.github.com/admin/policies/enforcing-policies-for-your-enterprise/enforcing-repository-management-policies-in-your-enterprise#enforcing-a-policy-for-inviting-outside-collaborators-to-repositories)" and "[Setting permissions for adding outside collaborators](https://docs.github.com/organizations/managing-organization-settings/setting-permissions-for-adding-outside-collaborators)" for organization settings. For more information on permission levels, see "[Repository permission levels for an organization](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#permission-levels-for-repositories-owned-by-an-organization)". There are restrictions on which permissions can be granted to organization members when an organization base role is in place. In this case, the role being given must be equal to or higher than the org base permission. Otherwise, the request will fail with: ``` Cannot assign {member} permission of {role name} ``` Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)." The invitee will receive a notification that they have been invited to the repository, which they must accept or decline. They may do this via the notifications page, the email they receive, or by using the [API](https://docs.github.com/rest/collaborators/invitations). For Enterprise Managed Users, this endpoint does not send invitations - these users are automatically added to organizations and repositories. Enterprise Managed Users can only be added to organizations and repositories within their enterprise. **Updating an existing collaborator's permission level** The endpoint can also be used to change the permissions of an existing collaborator without first removing and re-adding the collaborator. To change the permissions, use the same endpoint and pass a different `permission` parameter. The response will be a `204`, with no other indication that the permission level changed. **Rate limits** You are limited to sending 50 invitations to a repository per 24 hour period. Note there is no limit if you are inviting organization members to an organization repository.
+     * Add a user to a repository with a specified level of access. If the repository is owned by an
+     * organization, this API does not add the user to the organization - a user that has repository
+     * access without being an organization member is called an "outside collaborator" (if they are
+     * not an Enterprise Managed User) or a "repository collaborator" if they are an Enterprise
+     * Managed User. These users are exempt from some organization policies - see "[Adding outside
+     * collaborators to
+     * repositories](https://docs.github.com/organizations/managing-user-access-to-your-organizations-repositories/managing-outside-collaborators/adding-outside-collaborators-to-repositories-in-your-organization)"
+     * to learn more about these collaborator types. This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Adding an outside collaborator may be restricted by enterprise and organization
+     * administrators. For more information, see "[Enforcing repository management policies in your
+     * enterprise](https://docs.github.com/admin/policies/enforcing-policies-for-your-enterprise/enforcing-repository-management-policies-in-your-enterprise#enforcing-a-policy-for-inviting-outside-collaborators-to-repositories)"
+     * and "[Setting permissions for adding outside
+     * collaborators](https://docs.github.com/organizations/managing-organization-settings/setting-permissions-for-adding-outside-collaborators)"
+     * for organization settings. For more information on permission levels, see "[Repository
+     * permission levels for an
+     * organization](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#permission-levels-for-repositories-owned-by-an-organization)".
+     * There are restrictions on which permissions can be granted to organization members when an
+     * organization base role is in place. In this case, the role being given must be equal to or
+     * higher than the org base permission. Otherwise, the request will fail with: ``` Cannot assign
+     * {member} permission of {role name} ``` Note that, if you choose not to pass any parameters,
+     * you'll need to set `Content-Length` to zero when calling out to this endpoint. For more
+     * information, see "[HTTP
+     * method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
+     * The invitee will receive a notification that they have been invited to the repository, which
+     * they must accept or decline. They may do this via the notifications page, the email they
+     * receive, or by using the [API](https://docs.github.com/rest/collaborators/invitations). For
+     * Enterprise Managed Users, this endpoint does not send invitations - these users are
+     * automatically added to organizations and repositories. Enterprise Managed Users can only be
+     * added to organizations and repositories within their enterprise. **Updating an existing
+     * collaborator's permission level** The endpoint can also be used to change the permissions of
+     * an existing collaborator without first removing and re-adding the collaborator. To change the
+     * permissions, use the same endpoint and pass a different `permission` parameter. The response
+     * will be a `204`, with no other indication that the permission level changed. **Rate limits**
+     * You are limited to sending 50 invitations to a repository per 24 hour period. Note there is
+     * no limit if you are inviting organization members to an organization repository.
      */
-    fun reposAddCollaboratorWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, username: String, permission: String? = null, options: RequestOptions? = null): SdkResponse<RepositoryInvitation> =
-        dev.octri.showcase.github.methods.ReposAddCollaboratorOperation.reposAddCollaboratorWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            username,
-            permission,
-            options,
-        )
+    fun reposAddCollaboratorWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        permission: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryInvitation> =
+        dev.octri.showcase.github.methods.ReposAddCollaboratorOperation
+            .reposAddCollaboratorWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                username,
+                permission,
+                options,
+            )
 
     /**
-     * Removes a collaborator from a repository. To use this endpoint, the authenticated user must either be an administrator of the repository or target themselves for removal. This endpoint also: - Cancels any outstanding invitations sent by the collaborator - Unassigns the user from any issues - Removes access to organization projects if the user is not an organization member and is not a collaborator on any other organization repositories. - Unstars the repository - Updates access permissions to packages Removing a user as a collaborator has the following effects on forks: - If the user had access to a fork through their membership to this repository, the user will also be removed from the fork. - If the user had their own fork of the repository, the fork will be deleted. - If the user still has read access to the repository, open pull requests by this user from a fork will be denied. > [!NOTE] > A user can still have access to the repository through organization permissions like base repository permissions. Although the API responds immediately, the additional permission updates might take some extra time to complete in the background. For more information on fork permissions, see "[About permissions and visibility of forks](https://docs.github.com/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)".
+     * Removes a collaborator from a repository. To use this endpoint, the authenticated user must
+     * either be an administrator of the repository or target themselves for removal. This endpoint
+     * also: - Cancels any outstanding invitations sent by the collaborator - Unassigns the user
+     * from any issues - Removes access to organization projects if the user is not an organization
+     * member and is not a collaborator on any other organization repositories. - Unstars the
+     * repository - Updates access permissions to packages Removing a user as a collaborator has the
+     * following effects on forks: - If the user had access to a fork through their membership to
+     * this repository, the user will also be removed from the fork. - If the user had their own
+     * fork of the repository, the fork will be deleted. - If the user still has read access to the
+     * repository, open pull requests by this user from a fork will be denied. > [!NOTE] > A user
+     * can still have access to the repository through organization permissions like base repository
+     * permissions. Although the API responds immediately, the additional permission updates might
+     * take some extra time to complete in the background. For more information on fork permissions,
+     * see "[About permissions and visibility of
+     * forks](https://docs.github.com/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)".
      */
-    fun reposRemoveCollaborator(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): Unit =
+    fun reposRemoveCollaborator(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposRemoveCollaboratorOperation.reposRemoveCollaborator(
             clientConfig,
             owner,
@@ -2650,71 +4040,174 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Removes a collaborator from a repository. To use this endpoint, the authenticated user must either be an administrator of the repository or target themselves for removal. This endpoint also: - Cancels any outstanding invitations sent by the collaborator - Unassigns the user from any issues - Removes access to organization projects if the user is not an organization member and is not a collaborator on any other organization repositories. - Unstars the repository - Updates access permissions to packages Removing a user as a collaborator has the following effects on forks: - If the user had access to a fork through their membership to this repository, the user will also be removed from the fork. - If the user had their own fork of the repository, the fork will be deleted. - If the user still has read access to the repository, open pull requests by this user from a fork will be denied. > [!NOTE] > A user can still have access to the repository through organization permissions like base repository permissions. Although the API responds immediately, the additional permission updates might take some extra time to complete in the background. For more information on fork permissions, see "[About permissions and visibility of forks](https://docs.github.com/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)".
+     * Removes a collaborator from a repository. To use this endpoint, the authenticated user must
+     * either be an administrator of the repository or target themselves for removal. This endpoint
+     * also: - Cancels any outstanding invitations sent by the collaborator - Unassigns the user
+     * from any issues - Removes access to organization projects if the user is not an organization
+     * member and is not a collaborator on any other organization repositories. - Unstars the
+     * repository - Updates access permissions to packages Removing a user as a collaborator has the
+     * following effects on forks: - If the user had access to a fork through their membership to
+     * this repository, the user will also be removed from the fork. - If the user had their own
+     * fork of the repository, the fork will be deleted. - If the user still has read access to the
+     * repository, open pull requests by this user from a fork will be denied. > [!NOTE] > A user
+     * can still have access to the repository through organization permissions like base repository
+     * permissions. Although the API responds immediately, the additional permission updates might
+     * take some extra time to complete in the background. For more information on fork permissions,
+     * see "[About permissions and visibility of
+     * forks](https://docs.github.com/pull-requests/collaborating-with-pull-requests/working-with-forks/about-permissions-and-visibility-of-forks)".
      */
-    fun reposRemoveCollaboratorWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposRemoveCollaboratorOperation.reposRemoveCollaboratorWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            username,
-            options,
-        )
+    fun reposRemoveCollaboratorWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposRemoveCollaboratorOperation
+            .reposRemoveCollaboratorWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                username,
+                options,
+            )
 
     /**
-     * Checks the repository permission and role of a collaborator. The `permission` attribute provides the legacy base roles of `admin`, `write`, `read`, and `none`, where the `maintain` role is mapped to `write` and the `triage` role is mapped to `read`. The `role_name` attribute provides the name of the assigned role, including custom roles. The `permission` can also be used to determine which base level of access the collaborator has to the repository. The calculated permissions are the highest role assigned to the collaborator after considering all sources of grants, including: repo, teams, organization, and enterprise. There is presently not a way to differentiate between an organization level grant and a repository level grant from this endpoint response.
+     * Checks the repository permission and role of a collaborator. The `permission` attribute
+     * provides the legacy base roles of `admin`, `write`, `read`, and `none`, where the `maintain`
+     * role is mapped to `write` and the `triage` role is mapped to `read`. The `role_name`
+     * attribute provides the name of the assigned role, including custom roles. The `permission`
+     * can also be used to determine which base level of access the collaborator has to the
+     * repository. The calculated permissions are the highest role assigned to the collaborator
+     * after considering all sources of grants, including: repo, teams, organization, and
+     * enterprise. There is presently not a way to differentiate between an organization level grant
+     * and a repository level grant from this endpoint response.
      */
-    fun reposGetCollaboratorPermissionLevel(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): RepositoryCollaboratorPermission =
-        dev.octri.showcase.github.methods.ReposGetCollaboratorPermissionLevelOperation.reposGetCollaboratorPermissionLevel(
-            clientConfig,
-            owner,
-            repo,
-            username,
-            options,
-        )
+    fun reposGetCollaboratorPermissionLevel(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): RepositoryCollaboratorPermission =
+        dev.octri.showcase.github.methods.ReposGetCollaboratorPermissionLevelOperation
+            .reposGetCollaboratorPermissionLevel(
+                clientConfig,
+                owner,
+                repo,
+                username,
+                options,
+            )
 
     /**
-     * Checks the repository permission and role of a collaborator. The `permission` attribute provides the legacy base roles of `admin`, `write`, `read`, and `none`, where the `maintain` role is mapped to `write` and the `triage` role is mapped to `read`. The `role_name` attribute provides the name of the assigned role, including custom roles. The `permission` can also be used to determine which base level of access the collaborator has to the repository. The calculated permissions are the highest role assigned to the collaborator after considering all sources of grants, including: repo, teams, organization, and enterprise. There is presently not a way to differentiate between an organization level grant and a repository level grant from this endpoint response.
+     * Checks the repository permission and role of a collaborator. The `permission` attribute
+     * provides the legacy base roles of `admin`, `write`, `read`, and `none`, where the `maintain`
+     * role is mapped to `write` and the `triage` role is mapped to `read`. The `role_name`
+     * attribute provides the name of the assigned role, including custom roles. The `permission`
+     * can also be used to determine which base level of access the collaborator has to the
+     * repository. The calculated permissions are the highest role assigned to the collaborator
+     * after considering all sources of grants, including: repo, teams, organization, and
+     * enterprise. There is presently not a way to differentiate between an organization level grant
+     * and a repository level grant from this endpoint response.
      */
-    fun reposGetCollaboratorPermissionLevelWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, username: String, options: RequestOptions? = null): SdkResponse<RepositoryCollaboratorPermission> =
-        dev.octri.showcase.github.methods.ReposGetCollaboratorPermissionLevelOperation.reposGetCollaboratorPermissionLevelWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            username,
-            options,
-        )
+    fun reposGetCollaboratorPermissionLevelWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        username: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryCollaboratorPermission> =
+        dev.octri.showcase.github.methods.ReposGetCollaboratorPermissionLevelOperation
+            .reposGetCollaboratorPermissionLevelWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                username,
+                options,
+            )
 
     /**
-     * Lists the commit comments for a specified repository. Comments are ordered by ascending ID. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists the commit comments for a specified repository. Comments are ordered by ascending ID.
+     * This endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposListCommitCommentsForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<CommitComment> =
-        dev.octri.showcase.github.methods.ReposListCommitCommentsForRepoOperation.reposListCommitCommentsForRepo(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListCommitCommentsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<CommitComment> =
+        dev.octri.showcase.github.methods.ReposListCommitCommentsForRepoOperation
+            .reposListCommitCommentsForRepo(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists the commit comments for a specified repository. Comments are ordered by ascending ID. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists the commit comments for a specified repository. Comments are ordered by ascending ID.
+     * This endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposListCommitCommentsForRepoWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<CommitComment>> =
-        dev.octri.showcase.github.methods.ReposListCommitCommentsForRepoOperation.reposListCommitCommentsForRepoWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListCommitCommentsForRepoWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<CommitComment>> =
+        dev.octri.showcase.github.methods.ReposListCommitCommentsForRepoOperation
+            .reposListCommitCommentsForRepoWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Gets a specified commit comment. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Gets a specified commit comment. This endpoint supports the following custom media types. For
+     * more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposGetCommitComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): CommitComment =
+    fun reposGetCommitComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): CommitComment =
         dev.octri.showcase.github.methods.ReposGetCommitCommentOperation.reposGetCommitComment(
             clientConfig,
             owner,
@@ -2724,71 +4217,167 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets a specified commit comment. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Gets a specified commit comment. This endpoint supports the following custom media types. For
+     * more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposGetCommitCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): SdkResponse<CommitComment> =
-        dev.octri.showcase.github.methods.ReposGetCommitCommentOperation.reposGetCommitCommentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            options,
-        )
+    fun reposGetCommitCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<CommitComment> =
+        dev.octri.showcase.github.methods.ReposGetCommitCommentOperation
+            .reposGetCommitCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                options,
+            )
 
     /**
-     * Updates the contents of a specified commit comment. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Updates the contents of a specified commit comment. This endpoint supports the following
+     * custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposUpdateCommitComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, body: String, options: RequestOptions? = null): CommitComment =
-        dev.octri.showcase.github.methods.ReposUpdateCommitCommentOperation.reposUpdateCommitComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            body,
-            options,
-        )
+    fun reposUpdateCommitComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        body: String,
+        options: RequestOptions? = null,
+    ): CommitComment =
+        dev.octri.showcase.github.methods.ReposUpdateCommitCommentOperation
+            .reposUpdateCommitComment(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                body,
+                options,
+            )
 
     /**
-     * Updates the contents of a specified commit comment. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Updates the contents of a specified commit comment. This endpoint supports the following
+     * custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposUpdateCommitCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, body: String, options: RequestOptions? = null): SdkResponse<CommitComment> =
-        dev.octri.showcase.github.methods.ReposUpdateCommitCommentOperation.reposUpdateCommitCommentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            body,
-            options,
-        )
+    fun reposUpdateCommitCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        body: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<CommitComment> =
+        dev.octri.showcase.github.methods.ReposUpdateCommitCommentOperation
+            .reposUpdateCommitCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                body,
+                options,
+            )
 
     /**
-     * Deletes a commit comment from the specified repository. Use `owner`, `repo`, and `comment_id` to identify the repository and comment to remove.
+     * Deletes a commit comment from the specified repository. Use `owner`, `repo`, and `comment_id`
+     * to identify the repository and comment to remove.
      */
-    fun reposDeleteCommitComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeleteCommitCommentOperation.reposDeleteCommitComment(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            options,
-        )
+    fun reposDeleteCommitComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeleteCommitCommentOperation
+            .reposDeleteCommitComment(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                options,
+            )
 
     /**
-     * Deletes a commit comment from the specified repository. Use `owner`, `repo`, and `comment_id` to identify the repository and comment to remove.
+     * Deletes a commit comment from the specified repository. Use `owner`, `repo`, and `comment_id`
+     * to identify the repository and comment to remove.
      */
-    fun reposDeleteCommitCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteCommitCommentOperation.reposDeleteCommitCommentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            commentId,
-            options,
-        )
+    fun reposDeleteCommitCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteCommitCommentOperation
+            .reposDeleteCommitCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                options,
+            )
 
     /**
-     * **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are enumerated in table below. | | `signature` | `string` | The signature that was extracted from the commit. | | `payload` | `string` | The value that was signed. | | `verified_at` | `string` | The date the signature was verified by GitHub. | These are the possible values for `reason` in the `verification` object: | Value | Description | | ----- | ----------- | | `expired_key` | The key that made the signature is expired. | | `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made the signature. | | `gpgverify_error` | There was an error communicating with the signature verification service. | | `gpgverify_unavailable` | The signature verification service is currently unavailable. | | `unsigned` | The object does not include a signature. | | `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No user was associated with the `committer` email address in the commit. | | `unverified_email` | The `committer` email address in the commit was associated with a user, but the email address is not verified on their account. | | `bad_email` | The `committer` email address in the commit is not included in the identities of the PGP key that made the signature. | | `unknown_key` | The key that made the signature has not been registered with any user's account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid` | The signature could not be cryptographically verified using the key whose key-id was found in the signature. | | `valid` | None of the above errors applied, so the signature is considered to be verified. |
+     * **Signature verification object** The response will include a `verification` object that
+     * describes the result of verifying the commit's signature. The following fields are included
+     * in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | |
+     * `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to
+     * be verified. | | `reason` | `string` | The reason for verified value. Possible values and
+     * their meanings are enumerated in table below. | | `signature` | `string` | The signature that
+     * was extracted from the commit. | | `payload` | `string` | The value that was signed. | |
+     * `verified_at` | `string` | The date the signature was verified by GitHub. | These are the
+     * possible values for `reason` in the `verification` object: | Value | Description | | ----- |
+     * ----------- | | `expired_key` | The key that made the signature is expired. | |
+     * `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made
+     * the signature. | | `gpgverify_error` | There was an error communicating with the signature
+     * verification service. | | `gpgverify_unavailable` | The signature verification service is
+     * currently unavailable. | | `unsigned` | The object does not include a signature. | |
+     * `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No
+     * user was associated with the `committer` email address in the commit. | | `unverified_email`
+     * | The `committer` email address in the commit was associated with a user, but the email
+     * address is not verified on their account. | | `bad_email` | The `committer` email address in
+     * the commit is not included in the identities of the PGP key that made the signature. | |
+     * `unknown_key` | The key that made the signature has not been registered with any user's
+     * account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid`
+     * | The signature could not be cryptographically verified using the key whose key-id was found
+     * in the signature. | | `valid` | None of the above errors applied, so the signature is
+     * considered to be verified. |
      */
-    fun reposListCommits(clientConfig: ClientConfig, request: ReposListCommitsRequest, options: RequestOptions? = null): List<Commit> =
+    fun reposListCommits(
+        clientConfig: ClientConfig,
+        request: ReposListCommitsRequest,
+        options: RequestOptions? = null,
+    ): List<Commit> =
         dev.octri.showcase.github.methods.ReposListCommitsOperation.reposListCommits(
             clientConfig,
             request,
@@ -2796,9 +4385,36 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are enumerated in table below. | | `signature` | `string` | The signature that was extracted from the commit. | | `payload` | `string` | The value that was signed. | | `verified_at` | `string` | The date the signature was verified by GitHub. | These are the possible values for `reason` in the `verification` object: | Value | Description | | ----- | ----------- | | `expired_key` | The key that made the signature is expired. | | `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made the signature. | | `gpgverify_error` | There was an error communicating with the signature verification service. | | `gpgverify_unavailable` | The signature verification service is currently unavailable. | | `unsigned` | The object does not include a signature. | | `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No user was associated with the `committer` email address in the commit. | | `unverified_email` | The `committer` email address in the commit was associated with a user, but the email address is not verified on their account. | | `bad_email` | The `committer` email address in the commit is not included in the identities of the PGP key that made the signature. | | `unknown_key` | The key that made the signature has not been registered with any user's account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid` | The signature could not be cryptographically verified using the key whose key-id was found in the signature. | | `valid` | None of the above errors applied, so the signature is considered to be verified. |
+     * **Signature verification object** The response will include a `verification` object that
+     * describes the result of verifying the commit's signature. The following fields are included
+     * in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | |
+     * `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to
+     * be verified. | | `reason` | `string` | The reason for verified value. Possible values and
+     * their meanings are enumerated in table below. | | `signature` | `string` | The signature that
+     * was extracted from the commit. | | `payload` | `string` | The value that was signed. | |
+     * `verified_at` | `string` | The date the signature was verified by GitHub. | These are the
+     * possible values for `reason` in the `verification` object: | Value | Description | | ----- |
+     * ----------- | | `expired_key` | The key that made the signature is expired. | |
+     * `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made
+     * the signature. | | `gpgverify_error` | There was an error communicating with the signature
+     * verification service. | | `gpgverify_unavailable` | The signature verification service is
+     * currently unavailable. | | `unsigned` | The object does not include a signature. | |
+     * `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No
+     * user was associated with the `committer` email address in the commit. | | `unverified_email`
+     * | The `committer` email address in the commit was associated with a user, but the email
+     * address is not verified on their account. | | `bad_email` | The `committer` email address in
+     * the commit is not included in the identities of the PGP key that made the signature. | |
+     * `unknown_key` | The key that made the signature has not been registered with any user's
+     * account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid`
+     * | The signature could not be cryptographically verified using the key whose key-id was found
+     * in the signature. | | `valid` | None of the above errors applied, so the signature is
+     * considered to be verified. |
      */
-    fun reposListCommitsWithRawResponse(clientConfig: ClientConfig, request: ReposListCommitsRequest, options: RequestOptions? = null): SdkResponse<List<Commit>> =
+    fun reposListCommitsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListCommitsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Commit>> =
         dev.octri.showcase.github.methods.ReposListCommitsOperation.reposListCommitsWithRawResponse(
             clientConfig,
             request,
@@ -2806,109 +4422,290 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Returns all branches where the given commit SHA is the HEAD, or latest commit for the branch.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Returns all branches where the given commit SHA is the
+     * HEAD, or latest commit for the branch.
      */
-    fun reposListBranchesForHeadCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, options: RequestOptions? = null): List<BranchShort> =
-        dev.octri.showcase.github.methods.ReposListBranchesForHeadCommitOperation.reposListBranchesForHeadCommit(
-            clientConfig,
-            owner,
-            repo,
-            commitSha,
-            options,
-        )
+    fun reposListBranchesForHeadCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        options: RequestOptions? = null,
+    ): List<BranchShort> =
+        dev.octri.showcase.github.methods.ReposListBranchesForHeadCommitOperation
+            .reposListBranchesForHeadCommit(
+                clientConfig,
+                owner,
+                repo,
+                commitSha,
+                options,
+            )
 
     /**
-     * Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. Returns all branches where the given commit SHA is the HEAD, or latest commit for the branch.
+     * Protected branches are available in public repositories with GitHub Free and GitHub Free for
+     * organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub
+     * Enterprise Cloud, and GitHub Enterprise Server. For more information, see
+     * [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products)
+     * in the GitHub Help documentation. Returns all branches where the given commit SHA is the
+     * HEAD, or latest commit for the branch.
      */
-    fun reposListBranchesForHeadCommitWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, options: RequestOptions? = null): SdkResponse<List<BranchShort>> =
-        dev.octri.showcase.github.methods.ReposListBranchesForHeadCommitOperation.reposListBranchesForHeadCommitWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            commitSha,
-            options,
-        )
+    fun reposListBranchesForHeadCommitWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<BranchShort>> =
+        dev.octri.showcase.github.methods.ReposListBranchesForHeadCommitOperation
+            .reposListBranchesForHeadCommitWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commitSha,
+                options,
+            )
 
     /**
-     * Lists the comments for a specified commit. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists the comments for a specified commit. This endpoint supports the following custom media
+     * types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposListCommentsForCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<CommitComment> =
-        dev.octri.showcase.github.methods.ReposListCommentsForCommitOperation.reposListCommentsForCommit(
-            clientConfig,
-            owner,
-            repo,
-            commitSha,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListCommentsForCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<CommitComment> =
+        dev.octri.showcase.github.methods.ReposListCommentsForCommitOperation
+            .reposListCommentsForCommit(
+                clientConfig,
+                owner,
+                repo,
+                commitSha,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists the comments for a specified commit. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Lists the comments for a specified commit. This endpoint supports the following custom media
+     * types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposListCommentsForCommitWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<CommitComment>> =
-        dev.octri.showcase.github.methods.ReposListCommentsForCommitOperation.reposListCommentsForCommitWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            commitSha,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListCommentsForCommitWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<CommitComment>> =
+        dev.octri.showcase.github.methods.ReposListCommentsForCommitOperation
+            .reposListCommentsForCommitWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commitSha,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Create a comment for a commit using its `:commit_sha`. Access to commit comments can be controlled by organization owners. For more information, see "[Managing commit comments for your organization](https://docs.github.com/organizations/managing-organization-settings/managing-commit-comments-for-your-organization)". This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Create a comment for a commit using its `:commit_sha`. Access to commit comments can be
+     * controlled by organization owners. For more information, see "[Managing commit comments for
+     * your
+     * organization](https://docs.github.com/organizations/managing-organization-settings/managing-commit-comments-for-your-organization)".
+     * This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This
+     * endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposCreateCommitComment(clientConfig: ClientConfig, request: ReposCreateCommitCommentRequest, options: RequestOptions? = null): CommitComment =
-        dev.octri.showcase.github.methods.ReposCreateCommitCommentOperation.reposCreateCommitComment(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateCommitComment(
+        clientConfig: ClientConfig,
+        request: ReposCreateCommitCommentRequest,
+        options: RequestOptions? = null,
+    ): CommitComment =
+        dev.octri.showcase.github.methods.ReposCreateCommitCommentOperation
+            .reposCreateCommitComment(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Create a comment for a commit using its `:commit_sha`. Access to commit comments can be controlled by organization owners. For more information, see "[Managing commit comments for your organization](https://docs.github.com/organizations/managing-organization-settings/managing-commit-comments-for-your-organization)". This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response will include `body`. This is the default if you do not pass any specific media type. - **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of the markdown body. Response will include `body_text`. - **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's markdown. Response will include `body_html`. - **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML representations. Response will include `body`, `body_text`, and `body_html`.
+     * Create a comment for a commit using its `:commit_sha`. Access to commit comments can be
+     * controlled by organization owners. For more information, see "[Managing commit comments for
+     * your
+     * organization](https://docs.github.com/organizations/managing-organization-settings/managing-commit-comments-for-your-organization)".
+     * This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)." This
+     * endpoint supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github-commitcomment.raw+json`**: Returns the raw markdown body. Response
+     * will include `body`. This is the default if you do not pass any specific media type. -
+     * **`application/vnd.github-commitcomment.text+json`**: Returns a text only representation of
+     * the markdown body. Response will include `body_text`. -
+     * **`application/vnd.github-commitcomment.html+json`**: Returns HTML rendered from the body's
+     * markdown. Response will include `body_html`. -
+     * **`application/vnd.github-commitcomment.full+json`**: Returns raw, text, and HTML
+     * representations. Response will include `body`, `body_text`, and `body_html`.
      */
-    fun reposCreateCommitCommentWithRawResponse(clientConfig: ClientConfig, request: ReposCreateCommitCommentRequest, options: RequestOptions? = null): SdkResponse<CommitComment> =
-        dev.octri.showcase.github.methods.ReposCreateCommitCommentOperation.reposCreateCommitCommentWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateCommitCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateCommitCommentRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<CommitComment> =
+        dev.octri.showcase.github.methods.ReposCreateCommitCommentOperation
+            .reposCreateCommitCommentWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists the merged pull request that introduced the commit to the repository. If the commit is not present in the default branch, it will return merged and open pull requests associated with the commit. To list the open or merged pull requests associated with a branch, you can set the `commit_sha` parameter to the branch name.
+     * Lists the merged pull request that introduced the commit to the repository. If the commit is
+     * not present in the default branch, it will return merged and open pull requests associated
+     * with the commit. To list the open or merged pull requests associated with a branch, you can
+     * set the `commit_sha` parameter to the branch name.
      */
-    fun reposListPullRequestsAssociatedWithCommit(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PullRequestSimple> =
-        dev.octri.showcase.github.methods.ReposListPullRequestsAssociatedWithCommitOperation.reposListPullRequestsAssociatedWithCommit(
-            clientConfig,
-            owner,
-            repo,
-            commitSha,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListPullRequestsAssociatedWithCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<PullRequestSimple> =
+        dev.octri.showcase.github.methods.ReposListPullRequestsAssociatedWithCommitOperation
+            .reposListPullRequestsAssociatedWithCommit(
+                clientConfig,
+                owner,
+                repo,
+                commitSha,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists the merged pull request that introduced the commit to the repository. If the commit is not present in the default branch, it will return merged and open pull requests associated with the commit. To list the open or merged pull requests associated with a branch, you can set the `commit_sha` parameter to the branch name.
+     * Lists the merged pull request that introduced the commit to the repository. If the commit is
+     * not present in the default branch, it will return merged and open pull requests associated
+     * with the commit. To list the open or merged pull requests associated with a branch, you can
+     * set the `commit_sha` parameter to the branch name.
      */
-    fun reposListPullRequestsAssociatedWithCommitWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commitSha: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<PullRequestSimple>> =
-        dev.octri.showcase.github.methods.ReposListPullRequestsAssociatedWithCommitOperation.reposListPullRequestsAssociatedWithCommitWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            commitSha,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListPullRequestsAssociatedWithCommitWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commitSha: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<PullRequestSimple>> =
+        dev.octri.showcase.github.methods.ReposListPullRequestsAssociatedWithCommitOperation
+            .reposListPullRequestsAssociatedWithCommitWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commitSha,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Returns the contents of a single commit reference. You must have `read` access for the repository to use this endpoint. > [!NOTE] > If there are more than 300 files in the commit diff and the default JSON media type is requested, the response will include pagination link headers for the remaining files, up to a limit of 3000 files. Each page contains the static commit information, and the only changes are to the file listing. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." Pagination query parameters are not supported for these media types. - **`application/vnd.github.diff`**: Returns the diff of the commit. Larger diffs may time out and return a 5xx status code. - **`application/vnd.github.patch`**: Returns the patch of the commit. Diffs with binary data will have no `patch` property. Larger diffs may time out and return a 5xx status code. - **`application/vnd.github.sha`**: Returns the commit's SHA-1 hash. You can use this endpoint to check if a remote reference's SHA-1 hash is the same as your local reference's SHA-1 hash by providing the local SHA-1 reference as the ETag. **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are enumerated in table below. | | `signature` | `string` | The signature that was extracted from the commit. | | `payload` | `string` | The value that was signed. | | `verified_at` | `string` | The date the signature was verified by GitHub. | These are the possible values for `reason` in the `verification` object: | Value | Description | | ----- | ----------- | | `expired_key` | The key that made the signature is expired. | | `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made the signature. | | `gpgverify_error` | There was an error communicating with the signature verification service. | | `gpgverify_unavailable` | The signature verification service is currently unavailable. | | `unsigned` | The object does not include a signature. | | `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No user was associated with the `committer` email address in the commit. | | `unverified_email` | The `committer` email address in the commit was associated with a user, but the email address is not verified on their account. | | `bad_email` | The `committer` email address in the commit is not included in the identities of the PGP key that made the signature. | | `unknown_key` | The key that made the signature has not been registered with any user's account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid` | The signature could not be cryptographically verified using the key whose key-id was found in the signature. | | `valid` | None of the above errors applied, so the signature is considered to be verified. |
+     * Returns the contents of a single commit reference. You must have `read` access for the
+     * repository to use this endpoint. > [!NOTE] > If there are more than 300 files in the commit
+     * diff and the default JSON media type is requested, the response will include pagination link
+     * headers for the remaining files, up to a limit of 3000 files. Each page contains the static
+     * commit information, and the only changes are to the file listing. This endpoint supports the
+     * following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+     * Pagination query parameters are not supported for these media types. -
+     * **`application/vnd.github.diff`**: Returns the diff of the commit. Larger diffs may time out
+     * and return a 5xx status code. - **`application/vnd.github.patch`**: Returns the patch of the
+     * commit. Diffs with binary data will have no `patch` property. Larger diffs may time out and
+     * return a 5xx status code. - **`application/vnd.github.sha`**: Returns the commit's SHA-1
+     * hash. You can use this endpoint to check if a remote reference's SHA-1 hash is the same as
+     * your local reference's SHA-1 hash by providing the local SHA-1 reference as the ETag.
+     * **Signature verification object** The response will include a `verification` object that
+     * describes the result of verifying the commit's signature. The following fields are included
+     * in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | |
+     * `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to
+     * be verified. | | `reason` | `string` | The reason for verified value. Possible values and
+     * their meanings are enumerated in table below. | | `signature` | `string` | The signature that
+     * was extracted from the commit. | | `payload` | `string` | The value that was signed. | |
+     * `verified_at` | `string` | The date the signature was verified by GitHub. | These are the
+     * possible values for `reason` in the `verification` object: | Value | Description | | ----- |
+     * ----------- | | `expired_key` | The key that made the signature is expired. | |
+     * `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made
+     * the signature. | | `gpgverify_error` | There was an error communicating with the signature
+     * verification service. | | `gpgverify_unavailable` | The signature verification service is
+     * currently unavailable. | | `unsigned` | The object does not include a signature. | |
+     * `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No
+     * user was associated with the `committer` email address in the commit. | | `unverified_email`
+     * | The `committer` email address in the commit was associated with a user, but the email
+     * address is not verified on their account. | | `bad_email` | The `committer` email address in
+     * the commit is not included in the identities of the PGP key that made the signature. | |
+     * `unknown_key` | The key that made the signature has not been registered with any user's
+     * account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid`
+     * | The signature could not be cryptographically verified using the key whose key-id was found
+     * in the signature. | | `valid` | None of the above errors applied, so the signature is
+     * considered to be verified. |
      */
-    fun reposGetCommit(clientConfig: ClientConfig, owner: String, repo: String, ref: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Commit =
+    fun reposGetCommit(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Commit =
         dev.octri.showcase.github.methods.ReposGetCommitOperation.reposGetCommit(
             clientConfig,
             owner,
@@ -2920,9 +4717,54 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Returns the contents of a single commit reference. You must have `read` access for the repository to use this endpoint. > [!NOTE] > If there are more than 300 files in the commit diff and the default JSON media type is requested, the response will include pagination link headers for the remaining files, up to a limit of 3000 files. Each page contains the static commit information, and the only changes are to the file listing. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." Pagination query parameters are not supported for these media types. - **`application/vnd.github.diff`**: Returns the diff of the commit. Larger diffs may time out and return a 5xx status code. - **`application/vnd.github.patch`**: Returns the patch of the commit. Diffs with binary data will have no `patch` property. Larger diffs may time out and return a 5xx status code. - **`application/vnd.github.sha`**: Returns the commit's SHA-1 hash. You can use this endpoint to check if a remote reference's SHA-1 hash is the same as your local reference's SHA-1 hash by providing the local SHA-1 reference as the ETag. **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are enumerated in table below. | | `signature` | `string` | The signature that was extracted from the commit. | | `payload` | `string` | The value that was signed. | | `verified_at` | `string` | The date the signature was verified by GitHub. | These are the possible values for `reason` in the `verification` object: | Value | Description | | ----- | ----------- | | `expired_key` | The key that made the signature is expired. | | `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made the signature. | | `gpgverify_error` | There was an error communicating with the signature verification service. | | `gpgverify_unavailable` | The signature verification service is currently unavailable. | | `unsigned` | The object does not include a signature. | | `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No user was associated with the `committer` email address in the commit. | | `unverified_email` | The `committer` email address in the commit was associated with a user, but the email address is not verified on their account. | | `bad_email` | The `committer` email address in the commit is not included in the identities of the PGP key that made the signature. | | `unknown_key` | The key that made the signature has not been registered with any user's account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid` | The signature could not be cryptographically verified using the key whose key-id was found in the signature. | | `valid` | None of the above errors applied, so the signature is considered to be verified. |
+     * Returns the contents of a single commit reference. You must have `read` access for the
+     * repository to use this endpoint. > [!NOTE] > If there are more than 300 files in the commit
+     * diff and the default JSON media type is requested, the response will include pagination link
+     * headers for the remaining files, up to a limit of 3000 files. Each page contains the static
+     * commit information, and the only changes are to the file listing. This endpoint supports the
+     * following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+     * Pagination query parameters are not supported for these media types. -
+     * **`application/vnd.github.diff`**: Returns the diff of the commit. Larger diffs may time out
+     * and return a 5xx status code. - **`application/vnd.github.patch`**: Returns the patch of the
+     * commit. Diffs with binary data will have no `patch` property. Larger diffs may time out and
+     * return a 5xx status code. - **`application/vnd.github.sha`**: Returns the commit's SHA-1
+     * hash. You can use this endpoint to check if a remote reference's SHA-1 hash is the same as
+     * your local reference's SHA-1 hash by providing the local SHA-1 reference as the ETag.
+     * **Signature verification object** The response will include a `verification` object that
+     * describes the result of verifying the commit's signature. The following fields are included
+     * in the `verification` object: | Name | Type | Description | | ---- | ---- | ----------- | |
+     * `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to
+     * be verified. | | `reason` | `string` | The reason for verified value. Possible values and
+     * their meanings are enumerated in table below. | | `signature` | `string` | The signature that
+     * was extracted from the commit. | | `payload` | `string` | The value that was signed. | |
+     * `verified_at` | `string` | The date the signature was verified by GitHub. | These are the
+     * possible values for `reason` in the `verification` object: | Value | Description | | ----- |
+     * ----------- | | `expired_key` | The key that made the signature is expired. | |
+     * `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made
+     * the signature. | | `gpgverify_error` | There was an error communicating with the signature
+     * verification service. | | `gpgverify_unavailable` | The signature verification service is
+     * currently unavailable. | | `unsigned` | The object does not include a signature. | |
+     * `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No
+     * user was associated with the `committer` email address in the commit. | | `unverified_email`
+     * | The `committer` email address in the commit was associated with a user, but the email
+     * address is not verified on their account. | | `bad_email` | The `committer` email address in
+     * the commit is not included in the identities of the PGP key that made the signature. | |
+     * `unknown_key` | The key that made the signature has not been registered with any user's
+     * account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid`
+     * | The signature could not be cryptographically verified using the key whose key-id was found
+     * in the signature. | | `valid` | None of the above errors applied, so the signature is
+     * considered to be verified. |
      */
-    fun reposGetCommitWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): SdkResponse<Commit> =
+    fun reposGetCommitWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Commit> =
         dev.octri.showcase.github.methods.ReposGetCommitOperation.reposGetCommitWithRawResponse(
             clientConfig,
             owner,
@@ -2934,87 +4776,220 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Users with pull access in a repository can access a combined view of commit statuses for a given ref. The ref can be a SHA, a branch name, or a tag name. Additionally, a combined `state` is returned. The `state` is one of: * **failure** if any of the contexts report as `error` or `failure` * **pending** if there are no statuses or a context is `pending` * **success** if the latest status for all contexts is `success`
+     * Users with pull access in a repository can access a combined view of commit statuses for a
+     * given ref. The ref can be a SHA, a branch name, or a tag name. Additionally, a combined
+     * `state` is returned. The `state` is one of: * **failure** if any of the contexts report as
+     * `error` or `failure` * **pending** if there are no statuses or a context is `pending` *
+     * **success** if the latest status for all contexts is `success`
      */
-    fun reposGetCombinedStatusForRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): CombinedCommitStatus =
-        dev.octri.showcase.github.methods.ReposGetCombinedStatusForRefOperation.reposGetCombinedStatusForRef(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            perPage,
-            page,
-            options,
-        )
+    fun reposGetCombinedStatusForRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): CombinedCommitStatus =
+        dev.octri.showcase.github.methods.ReposGetCombinedStatusForRefOperation
+            .reposGetCombinedStatusForRef(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Users with pull access in a repository can access a combined view of commit statuses for a given ref. The ref can be a SHA, a branch name, or a tag name. Additionally, a combined `state` is returned. The `state` is one of: * **failure** if any of the contexts report as `error` or `failure` * **pending** if there are no statuses or a context is `pending` * **success** if the latest status for all contexts is `success`
+     * Users with pull access in a repository can access a combined view of commit statuses for a
+     * given ref. The ref can be a SHA, a branch name, or a tag name. Additionally, a combined
+     * `state` is returned. The `state` is one of: * **failure** if any of the contexts report as
+     * `error` or `failure` * **pending** if there are no statuses or a context is `pending` *
+     * **success** if the latest status for all contexts is `success`
      */
-    fun reposGetCombinedStatusForRefWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<CombinedCommitStatus> =
-        dev.octri.showcase.github.methods.ReposGetCombinedStatusForRefOperation.reposGetCombinedStatusForRefWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            perPage,
-            page,
-            options,
-        )
+    fun reposGetCombinedStatusForRefWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<CombinedCommitStatus> =
+        dev.octri.showcase.github.methods.ReposGetCombinedStatusForRefOperation
+            .reposGetCombinedStatusForRefWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Users with pull access in a repository can view commit statuses for a given ref. The ref can be a SHA, a branch name, or a tag name. Statuses are returned in reverse chronological order. The first status in the list will be the latest one. This resource is also available via a legacy route: `GET /repos/:owner/:repo/statuses/:ref`.
+     * Users with pull access in a repository can view commit statuses for a given ref. The ref can
+     * be a SHA, a branch name, or a tag name. Statuses are returned in reverse chronological order.
+     * The first status in the list will be the latest one. This resource is also available via a
+     * legacy route: `GET /repos/:owner/:repo/statuses/:ref`.
      */
-    fun reposListCommitStatusesForRef(clientConfig: ClientConfig, owner: String, repo: String, ref: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Status> =
-        dev.octri.showcase.github.methods.ReposListCommitStatusesForRefOperation.reposListCommitStatusesForRef(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListCommitStatusesForRef(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Status> =
+        dev.octri.showcase.github.methods.ReposListCommitStatusesForRefOperation
+            .reposListCommitStatusesForRef(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Users with pull access in a repository can view commit statuses for a given ref. The ref can be a SHA, a branch name, or a tag name. Statuses are returned in reverse chronological order. The first status in the list will be the latest one. This resource is also available via a legacy route: `GET /repos/:owner/:repo/statuses/:ref`.
+     * Users with pull access in a repository can view commit statuses for a given ref. The ref can
+     * be a SHA, a branch name, or a tag name. Statuses are returned in reverse chronological order.
+     * The first status in the list will be the latest one. This resource is also available via a
+     * legacy route: `GET /repos/:owner/:repo/statuses/:ref`.
      */
-    fun reposListCommitStatusesForRefWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Status>> =
-        dev.octri.showcase.github.methods.ReposListCommitStatusesForRefOperation.reposListCommitStatusesForRefWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListCommitStatusesForRefWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Status>> =
+        dev.octri.showcase.github.methods.ReposListCommitStatusesForRefOperation
+            .reposListCommitStatusesForRefWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Returns all community profile metrics for a repository. The repository cannot be a fork. The returned metrics include an overall health score, the repository description, the presence of documentation, the detected code of conduct, the detected license, and the presence of ISSUE\_TEMPLATE, PULL\_REQUEST\_TEMPLATE, README, and CONTRIBUTING files. The `health_percentage` score is defined as a percentage of how many of the recommended community health files are present. For more information, see "[About community profiles for public repositories](https://docs.github.com/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories)." `content_reports_enabled` is only returned for organization-owned repositories.
+     * Returns all community profile metrics for a repository. The repository cannot be a fork. The
+     * returned metrics include an overall health score, the repository description, the presence of
+     * documentation, the detected code of conduct, the detected license, and the presence of
+     * ISSUE\_TEMPLATE, PULL\_REQUEST\_TEMPLATE, README, and CONTRIBUTING files. The
+     * `health_percentage` score is defined as a percentage of how many of the recommended community
+     * health files are present. For more information, see "[About community profiles for public
+     * repositories](https://docs.github.com/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories)."
+     * `content_reports_enabled` is only returned for organization-owned repositories.
      */
-    fun reposGetCommunityProfileMetrics(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CommunityProfile =
-        dev.octri.showcase.github.methods.ReposGetCommunityProfileMetricsOperation.reposGetCommunityProfileMetrics(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetCommunityProfileMetrics(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CommunityProfile =
+        dev.octri.showcase.github.methods.ReposGetCommunityProfileMetricsOperation
+            .reposGetCommunityProfileMetrics(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns all community profile metrics for a repository. The repository cannot be a fork. The returned metrics include an overall health score, the repository description, the presence of documentation, the detected code of conduct, the detected license, and the presence of ISSUE\_TEMPLATE, PULL\_REQUEST\_TEMPLATE, README, and CONTRIBUTING files. The `health_percentage` score is defined as a percentage of how many of the recommended community health files are present. For more information, see "[About community profiles for public repositories](https://docs.github.com/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories)." `content_reports_enabled` is only returned for organization-owned repositories.
+     * Returns all community profile metrics for a repository. The repository cannot be a fork. The
+     * returned metrics include an overall health score, the repository description, the presence of
+     * documentation, the detected code of conduct, the detected license, and the presence of
+     * ISSUE\_TEMPLATE, PULL\_REQUEST\_TEMPLATE, README, and CONTRIBUTING files. The
+     * `health_percentage` score is defined as a percentage of how many of the recommended community
+     * health files are present. For more information, see "[About community profiles for public
+     * repositories](https://docs.github.com/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories)."
+     * `content_reports_enabled` is only returned for organization-owned repositories.
      */
-    fun reposGetCommunityProfileMetricsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<CommunityProfile> =
-        dev.octri.showcase.github.methods.ReposGetCommunityProfileMetricsOperation.reposGetCommunityProfileMetricsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetCommunityProfileMetricsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<CommunityProfile> =
+        dev.octri.showcase.github.methods.ReposGetCommunityProfileMetricsOperation
+            .reposGetCommunityProfileMetricsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Compares two commits against one another. You can compare refs (branches or tags) and commit SHAs in the same repository, or you can compare refs and commit SHAs that exist in different repositories within the same repository network, including fork branches. For more information about how to view a repository's network, see "[Understanding connections between repositories](https://docs.github.com/repositories/viewing-activity-and-data-for-your-repository/understanding-connections-between-repositories)." This endpoint is equivalent to running the `git log BASE..HEAD` command, but it returns commits in a different order. The `git log BASE..HEAD` command returns commits in reverse chronological order, whereas the API returns commits in chronological order. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.diff`**: Returns the diff of the commit. - **`application/vnd.github.patch`**: Returns the patch of the commit. Diffs with binary data will have no `patch` property. The API response includes details about the files that were changed between the two commits. This includes the status of the change (if a file was added, removed, modified, or renamed), and details of the change itself. For example, files with a `renamed` status have a `previous_filename` field showing the previous filename of the file, and files with a `modified` status have a `patch` field showing the changes made to the file. When calling this endpoint without any paging parameter (`per_page` or `page`), the returned list is limited to 250 commits, and the last commit in the list is the most recent of the entire comparison. **Working with large comparisons** To process a response with a large number of commits, use a query parameter (`per_page` or `page`) to paginate the results. When using pagination: - The list of changed files is only shown on the first page of results, and it includes up to 300 changed files for the entire comparison. - The results are returned in chronological order, but the last commit in the returned list may not be the most recent one in the entire set if there are more pages of results. For more information on working with pagination, see "[Using pagination in the REST API](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api)." **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The `verification` object includes the following fields: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are enumerated in table below. | | `signature` | `string` | The signature that was extracted from the commit. | | `payload` | `string` | The value that was signed. | | `verified_at` | `string` | The date the signature was verified by GitHub. | These are the possible values for `reason` in the `verification` object: | Value | Description | | ----- | ----------- | | `expired_key` | The key that made the signature is expired. | | `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made the signature. | | `gpgverify_error` | There was an error communicating with the signature verification service. | | `gpgverify_unavailable` | The signature verification service is currently unavailable. | | `unsigned` | The object does not include a signature. | | `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No user was associated with the `committer` email address in the commit. | | `unverified_email` | The `committer` email address in the commit was associated with a user, but the email address is not verified on their account. | | `bad_email` | The `committer` email address in the commit is not included in the identities of the PGP key that made the signature. | | `unknown_key` | The key that made the signature has not been registered with any user's account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid` | The signature could not be cryptographically verified using the key whose key-id was found in the signature. | | `valid` | None of the above errors applied, so the signature is considered to be verified. |
+     * Compares two commits against one another. You can compare refs (branches or tags) and commit
+     * SHAs in the same repository, or you can compare refs and commit SHAs that exist in different
+     * repositories within the same repository network, including fork branches. For more
+     * information about how to view a repository's network, see "[Understanding connections between
+     * repositories](https://docs.github.com/repositories/viewing-activity-and-data-for-your-repository/understanding-connections-between-repositories)."
+     * This endpoint is equivalent to running the `git log BASE..HEAD` command, but it returns
+     * commits in a different order. The `git log BASE..HEAD` command returns commits in reverse
+     * chronological order, whereas the API returns commits in chronological order. This endpoint
+     * supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.diff`**: Returns the diff of the commit. -
+     * **`application/vnd.github.patch`**: Returns the patch of the commit. Diffs with binary data
+     * will have no `patch` property. The API response includes details about the files that were
+     * changed between the two commits. This includes the status of the change (if a file was added,
+     * removed, modified, or renamed), and details of the change itself. For example, files with a
+     * `renamed` status have a `previous_filename` field showing the previous filename of the file,
+     * and files with a `modified` status have a `patch` field showing the changes made to the file.
+     * When calling this endpoint without any paging parameter (`per_page` or `page`), the returned
+     * list is limited to 250 commits, and the last commit in the list is the most recent of the
+     * entire comparison. **Working with large comparisons** To process a response with a large
+     * number of commits, use a query parameter (`per_page` or `page`) to paginate the results. When
+     * using pagination: - The list of changed files is only shown on the first page of results, and
+     * it includes up to 300 changed files for the entire comparison. - The results are returned in
+     * chronological order, but the last commit in the returned list may not be the most recent one
+     * in the entire set if there are more pages of results. For more information on working with
+     * pagination, see "[Using pagination in the REST
+     * API](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api)." **Signature
+     * verification object** The response will include a `verification` object that describes the
+     * result of verifying the commit's signature. The `verification` object includes the following
+     * fields: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean`
+     * | Indicates whether GitHub considers the signature in this commit to be verified. | |
+     * `reason` | `string` | The reason for verified value. Possible values and their meanings are
+     * enumerated in table below. | | `signature` | `string` | The signature that was extracted from
+     * the commit. | | `payload` | `string` | The value that was signed. | | `verified_at` |
+     * `string` | The date the signature was verified by GitHub. | These are the possible values for
+     * `reason` in the `verification` object: | Value | Description | | ----- | ----------- | |
+     * `expired_key` | The key that made the signature is expired. | | `not_signing_key` | The
+     * "signing" flag is not among the usage flags in the GPG key that made the signature. | |
+     * `gpgverify_error` | There was an error communicating with the signature verification service.
+     * | | `gpgverify_unavailable` | The signature verification service is currently unavailable. |
+     * | `unsigned` | The object does not include a signature. | | `unknown_signature_type` | A
+     * non-PGP signature was found in the commit. | | `no_user` | No user was associated with the
+     * `committer` email address in the commit. | | `unverified_email` | The `committer` email
+     * address in the commit was associated with a user, but the email address is not verified on
+     * their account. | | `bad_email` | The `committer` email address in the commit is not included
+     * in the identities of the PGP key that made the signature. | | `unknown_key` | The key that
+     * made the signature has not been registered with any user's account. | | `malformed_signature`
+     * | There was an error parsing the signature. | | `invalid` | The signature could not be
+     * cryptographically verified using the key whose key-id was found in the signature. | | `valid`
+     * | None of the above errors applied, so the signature is considered to be verified. |
      */
-    fun reposCompareCommits(clientConfig: ClientConfig, owner: String, repo: String, basehead: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): CommitComparison =
+    fun reposCompareCommits(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        basehead: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): CommitComparison =
         dev.octri.showcase.github.methods.ReposCompareCommitsOperation.reposCompareCommits(
             clientConfig,
             owner,
@@ -3026,23 +5001,91 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Compares two commits against one another. You can compare refs (branches or tags) and commit SHAs in the same repository, or you can compare refs and commit SHAs that exist in different repositories within the same repository network, including fork branches. For more information about how to view a repository's network, see "[Understanding connections between repositories](https://docs.github.com/repositories/viewing-activity-and-data-for-your-repository/understanding-connections-between-repositories)." This endpoint is equivalent to running the `git log BASE..HEAD` command, but it returns commits in a different order. The `git log BASE..HEAD` command returns commits in reverse chronological order, whereas the API returns commits in chronological order. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.diff`**: Returns the diff of the commit. - **`application/vnd.github.patch`**: Returns the patch of the commit. Diffs with binary data will have no `patch` property. The API response includes details about the files that were changed between the two commits. This includes the status of the change (if a file was added, removed, modified, or renamed), and details of the change itself. For example, files with a `renamed` status have a `previous_filename` field showing the previous filename of the file, and files with a `modified` status have a `patch` field showing the changes made to the file. When calling this endpoint without any paging parameter (`per_page` or `page`), the returned list is limited to 250 commits, and the last commit in the list is the most recent of the entire comparison. **Working with large comparisons** To process a response with a large number of commits, use a query parameter (`per_page` or `page`) to paginate the results. When using pagination: - The list of changed files is only shown on the first page of results, and it includes up to 300 changed files for the entire comparison. - The results are returned in chronological order, but the last commit in the returned list may not be the most recent one in the entire set if there are more pages of results. For more information on working with pagination, see "[Using pagination in the REST API](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api)." **Signature verification object** The response will include a `verification` object that describes the result of verifying the commit's signature. The `verification` object includes the following fields: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean` | Indicates whether GitHub considers the signature in this commit to be verified. | | `reason` | `string` | The reason for verified value. Possible values and their meanings are enumerated in table below. | | `signature` | `string` | The signature that was extracted from the commit. | | `payload` | `string` | The value that was signed. | | `verified_at` | `string` | The date the signature was verified by GitHub. | These are the possible values for `reason` in the `verification` object: | Value | Description | | ----- | ----------- | | `expired_key` | The key that made the signature is expired. | | `not_signing_key` | The "signing" flag is not among the usage flags in the GPG key that made the signature. | | `gpgverify_error` | There was an error communicating with the signature verification service. | | `gpgverify_unavailable` | The signature verification service is currently unavailable. | | `unsigned` | The object does not include a signature. | | `unknown_signature_type` | A non-PGP signature was found in the commit. | | `no_user` | No user was associated with the `committer` email address in the commit. | | `unverified_email` | The `committer` email address in the commit was associated with a user, but the email address is not verified on their account. | | `bad_email` | The `committer` email address in the commit is not included in the identities of the PGP key that made the signature. | | `unknown_key` | The key that made the signature has not been registered with any user's account. | | `malformed_signature` | There was an error parsing the signature. | | `invalid` | The signature could not be cryptographically verified using the key whose key-id was found in the signature. | | `valid` | None of the above errors applied, so the signature is considered to be verified. |
+     * Compares two commits against one another. You can compare refs (branches or tags) and commit
+     * SHAs in the same repository, or you can compare refs and commit SHAs that exist in different
+     * repositories within the same repository network, including fork branches. For more
+     * information about how to view a repository's network, see "[Understanding connections between
+     * repositories](https://docs.github.com/repositories/viewing-activity-and-data-for-your-repository/understanding-connections-between-repositories)."
+     * This endpoint is equivalent to running the `git log BASE..HEAD` command, but it returns
+     * commits in a different order. The `git log BASE..HEAD` command returns commits in reverse
+     * chronological order, whereas the API returns commits in chronological order. This endpoint
+     * supports the following custom media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.diff`**: Returns the diff of the commit. -
+     * **`application/vnd.github.patch`**: Returns the patch of the commit. Diffs with binary data
+     * will have no `patch` property. The API response includes details about the files that were
+     * changed between the two commits. This includes the status of the change (if a file was added,
+     * removed, modified, or renamed), and details of the change itself. For example, files with a
+     * `renamed` status have a `previous_filename` field showing the previous filename of the file,
+     * and files with a `modified` status have a `patch` field showing the changes made to the file.
+     * When calling this endpoint without any paging parameter (`per_page` or `page`), the returned
+     * list is limited to 250 commits, and the last commit in the list is the most recent of the
+     * entire comparison. **Working with large comparisons** To process a response with a large
+     * number of commits, use a query parameter (`per_page` or `page`) to paginate the results. When
+     * using pagination: - The list of changed files is only shown on the first page of results, and
+     * it includes up to 300 changed files for the entire comparison. - The results are returned in
+     * chronological order, but the last commit in the returned list may not be the most recent one
+     * in the entire set if there are more pages of results. For more information on working with
+     * pagination, see "[Using pagination in the REST
+     * API](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api)." **Signature
+     * verification object** The response will include a `verification` object that describes the
+     * result of verifying the commit's signature. The `verification` object includes the following
+     * fields: | Name | Type | Description | | ---- | ---- | ----------- | | `verified` | `boolean`
+     * | Indicates whether GitHub considers the signature in this commit to be verified. | |
+     * `reason` | `string` | The reason for verified value. Possible values and their meanings are
+     * enumerated in table below. | | `signature` | `string` | The signature that was extracted from
+     * the commit. | | `payload` | `string` | The value that was signed. | | `verified_at` |
+     * `string` | The date the signature was verified by GitHub. | These are the possible values for
+     * `reason` in the `verification` object: | Value | Description | | ----- | ----------- | |
+     * `expired_key` | The key that made the signature is expired. | | `not_signing_key` | The
+     * "signing" flag is not among the usage flags in the GPG key that made the signature. | |
+     * `gpgverify_error` | There was an error communicating with the signature verification service.
+     * | | `gpgverify_unavailable` | The signature verification service is currently unavailable. |
+     * | `unsigned` | The object does not include a signature. | | `unknown_signature_type` | A
+     * non-PGP signature was found in the commit. | | `no_user` | No user was associated with the
+     * `committer` email address in the commit. | | `unverified_email` | The `committer` email
+     * address in the commit was associated with a user, but the email address is not verified on
+     * their account. | | `bad_email` | The `committer` email address in the commit is not included
+     * in the identities of the PGP key that made the signature. | | `unknown_key` | The key that
+     * made the signature has not been registered with any user's account. | | `malformed_signature`
+     * | There was an error parsing the signature. | | `invalid` | The signature could not be
+     * cryptographically verified using the key whose key-id was found in the signature. | | `valid`
+     * | None of the above errors applied, so the signature is considered to be verified. |
      */
-    fun reposCompareCommitsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, basehead: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): SdkResponse<CommitComparison> =
-        dev.octri.showcase.github.methods.ReposCompareCommitsOperation.reposCompareCommitsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            basehead,
-            page,
-            perPage,
-            options,
-        )
+    fun reposCompareCommitsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        basehead: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<CommitComparison> =
+        dev.octri.showcase.github.methods.ReposCompareCommitsOperation
+            .reposCompareCommitsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                basehead,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Retrieves a file or directory from a repository at the specified `path`. Use `ref` to select a commit, branch, or tag; it defaults to the repository's default branch when omitted. Directory responses are limited to 1,000 items, and files larger than 100 MB are not supported.
+     * Retrieves a file or directory from a repository at the specified `path`. Use `ref` to select
+     * a commit, branch, or tag; it defaults to the repository's default branch when omitted.
+     * Directory responses are limited to 1,000 items, and files larger than 100 MB are not
+     * supported.
      */
-    fun reposGetContent(clientConfig: ClientConfig, owner: String, repo: String, path: String, ref: String? = null, options: RequestOptions? = null): ContentTree =
+    fun reposGetContent(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        path: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): ContentTree =
         dev.octri.showcase.github.methods.ReposGetContentOperation.reposGetContent(
             clientConfig,
             owner,
@@ -3053,9 +5096,19 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves a file or directory from a repository at the specified `path`. Use `ref` to select a commit, branch, or tag; it defaults to the repository's default branch when omitted. Directory responses are limited to 1,000 items, and files larger than 100 MB are not supported.
+     * Retrieves a file or directory from a repository at the specified `path`. Use `ref` to select
+     * a commit, branch, or tag; it defaults to the repository's default branch when omitted.
+     * Directory responses are limited to 1,000 items, and files larger than 100 MB are not
+     * supported.
      */
-    fun reposGetContentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, path: String, ref: String? = null, options: RequestOptions? = null): SdkResponse<ContentTree> =
+    fun reposGetContentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        path: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ContentTree> =
         dev.octri.showcase.github.methods.ReposGetContentOperation.reposGetContentWithRawResponse(
             clientConfig,
             owner,
@@ -3066,29 +5119,65 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Creates a new file or replaces an existing file in a repository. > [!NOTE] > If you use this endpoint and the "[Delete a file](https://docs.github.com/rest/repos/contents/#delete-a-file)" endpoint in parallel, the concurrent requests will conflict and you will receive errors. You must use these endpoints serially instead. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. The `workflow` scope is also required in order to modify files in the `.github/workflows` directory.
+     * Creates a new file or replaces an existing file in a repository. > [!NOTE] > If you use this
+     * endpoint and the "[Delete a
+     * file](https://docs.github.com/rest/repos/contents/#delete-a-file)" endpoint in parallel, the
+     * concurrent requests will conflict and you will receive errors. You must use these endpoints
+     * serially instead. OAuth app tokens and personal access tokens (classic) need the `repo` scope
+     * to use this endpoint. The `workflow` scope is also required in order to modify files in the
+     * `.github/workflows` directory.
      */
-    fun reposCreateOrUpdateFileContents(clientConfig: ClientConfig, request: ReposCreateOrUpdateFileContentsRequest, options: RequestOptions? = null): FileCommit =
-        dev.octri.showcase.github.methods.ReposCreateOrUpdateFileContentsOperation.reposCreateOrUpdateFileContents(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateOrUpdateFileContents(
+        clientConfig: ClientConfig,
+        request: ReposCreateOrUpdateFileContentsRequest,
+        options: RequestOptions? = null,
+    ): FileCommit =
+        dev.octri.showcase.github.methods.ReposCreateOrUpdateFileContentsOperation
+            .reposCreateOrUpdateFileContents(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a new file or replaces an existing file in a repository. > [!NOTE] > If you use this endpoint and the "[Delete a file](https://docs.github.com/rest/repos/contents/#delete-a-file)" endpoint in parallel, the concurrent requests will conflict and you will receive errors. You must use these endpoints serially instead. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. The `workflow` scope is also required in order to modify files in the `.github/workflows` directory.
+     * Creates a new file or replaces an existing file in a repository. > [!NOTE] > If you use this
+     * endpoint and the "[Delete a
+     * file](https://docs.github.com/rest/repos/contents/#delete-a-file)" endpoint in parallel, the
+     * concurrent requests will conflict and you will receive errors. You must use these endpoints
+     * serially instead. OAuth app tokens and personal access tokens (classic) need the `repo` scope
+     * to use this endpoint. The `workflow` scope is also required in order to modify files in the
+     * `.github/workflows` directory.
      */
-    fun reposCreateOrUpdateFileContentsWithRawResponse(clientConfig: ClientConfig, request: ReposCreateOrUpdateFileContentsRequest, options: RequestOptions? = null): SdkResponse<FileCommit> =
-        dev.octri.showcase.github.methods.ReposCreateOrUpdateFileContentsOperation.reposCreateOrUpdateFileContentsWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateOrUpdateFileContentsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateOrUpdateFileContentsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<FileCommit> =
+        dev.octri.showcase.github.methods.ReposCreateOrUpdateFileContentsOperation
+            .reposCreateOrUpdateFileContentsWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes a file in a repository. You can provide an additional `committer` parameter, which is an object containing information about the committer. Or, you can provide an `author` parameter, which is an object containing information about the author. The `author` section is optional and is filled in with the `committer` information if omitted. If the `committer` information is omitted, the authenticated user's information is used. You must provide values for both `name` and `email`, whether you choose to use `author` or `committer`. Otherwise, you'll receive a `422` status code. > [!NOTE] > If you use this endpoint and the "[Create or update file contents](https://docs.github.com/rest/repos/contents/#create-or-update-file-contents)" endpoint in parallel, the concurrent requests will conflict and you will receive errors. You must use these endpoints serially instead.
+     * Deletes a file in a repository. You can provide an additional `committer` parameter, which is
+     * an object containing information about the committer. Or, you can provide an `author`
+     * parameter, which is an object containing information about the author. The `author` section
+     * is optional and is filled in with the `committer` information if omitted. If the `committer`
+     * information is omitted, the authenticated user's information is used. You must provide values
+     * for both `name` and `email`, whether you choose to use `author` or `committer`. Otherwise,
+     * you'll receive a `422` status code. > [!NOTE] > If you use this endpoint and the "[Create or
+     * update file
+     * contents](https://docs.github.com/rest/repos/contents/#create-or-update-file-contents)"
+     * endpoint in parallel, the concurrent requests will conflict and you will receive errors. You
+     * must use these endpoints serially instead.
      */
-    fun reposDeleteFile(clientConfig: ClientConfig, request: ReposDeleteFileRequest, options: RequestOptions? = null): FileCommit =
+    fun reposDeleteFile(
+        clientConfig: ClientConfig,
+        request: ReposDeleteFileRequest,
+        options: RequestOptions? = null,
+    ): FileCommit =
         dev.octri.showcase.github.methods.ReposDeleteFileOperation.reposDeleteFile(
             clientConfig,
             request,
@@ -3096,9 +5185,23 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deletes a file in a repository. You can provide an additional `committer` parameter, which is an object containing information about the committer. Or, you can provide an `author` parameter, which is an object containing information about the author. The `author` section is optional and is filled in with the `committer` information if omitted. If the `committer` information is omitted, the authenticated user's information is used. You must provide values for both `name` and `email`, whether you choose to use `author` or `committer`. Otherwise, you'll receive a `422` status code. > [!NOTE] > If you use this endpoint and the "[Create or update file contents](https://docs.github.com/rest/repos/contents/#create-or-update-file-contents)" endpoint in parallel, the concurrent requests will conflict and you will receive errors. You must use these endpoints serially instead.
+     * Deletes a file in a repository. You can provide an additional `committer` parameter, which is
+     * an object containing information about the committer. Or, you can provide an `author`
+     * parameter, which is an object containing information about the author. The `author` section
+     * is optional and is filled in with the `committer` information if omitted. If the `committer`
+     * information is omitted, the authenticated user's information is used. You must provide values
+     * for both `name` and `email`, whether you choose to use `author` or `committer`. Otherwise,
+     * you'll receive a `422` status code. > [!NOTE] > If you use this endpoint and the "[Create or
+     * update file
+     * contents](https://docs.github.com/rest/repos/contents/#create-or-update-file-contents)"
+     * endpoint in parallel, the concurrent requests will conflict and you will receive errors. You
+     * must use these endpoints serially instead.
      */
-    fun reposDeleteFileWithRawResponse(clientConfig: ClientConfig, request: ReposDeleteFileRequest, options: RequestOptions? = null): SdkResponse<FileCommit> =
+    fun reposDeleteFileWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposDeleteFileRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<FileCommit> =
         dev.octri.showcase.github.methods.ReposDeleteFileOperation.reposDeleteFileWithRawResponse(
             clientConfig,
             request,
@@ -3106,9 +5209,23 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists contributors to the specified repository and sorts them by the number of commits per contributor in descending order. This endpoint may return information that is a few hours old because the GitHub REST API caches contributor data to improve performance. GitHub identifies contributors by author email address. This endpoint groups contribution counts by GitHub user, which includes all associated email addresses. To improve performance, only the first 500 author email addresses in the repository link to GitHub users. The rest will appear as anonymous contributors without associated GitHub user information.
+     * Lists contributors to the specified repository and sorts them by the number of commits per
+     * contributor in descending order. This endpoint may return information that is a few hours old
+     * because the GitHub REST API caches contributor data to improve performance. GitHub identifies
+     * contributors by author email address. This endpoint groups contribution counts by GitHub
+     * user, which includes all associated email addresses. To improve performance, only the first
+     * 500 author email addresses in the repository link to GitHub users. The rest will appear as
+     * anonymous contributors without associated GitHub user information.
      */
-    fun reposListContributors(clientConfig: ClientConfig, owner: String, repo: String, anon: String? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Contributor> =
+    fun reposListContributors(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        anon: String? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Contributor> =
         dev.octri.showcase.github.methods.ReposListContributorsOperation.reposListContributors(
             clientConfig,
             owner,
@@ -3120,43 +5237,70 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists contributors to the specified repository and sorts them by the number of commits per contributor in descending order. This endpoint may return information that is a few hours old because the GitHub REST API caches contributor data to improve performance. GitHub identifies contributors by author email address. This endpoint groups contribution counts by GitHub user, which includes all associated email addresses. To improve performance, only the first 500 author email addresses in the repository link to GitHub users. The rest will appear as anonymous contributors without associated GitHub user information.
+     * Lists contributors to the specified repository and sorts them by the number of commits per
+     * contributor in descending order. This endpoint may return information that is a few hours old
+     * because the GitHub REST API caches contributor data to improve performance. GitHub identifies
+     * contributors by author email address. This endpoint groups contribution counts by GitHub
+     * user, which includes all associated email addresses. To improve performance, only the first
+     * 500 author email addresses in the repository link to GitHub users. The rest will appear as
+     * anonymous contributors without associated GitHub user information.
      */
-    fun reposListContributorsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, anon: String? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Contributor>> =
-        dev.octri.showcase.github.methods.ReposListContributorsOperation.reposListContributorsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            anon,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListContributorsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        anon: String? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Contributor>> =
+        dev.octri.showcase.github.methods.ReposListContributorsOperation
+            .reposListContributorsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                anon,
+                perPage,
+                page,
+                options,
+            )
 
-    /**
-     * Simple filtering of deployments is available via query parameters:
-     */
-    fun reposListDeployments(clientConfig: ClientConfig, request: ReposListDeploymentsRequest, options: RequestOptions? = null): List<Deployment> =
+    /** Simple filtering of deployments is available via query parameters: */
+    fun reposListDeployments(
+        clientConfig: ClientConfig,
+        request: ReposListDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): List<Deployment> =
         dev.octri.showcase.github.methods.ReposListDeploymentsOperation.reposListDeployments(
             clientConfig,
             request,
             options,
         )
 
-    /**
-     * Simple filtering of deployments is available via query parameters:
-     */
-    fun reposListDeploymentsWithRawResponse(clientConfig: ClientConfig, request: ReposListDeploymentsRequest, options: RequestOptions? = null): SdkResponse<List<Deployment>> =
-        dev.octri.showcase.github.methods.ReposListDeploymentsOperation.reposListDeploymentsWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    /** Simple filtering of deployments is available via query parameters: */
+    fun reposListDeploymentsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListDeploymentsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Deployment>> =
+        dev.octri.showcase.github.methods.ReposListDeploymentsOperation
+            .reposListDeploymentsWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a deployment for a repository ref, such as a branch, tag, or commit SHA. Supply `ref` and configure the target `environment`, commit status checks, or deployment `payload` as needed; omitted settings use the documented defaults. A 202 response indicates that the default branch was merged into the requested ref instead of creating a deployment.
+     * Creates a deployment for a repository ref, such as a branch, tag, or commit SHA. Supply `ref`
+     * and configure the target `environment`, commit status checks, or deployment `payload` as
+     * needed; omitted settings use the documented defaults. A 202 response indicates that the
+     * default branch was merged into the requested ref instead of creating a deployment.
      */
-    fun reposCreateDeployment(clientConfig: ClientConfig, request: ReposCreateDeploymentRequest, options: RequestOptions? = null): Deployment =
+    fun reposCreateDeployment(
+        clientConfig: ClientConfig,
+        request: ReposCreateDeploymentRequest,
+        options: RequestOptions? = null,
+    ): Deployment =
         dev.octri.showcase.github.methods.ReposCreateDeploymentOperation.reposCreateDeployment(
             clientConfig,
             request,
@@ -3164,19 +5308,34 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Creates a deployment for a repository ref, such as a branch, tag, or commit SHA. Supply `ref` and configure the target `environment`, commit status checks, or deployment `payload` as needed; omitted settings use the documented defaults. A 202 response indicates that the default branch was merged into the requested ref instead of creating a deployment.
+     * Creates a deployment for a repository ref, such as a branch, tag, or commit SHA. Supply `ref`
+     * and configure the target `environment`, commit status checks, or deployment `payload` as
+     * needed; omitted settings use the documented defaults. A 202 response indicates that the
+     * default branch was merged into the requested ref instead of creating a deployment.
      */
-    fun reposCreateDeploymentWithRawResponse(clientConfig: ClientConfig, request: ReposCreateDeploymentRequest, options: RequestOptions? = null): SdkResponse<Deployment> =
-        dev.octri.showcase.github.methods.ReposCreateDeploymentOperation.reposCreateDeploymentWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateDeploymentWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateDeploymentRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Deployment> =
+        dev.octri.showcase.github.methods.ReposCreateDeploymentOperation
+            .reposCreateDeploymentWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Retrieves a deployment from a repository by its deployment ID. Use this operation to inspect the deployment's ref, environment, task, and current record details.
+     * Retrieves a deployment from a repository by its deployment ID. Use this operation to inspect
+     * the deployment's ref, environment, task, and current record details.
      */
-    fun reposGetDeployment(clientConfig: ClientConfig, owner: String, repo: String, deploymentId: Long, options: RequestOptions? = null): Deployment =
+    fun reposGetDeployment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        deploymentId: Long,
+        options: RequestOptions? = null,
+    ): Deployment =
         dev.octri.showcase.github.methods.ReposGetDeploymentOperation.reposGetDeployment(
             clientConfig,
             owner,
@@ -3186,21 +5345,46 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves a deployment from a repository by its deployment ID. Use this operation to inspect the deployment's ref, environment, task, and current record details.
+     * Retrieves a deployment from a repository by its deployment ID. Use this operation to inspect
+     * the deployment's ref, environment, task, and current record details.
      */
-    fun reposGetDeploymentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, deploymentId: Long, options: RequestOptions? = null): SdkResponse<Deployment> =
-        dev.octri.showcase.github.methods.ReposGetDeploymentOperation.reposGetDeploymentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            deploymentId,
-            options,
-        )
+    fun reposGetDeploymentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        deploymentId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Deployment> =
+        dev.octri.showcase.github.methods.ReposGetDeploymentOperation
+            .reposGetDeploymentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                deploymentId,
+                options,
+            )
 
     /**
-     * If the repository only has one deployment, you can delete the deployment regardless of its status. If the repository has more than one deployment, you can only delete inactive deployments. This ensures that repositories with multiple deployments will always have an active deployment. To set a deployment as inactive, you must: * Create a new deployment that is active so that the system has a record of the current state, then delete the previously active deployment. * Mark the active deployment as inactive by adding any non-successful deployment status. For more information, see "[Create a deployment](https://docs.github.com/rest/deployments/deployments/#create-a-deployment)" and "[Create a deployment status](https://docs.github.com/rest/deployments/statuses#create-a-deployment-status)." OAuth app tokens and personal access tokens (classic) need the `repo` or `repo_deployment` scope to use this endpoint.
+     * If the repository only has one deployment, you can delete the deployment regardless of its
+     * status. If the repository has more than one deployment, you can only delete inactive
+     * deployments. This ensures that repositories with multiple deployments will always have an
+     * active deployment. To set a deployment as inactive, you must: * Create a new deployment that
+     * is active so that the system has a record of the current state, then delete the previously
+     * active deployment. * Mark the active deployment as inactive by adding any non-successful
+     * deployment status. For more information, see "[Create a
+     * deployment](https://docs.github.com/rest/deployments/deployments/#create-a-deployment)" and
+     * "[Create a deployment
+     * status](https://docs.github.com/rest/deployments/statuses#create-a-deployment-status)." OAuth
+     * app tokens and personal access tokens (classic) need the `repo` or `repo_deployment` scope to
+     * use this endpoint.
      */
-    fun reposDeleteDeployment(clientConfig: ClientConfig, owner: String, repo: String, deploymentId: Long, options: RequestOptions? = null): Unit =
+    fun reposDeleteDeployment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        deploymentId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteDeploymentOperation.reposDeleteDeployment(
             clientConfig,
             owner,
@@ -3210,121 +5394,232 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * If the repository only has one deployment, you can delete the deployment regardless of its status. If the repository has more than one deployment, you can only delete inactive deployments. This ensures that repositories with multiple deployments will always have an active deployment. To set a deployment as inactive, you must: * Create a new deployment that is active so that the system has a record of the current state, then delete the previously active deployment. * Mark the active deployment as inactive by adding any non-successful deployment status. For more information, see "[Create a deployment](https://docs.github.com/rest/deployments/deployments/#create-a-deployment)" and "[Create a deployment status](https://docs.github.com/rest/deployments/statuses#create-a-deployment-status)." OAuth app tokens and personal access tokens (classic) need the `repo` or `repo_deployment` scope to use this endpoint.
+     * If the repository only has one deployment, you can delete the deployment regardless of its
+     * status. If the repository has more than one deployment, you can only delete inactive
+     * deployments. This ensures that repositories with multiple deployments will always have an
+     * active deployment. To set a deployment as inactive, you must: * Create a new deployment that
+     * is active so that the system has a record of the current state, then delete the previously
+     * active deployment. * Mark the active deployment as inactive by adding any non-successful
+     * deployment status. For more information, see "[Create a
+     * deployment](https://docs.github.com/rest/deployments/deployments/#create-a-deployment)" and
+     * "[Create a deployment
+     * status](https://docs.github.com/rest/deployments/statuses#create-a-deployment-status)." OAuth
+     * app tokens and personal access tokens (classic) need the `repo` or `repo_deployment` scope to
+     * use this endpoint.
      */
-    fun reposDeleteDeploymentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, deploymentId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteDeploymentOperation.reposDeleteDeploymentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            deploymentId,
-            options,
-        )
+    fun reposDeleteDeploymentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        deploymentId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteDeploymentOperation
+            .reposDeleteDeploymentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                deploymentId,
+                options,
+            )
+
+    /** Users with pull access can view deployment statuses for a deployment: */
+    fun reposListDeploymentStatuses(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        deploymentId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<DeploymentStatus> =
+        dev.octri.showcase.github.methods.ReposListDeploymentStatusesOperation
+            .reposListDeploymentStatuses(
+                clientConfig,
+                owner,
+                repo,
+                deploymentId,
+                perPage,
+                page,
+                options,
+            )
+
+    /** Users with pull access can view deployment statuses for a deployment: */
+    fun reposListDeploymentStatusesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        deploymentId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<DeploymentStatus>> =
+        dev.octri.showcase.github.methods.ReposListDeploymentStatusesOperation
+            .reposListDeploymentStatusesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                deploymentId,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Users with pull access can view deployment statuses for a deployment:
+     * Users with `push` access can create deployment statuses for a given deployment. OAuth app
+     * tokens and personal access tokens (classic) need the `repo_deployment` scope to use this
+     * endpoint.
      */
-    fun reposListDeploymentStatuses(clientConfig: ClientConfig, owner: String, repo: String, deploymentId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<DeploymentStatus> =
-        dev.octri.showcase.github.methods.ReposListDeploymentStatusesOperation.reposListDeploymentStatuses(
-            clientConfig,
-            owner,
-            repo,
-            deploymentId,
-            perPage,
-            page,
-            options,
-        )
+    fun reposCreateDeploymentStatus(
+        clientConfig: ClientConfig,
+        request: ReposCreateDeploymentStatusRequest,
+        options: RequestOptions? = null,
+    ): DeploymentStatus =
+        dev.octri.showcase.github.methods.ReposCreateDeploymentStatusOperation
+            .reposCreateDeploymentStatus(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Users with pull access can view deployment statuses for a deployment:
+     * Users with `push` access can create deployment statuses for a given deployment. OAuth app
+     * tokens and personal access tokens (classic) need the `repo_deployment` scope to use this
+     * endpoint.
      */
-    fun reposListDeploymentStatusesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, deploymentId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<DeploymentStatus>> =
-        dev.octri.showcase.github.methods.ReposListDeploymentStatusesOperation.reposListDeploymentStatusesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            deploymentId,
-            perPage,
-            page,
-            options,
-        )
+    fun reposCreateDeploymentStatusWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateDeploymentStatusRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeploymentStatus> =
+        dev.octri.showcase.github.methods.ReposCreateDeploymentStatusOperation
+            .reposCreateDeploymentStatusWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Users with `push` access can create deployment statuses for a given deployment. OAuth app tokens and personal access tokens (classic) need the `repo_deployment` scope to use this endpoint.
+     * Retrieves a status record for a deployment in a repository. You must have pull access to the
+     * repository to view the deployment status.
      */
-    fun reposCreateDeploymentStatus(clientConfig: ClientConfig, request: ReposCreateDeploymentStatusRequest, options: RequestOptions? = null): DeploymentStatus =
-        dev.octri.showcase.github.methods.ReposCreateDeploymentStatusOperation.reposCreateDeploymentStatus(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposGetDeploymentStatus(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        deploymentId: Long,
+        statusId: Long,
+        options: RequestOptions? = null,
+    ): DeploymentStatus =
+        dev.octri.showcase.github.methods.ReposGetDeploymentStatusOperation
+            .reposGetDeploymentStatus(
+                clientConfig,
+                owner,
+                repo,
+                deploymentId,
+                statusId,
+                options,
+            )
 
     /**
-     * Users with `push` access can create deployment statuses for a given deployment. OAuth app tokens and personal access tokens (classic) need the `repo_deployment` scope to use this endpoint.
+     * Retrieves a status record for a deployment in a repository. You must have pull access to the
+     * repository to view the deployment status.
      */
-    fun reposCreateDeploymentStatusWithRawResponse(clientConfig: ClientConfig, request: ReposCreateDeploymentStatusRequest, options: RequestOptions? = null): SdkResponse<DeploymentStatus> =
-        dev.octri.showcase.github.methods.ReposCreateDeploymentStatusOperation.reposCreateDeploymentStatusWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposGetDeploymentStatusWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        deploymentId: Long,
+        statusId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeploymentStatus> =
+        dev.octri.showcase.github.methods.ReposGetDeploymentStatusOperation
+            .reposGetDeploymentStatusWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                deploymentId,
+                statusId,
+                options,
+            )
 
     /**
-     * Retrieves a status record for a deployment in a repository. You must have pull access to the repository to view the deployment status.
+     * You can use this endpoint to trigger a webhook event called `repository_dispatch` when you
+     * want activity that happens outside of GitHub to trigger a GitHub Actions workflow or GitHub
+     * App webhook. You must configure your GitHub Actions workflow or GitHub App to run when the
+     * `repository_dispatch` event occurs. For an example `repository_dispatch` webhook payload, see
+     * "[RepositoryDispatchEvent](https://docs.github.com/webhooks/event-payloads/#repository_dispatch)."
+     * The `client_payload` parameter is available for any extra information that your workflow
+     * might need. This parameter is a JSON payload that will be passed on when the webhook event is
+     * dispatched. For example, the `client_payload` can include a message that a user would like to
+     * send using a GitHub Actions workflow. Or the `client_payload` can be used as a test to debug
+     * your workflow. This input example shows how you can use the `client_payload` as a test to
+     * debug your workflow. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun reposGetDeploymentStatus(clientConfig: ClientConfig, owner: String, repo: String, deploymentId: Long, statusId: Long, options: RequestOptions? = null): DeploymentStatus =
-        dev.octri.showcase.github.methods.ReposGetDeploymentStatusOperation.reposGetDeploymentStatus(
-            clientConfig,
-            owner,
-            repo,
-            deploymentId,
-            statusId,
-            options,
-        )
+    fun reposCreateDispatchEvent(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        eventType: String,
+        clientPayload: Map<String, Any>? = null,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposCreateDispatchEventOperation
+            .reposCreateDispatchEvent(
+                clientConfig,
+                owner,
+                repo,
+                eventType,
+                clientPayload,
+                options,
+            )
 
     /**
-     * Retrieves a status record for a deployment in a repository. You must have pull access to the repository to view the deployment status.
+     * You can use this endpoint to trigger a webhook event called `repository_dispatch` when you
+     * want activity that happens outside of GitHub to trigger a GitHub Actions workflow or GitHub
+     * App webhook. You must configure your GitHub Actions workflow or GitHub App to run when the
+     * `repository_dispatch` event occurs. For an example `repository_dispatch` webhook payload, see
+     * "[RepositoryDispatchEvent](https://docs.github.com/webhooks/event-payloads/#repository_dispatch)."
+     * The `client_payload` parameter is available for any extra information that your workflow
+     * might need. This parameter is a JSON payload that will be passed on when the webhook event is
+     * dispatched. For example, the `client_payload` can include a message that a user would like to
+     * send using a GitHub Actions workflow. Or the `client_payload` can be used as a test to debug
+     * your workflow. This input example shows how you can use the `client_payload` as a test to
+     * debug your workflow. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun reposGetDeploymentStatusWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, deploymentId: Long, statusId: Long, options: RequestOptions? = null): SdkResponse<DeploymentStatus> =
-        dev.octri.showcase.github.methods.ReposGetDeploymentStatusOperation.reposGetDeploymentStatusWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            deploymentId,
-            statusId,
-            options,
-        )
+    fun reposCreateDispatchEventWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        eventType: String,
+        clientPayload: Map<String, Any>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposCreateDispatchEventOperation
+            .reposCreateDispatchEventWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                eventType,
+                clientPayload,
+                options,
+            )
 
     /**
-     * You can use this endpoint to trigger a webhook event called `repository_dispatch` when you want activity that happens outside of GitHub to trigger a GitHub Actions workflow or GitHub App webhook. You must configure your GitHub Actions workflow or GitHub App to run when the `repository_dispatch` event occurs. For an example `repository_dispatch` webhook payload, see "[RepositoryDispatchEvent](https://docs.github.com/webhooks/event-payloads/#repository_dispatch)." The `client_payload` parameter is available for any extra information that your workflow might need. This parameter is a JSON payload that will be passed on when the webhook event is dispatched. For example, the `client_payload` can include a message that a user would like to send using a GitHub Actions workflow. Or the `client_payload` can be used as a test to debug your workflow. This input example shows how you can use the `client_payload` as a test to debug your workflow. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists the environments for a repository. Anyone with read access to the repository can use
+     * this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
+     * use this endpoint with a private repository.
      */
-    fun reposCreateDispatchEvent(clientConfig: ClientConfig, owner: String, repo: String, eventType: String, clientPayload: Map<String, Any>? = null, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposCreateDispatchEventOperation.reposCreateDispatchEvent(
-            clientConfig,
-            owner,
-            repo,
-            eventType,
-            clientPayload,
-            options,
-        )
-
-    /**
-     * You can use this endpoint to trigger a webhook event called `repository_dispatch` when you want activity that happens outside of GitHub to trigger a GitHub Actions workflow or GitHub App webhook. You must configure your GitHub Actions workflow or GitHub App to run when the `repository_dispatch` event occurs. For an example `repository_dispatch` webhook payload, see "[RepositoryDispatchEvent](https://docs.github.com/webhooks/event-payloads/#repository_dispatch)." The `client_payload` parameter is available for any extra information that your workflow might need. This parameter is a JSON payload that will be passed on when the webhook event is dispatched. For example, the `client_payload` can include a message that a user would like to send using a GitHub Actions workflow. Or the `client_payload` can be used as a test to debug your workflow. This input example shows how you can use the `client_payload` as a test to debug your workflow. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
-     */
-    fun reposCreateDispatchEventWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, eventType: String, clientPayload: Map<String, Any>? = null, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposCreateDispatchEventOperation.reposCreateDispatchEventWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            eventType,
-            clientPayload,
-            options,
-        )
-
-    /**
-     * Lists the environments for a repository. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
-     */
-    fun reposGetAllEnvironments(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ReposGetAllEnvironmentsResponse =
+    fun reposGetAllEnvironments(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): ReposGetAllEnvironmentsResponse =
         dev.octri.showcase.github.methods.ReposGetAllEnvironmentsOperation.reposGetAllEnvironments(
             clientConfig,
             owner,
@@ -3335,22 +5630,41 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists the environments for a repository. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists the environments for a repository. Anyone with read access to the repository can use
+     * this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to
+     * use this endpoint with a private repository.
      */
-    fun reposGetAllEnvironmentsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<ReposGetAllEnvironmentsResponse> =
-        dev.octri.showcase.github.methods.ReposGetAllEnvironmentsOperation.reposGetAllEnvironmentsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun reposGetAllEnvironmentsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReposGetAllEnvironmentsResponse> =
+        dev.octri.showcase.github.methods.ReposGetAllEnvironmentsOperation
+            .reposGetAllEnvironmentsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * > [!NOTE] > To get information about name patterns that branches must match in order to deploy to this environment, see "Get a deployment branch policy." Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * > [!NOTE] > To get information about name patterns that branches must match in order to
+     * > deploy to this environment, see "Get a deployment branch policy." Anyone with read access
+     * > to the repository can use this endpoint. OAuth app tokens and personal access tokens
+     * > (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun reposGetEnvironment(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, options: RequestOptions? = null): Environment =
+    fun reposGetEnvironment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        options: RequestOptions? = null,
+    ): Environment =
         dev.octri.showcase.github.methods.ReposGetEnvironmentOperation.reposGetEnvironment(
             clientConfig,
             owner,
@@ -3360,331 +5674,624 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * > [!NOTE] > To get information about name patterns that branches must match in order to deploy to this environment, see "Get a deployment branch policy." Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * > [!NOTE] > To get information about name patterns that branches must match in order to
+     * > deploy to this environment, see "Get a deployment branch policy." Anyone with read access
+     * > to the repository can use this endpoint. OAuth app tokens and personal access tokens
+     * > (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun reposGetEnvironmentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, options: RequestOptions? = null): SdkResponse<Environment> =
-        dev.octri.showcase.github.methods.ReposGetEnvironmentOperation.reposGetEnvironmentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            options,
-        )
+    fun reposGetEnvironmentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Environment> =
+        dev.octri.showcase.github.methods.ReposGetEnvironmentOperation
+            .reposGetEnvironmentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                options,
+            )
 
     /**
-     * Create or update an environment with protection rules, such as required reviewers. For more information about environment protection rules, see "Environments." > [!NOTE] > To create or update name patterns that branches must match in order to deploy to this environment, see "Deployment branch policies." > [!NOTE] > To create or update secrets for an environment, see "GitHub Actions secrets." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Create or update an environment with protection rules, such as required reviewers. For more
+     * information about environment protection rules, see "Environments." > [!NOTE] > To create or
+     * update name patterns that branches must match in order to deploy to this environment, see
+     * "Deployment branch policies." > [!NOTE] > To create or update secrets for an environment, see
+     * "GitHub Actions secrets." OAuth app tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      */
-    fun reposCreateOrUpdateEnvironment(clientConfig: ClientConfig, request: ReposCreateOrUpdateEnvironmentRequest, options: RequestOptions? = null): Environment =
-        dev.octri.showcase.github.methods.ReposCreateOrUpdateEnvironmentOperation.reposCreateOrUpdateEnvironment(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateOrUpdateEnvironment(
+        clientConfig: ClientConfig,
+        request: ReposCreateOrUpdateEnvironmentRequest,
+        options: RequestOptions? = null,
+    ): Environment =
+        dev.octri.showcase.github.methods.ReposCreateOrUpdateEnvironmentOperation
+            .reposCreateOrUpdateEnvironment(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Create or update an environment with protection rules, such as required reviewers. For more information about environment protection rules, see "Environments." > [!NOTE] > To create or update name patterns that branches must match in order to deploy to this environment, see "Deployment branch policies." > [!NOTE] > To create or update secrets for an environment, see "GitHub Actions secrets." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Create or update an environment with protection rules, such as required reviewers. For more
+     * information about environment protection rules, see "Environments." > [!NOTE] > To create or
+     * update name patterns that branches must match in order to deploy to this environment, see
+     * "Deployment branch policies." > [!NOTE] > To create or update secrets for an environment, see
+     * "GitHub Actions secrets." OAuth app tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      */
-    fun reposCreateOrUpdateEnvironmentWithRawResponse(clientConfig: ClientConfig, request: ReposCreateOrUpdateEnvironmentRequest, options: RequestOptions? = null): SdkResponse<Environment> =
-        dev.octri.showcase.github.methods.ReposCreateOrUpdateEnvironmentOperation.reposCreateOrUpdateEnvironmentWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateOrUpdateEnvironmentWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateOrUpdateEnvironmentRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Environment> =
+        dev.octri.showcase.github.methods.ReposCreateOrUpdateEnvironmentOperation
+            .reposCreateOrUpdateEnvironmentWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      */
-    fun reposDeleteAnEnvironment(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeleteAnEnvironmentOperation.reposDeleteAnEnvironment(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            options,
-        )
+    fun reposDeleteAnEnvironment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeleteAnEnvironmentOperation
+            .reposDeleteAnEnvironment(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                options,
+            )
 
     /**
-     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      */
-    fun reposDeleteAnEnvironmentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteAnEnvironmentOperation.reposDeleteAnEnvironmentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            options,
-        )
+    fun reposDeleteAnEnvironmentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteAnEnvironmentOperation
+            .reposDeleteAnEnvironmentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                options,
+            )
 
     /**
-     * Lists the deployment branch policies for an environment. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists the deployment branch policies for an environment. Anyone with read access to the
+     * repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint with a private repository.
      */
-    fun reposListDeploymentBranchPolicies(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): ReposListDeploymentBranchPoliciesResponse =
-        dev.octri.showcase.github.methods.ReposListDeploymentBranchPoliciesOperation.reposListDeploymentBranchPolicies(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListDeploymentBranchPolicies(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): ReposListDeploymentBranchPoliciesResponse =
+        dev.octri.showcase.github.methods.ReposListDeploymentBranchPoliciesOperation
+            .reposListDeploymentBranchPolicies(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists the deployment branch policies for an environment. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists the deployment branch policies for an environment. Anyone with read access to the
+     * repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint with a private repository.
      */
-    fun reposListDeploymentBranchPoliciesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<ReposListDeploymentBranchPoliciesResponse> =
-        dev.octri.showcase.github.methods.ReposListDeploymentBranchPoliciesOperation.reposListDeploymentBranchPoliciesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListDeploymentBranchPoliciesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReposListDeploymentBranchPoliciesResponse> =
+        dev.octri.showcase.github.methods.ReposListDeploymentBranchPoliciesOperation
+            .reposListDeploymentBranchPoliciesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Creates a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposCreateDeploymentBranchPolicy(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, name: String, type: DeploymentBranchPolicyNamePatternWithTypeTypeEnum? = null, options: RequestOptions? = null): DeploymentBranchPolicy =
-        dev.octri.showcase.github.methods.ReposCreateDeploymentBranchPolicyOperation.reposCreateDeploymentBranchPolicy(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            name,
-            type,
-            options,
-        )
+    fun reposCreateDeploymentBranchPolicy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        name: String,
+        type: DeploymentBranchPolicyNamePatternWithTypeTypeEnum? = null,
+        options: RequestOptions? = null,
+    ): DeploymentBranchPolicy =
+        dev.octri.showcase.github.methods.ReposCreateDeploymentBranchPolicyOperation
+            .reposCreateDeploymentBranchPolicy(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                name,
+                type,
+                options,
+            )
 
     /**
-     * Creates a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposCreateDeploymentBranchPolicyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, name: String, type: DeploymentBranchPolicyNamePatternWithTypeTypeEnum? = null, options: RequestOptions? = null): SdkResponse<DeploymentBranchPolicy> =
-        dev.octri.showcase.github.methods.ReposCreateDeploymentBranchPolicyOperation.reposCreateDeploymentBranchPolicyWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            name,
-            type,
-            options,
-        )
+    fun reposCreateDeploymentBranchPolicyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        name: String,
+        type: DeploymentBranchPolicyNamePatternWithTypeTypeEnum? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeploymentBranchPolicy> =
+        dev.octri.showcase.github.methods.ReposCreateDeploymentBranchPolicyOperation
+            .reposCreateDeploymentBranchPolicyWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                name,
+                type,
+                options,
+            )
 
     /**
-     * Gets a deployment branch or tag policy for an environment. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets a deployment branch or tag policy for an environment. Anyone with read access to the
+     * repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint with a private repository.
      */
-    fun reposGetDeploymentBranchPolicy(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, options: RequestOptions? = null): DeploymentBranchPolicy =
-        dev.octri.showcase.github.methods.ReposGetDeploymentBranchPolicyOperation.reposGetDeploymentBranchPolicy(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            branchPolicyId,
-            options,
-        )
+    fun reposGetDeploymentBranchPolicy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        options: RequestOptions? = null,
+    ): DeploymentBranchPolicy =
+        dev.octri.showcase.github.methods.ReposGetDeploymentBranchPolicyOperation
+            .reposGetDeploymentBranchPolicy(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                branchPolicyId,
+                options,
+            )
 
     /**
-     * Gets a deployment branch or tag policy for an environment. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets a deployment branch or tag policy for an environment. Anyone with read access to the
+     * repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint with a private repository.
      */
-    fun reposGetDeploymentBranchPolicyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, options: RequestOptions? = null): SdkResponse<DeploymentBranchPolicy> =
-        dev.octri.showcase.github.methods.ReposGetDeploymentBranchPolicyOperation.reposGetDeploymentBranchPolicyWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            branchPolicyId,
-            options,
-        )
+    fun reposGetDeploymentBranchPolicyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeploymentBranchPolicy> =
+        dev.octri.showcase.github.methods.ReposGetDeploymentBranchPolicyOperation
+            .reposGetDeploymentBranchPolicyWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                branchPolicyId,
+                options,
+            )
 
     /**
-     * Updates a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Updates a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposUpdateDeploymentBranchPolicy(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, name: String, options: RequestOptions? = null): DeploymentBranchPolicy =
-        dev.octri.showcase.github.methods.ReposUpdateDeploymentBranchPolicyOperation.reposUpdateDeploymentBranchPolicy(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            branchPolicyId,
-            name,
-            options,
-        )
+    fun reposUpdateDeploymentBranchPolicy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        name: String,
+        options: RequestOptions? = null,
+    ): DeploymentBranchPolicy =
+        dev.octri.showcase.github.methods.ReposUpdateDeploymentBranchPolicyOperation
+            .reposUpdateDeploymentBranchPolicy(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                branchPolicyId,
+                name,
+                options,
+            )
 
     /**
-     * Updates a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Updates a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposUpdateDeploymentBranchPolicyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, name: String, options: RequestOptions? = null): SdkResponse<DeploymentBranchPolicy> =
-        dev.octri.showcase.github.methods.ReposUpdateDeploymentBranchPolicyOperation.reposUpdateDeploymentBranchPolicyWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            branchPolicyId,
-            name,
-            options,
-        )
+    fun reposUpdateDeploymentBranchPolicyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        name: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeploymentBranchPolicy> =
+        dev.octri.showcase.github.methods.ReposUpdateDeploymentBranchPolicyOperation
+            .reposUpdateDeploymentBranchPolicyWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                branchPolicyId,
+                name,
+                options,
+            )
 
     /**
-     * Deletes a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposDeleteDeploymentBranchPolicy(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeleteDeploymentBranchPolicyOperation.reposDeleteDeploymentBranchPolicy(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            branchPolicyId,
-            options,
-        )
+    fun reposDeleteDeploymentBranchPolicy(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeleteDeploymentBranchPolicyOperation
+            .reposDeleteDeploymentBranchPolicy(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                branchPolicyId,
+                options,
+            )
 
     /**
-     * Deletes a deployment branch or tag policy for an environment. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a deployment branch or tag policy for an environment. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposDeleteDeploymentBranchPolicyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, branchPolicyId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteDeploymentBranchPolicyOperation.reposDeleteDeploymentBranchPolicyWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            branchPolicyId,
-            options,
-        )
+    fun reposDeleteDeploymentBranchPolicyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        branchPolicyId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteDeploymentBranchPolicyOperation
+            .reposDeleteDeploymentBranchPolicyWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                branchPolicyId,
+                options,
+            )
 
     /**
-     * Gets all custom deployment protection rules that are enabled for an environment. Anyone with read access to the repository can use this endpoint. For more information about environments, see "[Using environments for deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)." For more information about the app that is providing this custom deployment rule, see the [documentation for the `GET /apps/{app_slug}` endpoint](https://docs.github.com/rest/apps/apps#get-an-app). OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets all custom deployment protection rules that are enabled for an environment. Anyone with
+     * read access to the repository can use this endpoint. For more information about environments,
+     * see "[Using environments for
+     * deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)."
+     * For more information about the app that is providing this custom deployment rule, see the
+     * [documentation for the `GET /apps/{app_slug}` endpoint](https://docs.github.com/rest/apps/apps#get-an-app).
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint with a private repository.
      */
-    fun reposGetAllDeploymentProtectionRules(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, options: RequestOptions? = null): ReposGetAllDeploymentProtectionRulesResponse =
-        dev.octri.showcase.github.methods.ReposGetAllDeploymentProtectionRulesOperation.reposGetAllDeploymentProtectionRules(
-            clientConfig,
-            environmentName,
-            repo,
-            owner,
-            options,
-        )
+    fun reposGetAllDeploymentProtectionRules(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        options: RequestOptions? = null,
+    ): ReposGetAllDeploymentProtectionRulesResponse =
+        dev.octri.showcase.github.methods.ReposGetAllDeploymentProtectionRulesOperation
+            .reposGetAllDeploymentProtectionRules(
+                clientConfig,
+                environmentName,
+                repo,
+                owner,
+                options,
+            )
 
     /**
-     * Gets all custom deployment protection rules that are enabled for an environment. Anyone with read access to the repository can use this endpoint. For more information about environments, see "[Using environments for deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)." For more information about the app that is providing this custom deployment rule, see the [documentation for the `GET /apps/{app_slug}` endpoint](https://docs.github.com/rest/apps/apps#get-an-app). OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets all custom deployment protection rules that are enabled for an environment. Anyone with
+     * read access to the repository can use this endpoint. For more information about environments,
+     * see "[Using environments for
+     * deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)."
+     * For more information about the app that is providing this custom deployment rule, see the
+     * [documentation for the `GET /apps/{app_slug}` endpoint](https://docs.github.com/rest/apps/apps#get-an-app).
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint with a private repository.
      */
-    fun reposGetAllDeploymentProtectionRulesWithRawResponse(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, options: RequestOptions? = null): SdkResponse<ReposGetAllDeploymentProtectionRulesResponse> =
-        dev.octri.showcase.github.methods.ReposGetAllDeploymentProtectionRulesOperation.reposGetAllDeploymentProtectionRulesWithRawResponse(
-            clientConfig,
-            environmentName,
-            repo,
-            owner,
-            options,
-        )
+    fun reposGetAllDeploymentProtectionRulesWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReposGetAllDeploymentProtectionRulesResponse> =
+        dev.octri.showcase.github.methods.ReposGetAllDeploymentProtectionRulesOperation
+            .reposGetAllDeploymentProtectionRulesWithRawResponse(
+                clientConfig,
+                environmentName,
+                repo,
+                owner,
+                options,
+            )
 
     /**
-     * Enable a custom deployment protection rule for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. For more information about the app that is providing this custom deployment rule, see the [documentation for the `GET /apps/{app_slug}` endpoint](https://docs.github.com/rest/apps/apps#get-an-app), as well as the [guide to creating custom deployment protection rules](https://docs.github.com/actions/managing-workflow-runs-and-deployments/managing-deployments/creating-custom-deployment-protection-rules). OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Enable a custom deployment protection rule for an environment. The authenticated user must
+     * have admin or owner permissions to the repository to use this endpoint. For more information
+     * about the app that is providing this custom deployment rule, see the
+     * [documentation for the `GET /apps/{app_slug}` endpoint](https://docs.github.com/rest/apps/apps#get-an-app),
+     * as well as the
+     * [guide to creating custom deployment protection rules](https://docs.github.com/actions/managing-workflow-runs-and-deployments/managing-deployments/creating-custom-deployment-protection-rules).
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      */
-    fun reposCreateDeploymentProtectionRule(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, integrationId: Long? = null, options: RequestOptions? = null): DeploymentProtectionRule =
-        dev.octri.showcase.github.methods.ReposCreateDeploymentProtectionRuleOperation.reposCreateDeploymentProtectionRule(
-            clientConfig,
-            environmentName,
-            repo,
-            owner,
-            integrationId,
-            options,
-        )
+    fun reposCreateDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        integrationId: Long? = null,
+        options: RequestOptions? = null,
+    ): DeploymentProtectionRule =
+        dev.octri.showcase.github.methods.ReposCreateDeploymentProtectionRuleOperation
+            .reposCreateDeploymentProtectionRule(
+                clientConfig,
+                environmentName,
+                repo,
+                owner,
+                integrationId,
+                options,
+            )
 
     /**
-     * Enable a custom deployment protection rule for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. For more information about the app that is providing this custom deployment rule, see the [documentation for the `GET /apps/{app_slug}` endpoint](https://docs.github.com/rest/apps/apps#get-an-app), as well as the [guide to creating custom deployment protection rules](https://docs.github.com/actions/managing-workflow-runs-and-deployments/managing-deployments/creating-custom-deployment-protection-rules). OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Enable a custom deployment protection rule for an environment. The authenticated user must
+     * have admin or owner permissions to the repository to use this endpoint. For more information
+     * about the app that is providing this custom deployment rule, see the
+     * [documentation for the `GET /apps/{app_slug}` endpoint](https://docs.github.com/rest/apps/apps#get-an-app),
+     * as well as the
+     * [guide to creating custom deployment protection rules](https://docs.github.com/actions/managing-workflow-runs-and-deployments/managing-deployments/creating-custom-deployment-protection-rules).
+     * OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      */
-    fun reposCreateDeploymentProtectionRuleWithRawResponse(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, integrationId: Long? = null, options: RequestOptions? = null): SdkResponse<DeploymentProtectionRule> =
-        dev.octri.showcase.github.methods.ReposCreateDeploymentProtectionRuleOperation.reposCreateDeploymentProtectionRuleWithRawResponse(
-            clientConfig,
-            environmentName,
-            repo,
-            owner,
-            integrationId,
-            options,
-        )
+    fun reposCreateDeploymentProtectionRuleWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        integrationId: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeploymentProtectionRule> =
+        dev.octri.showcase.github.methods.ReposCreateDeploymentProtectionRuleOperation
+            .reposCreateDeploymentProtectionRuleWithRawResponse(
+                clientConfig,
+                environmentName,
+                repo,
+                owner,
+                integrationId,
+                options,
+            )
 
     /**
-     * Gets all custom deployment protection rule integrations that are available for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. For more information about environments, see "[Using environments for deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)." For more information about the app that is providing this custom deployment rule, see "[GET an app](https://docs.github.com/rest/apps/apps#get-an-app)". OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets all custom deployment protection rule integrations that are available for an
+     * environment. The authenticated user must have admin or owner permissions to the repository to
+     * use this endpoint. For more information about environments, see "[Using environments for
+     * deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)."
+     * For more information about the app that is providing this custom deployment rule, see "[GET
+     * an app](https://docs.github.com/rest/apps/apps#get-an-app)". OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun reposListCustomDeploymentRuleIntegrations(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): ReposListCustomDeploymentRuleIntegrationsResponse =
-        dev.octri.showcase.github.methods.ReposListCustomDeploymentRuleIntegrationsOperation.reposListCustomDeploymentRuleIntegrations(
-            clientConfig,
-            environmentName,
-            repo,
-            owner,
-            page,
-            perPage,
-            options,
-        )
+    fun reposListCustomDeploymentRuleIntegrations(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): ReposListCustomDeploymentRuleIntegrationsResponse =
+        dev.octri.showcase.github.methods.ReposListCustomDeploymentRuleIntegrationsOperation
+            .reposListCustomDeploymentRuleIntegrations(
+                clientConfig,
+                environmentName,
+                repo,
+                owner,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Gets all custom deployment protection rule integrations that are available for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. For more information about environments, see "[Using environments for deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)." For more information about the app that is providing this custom deployment rule, see "[GET an app](https://docs.github.com/rest/apps/apps#get-an-app)". OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets all custom deployment protection rule integrations that are available for an
+     * environment. The authenticated user must have admin or owner permissions to the repository to
+     * use this endpoint. For more information about environments, see "[Using environments for
+     * deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)."
+     * For more information about the app that is providing this custom deployment rule, see "[GET
+     * an app](https://docs.github.com/rest/apps/apps#get-an-app)". OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
      */
-    fun reposListCustomDeploymentRuleIntegrationsWithRawResponse(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): SdkResponse<ReposListCustomDeploymentRuleIntegrationsResponse> =
-        dev.octri.showcase.github.methods.ReposListCustomDeploymentRuleIntegrationsOperation.reposListCustomDeploymentRuleIntegrationsWithRawResponse(
-            clientConfig,
-            environmentName,
-            repo,
-            owner,
-            page,
-            perPage,
-            options,
-        )
+    fun reposListCustomDeploymentRuleIntegrationsWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReposListCustomDeploymentRuleIntegrationsResponse> =
+        dev.octri.showcase.github.methods.ReposListCustomDeploymentRuleIntegrationsOperation
+            .reposListCustomDeploymentRuleIntegrationsWithRawResponse(
+                clientConfig,
+                environmentName,
+                repo,
+                owner,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Gets an enabled custom deployment protection rule for an environment. Anyone with read access to the repository can use this endpoint. For more information about environments, see "[Using environments for deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)." For more information about the app that is providing this custom deployment rule, see [`GET /apps/{app_slug}`](https://docs.github.com/rest/apps/apps#get-an-app). OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets an enabled custom deployment protection rule for an environment. Anyone with read access
+     * to the repository can use this endpoint. For more information about environments, see "[Using
+     * environments for
+     * deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)."
+     * For more information about the app that is providing this custom deployment rule, see
+     * [`GET /apps/{app_slug}`](https://docs.github.com/rest/apps/apps#get-an-app). OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint with a
+     * private repository.
      */
-    fun reposGetCustomDeploymentProtectionRule(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, protectionRuleId: Long, options: RequestOptions? = null): DeploymentProtectionRule =
-        dev.octri.showcase.github.methods.ReposGetCustomDeploymentProtectionRuleOperation.reposGetCustomDeploymentProtectionRule(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            protectionRuleId,
-            options,
-        )
+    fun reposGetCustomDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        protectionRuleId: Long,
+        options: RequestOptions? = null,
+    ): DeploymentProtectionRule =
+        dev.octri.showcase.github.methods.ReposGetCustomDeploymentProtectionRuleOperation
+            .reposGetCustomDeploymentProtectionRule(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                protectionRuleId,
+                options,
+            )
 
     /**
-     * Gets an enabled custom deployment protection rule for an environment. Anyone with read access to the repository can use this endpoint. For more information about environments, see "[Using environments for deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)." For more information about the app that is providing this custom deployment rule, see [`GET /apps/{app_slug}`](https://docs.github.com/rest/apps/apps#get-an-app). OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets an enabled custom deployment protection rule for an environment. Anyone with read access
+     * to the repository can use this endpoint. For more information about environments, see "[Using
+     * environments for
+     * deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)."
+     * For more information about the app that is providing this custom deployment rule, see
+     * [`GET /apps/{app_slug}`](https://docs.github.com/rest/apps/apps#get-an-app). OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint with a
+     * private repository.
      */
-    fun reposGetCustomDeploymentProtectionRuleWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, environmentName: String, protectionRuleId: Long, options: RequestOptions? = null): SdkResponse<DeploymentProtectionRule> =
-        dev.octri.showcase.github.methods.ReposGetCustomDeploymentProtectionRuleOperation.reposGetCustomDeploymentProtectionRuleWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            environmentName,
-            protectionRuleId,
-            options,
-        )
+    fun reposGetCustomDeploymentProtectionRuleWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        environmentName: String,
+        protectionRuleId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeploymentProtectionRule> =
+        dev.octri.showcase.github.methods.ReposGetCustomDeploymentProtectionRuleOperation
+            .reposGetCustomDeploymentProtectionRuleWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                environmentName,
+                protectionRuleId,
+                options,
+            )
 
     /**
-     * Disables a custom deployment protection rule for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Disables a custom deployment protection rule for an environment. The authenticated user must
+     * have admin or owner permissions to the repository to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposDisableDeploymentProtectionRule(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, protectionRuleId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDisableDeploymentProtectionRuleOperation.reposDisableDeploymentProtectionRule(
-            clientConfig,
-            environmentName,
-            repo,
-            owner,
-            protectionRuleId,
-            options,
-        )
+    fun reposDisableDeploymentProtectionRule(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        protectionRuleId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDisableDeploymentProtectionRuleOperation
+            .reposDisableDeploymentProtectionRule(
+                clientConfig,
+                environmentName,
+                repo,
+                owner,
+                protectionRuleId,
+                options,
+            )
 
     /**
-     * Disables a custom deployment protection rule for an environment. The authenticated user must have admin or owner permissions to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Disables a custom deployment protection rule for an environment. The authenticated user must
+     * have admin or owner permissions to the repository to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposDisableDeploymentProtectionRuleWithRawResponse(clientConfig: ClientConfig, environmentName: String, repo: String, owner: String, protectionRuleId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDisableDeploymentProtectionRuleOperation.reposDisableDeploymentProtectionRuleWithRawResponse(
-            clientConfig,
-            environmentName,
-            repo,
-            owner,
-            protectionRuleId,
-            options,
-        )
+    fun reposDisableDeploymentProtectionRuleWithRawResponse(
+        clientConfig: ClientConfig,
+        environmentName: String,
+        repo: String,
+        owner: String,
+        protectionRuleId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDisableDeploymentProtectionRuleOperation
+            .reposDisableDeploymentProtectionRuleWithRawResponse(
+                clientConfig,
+                environmentName,
+                repo,
+                owner,
+                protectionRuleId,
+                options,
+            )
 
     /**
-     * Lists forks of a repository. Use `sort` to order forks by newest, oldest, stargazers, or watchers. Use `page` and `per_page` to paginate the results.
+     * Lists forks of a repository. Use `sort` to order forks by newest, oldest, stargazers, or
+     * watchers. Use `page` and `per_page` to paginate the results.
      */
-    fun reposListForks(clientConfig: ClientConfig, owner: String, repo: String, sort: ReposListForksParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MinimalRepository> =
+    fun reposListForks(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        sort: ReposListForksParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MinimalRepository> =
         dev.octri.showcase.github.methods.ReposListForksOperation.reposListForks(
             clientConfig,
             owner,
@@ -3696,9 +6303,18 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists forks of a repository. Use `sort` to order forks by newest, oldest, stargazers, or watchers. Use `page` and `per_page` to paginate the results.
+     * Lists forks of a repository. Use `sort` to order forks by newest, oldest, stargazers, or
+     * watchers. Use `page` and `per_page` to paginate the results.
      */
-    fun reposListForksWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, sort: ReposListForksParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<MinimalRepository>> =
+    fun reposListForksWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        sort: ReposListForksParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<MinimalRepository>> =
         dev.octri.showcase.github.methods.ReposListForksOperation.reposListForksWithRawResponse(
             clientConfig,
             owner,
@@ -3710,9 +6326,23 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Create a fork for the authenticated user. > [!NOTE] > Forking a Repository happens asynchronously. You may have to wait a short period of time before you can access the git objects. If this takes longer than 5 minutes, be sure to contact [GitHub Support](https://support.github.com/contact?tags=dotcom-rest-api). > [!NOTE] > Although this endpoint works with GitHub Apps, the GitHub App must be installed on the destination account with access to all repositories and on the source account with access to the source repository.
+     * Create a fork for the authenticated user. > [!NOTE] > Forking a Repository happens
+     * asynchronously. You may have to wait a short period of time before you can access the git
+     * objects. If this takes longer than 5 minutes, be sure to contact [GitHub
+     * Support](https://support.github.com/contact?tags=dotcom-rest-api). > [!NOTE] > Although this
+     * endpoint works with GitHub Apps, the GitHub App must be installed on the destination account
+     * with access to all repositories and on the source account with access to the source
+     * repository.
      */
-    fun reposCreateFork(clientConfig: ClientConfig, owner: String, repo: String, organization: String? = null, name: String? = null, defaultBranchOnly: Boolean? = null, options: RequestOptions? = null): FullRepository =
+    fun reposCreateFork(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        organization: String? = null,
+        name: String? = null,
+        defaultBranchOnly: Boolean? = null,
+        options: RequestOptions? = null,
+    ): FullRepository =
         dev.octri.showcase.github.methods.ReposCreateForkOperation.reposCreateFork(
             clientConfig,
             owner,
@@ -3724,9 +6354,23 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Create a fork for the authenticated user. > [!NOTE] > Forking a Repository happens asynchronously. You may have to wait a short period of time before you can access the git objects. If this takes longer than 5 minutes, be sure to contact [GitHub Support](https://support.github.com/contact?tags=dotcom-rest-api). > [!NOTE] > Although this endpoint works with GitHub Apps, the GitHub App must be installed on the destination account with access to all repositories and on the source account with access to the source repository.
+     * Create a fork for the authenticated user. > [!NOTE] > Forking a Repository happens
+     * asynchronously. You may have to wait a short period of time before you can access the git
+     * objects. If this takes longer than 5 minutes, be sure to contact [GitHub
+     * Support](https://support.github.com/contact?tags=dotcom-rest-api). > [!NOTE] > Although this
+     * endpoint works with GitHub Apps, the GitHub App must be installed on the destination account
+     * with access to all repositories and on the source account with access to the source
+     * repository.
      */
-    fun reposCreateForkWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, organization: String? = null, name: String? = null, defaultBranchOnly: Boolean? = null, options: RequestOptions? = null): SdkResponse<FullRepository> =
+    fun reposCreateForkWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        organization: String? = null,
+        name: String? = null,
+        defaultBranchOnly: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<FullRepository> =
         dev.octri.showcase.github.methods.ReposCreateForkOperation.reposCreateForkWithRawResponse(
             clientConfig,
             owner,
@@ -3737,10 +6381,13 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
             options,
         )
 
-    /**
-     * Returns the hash algorithm used to store repository objects.
-     */
-    fun reposGetHashAlgorithm(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): RepositoryHashAlgorithm =
+    /** Returns the hash algorithm used to store repository objects. */
+    fun reposGetHashAlgorithm(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): RepositoryHashAlgorithm =
         dev.octri.showcase.github.methods.ReposGetHashAlgorithmOperation.reposGetHashAlgorithm(
             clientConfig,
             owner,
@@ -3748,21 +6395,33 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
             options,
         )
 
-    /**
-     * Returns the hash algorithm used to store repository objects.
-     */
-    fun reposGetHashAlgorithmWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<RepositoryHashAlgorithm> =
-        dev.octri.showcase.github.methods.ReposGetHashAlgorithmOperation.reposGetHashAlgorithmWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    /** Returns the hash algorithm used to store repository objects. */
+    fun reposGetHashAlgorithmWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryHashAlgorithm> =
+        dev.octri.showcase.github.methods.ReposGetHashAlgorithmOperation
+            .reposGetHashAlgorithmWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Lists webhooks for a repository. `last response` may return null if there have not been any deliveries within 30 days.
+     * Lists webhooks for a repository. `last response` may return null if there have not been any
+     * deliveries within 30 days.
      */
-    fun reposListWebhooks(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Hook> =
+    fun reposListWebhooks(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Hook> =
         dev.octri.showcase.github.methods.ReposListWebhooksOperation.reposListWebhooks(
             clientConfig,
             owner,
@@ -3773,22 +6432,37 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists webhooks for a repository. `last response` may return null if there have not been any deliveries within 30 days.
+     * Lists webhooks for a repository. `last response` may return null if there have not been any
+     * deliveries within 30 days.
      */
-    fun reposListWebhooksWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Hook>> =
-        dev.octri.showcase.github.methods.ReposListWebhooksOperation.reposListWebhooksWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListWebhooksWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Hook>> =
+        dev.octri.showcase.github.methods.ReposListWebhooksOperation
+            .reposListWebhooksWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Repositories can have multiple webhooks installed. Each webhook should have a unique `config`. Multiple webhooks can share the same `config` as long as those webhooks do not have any `events` that overlap.
+     * Repositories can have multiple webhooks installed. Each webhook should have a unique
+     * `config`. Multiple webhooks can share the same `config` as long as those webhooks do not have
+     * any `events` that overlap.
      */
-    fun reposCreateWebhook(clientConfig: ClientConfig, request: ReposCreateWebhookRequest, options: RequestOptions? = null): Hook =
+    fun reposCreateWebhook(
+        clientConfig: ClientConfig,
+        request: ReposCreateWebhookRequest,
+        options: RequestOptions? = null,
+    ): Hook =
         dev.octri.showcase.github.methods.ReposCreateWebhookOperation.reposCreateWebhook(
             clientConfig,
             request,
@@ -3796,19 +6470,33 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Repositories can have multiple webhooks installed. Each webhook should have a unique `config`. Multiple webhooks can share the same `config` as long as those webhooks do not have any `events` that overlap.
+     * Repositories can have multiple webhooks installed. Each webhook should have a unique
+     * `config`. Multiple webhooks can share the same `config` as long as those webhooks do not have
+     * any `events` that overlap.
      */
-    fun reposCreateWebhookWithRawResponse(clientConfig: ClientConfig, request: ReposCreateWebhookRequest, options: RequestOptions? = null): SdkResponse<Hook> =
-        dev.octri.showcase.github.methods.ReposCreateWebhookOperation.reposCreateWebhookWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateWebhookWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateWebhookRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Hook> =
+        dev.octri.showcase.github.methods.ReposCreateWebhookOperation
+            .reposCreateWebhookWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Returns a webhook configured in a repository. To get only the webhook `config` properties, see "Get a webhook configuration for a repository."
+     * Returns a webhook configured in a repository. To get only the webhook `config` properties,
+     * see "Get a webhook configuration for a repository."
      */
-    fun reposGetWebhook(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): Hook =
+    fun reposGetWebhook(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): Hook =
         dev.octri.showcase.github.methods.ReposGetWebhookOperation.reposGetWebhook(
             clientConfig,
             owner,
@@ -3818,9 +6506,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Returns a webhook configured in a repository. To get only the webhook `config` properties, see "Get a webhook configuration for a repository."
+     * Returns a webhook configured in a repository. To get only the webhook `config` properties,
+     * see "Get a webhook configuration for a repository."
      */
-    fun reposGetWebhookWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): SdkResponse<Hook> =
+    fun reposGetWebhookWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Hook> =
         dev.octri.showcase.github.methods.ReposGetWebhookOperation.reposGetWebhookWithRawResponse(
             clientConfig,
             owner,
@@ -3830,9 +6525,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Updates a webhook configured in a repository. If you previously had a `secret` set, you must provide the same `secret` or set a new `secret` or the secret will be removed. If you are only updating individual webhook `config` properties, use "Update a webhook configuration for a repository."
+     * Updates a webhook configured in a repository. If you previously had a `secret` set, you must
+     * provide the same `secret` or set a new `secret` or the secret will be removed. If you are
+     * only updating individual webhook `config` properties, use "Update a webhook configuration for
+     * a repository."
      */
-    fun reposUpdateWebhook(clientConfig: ClientConfig, request: ReposUpdateWebhookRequest, options: RequestOptions? = null): Hook =
+    fun reposUpdateWebhook(
+        clientConfig: ClientConfig,
+        request: ReposUpdateWebhookRequest,
+        options: RequestOptions? = null,
+    ): Hook =
         dev.octri.showcase.github.methods.ReposUpdateWebhookOperation.reposUpdateWebhook(
             clientConfig,
             request,
@@ -3840,19 +6542,34 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Updates a webhook configured in a repository. If you previously had a `secret` set, you must provide the same `secret` or set a new `secret` or the secret will be removed. If you are only updating individual webhook `config` properties, use "Update a webhook configuration for a repository."
+     * Updates a webhook configured in a repository. If you previously had a `secret` set, you must
+     * provide the same `secret` or set a new `secret` or the secret will be removed. If you are
+     * only updating individual webhook `config` properties, use "Update a webhook configuration for
+     * a repository."
      */
-    fun reposUpdateWebhookWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateWebhookRequest, options: RequestOptions? = null): SdkResponse<Hook> =
-        dev.octri.showcase.github.methods.ReposUpdateWebhookOperation.reposUpdateWebhookWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateWebhookWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateWebhookRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Hook> =
+        dev.octri.showcase.github.methods.ReposUpdateWebhookOperation
+            .reposUpdateWebhookWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Delete a webhook for an organization. The authenticated user must be a repository owner, or have admin access in the repository, to delete the webhook.
+     * Delete a webhook for an organization. The authenticated user must be a repository owner, or
+     * have admin access in the repository, to delete the webhook.
      */
-    fun reposDeleteWebhook(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): Unit =
+    fun reposDeleteWebhook(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteWebhookOperation.reposDeleteWebhook(
             clientConfig,
             owner,
@@ -3862,85 +6579,144 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Delete a webhook for an organization. The authenticated user must be a repository owner, or have admin access in the repository, to delete the webhook.
+     * Delete a webhook for an organization. The authenticated user must be a repository owner, or
+     * have admin access in the repository, to delete the webhook.
      */
-    fun reposDeleteWebhookWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteWebhookOperation.reposDeleteWebhookWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            hookId,
-            options,
-        )
+    fun reposDeleteWebhookWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteWebhookOperation
+            .reposDeleteWebhookWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                hookId,
+                options,
+            )
 
     /**
-     * Returns the webhook configuration for a repository. To get more information about the webhook, including the `active` state and `events`, use "Get a repository webhook." OAuth app tokens and personal access tokens (classic) need the `read:repo_hook` or `repo` scope to use this endpoint.
+     * Returns the webhook configuration for a repository. To get more information about the
+     * webhook, including the `active` state and `events`, use "Get a repository webhook." OAuth app
+     * tokens and personal access tokens (classic) need the `read:repo_hook` or `repo` scope to use
+     * this endpoint.
      */
-    fun reposGetWebhookConfigForRepo(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): WebhookConfig =
-        dev.octri.showcase.github.methods.ReposGetWebhookConfigForRepoOperation.reposGetWebhookConfigForRepo(
-            clientConfig,
-            owner,
-            repo,
-            hookId,
-            options,
-        )
+    fun reposGetWebhookConfigForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): WebhookConfig =
+        dev.octri.showcase.github.methods.ReposGetWebhookConfigForRepoOperation
+            .reposGetWebhookConfigForRepo(
+                clientConfig,
+                owner,
+                repo,
+                hookId,
+                options,
+            )
 
     /**
-     * Returns the webhook configuration for a repository. To get more information about the webhook, including the `active` state and `events`, use "Get a repository webhook." OAuth app tokens and personal access tokens (classic) need the `read:repo_hook` or `repo` scope to use this endpoint.
+     * Returns the webhook configuration for a repository. To get more information about the
+     * webhook, including the `active` state and `events`, use "Get a repository webhook." OAuth app
+     * tokens and personal access tokens (classic) need the `read:repo_hook` or `repo` scope to use
+     * this endpoint.
      */
-    fun reposGetWebhookConfigForRepoWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): SdkResponse<WebhookConfig> =
-        dev.octri.showcase.github.methods.ReposGetWebhookConfigForRepoOperation.reposGetWebhookConfigForRepoWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            hookId,
-            options,
-        )
+    fun reposGetWebhookConfigForRepoWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<WebhookConfig> =
+        dev.octri.showcase.github.methods.ReposGetWebhookConfigForRepoOperation
+            .reposGetWebhookConfigForRepoWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                hookId,
+                options,
+            )
 
     /**
-     * Updates the delivery settings for a webhook configured in a repository. Supply the configuration fields you want to change; use the repository webhook update endpoint to change its active state or subscribed events. OAuth app tokens and personal access tokens (classic) need the `write:repo_hook` or `repo` scope.
+     * Updates the delivery settings for a webhook configured in a repository. Supply the
+     * configuration fields you want to change; use the repository webhook update endpoint to change
+     * its active state or subscribed events. OAuth app tokens and personal access tokens (classic)
+     * need the `write:repo_hook` or `repo` scope.
      */
-    fun reposUpdateWebhookConfigForRepo(clientConfig: ClientConfig, request: ReposUpdateWebhookConfigForRepoRequest, options: RequestOptions? = null): WebhookConfig =
-        dev.octri.showcase.github.methods.ReposUpdateWebhookConfigForRepoOperation.reposUpdateWebhookConfigForRepo(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateWebhookConfigForRepo(
+        clientConfig: ClientConfig,
+        request: ReposUpdateWebhookConfigForRepoRequest,
+        options: RequestOptions? = null,
+    ): WebhookConfig =
+        dev.octri.showcase.github.methods.ReposUpdateWebhookConfigForRepoOperation
+            .reposUpdateWebhookConfigForRepo(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Updates the delivery settings for a webhook configured in a repository. Supply the configuration fields you want to change; use the repository webhook update endpoint to change its active state or subscribed events. OAuth app tokens and personal access tokens (classic) need the `write:repo_hook` or `repo` scope.
+     * Updates the delivery settings for a webhook configured in a repository. Supply the
+     * configuration fields you want to change; use the repository webhook update endpoint to change
+     * its active state or subscribed events. OAuth app tokens and personal access tokens (classic)
+     * need the `write:repo_hook` or `repo` scope.
      */
-    fun reposUpdateWebhookConfigForRepoWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateWebhookConfigForRepoRequest, options: RequestOptions? = null): SdkResponse<WebhookConfig> =
-        dev.octri.showcase.github.methods.ReposUpdateWebhookConfigForRepoOperation.reposUpdateWebhookConfigForRepoWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateWebhookConfigForRepoWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateWebhookConfigForRepoRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<WebhookConfig> =
+        dev.octri.showcase.github.methods.ReposUpdateWebhookConfigForRepoOperation
+            .reposUpdateWebhookConfigForRepoWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /** Returns a list of webhook deliveries for a webhook configured in a repository. */
+    fun reposListWebhookDeliveries(
+        clientConfig: ClientConfig,
+        request: ReposListWebhookDeliveriesRequest,
+        options: RequestOptions? = null,
+    ): List<HookDeliveryItem> =
+        dev.octri.showcase.github.methods.ReposListWebhookDeliveriesOperation
+            .reposListWebhookDeliveries(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /** Returns a list of webhook deliveries for a webhook configured in a repository. */
+    fun reposListWebhookDeliveriesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListWebhookDeliveriesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<HookDeliveryItem>> =
+        dev.octri.showcase.github.methods.ReposListWebhookDeliveriesOperation
+            .reposListWebhookDeliveriesWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Returns a list of webhook deliveries for a webhook configured in a repository.
+     * Retrieves a delivery record for a webhook configured in a repository. Use the repository
+     * owner, repository name, hook ID, and delivery ID to inspect the delivery status, event
+     * metadata, and request and response details.
      */
-    fun reposListWebhookDeliveries(clientConfig: ClientConfig, request: ReposListWebhookDeliveriesRequest, options: RequestOptions? = null): List<HookDeliveryItem> =
-        dev.octri.showcase.github.methods.ReposListWebhookDeliveriesOperation.reposListWebhookDeliveries(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Returns a list of webhook deliveries for a webhook configured in a repository.
-     */
-    fun reposListWebhookDeliveriesWithRawResponse(clientConfig: ClientConfig, request: ReposListWebhookDeliveriesRequest, options: RequestOptions? = null): SdkResponse<List<HookDeliveryItem>> =
-        dev.octri.showcase.github.methods.ReposListWebhookDeliveriesOperation.reposListWebhookDeliveriesWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
-
-    /**
-     * Retrieves a delivery record for a webhook configured in a repository. Use the repository owner, repository name, hook ID, and delivery ID to inspect the delivery status, event metadata, and request and response details.
-     */
-    fun reposGetWebhookDelivery(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, deliveryId: Long, options: RequestOptions? = null): HookDelivery =
+    fun reposGetWebhookDelivery(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        deliveryId: Long,
+        options: RequestOptions? = null,
+    ): HookDelivery =
         dev.octri.showcase.github.methods.ReposGetWebhookDeliveryOperation.reposGetWebhookDelivery(
             clientConfig,
             owner,
@@ -3951,48 +6727,85 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves a delivery record for a webhook configured in a repository. Use the repository owner, repository name, hook ID, and delivery ID to inspect the delivery status, event metadata, and request and response details.
+     * Retrieves a delivery record for a webhook configured in a repository. Use the repository
+     * owner, repository name, hook ID, and delivery ID to inspect the delivery status, event
+     * metadata, and request and response details.
      */
-    fun reposGetWebhookDeliveryWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, deliveryId: Long, options: RequestOptions? = null): SdkResponse<HookDelivery> =
-        dev.octri.showcase.github.methods.ReposGetWebhookDeliveryOperation.reposGetWebhookDeliveryWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            hookId,
-            deliveryId,
-            options,
-        )
+    fun reposGetWebhookDeliveryWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        deliveryId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<HookDelivery> =
+        dev.octri.showcase.github.methods.ReposGetWebhookDeliveryOperation
+            .reposGetWebhookDeliveryWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                hookId,
+                deliveryId,
+                options,
+            )
 
     /**
-     * Submits a redelivery attempt for a delivery made by a webhook configured in a repository. Use the repository owner, repository name, hook ID, and delivery ID to identify the delivery to retry. A 202 response confirms that the redelivery request was accepted.
+     * Submits a redelivery attempt for a delivery made by a webhook configured in a repository. Use
+     * the repository owner, repository name, hook ID, and delivery ID to identify the delivery to
+     * retry. A 202 response confirms that the redelivery request was accepted.
      */
-    fun reposRedeliverWebhookDelivery(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, deliveryId: Long, options: RequestOptions? = null): Map<String, Any> =
-        dev.octri.showcase.github.methods.ReposRedeliverWebhookDeliveryOperation.reposRedeliverWebhookDelivery(
-            clientConfig,
-            owner,
-            repo,
-            hookId,
-            deliveryId,
-            options,
-        )
+    fun reposRedeliverWebhookDelivery(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        deliveryId: Long,
+        options: RequestOptions? = null,
+    ): Map<String, Any> =
+        dev.octri.showcase.github.methods.ReposRedeliverWebhookDeliveryOperation
+            .reposRedeliverWebhookDelivery(
+                clientConfig,
+                owner,
+                repo,
+                hookId,
+                deliveryId,
+                options,
+            )
 
     /**
-     * Submits a redelivery attempt for a delivery made by a webhook configured in a repository. Use the repository owner, repository name, hook ID, and delivery ID to identify the delivery to retry. A 202 response confirms that the redelivery request was accepted.
+     * Submits a redelivery attempt for a delivery made by a webhook configured in a repository. Use
+     * the repository owner, repository name, hook ID, and delivery ID to identify the delivery to
+     * retry. A 202 response confirms that the redelivery request was accepted.
      */
-    fun reposRedeliverWebhookDeliveryWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, deliveryId: Long, options: RequestOptions? = null): SdkResponse<Map<String, Any>> =
-        dev.octri.showcase.github.methods.ReposRedeliverWebhookDeliveryOperation.reposRedeliverWebhookDeliveryWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            hookId,
-            deliveryId,
-            options,
-        )
+    fun reposRedeliverWebhookDeliveryWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        deliveryId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Map<String, Any>> =
+        dev.octri.showcase.github.methods.ReposRedeliverWebhookDeliveryOperation
+            .reposRedeliverWebhookDeliveryWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                hookId,
+                deliveryId,
+                options,
+            )
 
     /**
-     * This will trigger a [ping event](https://docs.github.com/webhooks/#ping-event) to be sent to the hook.
+     * This will trigger a [ping event](https://docs.github.com/webhooks/#ping-event) to be sent to
+     * the hook.
      */
-    fun reposPingWebhook(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): Unit =
+    fun reposPingWebhook(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposPingWebhookOperation.reposPingWebhook(
             clientConfig,
             owner,
@@ -4002,9 +6815,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * This will trigger a [ping event](https://docs.github.com/webhooks/#ping-event) to be sent to the hook.
+     * This will trigger a [ping event](https://docs.github.com/webhooks/#ping-event) to be sent to
+     * the hook.
      */
-    fun reposPingWebhookWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
+    fun reposPingWebhookWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
         dev.octri.showcase.github.methods.ReposPingWebhookOperation.reposPingWebhookWithRawResponse(
             clientConfig,
             owner,
@@ -4014,9 +6834,18 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * This will trigger the hook with the latest push to the current repository if the hook is subscribed to `push` events. If the hook is not subscribed to `push` events, the server will respond with 204 but no test POST will be generated. > [!NOTE] > Previously `/repos/:owner/:repo/hooks/:hook_id/test`
+     * This will trigger the hook with the latest push to the current repository if the hook is
+     * subscribed to `push` events. If the hook is not subscribed to `push` events, the server will
+     * respond with 204 but no test POST will be generated. > [!NOTE] > Previously
+     * `/repos/:owner/:repo/hooks/:hook_id/test`
      */
-    fun reposTestPushWebhook(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): Unit =
+    fun reposTestPushWebhook(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposTestPushWebhookOperation.reposTestPushWebhook(
             clientConfig,
             owner,
@@ -4026,87 +6855,149 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * This will trigger the hook with the latest push to the current repository if the hook is subscribed to `push` events. If the hook is not subscribed to `push` events, the server will respond with 204 but no test POST will be generated. > [!NOTE] > Previously `/repos/:owner/:repo/hooks/:hook_id/test`
+     * This will trigger the hook with the latest push to the current repository if the hook is
+     * subscribed to `push` events. If the hook is not subscribed to `push` events, the server will
+     * respond with 204 but no test POST will be generated. > [!NOTE] > Previously
+     * `/repos/:owner/:repo/hooks/:hook_id/test`
      */
-    fun reposTestPushWebhookWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, hookId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposTestPushWebhookOperation.reposTestPushWebhookWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            hookId,
-            options,
-        )
+    fun reposTestPushWebhookWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        hookId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposTestPushWebhookOperation
+            .reposTestPushWebhookWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                hookId,
+                options,
+            )
 
     /**
-     * Shows whether immutable releases are enabled or disabled. Also identifies whether immutability is being enforced by the repository owner. The authenticated user must have admin read access to the repository.
+     * Shows whether immutable releases are enabled or disabled. Also identifies whether
+     * immutability is being enforced by the repository owner. The authenticated user must have
+     * admin read access to the repository.
      */
-    fun reposCheckImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CheckImmutableReleases =
-        dev.octri.showcase.github.methods.ReposCheckImmutableReleasesOperation.reposCheckImmutableReleases(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCheckImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CheckImmutableReleases =
+        dev.octri.showcase.github.methods.ReposCheckImmutableReleasesOperation
+            .reposCheckImmutableReleases(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Shows whether immutable releases are enabled or disabled. Also identifies whether immutability is being enforced by the repository owner. The authenticated user must have admin read access to the repository.
+     * Shows whether immutable releases are enabled or disabled. Also identifies whether
+     * immutability is being enforced by the repository owner. The authenticated user must have
+     * admin read access to the repository.
      */
-    fun reposCheckImmutableReleasesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<CheckImmutableReleases> =
-        dev.octri.showcase.github.methods.ReposCheckImmutableReleasesOperation.reposCheckImmutableReleasesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCheckImmutableReleasesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<CheckImmutableReleases> =
+        dev.octri.showcase.github.methods.ReposCheckImmutableReleasesOperation
+            .reposCheckImmutableReleasesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Enables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Enables immutable releases for a repository. The authenticated user must have admin access to
+     * the repository.
      */
-    fun reposEnableImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposEnableImmutableReleasesOperation.reposEnableImmutableReleases(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposEnableImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposEnableImmutableReleasesOperation
+            .reposEnableImmutableReleases(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Enables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Enables immutable releases for a repository. The authenticated user must have admin access to
+     * the repository.
      */
-    fun reposEnableImmutableReleasesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposEnableImmutableReleasesOperation.reposEnableImmutableReleasesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposEnableImmutableReleasesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposEnableImmutableReleasesOperation
+            .reposEnableImmutableReleasesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Disables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Disables immutable releases for a repository. The authenticated user must have admin access
+     * to the repository.
      */
-    fun reposDisableImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDisableImmutableReleasesOperation.reposDisableImmutableReleases(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDisableImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDisableImmutableReleasesOperation
+            .reposDisableImmutableReleases(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Disables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Disables immutable releases for a repository. The authenticated user must have admin access
+     * to the repository.
      */
-    fun reposDisableImmutableReleasesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDisableImmutableReleasesOperation.reposDisableImmutableReleasesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDisableImmutableReleasesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDisableImmutableReleasesOperation
+            .reposDisableImmutableReleasesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * When authenticating as a user with admin rights to a repository, this endpoint will list all currently open repository invitations.
+     * When authenticating as a user with admin rights to a repository, this endpoint will list all
+     * currently open repository invitations.
      */
-    fun reposListInvitations(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<RepositoryInvitation> =
+    fun reposListInvitations(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<RepositoryInvitation> =
         dev.octri.showcase.github.methods.ReposListInvitationsOperation.reposListInvitations(
             clientConfig,
             owner,
@@ -4117,22 +7008,40 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * When authenticating as a user with admin rights to a repository, this endpoint will list all currently open repository invitations.
+     * When authenticating as a user with admin rights to a repository, this endpoint will list all
+     * currently open repository invitations.
      */
-    fun reposListInvitationsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<RepositoryInvitation>> =
-        dev.octri.showcase.github.methods.ReposListInvitationsOperation.reposListInvitationsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListInvitationsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<RepositoryInvitation>> =
+        dev.octri.showcase.github.methods.ReposListInvitationsOperation
+            .reposListInvitationsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Updates the permissions on a repository invitation. Supply `permissions` to set the invitee's access level; accepted values are read, write, maintain, triage, and admin. A 200 response returns the updated invitation, including its repository, invitee, inviter, and permissions.
+     * Updates the permissions on a repository invitation. Supply `permissions` to set the invitee's
+     * access level; accepted values are read, write, maintain, triage, and admin. A 200 response
+     * returns the updated invitation, including its repository, invitee, inviter, and permissions.
      */
-    fun reposUpdateInvitation(clientConfig: ClientConfig, owner: String, repo: String, invitationId: Long, permissions: ReposUpdateInvitationPermissionsEnum? = null, options: RequestOptions? = null): RepositoryInvitation =
+    fun reposUpdateInvitation(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        invitationId: Long,
+        permissions: ReposUpdateInvitationPermissionsEnum? = null,
+        options: RequestOptions? = null,
+    ): RepositoryInvitation =
         dev.octri.showcase.github.methods.ReposUpdateInvitationOperation.reposUpdateInvitation(
             clientConfig,
             owner,
@@ -4143,22 +7052,40 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Updates the permissions on a repository invitation. Supply `permissions` to set the invitee's access level; accepted values are read, write, maintain, triage, and admin. A 200 response returns the updated invitation, including its repository, invitee, inviter, and permissions.
+     * Updates the permissions on a repository invitation. Supply `permissions` to set the invitee's
+     * access level; accepted values are read, write, maintain, triage, and admin. A 200 response
+     * returns the updated invitation, including its repository, invitee, inviter, and permissions.
      */
-    fun reposUpdateInvitationWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, invitationId: Long, permissions: ReposUpdateInvitationPermissionsEnum? = null, options: RequestOptions? = null): SdkResponse<RepositoryInvitation> =
-        dev.octri.showcase.github.methods.ReposUpdateInvitationOperation.reposUpdateInvitationWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            invitationId,
-            permissions,
-            options,
-        )
+    fun reposUpdateInvitationWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        invitationId: Long,
+        permissions: ReposUpdateInvitationPermissionsEnum? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryInvitation> =
+        dev.octri.showcase.github.methods.ReposUpdateInvitationOperation
+            .reposUpdateInvitationWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                invitationId,
+                permissions,
+                options,
+            )
 
     /**
-     * Deletes a repository invitation from a repository. Use the repository owner, repository name, and invitation identifier to select the invitation to remove. A 204 response confirms the invitation was deleted and contains no response body.
+     * Deletes a repository invitation from a repository. Use the repository owner, repository name,
+     * and invitation identifier to select the invitation to remove. A 204 response confirms the
+     * invitation was deleted and contains no response body.
      */
-    fun reposDeleteInvitation(clientConfig: ClientConfig, owner: String, repo: String, invitationId: Long, options: RequestOptions? = null): Unit =
+    fun reposDeleteInvitation(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteInvitationOperation.reposDeleteInvitation(
             clientConfig,
             owner,
@@ -4168,21 +7095,37 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deletes a repository invitation from a repository. Use the repository owner, repository name, and invitation identifier to select the invitation to remove. A 204 response confirms the invitation was deleted and contains no response body.
+     * Deletes a repository invitation from a repository. Use the repository owner, repository name,
+     * and invitation identifier to select the invitation to remove. A 204 response confirms the
+     * invitation was deleted and contains no response body.
      */
-    fun reposDeleteInvitationWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, invitationId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteInvitationOperation.reposDeleteInvitationWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            invitationId,
-            options,
-        )
+    fun reposDeleteInvitationWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteInvitationOperation
+            .reposDeleteInvitationWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                invitationId,
+                options,
+            )
 
     /**
-     * Lists enabled issue types inherited from the repository owner. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. Fine-grained access tokens require the "Metadata" repository permission (read).
+     * Lists enabled issue types inherited from the repository owner. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint. Fine-grained access
+     * tokens require the "Metadata" repository permission (read).
      */
-    fun reposListIssueTypes(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<IssueType?> =
+    fun reposListIssueTypes(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<IssueType?> =
         dev.octri.showcase.github.methods.ReposListIssueTypesOperation.reposListIssueTypes(
             clientConfig,
             owner,
@@ -4191,20 +7134,36 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists enabled issue types inherited from the repository owner. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. Fine-grained access tokens require the "Metadata" repository permission (read).
+     * Lists enabled issue types inherited from the repository owner. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint. Fine-grained access
+     * tokens require the "Metadata" repository permission (read).
      */
-    fun reposListIssueTypesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<IssueType?>> =
-        dev.octri.showcase.github.methods.ReposListIssueTypesOperation.reposListIssueTypesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposListIssueTypesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<IssueType?>> =
+        dev.octri.showcase.github.methods.ReposListIssueTypesOperation
+            .reposListIssueTypesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Lists the deploy keys associated with a repository. Use `page` and `per_page` to paginate the results; each entry contains key details and its access mode.
+     * Lists the deploy keys associated with a repository. Use `page` and `per_page` to paginate the
+     * results; each entry contains key details and its access mode.
      */
-    fun reposListDeployKeys(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<DeployKey> =
+    fun reposListDeployKeys(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<DeployKey> =
         dev.octri.showcase.github.methods.ReposListDeployKeysOperation.reposListDeployKeys(
             clientConfig,
             owner,
@@ -4215,22 +7174,41 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists the deploy keys associated with a repository. Use `page` and `per_page` to paginate the results; each entry contains key details and its access mode.
+     * Lists the deploy keys associated with a repository. Use `page` and `per_page` to paginate the
+     * results; each entry contains key details and its access mode.
      */
-    fun reposListDeployKeysWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<DeployKey>> =
-        dev.octri.showcase.github.methods.ReposListDeployKeysOperation.reposListDeployKeysWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListDeployKeysWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<DeployKey>> =
+        dev.octri.showcase.github.methods.ReposListDeployKeysOperation
+            .reposListDeployKeysWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Creates a deploy key that grants access to a repository. Provide the public key in `key` and optionally set `title` and `read_only` to name the key and control its access. A 201 response returns the created deploy key.
+     * Creates a deploy key that grants access to a repository. Provide the public key in `key` and
+     * optionally set `title` and `read_only` to name the key and control its access. A 201 response
+     * returns the created deploy key.
      */
-    fun reposCreateDeployKey(clientConfig: ClientConfig, owner: String, repo: String, key: String, title: String? = null, readOnly: Boolean? = null, options: RequestOptions? = null): DeployKey =
+    fun reposCreateDeployKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        key: String,
+        title: String? = null,
+        readOnly: Boolean? = null,
+        options: RequestOptions? = null,
+    ): DeployKey =
         dev.octri.showcase.github.methods.ReposCreateDeployKeyOperation.reposCreateDeployKey(
             clientConfig,
             owner,
@@ -4242,23 +7220,41 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Creates a deploy key that grants access to a repository. Provide the public key in `key` and optionally set `title` and `read_only` to name the key and control its access. A 201 response returns the created deploy key.
+     * Creates a deploy key that grants access to a repository. Provide the public key in `key` and
+     * optionally set `title` and `read_only` to name the key and control its access. A 201 response
+     * returns the created deploy key.
      */
-    fun reposCreateDeployKeyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, key: String, title: String? = null, readOnly: Boolean? = null, options: RequestOptions? = null): SdkResponse<DeployKey> =
-        dev.octri.showcase.github.methods.ReposCreateDeployKeyOperation.reposCreateDeployKeyWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            key,
-            title,
-            readOnly,
-            options,
-        )
+    fun reposCreateDeployKeyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        key: String,
+        title: String? = null,
+        readOnly: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeployKey> =
+        dev.octri.showcase.github.methods.ReposCreateDeployKeyOperation
+            .reposCreateDeployKeyWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                key,
+                title,
+                readOnly,
+                options,
+            )
 
     /**
-     * Retrieves a specific deploy key associated with a repository. Use `key_id` to identify the key whose details you need.
+     * Retrieves a specific deploy key associated with a repository. Use `key_id` to identify the
+     * key whose details you need.
      */
-    fun reposGetDeployKey(clientConfig: ClientConfig, owner: String, repo: String, keyId: Long, options: RequestOptions? = null): DeployKey =
+    fun reposGetDeployKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        keyId: Long,
+        options: RequestOptions? = null,
+    ): DeployKey =
         dev.octri.showcase.github.methods.ReposGetDeployKeyOperation.reposGetDeployKey(
             clientConfig,
             owner,
@@ -4268,21 +7264,36 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves a specific deploy key associated with a repository. Use `key_id` to identify the key whose details you need.
+     * Retrieves a specific deploy key associated with a repository. Use `key_id` to identify the
+     * key whose details you need.
      */
-    fun reposGetDeployKeyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, keyId: Long, options: RequestOptions? = null): SdkResponse<DeployKey> =
-        dev.octri.showcase.github.methods.ReposGetDeployKeyOperation.reposGetDeployKeyWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            keyId,
-            options,
-        )
+    fun reposGetDeployKeyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        keyId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<DeployKey> =
+        dev.octri.showcase.github.methods.ReposGetDeployKeyOperation
+            .reposGetDeployKeyWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                keyId,
+                options,
+            )
 
     /**
-     * Deploy keys are immutable. If you need to update a key, remove the key and create a new one instead.
+     * Deploy keys are immutable. If you need to update a key, remove the key and create a new one
+     * instead.
      */
-    fun reposDeleteDeployKey(clientConfig: ClientConfig, owner: String, repo: String, keyId: Long, options: RequestOptions? = null): Unit =
+    fun reposDeleteDeployKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        keyId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteDeployKeyOperation.reposDeleteDeployKey(
             clientConfig,
             owner,
@@ -4292,21 +7303,35 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deploy keys are immutable. If you need to update a key, remove the key and create a new one instead.
+     * Deploy keys are immutable. If you need to update a key, remove the key and create a new one
+     * instead.
      */
-    fun reposDeleteDeployKeyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, keyId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteDeployKeyOperation.reposDeleteDeployKeyWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            keyId,
-            options,
-        )
+    fun reposDeleteDeployKeyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        keyId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteDeployKeyOperation
+            .reposDeleteDeployKeyWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                keyId,
+                options,
+            )
 
     /**
-     * Lists languages for the specified repository. The value shown for each language is the number of bytes of code written in that language.
+     * Lists languages for the specified repository. The value shown for each language is the number
+     * of bytes of code written in that language.
      */
-    fun reposListLanguages(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Language =
+    fun reposListLanguages(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Language =
         dev.octri.showcase.github.methods.ReposListLanguagesOperation.reposListLanguages(
             clientConfig,
             owner,
@@ -4315,20 +7340,31 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists languages for the specified repository. The value shown for each language is the number of bytes of code written in that language.
+     * Lists languages for the specified repository. The value shown for each language is the number
+     * of bytes of code written in that language.
      */
-    fun reposListLanguagesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Language> =
-        dev.octri.showcase.github.methods.ReposListLanguagesOperation.reposListLanguagesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposListLanguagesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Language> =
+        dev.octri.showcase.github.methods.ReposListLanguagesOperation
+            .reposListLanguagesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
-    /**
-     * Sync a branch of a forked repository to keep it up-to-date with the upstream repository.
-     */
-    fun reposMergeUpstream(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): MergedUpstream =
+    /** Sync a branch of a forked repository to keep it up-to-date with the upstream repository. */
+    fun reposMergeUpstream(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): MergedUpstream =
         dev.octri.showcase.github.methods.ReposMergeUpstreamOperation.reposMergeUpstream(
             clientConfig,
             owner,
@@ -4337,22 +7373,37 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
             options,
         )
 
-    /**
-     * Sync a branch of a forked repository to keep it up-to-date with the upstream repository.
-     */
-    fun reposMergeUpstreamWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, options: RequestOptions? = null): SdkResponse<MergedUpstream> =
-        dev.octri.showcase.github.methods.ReposMergeUpstreamOperation.reposMergeUpstreamWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            options,
-        )
+    /** Sync a branch of a forked repository to keep it up-to-date with the upstream repository. */
+    fun reposMergeUpstreamWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<MergedUpstream> =
+        dev.octri.showcase.github.methods.ReposMergeUpstreamOperation
+            .reposMergeUpstreamWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                options,
+            )
 
     /**
-     * Merges a branch or commit into a base branch in a repository. Supply `base` and `head`; `commit_message` is optional and defaults to a generated message when omitted. If the changes are already merged, the endpoint returns 204 without a merge commit body.
+     * Merges a branch or commit into a base branch in a repository. Supply `base` and `head`;
+     * `commit_message` is optional and defaults to a generated message when omitted. If the changes
+     * are already merged, the endpoint returns 204 without a merge commit body.
      */
-    fun reposMerge(clientConfig: ClientConfig, owner: String, repo: String, base: String, head: String, commitMessage: String? = null, options: RequestOptions? = null): Commit =
+    fun reposMerge(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        base: String,
+        head: String,
+        commitMessage: String? = null,
+        options: RequestOptions? = null,
+    ): Commit =
         dev.octri.showcase.github.methods.ReposMergeOperation.reposMerge(
             clientConfig,
             owner,
@@ -4364,9 +7415,19 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Merges a branch or commit into a base branch in a repository. Supply `base` and `head`; `commit_message` is optional and defaults to a generated message when omitted. If the changes are already merged, the endpoint returns 204 without a merge commit body.
+     * Merges a branch or commit into a base branch in a repository. Supply `base` and `head`;
+     * `commit_message` is optional and defaults to a generated message when omitted. If the changes
+     * are already merged, the endpoint returns 204 without a merge commit body.
      */
-    fun reposMergeWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, base: String, head: String, commitMessage: String? = null, options: RequestOptions? = null): SdkResponse<Commit> =
+    fun reposMergeWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        base: String,
+        head: String,
+        commitMessage: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Commit> =
         dev.octri.showcase.github.methods.ReposMergeOperation.reposMergeWithRawResponse(
             clientConfig,
             owner,
@@ -4378,9 +7439,15 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets information about a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets information about a GitHub Pages site. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposGetPages(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Page =
+    fun reposGetPages(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Page =
         dev.octri.showcase.github.methods.ReposGetPagesOperation.reposGetPages(
             clientConfig,
             owner,
@@ -4389,9 +7456,15 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets information about a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets information about a GitHub Pages site. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposGetPagesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Page> =
+    fun reposGetPagesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Page> =
         dev.octri.showcase.github.methods.ReposGetPagesOperation.reposGetPagesWithRawResponse(
             clientConfig,
             owner,
@@ -4400,9 +7473,19 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Configures a GitHub Pages site. For more information, see "About GitHub Pages." The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Configures a GitHub Pages site. For more information, see "About GitHub Pages." The
+     * authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub
+     * Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      */
-    fun reposCreatePagesSite(clientConfig: ClientConfig, owner: String, repo: String, buildType: ReposCreatePagesSiteBuildTypeEnum? = null, source: ReposCreatePagesSiteSource? = null, options: RequestOptions? = null): Page =
+    fun reposCreatePagesSite(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        buildType: ReposCreatePagesSiteBuildTypeEnum? = null,
+        source: ReposCreatePagesSiteSource? = null,
+        options: RequestOptions? = null,
+    ): Page =
         dev.octri.showcase.github.methods.ReposCreatePagesSiteOperation.reposCreatePagesSite(
             clientConfig,
             owner,
@@ -4413,42 +7496,79 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Configures a GitHub Pages site. For more information, see "About GitHub Pages." The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Configures a GitHub Pages site. For more information, see "About GitHub Pages." The
+     * authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub
+     * Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      */
-    fun reposCreatePagesSiteWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, buildType: ReposCreatePagesSiteBuildTypeEnum? = null, source: ReposCreatePagesSiteSource? = null, options: RequestOptions? = null): SdkResponse<Page> =
-        dev.octri.showcase.github.methods.ReposCreatePagesSiteOperation.reposCreatePagesSiteWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            buildType,
-            source,
-            options,
-        )
+    fun reposCreatePagesSiteWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        buildType: ReposCreatePagesSiteBuildTypeEnum? = null,
+        source: ReposCreatePagesSiteSource? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Page> =
+        dev.octri.showcase.github.methods.ReposCreatePagesSiteOperation
+            .reposCreatePagesSiteWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                buildType,
+                source,
+                options,
+            )
 
     /**
-     * Updates GitHub Pages settings for a repository. Provide at least one of `build_type`, `source`, or `cname`; `build_type` accepts `legacy` or `workflow`, and `source` accepts a branch name with an optional `/docs` path or an object containing `branch` and `path`. The authenticated user must be a repository administrator, maintainer, or have the `manage GitHub Pages settings` permission.
+     * Updates GitHub Pages settings for a repository. Provide at least one of `build_type`,
+     * `source`, or `cname`; `build_type` accepts `legacy` or `workflow`, and `source` accepts a
+     * branch name with an optional `/docs` path or an object containing `branch` and `path`. The
+     * authenticated user must be a repository administrator, maintainer, or have the `manage GitHub
+     * Pages settings` permission.
      */
-    fun reposUpdateInformationAboutPagesSite(clientConfig: ClientConfig, request: ReposUpdateInformationAboutPagesSiteRequest, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposUpdateInformationAboutPagesSiteOperation.reposUpdateInformationAboutPagesSite(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateInformationAboutPagesSite(
+        clientConfig: ClientConfig,
+        request: ReposUpdateInformationAboutPagesSiteRequest,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposUpdateInformationAboutPagesSiteOperation
+            .reposUpdateInformationAboutPagesSite(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Updates GitHub Pages settings for a repository. Provide at least one of `build_type`, `source`, or `cname`; `build_type` accepts `legacy` or `workflow`, and `source` accepts a branch name with an optional `/docs` path or an object containing `branch` and `path`. The authenticated user must be a repository administrator, maintainer, or have the `manage GitHub Pages settings` permission.
+     * Updates GitHub Pages settings for a repository. Provide at least one of `build_type`,
+     * `source`, or `cname`; `build_type` accepts `legacy` or `workflow`, and `source` accepts a
+     * branch name with an optional `/docs` path or an object containing `branch` and `path`. The
+     * authenticated user must be a repository administrator, maintainer, or have the `manage GitHub
+     * Pages settings` permission.
      */
-    fun reposUpdateInformationAboutPagesSiteWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateInformationAboutPagesSiteRequest, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposUpdateInformationAboutPagesSiteOperation.reposUpdateInformationAboutPagesSiteWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateInformationAboutPagesSiteWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateInformationAboutPagesSiteRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposUpdateInformationAboutPagesSiteOperation
+            .reposUpdateInformationAboutPagesSiteWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes a GitHub Pages site. For more information, see "About GitHub Pages. The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a GitHub Pages site. For more information, see "About GitHub Pages. The authenticated
+     * user must be a repository administrator, maintainer, or have the 'manage GitHub Pages
+     * settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun reposDeletePagesSite(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
+    fun reposDeletePagesSite(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeletePagesSiteOperation.reposDeletePagesSite(
             clientConfig,
             owner,
@@ -4457,20 +7577,37 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deletes a GitHub Pages site. For more information, see "About GitHub Pages. The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a GitHub Pages site. For more information, see "About GitHub Pages. The authenticated
+     * user must be a repository administrator, maintainer, or have the 'manage GitHub Pages
+     * settings' permission. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun reposDeletePagesSiteWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeletePagesSiteOperation.reposDeletePagesSiteWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDeletePagesSiteWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeletePagesSiteOperation
+            .reposDeletePagesSiteWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Lists builts of a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists builts of a GitHub Pages site. OAuth app tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint.
      */
-    fun reposListPagesBuilds(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<PageBuild> =
+    fun reposListPagesBuilds(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<PageBuild> =
         dev.octri.showcase.github.methods.ReposListPagesBuildsOperation.reposListPagesBuilds(
             clientConfig,
             owner,
@@ -4481,22 +7618,41 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists builts of a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists builts of a GitHub Pages site. OAuth app tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint.
      */
-    fun reposListPagesBuildsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<PageBuild>> =
-        dev.octri.showcase.github.methods.ReposListPagesBuildsOperation.reposListPagesBuildsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListPagesBuildsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<PageBuild>> =
+        dev.octri.showcase.github.methods.ReposListPagesBuildsOperation
+            .reposListPagesBuildsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * You can request that your site be built from the latest revision on the default branch. This has the same effect as pushing a commit to your default branch, but does not require an additional commit. Manually triggering page builds can be helpful when diagnosing build warnings and failures. Build requests are limited to one concurrent build per repository and one concurrent build per requester. If you request a build while another is still in progress, the second request will be queued until the first completes.
+     * You can request that your site be built from the latest revision on the default branch. This
+     * has the same effect as pushing a commit to your default branch, but does not require an
+     * additional commit. Manually triggering page builds can be helpful when diagnosing build
+     * warnings and failures. Build requests are limited to one concurrent build per repository and
+     * one concurrent build per requester. If you request a build while another is still in
+     * progress, the second request will be queued until the first completes.
      */
-    fun reposRequestPagesBuild(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): PageBuildStatus =
+    fun reposRequestPagesBuild(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): PageBuildStatus =
         dev.octri.showcase.github.methods.ReposRequestPagesBuildOperation.reposRequestPagesBuild(
             clientConfig,
             owner,
@@ -4505,42 +7661,75 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * You can request that your site be built from the latest revision on the default branch. This has the same effect as pushing a commit to your default branch, but does not require an additional commit. Manually triggering page builds can be helpful when diagnosing build warnings and failures. Build requests are limited to one concurrent build per repository and one concurrent build per requester. If you request a build while another is still in progress, the second request will be queued until the first completes.
+     * You can request that your site be built from the latest revision on the default branch. This
+     * has the same effect as pushing a commit to your default branch, but does not require an
+     * additional commit. Manually triggering page builds can be helpful when diagnosing build
+     * warnings and failures. Build requests are limited to one concurrent build per repository and
+     * one concurrent build per requester. If you request a build while another is still in
+     * progress, the second request will be queued until the first completes.
      */
-    fun reposRequestPagesBuildWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<PageBuildStatus> =
-        dev.octri.showcase.github.methods.ReposRequestPagesBuildOperation.reposRequestPagesBuildWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposRequestPagesBuildWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<PageBuildStatus> =
+        dev.octri.showcase.github.methods.ReposRequestPagesBuildOperation
+            .reposRequestPagesBuildWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Gets information about the single most recent build of a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets information about the single most recent build of a GitHub Pages site. OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposGetLatestPagesBuild(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): PageBuild =
-        dev.octri.showcase.github.methods.ReposGetLatestPagesBuildOperation.reposGetLatestPagesBuild(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetLatestPagesBuild(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): PageBuild =
+        dev.octri.showcase.github.methods.ReposGetLatestPagesBuildOperation
+            .reposGetLatestPagesBuild(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Gets information about the single most recent build of a GitHub Pages site. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets information about the single most recent build of a GitHub Pages site. OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposGetLatestPagesBuildWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<PageBuild> =
-        dev.octri.showcase.github.methods.ReposGetLatestPagesBuildOperation.reposGetLatestPagesBuildWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetLatestPagesBuildWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<PageBuild> =
+        dev.octri.showcase.github.methods.ReposGetLatestPagesBuildOperation
+            .reposGetLatestPagesBuildWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Retrieves information about a GitHub Pages build in a repository. Use `owner`, `repo`, and `build_id` to identify the repository and build; the response includes the build status, commit, duration, timestamps, error details, and pusher.
+     * Retrieves information about a GitHub Pages build in a repository. Use `owner`, `repo`, and
+     * `build_id` to identify the repository and build; the response includes the build status,
+     * commit, duration, timestamps, error details, and pusher.
      */
-    fun reposGetPagesBuild(clientConfig: ClientConfig, owner: String, repo: String, buildId: Long, options: RequestOptions? = null): PageBuild =
+    fun reposGetPagesBuild(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        buildId: Long,
+        options: RequestOptions? = null,
+    ): PageBuild =
         dev.octri.showcase.github.methods.ReposGetPagesBuildOperation.reposGetPagesBuild(
             clientConfig,
             owner,
@@ -4550,41 +7739,69 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves information about a GitHub Pages build in a repository. Use `owner`, `repo`, and `build_id` to identify the repository and build; the response includes the build status, commit, duration, timestamps, error details, and pusher.
+     * Retrieves information about a GitHub Pages build in a repository. Use `owner`, `repo`, and
+     * `build_id` to identify the repository and build; the response includes the build status,
+     * commit, duration, timestamps, error details, and pusher.
      */
-    fun reposGetPagesBuildWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, buildId: Long, options: RequestOptions? = null): SdkResponse<PageBuild> =
-        dev.octri.showcase.github.methods.ReposGetPagesBuildOperation.reposGetPagesBuildWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            buildId,
-            options,
-        )
+    fun reposGetPagesBuildWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        buildId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<PageBuild> =
+        dev.octri.showcase.github.methods.ReposGetPagesBuildOperation
+            .reposGetPagesBuildWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                buildId,
+                options,
+            )
 
     /**
-     * Create a GitHub Pages deployment for a repository. The authenticated user must have write permission to the repository.
+     * Create a GitHub Pages deployment for a repository. The authenticated user must have write
+     * permission to the repository.
      */
-    fun reposCreatePagesDeployment(clientConfig: ClientConfig, request: ReposCreatePagesDeploymentRequest, options: RequestOptions? = null): PageDeployment =
-        dev.octri.showcase.github.methods.ReposCreatePagesDeploymentOperation.reposCreatePagesDeployment(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreatePagesDeployment(
+        clientConfig: ClientConfig,
+        request: ReposCreatePagesDeploymentRequest,
+        options: RequestOptions? = null,
+    ): PageDeployment =
+        dev.octri.showcase.github.methods.ReposCreatePagesDeploymentOperation
+            .reposCreatePagesDeployment(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Create a GitHub Pages deployment for a repository. The authenticated user must have write permission to the repository.
+     * Create a GitHub Pages deployment for a repository. The authenticated user must have write
+     * permission to the repository.
      */
-    fun reposCreatePagesDeploymentWithRawResponse(clientConfig: ClientConfig, request: ReposCreatePagesDeploymentRequest, options: RequestOptions? = null): SdkResponse<PageDeployment> =
-        dev.octri.showcase.github.methods.ReposCreatePagesDeploymentOperation.reposCreatePagesDeploymentWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreatePagesDeploymentWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreatePagesDeploymentRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<PageDeployment> =
+        dev.octri.showcase.github.methods.ReposCreatePagesDeploymentOperation
+            .reposCreatePagesDeploymentWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Gets the current status of a GitHub Pages deployment. The authenticated user must have read permission for the GitHub Pages site.
+     * Gets the current status of a GitHub Pages deployment. The authenticated user must have read
+     * permission for the GitHub Pages site.
      */
-    fun reposGetPagesDeployment(clientConfig: ClientConfig, owner: String, repo: String, pagesDeploymentId: Any, options: RequestOptions? = null): PagesDeploymentStatus =
+    fun reposGetPagesDeployment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pagesDeploymentId: Any,
+        options: RequestOptions? = null,
+    ): PagesDeploymentStatus =
         dev.octri.showcase.github.methods.ReposGetPagesDeploymentOperation.reposGetPagesDeployment(
             clientConfig,
             owner,
@@ -4594,179 +7811,323 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets the current status of a GitHub Pages deployment. The authenticated user must have read permission for the GitHub Pages site.
+     * Gets the current status of a GitHub Pages deployment. The authenticated user must have read
+     * permission for the GitHub Pages site.
      */
-    fun reposGetPagesDeploymentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, pagesDeploymentId: Any, options: RequestOptions? = null): SdkResponse<PagesDeploymentStatus> =
-        dev.octri.showcase.github.methods.ReposGetPagesDeploymentOperation.reposGetPagesDeploymentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            pagesDeploymentId,
-            options,
-        )
+    fun reposGetPagesDeploymentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pagesDeploymentId: Any,
+        options: RequestOptions? = null,
+    ): SdkResponse<PagesDeploymentStatus> =
+        dev.octri.showcase.github.methods.ReposGetPagesDeploymentOperation
+            .reposGetPagesDeploymentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                pagesDeploymentId,
+                options,
+            )
 
     /**
-     * Cancels a GitHub Pages deployment. The authenticated user must have write permissions for the GitHub Pages site.
+     * Cancels a GitHub Pages deployment. The authenticated user must have write permissions for the
+     * GitHub Pages site.
      */
-    fun reposCancelPagesDeployment(clientConfig: ClientConfig, owner: String, repo: String, pagesDeploymentId: Any, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposCancelPagesDeploymentOperation.reposCancelPagesDeployment(
-            clientConfig,
-            owner,
-            repo,
-            pagesDeploymentId,
-            options,
-        )
+    fun reposCancelPagesDeployment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pagesDeploymentId: Any,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposCancelPagesDeploymentOperation
+            .reposCancelPagesDeployment(
+                clientConfig,
+                owner,
+                repo,
+                pagesDeploymentId,
+                options,
+            )
 
     /**
-     * Cancels a GitHub Pages deployment. The authenticated user must have write permissions for the GitHub Pages site.
+     * Cancels a GitHub Pages deployment. The authenticated user must have write permissions for the
+     * GitHub Pages site.
      */
-    fun reposCancelPagesDeploymentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, pagesDeploymentId: Any, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposCancelPagesDeploymentOperation.reposCancelPagesDeploymentWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            pagesDeploymentId,
-            options,
-        )
+    fun reposCancelPagesDeploymentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        pagesDeploymentId: Any,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposCancelPagesDeploymentOperation
+            .reposCancelPagesDeploymentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                pagesDeploymentId,
+                options,
+            )
 
     /**
-     * Gets a health check of the DNS settings for the `CNAME` record configured for a repository's GitHub Pages. The first request to this endpoint returns a `202 Accepted` status and starts an asynchronous background task to get the results for the domain. After the background task completes, subsequent requests to this endpoint return a `200 OK` status with the health check results in the response. The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a health check of the DNS settings for the `CNAME` record configured for a repository's
+     * GitHub Pages. The first request to this endpoint returns a `202 Accepted` status and starts
+     * an asynchronous background task to get the results for the domain. After the background task
+     * completes, subsequent requests to this endpoint return a `200 OK` status with the health
+     * check results in the response. The authenticated user must be a repository administrator,
+     * maintainer, or have the 'manage GitHub Pages settings' permission to use this endpoint. OAuth
+     * app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposGetPagesHealthCheck(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): PagesHealthCheck =
-        dev.octri.showcase.github.methods.ReposGetPagesHealthCheckOperation.reposGetPagesHealthCheck(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetPagesHealthCheck(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): PagesHealthCheck =
+        dev.octri.showcase.github.methods.ReposGetPagesHealthCheckOperation
+            .reposGetPagesHealthCheck(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Gets a health check of the DNS settings for the `CNAME` record configured for a repository's GitHub Pages. The first request to this endpoint returns a `202 Accepted` status and starts an asynchronous background task to get the results for the domain. After the background task completes, subsequent requests to this endpoint return a `200 OK` status with the health check results in the response. The authenticated user must be a repository administrator, maintainer, or have the 'manage GitHub Pages settings' permission to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a health check of the DNS settings for the `CNAME` record configured for a repository's
+     * GitHub Pages. The first request to this endpoint returns a `202 Accepted` status and starts
+     * an asynchronous background task to get the results for the domain. After the background task
+     * completes, subsequent requests to this endpoint return a `200 OK` status with the health
+     * check results in the response. The authenticated user must be a repository administrator,
+     * maintainer, or have the 'manage GitHub Pages settings' permission to use this endpoint. OAuth
+     * app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun reposGetPagesHealthCheckWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<PagesHealthCheck> =
-        dev.octri.showcase.github.methods.ReposGetPagesHealthCheckOperation.reposGetPagesHealthCheckWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetPagesHealthCheckWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<PagesHealthCheck> =
+        dev.octri.showcase.github.methods.ReposGetPagesHealthCheckOperation
+            .reposGetPagesHealthCheckWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns a boolean indicating whether or not private vulnerability reporting is enabled for the repository. For more information, see "[Evaluating the security settings of a repository](https://docs.github.com/code-security/security-advisories/working-with-repository-security-advisories/evaluating-the-security-settings-of-a-repository)".
+     * Returns a boolean indicating whether or not private vulnerability reporting is enabled for
+     * the repository. For more information, see "[Evaluating the security settings of a
+     * repository](https://docs.github.com/code-security/security-advisories/working-with-repository-security-advisories/evaluating-the-security-settings-of-a-repository)".
      */
-    fun reposCheckPrivateVulnerabilityReporting(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ReposCheckPrivateVulnerabilityReportingResponse =
-        dev.octri.showcase.github.methods.ReposCheckPrivateVulnerabilityReportingOperation.reposCheckPrivateVulnerabilityReporting(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCheckPrivateVulnerabilityReporting(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ReposCheckPrivateVulnerabilityReportingResponse =
+        dev.octri.showcase.github.methods.ReposCheckPrivateVulnerabilityReportingOperation
+            .reposCheckPrivateVulnerabilityReporting(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns a boolean indicating whether or not private vulnerability reporting is enabled for the repository. For more information, see "[Evaluating the security settings of a repository](https://docs.github.com/code-security/security-advisories/working-with-repository-security-advisories/evaluating-the-security-settings-of-a-repository)".
+     * Returns a boolean indicating whether or not private vulnerability reporting is enabled for
+     * the repository. For more information, see "[Evaluating the security settings of a
+     * repository](https://docs.github.com/code-security/security-advisories/working-with-repository-security-advisories/evaluating-the-security-settings-of-a-repository)".
      */
-    fun reposCheckPrivateVulnerabilityReportingWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<ReposCheckPrivateVulnerabilityReportingResponse> =
-        dev.octri.showcase.github.methods.ReposCheckPrivateVulnerabilityReportingOperation.reposCheckPrivateVulnerabilityReportingWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCheckPrivateVulnerabilityReportingWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReposCheckPrivateVulnerabilityReportingResponse> =
+        dev.octri.showcase.github.methods.ReposCheckPrivateVulnerabilityReportingOperation
+            .reposCheckPrivateVulnerabilityReportingWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Enables private vulnerability reporting for a repository. The authenticated user must have admin access to the repository. For more information, see "[Privately reporting a security vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)."
+     * Enables private vulnerability reporting for a repository. The authenticated user must have
+     * admin access to the repository. For more information, see "[Privately reporting a security
+     * vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)."
      */
-    fun reposEnablePrivateVulnerabilityReporting(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposEnablePrivateVulnerabilityReportingOperation.reposEnablePrivateVulnerabilityReporting(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposEnablePrivateVulnerabilityReporting(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposEnablePrivateVulnerabilityReportingOperation
+            .reposEnablePrivateVulnerabilityReporting(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Enables private vulnerability reporting for a repository. The authenticated user must have admin access to the repository. For more information, see "[Privately reporting a security vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)."
+     * Enables private vulnerability reporting for a repository. The authenticated user must have
+     * admin access to the repository. For more information, see "[Privately reporting a security
+     * vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)."
      */
-    fun reposEnablePrivateVulnerabilityReportingWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposEnablePrivateVulnerabilityReportingOperation.reposEnablePrivateVulnerabilityReportingWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposEnablePrivateVulnerabilityReportingWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposEnablePrivateVulnerabilityReportingOperation
+            .reposEnablePrivateVulnerabilityReportingWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Disables private vulnerability reporting for a repository. The authenticated user must have admin access to the repository. For more information, see "[Privately reporting a security vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)".
+     * Disables private vulnerability reporting for a repository. The authenticated user must have
+     * admin access to the repository. For more information, see "[Privately reporting a security
+     * vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)".
      */
-    fun reposDisablePrivateVulnerabilityReporting(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDisablePrivateVulnerabilityReportingOperation.reposDisablePrivateVulnerabilityReporting(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDisablePrivateVulnerabilityReporting(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDisablePrivateVulnerabilityReportingOperation
+            .reposDisablePrivateVulnerabilityReporting(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Disables private vulnerability reporting for a repository. The authenticated user must have admin access to the repository. For more information, see "[Privately reporting a security vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)".
+     * Disables private vulnerability reporting for a repository. The authenticated user must have
+     * admin access to the repository. For more information, see "[Privately reporting a security
+     * vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)".
      */
-    fun reposDisablePrivateVulnerabilityReportingWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDisablePrivateVulnerabilityReportingOperation.reposDisablePrivateVulnerabilityReportingWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDisablePrivateVulnerabilityReportingWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDisablePrivateVulnerabilityReportingOperation
+            .reposDisablePrivateVulnerabilityReportingWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Gets all custom property values that are set for a repository. Users with read access to the repository can use this endpoint.
+     * Gets all custom property values that are set for a repository. Users with read access to the
+     * repository can use this endpoint.
      */
-    fun reposCustomPropertiesForReposGetRepositoryValues(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CustomPropertyValue> =
-        dev.octri.showcase.github.methods.ReposCustomPropertiesForReposGetRepositoryValuesOperation.reposCustomPropertiesForReposGetRepositoryValues(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCustomPropertiesForReposGetRepositoryValues(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<CustomPropertyValue> =
+        dev.octri.showcase.github.methods.ReposCustomPropertiesForReposGetRepositoryValuesOperation
+            .reposCustomPropertiesForReposGetRepositoryValues(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Gets all custom property values that are set for a repository. Users with read access to the repository can use this endpoint.
+     * Gets all custom property values that are set for a repository. Users with read access to the
+     * repository can use this endpoint.
      */
-    fun reposCustomPropertiesForReposGetRepositoryValuesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<CustomPropertyValue>> =
-        dev.octri.showcase.github.methods.ReposCustomPropertiesForReposGetRepositoryValuesOperation.reposCustomPropertiesForReposGetRepositoryValuesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCustomPropertiesForReposGetRepositoryValuesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<CustomPropertyValue>> =
+        dev.octri.showcase.github.methods.ReposCustomPropertiesForReposGetRepositoryValuesOperation
+            .reposCustomPropertiesForReposGetRepositoryValuesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Create new or update existing custom property values for a repository. Using a value of `null` for a custom property will remove or 'unset' the property value from the repository. Repository admins and other users with the repository-level "edit custom property values" fine-grained permission can use this endpoint.
+     * Create new or update existing custom property values for a repository. Using a value of
+     * `null` for a custom property will remove or 'unset' the property value from the repository.
+     * Repository admins and other users with the repository-level "edit custom property values"
+     * fine-grained permission can use this endpoint.
      */
-    fun reposCustomPropertiesForReposCreateOrUpdateRepositoryValues(clientConfig: ClientConfig, owner: String, repo: String, properties: List<CustomPropertyValue>, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposCustomPropertiesForReposCreateOrUpdateRepositoryValuesOperation.reposCustomPropertiesForReposCreateOrUpdateRepositoryValues(
-            clientConfig,
-            owner,
-            repo,
-            properties,
-            options,
-        )
+    fun reposCustomPropertiesForReposCreateOrUpdateRepositoryValues(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        properties: List<CustomPropertyValue>,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods
+            .ReposCustomPropertiesForReposCreateOrUpdateRepositoryValuesOperation
+            .reposCustomPropertiesForReposCreateOrUpdateRepositoryValues(
+                clientConfig,
+                owner,
+                repo,
+                properties,
+                options,
+            )
 
     /**
-     * Create new or update existing custom property values for a repository. Using a value of `null` for a custom property will remove or 'unset' the property value from the repository. Repository admins and other users with the repository-level "edit custom property values" fine-grained permission can use this endpoint.
+     * Create new or update existing custom property values for a repository. Using a value of
+     * `null` for a custom property will remove or 'unset' the property value from the repository.
+     * Repository admins and other users with the repository-level "edit custom property values"
+     * fine-grained permission can use this endpoint.
      */
-    fun reposCustomPropertiesForReposCreateOrUpdateRepositoryValuesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, properties: List<CustomPropertyValue>, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposCustomPropertiesForReposCreateOrUpdateRepositoryValuesOperation.reposCustomPropertiesForReposCreateOrUpdateRepositoryValuesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            properties,
-            options,
-        )
+    fun reposCustomPropertiesForReposCreateOrUpdateRepositoryValuesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        properties: List<CustomPropertyValue>,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods
+            .ReposCustomPropertiesForReposCreateOrUpdateRepositoryValuesOperation
+            .reposCustomPropertiesForReposCreateOrUpdateRepositoryValuesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                properties,
+                options,
+            )
 
     /**
-     * Gets the preferred README for a repository. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README in HTML. Markup languages are rendered to HTML using GitHub's open-source [Markup library](https://github.com/github/markup).
+     * Gets the preferred README for a repository. This endpoint supports the following custom media
+     * types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if
+     * you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README
+     * in HTML. Markup languages are rendered to HTML using GitHub's open-source
+     * [Markup library](https://github.com/github/markup).
      */
-    fun reposGetReadme(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): ContentFile =
+    fun reposGetReadme(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): ContentFile =
         dev.octri.showcase.github.methods.ReposGetReadmeOperation.reposGetReadme(
             clientConfig,
             owner,
@@ -4776,9 +8137,21 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets the preferred README for a repository. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README in HTML. Markup languages are rendered to HTML using GitHub's open-source [Markup library](https://github.com/github/markup).
+     * Gets the preferred README for a repository. This endpoint supports the following custom media
+     * types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if
+     * you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README
+     * in HTML. Markup languages are rendered to HTML using GitHub's open-source
+     * [Markup library](https://github.com/github/markup).
      */
-    fun reposGetReadmeWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): SdkResponse<ContentFile> =
+    fun reposGetReadmeWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ContentFile> =
         dev.octri.showcase.github.methods.ReposGetReadmeOperation.reposGetReadmeWithRawResponse(
             clientConfig,
             owner,
@@ -4788,35 +8161,74 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets the README from a repository directory. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README in HTML. Markup languages are rendered to HTML using GitHub's open-source [Markup library](https://github.com/github/markup).
+     * Gets the README from a repository directory. This endpoint supports the following custom
+     * media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if
+     * you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README
+     * in HTML. Markup languages are rendered to HTML using GitHub's open-source
+     * [Markup library](https://github.com/github/markup).
      */
-    fun reposGetReadmeInDirectory(clientConfig: ClientConfig, owner: String, repo: String, dir: String, ref: String? = null, options: RequestOptions? = null): ContentFile =
-        dev.octri.showcase.github.methods.ReposGetReadmeInDirectoryOperation.reposGetReadmeInDirectory(
-            clientConfig,
-            owner,
-            repo,
-            dir,
-            ref,
-            options,
-        )
+    fun reposGetReadmeInDirectory(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        dir: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): ContentFile =
+        dev.octri.showcase.github.methods.ReposGetReadmeInDirectoryOperation
+            .reposGetReadmeInDirectory(
+                clientConfig,
+                owner,
+                repo,
+                dir,
+                ref,
+                options,
+            )
 
     /**
-     * Gets the README from a repository directory. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README in HTML. Markup languages are rendered to HTML using GitHub's open-source [Markup library](https://github.com/github/markup).
+     * Gets the README from a repository directory. This endpoint supports the following custom
+     * media types. For more information, see "[Media
+     * types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." -
+     * **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if
+     * you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README
+     * in HTML. Markup languages are rendered to HTML using GitHub's open-source
+     * [Markup library](https://github.com/github/markup).
      */
-    fun reposGetReadmeInDirectoryWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, dir: String, ref: String? = null, options: RequestOptions? = null): SdkResponse<ContentFile> =
-        dev.octri.showcase.github.methods.ReposGetReadmeInDirectoryOperation.reposGetReadmeInDirectoryWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            dir,
-            ref,
-            options,
-        )
+    fun reposGetReadmeInDirectoryWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        dir: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ContentFile> =
+        dev.octri.showcase.github.methods.ReposGetReadmeInDirectoryOperation
+            .reposGetReadmeInDirectoryWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                dir,
+                ref,
+                options,
+            )
 
     /**
-     * This returns a list of releases, which does not include regular Git tags that have not been associated with a release. To get a list of Git tags, use the [Repository Tags API](https://docs.github.com/rest/repos/repos#list-repository-tags). Information about published releases are available to everyone. Only users with push access will receive listings for draft releases.
+     * This returns a list of releases, which does not include regular Git tags that have not been
+     * associated with a release. To get a list of Git tags, use the
+     * [Repository Tags API](https://docs.github.com/rest/repos/repos#list-repository-tags).
+     * Information about published releases are available to everyone. Only users with push access
+     * will receive listings for draft releases.
      */
-    fun reposListReleases(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Release> =
+    fun reposListReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Release> =
         dev.octri.showcase.github.methods.ReposListReleasesOperation.reposListReleases(
             clientConfig,
             owner,
@@ -4827,22 +8239,55 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * This returns a list of releases, which does not include regular Git tags that have not been associated with a release. To get a list of Git tags, use the [Repository Tags API](https://docs.github.com/rest/repos/repos#list-repository-tags). Information about published releases are available to everyone. Only users with push access will receive listings for draft releases.
+     * This returns a list of releases, which does not include regular Git tags that have not been
+     * associated with a release. To get a list of Git tags, use the
+     * [Repository Tags API](https://docs.github.com/rest/repos/repos#list-repository-tags).
+     * Information about published releases are available to everyone. Only users with push access
+     * will receive listings for draft releases.
      */
-    fun reposListReleasesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Release>> =
-        dev.octri.showcase.github.methods.ReposListReleasesOperation.reposListReleasesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListReleasesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Release>> =
+        dev.octri.showcase.github.methods.ReposListReleasesOperation
+            .reposListReleasesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Users with push access to the repository can create a release. > [!NOTE] > If the commit identified by `target_commitish` (or, when `target_commitish` is omitted, the latest commit on the default branch) adds or modifies any file under `.github/workflows/` relative to the repository's default branch, the authenticating token must be authorized to modify workflows. Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403 Resource not accessible by integration` instead. OAuth app tokens and personal access tokens (classic) need the `workflow` scope when the resolved target commit modifies workflow files. Fine-grained access tokens and GitHub App installation tokens also need the "Workflows" repository permission (write). The `GITHUB_TOKEN` available to GitHub Actions cannot be authorized for this; for more information, see "[Automatic token authentication](https://docs.github.com/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)". This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
+     * Users with push access to the repository can create a release. > [!NOTE] > If the commit
+     * identified by `target_commitish` (or, when `target_commitish` is omitted, the latest commit
+     * on the default branch) adds or modifies any file under `.github/workflows/` relative to the
+     * repository's default branch, the authenticating token must be authorized to modify workflows.
+     * Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403
+     * Resource not accessible by integration` instead. OAuth app tokens and personal access tokens
+     * (classic) need the `workflow` scope when the resolved target commit modifies workflow files.
+     * Fine-grained access tokens and GitHub App installation tokens also need the "Workflows"
+     * repository permission (write). The `GITHUB_TOKEN` available to GitHub Actions cannot be
+     * authorized for this; for more information, see "[Automatic token
+     * authentication](https://docs.github.com/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)".
+     * This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
      */
-    fun reposCreateRelease(clientConfig: ClientConfig, request: ReposCreateReleaseRequest, options: RequestOptions? = null): Release =
+    fun reposCreateRelease(
+        clientConfig: ClientConfig,
+        request: ReposCreateReleaseRequest,
+        options: RequestOptions? = null,
+    ): Release =
         dev.octri.showcase.github.methods.ReposCreateReleaseOperation.reposCreateRelease(
             clientConfig,
             request,
@@ -4850,19 +8295,52 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Users with push access to the repository can create a release. > [!NOTE] > If the commit identified by `target_commitish` (or, when `target_commitish` is omitted, the latest commit on the default branch) adds or modifies any file under `.github/workflows/` relative to the repository's default branch, the authenticating token must be authorized to modify workflows. Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403 Resource not accessible by integration` instead. OAuth app tokens and personal access tokens (classic) need the `workflow` scope when the resolved target commit modifies workflow files. Fine-grained access tokens and GitHub App installation tokens also need the "Workflows" repository permission (write). The `GITHUB_TOKEN` available to GitHub Actions cannot be authorized for this; for more information, see "[Automatic token authentication](https://docs.github.com/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)". This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see "[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)" and "[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
+     * Users with push access to the repository can create a release. > [!NOTE] > If the commit
+     * identified by `target_commitish` (or, when `target_commitish` is omitted, the latest commit
+     * on the default branch) adds or modifies any file under `.github/workflows/` relative to the
+     * repository's default branch, the authenticating token must be authorized to modify workflows.
+     * Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403
+     * Resource not accessible by integration` instead. OAuth app tokens and personal access tokens
+     * (classic) need the `workflow` scope when the resolved target commit modifies workflow files.
+     * Fine-grained access tokens and GitHub App installation tokens also need the "Workflows"
+     * repository permission (write). The `GITHUB_TOKEN` available to GitHub Actions cannot be
+     * authorized for this; for more information, see "[Automatic token
+     * authentication](https://docs.github.com/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)".
+     * This endpoint triggers
+     * [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications).
+     * Creating content too quickly using this endpoint may result in secondary rate limiting. For
+     * more information, see "[Rate limits for the
+     * API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)"
+     * and "[Best practices for using the REST
+     * API](https://docs.github.com/rest/guides/best-practices-for-using-the-rest-api)."
      */
-    fun reposCreateReleaseWithRawResponse(clientConfig: ClientConfig, request: ReposCreateReleaseRequest, options: RequestOptions? = null): SdkResponse<Release> =
-        dev.octri.showcase.github.methods.ReposCreateReleaseOperation.reposCreateReleaseWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateReleaseWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateReleaseRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Release> =
+        dev.octri.showcase.github.methods.ReposCreateReleaseOperation
+            .reposCreateReleaseWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * To download the asset's binary content: - If within a browser, fetch the location specified in the `browser_download_url` key provided in the response. - Alternatively, set the `Accept` header of the request to [`application/octet-stream`](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types). The API will either redirect the client to the location, or stream it directly if possible. API clients should handle both a `200` or `302` response.
+     * To download the asset's binary content: - If within a browser, fetch the location specified
+     * in the `browser_download_url` key provided in the response. - Alternatively, set the `Accept`
+     * header of the request to
+     * [`application/octet-stream`](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).
+     * The API will either redirect the client to the location, or stream it directly if possible.
+     * API clients should handle both a `200` or `302` response.
      */
-    fun reposGetReleaseAsset(clientConfig: ClientConfig, owner: String, repo: String, assetId: Long, options: RequestOptions? = null): ReleaseAsset =
+    fun reposGetReleaseAsset(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        assetId: Long,
+        options: RequestOptions? = null,
+    ): ReleaseAsset =
         dev.octri.showcase.github.methods.ReposGetReleaseAssetOperation.reposGetReleaseAsset(
             clientConfig,
             owner,
@@ -4872,21 +8350,39 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * To download the asset's binary content: - If within a browser, fetch the location specified in the `browser_download_url` key provided in the response. - Alternatively, set the `Accept` header of the request to [`application/octet-stream`](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types). The API will either redirect the client to the location, or stream it directly if possible. API clients should handle both a `200` or `302` response.
+     * To download the asset's binary content: - If within a browser, fetch the location specified
+     * in the `browser_download_url` key provided in the response. - Alternatively, set the `Accept`
+     * header of the request to
+     * [`application/octet-stream`](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).
+     * The API will either redirect the client to the location, or stream it directly if possible.
+     * API clients should handle both a `200` or `302` response.
      */
-    fun reposGetReleaseAssetWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, assetId: Long, options: RequestOptions? = null): SdkResponse<ReleaseAsset> =
-        dev.octri.showcase.github.methods.ReposGetReleaseAssetOperation.reposGetReleaseAssetWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            assetId,
-            options,
-        )
+    fun reposGetReleaseAssetWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        assetId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReleaseAsset> =
+        dev.octri.showcase.github.methods.ReposGetReleaseAssetOperation
+            .reposGetReleaseAssetWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                assetId,
+                options,
+            )
 
     /**
-     * Updates the name, label, or state of a release asset in a repository. The authenticated user must have push access to the repository; supply any of `name`, `label`, or `state` that you want to change. The response includes the updated release asset details.
+     * Updates the name, label, or state of a release asset in a repository. The authenticated user
+     * must have push access to the repository; supply any of `name`, `label`, or `state` that you
+     * want to change. The response includes the updated release asset details.
      */
-    fun reposUpdateReleaseAsset(clientConfig: ClientConfig, request: ReposUpdateReleaseAssetRequest, options: RequestOptions? = null): ReleaseAsset =
+    fun reposUpdateReleaseAsset(
+        clientConfig: ClientConfig,
+        request: ReposUpdateReleaseAssetRequest,
+        options: RequestOptions? = null,
+    ): ReleaseAsset =
         dev.octri.showcase.github.methods.ReposUpdateReleaseAssetOperation.reposUpdateReleaseAsset(
             clientConfig,
             request,
@@ -4894,19 +8390,34 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Updates the name, label, or state of a release asset in a repository. The authenticated user must have push access to the repository; supply any of `name`, `label`, or `state` that you want to change. The response includes the updated release asset details.
+     * Updates the name, label, or state of a release asset in a repository. The authenticated user
+     * must have push access to the repository; supply any of `name`, `label`, or `state` that you
+     * want to change. The response includes the updated release asset details.
      */
-    fun reposUpdateReleaseAssetWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateReleaseAssetRequest, options: RequestOptions? = null): SdkResponse<ReleaseAsset> =
-        dev.octri.showcase.github.methods.ReposUpdateReleaseAssetOperation.reposUpdateReleaseAssetWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateReleaseAssetWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateReleaseAssetRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReleaseAsset> =
+        dev.octri.showcase.github.methods.ReposUpdateReleaseAssetOperation
+            .reposUpdateReleaseAssetWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes a release asset from a repository. Use this operation when you no longer want the asset associated with the repository's release. The authenticated user must have permission to modify the repository.
+     * Deletes a release asset from a repository. Use this operation when you no longer want the
+     * asset associated with the repository's release. The authenticated user must have permission
+     * to modify the repository.
      */
-    fun reposDeleteReleaseAsset(clientConfig: ClientConfig, owner: String, repo: String, assetId: Long, options: RequestOptions? = null): Unit =
+    fun reposDeleteReleaseAsset(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        assetId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteReleaseAssetOperation.reposDeleteReleaseAsset(
             clientConfig,
             owner,
@@ -4916,41 +8427,76 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deletes a release asset from a repository. Use this operation when you no longer want the asset associated with the repository's release. The authenticated user must have permission to modify the repository.
+     * Deletes a release asset from a repository. Use this operation when you no longer want the
+     * asset associated with the repository's release. The authenticated user must have permission
+     * to modify the repository.
      */
-    fun reposDeleteReleaseAssetWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, assetId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteReleaseAssetOperation.reposDeleteReleaseAssetWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            assetId,
-            options,
-        )
+    fun reposDeleteReleaseAssetWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        assetId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteReleaseAssetOperation
+            .reposDeleteReleaseAssetWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                assetId,
+                options,
+            )
 
     /**
-     * Generate a name and body describing a [release](https://docs.github.com/rest/releases/releases#get-a-release). The body content will be markdown formatted and contain information like the changes since last release and users who contributed. The generated release notes are not saved anywhere. They are intended to be generated and used when creating a new release.
+     * Generate a name and body describing a
+     * [release](https://docs.github.com/rest/releases/releases#get-a-release). The body content
+     * will be markdown formatted and contain information like the changes since last release and
+     * users who contributed. The generated release notes are not saved anywhere. They are intended
+     * to be generated and used when creating a new release.
      */
-    fun reposGenerateReleaseNotes(clientConfig: ClientConfig, request: ReposGenerateReleaseNotesRequest, options: RequestOptions? = null): ReleaseNotesContent =
-        dev.octri.showcase.github.methods.ReposGenerateReleaseNotesOperation.reposGenerateReleaseNotes(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposGenerateReleaseNotes(
+        clientConfig: ClientConfig,
+        request: ReposGenerateReleaseNotesRequest,
+        options: RequestOptions? = null,
+    ): ReleaseNotesContent =
+        dev.octri.showcase.github.methods.ReposGenerateReleaseNotesOperation
+            .reposGenerateReleaseNotes(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Generate a name and body describing a [release](https://docs.github.com/rest/releases/releases#get-a-release). The body content will be markdown formatted and contain information like the changes since last release and users who contributed. The generated release notes are not saved anywhere. They are intended to be generated and used when creating a new release.
+     * Generate a name and body describing a
+     * [release](https://docs.github.com/rest/releases/releases#get-a-release). The body content
+     * will be markdown formatted and contain information like the changes since last release and
+     * users who contributed. The generated release notes are not saved anywhere. They are intended
+     * to be generated and used when creating a new release.
      */
-    fun reposGenerateReleaseNotesWithRawResponse(clientConfig: ClientConfig, request: ReposGenerateReleaseNotesRequest, options: RequestOptions? = null): SdkResponse<ReleaseNotesContent> =
-        dev.octri.showcase.github.methods.ReposGenerateReleaseNotesOperation.reposGenerateReleaseNotesWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposGenerateReleaseNotesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposGenerateReleaseNotesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReleaseNotesContent> =
+        dev.octri.showcase.github.methods.ReposGenerateReleaseNotesOperation
+            .reposGenerateReleaseNotesWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * View the latest published full release for the repository. The latest release is the most recent non-prerelease, non-draft release, sorted by the `created_at` attribute. The `created_at` attribute is the date of the commit used for the release, and not the date when the release was drafted or published.
+     * View the latest published full release for the repository. The latest release is the most
+     * recent non-prerelease, non-draft release, sorted by the `created_at` attribute. The
+     * `created_at` attribute is the date of the commit used for the release, and not the date when
+     * the release was drafted or published.
      */
-    fun reposGetLatestRelease(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Release =
+    fun reposGetLatestRelease(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Release =
         dev.octri.showcase.github.methods.ReposGetLatestReleaseOperation.reposGetLatestRelease(
             clientConfig,
             owner,
@@ -4959,20 +8505,36 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * View the latest published full release for the repository. The latest release is the most recent non-prerelease, non-draft release, sorted by the `created_at` attribute. The `created_at` attribute is the date of the commit used for the release, and not the date when the release was drafted or published.
+     * View the latest published full release for the repository. The latest release is the most
+     * recent non-prerelease, non-draft release, sorted by the `created_at` attribute. The
+     * `created_at` attribute is the date of the commit used for the release, and not the date when
+     * the release was drafted or published.
      */
-    fun reposGetLatestReleaseWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Release> =
-        dev.octri.showcase.github.methods.ReposGetLatestReleaseOperation.reposGetLatestReleaseWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetLatestReleaseWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Release> =
+        dev.octri.showcase.github.methods.ReposGetLatestReleaseOperation
+            .reposGetLatestReleaseWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Retrieves a published release from a repository by its tag name. Use `tag` to identify the release you want to retrieve.
+     * Retrieves a published release from a repository by its tag name. Use `tag` to identify the
+     * release you want to retrieve.
      */
-    fun reposGetReleaseByTag(clientConfig: ClientConfig, owner: String, repo: String, tag: String, options: RequestOptions? = null): Release =
+    fun reposGetReleaseByTag(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        tag: String,
+        options: RequestOptions? = null,
+    ): Release =
         dev.octri.showcase.github.methods.ReposGetReleaseByTagOperation.reposGetReleaseByTag(
             clientConfig,
             owner,
@@ -4982,21 +8544,38 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves a published release from a repository by its tag name. Use `tag` to identify the release you want to retrieve.
+     * Retrieves a published release from a repository by its tag name. Use `tag` to identify the
+     * release you want to retrieve.
      */
-    fun reposGetReleaseByTagWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, tag: String, options: RequestOptions? = null): SdkResponse<Release> =
-        dev.octri.showcase.github.methods.ReposGetReleaseByTagOperation.reposGetReleaseByTagWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            tag,
-            options,
-        )
+    fun reposGetReleaseByTagWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        tag: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Release> =
+        dev.octri.showcase.github.methods.ReposGetReleaseByTagOperation
+            .reposGetReleaseByTagWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                tag,
+                options,
+            )
 
     /**
-     * Gets a public release with the specified release ID. > [!NOTE] > This returns an `upload_url` key corresponding to the endpoint for uploading release assets. This key is a hypermedia resource. For more information, see "[Getting started with the REST API](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#hypermedia)."
+     * Gets a public release with the specified release ID. > [!NOTE] > This returns an `upload_url`
+     * key corresponding to the endpoint for uploading release assets. This key is a hypermedia
+     * resource. For more information, see "[Getting started with the REST
+     * API](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#hypermedia)."
      */
-    fun reposGetRelease(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, options: RequestOptions? = null): Release =
+    fun reposGetRelease(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        options: RequestOptions? = null,
+    ): Release =
         dev.octri.showcase.github.methods.ReposGetReleaseOperation.reposGetRelease(
             clientConfig,
             owner,
@@ -5006,9 +8585,18 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets a public release with the specified release ID. > [!NOTE] > This returns an `upload_url` key corresponding to the endpoint for uploading release assets. This key is a hypermedia resource. For more information, see "[Getting started with the REST API](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#hypermedia)."
+     * Gets a public release with the specified release ID. > [!NOTE] > This returns an `upload_url`
+     * key corresponding to the endpoint for uploading release assets. This key is a hypermedia
+     * resource. For more information, see "[Getting started with the REST
+     * API](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#hypermedia)."
      */
-    fun reposGetReleaseWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, options: RequestOptions? = null): SdkResponse<Release> =
+    fun reposGetReleaseWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Release> =
         dev.octri.showcase.github.methods.ReposGetReleaseOperation.reposGetReleaseWithRawResponse(
             clientConfig,
             owner,
@@ -5018,9 +8606,23 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Users with push access to the repository can edit a release. > [!NOTE] > If the resolved target commit (the new value of `target_commitish` if you are changing it, otherwise the existing target) adds or modifies any file under `.github/workflows/` relative to the repository's default branch, the authenticating token must be authorized to modify workflows. Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403 Resource not accessible by integration` instead. OAuth app tokens and personal access tokens (classic) need the `workflow` scope when the resolved target commit modifies workflow files. Fine-grained access tokens and GitHub App installation tokens also need the "Workflows" repository permission (write). The `GITHUB_TOKEN` available to GitHub Actions cannot be authorized for this; for more information, see "[Automatic token authentication](https://docs.github.com/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)".
+     * Users with push access to the repository can edit a release. > [!NOTE] > If the resolved
+     * target commit (the new value of `target_commitish` if you are changing it, otherwise the
+     * existing target) adds or modifies any file under `.github/workflows/` relative to the
+     * repository's default branch, the authenticating token must be authorized to modify workflows.
+     * Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403
+     * Resource not accessible by integration` instead. OAuth app tokens and personal access tokens
+     * (classic) need the `workflow` scope when the resolved target commit modifies workflow files.
+     * Fine-grained access tokens and GitHub App installation tokens also need the "Workflows"
+     * repository permission (write). The `GITHUB_TOKEN` available to GitHub Actions cannot be
+     * authorized for this; for more information, see "[Automatic token
+     * authentication](https://docs.github.com/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)".
      */
-    fun reposUpdateRelease(clientConfig: ClientConfig, request: ReposUpdateReleaseRequest, options: RequestOptions? = null): Release =
+    fun reposUpdateRelease(
+        clientConfig: ClientConfig,
+        request: ReposUpdateReleaseRequest,
+        options: RequestOptions? = null,
+    ): Release =
         dev.octri.showcase.github.methods.ReposUpdateReleaseOperation.reposUpdateRelease(
             clientConfig,
             request,
@@ -5028,19 +8630,38 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Users with push access to the repository can edit a release. > [!NOTE] > If the resolved target commit (the new value of `target_commitish` if you are changing it, otherwise the existing target) adds or modifies any file under `.github/workflows/` relative to the repository's default branch, the authenticating token must be authorized to modify workflows. Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403 Resource not accessible by integration` instead. OAuth app tokens and personal access tokens (classic) need the `workflow` scope when the resolved target commit modifies workflow files. Fine-grained access tokens and GitHub App installation tokens also need the "Workflows" repository permission (write). The `GITHUB_TOKEN` available to GitHub Actions cannot be authorized for this; for more information, see "[Automatic token authentication](https://docs.github.com/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)".
+     * Users with push access to the repository can edit a release. > [!NOTE] > If the resolved
+     * target commit (the new value of `target_commitish` if you are changing it, otherwise the
+     * existing target) adds or modifies any file under `.github/workflows/` relative to the
+     * repository's default branch, the authenticating token must be authorized to modify workflows.
+     * Otherwise, this endpoint returns `404 Not Found`; some authentication paths surface `403
+     * Resource not accessible by integration` instead. OAuth app tokens and personal access tokens
+     * (classic) need the `workflow` scope when the resolved target commit modifies workflow files.
+     * Fine-grained access tokens and GitHub App installation tokens also need the "Workflows"
+     * repository permission (write). The `GITHUB_TOKEN` available to GitHub Actions cannot be
+     * authorized for this; for more information, see "[Automatic token
+     * authentication](https://docs.github.com/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)".
      */
-    fun reposUpdateReleaseWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateReleaseRequest, options: RequestOptions? = null): SdkResponse<Release> =
-        dev.octri.showcase.github.methods.ReposUpdateReleaseOperation.reposUpdateReleaseWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateReleaseWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateReleaseRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Release> =
+        dev.octri.showcase.github.methods.ReposUpdateReleaseOperation
+            .reposUpdateReleaseWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
-    /**
-     * Users with push access to the repository can delete a release.
-     */
-    fun reposDeleteRelease(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, options: RequestOptions? = null): Unit =
+    /** Users with push access to the repository can delete a release. */
+    fun reposDeleteRelease(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteReleaseOperation.reposDeleteRelease(
             clientConfig,
             owner,
@@ -5049,22 +8670,36 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
             options,
         )
 
-    /**
-     * Users with push access to the repository can delete a release.
-     */
-    fun reposDeleteReleaseWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteReleaseOperation.reposDeleteReleaseWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            releaseId,
-            options,
-        )
+    /** Users with push access to the repository can delete a release. */
+    fun reposDeleteReleaseWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteReleaseOperation
+            .reposDeleteReleaseWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                releaseId,
+                options,
+            )
 
     /**
-     * Lists the assets attached to a specific release in a repository. Use `page` and `per_page` to paginate the results.
+     * Lists the assets attached to a specific release in a repository. Use `page` and `per_page` to
+     * paginate the results.
      */
-    fun reposListReleaseAssets(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<ReleaseAsset> =
+    fun reposListReleaseAssets(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<ReleaseAsset> =
         dev.octri.showcase.github.methods.ReposListReleaseAssetsOperation.reposListReleaseAssets(
             clientConfig,
             owner,
@@ -5076,23 +8711,40 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists the assets attached to a specific release in a repository. Use `page` and `per_page` to paginate the results.
+     * Lists the assets attached to a specific release in a repository. Use `page` and `per_page` to
+     * paginate the results.
      */
-    fun reposListReleaseAssetsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<ReleaseAsset>> =
-        dev.octri.showcase.github.methods.ReposListReleaseAssetsOperation.reposListReleaseAssetsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            releaseId,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListReleaseAssetsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<ReleaseAsset>> =
+        dev.octri.showcase.github.methods.ReposListReleaseAssetsOperation
+            .reposListReleaseAssetsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                releaseId,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Uploads a binary asset to a specific release in a repository. Use the release-specific `upload_url` returned when creating the release, provide the asset filename in `name`, and send the raw file data with a media-type `Content-Type` header. The API may rename filenames containing special characters or leading or trailing periods.
+     * Uploads a binary asset to a specific release in a repository. Use the release-specific
+     * `upload_url` returned when creating the release, provide the asset filename in `name`, and
+     * send the raw file data with a media-type `Content-Type` header. The API may rename filenames
+     * containing special characters or leading or trailing periods.
      */
-    fun reposUploadReleaseAsset(clientConfig: ClientConfig, request: ReposUploadReleaseAssetRequest, options: RequestOptions? = null): ReleaseAsset =
+    fun reposUploadReleaseAsset(
+        clientConfig: ClientConfig,
+        request: ReposUploadReleaseAssetRequest,
+        options: RequestOptions? = null,
+    ): ReleaseAsset =
         dev.octri.showcase.github.methods.ReposUploadReleaseAssetOperation.reposUploadReleaseAsset(
             clientConfig,
             request,
@@ -5100,19 +8752,39 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Uploads a binary asset to a specific release in a repository. Use the release-specific `upload_url` returned when creating the release, provide the asset filename in `name`, and send the raw file data with a media-type `Content-Type` header. The API may rename filenames containing special characters or leading or trailing periods.
+     * Uploads a binary asset to a specific release in a repository. Use the release-specific
+     * `upload_url` returned when creating the release, provide the asset filename in `name`, and
+     * send the raw file data with a media-type `Content-Type` header. The API may rename filenames
+     * containing special characters or leading or trailing periods.
      */
-    fun reposUploadReleaseAssetWithRawResponse(clientConfig: ClientConfig, request: ReposUploadReleaseAssetRequest, options: RequestOptions? = null): SdkResponse<ReleaseAsset> =
-        dev.octri.showcase.github.methods.ReposUploadReleaseAssetOperation.reposUploadReleaseAssetWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUploadReleaseAssetWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUploadReleaseAssetRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ReleaseAsset> =
+        dev.octri.showcase.github.methods.ReposUploadReleaseAssetOperation
+            .reposUploadReleaseAssetWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Returns all active rules that apply to the specified branch. The branch does not need to exist; rules that would apply to a branch with that name will be returned. All active rules that apply will be returned, regardless of the level at which they are configured (e.g. repository or organization). Rules in rulesets with "evaluate" or "disabled" enforcement statuses are not returned.
+     * Returns all active rules that apply to the specified branch. The branch does not need to
+     * exist; rules that would apply to a branch with that name will be returned. All active rules
+     * that apply will be returned, regardless of the level at which they are configured (e.g.
+     * repository or organization). Rules in rulesets with "evaluate" or "disabled" enforcement
+     * statuses are not returned.
      */
-    fun reposGetBranchRules(clientConfig: ClientConfig, owner: String, repo: String, branch: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<RepositoryRuleDetailed> =
+    fun reposGetBranchRules(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<RepositoryRuleDetailed> =
         dev.octri.showcase.github.methods.ReposGetBranchRulesOperation.reposGetBranchRules(
             clientConfig,
             owner,
@@ -5124,23 +8796,41 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Returns all active rules that apply to the specified branch. The branch does not need to exist; rules that would apply to a branch with that name will be returned. All active rules that apply will be returned, regardless of the level at which they are configured (e.g. repository or organization). Rules in rulesets with "evaluate" or "disabled" enforcement statuses are not returned.
+     * Returns all active rules that apply to the specified branch. The branch does not need to
+     * exist; rules that would apply to a branch with that name will be returned. All active rules
+     * that apply will be returned, regardless of the level at which they are configured (e.g.
+     * repository or organization). Rules in rulesets with "evaluate" or "disabled" enforcement
+     * statuses are not returned.
      */
-    fun reposGetBranchRulesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, branch: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<RepositoryRuleDetailed>> =
-        dev.octri.showcase.github.methods.ReposGetBranchRulesOperation.reposGetBranchRulesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            branch,
-            perPage,
-            page,
-            options,
-        )
+    fun reposGetBranchRulesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        branch: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<RepositoryRuleDetailed>> =
+        dev.octri.showcase.github.methods.ReposGetBranchRulesOperation
+            .reposGetBranchRulesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                branch,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists the rulesets for a repository. Use `includes_parents` to include rulesets configured at higher levels and `targets` to filter by a comma-separated list of rule targets.
+     * Lists the rulesets for a repository. Use `includes_parents` to include rulesets configured at
+     * higher levels and `targets` to filter by a comma-separated list of rule targets.
      */
-    fun reposGetRepoRulesets(clientConfig: ClientConfig, request: ReposGetRepoRulesetsRequest, options: RequestOptions? = null): List<RepositoryRuleset> =
+    fun reposGetRepoRulesets(
+        clientConfig: ClientConfig,
+        request: ReposGetRepoRulesetsRequest,
+        options: RequestOptions? = null,
+    ): List<RepositoryRuleset> =
         dev.octri.showcase.github.methods.ReposGetRepoRulesetsOperation.reposGetRepoRulesets(
             clientConfig,
             request,
@@ -5148,19 +8838,32 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists the rulesets for a repository. Use `includes_parents` to include rulesets configured at higher levels and `targets` to filter by a comma-separated list of rule targets.
+     * Lists the rulesets for a repository. Use `includes_parents` to include rulesets configured at
+     * higher levels and `targets` to filter by a comma-separated list of rule targets.
      */
-    fun reposGetRepoRulesetsWithRawResponse(clientConfig: ClientConfig, request: ReposGetRepoRulesetsRequest, options: RequestOptions? = null): SdkResponse<List<RepositoryRuleset>> =
-        dev.octri.showcase.github.methods.ReposGetRepoRulesetsOperation.reposGetRepoRulesetsWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposGetRepoRulesetsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposGetRepoRulesetsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<RepositoryRuleset>> =
+        dev.octri.showcase.github.methods.ReposGetRepoRulesetsOperation
+            .reposGetRepoRulesetsWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a ruleset for a repository to apply rules when its specified conditions are met. Supply a `name` and `enforcement` level, and use `target`, `conditions`, and `rules` to configure where the ruleset applies and which rules it enforces. You can also configure actors that can bypass the ruleset with `bypass_actors`.
+     * Creates a ruleset for a repository to apply rules when its specified conditions are met.
+     * Supply a `name` and `enforcement` level, and use `target`, `conditions`, and `rules` to
+     * configure where the ruleset applies and which rules it enforces. You can also configure
+     * actors that can bypass the ruleset with `bypass_actors`.
      */
-    fun reposCreateRepoRuleset(clientConfig: ClientConfig, request: ReposCreateRepoRulesetRequest, options: RequestOptions? = null): RepositoryRuleset =
+    fun reposCreateRepoRuleset(
+        clientConfig: ClientConfig,
+        request: ReposCreateRepoRulesetRequest,
+        options: RequestOptions? = null,
+    ): RepositoryRuleset =
         dev.octri.showcase.github.methods.ReposCreateRepoRulesetOperation.reposCreateRepoRuleset(
             clientConfig,
             request,
@@ -5168,19 +8871,33 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Creates a ruleset for a repository to apply rules when its specified conditions are met. Supply a `name` and `enforcement` level, and use `target`, `conditions`, and `rules` to configure where the ruleset applies and which rules it enforces. You can also configure actors that can bypass the ruleset with `bypass_actors`.
+     * Creates a ruleset for a repository to apply rules when its specified conditions are met.
+     * Supply a `name` and `enforcement` level, and use `target`, `conditions`, and `rules` to
+     * configure where the ruleset applies and which rules it enforces. You can also configure
+     * actors that can bypass the ruleset with `bypass_actors`.
      */
-    fun reposCreateRepoRulesetWithRawResponse(clientConfig: ClientConfig, request: ReposCreateRepoRulesetRequest, options: RequestOptions? = null): SdkResponse<RepositoryRuleset> =
-        dev.octri.showcase.github.methods.ReposCreateRepoRulesetOperation.reposCreateRepoRulesetWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateRepoRulesetWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateRepoRulesetRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryRuleset> =
+        dev.octri.showcase.github.methods.ReposCreateRepoRulesetOperation
+            .reposCreateRepoRulesetWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists suites of rule evaluations at the repository level. For more information, see "[Managing rulesets for a repository](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#viewing-insights-for-rulesets)."
+     * Lists suites of rule evaluations at the repository level. For more information, see
+     * "[Managing rulesets for a
+     * repository](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#viewing-insights-for-rulesets)."
      */
-    fun reposGetRepoRuleSuites(clientConfig: ClientConfig, request: ReposGetRepoRuleSuitesRequest, options: RequestOptions? = null): RuleSuites =
+    fun reposGetRepoRuleSuites(
+        clientConfig: ClientConfig,
+        request: ReposGetRepoRuleSuitesRequest,
+        options: RequestOptions? = null,
+    ): RuleSuites =
         dev.octri.showcase.github.methods.ReposGetRepoRuleSuitesOperation.reposGetRepoRuleSuites(
             clientConfig,
             request,
@@ -5188,19 +8905,35 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists suites of rule evaluations at the repository level. For more information, see "[Managing rulesets for a repository](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#viewing-insights-for-rulesets)."
+     * Lists suites of rule evaluations at the repository level. For more information, see
+     * "[Managing rulesets for a
+     * repository](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#viewing-insights-for-rulesets)."
      */
-    fun reposGetRepoRuleSuitesWithRawResponse(clientConfig: ClientConfig, request: ReposGetRepoRuleSuitesRequest, options: RequestOptions? = null): SdkResponse<RuleSuites> =
-        dev.octri.showcase.github.methods.ReposGetRepoRuleSuitesOperation.reposGetRepoRuleSuitesWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposGetRepoRuleSuitesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposGetRepoRuleSuitesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RuleSuites> =
+        dev.octri.showcase.github.methods.ReposGetRepoRuleSuitesOperation
+            .reposGetRepoRuleSuitesWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Gets information about a suite of rule evaluations from within a repository. For more information, see "[Managing rulesets for a repository](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#viewing-insights-for-rulesets)."
+     * Gets information about a suite of rule evaluations from within a repository. For more
+     * information, see "[Managing rulesets for a
+     * repository](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#viewing-insights-for-rulesets)."
      */
-    fun reposGetRepoRuleSuite(clientConfig: ClientConfig, owner: String, repo: String, ruleSuiteId: Long, includeMetadata: Boolean? = null, options: RequestOptions? = null): RuleSuite =
+    fun reposGetRepoRuleSuite(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ruleSuiteId: Long,
+        includeMetadata: Boolean? = null,
+        options: RequestOptions? = null,
+    ): RuleSuite =
         dev.octri.showcase.github.methods.ReposGetRepoRuleSuiteOperation.reposGetRepoRuleSuite(
             clientConfig,
             owner,
@@ -5211,22 +8944,41 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Gets information about a suite of rule evaluations from within a repository. For more information, see "[Managing rulesets for a repository](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#viewing-insights-for-rulesets)."
+     * Gets information about a suite of rule evaluations from within a repository. For more
+     * information, see "[Managing rulesets for a
+     * repository](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#viewing-insights-for-rulesets)."
      */
-    fun reposGetRepoRuleSuiteWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ruleSuiteId: Long, includeMetadata: Boolean? = null, options: RequestOptions? = null): SdkResponse<RuleSuite> =
-        dev.octri.showcase.github.methods.ReposGetRepoRuleSuiteOperation.reposGetRepoRuleSuiteWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ruleSuiteId,
-            includeMetadata,
-            options,
-        )
+    fun reposGetRepoRuleSuiteWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ruleSuiteId: Long,
+        includeMetadata: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<RuleSuite> =
+        dev.octri.showcase.github.methods.ReposGetRepoRuleSuiteOperation
+            .reposGetRepoRuleSuiteWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ruleSuiteId,
+                includeMetadata,
+                options,
+            )
 
     /**
-     * Get a ruleset for a repository. **Note:** To prevent leaking sensitive information, the `bypass_actors` property is only returned if the user making the API request has write access to the ruleset.
+     * Get a ruleset for a repository. **Note:** To prevent leaking sensitive information, the
+     * `bypass_actors` property is only returned if the user making the API request has write access
+     * to the ruleset.
      */
-    fun reposGetRepoRuleset(clientConfig: ClientConfig, owner: String, repo: String, rulesetId: Long, includesParents: Boolean? = null, options: RequestOptions? = null): RepositoryRuleset =
+    fun reposGetRepoRuleset(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        rulesetId: Long,
+        includesParents: Boolean? = null,
+        options: RequestOptions? = null,
+    ): RepositoryRuleset =
         dev.octri.showcase.github.methods.ReposGetRepoRulesetOperation.reposGetRepoRuleset(
             clientConfig,
             owner,
@@ -5237,22 +8989,39 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Get a ruleset for a repository. **Note:** To prevent leaking sensitive information, the `bypass_actors` property is only returned if the user making the API request has write access to the ruleset.
+     * Get a ruleset for a repository. **Note:** To prevent leaking sensitive information, the
+     * `bypass_actors` property is only returned if the user making the API request has write access
+     * to the ruleset.
      */
-    fun reposGetRepoRulesetWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, rulesetId: Long, includesParents: Boolean? = null, options: RequestOptions? = null): SdkResponse<RepositoryRuleset> =
-        dev.octri.showcase.github.methods.ReposGetRepoRulesetOperation.reposGetRepoRulesetWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            rulesetId,
-            includesParents,
-            options,
-        )
+    fun reposGetRepoRulesetWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        rulesetId: Long,
+        includesParents: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryRuleset> =
+        dev.octri.showcase.github.methods.ReposGetRepoRulesetOperation
+            .reposGetRepoRulesetWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                rulesetId,
+                includesParents,
+                options,
+            )
 
     /**
-     * Replaces a repository ruleset with the supplied configuration. Supply the ruleset properties you want to set, including its target, enforcement level, bypass actors, conditions, or rules. Use `evaluate` to test rules before enforcement; this option is available only with GitHub Enterprise.
+     * Replaces a repository ruleset with the supplied configuration. Supply the ruleset properties
+     * you want to set, including its target, enforcement level, bypass actors, conditions, or
+     * rules. Use `evaluate` to test rules before enforcement; this option is available only with
+     * GitHub Enterprise.
      */
-    fun reposUpdateRepoRuleset(clientConfig: ClientConfig, request: ReposUpdateRepoRulesetRequest, options: RequestOptions? = null): RepositoryRuleset =
+    fun reposUpdateRepoRuleset(
+        clientConfig: ClientConfig,
+        request: ReposUpdateRepoRulesetRequest,
+        options: RequestOptions? = null,
+    ): RepositoryRuleset =
         dev.octri.showcase.github.methods.ReposUpdateRepoRulesetOperation.reposUpdateRepoRuleset(
             clientConfig,
             request,
@@ -5260,19 +9029,35 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Replaces a repository ruleset with the supplied configuration. Supply the ruleset properties you want to set, including its target, enforcement level, bypass actors, conditions, or rules. Use `evaluate` to test rules before enforcement; this option is available only with GitHub Enterprise.
+     * Replaces a repository ruleset with the supplied configuration. Supply the ruleset properties
+     * you want to set, including its target, enforcement level, bypass actors, conditions, or
+     * rules. Use `evaluate` to test rules before enforcement; this option is available only with
+     * GitHub Enterprise.
      */
-    fun reposUpdateRepoRulesetWithRawResponse(clientConfig: ClientConfig, request: ReposUpdateRepoRulesetRequest, options: RequestOptions? = null): SdkResponse<RepositoryRuleset> =
-        dev.octri.showcase.github.methods.ReposUpdateRepoRulesetOperation.reposUpdateRepoRulesetWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposUpdateRepoRulesetWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposUpdateRepoRulesetRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryRuleset> =
+        dev.octri.showcase.github.methods.ReposUpdateRepoRulesetOperation
+            .reposUpdateRepoRulesetWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes a ruleset from a repository. Identify the repository with `owner` and `repo`, and specify the ruleset with `ruleset_id`. The operation returns no content when the ruleset is deleted.
+     * Deletes a ruleset from a repository. Identify the repository with `owner` and `repo`, and
+     * specify the ruleset with `ruleset_id`. The operation returns no content when the ruleset is
+     * deleted.
      */
-    fun reposDeleteRepoRuleset(clientConfig: ClientConfig, owner: String, repo: String, rulesetId: Long, options: RequestOptions? = null): Unit =
+    fun reposDeleteRepoRuleset(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        rulesetId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.ReposDeleteRepoRulesetOperation.reposDeleteRepoRuleset(
             clientConfig,
             owner,
@@ -5282,163 +9067,296 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Deletes a ruleset from a repository. Identify the repository with `owner` and `repo`, and specify the ruleset with `ruleset_id`. The operation returns no content when the ruleset is deleted.
+     * Deletes a ruleset from a repository. Identify the repository with `owner` and `repo`, and
+     * specify the ruleset with `ruleset_id`. The operation returns no content when the ruleset is
+     * deleted.
      */
-    fun reposDeleteRepoRulesetWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, rulesetId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeleteRepoRulesetOperation.reposDeleteRepoRulesetWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            rulesetId,
-            options,
-        )
+    fun reposDeleteRepoRulesetWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        rulesetId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeleteRepoRulesetOperation
+            .reposDeleteRepoRulesetWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                rulesetId,
+                options,
+            )
 
     /**
-     * Lists historical versions of a repository ruleset. Use `ruleset_id` to select the ruleset and `page` and `per_page` to navigate its history. Each result identifies the version, the actor who updated it, and the update time.
+     * Lists historical versions of a repository ruleset. Use `ruleset_id` to select the ruleset and
+     * `page` and `per_page` to navigate its history. Each result identifies the version, the actor
+     * who updated it, and the update time.
      */
-    fun reposGetRepoRulesetHistory(clientConfig: ClientConfig, owner: String, repo: String, rulesetId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<RulesetVersion> =
-        dev.octri.showcase.github.methods.ReposGetRepoRulesetHistoryOperation.reposGetRepoRulesetHistory(
-            clientConfig,
-            owner,
-            repo,
-            rulesetId,
-            perPage,
-            page,
-            options,
-        )
+    fun reposGetRepoRulesetHistory(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        rulesetId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<RulesetVersion> =
+        dev.octri.showcase.github.methods.ReposGetRepoRulesetHistoryOperation
+            .reposGetRepoRulesetHistory(
+                clientConfig,
+                owner,
+                repo,
+                rulesetId,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists historical versions of a repository ruleset. Use `ruleset_id` to select the ruleset and `page` and `per_page` to navigate its history. Each result identifies the version, the actor who updated it, and the update time.
+     * Lists historical versions of a repository ruleset. Use `ruleset_id` to select the ruleset and
+     * `page` and `per_page` to navigate its history. Each result identifies the version, the actor
+     * who updated it, and the update time.
      */
-    fun reposGetRepoRulesetHistoryWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, rulesetId: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<RulesetVersion>> =
-        dev.octri.showcase.github.methods.ReposGetRepoRulesetHistoryOperation.reposGetRepoRulesetHistoryWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            rulesetId,
-            perPage,
-            page,
-            options,
-        )
+    fun reposGetRepoRulesetHistoryWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        rulesetId: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<RulesetVersion>> =
+        dev.octri.showcase.github.methods.ReposGetRepoRulesetHistoryOperation
+            .reposGetRepoRulesetHistoryWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                rulesetId,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Retrieves a specific historical version of a repository ruleset. Identify the repository and ruleset with `owner`, `repo`, and `ruleset_id`, then specify the version with `version_id`. The response includes the version details and the ruleset state for that version.
+     * Retrieves a specific historical version of a repository ruleset. Identify the repository and
+     * ruleset with `owner`, `repo`, and `ruleset_id`, then specify the version with `version_id`.
+     * The response includes the version details and the ruleset state for that version.
      */
-    fun reposGetRepoRulesetVersion(clientConfig: ClientConfig, owner: String, repo: String, rulesetId: Long, versionId: Long, options: RequestOptions? = null): RulesetVersionWithState =
-        dev.octri.showcase.github.methods.ReposGetRepoRulesetVersionOperation.reposGetRepoRulesetVersion(
-            clientConfig,
-            owner,
-            repo,
-            rulesetId,
-            versionId,
-            options,
-        )
+    fun reposGetRepoRulesetVersion(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        rulesetId: Long,
+        versionId: Long,
+        options: RequestOptions? = null,
+    ): RulesetVersionWithState =
+        dev.octri.showcase.github.methods.ReposGetRepoRulesetVersionOperation
+            .reposGetRepoRulesetVersion(
+                clientConfig,
+                owner,
+                repo,
+                rulesetId,
+                versionId,
+                options,
+            )
 
     /**
-     * Retrieves a specific historical version of a repository ruleset. Identify the repository and ruleset with `owner`, `repo`, and `ruleset_id`, then specify the version with `version_id`. The response includes the version details and the ruleset state for that version.
+     * Retrieves a specific historical version of a repository ruleset. Identify the repository and
+     * ruleset with `owner`, `repo`, and `ruleset_id`, then specify the version with `version_id`.
+     * The response includes the version details and the ruleset state for that version.
      */
-    fun reposGetRepoRulesetVersionWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, rulesetId: Long, versionId: Long, options: RequestOptions? = null): SdkResponse<RulesetVersionWithState> =
-        dev.octri.showcase.github.methods.ReposGetRepoRulesetVersionOperation.reposGetRepoRulesetVersionWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            rulesetId,
-            versionId,
-            options,
-        )
+    fun reposGetRepoRulesetVersionWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        rulesetId: Long,
+        versionId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<RulesetVersionWithState> =
+        dev.octri.showcase.github.methods.ReposGetRepoRulesetVersionOperation
+            .reposGetRepoRulesetVersionWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                rulesetId,
+                versionId,
+                options,
+            )
 
     /**
-     * Returns a weekly aggregate of the number of additions and deletions pushed to a repository. > [!NOTE] > This endpoint can only be used for repositories with fewer than 10,000 commits. If the repository contains 10,000 or more commits, a 422 status code will be returned.
+     * Returns a weekly aggregate of the number of additions and deletions pushed to a
+     * repository. > [!NOTE] > This endpoint can only be used for repositories with fewer than
+     * 10,000 commits. If the repository contains 10,000 or more commits, a 422 status code will be
+     * returned.
      */
-    fun reposGetCodeFrequencyStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CodeFrequencyStat> =
-        dev.octri.showcase.github.methods.ReposGetCodeFrequencyStatsOperation.reposGetCodeFrequencyStats(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetCodeFrequencyStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<CodeFrequencyStat> =
+        dev.octri.showcase.github.methods.ReposGetCodeFrequencyStatsOperation
+            .reposGetCodeFrequencyStats(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns a weekly aggregate of the number of additions and deletions pushed to a repository. > [!NOTE] > This endpoint can only be used for repositories with fewer than 10,000 commits. If the repository contains 10,000 or more commits, a 422 status code will be returned.
+     * Returns a weekly aggregate of the number of additions and deletions pushed to a
+     * repository. > [!NOTE] > This endpoint can only be used for repositories with fewer than
+     * 10,000 commits. If the repository contains 10,000 or more commits, a 422 status code will be
+     * returned.
      */
-    fun reposGetCodeFrequencyStatsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<CodeFrequencyStat>> =
-        dev.octri.showcase.github.methods.ReposGetCodeFrequencyStatsOperation.reposGetCodeFrequencyStatsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetCodeFrequencyStatsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<CodeFrequencyStat>> =
+        dev.octri.showcase.github.methods.ReposGetCodeFrequencyStatsOperation
+            .reposGetCodeFrequencyStatsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns the last year of commit activity grouped by week. The `days` array is a group of commits per day, starting on `Sunday`.
+     * Returns the last year of commit activity grouped by week. The `days` array is a group of
+     * commits per day, starting on `Sunday`.
      */
-    fun reposGetCommitActivityStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CommitActivity> =
-        dev.octri.showcase.github.methods.ReposGetCommitActivityStatsOperation.reposGetCommitActivityStats(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetCommitActivityStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<CommitActivity> =
+        dev.octri.showcase.github.methods.ReposGetCommitActivityStatsOperation
+            .reposGetCommitActivityStats(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns the last year of commit activity grouped by week. The `days` array is a group of commits per day, starting on `Sunday`.
+     * Returns the last year of commit activity grouped by week. The `days` array is a group of
+     * commits per day, starting on `Sunday`.
      */
-    fun reposGetCommitActivityStatsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<CommitActivity>> =
-        dev.octri.showcase.github.methods.ReposGetCommitActivityStatsOperation.reposGetCommitActivityStatsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetCommitActivityStatsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<CommitActivity>> =
+        dev.octri.showcase.github.methods.ReposGetCommitActivityStatsOperation
+            .reposGetCommitActivityStatsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns the `total` number of commits authored by the contributor. In addition, the response includes a Weekly Hash (`weeks` array) with the following information: * `w` - Start of the week, given as a [Unix timestamp](https://en.wikipedia.org/wiki/Unix_time). * `a` - Number of additions * `d` - Number of deletions * `c` - Number of commits > [!NOTE] > This endpoint will return `0` values for all addition and deletion counts in repositories with 10,000 or more commits.
+     * Returns the `total` number of commits authored by the contributor. In addition, the response
+     * includes a Weekly Hash (`weeks` array) with the following information: * `w` - Start of the
+     * week, given as a [Unix timestamp](https://en.wikipedia.org/wiki/Unix_time). * `a` - Number of
+     * additions * `d` - Number of deletions * `c` - Number of commits > [!NOTE] > This endpoint
+     * will return `0` values for all addition and deletion counts in repositories with 10,000 or
+     * more commits.
      */
-    fun reposGetContributorsStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<ContributorActivity> =
-        dev.octri.showcase.github.methods.ReposGetContributorsStatsOperation.reposGetContributorsStats(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetContributorsStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<ContributorActivity> =
+        dev.octri.showcase.github.methods.ReposGetContributorsStatsOperation
+            .reposGetContributorsStats(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns the `total` number of commits authored by the contributor. In addition, the response includes a Weekly Hash (`weeks` array) with the following information: * `w` - Start of the week, given as a [Unix timestamp](https://en.wikipedia.org/wiki/Unix_time). * `a` - Number of additions * `d` - Number of deletions * `c` - Number of commits > [!NOTE] > This endpoint will return `0` values for all addition and deletion counts in repositories with 10,000 or more commits.
+     * Returns the `total` number of commits authored by the contributor. In addition, the response
+     * includes a Weekly Hash (`weeks` array) with the following information: * `w` - Start of the
+     * week, given as a [Unix timestamp](https://en.wikipedia.org/wiki/Unix_time). * `a` - Number of
+     * additions * `d` - Number of deletions * `c` - Number of commits > [!NOTE] > This endpoint
+     * will return `0` values for all addition and deletion counts in repositories with 10,000 or
+     * more commits.
      */
-    fun reposGetContributorsStatsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<ContributorActivity>> =
-        dev.octri.showcase.github.methods.ReposGetContributorsStatsOperation.reposGetContributorsStatsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetContributorsStatsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<ContributorActivity>> =
+        dev.octri.showcase.github.methods.ReposGetContributorsStatsOperation
+            .reposGetContributorsStatsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns the total commit counts for the `owner` and total commit counts in `all`. `all` is everyone combined, including the `owner` in the last 52 weeks. If you'd like to get the commit counts for non-owners, you can subtract `owner` from `all`. The array order is oldest week (index 0) to most recent week. The most recent week is seven days ago at UTC midnight to today at UTC midnight.
+     * Returns the total commit counts for the `owner` and total commit counts in `all`. `all` is
+     * everyone combined, including the `owner` in the last 52 weeks. If you'd like to get the
+     * commit counts for non-owners, you can subtract `owner` from `all`. The array order is oldest
+     * week (index 0) to most recent week. The most recent week is seven days ago at UTC midnight to
+     * today at UTC midnight.
      */
-    fun reposGetParticipationStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ParticipationStats =
-        dev.octri.showcase.github.methods.ReposGetParticipationStatsOperation.reposGetParticipationStats(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetParticipationStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ParticipationStats =
+        dev.octri.showcase.github.methods.ReposGetParticipationStatsOperation
+            .reposGetParticipationStats(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Returns the total commit counts for the `owner` and total commit counts in `all`. `all` is everyone combined, including the `owner` in the last 52 weeks. If you'd like to get the commit counts for non-owners, you can subtract `owner` from `all`. The array order is oldest week (index 0) to most recent week. The most recent week is seven days ago at UTC midnight to today at UTC midnight.
+     * Returns the total commit counts for the `owner` and total commit counts in `all`. `all` is
+     * everyone combined, including the `owner` in the last 52 weeks. If you'd like to get the
+     * commit counts for non-owners, you can subtract `owner` from `all`. The array order is oldest
+     * week (index 0) to most recent week. The most recent week is seven days ago at UTC midnight to
+     * today at UTC midnight.
      */
-    fun reposGetParticipationStatsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<ParticipationStats> =
-        dev.octri.showcase.github.methods.ReposGetParticipationStatsOperation.reposGetParticipationStatsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetParticipationStatsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ParticipationStats> =
+        dev.octri.showcase.github.methods.ReposGetParticipationStatsOperation
+            .reposGetParticipationStatsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Each array contains the day number, hour number, and number of commits: * `0-6`: Sunday - Saturday * `0-23`: Hour of day * Number of commits For example, `[2, 14, 25]` indicates that there were 25 total commits, during the 2:00pm hour on Tuesdays. All times are based on the time zone of individual commits.
+     * Each array contains the day number, hour number, and number of commits: * `0-6`: Sunday -
+     * Saturday * `0-23`: Hour of day * Number of commits For example, `[2, 14, 25]` indicates that
+     * there were 25 total commits, during the 2:00pm hour on Tuesdays. All times are based on the
+     * time zone of individual commits.
      */
-    fun reposGetPunchCardStats(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CodeFrequencyStat> =
+    fun reposGetPunchCardStats(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<CodeFrequencyStat> =
         dev.octri.showcase.github.methods.ReposGetPunchCardStatsOperation.reposGetPunchCardStats(
             clientConfig,
             owner,
@@ -5447,20 +9365,35 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Each array contains the day number, hour number, and number of commits: * `0-6`: Sunday - Saturday * `0-23`: Hour of day * Number of commits For example, `[2, 14, 25]` indicates that there were 25 total commits, during the 2:00pm hour on Tuesdays. All times are based on the time zone of individual commits.
+     * Each array contains the day number, hour number, and number of commits: * `0-6`: Sunday -
+     * Saturday * `0-23`: Hour of day * Number of commits For example, `[2, 14, 25]` indicates that
+     * there were 25 total commits, during the 2:00pm hour on Tuesdays. All times are based on the
+     * time zone of individual commits.
      */
-    fun reposGetPunchCardStatsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<CodeFrequencyStat>> =
-        dev.octri.showcase.github.methods.ReposGetPunchCardStatsOperation.reposGetPunchCardStatsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetPunchCardStatsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<CodeFrequencyStat>> =
+        dev.octri.showcase.github.methods.ReposGetPunchCardStatsOperation
+            .reposGetPunchCardStatsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Creates a commit status for a specific commit in a repository. You need push access to the repository, and `state` must be one of the supported values; each `sha` and `context` pair is limited to 1,000 statuses.
+     * Creates a commit status for a specific commit in a repository. You need push access to the
+     * repository, and `state` must be one of the supported values; each `sha` and `context` pair is
+     * limited to 1,000 statuses.
      */
-    fun reposCreateCommitStatus(clientConfig: ClientConfig, request: ReposCreateCommitStatusRequest, options: RequestOptions? = null): Status =
+    fun reposCreateCommitStatus(
+        clientConfig: ClientConfig,
+        request: ReposCreateCommitStatusRequest,
+        options: RequestOptions? = null,
+    ): Status =
         dev.octri.showcase.github.methods.ReposCreateCommitStatusOperation.reposCreateCommitStatus(
             clientConfig,
             request,
@@ -5468,19 +9401,34 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Creates a commit status for a specific commit in a repository. You need push access to the repository, and `state` must be one of the supported values; each `sha` and `context` pair is limited to 1,000 statuses.
+     * Creates a commit status for a specific commit in a repository. You need push access to the
+     * repository, and `state` must be one of the supported values; each `sha` and `context` pair is
+     * limited to 1,000 statuses.
      */
-    fun reposCreateCommitStatusWithRawResponse(clientConfig: ClientConfig, request: ReposCreateCommitStatusRequest, options: RequestOptions? = null): SdkResponse<Status> =
-        dev.octri.showcase.github.methods.ReposCreateCommitStatusOperation.reposCreateCommitStatusWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateCommitStatusWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateCommitStatusRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Status> =
+        dev.octri.showcase.github.methods.ReposCreateCommitStatusOperation
+            .reposCreateCommitStatusWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists the tags for a repository. Use `page` and `per_page` to paginate the results, with up to 100 tags per page.
+     * Lists the tags for a repository. Use `page` and `per_page` to paginate the results, with up
+     * to 100 tags per page.
      */
-    fun reposListTags(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Tag> =
+    fun reposListTags(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Tag> =
         dev.octri.showcase.github.methods.ReposListTagsOperation.reposListTags(
             clientConfig,
             owner,
@@ -5491,9 +9439,17 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists the tags for a repository. Use `page` and `per_page` to paginate the results, with up to 100 tags per page.
+     * Lists the tags for a repository. Use `page` and `per_page` to paginate the results, with up
+     * to 100 tags per page.
      */
-    fun reposListTagsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Tag>> =
+    fun reposListTagsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Tag>> =
         dev.octri.showcase.github.methods.ReposListTagsOperation.reposListTagsWithRawResponse(
             clientConfig,
             owner,
@@ -5504,33 +9460,64 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Returns a redirect to a tar archive for a repository. Use `ref` to select a branch, tag, or commit; if you omit it, the repository's default branch is used. Follow the redirect or use its `Location` header to make a second GET request; download links for private repositories expire after five minutes.
+     * Returns a redirect to a tar archive for a repository. Use `ref` to select a branch, tag, or
+     * commit; if you omit it, the repository's default branch is used. Follow the redirect or use
+     * its `Location` header to make a second GET request; download links for private repositories
+     * expire after five minutes.
      */
-    fun reposDownloadTarballArchive(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): Any =
-        dev.octri.showcase.github.methods.ReposDownloadTarballArchiveOperation.reposDownloadTarballArchive(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            options,
-        )
+    fun reposDownloadTarballArchive(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): Any =
+        dev.octri.showcase.github.methods.ReposDownloadTarballArchiveOperation
+            .reposDownloadTarballArchive(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                options,
+            )
 
     /**
-     * Returns a redirect to a tar archive for a repository. Use `ref` to select a branch, tag, or commit; if you omit it, the repository's default branch is used. Follow the redirect or use its `Location` header to make a second GET request; download links for private repositories expire after five minutes.
+     * Returns a redirect to a tar archive for a repository. Use `ref` to select a branch, tag, or
+     * commit; if you omit it, the repository's default branch is used. Follow the redirect or use
+     * its `Location` header to make a second GET request; download links for private repositories
+     * expire after five minutes.
      */
-    fun reposDownloadTarballArchiveWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): SdkResponse<Any> =
-        dev.octri.showcase.github.methods.ReposDownloadTarballArchiveOperation.reposDownloadTarballArchiveWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            options,
-        )
+    fun reposDownloadTarballArchiveWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Any> =
+        dev.octri.showcase.github.methods.ReposDownloadTarballArchiveOperation
+            .reposDownloadTarballArchiveWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                options,
+            )
 
     /**
-     * Lists the teams that have access to the specified repository and that are also visible to the authenticated user. For a public repository, a team is listed only if that team added the public repository explicitly. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to use this endpoint with a public repository, and `repo` scope to use this endpoint with a private repository.
+     * Lists the teams that have access to the specified repository and that are also visible to the
+     * authenticated user. For a public repository, a team is listed only if that team added the
+     * public repository explicitly. OAuth app tokens and personal access tokens (classic) need the
+     * `public_repo` or `repo` scope to use this endpoint with a public repository, and `repo` scope
+     * to use this endpoint with a private repository.
      */
-    fun reposListTeams(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Team> =
+    fun reposListTeams(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Team> =
         dev.octri.showcase.github.methods.ReposListTeamsOperation.reposListTeams(
             clientConfig,
             owner,
@@ -5541,9 +9528,20 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists the teams that have access to the specified repository and that are also visible to the authenticated user. For a public repository, a team is listed only if that team added the public repository explicitly. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to use this endpoint with a public repository, and `repo` scope to use this endpoint with a private repository.
+     * Lists the teams that have access to the specified repository and that are also visible to the
+     * authenticated user. For a public repository, a team is listed only if that team added the
+     * public repository explicitly. OAuth app tokens and personal access tokens (classic) need the
+     * `public_repo` or `repo` scope to use this endpoint with a public repository, and `repo` scope
+     * to use this endpoint with a private repository.
      */
-    fun reposListTeamsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Team>> =
+    fun reposListTeamsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Team>> =
         dev.octri.showcase.github.methods.ReposListTeamsOperation.reposListTeamsWithRawResponse(
             clientConfig,
             owner,
@@ -5554,9 +9552,17 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves the topic names associated with a repository. Use `page` and `per_page` to paginate the results.
+     * Retrieves the topic names associated with a repository. Use `page` and `per_page` to paginate
+     * the results.
      */
-    fun reposGetAllTopics(clientConfig: ClientConfig, owner: String, repo: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Topic =
+    fun reposGetAllTopics(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Topic =
         dev.octri.showcase.github.methods.ReposGetAllTopicsOperation.reposGetAllTopics(
             clientConfig,
             owner,
@@ -5567,22 +9573,39 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves the topic names associated with a repository. Use `page` and `per_page` to paginate the results.
+     * Retrieves the topic names associated with a repository. Use `page` and `per_page` to paginate
+     * the results.
      */
-    fun reposGetAllTopicsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): SdkResponse<Topic> =
-        dev.octri.showcase.github.methods.ReposGetAllTopicsOperation.reposGetAllTopicsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            page,
-            perPage,
-            options,
-        )
+    fun reposGetAllTopicsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Topic> =
+        dev.octri.showcase.github.methods.ReposGetAllTopicsOperation
+            .reposGetAllTopicsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Replaces all topics associated with a repository. Supply `names` with the complete topic list; send an empty array to clear all topics, and note that topic names are saved as lowercase.
+     * Replaces all topics associated with a repository. Supply `names` with the complete topic
+     * list; send an empty array to clear all topics, and note that topic names are saved as
+     * lowercase.
      */
-    fun reposReplaceAllTopics(clientConfig: ClientConfig, owner: String, repo: String, names: List<String>, options: RequestOptions? = null): Topic =
+    fun reposReplaceAllTopics(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        names: List<String>,
+        options: RequestOptions? = null,
+    ): Topic =
         dev.octri.showcase.github.methods.ReposReplaceAllTopicsOperation.reposReplaceAllTopics(
             clientConfig,
             owner,
@@ -5592,21 +9615,37 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Replaces all topics associated with a repository. Supply `names` with the complete topic list; send an empty array to clear all topics, and note that topic names are saved as lowercase.
+     * Replaces all topics associated with a repository. Supply `names` with the complete topic
+     * list; send an empty array to clear all topics, and note that topic names are saved as
+     * lowercase.
      */
-    fun reposReplaceAllTopicsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, names: List<String>, options: RequestOptions? = null): SdkResponse<Topic> =
-        dev.octri.showcase.github.methods.ReposReplaceAllTopicsOperation.reposReplaceAllTopicsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            names,
-            options,
-        )
+    fun reposReplaceAllTopicsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        names: List<String>,
+        options: RequestOptions? = null,
+    ): SdkResponse<Topic> =
+        dev.octri.showcase.github.methods.ReposReplaceAllTopicsOperation
+            .reposReplaceAllTopicsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                names,
+                options,
+            )
 
     /**
-     * Get the total number of clones and breakdown per day or week for the last 14 days. Timestamps are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
+     * Get the total number of clones and breakdown per day or week for the last 14 days. Timestamps
+     * are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
      */
-    fun reposGetClones(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): CloneTraffic =
+    fun reposGetClones(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): CloneTraffic =
         dev.octri.showcase.github.methods.ReposGetClonesOperation.reposGetClones(
             clientConfig,
             owner,
@@ -5616,9 +9655,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Get the total number of clones and breakdown per day or week for the last 14 days. Timestamps are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
+     * Get the total number of clones and breakdown per day or week for the last 14 days. Timestamps
+     * are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
      */
-    fun reposGetClonesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): SdkResponse<CloneTraffic> =
+    fun reposGetClonesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<CloneTraffic> =
         dev.octri.showcase.github.methods.ReposGetClonesOperation.reposGetClonesWithRawResponse(
             clientConfig,
             owner,
@@ -5627,10 +9673,13 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
             options,
         )
 
-    /**
-     * Get the top 10 popular contents over the last 14 days.
-     */
-    fun reposGetTopPaths(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<ContentTraffic> =
+    /** Get the top 10 popular contents over the last 14 days. */
+    fun reposGetTopPaths(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<ContentTraffic> =
         dev.octri.showcase.github.methods.ReposGetTopPathsOperation.reposGetTopPaths(
             clientConfig,
             owner,
@@ -5638,10 +9687,13 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
             options,
         )
 
-    /**
-     * Get the top 10 popular contents over the last 14 days.
-     */
-    fun reposGetTopPathsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<ContentTraffic>> =
+    /** Get the top 10 popular contents over the last 14 days. */
+    fun reposGetTopPathsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<ContentTraffic>> =
         dev.octri.showcase.github.methods.ReposGetTopPathsOperation.reposGetTopPathsWithRawResponse(
             clientConfig,
             owner,
@@ -5650,9 +9702,15 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves the top 10 referral sources for a repository over the last 14 days. Use this endpoint to review which sources drive visits to the repository.
+     * Retrieves the top 10 referral sources for a repository over the last 14 days. Use this
+     * endpoint to review which sources drive visits to the repository.
      */
-    fun reposGetTopReferrers(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<ReferrerTraffic> =
+    fun reposGetTopReferrers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<ReferrerTraffic> =
         dev.octri.showcase.github.methods.ReposGetTopReferrersOperation.reposGetTopReferrers(
             clientConfig,
             owner,
@@ -5661,20 +9719,34 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Retrieves the top 10 referral sources for a repository over the last 14 days. Use this endpoint to review which sources drive visits to the repository.
+     * Retrieves the top 10 referral sources for a repository over the last 14 days. Use this
+     * endpoint to review which sources drive visits to the repository.
      */
-    fun reposGetTopReferrersWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<ReferrerTraffic>> =
-        dev.octri.showcase.github.methods.ReposGetTopReferrersOperation.reposGetTopReferrersWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposGetTopReferrersWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<ReferrerTraffic>> =
+        dev.octri.showcase.github.methods.ReposGetTopReferrersOperation
+            .reposGetTopReferrersWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Get the total number of views and breakdown per day or week for the last 14 days. Timestamps are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
+     * Get the total number of views and breakdown per day or week for the last 14 days. Timestamps
+     * are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
      */
-    fun reposGetViews(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): ViewTraffic =
+    fun reposGetViews(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): ViewTraffic =
         dev.octri.showcase.github.methods.ReposGetViewsOperation.reposGetViews(
             clientConfig,
             owner,
@@ -5684,9 +9756,16 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Get the total number of views and breakdown per day or week for the last 14 days. Timestamps are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
+     * Get the total number of views and breakdown per day or week for the last 14 days. Timestamps
+     * are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
      */
-    fun reposGetViewsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): SdkResponse<ViewTraffic> =
+    fun reposGetViewsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ViewTraffic> =
         dev.octri.showcase.github.methods.ReposGetViewsOperation.reposGetViewsWithRawResponse(
             clientConfig,
             owner,
@@ -5696,9 +9775,21 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * A transfer request will need to be accepted by the new owner when transferring a personal repository to another user. The response will contain the original `owner`, and the transfer will continue asynchronously. For more details on the requirements to transfer personal and organization-owned repositories, see [about repository transfers](https://docs.github.com/articles/about-repository-transfers/).
+     * A transfer request will need to be accepted by the new owner when transferring a personal
+     * repository to another user. The response will contain the original `owner`, and the transfer
+     * will continue asynchronously. For more details on the requirements to transfer personal and
+     * organization-owned repositories, see
+     * [about repository transfers](https://docs.github.com/articles/about-repository-transfers/).
      */
-    fun reposTransfer(clientConfig: ClientConfig, owner: String, repo: String, newOwner: String, newName: String? = null, teamIds: List<Long>? = null, options: RequestOptions? = null): MinimalRepository =
+    fun reposTransfer(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        newOwner: String,
+        newName: String? = null,
+        teamIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): MinimalRepository =
         dev.octri.showcase.github.methods.ReposTransferOperation.reposTransfer(
             clientConfig,
             owner,
@@ -5710,9 +9801,21 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * A transfer request will need to be accepted by the new owner when transferring a personal repository to another user. The response will contain the original `owner`, and the transfer will continue asynchronously. For more details on the requirements to transfer personal and organization-owned repositories, see [about repository transfers](https://docs.github.com/articles/about-repository-transfers/).
+     * A transfer request will need to be accepted by the new owner when transferring a personal
+     * repository to another user. The response will contain the original `owner`, and the transfer
+     * will continue asynchronously. For more details on the requirements to transfer personal and
+     * organization-owned repositories, see
+     * [about repository transfers](https://docs.github.com/articles/about-repository-transfers/).
      */
-    fun reposTransferWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, newOwner: String, newName: String? = null, teamIds: List<Long>? = null, options: RequestOptions? = null): SdkResponse<MinimalRepository> =
+    fun reposTransferWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        newOwner: String,
+        newName: String? = null,
+        teamIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<MinimalRepository> =
         dev.octri.showcase.github.methods.ReposTransferOperation.reposTransferWithRawResponse(
             clientConfig,
             owner,
@@ -5724,119 +9827,227 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Shows whether dependency alerts are enabled or disabled for a repository. The authenticated user must have admin read access to the repository. For more information, see "[About security alerts for vulnerable dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
+     * Shows whether dependency alerts are enabled or disabled for a repository. The authenticated
+     * user must have admin read access to the repository. For more information, see "[About
+     * security alerts for vulnerable
+     * dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
      */
-    fun reposCheckVulnerabilityAlerts(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposCheckVulnerabilityAlertsOperation.reposCheckVulnerabilityAlerts(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCheckVulnerabilityAlerts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposCheckVulnerabilityAlertsOperation
+            .reposCheckVulnerabilityAlerts(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Shows whether dependency alerts are enabled or disabled for a repository. The authenticated user must have admin read access to the repository. For more information, see "[About security alerts for vulnerable dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
+     * Shows whether dependency alerts are enabled or disabled for a repository. The authenticated
+     * user must have admin read access to the repository. For more information, see "[About
+     * security alerts for vulnerable
+     * dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
      */
-    fun reposCheckVulnerabilityAlertsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposCheckVulnerabilityAlertsOperation.reposCheckVulnerabilityAlertsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposCheckVulnerabilityAlertsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposCheckVulnerabilityAlertsOperation
+            .reposCheckVulnerabilityAlertsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Enables dependency alerts and the dependency graph for a repository. The authenticated user must have admin access to the repository. For more information, see "[About security alerts for vulnerable dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
+     * Enables dependency alerts and the dependency graph for a repository. The authenticated user
+     * must have admin access to the repository. For more information, see "[About security alerts
+     * for vulnerable
+     * dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
      */
-    fun reposEnableVulnerabilityAlerts(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposEnableVulnerabilityAlertsOperation.reposEnableVulnerabilityAlerts(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposEnableVulnerabilityAlerts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposEnableVulnerabilityAlertsOperation
+            .reposEnableVulnerabilityAlerts(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Enables dependency alerts and the dependency graph for a repository. The authenticated user must have admin access to the repository. For more information, see "[About security alerts for vulnerable dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
+     * Enables dependency alerts and the dependency graph for a repository. The authenticated user
+     * must have admin access to the repository. For more information, see "[About security alerts
+     * for vulnerable
+     * dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
      */
-    fun reposEnableVulnerabilityAlertsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposEnableVulnerabilityAlertsOperation.reposEnableVulnerabilityAlertsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposEnableVulnerabilityAlertsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposEnableVulnerabilityAlertsOperation
+            .reposEnableVulnerabilityAlertsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Disables dependency alerts and the dependency graph for a repository. The authenticated user must have admin access to the repository. For more information, see "[About security alerts for vulnerable dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
+     * Disables dependency alerts and the dependency graph for a repository. The authenticated user
+     * must have admin access to the repository. For more information, see "[About security alerts
+     * for vulnerable
+     * dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
      */
-    fun reposDisableVulnerabilityAlerts(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDisableVulnerabilityAlertsOperation.reposDisableVulnerabilityAlerts(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDisableVulnerabilityAlerts(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDisableVulnerabilityAlertsOperation
+            .reposDisableVulnerabilityAlerts(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Disables dependency alerts and the dependency graph for a repository. The authenticated user must have admin access to the repository. For more information, see "[About security alerts for vulnerable dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
+     * Disables dependency alerts and the dependency graph for a repository. The authenticated user
+     * must have admin access to the repository. For more information, see "[About security alerts
+     * for vulnerable
+     * dependencies](https://docs.github.com/articles/about-security-alerts-for-vulnerable-dependencies)".
      */
-    fun reposDisableVulnerabilityAlertsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDisableVulnerabilityAlertsOperation.reposDisableVulnerabilityAlertsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun reposDisableVulnerabilityAlertsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDisableVulnerabilityAlertsOperation
+            .reposDisableVulnerabilityAlertsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Downloads a ZIP archive of a repository at the specified revision. Use `ref` to select a branch, tag, or commit; if omitted, the repository’s default branch is used. Follow the redirect or use its `Location` header to make a second GET request; download links for private repositories expire after five minutes.
+     * Downloads a ZIP archive of a repository at the specified revision. Use `ref` to select a
+     * branch, tag, or commit; if omitted, the repository’s default branch is used. Follow the
+     * redirect or use its `Location` header to make a second GET request; download links for
+     * private repositories expire after five minutes.
      */
-    fun reposDownloadZipballArchive(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): Any =
-        dev.octri.showcase.github.methods.ReposDownloadZipballArchiveOperation.reposDownloadZipballArchive(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            options,
-        )
+    fun reposDownloadZipballArchive(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): Any =
+        dev.octri.showcase.github.methods.ReposDownloadZipballArchiveOperation
+            .reposDownloadZipballArchive(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                options,
+            )
 
     /**
-     * Downloads a ZIP archive of a repository at the specified revision. Use `ref` to select a branch, tag, or commit; if omitted, the repository’s default branch is used. Follow the redirect or use its `Location` header to make a second GET request; download links for private repositories expire after five minutes.
+     * Downloads a ZIP archive of a repository at the specified revision. Use `ref` to select a
+     * branch, tag, or commit; if omitted, the repository’s default branch is used. Follow the
+     * redirect or use its `Location` header to make a second GET request; download links for
+     * private repositories expire after five minutes.
      */
-    fun reposDownloadZipballArchiveWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String, options: RequestOptions? = null): SdkResponse<Any> =
-        dev.octri.showcase.github.methods.ReposDownloadZipballArchiveOperation.reposDownloadZipballArchiveWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ref,
-            options,
-        )
+    fun reposDownloadZipballArchiveWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Any> =
+        dev.octri.showcase.github.methods.ReposDownloadZipballArchiveOperation
+            .reposDownloadZipballArchiveWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ref,
+                options,
+            )
 
     /**
-     * Creates a new repository using a repository template. Use the `template_owner` and `template_repo` route parameters to specify the repository to use as the template. If the repository is not public, the authenticated user must own or be a member of an organization that owns the repository. To check if a repository is available to use as a template, get the repository's information using the [Get a repository](https://docs.github.com/rest/repos/repos#get-a-repository) endpoint and check that the `is_template` key is `true`. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a private repository.
+     * Creates a new repository using a repository template. Use the `template_owner` and
+     * `template_repo` route parameters to specify the repository to use as the template. If the
+     * repository is not public, the authenticated user must own or be a member of an organization
+     * that owns the repository. To check if a repository is available to use as a template, get the
+     * repository's information using the
+     * [Get a repository](https://docs.github.com/rest/repos/repos#get-a-repository) endpoint and
+     * check that the `is_template` key is `true`. OAuth app tokens and personal access tokens
+     * (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo`
+     * scope to create a private repository.
      */
-    fun reposCreateUsingTemplate(clientConfig: ClientConfig, request: ReposCreateUsingTemplateRequest, options: RequestOptions? = null): FullRepository =
-        dev.octri.showcase.github.methods.ReposCreateUsingTemplateOperation.reposCreateUsingTemplate(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateUsingTemplate(
+        clientConfig: ClientConfig,
+        request: ReposCreateUsingTemplateRequest,
+        options: RequestOptions? = null,
+    ): FullRepository =
+        dev.octri.showcase.github.methods.ReposCreateUsingTemplateOperation
+            .reposCreateUsingTemplate(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a new repository using a repository template. Use the `template_owner` and `template_repo` route parameters to specify the repository to use as the template. If the repository is not public, the authenticated user must own or be a member of an organization that owns the repository. To check if a repository is available to use as a template, get the repository's information using the [Get a repository](https://docs.github.com/rest/repos/repos#get-a-repository) endpoint and check that the `is_template` key is `true`. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a private repository.
+     * Creates a new repository using a repository template. Use the `template_owner` and
+     * `template_repo` route parameters to specify the repository to use as the template. If the
+     * repository is not public, the authenticated user must own or be a member of an organization
+     * that owns the repository. To check if a repository is available to use as a template, get the
+     * repository's information using the
+     * [Get a repository](https://docs.github.com/rest/repos/repos#get-a-repository) endpoint and
+     * check that the `is_template` key is `true`. OAuth app tokens and personal access tokens
+     * (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo`
+     * scope to create a private repository.
      */
-    fun reposCreateUsingTemplateWithRawResponse(clientConfig: ClientConfig, request: ReposCreateUsingTemplateRequest, options: RequestOptions? = null): SdkResponse<FullRepository> =
-        dev.octri.showcase.github.methods.ReposCreateUsingTemplateOperation.reposCreateUsingTemplateWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateUsingTemplateWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateUsingTemplateRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<FullRepository> =
+        dev.octri.showcase.github.methods.ReposCreateUsingTemplateOperation
+            .reposCreateUsingTemplateWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists all public repositories in the order that they were created. Note: - For GitHub Enterprise Server, this endpoint will only list repositories available to all users on the enterprise. - Pagination is powered exclusively by the `since` parameter. Use the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers) to get the URL for the next page of repositories.
+     * Lists all public repositories in the order that they were created. Note: - For GitHub
+     * Enterprise Server, this endpoint will only list repositories available to all users on the
+     * enterprise. - Pagination is powered exclusively by the `since` parameter. Use the
+     * [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers)
+     * to get the URL for the next page of repositories.
      */
-    fun reposListPublic(clientConfig: ClientConfig, since: Long? = null, options: RequestOptions? = null): List<MinimalRepository> =
+    fun reposListPublic(
+        clientConfig: ClientConfig,
+        since: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MinimalRepository> =
         dev.octri.showcase.github.methods.ReposListPublicOperation.reposListPublic(
             clientConfig,
             since,
@@ -5844,9 +10055,17 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists all public repositories in the order that they were created. Note: - For GitHub Enterprise Server, this endpoint will only list repositories available to all users on the enterprise. - Pagination is powered exclusively by the `since` parameter. Use the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers) to get the URL for the next page of repositories.
+     * Lists all public repositories in the order that they were created. Note: - For GitHub
+     * Enterprise Server, this endpoint will only list repositories available to all users on the
+     * enterprise. - Pagination is powered exclusively by the `since` parameter. Use the
+     * [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers)
+     * to get the URL for the next page of repositories.
      */
-    fun reposListPublicWithRawResponse(clientConfig: ClientConfig, since: Long? = null, options: RequestOptions? = null): SdkResponse<List<MinimalRepository>> =
+    fun reposListPublicWithRawResponse(
+        clientConfig: ClientConfig,
+        since: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<MinimalRepository>> =
         dev.octri.showcase.github.methods.ReposListPublicOperation.reposListPublicWithRawResponse(
             clientConfig,
             since,
@@ -5854,111 +10073,188 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists repositories that the authenticated user has explicit permission (`:read`, `:write`, or `:admin`) to access. The authenticated user has explicit permission to access repositories they own, repositories where they are a collaborator, and repositories that they can access through an organization membership.
+     * Lists repositories that the authenticated user has explicit permission (`:read`, `:write`, or
+     * `:admin`) to access. The authenticated user has explicit permission to access repositories
+     * they own, repositories where they are a collaborator, and repositories that they can access
+     * through an organization membership.
      */
-    fun reposListForAuthenticatedUser(clientConfig: ClientConfig, request: ReposListForAuthenticatedUserRequest, options: RequestOptions? = null): List<Repository> =
-        dev.octri.showcase.github.methods.ReposListForAuthenticatedUserOperation.reposListForAuthenticatedUser(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposListForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        request: ReposListForAuthenticatedUserRequest,
+        options: RequestOptions? = null,
+    ): List<Repository> =
+        dev.octri.showcase.github.methods.ReposListForAuthenticatedUserOperation
+            .reposListForAuthenticatedUser(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists repositories that the authenticated user has explicit permission (`:read`, `:write`, or `:admin`) to access. The authenticated user has explicit permission to access repositories they own, repositories where they are a collaborator, and repositories that they can access through an organization membership.
+     * Lists repositories that the authenticated user has explicit permission (`:read`, `:write`, or
+     * `:admin`) to access. The authenticated user has explicit permission to access repositories
+     * they own, repositories where they are a collaborator, and repositories that they can access
+     * through an organization membership.
      */
-    fun reposListForAuthenticatedUserWithRawResponse(clientConfig: ClientConfig, request: ReposListForAuthenticatedUserRequest, options: RequestOptions? = null): SdkResponse<List<Repository>> =
-        dev.octri.showcase.github.methods.ReposListForAuthenticatedUserOperation.reposListForAuthenticatedUserWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposListForAuthenticatedUserWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListForAuthenticatedUserRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Repository>> =
+        dev.octri.showcase.github.methods.ReposListForAuthenticatedUserOperation
+            .reposListForAuthenticatedUserWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a new repository for the authenticated user. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a private repository.
+     * Creates a new repository for the authenticated user. OAuth app tokens and personal access
+     * tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and
+     * `repo` scope to create a private repository.
      */
-    fun reposCreateForAuthenticatedUser(clientConfig: ClientConfig, request: ReposCreateForAuthenticatedUserRequest, options: RequestOptions? = null): FullRepository =
-        dev.octri.showcase.github.methods.ReposCreateForAuthenticatedUserOperation.reposCreateForAuthenticatedUser(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        request: ReposCreateForAuthenticatedUserRequest,
+        options: RequestOptions? = null,
+    ): FullRepository =
+        dev.octri.showcase.github.methods.ReposCreateForAuthenticatedUserOperation
+            .reposCreateForAuthenticatedUser(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a new repository for the authenticated user. OAuth app tokens and personal access tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and `repo` scope to create a private repository.
+     * Creates a new repository for the authenticated user. OAuth app tokens and personal access
+     * tokens (classic) need the `public_repo` or `repo` scope to create a public repository, and
+     * `repo` scope to create a private repository.
      */
-    fun reposCreateForAuthenticatedUserWithRawResponse(clientConfig: ClientConfig, request: ReposCreateForAuthenticatedUserRequest, options: RequestOptions? = null): SdkResponse<FullRepository> =
-        dev.octri.showcase.github.methods.ReposCreateForAuthenticatedUserOperation.reposCreateForAuthenticatedUserWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun reposCreateForAuthenticatedUserWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposCreateForAuthenticatedUserRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<FullRepository> =
+        dev.octri.showcase.github.methods.ReposCreateForAuthenticatedUserOperation
+            .reposCreateForAuthenticatedUserWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * When authenticating as a user, this endpoint will list all currently open repository invitations for that user.
+     * When authenticating as a user, this endpoint will list all currently open repository
+     * invitations for that user.
      */
-    fun reposListInvitationsForAuthenticatedUser(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<RepositoryInvitation> =
-        dev.octri.showcase.github.methods.ReposListInvitationsForAuthenticatedUserOperation.reposListInvitationsForAuthenticatedUser(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListInvitationsForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<RepositoryInvitation> =
+        dev.octri.showcase.github.methods.ReposListInvitationsForAuthenticatedUserOperation
+            .reposListInvitationsForAuthenticatedUser(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * When authenticating as a user, this endpoint will list all currently open repository invitations for that user.
+     * When authenticating as a user, this endpoint will list all currently open repository
+     * invitations for that user.
      */
-    fun reposListInvitationsForAuthenticatedUserWithRawResponse(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<RepositoryInvitation>> =
-        dev.octri.showcase.github.methods.ReposListInvitationsForAuthenticatedUserOperation.reposListInvitationsForAuthenticatedUserWithRawResponse(
-            clientConfig,
-            perPage,
-            page,
-            options,
-        )
+    fun reposListInvitationsForAuthenticatedUserWithRawResponse(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<RepositoryInvitation>> =
+        dev.octri.showcase.github.methods.ReposListInvitationsForAuthenticatedUserOperation
+            .reposListInvitationsForAuthenticatedUserWithRawResponse(
+                clientConfig,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Accepts a repository invitation for the authenticated user. Use `invitation_id` to identify the invitation to accept. A 204 response confirms acceptance without returning a response body.
+     * Accepts a repository invitation for the authenticated user. Use `invitation_id` to identify
+     * the invitation to accept. A 204 response confirms acceptance without returning a response
+     * body.
      */
-    fun reposAcceptInvitationForAuthenticatedUser(clientConfig: ClientConfig, invitationId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposAcceptInvitationForAuthenticatedUserOperation.reposAcceptInvitationForAuthenticatedUser(
-            clientConfig,
-            invitationId,
-            options,
-        )
+    fun reposAcceptInvitationForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposAcceptInvitationForAuthenticatedUserOperation
+            .reposAcceptInvitationForAuthenticatedUser(
+                clientConfig,
+                invitationId,
+                options,
+            )
 
     /**
-     * Accepts a repository invitation for the authenticated user. Use `invitation_id` to identify the invitation to accept. A 204 response confirms acceptance without returning a response body.
+     * Accepts a repository invitation for the authenticated user. Use `invitation_id` to identify
+     * the invitation to accept. A 204 response confirms acceptance without returning a response
+     * body.
      */
-    fun reposAcceptInvitationForAuthenticatedUserWithRawResponse(clientConfig: ClientConfig, invitationId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposAcceptInvitationForAuthenticatedUserOperation.reposAcceptInvitationForAuthenticatedUserWithRawResponse(
-            clientConfig,
-            invitationId,
-            options,
-        )
+    fun reposAcceptInvitationForAuthenticatedUserWithRawResponse(
+        clientConfig: ClientConfig,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposAcceptInvitationForAuthenticatedUserOperation
+            .reposAcceptInvitationForAuthenticatedUserWithRawResponse(
+                clientConfig,
+                invitationId,
+                options,
+            )
 
     /**
-     * Declines a repository invitation for the authenticated user. Use `invitation_id` to identify the invitation to decline. A 204 response confirms the invitation was declined without returning a response body.
+     * Declines a repository invitation for the authenticated user. Use `invitation_id` to identify
+     * the invitation to decline. A 204 response confirms the invitation was declined without
+     * returning a response body.
      */
-    fun reposDeclineInvitationForAuthenticatedUser(clientConfig: ClientConfig, invitationId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.ReposDeclineInvitationForAuthenticatedUserOperation.reposDeclineInvitationForAuthenticatedUser(
-            clientConfig,
-            invitationId,
-            options,
-        )
+    fun reposDeclineInvitationForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.ReposDeclineInvitationForAuthenticatedUserOperation
+            .reposDeclineInvitationForAuthenticatedUser(
+                clientConfig,
+                invitationId,
+                options,
+            )
 
     /**
-     * Declines a repository invitation for the authenticated user. Use `invitation_id` to identify the invitation to decline. A 204 response confirms the invitation was declined without returning a response body.
+     * Declines a repository invitation for the authenticated user. Use `invitation_id` to identify
+     * the invitation to decline. A 204 response confirms the invitation was declined without
+     * returning a response body.
      */
-    fun reposDeclineInvitationForAuthenticatedUserWithRawResponse(clientConfig: ClientConfig, invitationId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.ReposDeclineInvitationForAuthenticatedUserOperation.reposDeclineInvitationForAuthenticatedUserWithRawResponse(
-            clientConfig,
-            invitationId,
-            options,
-        )
+    fun reposDeclineInvitationForAuthenticatedUserWithRawResponse(
+        clientConfig: ClientConfig,
+        invitationId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.ReposDeclineInvitationForAuthenticatedUserOperation
+            .reposDeclineInvitationForAuthenticatedUserWithRawResponse(
+                clientConfig,
+                invitationId,
+                options,
+            )
 
     /**
-     * Lists public repositories for the specified GitHub user. Filter by repository `type` and sort by `sort` and `direction`; use `page` and `per_page` to paginate the results.
+     * Lists public repositories for the specified GitHub user. Filter by repository `type` and sort
+     * by `sort` and `direction`; use `page` and `per_page` to paginate the results.
      */
-    fun reposListForUser(clientConfig: ClientConfig, request: ReposListForUserRequest, options: RequestOptions? = null): List<MinimalRepository> =
+    fun reposListForUser(
+        clientConfig: ClientConfig,
+        request: ReposListForUserRequest,
+        options: RequestOptions? = null,
+    ): List<MinimalRepository> =
         dev.octri.showcase.github.methods.ReposListForUserOperation.reposListForUser(
             clientConfig,
             request,
@@ -5966,9 +10262,14 @@ data class ReposCheckPrivateVulnerabilityReportingResponse(
         )
 
     /**
-     * Lists public repositories for the specified GitHub user. Filter by repository `type` and sort by `sort` and `direction`; use `page` and `per_page` to paginate the results.
+     * Lists public repositories for the specified GitHub user. Filter by repository `type` and sort
+     * by `sort` and `direction`; use `page` and `per_page` to paginate the results.
      */
-    fun reposListForUserWithRawResponse(clientConfig: ClientConfig, request: ReposListForUserRequest, options: RequestOptions? = null): SdkResponse<List<MinimalRepository>> =
+    fun reposListForUserWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReposListForUserRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<MinimalRepository>> =
         dev.octri.showcase.github.methods.ReposListForUserOperation.reposListForUserWithRawResponse(
             clientConfig,
             request,

@@ -5,12 +5,11 @@ package dev.octri.showcase.github.models
 
 import dev.octri.showcase.github.SdkResource
 
-/**
- * The check_run.created webhook encoded with URL encoding
- */
+/** The check_run.created webhook encoded with URL encoding */
 data class WebhookCheckRunCreatedFormEncoded(
     /**
-     * A URL-encoded string of the check_run.created JSON payload. The decoded payload is a JSON object.
+     * A URL-encoded string of the check_run.created JSON payload. The decoded payload is a JSON
+     * object.
      */
     val payload: String
 ) : SdkResource()

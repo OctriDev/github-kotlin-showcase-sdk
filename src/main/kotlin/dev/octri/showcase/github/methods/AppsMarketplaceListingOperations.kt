@@ -17,122 +17,337 @@ import dev.octri.showcase.github.ValidationError
 
 internal object AppsGetSubscriptionPlanForAccountOperation {
     /**
-     * Shows whether the user or organization account actively subscribes to a plan listed by the authenticated GitHub App. When someone submits a plan change that won't be processed until the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps must use a JWT to access this endpoint. OAuth apps must use basic authentication with their client ID and client secret to access this endpoint.
+     * Shows whether the user or organization account actively subscribes to a plan listed by the
+     * authenticated GitHub App. When someone submits a plan change that won't be processed until
+     * the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps
+     * must use a JWT to access this endpoint. OAuth apps must use basic authentication with their
+     * client ID and client secret to access this endpoint.
      *
      * @param accountId account_id parameter
      */
-    fun appsGetSubscriptionPlanForAccount(clientConfig: ClientConfig, accountId: Long, options: RequestOptions? = null): MarketplacePurchase {
-        return appsGetSubscriptionPlanForAccountWithRawResponse(clientConfig, accountId, options).data
+    fun appsGetSubscriptionPlanForAccount(
+        clientConfig: ClientConfig,
+        accountId: Long,
+        options: RequestOptions? = null,
+    ): MarketplacePurchase {
+        return appsGetSubscriptionPlanForAccountWithRawResponse(clientConfig, accountId, options)
+            .data
     }
 
-
-    /** [appsGetSubscriptionPlanForAccount], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsGetSubscriptionPlanForAccountWithRawResponse(clientConfig: ClientConfig, accountId: Long, options: RequestOptions? = null): SdkResponse<MarketplacePurchase> {
-        return SdkClient.request<MarketplacePurchase>(SdkClient.RequestSpec("GET", "/marketplace_listing/accounts/${SdkClient.encodePathSegment(accountId)}", config = clientConfig, operationId = "appsGetSubscriptionPlanForAccount", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [appsGetSubscriptionPlanForAccount], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun appsGetSubscriptionPlanForAccountWithRawResponse(
+        clientConfig: ClientConfig,
+        accountId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<MarketplacePurchase> {
+        return SdkClient.request<MarketplacePurchase>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/marketplace_listing/accounts/${SdkClient.encodePathSegment(accountId)}",
+                config = clientConfig,
+                operationId = "appsGetSubscriptionPlanForAccount",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("401" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object AppsListPlansOperation {
     /**
-     * Lists all plans that are part of your GitHub Marketplace listing. GitHub Apps must use a JWT to access this endpoint. OAuth apps must use basic authentication with their client ID and client secret to access this endpoint.
+     * Lists all plans that are part of your GitHub Marketplace listing. GitHub Apps must use a JWT
+     * to access this endpoint. OAuth apps must use basic authentication with their client ID and
+     * client secret to access this endpoint.
      *
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun appsListPlans(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MarketplaceListingPlan> {
+    fun appsListPlans(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MarketplaceListingPlan> {
         return appsListPlansWithRawResponse(clientConfig, perPage, page, options).data
     }
 
-
-    /** [appsListPlans], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsListPlansWithRawResponse(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<MarketplaceListingPlan>> {
-        return SdkClient.request<List<MarketplaceListingPlan>>(SdkClient.RequestSpec("GET", "/marketplace_listing/plans", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListPlans", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [appsListPlans], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun appsListPlansWithRawResponse(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<MarketplaceListingPlan>> {
+        return SdkClient.request<List<MarketplaceListingPlan>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/marketplace_listing/plans",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "appsListPlans",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("401" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object AppsListAccountsForPlanOperation {
     /**
-     * Returns user and organization accounts associated with the specified plan, including free plans. For per-seat pricing, you see the list of accounts that have purchased the plan, including the number of seats purchased. When someone submits a plan change that won't be processed until the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps must use a JWT to access this endpoint. OAuth apps must use basic authentication with their client ID…
+     * Returns user and organization accounts associated with the specified plan, including free
+     * plans. For per-seat pricing, you see the list of accounts that have purchased the plan,
+     * including the number of seats purchased. When someone submits a plan change that won't be
+     * processed until the end of their billing cycle, you will also see the upcoming pending
+     * change. GitHub Apps must use a JWT to access this endpoint. OAuth apps must use basic
+     * authentication with their client ID…
      *
      * @param planId The unique identifier of the plan.
      * @param sort The property to sort the results by.
-     * @param direction To return the oldest accounts first, set to `asc`. Ignored
-     *   without the `sort` parameter.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param direction To return the oldest accounts first, set to `asc`. Ignored without the
+     *   `sort` parameter.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun appsListAccountsForPlan(clientConfig: ClientConfig, planId: Long, sort: SchemaSchemaEnum2e5fa964? = null, direction: AppsListAccountsForPlanParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MarketplacePurchase> {
-        return appsListAccountsForPlanWithRawResponse(clientConfig, planId, sort, direction, perPage, page, options).data
+    fun appsListAccountsForPlan(
+        clientConfig: ClientConfig,
+        planId: Long,
+        sort: SchemaSchemaEnum2e5fa964? = null,
+        direction: AppsListAccountsForPlanParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MarketplacePurchase> {
+        return appsListAccountsForPlanWithRawResponse(
+                clientConfig,
+                planId,
+                sort,
+                direction,
+                perPage,
+                page,
+                options,
+            )
+            .data
     }
 
-
-    /** [appsListAccountsForPlan], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsListAccountsForPlanWithRawResponse(clientConfig: ClientConfig, planId: Long, sort: SchemaSchemaEnum2e5fa964? = null, direction: AppsListAccountsForPlanParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<MarketplacePurchase>> {
-        return SdkClient.request<List<MarketplacePurchase>>(SdkClient.RequestSpec("GET", "/marketplace_listing/plans/${SdkClient.encodePathSegment(planId)}/accounts", config = clientConfig, query = mapOf("sort" to SdkClient.queryValue(sort, "form", true), "direction" to SdkClient.queryValue(direction, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListAccountsForPlan", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    /**
+     * [appsListAccountsForPlan], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun appsListAccountsForPlanWithRawResponse(
+        clientConfig: ClientConfig,
+        planId: Long,
+        sort: SchemaSchemaEnum2e5fa964? = null,
+        direction: AppsListAccountsForPlanParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<MarketplacePurchase>> {
+        return SdkClient.request<List<MarketplacePurchase>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/marketplace_listing/plans/${SdkClient.encodePathSegment(planId)}/accounts",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "sort" to SdkClient.queryValue(sort, "form", true),
+                        "direction" to SdkClient.queryValue(direction, "form", true),
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "appsListAccountsForPlan",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object AppsGetSubscriptionPlanForAccountStubbedOperation {
     /**
-     * Shows whether the user or organization account actively subscribes to a plan listed by the authenticated GitHub App. When someone submits a plan change that won't be processed until the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps must use a JWT to access this endpoint. OAuth apps must use basic authentication with their client ID and client secret to access this endpoint.
+     * Shows whether the user or organization account actively subscribes to a plan listed by the
+     * authenticated GitHub App. When someone submits a plan change that won't be processed until
+     * the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps
+     * must use a JWT to access this endpoint. OAuth apps must use basic authentication with their
+     * client ID and client secret to access this endpoint.
      *
      * @param accountId account_id parameter
      */
-    fun appsGetSubscriptionPlanForAccountStubbed(clientConfig: ClientConfig, accountId: Long, options: RequestOptions? = null): MarketplacePurchase {
-        return appsGetSubscriptionPlanForAccountStubbedWithRawResponse(clientConfig, accountId, options).data
+    fun appsGetSubscriptionPlanForAccountStubbed(
+        clientConfig: ClientConfig,
+        accountId: Long,
+        options: RequestOptions? = null,
+    ): MarketplacePurchase {
+        return appsGetSubscriptionPlanForAccountStubbedWithRawResponse(
+                clientConfig,
+                accountId,
+                options,
+            )
+            .data
     }
 
-
-    /** [appsGetSubscriptionPlanForAccountStubbed], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsGetSubscriptionPlanForAccountStubbedWithRawResponse(clientConfig: ClientConfig, accountId: Long, options: RequestOptions? = null): SdkResponse<MarketplacePurchase> {
-        return SdkClient.request<MarketplacePurchase>(SdkClient.RequestSpec("GET", "/marketplace_listing/stubbed/accounts/${SdkClient.encodePathSegment(accountId)}", config = clientConfig, operationId = "appsGetSubscriptionPlanForAccountStubbed", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java)))
+    /**
+     * [appsGetSubscriptionPlanForAccountStubbed], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun appsGetSubscriptionPlanForAccountStubbedWithRawResponse(
+        clientConfig: ClientConfig,
+        accountId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<MarketplacePurchase> {
+        return SdkClient.request<MarketplacePurchase>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/marketplace_listing/stubbed/accounts/${SdkClient.encodePathSegment(accountId)}",
+                config = clientConfig,
+                operationId = "appsGetSubscriptionPlanForAccountStubbed",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("401" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object AppsListPlansStubbedOperation {
     /**
-     * Lists all plans that are part of your GitHub Marketplace listing. GitHub Apps must use a JWT to access this endpoint. OAuth apps must use basic authentication with their client ID and client secret to access this endpoint.
+     * Lists all plans that are part of your GitHub Marketplace listing. GitHub Apps must use a JWT
+     * to access this endpoint. OAuth apps must use basic authentication with their client ID and
+     * client secret to access this endpoint.
      *
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun appsListPlansStubbed(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MarketplaceListingPlan> {
+    fun appsListPlansStubbed(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MarketplaceListingPlan> {
         return appsListPlansStubbedWithRawResponse(clientConfig, perPage, page, options).data
     }
 
-
-    /** [appsListPlansStubbed], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsListPlansStubbedWithRawResponse(clientConfig: ClientConfig, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<MarketplaceListingPlan>> {
-        return SdkClient.request<List<MarketplaceListingPlan>>(SdkClient.RequestSpec("GET", "/marketplace_listing/stubbed/plans", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListPlansStubbed", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java)))
+    /**
+     * [appsListPlansStubbed], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun appsListPlansStubbedWithRawResponse(
+        clientConfig: ClientConfig,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<MarketplaceListingPlan>> {
+        return SdkClient.request<List<MarketplaceListingPlan>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/marketplace_listing/stubbed/plans",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "appsListPlansStubbed",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("401" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object AppsListAccountsForPlanStubbedOperation {
     /**
-     * Returns repository and organization accounts associated with the specified plan, including free plans. For per-seat pricing, you see the list of accounts that have purchased the plan, including the number of seats purchased. When someone submits a plan change that won't be processed until the end of their billing cycle, you will also see the upcoming pending change. GitHub Apps must use a JWT to access this endpoint. OAuth apps must use basic authentication with their client…
+     * Returns repository and organization accounts associated with the specified plan, including
+     * free plans. For per-seat pricing, you see the list of accounts that have purchased the plan,
+     * including the number of seats purchased. When someone submits a plan change that won't be
+     * processed until the end of their billing cycle, you will also see the upcoming pending
+     * change. GitHub Apps must use a JWT to access this endpoint. OAuth apps must use basic
+     * authentication with their client…
      *
      * @param planId The unique identifier of the plan.
      * @param sort The property to sort the results by.
-     * @param direction To return the oldest accounts first, set to `asc`. Ignored
-     *   without the `sort` parameter.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param direction To return the oldest accounts first, set to `asc`. Ignored without the
+     *   `sort` parameter.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun appsListAccountsForPlanStubbed(clientConfig: ClientConfig, planId: Long, sort: SchemaSchemaEnum2e5fa964? = null, direction: AppsListAccountsForPlanStubbedParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<MarketplacePurchase> {
-        return appsListAccountsForPlanStubbedWithRawResponse(clientConfig, planId, sort, direction, perPage, page, options).data
+    fun appsListAccountsForPlanStubbed(
+        clientConfig: ClientConfig,
+        planId: Long,
+        sort: SchemaSchemaEnum2e5fa964? = null,
+        direction: AppsListAccountsForPlanStubbedParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<MarketplacePurchase> {
+        return appsListAccountsForPlanStubbedWithRawResponse(
+                clientConfig,
+                planId,
+                sort,
+                direction,
+                perPage,
+                page,
+                options,
+            )
+            .data
     }
 
-
-    /** [appsListAccountsForPlanStubbed], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsListAccountsForPlanStubbedWithRawResponse(clientConfig: ClientConfig, planId: Long, sort: SchemaSchemaEnum2e5fa964? = null, direction: AppsListAccountsForPlanStubbedParameterEnum? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<MarketplacePurchase>> {
-        return SdkClient.request<List<MarketplacePurchase>>(SdkClient.RequestSpec("GET", "/marketplace_listing/stubbed/plans/${SdkClient.encodePathSegment(planId)}/accounts", config = clientConfig, query = mapOf("sort" to SdkClient.queryValue(sort, "form", true), "direction" to SdkClient.queryValue(direction, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "appsListAccountsForPlanStubbed", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java)))
+    /**
+     * [appsListAccountsForPlanStubbed], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun appsListAccountsForPlanStubbedWithRawResponse(
+        clientConfig: ClientConfig,
+        planId: Long,
+        sort: SchemaSchemaEnum2e5fa964? = null,
+        direction: AppsListAccountsForPlanStubbedParameterEnum? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<MarketplacePurchase>> {
+        return SdkClient.request<List<MarketplacePurchase>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/marketplace_listing/stubbed/plans/${SdkClient.encodePathSegment(planId)}/accounts",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "sort" to SdkClient.queryValue(sort, "form", true),
+                        "direction" to SdkClient.queryValue(direction, "form", true),
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "appsListAccountsForPlanStubbed",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("401" to BasicError::class.java),
+            )
+        )
     }
 }

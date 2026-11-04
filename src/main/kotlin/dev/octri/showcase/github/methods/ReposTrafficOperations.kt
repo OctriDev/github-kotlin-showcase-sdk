@@ -16,22 +16,47 @@ import dev.octri.showcase.github.ViewTraffic
 
 internal object ReposGetClonesOperation {
     /**
-     * Get the total number of clones and breakdown per day or week for the last 14 days. Timestamps are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
+     * Get the total number of clones and breakdown per day or week for the last 14 days. Timestamps
+     * are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param per The time frame to display results for.
      */
-    fun reposGetClones(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): CloneTraffic {
+    fun reposGetClones(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): CloneTraffic {
         return reposGetClonesWithRawResponse(clientConfig, owner, repo, per, options).data
     }
 
-
-    /** [reposGetClones], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposGetClonesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): SdkResponse<CloneTraffic> {
-        return SdkClient.request<CloneTraffic>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/clones", config = clientConfig, query = mapOf("per" to SdkClient.queryValue(per, "form", true)), operationId = "reposGetClones", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java)))
+    /**
+     * [reposGetClones], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun reposGetClonesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<CloneTraffic> {
+        return SdkClient.request<CloneTraffic>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/clones",
+                config = clientConfig,
+                query = mapOf("per" to SdkClient.queryValue(per, "form", true)),
+                operationId = "reposGetClones",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 }
 
@@ -39,61 +64,129 @@ internal object ReposGetTopPathsOperation {
     /**
      * Get the top 10 popular contents over the last 14 days.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetTopPaths(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<ContentTraffic> {
+    fun reposGetTopPaths(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<ContentTraffic> {
         return reposGetTopPathsWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [reposGetTopPaths], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposGetTopPathsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<ContentTraffic>> {
-        return SdkClient.request<List<ContentTraffic>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/popular/paths", config = clientConfig, operationId = "reposGetTopPaths", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java)))
+    /**
+     * [reposGetTopPaths], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun reposGetTopPathsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<ContentTraffic>> {
+        return SdkClient.request<List<ContentTraffic>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/popular/paths",
+                config = clientConfig,
+                operationId = "reposGetTopPaths",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposGetTopReferrersOperation {
     /**
-     * Retrieves the top 10 referral sources for a repository over the last 14 days. Use this endpoint to review which sources drive visits to the repository.
+     * Retrieves the top 10 referral sources for a repository over the last 14 days. Use this
+     * endpoint to review which sources drive visits to the repository.
      *
      * Get the top 10 referrers over the last 14 days.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetTopReferrers(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<ReferrerTraffic> {
+    fun reposGetTopReferrers(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<ReferrerTraffic> {
         return reposGetTopReferrersWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [reposGetTopReferrers], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposGetTopReferrersWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<ReferrerTraffic>> {
-        return SdkClient.request<List<ReferrerTraffic>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/popular/referrers", config = clientConfig, operationId = "reposGetTopReferrers", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java)))
+    /**
+     * [reposGetTopReferrers], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun reposGetTopReferrersWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<ReferrerTraffic>> {
+        return SdkClient.request<List<ReferrerTraffic>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/popular/referrers",
+                config = clientConfig,
+                operationId = "reposGetTopReferrers",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposGetViewsOperation {
     /**
-     * Get the total number of views and breakdown per day or week for the last 14 days. Timestamps are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
+     * Get the total number of views and breakdown per day or week for the last 14 days. Timestamps
+     * are aligned to UTC midnight of the beginning of the day or week. Week begins on Monday.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param per The time frame to display results for.
      */
-    fun reposGetViews(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): ViewTraffic {
+    fun reposGetViews(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): ViewTraffic {
         return reposGetViewsWithRawResponse(clientConfig, owner, repo, per, options).data
     }
 
-
-    /** [reposGetViews], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposGetViewsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, per: SchemaSchemaEnumd984713f? = null, options: RequestOptions? = null): SdkResponse<ViewTraffic> {
-        return SdkClient.request<ViewTraffic>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/views", config = clientConfig, query = mapOf("per" to SdkClient.queryValue(per, "form", true)), operationId = "reposGetViews", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java)))
+    /**
+     * [reposGetViews], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun reposGetViewsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        per: SchemaSchemaEnumd984713f? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ViewTraffic> {
+        return SdkClient.request<ViewTraffic>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/traffic/views",
+                config = clientConfig,
+                query = mapOf("per" to SdkClient.queryValue(per, "form", true)),
+                operationId = "reposGetViews",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java),
+            )
+        )
     }
 }

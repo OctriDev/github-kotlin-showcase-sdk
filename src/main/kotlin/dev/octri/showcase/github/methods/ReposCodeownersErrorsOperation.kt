@@ -11,22 +11,46 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object ReposCodeownersErrorsOperation {
     /**
-     * List any syntax errors that are detected in the CODEOWNERS file. For more information about the correct CODEOWNERS syntax, see "About code owners."
+     * List any syntax errors that are detected in the CODEOWNERS file. For more information about
+     * the correct CODEOWNERS syntax, see "About code owners."
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref A branch, tag or commit name used to determine which version of the
-     *   CODEOWNERS file to use. Default: the repository's default branch (e.g. `main`)
+     * @param ref A branch, tag or commit name used to determine which version of the CODEOWNERS
+     *   file to use. Default: the repository's default branch (e.g. `main`)
      */
-    fun reposCodeownersErrors(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): CodeownersErrors {
+    fun reposCodeownersErrors(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): CodeownersErrors {
         return reposCodeownersErrorsWithRawResponse(clientConfig, owner, repo, ref, options).data
     }
 
-
-    /** [reposCodeownersErrors], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposCodeownersErrorsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): SdkResponse<CodeownersErrors> {
-        return SdkClient.request<CodeownersErrors>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codeowners/errors", config = clientConfig, query = mapOf("ref" to SdkClient.queryValue(ref, "form", true)), operationId = "reposCodeownersErrors", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [reposCodeownersErrors], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun reposCodeownersErrorsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<CodeownersErrors> {
+        return SdkClient.request<CodeownersErrors>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/codeowners/errors",
+                config = clientConfig,
+                query = mapOf("ref" to SdkClient.queryValue(ref, "form", true)),
+                operationId = "reposCodeownersErrors",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

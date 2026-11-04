@@ -15,316 +15,752 @@ import dev.octri.showcase.github.Validation
 
 internal object DependabotListOrgSecretsOperation {
     /**
-     * Lists all secrets available in an organization without revealing their encrypted values. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists all secrets available in an organization without revealing their encrypted values.
+     * OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun dependabotListOrgSecrets(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Dependabot.DependabotListOrgSecretsResponse {
-        return dependabotListOrgSecretsWithRawResponse(clientConfig, org, perPage, page, options).data
+    fun dependabotListOrgSecrets(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Dependabot.DependabotListOrgSecretsResponse {
+        return dependabotListOrgSecretsWithRawResponse(clientConfig, org, perPage, page, options)
+            .data
     }
 
-
-    /** [dependabotListOrgSecrets], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotListOrgSecretsWithRawResponse(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<Dependabot.DependabotListOrgSecretsResponse> {
-        return SdkClient.request<Dependabot.DependabotListOrgSecretsResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "dependabotListOrgSecrets", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [dependabotListOrgSecrets], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotListOrgSecretsWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Dependabot.DependabotListOrgSecretsResponse> {
+        return SdkClient.request<Dependabot.DependabotListOrgSecretsResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "dependabotListOrgSecrets",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotGetOrgPublicKeyOperation {
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. OAuth app tokens and personal access tokens (classic) need
+     * the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun dependabotGetOrgPublicKey(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): DependabotPublicKey {
+    fun dependabotGetOrgPublicKey(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): DependabotPublicKey {
         return dependabotGetOrgPublicKeyWithRawResponse(clientConfig, org, options).data
     }
 
-
-    /** [dependabotGetOrgPublicKey], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotGetOrgPublicKeyWithRawResponse(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SdkResponse<DependabotPublicKey> {
-        return SdkClient.request<DependabotPublicKey>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/public-key", config = clientConfig, operationId = "dependabotGetOrgPublicKey", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [dependabotGetOrgPublicKey], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotGetOrgPublicKeyWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<DependabotPublicKey> {
+        return SdkClient.request<DependabotPublicKey>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/public-key",
+                config = clientConfig,
+                operationId = "dependabotGetOrgPublicKey",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotGetOrgSecretOperation {
     /**
-     * Gets a single organization secret without revealing its encrypted value. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets a single organization secret without revealing its encrypted value. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun dependabotGetOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): OrganizationDependabotSecret {
+    fun dependabotGetOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): OrganizationDependabotSecret {
         return dependabotGetOrgSecretWithRawResponse(clientConfig, org, secretName, options).data
     }
 
-
-    /** [dependabotGetOrgSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotGetOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): SdkResponse<OrganizationDependabotSecret> {
-        return SdkClient.request<OrganizationDependabotSecret>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "dependabotGetOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [dependabotGetOrgSecret], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun dependabotGetOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<OrganizationDependabotSecret> {
+        return SdkClient.request<OrganizationDependabotSecret>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}",
+                config = clientConfig,
+                operationId = "dependabotGetOrgSecret",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotCreateOrUpdateOrgSecretOperation {
     /**
-     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using
+     * LibSodium. For more information, see "Encrypting secrets for the REST API." OAuth app tokens
+     * and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param visibility Which type of organization repositories have access to the
-     *   organization secret. `selected` means only the repositories specified by
-     *   `selected_repository_ids` can access the secret.
-     * @param encryptedValue Value for your secret, encrypted with LibSodium using
-     *   the public key retrieved from the Get an organization public key endpoint.
+     * @param visibility Which type of organization repositories have access to the organization
+     *   secret. `selected` means only the repositories specified by `selected_repository_ids` can
+     *   access the secret.
+     * @param encryptedValue Value for your secret, encrypted with LibSodium using the public key
+     *   retrieved from the Get an organization public key endpoint.
      * @param keyId ID of the key you used to encrypt the secret.
-     * @param selectedRepositoryIds An array of repository ids that can access the
-     *   organization secret. You can only provide a list of repository ids when the
-     *   `visibility` is set to `selected`. You can manage the list of selected
-     *   repositories using the List selected repositories for an organization secret,
-     *   Set selected repositories for an organization secret, and Remove selected
-     *   repository from an organization secret endpoints.
+     * @param selectedRepositoryIds An array of repository ids that can access the organization
+     *   secret. You can only provide a list of repository ids when the `visibility` is set to
+     *   `selected`. You can manage the list of selected repositories using the List selected
+     *   repositories for an organization secret, Set selected repositories for an organization
+     *   secret, and Remove selected repository from an organization secret endpoints.
      */
-    fun dependabotCreateOrUpdateOrgSecret(clientConfig: ClientConfig, request: Dependabot.DependabotCreateOrUpdateOrgSecretRequest, options: RequestOptions? = null): EmptyObject {
+    fun dependabotCreateOrUpdateOrgSecret(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotCreateOrUpdateOrgSecretRequest,
+        options: RequestOptions? = null,
+    ): EmptyObject {
         return dependabotCreateOrUpdateOrgSecretWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [dependabotCreateOrUpdateOrgSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotCreateOrUpdateOrgSecretWithRawResponse(clientConfig: ClientConfig, request: Dependabot.DependabotCreateOrUpdateOrgSecretRequest, options: RequestOptions? = null): SdkResponse<EmptyObject> {
+    /**
+     * [dependabotCreateOrUpdateOrgSecret], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun dependabotCreateOrUpdateOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotCreateOrUpdateOrgSecretRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> {
         validateDependabotCreateOrUpdateOrgSecretRequest(request)
 
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(request.org)}/dependabot/secrets/${SdkClient.encodePathSegment(request.secretName)}", config = clientConfig, body = SdkClient.bodyMap("visibility" to (request.visibility), "encrypted_value" to
-    (SdkClient.omitIfNull(request.encryptedValue)), "key_id" to (SdkClient.omitIfNull(request.keyId)), "selected_repository_ids" to
-    (SdkClient.omitIfNull(request.selectedRepositoryIds))), operationId = "dependabotCreateOrUpdateOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<EmptyObject>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(request.org)}/dependabot/secrets/${SdkClient.encodePathSegment(request.secretName)}",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "visibility" to (request.visibility),
+                        "encrypted_value" to (SdkClient.omitIfNull(request.encryptedValue)),
+                        "key_id" to (SdkClient.omitIfNull(request.keyId)),
+                        "selected_repository_ids" to
+                            (SdkClient.omitIfNull(request.selectedRepositoryIds)),
+                    ),
+                operationId = "dependabotCreateOrUpdateOrgSecret",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 
-
-    private fun validateDependabotCreateOrUpdateOrgSecretRequest(request: Dependabot.DependabotCreateOrUpdateOrgSecretRequest) {
+    private fun validateDependabotCreateOrUpdateOrgSecretRequest(
+        request: Dependabot.DependabotCreateOrUpdateOrgSecretRequest
+    ) {
         if (request.encryptedValue != null) {
-            Validation.validatePattern("encrypted_value", request.encryptedValue, "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$")
-}
+            Validation.validatePattern(
+                "encrypted_value",
+                request.encryptedValue,
+                "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$",
+            )
+        }
     }
 }
 
 internal object DependabotDeleteOrgSecretOperation {
     /**
-     * Deletes a secret in an organization using the secret name. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Deletes a secret in an organization using the secret name. OAuth app tokens and personal
+     * access tokens (classic) need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun dependabotDeleteOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): Unit {
+    fun dependabotDeleteOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit {
         return dependabotDeleteOrgSecretWithRawResponse(clientConfig, org, secretName, options).data
     }
 
-
-    /** [dependabotDeleteOrgSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotDeleteOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "dependabotDeleteOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [dependabotDeleteOrgSecret], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotDeleteOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}",
+                config = clientConfig,
+                operationId = "dependabotDeleteOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotListSelectedReposForOrgSecretOperation {
     /**
-     * Lists all repositories that have been selected when the `visibility` for repository access to a secret is set to `selected`. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists all repositories that have been selected when the `visibility` for repository access to
+     * a secret is set to `selected`. OAuth app tokens and personal access tokens (classic) need the
+     * `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun dependabotListSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): Dependabot.DependabotListSelectedReposForOrgSecretResponse {
-        return dependabotListSelectedReposForOrgSecretWithRawResponse(clientConfig, org, secretName, page, perPage, options).data
+    fun dependabotListSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): Dependabot.DependabotListSelectedReposForOrgSecretResponse {
+        return dependabotListSelectedReposForOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                page,
+                perPage,
+                options,
+            )
+            .data
     }
 
-
-    /** [dependabotListSelectedReposForOrgSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotListSelectedReposForOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): SdkResponse<Dependabot.DependabotListSelectedReposForOrgSecretResponse> {
-        return SdkClient.request<Dependabot.DependabotListSelectedReposForOrgSecretResponse>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}/repositories", config = clientConfig, query = mapOf("page" to SdkClient.queryValue(page, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true)), operationId = "dependabotListSelectedReposForOrgSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [dependabotListSelectedReposForOrgSecret], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun dependabotListSelectedReposForOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Dependabot.DependabotListSelectedReposForOrgSecretResponse> {
+        return SdkClient.request<Dependabot.DependabotListSelectedReposForOrgSecretResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}/repositories",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "page" to SdkClient.queryValue(page, "form", true),
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                    ),
+                operationId = "dependabotListSelectedReposForOrgSecret",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotSetSelectedReposForOrgSecretOperation {
     /**
-     * Replaces all repositories for an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you Create or update an organization secret. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Replaces all repositories for an organization secret when the `visibility` for repository
+     * access is set to `selected`. The visibility is set when you Create or update an organization
+     * secret. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
-     * @param selectedRepositoryIds An array of repository ids that can access the
-     *   organization secret. You can only provide a list of repository ids when the
-     *   `visibility` is set to `selected`. You can add and remove individual
-     *   repositories using the Set selected repositories for an organization secret
-     *   and Remove selected repository from an organization secret endpoints.
+     * @param selectedRepositoryIds An array of repository ids that can access the organization
+     *   secret. You can only provide a list of repository ids when the `visibility` is set to
+     *   `selected`. You can add and remove individual repositories using the Set selected
+     *   repositories for an organization secret and Remove selected repository from an organization
+     *   secret endpoints.
      */
-    fun dependabotSetSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit {
-        return dependabotSetSelectedReposForOrgSecretWithRawResponse(clientConfig, org, secretName, selectedRepositoryIds, options).data
+    fun dependabotSetSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dependabotSetSelectedReposForOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                selectedRepositoryIds,
+                options,
+            )
+            .data
     }
 
-
-    /** [dependabotSetSelectedReposForOrgSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotSetSelectedReposForOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}/repositories", config = clientConfig, body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)), operationId = "dependabotSetSelectedReposForOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [dependabotSetSelectedReposForOrgSecret], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun dependabotSetSelectedReposForOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}/repositories",
+                config = clientConfig,
+                body = SdkClient.bodyMap("selected_repository_ids" to (selectedRepositoryIds)),
+                operationId = "dependabotSetSelectedReposForOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotAddSelectedRepoToOrgSecretOperation {
     /**
-     * Adds a repository to an organization secret's selected repository list. Use this operation when the secret's repository `visibility` is set to `selected`; OAuth app tokens and personal access tokens (classic) need the `admin:org` scope.
+     * Adds a repository to an organization secret's selected repository list. Use this operation
+     * when the secret's repository `visibility` is set to `selected`; OAuth app tokens and personal
+     * access tokens (classic) need the `admin:org` scope.
      *
-     * Adds a repository to an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you Create or update an organization secret. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Adds a repository to an organization secret when the `visibility` for repository access is
+     * set to `selected`. The visibility is set when you Create or update an organization secret.
+     * OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun dependabotAddSelectedRepoToOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        return dependabotAddSelectedRepoToOrgSecretWithRawResponse(clientConfig, org, secretName, repositoryId, options).data
+    fun dependabotAddSelectedRepoToOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dependabotAddSelectedRepoToOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                repositoryId,
+                options,
+            )
+            .data
     }
 
-
-    /** [dependabotAddSelectedRepoToOrgSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotAddSelectedRepoToOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "dependabotAddSelectedRepoToOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [dependabotAddSelectedRepoToOrgSecret], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun dependabotAddSelectedRepoToOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "dependabotAddSelectedRepoToOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotRemoveSelectedRepoFromOrgSecretOperation {
     /**
-     * Removes a repository from an organization secret's selected repository list. Use this operation when the secret's repository `visibility` is set to `selected`; OAuth app tokens and personal access tokens (classic) need the `admin:org` scope.
+     * Removes a repository from an organization secret's selected repository list. Use this
+     * operation when the secret's repository `visibility` is set to `selected`; OAuth app tokens
+     * and personal access tokens (classic) need the `admin:org` scope.
      *
-     * Removes a repository from an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you Create or update an organization secret. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Removes a repository from an organization secret when the `visibility` for repository access
+     * is set to `selected`. The visibility is set when you Create or update an organization secret.
+     * OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this
+     * endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun dependabotRemoveSelectedRepoFromOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit {
-        return dependabotRemoveSelectedRepoFromOrgSecretWithRawResponse(clientConfig, org, secretName, repositoryId, options).data
+    fun dependabotRemoveSelectedRepoFromOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dependabotRemoveSelectedRepoFromOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                repositoryId,
+                options,
+            )
+            .data
     }
 
-
-    /** [dependabotRemoveSelectedRepoFromOrgSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotRemoveSelectedRepoFromOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}", config = clientConfig, operationId = "dependabotRemoveSelectedRepoFromOrgSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [dependabotRemoveSelectedRepoFromOrgSecret], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun dependabotRemoveSelectedRepoFromOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}/repositories/${SdkClient.encodePathSegment(repositoryId)}",
+                config = clientConfig,
+                operationId = "dependabotRemoveSelectedRepoFromOrgSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotListRepoSecretsOperation {
     /**
-     * Lists all secrets available in a repository without revealing their encrypted values. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all secrets available in a repository without revealing their encrypted values. OAuth
+     * app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun dependabotListRepoSecrets(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): Dependabot.DependabotListRepoSecretsResponse {
-        return dependabotListRepoSecretsWithRawResponse(clientConfig, owner, repo, perPage, page, options).data
+    fun dependabotListRepoSecrets(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): Dependabot.DependabotListRepoSecretsResponse {
+        return dependabotListRepoSecretsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
+            .data
     }
 
-
-    /** [dependabotListRepoSecrets], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotListRepoSecretsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<Dependabot.DependabotListRepoSecretsResponse> {
-        return SdkClient.request<Dependabot.DependabotListRepoSecretsResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "dependabotListRepoSecrets", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [dependabotListRepoSecrets], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotListRepoSecretsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Dependabot.DependabotListRepoSecretsResponse> {
+        return SdkClient.request<Dependabot.DependabotListRepoSecretsResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "dependabotListRepoSecrets",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotGetRepoPublicKeyOperation {
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint if the repository is private.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. Anyone with read access to the repository can use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint if the repository is private.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun dependabotGetRepoPublicKey(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): DependabotPublicKey {
+    fun dependabotGetRepoPublicKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): DependabotPublicKey {
         return dependabotGetRepoPublicKeyWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [dependabotGetRepoPublicKey], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotGetRepoPublicKeyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<DependabotPublicKey> {
-        return SdkClient.request<DependabotPublicKey>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets/public-key", config = clientConfig, operationId = "dependabotGetRepoPublicKey", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [dependabotGetRepoPublicKey], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotGetRepoPublicKeyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<DependabotPublicKey> {
+        return SdkClient.request<DependabotPublicKey>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets/public-key",
+                config = clientConfig,
+                operationId = "dependabotGetRepoPublicKey",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotGetRepoSecretOperation {
     /**
-     * Gets a single repository secret without revealing its encrypted value. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single repository secret without revealing its encrypted value. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun dependabotGetRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): DependabotSecret {
-        return dependabotGetRepoSecretWithRawResponse(clientConfig, owner, repo, secretName, options).data
+    fun dependabotGetRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): DependabotSecret {
+        return dependabotGetRepoSecretWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                options,
+            )
+            .data
     }
 
-
-    /** [dependabotGetRepoSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotGetRepoSecretWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): SdkResponse<DependabotSecret> {
-        return SdkClient.request<DependabotSecret>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "dependabotGetRepoSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [dependabotGetRepoSecret], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotGetRepoSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<DependabotSecret> {
+        return SdkClient.request<DependabotSecret>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}",
+                config = clientConfig,
+                operationId = "dependabotGetRepoSecret",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotCreateOrUpdateRepoSecretOperation {
     /**
-     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using
+     * LibSodium. For more information, see "Encrypting secrets for the REST API." OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param secretName The name of the secret.
-     * @param encryptedValue Value for your secret, encrypted with LibSodium using
-     *   the public key retrieved from the Get a repository public key endpoint.
+     * @param encryptedValue Value for your secret, encrypted with LibSodium using the public key
+     *   retrieved from the Get a repository public key endpoint.
      * @param keyId ID of the key you used to encrypt the secret.
      */
-    fun dependabotCreateOrUpdateRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, encryptedValue: String? = null, keyId: String? = null, options: RequestOptions? = null): EmptyObject {
-        return dependabotCreateOrUpdateRepoSecretWithRawResponse(clientConfig, owner, repo, secretName, encryptedValue, keyId, options).data
+    fun dependabotCreateOrUpdateRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        encryptedValue: String? = null,
+        keyId: String? = null,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return dependabotCreateOrUpdateRepoSecretWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                encryptedValue,
+                keyId,
+                options,
+            )
+            .data
     }
 
-
-    /** [dependabotCreateOrUpdateRepoSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotCreateOrUpdateRepoSecretWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, encryptedValue: String? = null, keyId: String? = null, options: RequestOptions? = null): SdkResponse<EmptyObject> {
+    /**
+     * [dependabotCreateOrUpdateRepoSecret], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun dependabotCreateOrUpdateRepoSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        encryptedValue: String? = null,
+        keyId: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> {
         if (encryptedValue != null) {
-            Validation.validatePattern("encrypted_value", encryptedValue, "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$")
-}
+            Validation.validatePattern(
+                "encrypted_value",
+                encryptedValue,
+                "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$",
+            )
+        }
 
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, body = SdkClient.bodyMap("encrypted_value" to (SdkClient.omitIfNull(encryptedValue)), "key_id" to (SdkClient.omitIfNull(keyId))), operationId = "dependabotCreateOrUpdateRepoSecret", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<EmptyObject>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "encrypted_value" to (SdkClient.omitIfNull(encryptedValue)),
+                        "key_id" to (SdkClient.omitIfNull(keyId)),
+                    ),
+                operationId = "dependabotCreateOrUpdateRepoSecret",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object DependabotDeleteRepoSecretOperation {
     /**
-     * Deletes a secret in a repository using the secret name. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in a repository using the secret name. OAuth app tokens and personal access
+     * tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param secretName The name of the secret.
      */
-    fun dependabotDeleteRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): Unit {
-        return dependabotDeleteRepoSecretWithRawResponse(clientConfig, owner, repo, secretName, options).data
+    fun dependabotDeleteRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dependabotDeleteRepoSecretWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                options,
+            )
+            .data
     }
 
-
-    /** [dependabotDeleteRepoSecret], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotDeleteRepoSecretWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}", config = clientConfig, operationId = "dependabotDeleteRepoSecret", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [dependabotDeleteRepoSecret], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotDeleteRepoSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/secrets/${SdkClient.encodePathSegment(secretName)}",
+                config = clientConfig,
+                operationId = "dependabotDeleteRepoSecret",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

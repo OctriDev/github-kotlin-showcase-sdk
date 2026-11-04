@@ -22,28 +22,30 @@ import dev.octri.showcase.github.ServiceUnavailable
 object CodeQuality {
 
     /**
-     * Lists code quality findings for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Lists code quality findings for a repository. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint with private or public repositories, or
+     * the `public_repo` scope to use this endpoint with only public repositories.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
      * @param direction The direction to sort the results by.
-     * @param before A cursor, as given in the Link header. If specified, the query
-     *   only searches for results before this cursor. For more information, see "Using
-     *   pagination in the REST API."
-     * @param after A cursor, as given in the Link header. If specified, the query
-     *   only searches for results after this cursor. For more information, see "Using
-     *   pagination in the REST API."
-     * @param state If specified, only code quality findings with this state will be
-     *   returned.
+     * @param before A cursor, as given in the Link header. If specified, the query only searches
+     *   for results before this cursor. For more information, see "Using pagination in the REST
+     *   API."
+     * @param after A cursor, as given in the Link header. If specified, the query only searches for
+     *   results after this cursor. For more information, see "Using pagination in the REST API."
+     * @param state If specified, only code quality findings with this state will be returned.
      */
-    fun codeQualityListFindingsForRepo(clientConfig: ClientConfig, request: CodeQualityListFindingsForRepoRequest, options: RequestOptions? = null): List<CodeQualityFinding> {
+    fun codeQualityListFindingsForRepo(
+        clientConfig: ClientConfig,
+        request: CodeQualityListFindingsForRepoRequest,
+        options: RequestOptions? = null,
+    ): List<CodeQualityFinding> {
         return codeQualityListFindingsForRepoWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [codeQualityListFindingsForRepo]. */
     data class CodeQualityListFindingsForRepoRequest(
@@ -53,87 +55,167 @@ object CodeQuality {
         val direction: SchemaSchemaEnum0df64690? = null,
         val before: String? = null,
         val after: String? = null,
-        val state: CodeQualityListFindingsForRepoParameterEnum? = null
+        val state: CodeQualityListFindingsForRepoParameterEnum? = null,
     )
 
-    /** [codeQualityListFindingsForRepo], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun codeQualityListFindingsForRepoWithRawResponse(clientConfig: ClientConfig, request: CodeQualityListFindingsForRepoRequest, options: RequestOptions? = null): SdkResponse<List<CodeQualityFinding>> {
-        return SdkClient.request<List<CodeQualityFinding>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/code-quality/findings", config = clientConfig, query = mapOf("per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "direction" to
-    SdkClient.queryValue(request.direction, "form", true), "before" to
-    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true), "state" to SdkClient.queryValue(request.state, "form", true)), operationId = "codeQualityListFindingsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "503" to ServiceUnavailable::class.java)))
+    /**
+     * [codeQualityListFindingsForRepo], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun codeQualityListFindingsForRepoWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CodeQualityListFindingsForRepoRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<CodeQualityFinding>> {
+        return SdkClient.request<List<CodeQualityFinding>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/code-quality/findings",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "direction" to SdkClient.queryValue(request.direction, "form", true),
+                        "before" to SdkClient.queryValue(request.before, "form", true),
+                        "after" to SdkClient.queryValue(request.after, "form", true),
+                        "state" to SdkClient.queryValue(request.state, "form", true),
+                    ),
+                operationId = "codeQualityListFindingsForRepo",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "503" to ServiceUnavailable::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Gets a single code quality finding. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Gets a single code quality finding. OAuth app tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint with private or public repositories, or the
+     * `public_repo` scope to use this endpoint with only public repositories.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param findingNumber The number that identifies a finding.
      */
-    fun codeQualityGetFinding(clientConfig: ClientConfig, owner: String, repo: String, findingNumber: Long, options: RequestOptions? = null): CodeQualityFinding {
-        return codeQualityGetFindingWithRawResponse(clientConfig, owner, repo, findingNumber, options).data
+    fun codeQualityGetFinding(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        findingNumber: Long,
+        options: RequestOptions? = null,
+    ): CodeQualityFinding {
+        return codeQualityGetFindingWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                findingNumber,
+                options,
+            )
+            .data
     }
-
-
-    /** [codeQualityGetFinding], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun codeQualityGetFindingWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, findingNumber: Long, options: RequestOptions? = null): SdkResponse<CodeQualityFinding> {
-        return SdkClient.request<CodeQualityFinding>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/code-quality/findings/${SdkClient.encodePathSegment(findingNumber)}", config = clientConfig, operationId = "codeQualityGetFinding", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "503" to ServiceUnavailable::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * Gets a code quality setup configuration. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
-     *
-     * @param owner The account owner of the repository. The name is not case
-     *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
+     * [codeQualityGetFinding], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
      */
-    fun codeQualityGetSetup(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CodeQualitySetup {
+    fun codeQualityGetFindingWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        findingNumber: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<CodeQualityFinding> {
+        return SdkClient.request<CodeQualityFinding>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/code-quality/findings/${SdkClient.encodePathSegment(findingNumber)}",
+                config = clientConfig,
+                operationId = "codeQualityGetFinding",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "503" to ServiceUnavailable::class.java,
+                    ),
+            )
+        )
+    }
+
+    /**
+     * Gets a code quality setup configuration. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint with private or public repositories, or
+     * the `public_repo` scope to use this endpoint with only public repositories.
+     *
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
+     *   sensitive.
+     */
+    fun codeQualityGetSetup(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CodeQualitySetup {
         return codeQualityGetSetupWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [codeQualityGetSetup], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun codeQualityGetSetupWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<CodeQualitySetup> {
-        return SdkClient.request<CodeQualitySetup>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/code-quality/setup", config = clientConfig, operationId = "codeQualityGetSetup", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "503" to ServiceUnavailable::class.java)))
+    /**
+     * [codeQualityGetSetup], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun codeQualityGetSetupWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<CodeQualitySetup> {
+        return SdkClient.request<CodeQualitySetup>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/code-quality/setup",
+                config = clientConfig,
+                operationId = "codeQualityGetSetup",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "503" to ServiceUnavailable::class.java,
+                    ),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Updates a code quality setup configuration. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.
+     * Updates a code quality setup configuration. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint with private or public repositories, or
+     * the `public_repo` scope to use this endpoint with only public repositories.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param state The desired state of code quality setup.
      * @param runnerType Runner type to be used.
      * @param runnerLabel Runner label to be used if the runner type is labeled.
      * @param languages Languages to be analyzed.
-     * @param aiFindingsOption Whether AI findings run for Code Quality on this
-     *   repository.
+     * @param aiFindingsOption Whether AI findings run for Code Quality on this repository.
      */
-    fun codeQualityUpdateSetup(clientConfig: ClientConfig, request: CodeQualityUpdateSetupRequest, options: RequestOptions? = null): EmptyObject {
+    fun codeQualityUpdateSetup(
+        clientConfig: ClientConfig,
+        request: CodeQualityUpdateSetupRequest,
+        options: RequestOptions? = null,
+    ): EmptyObject {
         return codeQualityUpdateSetupWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [codeQualityUpdateSetup]. */
     data class CodeQualityUpdateSetupRequest(
@@ -143,20 +225,43 @@ object CodeQuality {
         val runnerType: CodeQualitySetupUpdateRunnerTypeEnum? = null,
         val runnerLabel: SdkClient.SdkOptional<String?>? = null,
         val languages: List<CodeQualitySetupUpdateLanguagesItemEnum>? = null,
-        val aiFindingsOption: CodeQualitySetupUpdateAiFindingsOptionEnum? = null
+        val aiFindingsOption: CodeQualitySetupUpdateAiFindingsOptionEnum? = null,
     )
 
-    /** [codeQualityUpdateSetup], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun codeQualityUpdateSetupWithRawResponse(clientConfig: ClientConfig, request: CodeQualityUpdateSetupRequest, options: RequestOptions? = null): SdkResponse<EmptyObject> {
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/code-quality/setup", config = clientConfig, body = SdkClient.bodyMap("state" to (SdkClient.omitIfNull(request.state)), "runner_type" to (SdkClient.omitIfNull(request.runnerType)), "runner_label" to
-    (request.runnerLabel ?: SdkClient.SdkOptional.Omitted), "languages" to (SdkClient.omitIfNull(request.languages)), "ai_findings_option" to
-    (SdkClient.omitIfNull(request.aiFindingsOption))), operationId = "codeQualityUpdateSetup", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "422" to BasicError::class.java, "503" to ServiceUnavailable::class.java)))
+    /**
+     * [codeQualityUpdateSetup], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun codeQualityUpdateSetupWithRawResponse(
+        clientConfig: ClientConfig,
+        request: CodeQualityUpdateSetupRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> {
+        return SdkClient.request<EmptyObject>(
+            SdkClient.RequestSpec(
+                "PATCH",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/code-quality/setup",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "state" to (SdkClient.omitIfNull(request.state)),
+                        "runner_type" to (SdkClient.omitIfNull(request.runnerType)),
+                        "runner_label" to (request.runnerLabel ?: SdkClient.SdkOptional.Omitted),
+                        "languages" to (SdkClient.omitIfNull(request.languages)),
+                        "ai_findings_option" to (SdkClient.omitIfNull(request.aiFindingsOption)),
+                    ),
+                operationId = "codeQualityUpdateSetup",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "409" to BasicError::class.java,
+                        "422" to BasicError::class.java,
+                        "503" to ServiceUnavailable::class.java,
+                    ),
+            )
+        )
     }
-
-
-
-
-
-
-
 }

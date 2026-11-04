@@ -5,52 +5,32 @@ package dev.octri.showcase.github.models
 
 import dev.octri.showcase.github.SdkResource
 
-/**
- * Code Of Conduct
- */
+/** Code Of Conduct */
 data class CodeOfConduct(
-    /**
-     * Required `string` value serialized in the `key` wire field.
-     */
+    /** Required `string` value serialized in the `key` wire field. */
     val key: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?,
-    /**
-     * Optional `string` value serialized in the `body` wire field.
-     */
-    val body: String? = null
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
+    val htmlUrl: String?,
+    /** Optional `string` value serialized in the `body` wire field. */
+    val body: String? = null,
 ) : SdkResource()
 
-/**
- * Code of Conduct Simple
- */
+/** Code of Conduct Simple */
 data class CodeOfConductSimple(
-    /**
-     * Required `uri`-formatted value serialized in the `url` wire field.
-     */
+    /** Required `uri`-formatted value serialized in the `url` wire field. */
     val url: String,
-    /**
-     * Required `string` value serialized in the `key` wire field.
-     */
+    /** Required `string` value serialized in the `key` wire field. */
     val key: String,
-    /**
-     * Required `string` value serialized in the `name` wire field.
-     */
+    /** Required `string` value serialized in the `name` wire field. */
     val name: String,
-    /**
-     * Required `uri`-formatted value serialized in the `html_url` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true) val htmlUrl: String?
+    /** Required `uri`-formatted value serialized in the `html_url` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("html_url", required = true)
+    val htmlUrl: String?,
 ) : SdkResource()
 
 typealias CodeScanningRef = String

@@ -6,24 +6,20 @@ package dev.octri.showcase.github.models
 import dev.octri.showcase.github.SdkResource
 
 data class ApiInsightsRouteStatsItem(
-    /**
-     * The HTTP method
-     */
+    /** The HTTP method */
     @com.fasterxml.jackson.annotation.JsonProperty("http_method") val httpMethod: String? = null,
-    /**
-     * The API path's route template
-     */
+    /** The API path's route template */
     @com.fasterxml.jackson.annotation.JsonProperty("api_route") val apiRoute: String? = null,
-    /**
-     * The total number of requests within the queried time period
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count") val totalRequestCount: Long? = null,
-    /**
-     * The total number of requests that were rate limited within the queried time period
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count") val rateLimitedRequestCount: Long? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp") val lastRateLimitedTimestamp: String? = null,
-    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp") val lastRequestTimestamp: String? = null
+    /** The total number of requests within the queried time period */
+    @com.fasterxml.jackson.annotation.JsonProperty("total_request_count")
+    val totalRequestCount: Long? = null,
+    /** The total number of requests that were rate limited within the queried time period */
+    @com.fasterxml.jackson.annotation.JsonProperty("rate_limited_request_count")
+    val rateLimitedRequestCount: Long? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_rate_limited_timestamp")
+    val lastRateLimitedTimestamp: String? = null,
+    @com.fasterxml.jackson.annotation.JsonProperty("last_request_timestamp")
+    val lastRequestTimestamp: String? = null,
 ) : SdkResource()
 
 typealias ApiInsightsRouteStats = List<ApiInsightsRouteStatsItem>

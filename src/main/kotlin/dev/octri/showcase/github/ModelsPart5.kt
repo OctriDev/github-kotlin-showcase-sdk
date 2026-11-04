@@ -3,21 +3,29 @@
 
 package dev.octri.showcase.github
 
-typealias CodeSecurityUpdateEnterpriseConfigurationSecretProtectionEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretProtectionEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationSecretProtectionEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretProtectionEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningDelegaXb88010d8d4 = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningDelegaXb88010d8d4
+typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningDelegaXb88010d8d4 =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningDelegaXb88010d8d4
 
-typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningExtendXb9fa381fea = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningExtendXb9fa381fea
+typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningExtendXb9fa381fea =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningExtendXb9fa381fea
 
-typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningGeneriX351318c9bf = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningGeneriX351318c9bf
+typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningGeneriX351318c9bf =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningGeneriX351318c9bf
 
-typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningNonProXcce0995b40 = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningNonProXcce0995b40
+typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningNonProXcce0995b40 =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningNonProXcce0995b40
 
-typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningPushPrX253ae6a4c3 = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningPushPrX253ae6a4c3
+typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningPushPrX253ae6a4c3 =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningPushPrX253ae6a4c3
 
-typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningValidiXe38e93de95 = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningValidiXe38e93de95
+typealias CodeSecurityUpdateEnterpriseConfigurationSecretScanningValidiXe38e93de95 =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationSecretScanningValidiXe38e93de95
 
 typealias Codespace = dev.octri.showcase.github.models.Codespace
 
@@ -29,33 +37,43 @@ typealias CodespaceLocationEnum = dev.octri.showcase.github.models.CodespaceLoca
 
 typealias CodespaceMachine = dev.octri.showcase.github.models.CodespaceMachine
 
-typealias CodespaceMachinePrebuildAvailabilityEnum = dev.octri.showcase.github.models.CodespaceMachinePrebuildAvailabilityEnum
+typealias CodespaceMachinePrebuildAvailabilityEnum =
+    dev.octri.showcase.github.models.CodespaceMachinePrebuildAvailabilityEnum
 
 typealias CodespaceRuntimeConstraints = dev.octri.showcase.github.models.CodespaceRuntimeConstraints
 
-typealias CodespacesCreateForAuthenticatedUserVariant0GeoEnum = dev.octri.showcase.github.models.CodespacesCreateForAuthenticatedUserVariant0GeoEnum
+typealias CodespacesCreateForAuthenticatedUserVariant0GeoEnum =
+    dev.octri.showcase.github.models.CodespacesCreateForAuthenticatedUserVariant0GeoEnum
 
-typealias CodespacesCreateForAuthenticatedUserVariant1GeoEnum = dev.octri.showcase.github.models.CodespacesCreateForAuthenticatedUserVariant1GeoEnum
+typealias CodespacesCreateForAuthenticatedUserVariant1GeoEnum =
+    dev.octri.showcase.github.models.CodespacesCreateForAuthenticatedUserVariant1GeoEnum
 
-typealias CodespacesCreateOrUpdateOrgSecretVisibilityEnum = dev.octri.showcase.github.models.CodespacesCreateOrUpdateOrgSecretVisibilityEnum
+typealias CodespacesCreateOrUpdateOrgSecretVisibilityEnum =
+    dev.octri.showcase.github.models.CodespacesCreateOrUpdateOrgSecretVisibilityEnum
 
-typealias CodespacesCreateWithPrForAuthenticatedUserGeoEnum = dev.octri.showcase.github.models.CodespacesCreateWithPrForAuthenticatedUserGeoEnum
+typealias CodespacesCreateWithPrForAuthenticatedUserGeoEnum =
+    dev.octri.showcase.github.models.CodespacesCreateWithPrForAuthenticatedUserGeoEnum
 
-typealias CodespacesCreateWithRepoForAuthenticatedUserGeoEnum = dev.octri.showcase.github.models.CodespacesCreateWithRepoForAuthenticatedUserGeoEnum
+typealias CodespacesCreateWithRepoForAuthenticatedUserGeoEnum =
+    dev.octri.showcase.github.models.CodespacesCreateWithRepoForAuthenticatedUserGeoEnum
 
 typealias CodespacesOrgSecret = dev.octri.showcase.github.models.CodespacesOrgSecret
 
-typealias CodespacesOrgSecretVisibilityEnum = dev.octri.showcase.github.models.CodespacesOrgSecretVisibilityEnum
+typealias CodespacesOrgSecretVisibilityEnum =
+    dev.octri.showcase.github.models.CodespacesOrgSecretVisibilityEnum
 
-typealias CodespacesPermissionsCheckForDevcontainer = dev.octri.showcase.github.models.CodespacesPermissionsCheckForDevcontainer
+typealias CodespacesPermissionsCheckForDevcontainer =
+    dev.octri.showcase.github.models.CodespacesPermissionsCheckForDevcontainer
 
 typealias CodespacesPublicKey = dev.octri.showcase.github.models.CodespacesPublicKey
 
 typealias CodespacesSecret = dev.octri.showcase.github.models.CodespacesSecret
 
-typealias CodespacesSecretVisibilityEnum = dev.octri.showcase.github.models.CodespacesSecretVisibilityEnum
+typealias CodespacesSecretVisibilityEnum =
+    dev.octri.showcase.github.models.CodespacesSecretVisibilityEnum
 
-typealias CodespacesSetCodespacesAccessVisibilityEnum = dev.octri.showcase.github.models.CodespacesSetCodespacesAccessVisibilityEnum
+typealias CodespacesSetCodespacesAccessVisibilityEnum =
+    dev.octri.showcase.github.models.CodespacesSetCodespacesAccessVisibilityEnum
 
 typealias CodespaceStateEnum = dev.octri.showcase.github.models.CodespaceStateEnum
 
@@ -63,13 +81,17 @@ typealias CodespacesUserPublicKey = dev.octri.showcase.github.models.CodespacesU
 
 typealias CodespaceWithFullRepository = dev.octri.showcase.github.models.CodespaceWithFullRepository
 
-typealias CodespaceWithFullRepositoryGitStatus = dev.octri.showcase.github.models.CodespaceWithFullRepositoryGitStatus
+typealias CodespaceWithFullRepositoryGitStatus =
+    dev.octri.showcase.github.models.CodespaceWithFullRepositoryGitStatus
 
-typealias CodespaceWithFullRepositoryLocationEnum = dev.octri.showcase.github.models.CodespaceWithFullRepositoryLocationEnum
+typealias CodespaceWithFullRepositoryLocationEnum =
+    dev.octri.showcase.github.models.CodespaceWithFullRepositoryLocationEnum
 
-typealias CodespaceWithFullRepositoryRuntimeConstraints = dev.octri.showcase.github.models.CodespaceWithFullRepositoryRuntimeConstraints
+typealias CodespaceWithFullRepositoryRuntimeConstraints =
+    dev.octri.showcase.github.models.CodespaceWithFullRepositoryRuntimeConstraints
 
-typealias CodespaceWithFullRepositoryStateEnum = dev.octri.showcase.github.models.CodespaceWithFullRepositoryStateEnum
+typealias CodespaceWithFullRepositoryStateEnum =
+    dev.octri.showcase.github.models.CodespaceWithFullRepositoryStateEnum
 
 typealias Collaborator = dev.octri.showcase.github.models.Collaborator
 
@@ -103,13 +125,17 @@ typealias CommitParentsItem = dev.octri.showcase.github.models.CommitParentsItem
 
 typealias CommitSearchResultItem = dev.octri.showcase.github.models.CommitSearchResultItem
 
-typealias CommitSearchResultItemCommit = dev.octri.showcase.github.models.CommitSearchResultItemCommit
+typealias CommitSearchResultItemCommit =
+    dev.octri.showcase.github.models.CommitSearchResultItemCommit
 
-typealias CommitSearchResultItemCommitAuthor = dev.octri.showcase.github.models.CommitSearchResultItemCommitAuthor
+typealias CommitSearchResultItemCommitAuthor =
+    dev.octri.showcase.github.models.CommitSearchResultItemCommitAuthor
 
-typealias CommitSearchResultItemCommitTree = dev.octri.showcase.github.models.CommitSearchResultItemCommitTree
+typealias CommitSearchResultItemCommitTree =
+    dev.octri.showcase.github.models.CommitSearchResultItemCommitTree
 
-typealias CommitSearchResultItemParentsItem = dev.octri.showcase.github.models.CommitSearchResultItemParentsItem
+typealias CommitSearchResultItemParentsItem =
+    dev.octri.showcase.github.models.CommitSearchResultItemParentsItem
 
 typealias CommitStats = dev.octri.showcase.github.models.CommitStats
 
@@ -119,21 +145,27 @@ typealias CommunityProfileFiles = dev.octri.showcase.github.models.CommunityProf
 
 typealias ConcurrencyGroup = dev.octri.showcase.github.models.ConcurrencyGroup
 
-typealias ConcurrencyGroupGroupMembersItem = dev.octri.showcase.github.models.ConcurrencyGroupGroupMembersItem
+typealias ConcurrencyGroupGroupMembersItem =
+    dev.octri.showcase.github.models.ConcurrencyGroupGroupMembersItem
 
-typealias ConcurrencyGroupGroupMembersItemStatusEnum = dev.octri.showcase.github.models.ConcurrencyGroupGroupMembersItemStatusEnum
+typealias ConcurrencyGroupGroupMembersItemStatusEnum =
+    dev.octri.showcase.github.models.ConcurrencyGroupGroupMembersItemStatusEnum
 
 typealias ConcurrencyGroupList = dev.octri.showcase.github.models.ConcurrencyGroupList
 
-typealias ConcurrencyGroupListConcurrencyGroupsItem = dev.octri.showcase.github.models.ConcurrencyGroupListConcurrencyGroupsItem
+typealias ConcurrencyGroupListConcurrencyGroupsItem =
+    dev.octri.showcase.github.models.ConcurrencyGroupListConcurrencyGroupsItem
 
 typealias ConcurrencyGroupRunList = dev.octri.showcase.github.models.ConcurrencyGroupRunList
 
-typealias ConcurrencyGroupRunListConcurrencyGroupsItem = dev.octri.showcase.github.models.ConcurrencyGroupRunListConcurrencyGroupsItem
+typealias ConcurrencyGroupRunListConcurrencyGroupsItem =
+    dev.octri.showcase.github.models.ConcurrencyGroupRunListConcurrencyGroupsItem
 
-typealias ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItem = dev.octri.showcase.github.models.ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItem
+typealias ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItem =
+    dev.octri.showcase.github.models.ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItem
 
-typealias ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItemStatusEnum = dev.octri.showcase.github.models.ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItemStatusEnum
+typealias ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItemStatusEnum =
+    dev.octri.showcase.github.models.ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItemStatusEnum
 
 typealias ContentDirectory = dev.octri.showcase.github.models.ContentDirectory
 
@@ -141,7 +173,8 @@ typealias ContentDirectoryItem = dev.octri.showcase.github.models.ContentDirecto
 
 typealias ContentDirectoryItemLinks = dev.octri.showcase.github.models.ContentDirectoryItemLinks
 
-typealias ContentDirectoryItemTypeEnum = dev.octri.showcase.github.models.ContentDirectoryItemTypeEnum
+typealias ContentDirectoryItemTypeEnum =
+    dev.octri.showcase.github.models.ContentDirectoryItemTypeEnum
 
 typealias ContentFile = dev.octri.showcase.github.models.ContentFile
 
@@ -175,41 +208,57 @@ typealias Contributor = dev.octri.showcase.github.models.Contributor
 
 typealias ContributorActivity = dev.octri.showcase.github.models.ContributorActivity
 
-typealias ContributorActivityWeeksItem = dev.octri.showcase.github.models.ContributorActivityWeeksItem
+typealias ContributorActivityWeeksItem =
+    dev.octri.showcase.github.models.ContributorActivityWeeksItem
 
-typealias ConvertedNoteToIssueIssueEvent = dev.octri.showcase.github.models.ConvertedNoteToIssueIssueEvent
+typealias ConvertedNoteToIssueIssueEvent =
+    dev.octri.showcase.github.models.ConvertedNoteToIssueIssueEvent
 
-typealias ConvertedNoteToIssueIssueEventProjectCard = dev.octri.showcase.github.models.ConvertedNoteToIssueIssueEventProjectCard
+typealias ConvertedNoteToIssueIssueEventProjectCard =
+    dev.octri.showcase.github.models.ConvertedNoteToIssueIssueEventProjectCard
 
-typealias CopilotGetCopilotCodingAgentPermissionsOrganizationResponseEnX1cede769bc = dev.octri.showcase.github.models.CopilotGetCopilotCodingAgentPermissionsOrganizationResponseEnX1cede769bc
+typealias CopilotGetCopilotCodingAgentPermissionsOrganizationResponseEnX1cede769bc =
+    dev.octri.showcase.github.models.CopilotGetCopilotCodingAgentPermissionsOrganizationResponseEnX1cede769bc
 
-typealias CopilotOrganizationContentExclusionDetails = dev.octri.showcase.github.models.CopilotOrganizationContentExclusionDetails
+typealias CopilotOrganizationContentExclusionDetails =
+    dev.octri.showcase.github.models.CopilotOrganizationContentExclusionDetails
 
 typealias CopilotOrganizationDetails = dev.octri.showcase.github.models.CopilotOrganizationDetails
 
-typealias CopilotOrganizationDetailsCliEnum = dev.octri.showcase.github.models.CopilotOrganizationDetailsCliEnum
+typealias CopilotOrganizationDetailsCliEnum =
+    dev.octri.showcase.github.models.CopilotOrganizationDetailsCliEnum
 
-typealias CopilotOrganizationDetailsIdeChatEnum = dev.octri.showcase.github.models.CopilotOrganizationDetailsIdeChatEnum
+typealias CopilotOrganizationDetailsIdeChatEnum =
+    dev.octri.showcase.github.models.CopilotOrganizationDetailsIdeChatEnum
 
-typealias CopilotOrganizationDetailsPlanTypeEnum = dev.octri.showcase.github.models.CopilotOrganizationDetailsPlanTypeEnum
+typealias CopilotOrganizationDetailsPlanTypeEnum =
+    dev.octri.showcase.github.models.CopilotOrganizationDetailsPlanTypeEnum
 
-typealias CopilotOrganizationDetailsPlatformChatEnum = dev.octri.showcase.github.models.CopilotOrganizationDetailsPlatformChatEnum
+typealias CopilotOrganizationDetailsPlatformChatEnum =
+    dev.octri.showcase.github.models.CopilotOrganizationDetailsPlatformChatEnum
 
-typealias CopilotOrganizationDetailsPublicCodeSuggestionsEnum = dev.octri.showcase.github.models.CopilotOrganizationDetailsPublicCodeSuggestionsEnum
+typealias CopilotOrganizationDetailsPublicCodeSuggestionsEnum =
+    dev.octri.showcase.github.models.CopilotOrganizationDetailsPublicCodeSuggestionsEnum
 
-typealias CopilotOrganizationDetailsSeatManagementSettingEnum = dev.octri.showcase.github.models.CopilotOrganizationDetailsSeatManagementSettingEnum
+typealias CopilotOrganizationDetailsSeatManagementSettingEnum =
+    dev.octri.showcase.github.models.CopilotOrganizationDetailsSeatManagementSettingEnum
 
-typealias CopilotOrganizationSeatBreakdown = dev.octri.showcase.github.models.CopilotOrganizationSeatBreakdown
+typealias CopilotOrganizationSeatBreakdown =
+    dev.octri.showcase.github.models.CopilotOrganizationSeatBreakdown
 
 typealias CopilotSeatDetails = dev.octri.showcase.github.models.CopilotSeatDetails
 
-typealias CopilotSeatDetailsAssigningTeam = dev.octri.showcase.github.models.CopilotSeatDetailsAssigningTeam
+typealias CopilotSeatDetailsAssigningTeam =
+    dev.octri.showcase.github.models.CopilotSeatDetailsAssigningTeam
 
-typealias CopilotSeatDetailsPlanTypeEnum = dev.octri.showcase.github.models.CopilotSeatDetailsPlanTypeEnum
+typealias CopilotSeatDetailsPlanTypeEnum =
+    dev.octri.showcase.github.models.CopilotSeatDetailsPlanTypeEnum
 
-typealias CopilotSetCopilotCodingAgentPermissionsOrganizationEnabledRepX9d9552bfc6 = dev.octri.showcase.github.models.CopilotSetCopilotCodingAgentPermissionsOrganizationEnabledRepX9d9552bfc6
+typealias CopilotSetCopilotCodingAgentPermissionsOrganizationEnabledRepX9d9552bfc6 =
+    dev.octri.showcase.github.models.CopilotSetCopilotCodingAgentPermissionsOrganizationEnabledRepX9d9552bfc6
 
-typealias CopilotSetEnterpriseCodingAgentPolicyPolicyStateEnum = dev.octri.showcase.github.models.CopilotSetEnterpriseCodingAgentPolicyPolicyStateEnum
+typealias CopilotSetEnterpriseCodingAgentPolicyPolicyStateEnum =
+    dev.octri.showcase.github.models.CopilotSetEnterpriseCodingAgentPolicyPolicyStateEnum
 
 typealias CopilotSpace = dev.octri.showcase.github.models.CopilotSpace
 
@@ -217,87 +266,124 @@ typealias CopilotSpaceBaseRoleEnum = dev.octri.showcase.github.models.CopilotSpa
 
 typealias CopilotSpaceCollaborator = dev.octri.showcase.github.models.CopilotSpaceCollaborator
 
-typealias CopilotSpaceCollaboratorVariant0 = dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant0
+typealias CopilotSpaceCollaboratorVariant0 =
+    dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant0
 
-typealias CopilotSpaceCollaboratorVariant0Variant1ActorTypeEnum = dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant0Variant1ActorTypeEnum
+typealias CopilotSpaceCollaboratorVariant0Variant1ActorTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant0Variant1ActorTypeEnum
 
-typealias CopilotSpaceCollaboratorVariant0Variant1RoleEnum = dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant0Variant1RoleEnum
+typealias CopilotSpaceCollaboratorVariant0Variant1RoleEnum =
+    dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant0Variant1RoleEnum
 
-typealias CopilotSpaceCollaboratorVariant1 = dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant1
+typealias CopilotSpaceCollaboratorVariant1 =
+    dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant1
 
-typealias CopilotSpaceCollaboratorVariant1ActorTypeEnum = dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant1ActorTypeEnum
+typealias CopilotSpaceCollaboratorVariant1ActorTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant1ActorTypeEnum
 
-typealias CopilotSpaceCollaboratorVariant1RoleEnum = dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant1RoleEnum
+typealias CopilotSpaceCollaboratorVariant1RoleEnum =
+    dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant1RoleEnum
 
-typealias CopilotSpaceCollaboratorVariant1TypeEnum = dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant1TypeEnum
+typealias CopilotSpaceCollaboratorVariant1TypeEnum =
+    dev.octri.showcase.github.models.CopilotSpaceCollaboratorVariant1TypeEnum
 
 typealias CopilotSpaceOwner = dev.octri.showcase.github.models.CopilotSpaceOwner
 
 typealias CopilotSpaceResource = dev.octri.showcase.github.models.CopilotSpaceResource
 
-typealias CopilotSpaceResourceResourceTypeEnum = dev.octri.showcase.github.models.CopilotSpaceResourceResourceTypeEnum
+typealias CopilotSpaceResourceResourceTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpaceResourceResourceTypeEnum
 
-typealias CopilotSpaceResourcesAttributesItem = dev.octri.showcase.github.models.CopilotSpaceResourcesAttributesItem
+typealias CopilotSpaceResourcesAttributesItem =
+    dev.octri.showcase.github.models.CopilotSpaceResourcesAttributesItem
 
-typealias CopilotSpaceResourcesAttributesItemMetadata = dev.octri.showcase.github.models.CopilotSpaceResourcesAttributesItemMetadata
+typealias CopilotSpaceResourcesAttributesItemMetadata =
+    dev.octri.showcase.github.models.CopilotSpaceResourcesAttributesItemMetadata
 
-typealias CopilotSpaceResourcesAttributesItemResourceTypeEnum = dev.octri.showcase.github.models.CopilotSpaceResourcesAttributesItemResourceTypeEnum
+typealias CopilotSpaceResourcesAttributesItemResourceTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpaceResourcesAttributesItemResourceTypeEnum
 
-typealias CopilotSpacesAddCollaboratorForOrgActorTypeEnum = dev.octri.showcase.github.models.CopilotSpacesAddCollaboratorForOrgActorTypeEnum
+typealias CopilotSpacesAddCollaboratorForOrgActorTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpacesAddCollaboratorForOrgActorTypeEnum
 
-typealias CopilotSpacesAddCollaboratorForOrgRoleEnum = dev.octri.showcase.github.models.CopilotSpacesAddCollaboratorForOrgRoleEnum
+typealias CopilotSpacesAddCollaboratorForOrgRoleEnum =
+    dev.octri.showcase.github.models.CopilotSpacesAddCollaboratorForOrgRoleEnum
 
-typealias CopilotSpacesAddCollaboratorForUserActorTypeEnum = dev.octri.showcase.github.models.CopilotSpacesAddCollaboratorForUserActorTypeEnum
+typealias CopilotSpacesAddCollaboratorForUserActorTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpacesAddCollaboratorForUserActorTypeEnum
 
-typealias CopilotSpacesAddCollaboratorForUserRoleEnum = dev.octri.showcase.github.models.CopilotSpacesAddCollaboratorForUserRoleEnum
+typealias CopilotSpacesAddCollaboratorForUserRoleEnum =
+    dev.octri.showcase.github.models.CopilotSpacesAddCollaboratorForUserRoleEnum
 
-typealias CopilotSpacesCreateForOrgBaseRoleEnum = dev.octri.showcase.github.models.CopilotSpacesCreateForOrgBaseRoleEnum
+typealias CopilotSpacesCreateForOrgBaseRoleEnum =
+    dev.octri.showcase.github.models.CopilotSpacesCreateForOrgBaseRoleEnum
 
-typealias CopilotSpacesCreateForOrgResourcesAttributesItemResourceTypeEnum = dev.octri.showcase.github.models.CopilotSpacesCreateForOrgResourcesAttributesItemResourceTypeEnum
+typealias CopilotSpacesCreateForOrgResourcesAttributesItemResourceTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpacesCreateForOrgResourcesAttributesItemResourceTypeEnum
 
-typealias CopilotSpacesCreateForUserBaseRoleEnum = dev.octri.showcase.github.models.CopilotSpacesCreateForUserBaseRoleEnum
+typealias CopilotSpacesCreateForUserBaseRoleEnum =
+    dev.octri.showcase.github.models.CopilotSpacesCreateForUserBaseRoleEnum
 
-typealias CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum = dev.octri.showcase.github.models.CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum
+typealias CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpacesCreateForUserResourcesAttributesItemResourceTypeEnum
 
-typealias CopilotSpacesCreateResourceForOrgResourceTypeEnum = dev.octri.showcase.github.models.CopilotSpacesCreateResourceForOrgResourceTypeEnum
+typealias CopilotSpacesCreateResourceForOrgResourceTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpacesCreateResourceForOrgResourceTypeEnum
 
-typealias CopilotSpacesCreateResourceForUserResourceTypeEnum = dev.octri.showcase.github.models.CopilotSpacesCreateResourceForUserResourceTypeEnum
+typealias CopilotSpacesCreateResourceForUserResourceTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpacesCreateResourceForUserResourceTypeEnum
 
-typealias CopilotSpacesRemoveCollaboratorForOrgParameterEnum = dev.octri.showcase.github.models.CopilotSpacesRemoveCollaboratorForOrgParameterEnum
+typealias CopilotSpacesRemoveCollaboratorForOrgParameterEnum =
+    dev.octri.showcase.github.models.CopilotSpacesRemoveCollaboratorForOrgParameterEnum
 
-typealias CopilotSpacesRemoveCollaboratorForUserParameterEnum = dev.octri.showcase.github.models.CopilotSpacesRemoveCollaboratorForUserParameterEnum
+typealias CopilotSpacesRemoveCollaboratorForUserParameterEnum =
+    dev.octri.showcase.github.models.CopilotSpacesRemoveCollaboratorForUserParameterEnum
 
-typealias CopilotSpacesUpdateCollaboratorForOrgParameterEnum = dev.octri.showcase.github.models.CopilotSpacesUpdateCollaboratorForOrgParameterEnum
+typealias CopilotSpacesUpdateCollaboratorForOrgParameterEnum =
+    dev.octri.showcase.github.models.CopilotSpacesUpdateCollaboratorForOrgParameterEnum
 
-typealias CopilotSpacesUpdateCollaboratorForOrgRoleEnum = dev.octri.showcase.github.models.CopilotSpacesUpdateCollaboratorForOrgRoleEnum
+typealias CopilotSpacesUpdateCollaboratorForOrgRoleEnum =
+    dev.octri.showcase.github.models.CopilotSpacesUpdateCollaboratorForOrgRoleEnum
 
-typealias CopilotSpacesUpdateCollaboratorForUserParameterEnum = dev.octri.showcase.github.models.CopilotSpacesUpdateCollaboratorForUserParameterEnum
+typealias CopilotSpacesUpdateCollaboratorForUserParameterEnum =
+    dev.octri.showcase.github.models.CopilotSpacesUpdateCollaboratorForUserParameterEnum
 
-typealias CopilotSpacesUpdateCollaboratorForUserRoleEnum = dev.octri.showcase.github.models.CopilotSpacesUpdateCollaboratorForUserRoleEnum
+typealias CopilotSpacesUpdateCollaboratorForUserRoleEnum =
+    dev.octri.showcase.github.models.CopilotSpacesUpdateCollaboratorForUserRoleEnum
 
-typealias CopilotSpacesUpdateForOrgBaseRoleEnum = dev.octri.showcase.github.models.CopilotSpacesUpdateForOrgBaseRoleEnum
+typealias CopilotSpacesUpdateForOrgBaseRoleEnum =
+    dev.octri.showcase.github.models.CopilotSpacesUpdateForOrgBaseRoleEnum
 
-typealias CopilotSpacesUpdateForOrgResourcesAttributesItemResourceTypeEnum = dev.octri.showcase.github.models.CopilotSpacesUpdateForOrgResourcesAttributesItemResourceTypeEnum
+typealias CopilotSpacesUpdateForOrgResourcesAttributesItemResourceTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpacesUpdateForOrgResourcesAttributesItemResourceTypeEnum
 
-typealias CopilotSpacesUpdateForUserBaseRoleEnum = dev.octri.showcase.github.models.CopilotSpacesUpdateForUserBaseRoleEnum
+typealias CopilotSpacesUpdateForUserBaseRoleEnum =
+    dev.octri.showcase.github.models.CopilotSpacesUpdateForUserBaseRoleEnum
 
-typealias CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum = dev.octri.showcase.github.models.CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum
+typealias CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum =
+    dev.octri.showcase.github.models.CopilotSpacesUpdateForUserResourcesAttributesItemResourceTypeEnum
 
-typealias CopilotUsageMetrics1DayReport = dev.octri.showcase.github.models.CopilotUsageMetrics1DayReport
+typealias CopilotUsageMetrics1DayReport =
+    dev.octri.showcase.github.models.CopilotUsageMetrics1DayReport
 
-typealias CopilotUsageMetrics28DayReport = dev.octri.showcase.github.models.CopilotUsageMetrics28DayReport
+typealias CopilotUsageMetrics28DayReport =
+    dev.octri.showcase.github.models.CopilotUsageMetrics28DayReport
 
 typealias CreateBudget = dev.octri.showcase.github.models.CreateBudget
 
 typealias CreateBudgetBudget = dev.octri.showcase.github.models.CreateBudgetBudget
 
-typealias CreateBudgetBudgetBudgetAlerting = dev.octri.showcase.github.models.CreateBudgetBudgetBudgetAlerting
+typealias CreateBudgetBudgetBudgetAlerting =
+    dev.octri.showcase.github.models.CreateBudgetBudgetBudgetAlerting
 
-typealias CreateBudgetBudgetBudgetScopeEnum = dev.octri.showcase.github.models.CreateBudgetBudgetBudgetScopeEnum
+typealias CreateBudgetBudgetBudgetScopeEnum =
+    dev.octri.showcase.github.models.CreateBudgetBudgetBudgetScopeEnum
 
-typealias CreateBudgetBudgetBudgetTypeVariant0Enum = dev.octri.showcase.github.models.CreateBudgetBudgetBudgetTypeVariant0Enum
+typealias CreateBudgetBudgetBudgetTypeVariant0Enum =
+    dev.octri.showcase.github.models.CreateBudgetBudgetBudgetTypeVariant0Enum
 
-typealias CreateBudgetBudgetBudgetTypeVariant1Enum = dev.octri.showcase.github.models.CreateBudgetBudgetBudgetTypeVariant1Enum
+typealias CreateBudgetBudgetBudgetTypeVariant1Enum =
+    dev.octri.showcase.github.models.CreateBudgetBudgetBudgetTypeVariant1Enum
 
 typealias CreateEvent = dev.octri.showcase.github.models.CreateEvent
 
@@ -307,15 +393,19 @@ typealias CustomProperty = dev.octri.showcase.github.models.CustomProperty
 
 typealias CustomPropertySetPayload = dev.octri.showcase.github.models.CustomPropertySetPayload
 
-typealias CustomPropertySetPayloadValuesEditableByEnum = dev.octri.showcase.github.models.CustomPropertySetPayloadValuesEditableByEnum
+typealias CustomPropertySetPayloadValuesEditableByEnum =
+    dev.octri.showcase.github.models.CustomPropertySetPayloadValuesEditableByEnum
 
-typealias CustomPropertySetPayloadValueTypeEnum = dev.octri.showcase.github.models.CustomPropertySetPayloadValueTypeEnum
+typealias CustomPropertySetPayloadValueTypeEnum =
+    dev.octri.showcase.github.models.CustomPropertySetPayloadValueTypeEnum
 
-typealias CustomPropertySourceTypeEnum = dev.octri.showcase.github.models.CustomPropertySourceTypeEnum
+typealias CustomPropertySourceTypeEnum =
+    dev.octri.showcase.github.models.CustomPropertySourceTypeEnum
 
 typealias CustomPropertyValue = dev.octri.showcase.github.models.CustomPropertyValue
 
-typealias CustomPropertyValuesEditableByEnum = dev.octri.showcase.github.models.CustomPropertyValuesEditableByEnum
+typealias CustomPropertyValuesEditableByEnum =
+    dev.octri.showcase.github.models.CustomPropertyValuesEditableByEnum
 
 typealias CustomPropertyValueTypeEnum = dev.octri.showcase.github.models.CustomPropertyValueTypeEnum
 
@@ -331,91 +421,128 @@ typealias DeleteEvent = dev.octri.showcase.github.models.DeleteEvent
 
 typealias DemilestonedIssueEvent = dev.octri.showcase.github.models.DemilestonedIssueEvent
 
-typealias DemilestonedIssueEventMilestone = dev.octri.showcase.github.models.DemilestonedIssueEventMilestone
+typealias DemilestonedIssueEventMilestone =
+    dev.octri.showcase.github.models.DemilestonedIssueEventMilestone
 
 typealias DependabotAlert = dev.octri.showcase.github.models.DependabotAlert
 
 typealias DependabotAlertDependency = dev.octri.showcase.github.models.DependabotAlertDependency
 
-typealias DependabotAlertDependencyRelationshipEnum = dev.octri.showcase.github.models.DependabotAlertDependencyRelationshipEnum
+typealias DependabotAlertDependencyRelationshipEnum =
+    dev.octri.showcase.github.models.DependabotAlertDependencyRelationshipEnum
 
-typealias DependabotAlertDependencyScopeEnum = dev.octri.showcase.github.models.DependabotAlertDependencyScopeEnum
+typealias DependabotAlertDependencyScopeEnum =
+    dev.octri.showcase.github.models.DependabotAlertDependencyScopeEnum
 
-typealias DependabotAlertDismissalRequestSimple = dev.octri.showcase.github.models.DependabotAlertDismissalRequestSimple
+typealias DependabotAlertDismissalRequestSimple =
+    dev.octri.showcase.github.models.DependabotAlertDismissalRequestSimple
 
-typealias DependabotAlertDismissalRequestSimpleRequester = dev.octri.showcase.github.models.DependabotAlertDismissalRequestSimpleRequester
+typealias DependabotAlertDismissalRequestSimpleRequester =
+    dev.octri.showcase.github.models.DependabotAlertDismissalRequestSimpleRequester
 
-typealias DependabotAlertDismissalRequestSimpleStatusEnum = dev.octri.showcase.github.models.DependabotAlertDismissalRequestSimpleStatusEnum
+typealias DependabotAlertDismissalRequestSimpleStatusEnum =
+    dev.octri.showcase.github.models.DependabotAlertDismissalRequestSimpleStatusEnum
 
-typealias DependabotAlertDismissedReasonEnum = dev.octri.showcase.github.models.DependabotAlertDismissedReasonEnum
+typealias DependabotAlertDismissedReasonEnum =
+    dev.octri.showcase.github.models.DependabotAlertDismissedReasonEnum
 
 typealias DependabotAlertPackage = dev.octri.showcase.github.models.DependabotAlertPackage
 
-typealias DependabotAlertSecurityAdvisory = dev.octri.showcase.github.models.DependabotAlertSecurityAdvisory
+typealias DependabotAlertSecurityAdvisory =
+    dev.octri.showcase.github.models.DependabotAlertSecurityAdvisory
 
-typealias DependabotAlertSecurityAdvisoryClassificationEnum = dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryClassificationEnum
+typealias DependabotAlertSecurityAdvisoryClassificationEnum =
+    dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryClassificationEnum
 
-typealias DependabotAlertSecurityAdvisoryCvss = dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryCvss
+typealias DependabotAlertSecurityAdvisoryCvss =
+    dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryCvss
 
-typealias DependabotAlertSecurityAdvisoryCwesItem = dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryCwesItem
+typealias DependabotAlertSecurityAdvisoryCwesItem =
+    dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryCwesItem
 
-typealias DependabotAlertSecurityAdvisoryIdentifiersItem = dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryIdentifiersItem
+typealias DependabotAlertSecurityAdvisoryIdentifiersItem =
+    dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryIdentifiersItem
 
-typealias DependabotAlertSecurityAdvisoryIdentifiersItemTypeEnum = dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryIdentifiersItemTypeEnum
+typealias DependabotAlertSecurityAdvisoryIdentifiersItemTypeEnum =
+    dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryIdentifiersItemTypeEnum
 
-typealias DependabotAlertSecurityAdvisoryReferencesItem = dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryReferencesItem
+typealias DependabotAlertSecurityAdvisoryReferencesItem =
+    dev.octri.showcase.github.models.DependabotAlertSecurityAdvisoryReferencesItem
 
-typealias DependabotAlertSecurityAdvisorySeverityEnum = dev.octri.showcase.github.models.DependabotAlertSecurityAdvisorySeverityEnum
+typealias DependabotAlertSecurityAdvisorySeverityEnum =
+    dev.octri.showcase.github.models.DependabotAlertSecurityAdvisorySeverityEnum
 
-typealias DependabotAlertSecurityVulnerability = dev.octri.showcase.github.models.DependabotAlertSecurityVulnerability
+typealias DependabotAlertSecurityVulnerability =
+    dev.octri.showcase.github.models.DependabotAlertSecurityVulnerability
 
-typealias DependabotAlertSecurityVulnerabilityFirstPatchedVersion = dev.octri.showcase.github.models.DependabotAlertSecurityVulnerabilityFirstPatchedVersion
+typealias DependabotAlertSecurityVulnerabilityFirstPatchedVersion =
+    dev.octri.showcase.github.models.DependabotAlertSecurityVulnerabilityFirstPatchedVersion
 
-typealias DependabotAlertSecurityVulnerabilitySeverityEnum = dev.octri.showcase.github.models.DependabotAlertSecurityVulnerabilitySeverityEnum
+typealias DependabotAlertSecurityVulnerabilitySeverityEnum =
+    dev.octri.showcase.github.models.DependabotAlertSecurityVulnerabilitySeverityEnum
 
 typealias DependabotAlertStateEnum = dev.octri.showcase.github.models.DependabotAlertStateEnum
 
-typealias DependabotAlertWithdrawnWebhook = dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhook
+typealias DependabotAlertWithdrawnWebhook =
+    dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhook
 
-typealias DependabotAlertWithdrawnWebhookDependency = dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookDependency
+typealias DependabotAlertWithdrawnWebhookDependency =
+    dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookDependency
 
-typealias DependabotAlertWithdrawnWebhookDependencyRelationshipEnum = dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookDependencyRelationshipEnum
+typealias DependabotAlertWithdrawnWebhookDependencyRelationshipEnum =
+    dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookDependencyRelationshipEnum
 
-typealias DependabotAlertWithdrawnWebhookDependencyScopeEnum = dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookDependencyScopeEnum
+typealias DependabotAlertWithdrawnWebhookDependencyScopeEnum =
+    dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookDependencyScopeEnum
 
-typealias DependabotAlertWithdrawnWebhookSecurityAdvisory = dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookSecurityAdvisory
+typealias DependabotAlertWithdrawnWebhookSecurityAdvisory =
+    dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookSecurityAdvisory
 
-typealias DependabotAlertWithdrawnWebhookStateEnum = dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookStateEnum
+typealias DependabotAlertWithdrawnWebhookStateEnum =
+    dev.octri.showcase.github.models.DependabotAlertWithdrawnWebhookStateEnum
 
-typealias DependabotAlertWithRepository = dev.octri.showcase.github.models.DependabotAlertWithRepository
+typealias DependabotAlertWithRepository =
+    dev.octri.showcase.github.models.DependabotAlertWithRepository
 
-typealias DependabotAlertWithRepositoryDependency = dev.octri.showcase.github.models.DependabotAlertWithRepositoryDependency
+typealias DependabotAlertWithRepositoryDependency =
+    dev.octri.showcase.github.models.DependabotAlertWithRepositoryDependency
 
-typealias DependabotAlertWithRepositoryDependencyRelationshipEnum = dev.octri.showcase.github.models.DependabotAlertWithRepositoryDependencyRelationshipEnum
+typealias DependabotAlertWithRepositoryDependencyRelationshipEnum =
+    dev.octri.showcase.github.models.DependabotAlertWithRepositoryDependencyRelationshipEnum
 
-typealias DependabotAlertWithRepositoryDependencyScopeEnum = dev.octri.showcase.github.models.DependabotAlertWithRepositoryDependencyScopeEnum
+typealias DependabotAlertWithRepositoryDependencyScopeEnum =
+    dev.octri.showcase.github.models.DependabotAlertWithRepositoryDependencyScopeEnum
 
-typealias DependabotAlertWithRepositoryDismissedReasonEnum = dev.octri.showcase.github.models.DependabotAlertWithRepositoryDismissedReasonEnum
+typealias DependabotAlertWithRepositoryDismissedReasonEnum =
+    dev.octri.showcase.github.models.DependabotAlertWithRepositoryDismissedReasonEnum
 
-typealias DependabotAlertWithRepositoryStateEnum = dev.octri.showcase.github.models.DependabotAlertWithRepositoryStateEnum
+typealias DependabotAlertWithRepositoryStateEnum =
+    dev.octri.showcase.github.models.DependabotAlertWithRepositoryStateEnum
 
-typealias DependabotCreateOrUpdateOrgSecretVisibilityEnum = dev.octri.showcase.github.models.DependabotCreateOrUpdateOrgSecretVisibilityEnum
+typealias DependabotCreateOrUpdateOrgSecretVisibilityEnum =
+    dev.octri.showcase.github.models.DependabotCreateOrUpdateOrgSecretVisibilityEnum
 
 typealias DependabotPublicKey = dev.octri.showcase.github.models.DependabotPublicKey
 
-typealias DependabotRepositoryAccessDetails = dev.octri.showcase.github.models.DependabotRepositoryAccessDetails
+typealias DependabotRepositoryAccessDetails =
+    dev.octri.showcase.github.models.DependabotRepositoryAccessDetails
 
-typealias DependabotRepositoryAccessDetailsDefaultLevelEnum = dev.octri.showcase.github.models.DependabotRepositoryAccessDetailsDefaultLevelEnum
+typealias DependabotRepositoryAccessDetailsDefaultLevelEnum =
+    dev.octri.showcase.github.models.DependabotRepositoryAccessDetailsDefaultLevelEnum
 
 typealias DependabotSecret = dev.octri.showcase.github.models.DependabotSecret
 
-typealias DependabotSetRepositoryAccessDefaultLevelDefaultLevelEnum = dev.octri.showcase.github.models.DependabotSetRepositoryAccessDefaultLevelDefaultLevelEnum
+typealias DependabotSetRepositoryAccessDefaultLevelDefaultLevelEnum =
+    dev.octri.showcase.github.models.DependabotSetRepositoryAccessDefaultLevelDefaultLevelEnum
 
-typealias DependabotSetRepositoryAccessDefaultLevelForEnterpriseDefaultLevelEnum = dev.octri.showcase.github.models.DependabotSetRepositoryAccessDefaultLevelForEnterpriseDefaultLevelEnum
+typealias DependabotSetRepositoryAccessDefaultLevelForEnterpriseDefaultLevelEnum =
+    dev.octri.showcase.github.models.DependabotSetRepositoryAccessDefaultLevelForEnterpriseDefaultLevelEnum
 
-typealias DependabotUpdateAlertDismissedReasonEnum = dev.octri.showcase.github.models.DependabotUpdateAlertDismissedReasonEnum
+typealias DependabotUpdateAlertDismissedReasonEnum =
+    dev.octri.showcase.github.models.DependabotUpdateAlertDismissedReasonEnum
 
-typealias DependabotUpdateAlertStateEnum = dev.octri.showcase.github.models.DependabotUpdateAlertStateEnum
+typealias DependabotUpdateAlertStateEnum =
+    dev.octri.showcase.github.models.DependabotUpdateAlertStateEnum
 
 typealias Dependency = dev.octri.showcase.github.models.Dependency
 
@@ -423,16 +550,21 @@ typealias DependencyGraphDiff = dev.octri.showcase.github.models.DependencyGraph
 
 typealias DependencyGraphDiffItem = dev.octri.showcase.github.models.DependencyGraphDiffItem
 
-typealias DependencyGraphDiffItemChangeTypeEnum = dev.octri.showcase.github.models.DependencyGraphDiffItemChangeTypeEnum
+typealias DependencyGraphDiffItemChangeTypeEnum =
+    dev.octri.showcase.github.models.DependencyGraphDiffItemChangeTypeEnum
 
-typealias DependencyGraphDiffItemScopeEnum = dev.octri.showcase.github.models.DependencyGraphDiffItemScopeEnum
+typealias DependencyGraphDiffItemScopeEnum =
+    dev.octri.showcase.github.models.DependencyGraphDiffItemScopeEnum
 
-typealias DependencyGraphDiffItemVulnerabilitiesItem = dev.octri.showcase.github.models.DependencyGraphDiffItemVulnerabilitiesItem
+typealias DependencyGraphDiffItemVulnerabilitiesItem =
+    dev.octri.showcase.github.models.DependencyGraphDiffItemVulnerabilitiesItem
 
 typealias DependencyGraphSpdxSbom = dev.octri.showcase.github.models.DependencyGraphSpdxSbom
 
 typealias DependencyGraphSpdxSbomSbom = dev.octri.showcase.github.models.DependencyGraphSpdxSbomSbom
 
-typealias DependencyGraphSpdxSbomSbomCreationInfo = dev.octri.showcase.github.models.DependencyGraphSpdxSbomSbomCreationInfo
+typealias DependencyGraphSpdxSbomSbomCreationInfo =
+    dev.octri.showcase.github.models.DependencyGraphSpdxSbomSbomCreationInfo
 
-typealias DependencyGraphSpdxSbomSbomPackagesItem = dev.octri.showcase.github.models.DependencyGraphSpdxSbomSbomPackagesItem
+typealias DependencyGraphSpdxSbomSbomPackagesItem =
+    dev.octri.showcase.github.models.DependencyGraphSpdxSbomSbomPackagesItem

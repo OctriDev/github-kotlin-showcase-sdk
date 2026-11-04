@@ -5,12 +5,8 @@ package dev.octri.showcase.github.models
 
 import dev.octri.showcase.github.SdkResource
 
-/**
- * The webhooks ping payload encoded with URL encoding.
- */
+/** The webhooks ping payload encoded with URL encoding. */
 data class WebhookPingFormEncoded(
-    /**
-     * A URL-encoded string of the ping JSON payload. The decoded payload is a JSON object.
-     */
+    /** A URL-encoded string of the ping JSON payload. The decoded payload is a JSON object. */
     val payload: String
 ) : SdkResource()

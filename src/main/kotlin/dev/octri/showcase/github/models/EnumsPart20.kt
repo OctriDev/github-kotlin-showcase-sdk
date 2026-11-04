@@ -3,14 +3,15 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Optional enumerated value serialized in the `emails` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum && value == other.value
+/** Optional enumerated value serialized in the `emails` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -18,39 +19,51 @@ class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum private const
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum("read")
         @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEmailsEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `environments` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum && value == other.value
+/** Optional enumerated value serialized in the `environments` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum("read")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsEnvironmentsEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `issues` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum && value == other.value
+/** Optional enumerated value serialized in the `issues` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -58,19 +71,23 @@ class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum private const
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum("read")
         @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsIssuesEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `keys` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum && value == other.value
+/** Optional enumerated value serialized in the `keys` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -78,19 +95,24 @@ class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum private constru
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum("read")
         @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsKeysEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `members` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum && value == other.value
+/** Optional enumerated value serialized in the `members` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -98,220 +120,300 @@ class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum private cons
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum("read")
         @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMembersEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `metadata` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum && value == other.value
+/** Optional enumerated value serialized in the `metadata` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum("write")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsMetadataEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_administration` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499 && value == other.value
+/** Optional enumerated value serialized in the `organization_administration` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX4cdc3e0499(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_hooks` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum && value == other.value
+/** Optional enumerated value serialized in the `organization_hooks` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum("read")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationHooksEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_packages` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689 && value == other.value
+/** Optional enumerated value serialized in the `organization_packages` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXda11ff6689(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_plan` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum && value == other.value
+/** Optional enumerated value serialized in the `organization_plan` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum("read")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizationPlanEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_projects` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7 && value == other.value
+/** Optional enumerated value serialized in the `organization_projects` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7("write")
-        @JvmField val ADMIN = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7("admin")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7("write")
+        @JvmField
+        val ADMIN =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7("admin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioXcb49c48bf7(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_secrets` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a && value == other.value
+/** Optional enumerated value serialized in the `organization_secrets` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX7f8206d61a(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_self_hosted_runners` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d && value == other.value
+/** Optional enumerated value serialized in the `organization_self_hosted_runners` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX398e72994d(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_user_blocking` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598 && value == other.value
+/** Optional enumerated value serialized in the `organization_user_blocking` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsOrganizatioX526b5d0598(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `packages` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum && value == other.value
+/** Optional enumerated value serialized in the `packages` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum("write")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPackagesEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `pages` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum && value == other.value
+/** Optional enumerated value serialized in the `pages` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -319,100 +421,137 @@ class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum private constr
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum("read")
         @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPagesEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `pull_requests` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum && value == other.value
+/** Optional enumerated value serialized in the `pull_requests` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum("read")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsPullRequestsEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `repository_hooks` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum && value == other.value
+/** Optional enumerated value serialized in the `repository_hooks` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum("read")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryHooksEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `repository_projects` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum && value == other.value
+/** Optional enumerated value serialized in the `repository_projects` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum("write")
-        @JvmField val ADMIN = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum("admin")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum("write")
+        @JvmField
+        val ADMIN =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum("admin")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsRepositoryProjectsEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `secret_scanning_alerts` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5 && value == other.value
+/** Optional enumerated value serialized in the `secret_scanning_alerts` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretScannXfda5f1d8f5(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `secrets` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum && value == other.value
+/** Optional enumerated value serialized in the `secrets` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -420,139 +559,188 @@ class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum private cons
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum("read")
         @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecretsEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `security_events` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum && value == other.value
+/** Optional enumerated value serialized in the `security_events` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum("read")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityEventsEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `security_scanning_alert` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3 && value == other.value
+/** Optional enumerated value serialized in the `security_scanning_alert` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSecurityScaXb7438767d3(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `single_file` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum && value == other.value
+/** Optional enumerated value serialized in the `single_file` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum("read")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsSingleFileEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `statuses` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum && value == other.value
+/** Optional enumerated value serialized in the `statuses` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum("write")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsStatusesEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `vulnerability_alerts` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040 && value == other.value
+/** Optional enumerated value serialized in the `vulnerability_alerts` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040("write")
+        @JvmField
+        val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040("read")
+        @JvmField
+        val WRITE =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsVulnerabiliX3527001040(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `workflows` wire field.
- */
-class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum && value == other.value
+/** Optional enumerated value serialized in the `workflows` wire field. */
+class WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val READ = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum("read")
-        @JvmField val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum("write")
+        @JvmField
+        val WRITE = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookCheckSuiteCompletedCheckSuiteAppPermissionsWorkflowsEnum(value)
     }
 }
 
 /**
- * The summary conclusion for all check runs that are part of the check suite. This value will be `null` until the check run has `completed`.
+ * The summary conclusion for all check runs that are part of the check suite. This value will be
+ * `null` until the check run has `completed`.
  */
-class WebhookCheckSuiteCompletedCheckSuiteConclusionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteConclusionEnum && value == other.value
+class WebhookCheckSuiteCompletedCheckSuiteConclusionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteConclusionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -562,24 +750,32 @@ class WebhookCheckSuiteCompletedCheckSuiteConclusionEnum private constructor(
         @JvmField val NEUTRAL = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("neutral")
         @JvmField val CANCELLED = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("cancelled")
         @JvmField val TIMED_OUT = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("timed_out")
-        @JvmField val ACTION_REQUIRED = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("action_required")
+        @JvmField
+        val ACTION_REQUIRED = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("action_required")
         @JvmField val STALE = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("stale")
         @JvmField val SKIPPED = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("skipped")
-        @JvmField val STARTUP_FAILURE = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("startup_failure")
+        @JvmField
+        val STARTUP_FAILURE = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum("startup_failure")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteConclusionEnum(value)
     }
 }
 
 /**
- * The summary status for all check runs that are part of the check suite. Can be `requested`, `in_progress`, or `completed`.
+ * The summary status for all check runs that are part of the check suite. Can be `requested`,
+ * `in_progress`, or `completed`.
  */
-class WebhookCheckSuiteCompletedCheckSuiteStatusEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookCheckSuiteCompletedCheckSuiteStatusEnum && value == other.value
+class WebhookCheckSuiteCompletedCheckSuiteStatusEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookCheckSuiteCompletedCheckSuiteStatusEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -590,7 +786,10 @@ class WebhookCheckSuiteCompletedCheckSuiteStatusEnum private constructor(
         @JvmField val QUEUED = WebhookCheckSuiteCompletedCheckSuiteStatusEnum("queued")
         @JvmField val PENDING = WebhookCheckSuiteCompletedCheckSuiteStatusEnum("pending")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteStatusEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookCheckSuiteCompletedCheckSuiteStatusEnum(value)
     }
 }

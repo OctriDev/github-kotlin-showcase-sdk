@@ -5,20 +5,12 @@ package dev.octri.showcase.github.models
 
 import dev.octri.showcase.github.SdkResource
 
-/**
- * Clone Traffic
- */
+/** Clone Traffic */
 data class CloneTraffic(
-    /**
-     * Required `integer` value serialized in the `count` wire field.
-     */
+    /** Required `integer` value serialized in the `count` wire field. */
     val count: Long,
-    /**
-     * Required `integer` value serialized in the `uniques` wire field.
-     */
+    /** Required `integer` value serialized in the `uniques` wire field. */
     val uniques: Long,
-    /**
-     * Required array value serialized in the `clones` wire field.
-     */
-    val clones: List<Traffic>
+    /** Required array value serialized in the `clones` wire field. */
+    val clones: List<Traffic>,
 ) : SdkResource()

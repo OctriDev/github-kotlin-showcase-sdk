@@ -14,18 +14,39 @@ internal object ReposGetHashAlgorithmOperation {
     /**
      * Returns the hash algorithm used to store repository objects.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposGetHashAlgorithm(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): RepositoryHashAlgorithm {
+    fun reposGetHashAlgorithm(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): RepositoryHashAlgorithm {
         return reposGetHashAlgorithmWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [reposGetHashAlgorithm], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposGetHashAlgorithmWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<RepositoryHashAlgorithm> {
-        return SdkClient.request<RepositoryHashAlgorithm>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hash-algorithm", config = clientConfig, operationId = "reposGetHashAlgorithm", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [reposGetHashAlgorithm], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun reposGetHashAlgorithmWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryHashAlgorithm> {
+        return SdkClient.request<RepositoryHashAlgorithm>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/hash-algorithm",
+                config = clientConfig,
+                operationId = "reposGetHashAlgorithm",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }

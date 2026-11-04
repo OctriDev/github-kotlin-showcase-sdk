@@ -5,16 +5,10 @@ package dev.octri.showcase.github.models
 
 import dev.octri.showcase.github.SdkResource
 
-/**
- * Typed representation of the `WebhookGithubAppAuthorizationRevoked` API schema.
- */
+/** Typed representation of the `WebhookGithubAppAuthorizationRevoked` API schema. */
 data class WebhookGithubAppAuthorizationRevoked(
-    /**
-     * Required enumerated value serialized in the `action` wire field.
-     */
+    /** Required enumerated value serialized in the `action` wire field. */
     val action: WebhookGithubAppAuthorizationRevokedActionEnum,
-    /**
-     * A GitHub user.
-     */
-    val sender: SimpleUser
+    /** A GitHub user. */
+    val sender: SimpleUser,
 ) : SdkResource()

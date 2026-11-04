@@ -12,60 +12,126 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object ReposCheckImmutableReleasesOperation {
     /**
-     * Shows whether immutable releases are enabled or disabled. Also identifies whether immutability is being enforced by the repository owner. The authenticated user must have admin read access to the repository.
+     * Shows whether immutable releases are enabled or disabled. Also identifies whether
+     * immutability is being enforced by the repository owner. The authenticated user must have
+     * admin read access to the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposCheckImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CheckImmutableReleases {
+    fun reposCheckImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CheckImmutableReleases {
         return reposCheckImmutableReleasesWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [reposCheckImmutableReleases], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposCheckImmutableReleasesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<CheckImmutableReleases> {
-        return SdkClient.request<CheckImmutableReleases>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposCheckImmutableReleases", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [reposCheckImmutableReleases], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reposCheckImmutableReleasesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<CheckImmutableReleases> {
+        return SdkClient.request<CheckImmutableReleases>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                config = clientConfig,
+                operationId = "reposCheckImmutableReleases",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposEnableImmutableReleasesOperation {
     /**
-     * Enables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Enables immutable releases for a repository. The authenticated user must have admin access to
+     * the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposEnableImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
+    fun reposEnableImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
         return reposEnableImmutableReleasesWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [reposEnableImmutableReleases], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposEnableImmutableReleasesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposEnableImmutableReleases", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("409" to BasicError::class.java)))
+    /**
+     * [reposEnableImmutableReleases], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reposEnableImmutableReleasesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                config = clientConfig,
+                operationId = "reposEnableImmutableReleases",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposDisableImmutableReleasesOperation {
     /**
-     * Disables immutable releases for a repository. The authenticated user must have admin access to the repository.
+     * Disables immutable releases for a repository. The authenticated user must have admin access
+     * to the repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposDisableImmutableReleases(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
+    fun reposDisableImmutableReleases(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
         return reposDisableImmutableReleasesWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [reposDisableImmutableReleases], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposDisableImmutableReleasesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases", config = clientConfig, operationId = "reposDisableImmutableReleases", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("409" to BasicError::class.java)))
+    /**
+     * [reposDisableImmutableReleases], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reposDisableImmutableReleasesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/immutable-releases",
+                config = clientConfig,
+                operationId = "reposDisableImmutableReleases",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
 }

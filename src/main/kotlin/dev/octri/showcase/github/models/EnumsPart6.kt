@@ -3,14 +3,14 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * State of a code scanning alert.
- */
-class CodeScanningAlertState private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningAlertState && value == other.value
+/** State of a code scanning alert. */
+class CodeScanningAlertState
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningAlertState && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -19,19 +19,22 @@ class CodeScanningAlertState private constructor(
         @JvmField val DISMISSED = CodeScanningAlertState("dismissed")
         @JvmField val FIXED = CodeScanningAlertState("fixed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningAlertState(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningAlertState(value)
     }
 }
 
-/**
- * State of a code scanning alert.
- */
-class CodeScanningAlertStateQuery private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningAlertStateQuery && value == other.value
+/** State of a code scanning alert. */
+class CodeScanningAlertStateQuery
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningAlertStateQuery && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -41,19 +44,22 @@ class CodeScanningAlertStateQuery private constructor(
         @JvmField val DISMISSED = CodeScanningAlertStateQuery("dismissed")
         @JvmField val FIXED = CodeScanningAlertStateQuery("fixed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningAlertStateQuery(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningAlertStateQuery(value)
     }
 }
 
-/**
- * The status of an autofix.
- */
-class CodeScanningAutofixStatus private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningAutofixStatus && value == other.value
+/** The status of an autofix. */
+class CodeScanningAutofixStatus
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningAutofixStatus && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -63,19 +69,22 @@ class CodeScanningAutofixStatus private constructor(
         @JvmField val SUCCESS = CodeScanningAutofixStatus("success")
         @JvmField val OUTDATED = CodeScanningAutofixStatus("outdated")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningAutofixStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningAutofixStatus(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `languages[]` wire field.
- */
-class CodeScanningDefaultSetupLanguagesItemEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupLanguagesItemEnum && value == other.value
+/** Required enumerated value serialized in the `languages[]` wire field. */
+class CodeScanningDefaultSetupLanguagesItemEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupLanguagesItemEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -85,26 +94,31 @@ class CodeScanningDefaultSetupLanguagesItemEnum private constructor(
         @JvmField val CSHARP = CodeScanningDefaultSetupLanguagesItemEnum("csharp")
         @JvmField val GO = CodeScanningDefaultSetupLanguagesItemEnum("go")
         @JvmField val JAVA_KOTLIN = CodeScanningDefaultSetupLanguagesItemEnum("java-kotlin")
-        @JvmField val JAVASCRIPT_TYPESCRIPT = CodeScanningDefaultSetupLanguagesItemEnum("javascript-typescript")
+        @JvmField
+        val JAVASCRIPT_TYPESCRIPT =
+            CodeScanningDefaultSetupLanguagesItemEnum("javascript-typescript")
         @JvmField val JAVASCRIPT = CodeScanningDefaultSetupLanguagesItemEnum("javascript")
         @JvmField val PYTHON = CodeScanningDefaultSetupLanguagesItemEnum("python")
         @JvmField val RUBY = CodeScanningDefaultSetupLanguagesItemEnum("ruby")
         @JvmField val TYPESCRIPT = CodeScanningDefaultSetupLanguagesItemEnum("typescript")
         @JvmField val SWIFT = CodeScanningDefaultSetupLanguagesItemEnum("swift")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupLanguagesItemEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupLanguagesItemEnum(value)
     }
 }
 
-/**
- * CodeQL query suite to be used.
- */
-class CodeScanningDefaultSetupQuerySuiteEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupQuerySuiteEnum && value == other.value
+/** CodeQL query suite to be used. */
+class CodeScanningDefaultSetupQuerySuiteEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupQuerySuiteEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -112,19 +126,22 @@ class CodeScanningDefaultSetupQuerySuiteEnum private constructor(
         @JvmField val DEFAULT = CodeScanningDefaultSetupQuerySuiteEnum("default")
         @JvmField val EXTENDED = CodeScanningDefaultSetupQuerySuiteEnum("extended")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupQuerySuiteEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupQuerySuiteEnum(value)
     }
 }
 
-/**
- * Runner type to be used.
- */
-class CodeScanningDefaultSetupRunnerTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupRunnerTypeEnum && value == other.value
+/** Runner type to be used. */
+class CodeScanningDefaultSetupRunnerTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupRunnerTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -132,38 +149,44 @@ class CodeScanningDefaultSetupRunnerTypeEnum private constructor(
         @JvmField val STANDARD = CodeScanningDefaultSetupRunnerTypeEnum("standard")
         @JvmField val LABELED = CodeScanningDefaultSetupRunnerTypeEnum("labeled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupRunnerTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupRunnerTypeEnum(value)
     }
 }
 
-/**
- * The frequency of the periodic analysis.
- */
-class CodeScanningDefaultSetupScheduleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupScheduleEnum && value == other.value
+/** The frequency of the periodic analysis. */
+class CodeScanningDefaultSetupScheduleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupScheduleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val WEEKLY = CodeScanningDefaultSetupScheduleEnum("weekly")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupScheduleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupScheduleEnum(value)
     }
 }
 
-/**
- * Code scanning default setup has been configured or not.
- */
-class CodeScanningDefaultSetupStateEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupStateEnum && value == other.value
+/** Code scanning default setup has been configured or not. */
+class CodeScanningDefaultSetupStateEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupStateEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -171,19 +194,26 @@ class CodeScanningDefaultSetupStateEnum private constructor(
         @JvmField val CONFIGURED = CodeScanningDefaultSetupStateEnum("configured")
         @JvmField val NOT_CONFIGURED = CodeScanningDefaultSetupStateEnum("not-configured")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupStateEnum(value)
     }
 }
 
 /**
- * Threat model to be used for code scanning analysis. Use `remote` to analyze only network sources and `remote_and_local` to include local sources like filesystem access, command-line arguments, database reads, environment variable and standard input.
+ * Threat model to be used for code scanning analysis. Use `remote` to analyze only network sources
+ * and `remote_and_local` to include local sources like filesystem access, command-line arguments,
+ * database reads, environment variable and standard input.
  */
-class CodeScanningDefaultSetupThreatModelEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupThreatModelEnum && value == other.value
+class CodeScanningDefaultSetupThreatModelEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupThreatModelEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -191,19 +221,22 @@ class CodeScanningDefaultSetupThreatModelEnum private constructor(
         @JvmField val REMOTE = CodeScanningDefaultSetupThreatModelEnum("remote")
         @JvmField val REMOTE_AND_LOCAL = CodeScanningDefaultSetupThreatModelEnum("remote_and_local")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupThreatModelEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupThreatModelEnum(value)
     }
 }
 
-/**
- * Whether to use labeled runners or standard GitHub runners.
- */
-class CodeScanningDefaultSetupOptionsRunnerTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupOptionsRunnerTypeEnum && value == other.value
+/** Whether to use labeled runners or standard GitHub runners. */
+class CodeScanningDefaultSetupOptionsRunnerTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupOptionsRunnerTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -212,19 +245,22 @@ class CodeScanningDefaultSetupOptionsRunnerTypeEnum private constructor(
         @JvmField val LABELED = CodeScanningDefaultSetupOptionsRunnerTypeEnum("labeled")
         @JvmField val NOT_SET = CodeScanningDefaultSetupOptionsRunnerTypeEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupOptionsRunnerTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupOptionsRunnerTypeEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `languages[]` wire field.
- */
-class CodeScanningDefaultSetupUpdateLanguagesItemEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupUpdateLanguagesItemEnum && value == other.value
+/** Required enumerated value serialized in the `languages[]` wire field. */
+class CodeScanningDefaultSetupUpdateLanguagesItemEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupUpdateLanguagesItemEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -234,24 +270,29 @@ class CodeScanningDefaultSetupUpdateLanguagesItemEnum private constructor(
         @JvmField val CSHARP = CodeScanningDefaultSetupUpdateLanguagesItemEnum("csharp")
         @JvmField val GO = CodeScanningDefaultSetupUpdateLanguagesItemEnum("go")
         @JvmField val JAVA_KOTLIN = CodeScanningDefaultSetupUpdateLanguagesItemEnum("java-kotlin")
-        @JvmField val JAVASCRIPT_TYPESCRIPT = CodeScanningDefaultSetupUpdateLanguagesItemEnum("javascript-typescript")
+        @JvmField
+        val JAVASCRIPT_TYPESCRIPT =
+            CodeScanningDefaultSetupUpdateLanguagesItemEnum("javascript-typescript")
         @JvmField val PYTHON = CodeScanningDefaultSetupUpdateLanguagesItemEnum("python")
         @JvmField val RUBY = CodeScanningDefaultSetupUpdateLanguagesItemEnum("ruby")
         @JvmField val SWIFT = CodeScanningDefaultSetupUpdateLanguagesItemEnum("swift")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupUpdateLanguagesItemEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupUpdateLanguagesItemEnum(value)
     }
 }
 
-/**
- * CodeQL query suite to be used.
- */
-class CodeScanningDefaultSetupUpdateQuerySuiteEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupUpdateQuerySuiteEnum && value == other.value
+/** CodeQL query suite to be used. */
+class CodeScanningDefaultSetupUpdateQuerySuiteEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupUpdateQuerySuiteEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -259,19 +300,22 @@ class CodeScanningDefaultSetupUpdateQuerySuiteEnum private constructor(
         @JvmField val DEFAULT = CodeScanningDefaultSetupUpdateQuerySuiteEnum("default")
         @JvmField val EXTENDED = CodeScanningDefaultSetupUpdateQuerySuiteEnum("extended")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupUpdateQuerySuiteEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupUpdateQuerySuiteEnum(value)
     }
 }
 
-/**
- * Runner type to be used.
- */
-class CodeScanningDefaultSetupUpdateRunnerTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupUpdateRunnerTypeEnum && value == other.value
+/** Runner type to be used. */
+class CodeScanningDefaultSetupUpdateRunnerTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupUpdateRunnerTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -279,19 +323,22 @@ class CodeScanningDefaultSetupUpdateRunnerTypeEnum private constructor(
         @JvmField val STANDARD = CodeScanningDefaultSetupUpdateRunnerTypeEnum("standard")
         @JvmField val LABELED = CodeScanningDefaultSetupUpdateRunnerTypeEnum("labeled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupUpdateRunnerTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupUpdateRunnerTypeEnum(value)
     }
 }
 
-/**
- * The desired state of code scanning default setup.
- */
-class CodeScanningDefaultSetupUpdateStateEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupUpdateStateEnum && value == other.value
+/** The desired state of code scanning default setup. */
+class CodeScanningDefaultSetupUpdateStateEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupUpdateStateEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -299,39 +346,54 @@ class CodeScanningDefaultSetupUpdateStateEnum private constructor(
         @JvmField val CONFIGURED = CodeScanningDefaultSetupUpdateStateEnum("configured")
         @JvmField val NOT_CONFIGURED = CodeScanningDefaultSetupUpdateStateEnum("not-configured")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupUpdateStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupUpdateStateEnum(value)
     }
 }
 
 /**
- * Threat model to be used for code scanning analysis. Use `remote` to analyze only network sources and `remote_and_local` to include local sources like filesystem access, command-line arguments, database reads, environment variable and standard input.
+ * Threat model to be used for code scanning analysis. Use `remote` to analyze only network sources
+ * and `remote_and_local` to include local sources like filesystem access, command-line arguments,
+ * database reads, environment variable and standard input.
  */
-class CodeScanningDefaultSetupUpdateThreatModelEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningDefaultSetupUpdateThreatModelEnum && value == other.value
+class CodeScanningDefaultSetupUpdateThreatModelEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningDefaultSetupUpdateThreatModelEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val REMOTE = CodeScanningDefaultSetupUpdateThreatModelEnum("remote")
-        @JvmField val REMOTE_AND_LOCAL = CodeScanningDefaultSetupUpdateThreatModelEnum("remote_and_local")
+        @JvmField
+        val REMOTE_AND_LOCAL = CodeScanningDefaultSetupUpdateThreatModelEnum("remote_and_local")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningDefaultSetupUpdateThreatModelEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningDefaultSetupUpdateThreatModelEnum(value)
     }
 }
 
 /**
- * `pending` files have not yet been processed, while `complete` means results from the SARIF have been stored. `failed` files have either not been processed at all, or could only be partially processed.
+ * `pending` files have not yet been processed, while `complete` means results from the SARIF have
+ * been stored. `failed` files have either not been processed at all, or could only be partially
+ * processed.
  */
-class CodeScanningSarifsStatusProcessingStatusEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningSarifsStatusProcessingStatusEnum && value == other.value
+class CodeScanningSarifsStatusProcessingStatusEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningSarifsStatusProcessingStatusEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -340,40 +402,53 @@ class CodeScanningSarifsStatusProcessingStatusEnum private constructor(
         @JvmField val COMPLETE = CodeScanningSarifsStatusProcessingStatusEnum("complete")
         @JvmField val FAILED = CodeScanningSarifsStatusProcessingStatusEnum("failed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningSarifsStatusProcessingStatusEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningSarifsStatusProcessingStatusEnum(value)
     }
 }
 
 /**
- * The reason for a failure of the variant analysis. This is only available if the variant analysis has failed.
+ * The reason for a failure of the variant analysis. This is only available if the variant analysis
+ * has failed.
  */
-class CodeScanningVariantAnalysisFailureReasonEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningVariantAnalysisFailureReasonEnum && value == other.value
+class CodeScanningVariantAnalysisFailureReasonEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningVariantAnalysisFailureReasonEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val NO_REPOS_QUERIED = CodeScanningVariantAnalysisFailureReasonEnum("no_repos_queried")
-        @JvmField val ACTIONS_WORKFLOW_RUN_FAILED = CodeScanningVariantAnalysisFailureReasonEnum("actions_workflow_run_failed")
-        @JvmField val INTERNAL_ERROR = CodeScanningVariantAnalysisFailureReasonEnum("internal_error")
+        @JvmField
+        val NO_REPOS_QUERIED = CodeScanningVariantAnalysisFailureReasonEnum("no_repos_queried")
+        @JvmField
+        val ACTIONS_WORKFLOW_RUN_FAILED =
+            CodeScanningVariantAnalysisFailureReasonEnum("actions_workflow_run_failed")
+        @JvmField
+        val INTERNAL_ERROR = CodeScanningVariantAnalysisFailureReasonEnum("internal_error")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningVariantAnalysisFailureReasonEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningVariantAnalysisFailureReasonEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `status` wire field.
- */
-class CodeScanningVariantAnalysisStatusEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningVariantAnalysisStatusEnum && value == other.value
+/** Required enumerated value serialized in the `status` wire field. */
+class CodeScanningVariantAnalysisStatusEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningVariantAnalysisStatusEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -383,19 +458,22 @@ class CodeScanningVariantAnalysisStatusEnum private constructor(
         @JvmField val FAILED = CodeScanningVariantAnalysisStatusEnum("failed")
         @JvmField val CANCELLED = CodeScanningVariantAnalysisStatusEnum("cancelled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningVariantAnalysisStatusEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningVariantAnalysisStatusEnum(value)
     }
 }
 
-/**
- * The language targeted by the CodeQL query
- */
-class CodeScanningVariantAnalysisLanguage private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningVariantAnalysisLanguage && value == other.value
+/** The language targeted by the CodeQL query */
+class CodeScanningVariantAnalysisLanguage
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningVariantAnalysisLanguage && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -411,19 +489,22 @@ class CodeScanningVariantAnalysisLanguage private constructor(
         @JvmField val RUST = CodeScanningVariantAnalysisLanguage("rust")
         @JvmField val SWIFT = CodeScanningVariantAnalysisLanguage("swift")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningVariantAnalysisLanguage(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningVariantAnalysisLanguage(value)
     }
 }
 
-/**
- * The new status of the CodeQL variant analysis repository task.
- */
-class CodeScanningVariantAnalysisStatus private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeScanningVariantAnalysisStatus && value == other.value
+/** The new status of the CodeQL variant analysis repository task. */
+class CodeScanningVariantAnalysisStatus
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeScanningVariantAnalysisStatus && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -435,19 +516,22 @@ class CodeScanningVariantAnalysisStatus private constructor(
         @JvmField val CANCELED = CodeScanningVariantAnalysisStatus("canceled")
         @JvmField val TIMED_OUT = CodeScanningVariantAnalysisStatus("timed_out")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeScanningVariantAnalysisStatus(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeScanningVariantAnalysisStatus(value)
     }
 }
 
-/**
- * The enablement status of GitHub Advanced Security
- */
-class CodeSecurityConfigurationAdvancedSecurityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeSecurityConfigurationAdvancedSecurityEnum && value == other.value
+/** The enablement status of GitHub Advanced Security */
+class CodeSecurityConfigurationAdvancedSecurityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeSecurityConfigurationAdvancedSecurityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -455,21 +539,25 @@ class CodeSecurityConfigurationAdvancedSecurityEnum private constructor(
         @JvmField val ENABLED = CodeSecurityConfigurationAdvancedSecurityEnum("enabled")
         @JvmField val DISABLED = CodeSecurityConfigurationAdvancedSecurityEnum("disabled")
         @JvmField val CODE_SECURITY = CodeSecurityConfigurationAdvancedSecurityEnum("code_security")
-        @JvmField val SECRET_PROTECTION = CodeSecurityConfigurationAdvancedSecurityEnum("secret_protection")
+        @JvmField
+        val SECRET_PROTECTION = CodeSecurityConfigurationAdvancedSecurityEnum("secret_protection")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeSecurityConfigurationAdvancedSecurityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeSecurityConfigurationAdvancedSecurityEnum(value)
     }
 }
 
-/**
- * The enablement status of code scanning default setup
- */
-class CodeSecurityConfigurationCodeScanningDefaultSetupEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeSecurityConfigurationCodeScanningDefaultSetupEnum && value == other.value
+/** The enablement status of code scanning default setup */
+class CodeSecurityConfigurationCodeScanningDefaultSetupEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeSecurityConfigurationCodeScanningDefaultSetupEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -478,61 +566,83 @@ class CodeSecurityConfigurationCodeScanningDefaultSetupEnum private constructor(
         @JvmField val DISABLED = CodeSecurityConfigurationCodeScanningDefaultSetupEnum("disabled")
         @JvmField val NOT_SET = CodeSecurityConfigurationCodeScanningDefaultSetupEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeSecurityConfigurationCodeScanningDefaultSetupEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeSecurityConfigurationCodeScanningDefaultSetupEnum(value)
     }
 }
 
-/**
- * Whether to use labeled runners or standard GitHub runners.
- */
-class CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum && value == other.value
+/** Whether to use labeled runners or standard GitHub runners. */
+class CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val STANDARD = CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum("standard")
-        @JvmField val LABELED = CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum("labeled")
-        @JvmField val NOT_SET = CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum("not_set")
+        @JvmField
+        val STANDARD =
+            CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum("standard")
+        @JvmField
+        val LABELED =
+            CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum("labeled")
+        @JvmField
+        val NOT_SET =
+            CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum(value)
     }
 }
 
-/**
- * The enablement status of code scanning delegated alert dismissal
- */
-class CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum && value == other.value
+/** The enablement status of code scanning delegated alert dismissal */
+class CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val ENABLED = CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum("enabled")
-        @JvmField val DISABLED = CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum("disabled")
-        @JvmField val NOT_SET = CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum("not_set")
+        @JvmField
+        val ENABLED = CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum("enabled")
+        @JvmField
+        val DISABLED = CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum("disabled")
+        @JvmField
+        val NOT_SET = CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum(value)
     }
 }
 
-/**
- * The enablement status of Dependabot alerts
- */
-class CodeSecurityConfigurationDependabotAlertsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeSecurityConfigurationDependabotAlertsEnum && value == other.value
+/** The enablement status of Dependabot alerts */
+class CodeSecurityConfigurationDependabotAlertsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeSecurityConfigurationDependabotAlertsEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -541,40 +651,51 @@ class CodeSecurityConfigurationDependabotAlertsEnum private constructor(
         @JvmField val DISABLED = CodeSecurityConfigurationDependabotAlertsEnum("disabled")
         @JvmField val NOT_SET = CodeSecurityConfigurationDependabotAlertsEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeSecurityConfigurationDependabotAlertsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeSecurityConfigurationDependabotAlertsEnum(value)
     }
 }
 
-/**
- * The enablement status of Dependabot delegated alert dismissal
- */
-class CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum && value == other.value
+/** The enablement status of Dependabot delegated alert dismissal */
+class CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val ENABLED = CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum("enabled")
-        @JvmField val DISABLED = CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum("disabled")
-        @JvmField val NOT_SET = CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum("not_set")
+        @JvmField
+        val ENABLED = CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum("enabled")
+        @JvmField
+        val DISABLED = CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum("disabled")
+        @JvmField
+        val NOT_SET = CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum(value)
     }
 }
 
-/**
- * The enablement status of Dependabot security updates
- */
-class CodeSecurityConfigurationDependabotSecurityUpdatesEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is CodeSecurityConfigurationDependabotSecurityUpdatesEnum && value == other.value
+/** The enablement status of Dependabot security updates */
+class CodeSecurityConfigurationDependabotSecurityUpdatesEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is CodeSecurityConfigurationDependabotSecurityUpdatesEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -583,7 +704,10 @@ class CodeSecurityConfigurationDependabotSecurityUpdatesEnum private constructor
         @JvmField val DISABLED = CodeSecurityConfigurationDependabotSecurityUpdatesEnum("disabled")
         @JvmField val NOT_SET = CodeSecurityConfigurationDependabotSecurityUpdatesEnum("not_set")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = CodeSecurityConfigurationDependabotSecurityUpdatesEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = CodeSecurityConfigurationDependabotSecurityUpdatesEnum(value)
     }
 }

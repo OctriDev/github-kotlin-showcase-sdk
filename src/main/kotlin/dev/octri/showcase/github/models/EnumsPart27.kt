@@ -3,475 +3,655 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Optional enumerated value serialized in the `metadata` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15 && value == other.value
+/** Optional enumerated value serialized in the `metadata` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX9436648f15(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_administration` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42 && value == other.value
+/** Optional enumerated value serialized in the `organization_administration` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXf0558d3f42(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_hooks` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182 && value == other.value
+/** Optional enumerated value serialized in the `organization_hooks` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8804564182(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_packages` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7 && value == other.value
+/** Optional enumerated value serialized in the `organization_packages` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3bd11f72c7(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_plan` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4 && value == other.value
+/** Optional enumerated value serialized in the `organization_plan` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbc118187c4(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_projects` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b && value == other.value
+/** Optional enumerated value serialized in the `organization_projects` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXbeb66f401b(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_secrets` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441 && value == other.value
+/** Optional enumerated value serialized in the `organization_secrets` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX2776ea1441(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_self_hosted_runners` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27 && value == other.value
+/** Optional enumerated value serialized in the `organization_self_hosted_runners` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXa67c7d8f27(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `organization_user_blocking` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f && value == other.value
+/** Optional enumerated value serialized in the `organization_user_blocking` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX102de4021f(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `packages` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a && value == other.value
+/** Optional enumerated value serialized in the `packages` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX32888a992a(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `pages` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840 && value == other.value
+/** Optional enumerated value serialized in the `pages` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdf347cd840(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `pull_requests` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc && value == other.value
+/** Optional enumerated value serialized in the `pull_requests` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX28df80e4bc(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `repository_hooks` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a && value == other.value
+/** Optional enumerated value serialized in the `repository_hooks` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX544441a70a(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `repository_projects` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f && value == other.value
+/** Optional enumerated value serialized in the `repository_projects` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX21d78c7d0f(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `secret_scanning_alerts` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395 && value == other.value
+/** Optional enumerated value serialized in the `secret_scanning_alerts` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXdcac2fc395(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `secrets` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e && value == other.value
+/** Optional enumerated value serialized in the `secrets` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX7c8c83123e(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `security_events` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7 && value == other.value
+/** Optional enumerated value serialized in the `security_events` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX1db541f9d7(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `security_scanning_alert` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c && value == other.value
+/** Optional enumerated value serialized in the `security_scanning_alert` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXd205592d1c(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `single_file` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad && value == other.value
+/** Optional enumerated value serialized in the `single_file` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb7190f28ad(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `statuses` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5 && value == other.value
+/** Optional enumerated value serialized in the `statuses` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX3678328ab5(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `vulnerability_alerts` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc && value == other.value
+/** Optional enumerated value serialized in the `vulnerability_alerts` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisX8a77755cfc(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `workflows` wire field.
- */
-class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf && value == other.value
+/** Optional enumerated value serialized in the `workflows` wire field. */
+class WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf("read")
-        @JvmField val WRITE = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf("write")
+        @JvmField
+        val READ = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf("read")
+        @JvmField
+        val WRITE =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedDeploymentPerformedViaGithubAppPermisXb51e26e8bf(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `type` wire field.
- */
-class WebhookDeploymentCreatedWorkflowRunActorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedWorkflowRunActorTypeEnum && value == other.value
+/** Optional enumerated value serialized in the `type` wire field. */
+class WebhookDeploymentCreatedWorkflowRunActorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedWorkflowRunActorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val BOT = WebhookDeploymentCreatedWorkflowRunActorTypeEnum("Bot")
         @JvmField val USER = WebhookDeploymentCreatedWorkflowRunActorTypeEnum("User")
-        @JvmField val ORGANIZATION = WebhookDeploymentCreatedWorkflowRunActorTypeEnum("Organization")
+        @JvmField
+        val ORGANIZATION = WebhookDeploymentCreatedWorkflowRunActorTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedWorkflowRunActorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookDeploymentCreatedWorkflowRunActorTypeEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `conclusion` wire field.
- */
-class WebhookDeploymentCreatedWorkflowRunConclusionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedWorkflowRunConclusionEnum && value == other.value
+/** Required enumerated value serialized in the `conclusion` wire field. */
+class WebhookDeploymentCreatedWorkflowRunConclusionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedWorkflowRunConclusionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -481,22 +661,26 @@ class WebhookDeploymentCreatedWorkflowRunConclusionEnum private constructor(
         @JvmField val NEUTRAL = WebhookDeploymentCreatedWorkflowRunConclusionEnum("neutral")
         @JvmField val CANCELLED = WebhookDeploymentCreatedWorkflowRunConclusionEnum("cancelled")
         @JvmField val TIMED_OUT = WebhookDeploymentCreatedWorkflowRunConclusionEnum("timed_out")
-        @JvmField val ACTION_REQUIRED = WebhookDeploymentCreatedWorkflowRunConclusionEnum("action_required")
+        @JvmField
+        val ACTION_REQUIRED = WebhookDeploymentCreatedWorkflowRunConclusionEnum("action_required")
         @JvmField val STALE = WebhookDeploymentCreatedWorkflowRunConclusionEnum("stale")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedWorkflowRunConclusionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookDeploymentCreatedWorkflowRunConclusionEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `status` wire field.
- */
-class WebhookDeploymentCreatedWorkflowRunStatusEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedWorkflowRunStatusEnum && value == other.value
+/** Required enumerated value serialized in the `status` wire field. */
+class WebhookDeploymentCreatedWorkflowRunStatusEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedWorkflowRunStatusEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -508,87 +692,107 @@ class WebhookDeploymentCreatedWorkflowRunStatusEnum private constructor(
         @JvmField val WAITING = WebhookDeploymentCreatedWorkflowRunStatusEnum("waiting")
         @JvmField val PENDING = WebhookDeploymentCreatedWorkflowRunStatusEnum("pending")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedWorkflowRunStatusEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookDeploymentCreatedWorkflowRunStatusEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `type` wire field.
- */
-class WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum && value == other.value
+/** Optional enumerated value serialized in the `type` wire field. */
+class WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val BOT = WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum("Bot")
         @JvmField val USER = WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum("User")
-        @JvmField val ORGANIZATION = WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum("Organization")
+        @JvmField
+        val ORGANIZATION =
+            WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentCreatedWorkflowRunTriggeringActorTypeEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `action` wire field.
- */
-class WebhookDeploymentProtectionRuleRequestedActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentProtectionRuleRequestedActionEnum && value == other.value
+/** Optional enumerated value serialized in the `action` wire field. */
+class WebhookDeploymentProtectionRuleRequestedActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentProtectionRuleRequestedActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val REQUESTED = WebhookDeploymentProtectionRuleRequestedActionEnum("requested")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentProtectionRuleRequestedActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookDeploymentProtectionRuleRequestedActionEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `action` wire field.
- */
-class WebhookDeploymentReviewApprovedActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentReviewApprovedActionEnum && value == other.value
+/** Required enumerated value serialized in the `action` wire field. */
+class WebhookDeploymentReviewApprovedActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentReviewApprovedActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val APPROVED = WebhookDeploymentReviewApprovedActionEnum("approved")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentReviewApprovedActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = WebhookDeploymentReviewApprovedActionEnum(value)
     }
 }
 
-/**
- * Optional enumerated value serialized in the `type` wire field.
- */
-class WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum && value == other.value
+/** Optional enumerated value serialized in the `type` wire field. */
+class WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val BOT = WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum("Bot")
         @JvmField val USER = WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum("User")
-        @JvmField val ORGANIZATION = WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum("Organization")
+        @JvmField
+        val ORGANIZATION = WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum("Organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            WebhookDeploymentReviewApprovedWorkflowRunActorTypeEnum(value)
     }
 }

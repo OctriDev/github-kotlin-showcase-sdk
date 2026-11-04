@@ -16,423 +16,538 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object DependabotListAlertsForEnterpriseOperation {
     /**
-     * Lists Dependabot alerts for repositories that are owned by the specified enterprise. The authenticated user must be a member of the enterprise to use this endpoint. Alerts are only returned for organizations in the enterprise for which you are an organization owner or a security manager. For more information about security managers, see "Managing security managers in your organization." OAuth app tokens and personal access tokens (classic) need the `repo` or…
+     * Lists Dependabot alerts for repositories that are owned by the specified enterprise. The
+     * authenticated user must be a member of the enterprise to use this endpoint. Alerts are only
+     * returned for organizations in the enterprise for which you are an organization owner or a
+     * security manager. For more information about security managers, see "Managing security
+     * managers in your organization." OAuth app tokens and personal access tokens (classic) need
+     * the `repo` or…
      *
      * @param enterprise The slug version of the enterprise name.
-     * @param classification A comma-separated list of vulnerability classifications.
-     *   If specified, only alerts for vulnerabilities with these classifications will
-     *   be returned. Can be: `malware`, `general`
-     * @param state A comma-separated list of states. If specified, only alerts with
-     *   these states will be returned. Can be: `auto_dismissed`, `dismissed`, `fixed`,
-     *   `open`
-     * @param severity A comma-separated list of severities. If specified, only
-     *   alerts with these severities will be returned. Can be: `low`, `medium`,
-     *   `high`, `critical`
-     * @param ecosystem A comma-separated list of ecosystems. If specified, only
-     *   alerts for these ecosystems will be returned. Can be: `composer`, `go`,
-     *   `maven`, `npm`, `nuget`, `pip`, `pub`, `rubygems`, `rust`
-     * @param `package` A comma-separated list of package names. If specified, only
-     *   alerts for these packages will be returned.
-     * @param epssPercentage CVE Exploit Prediction Scoring System (EPSS) percentage.
-     *   Can be specified as: - An exact number (`n`) - Comparators such as `>n`, `<n`,
-     *   `>=n`, `<=n` - A range like `n..n`, where `n` is a number from 0.0 to 1.0
-     *   Filters the list of alerts based on EPSS percentages. If specified, only
-     *   alerts with the provided EPSS percentages will be returned.
-     * @param has Filters the list of alerts based on whether the alert has the given
-     *   value. If specified, only alerts meeting this criterion will be returned.
-     *   Multiple `has` filters can be passed to filter for alerts that have all of the
-     *   values. Currently, only `patch` is supported.
-     * @param assignee Filter alerts by assignees. Provide a comma-separated list of
-     *   user handles (e.g., `octocat` or `octocat,hubot`) to return alerts assigned to
-     *   any of the specified users. Use `*` to list alerts with at least one assignee
-     *   or `none` to list alerts with no assignees.
-     * @param scope The scope of the vulnerable dependency. If specified, only alerts
-     *   with this scope will be returned.
-     * @param relationship A comma-separated list of relationships of the vulnerable
-     *   dependency to your project. If specified, only alerts with these relationships
-     *   will be returned. > \[!NOTE\] > We are rolling out support for dependency
-     *   relationship across ecosystems. This value will be "unknown" for all
-     *   dependencies in unsupported ecosystems.
-     * @param sort The property by which to sort the results. `created` means when
-     *   the alert was created. `updated` means when the alert's state last changed.
-     *   `epss_percentage` sorts alerts by the Exploit Prediction Scoring System (EPSS)
-     *   percentage.
+     * @param classification A comma-separated list of vulnerability classifications. If specified,
+     *   only alerts for vulnerabilities with these classifications will be returned. Can be:
+     *   `malware`, `general`
+     * @param state A comma-separated list of states. If specified, only alerts with these states
+     *   will be returned. Can be: `auto_dismissed`, `dismissed`, `fixed`, `open`
+     * @param severity A comma-separated list of severities. If specified, only alerts with these
+     *   severities will be returned. Can be: `low`, `medium`, `high`, `critical`
+     * @param ecosystem A comma-separated list of ecosystems. If specified, only alerts for these
+     *   ecosystems will be returned. Can be: `composer`, `go`, `maven`, `npm`, `nuget`, `pip`,
+     *   `pub`, `rubygems`, `rust`
+     * @param `package` A comma-separated list of package names. If specified, only alerts for these
+     *   packages will be returned.
+     * @param epssPercentage CVE Exploit Prediction Scoring System (EPSS) percentage. Can be
+     *   specified as: - An exact number (`n`) - Comparators such as `>n`, `<n`, `>=n`, `<=n` - A
+     *   range like `n..n`, where `n` is a number from 0.0 to 1.0 Filters the list of alerts based
+     *   on EPSS percentages. If specified, only alerts with the provided EPSS percentages will be
+     *   returned.
+     * @param has Filters the list of alerts based on whether the alert has the given value. If
+     *   specified, only alerts meeting this criterion will be returned. Multiple `has` filters can
+     *   be passed to filter for alerts that have all of the values. Currently, only `patch` is
+     *   supported.
+     * @param assignee Filter alerts by assignees. Provide a comma-separated list of user handles
+     *   (e.g., `octocat` or `octocat,hubot`) to return alerts assigned to any of the specified
+     *   users. Use `*` to list alerts with at least one assignee or `none` to list alerts with no
+     *   assignees.
+     * @param scope The scope of the vulnerable dependency. If specified, only alerts with this
+     *   scope will be returned.
+     * @param relationship A comma-separated list of relationships of the vulnerable dependency to
+     *   your project. If specified, only alerts with these relationships will be returned. >
+     *   \[!NOTE\] > We are rolling out support for dependency relationship across ecosystems. This
+     *   value will be "unknown" for all dependencies in unsupported ecosystems.
+     * @param sort The property by which to sort the results. `created` means when the alert was
+     *   created. `updated` means when the alert's state last changed. `epss_percentage` sorts
+     *   alerts by the Exploit Prediction Scoring System (EPSS) percentage.
      * @param direction The direction to sort the results by.
-     * @param before A cursor, as given in the Link header. If specified, the query
-     *   only searches for results before this cursor. For more information, see "Using
+     * @param before A cursor, as given in the Link header. If specified, the query only searches
+     *   for results before this cursor. For more information, see "Using pagination in the REST
+     *   API."
+     * @param after A cursor, as given in the Link header. If specified, the query only searches for
+     *   results after this cursor. For more information, see "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
      *   pagination in the REST API."
-     * @param after A cursor, as given in the Link header. If specified, the query
-     *   only searches for results after this cursor. For more information, see "Using
-     *   pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
      */
-    fun dependabotListAlertsForEnterprise(clientConfig: ClientConfig, request: Dependabot.DependabotListAlertsForEnterpriseRequest, options: RequestOptions? = null): List<DependabotAlertWithRepository> {
+    fun dependabotListAlertsForEnterprise(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotListAlertsForEnterpriseRequest,
+        options: RequestOptions? = null,
+    ): List<DependabotAlertWithRepository> {
         return dependabotListAlertsForEnterpriseWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [dependabotListAlertsForEnterprise], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotListAlertsForEnterpriseWithRawResponse(clientConfig: ClientConfig, request: Dependabot.DependabotListAlertsForEnterpriseRequest, options: RequestOptions? = null): SdkResponse<List<DependabotAlertWithRepository>> {
-        return SdkClient.request<List<DependabotAlertWithRepository>>(SdkClient.RequestSpec("GET", "/enterprises/${SdkClient.encodePathSegment(request.enterprise)}/dependabot/alerts", config = clientConfig, query = buildDependabotListAlertsForEnterpriseQuery(request), operationId = "dependabotListAlertsForEnterprise", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
+    /**
+     * [dependabotListAlertsForEnterprise], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun dependabotListAlertsForEnterpriseWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotListAlertsForEnterpriseRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<DependabotAlertWithRepository>> {
+        return SdkClient.request<List<DependabotAlertWithRepository>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/enterprises/${SdkClient.encodePathSegment(request.enterprise)}/dependabot/alerts",
+                config = clientConfig,
+                query = buildDependabotListAlertsForEnterpriseQuery(request),
+                operationId = "dependabotListAlertsForEnterprise",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "422" to ValidationErrorSimple::class.java,
+                    ),
+            )
+        )
     }
 
+    private fun buildDependabotListAlertsForEnterpriseQuery(
+        request: Dependabot.DependabotListAlertsForEnterpriseRequest
+    ): Map<String, Any?> = buildMap {
+        putAll(buildDependabotListAlertsForEnterpriseQueryPart1(request))
+        putAll(buildDependabotListAlertsForEnterpriseQueryPart2(request))
+    }
 
-
-    private fun buildDependabotListAlertsForEnterpriseQuery(request: Dependabot.DependabotListAlertsForEnterpriseRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildDependabotListAlertsForEnterpriseQueryPart1(request))
-            putAll(buildDependabotListAlertsForEnterpriseQueryPart2(request))
-        }
-
-    private fun buildDependabotListAlertsForEnterpriseQueryPart1(request: Dependabot.DependabotListAlertsForEnterpriseRequest): Map<String, Any?> =
+    private fun buildDependabotListAlertsForEnterpriseQueryPart1(
+        request: Dependabot.DependabotListAlertsForEnterpriseRequest
+    ): Map<String, Any?> =
         mapOf(
-            "classification" to
-    SdkClient.queryValue(request.classification, "form", true),
+            "classification" to SdkClient.queryValue(request.classification, "form", true),
             "state" to SdkClient.queryValue(request.state, "form", true),
-            "severity" to
-    SdkClient.queryValue(request.severity, "form", true),
-            "ecosystem" to
-    SdkClient.queryValue(request.ecosystem, "form", true),
-            "package" to
-    SdkClient.queryValue(request.`package`, "form", true),
-            "epss_percentage" to
-    SdkClient.queryValue(request.epssPercentage, "form", true),
+            "severity" to SdkClient.queryValue(request.severity, "form", true),
+            "ecosystem" to SdkClient.queryValue(request.ecosystem, "form", true),
+            "package" to SdkClient.queryValue(request.`package`, "form", true),
+            "epss_percentage" to SdkClient.queryValue(request.epssPercentage, "form", true),
             "has" to SdkClient.queryValue(request.has, "form", true),
-            "assignee" to
-    SdkClient.queryValue(request.assignee, "form", true),
+            "assignee" to SdkClient.queryValue(request.assignee, "form", true),
             "scope" to SdkClient.queryValue(request.scope, "form", true),
-            "relationship" to
-    SdkClient.queryValue(request.relationship, "form", true),
+            "relationship" to SdkClient.queryValue(request.relationship, "form", true),
             "sort" to SdkClient.queryValue(request.sort, "form", true),
-            "direction" to
-    SdkClient.queryValue(request.direction, "form", true),
+            "direction" to SdkClient.queryValue(request.direction, "form", true),
         )
 
-    private fun buildDependabotListAlertsForEnterpriseQueryPart2(request: Dependabot.DependabotListAlertsForEnterpriseRequest): Map<String, Any?> =
+    private fun buildDependabotListAlertsForEnterpriseQueryPart2(
+        request: Dependabot.DependabotListAlertsForEnterpriseRequest
+    ): Map<String, Any?> =
         mapOf(
-            "before" to
-    SdkClient.queryValue(request.before, "form", true),
+            "before" to SdkClient.queryValue(request.before, "form", true),
             "after" to SdkClient.queryValue(request.after, "form", true),
-            "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true),
+            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
         )
 }
 
 internal object DependabotListAlertsForOrgOperation {
     /**
-     * Lists Dependabot alerts for an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
+     * Lists Dependabot alerts for an organization. The authenticated user must be an owner or
+     * security manager for the organization to use this endpoint. OAuth app tokens and personal
+     * access tokens (classic) need the `security_events` scope to use this endpoint. If this
+     * endpoint is only used with public repositories, the token can use the `public_repo` scope
+     * instead.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @param classification A comma-separated list of vulnerability classifications.
-     *   If specified, only alerts for vulnerabilities with these classifications will
-     *   be returned. Can be: `malware`, `general`
-     * @param state A comma-separated list of states. If specified, only alerts with
-     *   these states will be returned. Can be: `auto_dismissed`, `dismissed`, `fixed`,
-     *   `open`
-     * @param severity A comma-separated list of severities. If specified, only
-     *   alerts with these severities will be returned. Can be: `low`, `medium`,
-     *   `high`, `critical`
-     * @param ecosystem A comma-separated list of ecosystems. If specified, only
-     *   alerts for these ecosystems will be returned. Can be: `composer`, `go`,
-     *   `maven`, `npm`, `nuget`, `pip`, `pub`, `rubygems`, `rust`
-     * @param `package` A comma-separated list of package names. If specified, only
-     *   alerts for these packages will be returned.
-     * @param epssPercentage CVE Exploit Prediction Scoring System (EPSS) percentage.
-     *   Can be specified as: - An exact number (`n`) - Comparators such as `>n`, `<n`,
-     *   `>=n`, `<=n` - A range like `n..n`, where `n` is a number from 0.0 to 1.0
-     *   Filters the list of alerts based on EPSS percentages. If specified, only
-     *   alerts with the provided EPSS percentages will be returned.
-     * @param artifactRegistryUrl A comma-separated list of artifact registry URLs.
-     *   If specified, only alerts for repositories with storage records matching these
-     *   URLs will be returned.
-     * @param artifactRegistry A comma-separated list of Artifact Registry name
-     *   strings. If specified, only alerts for repositories with storage records
-     *   matching these registries will be returned. Can be: `jfrog-artifactory`
-     * @param has Filters the list of alerts based on whether the alert has the given
-     *   value. If specified, only alerts meeting this criterion will be returned.
-     *   Multiple `has` filters can be passed to filter for alerts that have all of the
-     *   values.
-     * @param assignee Filter alerts by assignees. Provide a comma-separated list of
-     *   user handles (e.g., `octocat` or `octocat,hubot`) to return alerts assigned to
-     *   any of the specified users. Use `*` to list alerts with at least one assignee
-     *   or `none` to list alerts with no assignees.
-     * @param runtimeRisk A comma-separated list of runtime risk strings. If
-     *   specified, only alerts for repositories with deployment records matching these
-     *   risks will be returned. Can be: `critical-resource`, `internet-exposed`,
-     *   `sensitive-data`, `lateral-movement`
-     * @param scope The scope of the vulnerable dependency. If specified, only alerts
-     *   with this scope will be returned.
-     * @param relationship A comma-separated list of relationships of the vulnerable
-     *   dependency to your project. If specified, only alerts with these relationships
-     *   will be returned. > \[!NOTE\] > We are rolling out support for dependency
-     *   relationship across ecosystems. This value will be "unknown" for all
-     *   dependencies in unsupported ecosystems.
-     * @param sort The property by which to sort the results. `created` means when
-     *   the alert was created. `updated` means when the alert's state last changed.
-     *   `epss_percentage` sorts alerts by the Exploit Prediction Scoring System (EPSS)
-     *   percentage.
+     * @param classification A comma-separated list of vulnerability classifications. If specified,
+     *   only alerts for vulnerabilities with these classifications will be returned. Can be:
+     *   `malware`, `general`
+     * @param state A comma-separated list of states. If specified, only alerts with these states
+     *   will be returned. Can be: `auto_dismissed`, `dismissed`, `fixed`, `open`
+     * @param severity A comma-separated list of severities. If specified, only alerts with these
+     *   severities will be returned. Can be: `low`, `medium`, `high`, `critical`
+     * @param ecosystem A comma-separated list of ecosystems. If specified, only alerts for these
+     *   ecosystems will be returned. Can be: `composer`, `go`, `maven`, `npm`, `nuget`, `pip`,
+     *   `pub`, `rubygems`, `rust`
+     * @param `package` A comma-separated list of package names. If specified, only alerts for these
+     *   packages will be returned.
+     * @param epssPercentage CVE Exploit Prediction Scoring System (EPSS) percentage. Can be
+     *   specified as: - An exact number (`n`) - Comparators such as `>n`, `<n`, `>=n`, `<=n` - A
+     *   range like `n..n`, where `n` is a number from 0.0 to 1.0 Filters the list of alerts based
+     *   on EPSS percentages. If specified, only alerts with the provided EPSS percentages will be
+     *   returned.
+     * @param artifactRegistryUrl A comma-separated list of artifact registry URLs. If specified,
+     *   only alerts for repositories with storage records matching these URLs will be returned.
+     * @param artifactRegistry A comma-separated list of Artifact Registry name strings. If
+     *   specified, only alerts for repositories with storage records matching these registries will
+     *   be returned. Can be: `jfrog-artifactory`
+     * @param has Filters the list of alerts based on whether the alert has the given value. If
+     *   specified, only alerts meeting this criterion will be returned. Multiple `has` filters can
+     *   be passed to filter for alerts that have all of the values.
+     * @param assignee Filter alerts by assignees. Provide a comma-separated list of user handles
+     *   (e.g., `octocat` or `octocat,hubot`) to return alerts assigned to any of the specified
+     *   users. Use `*` to list alerts with at least one assignee or `none` to list alerts with no
+     *   assignees.
+     * @param runtimeRisk A comma-separated list of runtime risk strings. If specified, only alerts
+     *   for repositories with deployment records matching these risks will be returned. Can be:
+     *   `critical-resource`, `internet-exposed`, `sensitive-data`, `lateral-movement`
+     * @param scope The scope of the vulnerable dependency. If specified, only alerts with this
+     *   scope will be returned.
+     * @param relationship A comma-separated list of relationships of the vulnerable dependency to
+     *   your project. If specified, only alerts with these relationships will be returned. >
+     *   \[!NOTE\] > We are rolling out support for dependency relationship across ecosystems. This
+     *   value will be "unknown" for all dependencies in unsupported ecosystems.
+     * @param sort The property by which to sort the results. `created` means when the alert was
+     *   created. `updated` means when the alert's state last changed. `epss_percentage` sorts
+     *   alerts by the Exploit Prediction Scoring System (EPSS) percentage.
      * @param direction The direction to sort the results by.
-     * @param before A cursor, as given in the Link header. If specified, the query
-     *   only searches for results before this cursor. For more information, see "Using
+     * @param before A cursor, as given in the Link header. If specified, the query only searches
+     *   for results before this cursor. For more information, see "Using pagination in the REST
+     *   API."
+     * @param after A cursor, as given in the Link header. If specified, the query only searches for
+     *   results after this cursor. For more information, see "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
      *   pagination in the REST API."
-     * @param after A cursor, as given in the Link header. If specified, the query
-     *   only searches for results after this cursor. For more information, see "Using
-     *   pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
      */
-    fun dependabotListAlertsForOrg(clientConfig: ClientConfig, request: Dependabot.DependabotListAlertsForOrgRequest, options: RequestOptions? = null): List<DependabotAlertWithRepository> {
+    fun dependabotListAlertsForOrg(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotListAlertsForOrgRequest,
+        options: RequestOptions? = null,
+    ): List<DependabotAlertWithRepository> {
         return dependabotListAlertsForOrgWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [dependabotListAlertsForOrg], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotListAlertsForOrgWithRawResponse(clientConfig: ClientConfig, request: Dependabot.DependabotListAlertsForOrgRequest, options: RequestOptions? = null): SdkResponse<List<DependabotAlertWithRepository>> {
-        return SdkClient.request<List<DependabotAlertWithRepository>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(request.org)}/dependabot/alerts", config = clientConfig, query = buildDependabotListAlertsForOrgQuery(request), operationId = "dependabotListAlertsForOrg", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
+    /**
+     * [dependabotListAlertsForOrg], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotListAlertsForOrgWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotListAlertsForOrgRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<DependabotAlertWithRepository>> {
+        return SdkClient.request<List<DependabotAlertWithRepository>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(request.org)}/dependabot/alerts",
+                config = clientConfig,
+                query = buildDependabotListAlertsForOrgQuery(request),
+                operationId = "dependabotListAlertsForOrg",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "422" to ValidationErrorSimple::class.java,
+                    ),
+            )
+        )
     }
 
+    private fun buildDependabotListAlertsForOrgQuery(
+        request: Dependabot.DependabotListAlertsForOrgRequest
+    ): Map<String, Any?> = buildMap {
+        putAll(buildDependabotListAlertsForOrgQueryPart1(request))
+        putAll(buildDependabotListAlertsForOrgQueryPart2(request))
+    }
 
-
-    private fun buildDependabotListAlertsForOrgQuery(request: Dependabot.DependabotListAlertsForOrgRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildDependabotListAlertsForOrgQueryPart1(request))
-            putAll(buildDependabotListAlertsForOrgQueryPart2(request))
-        }
-
-    private fun buildDependabotListAlertsForOrgQueryPart1(request: Dependabot.DependabotListAlertsForOrgRequest): Map<String, Any?> =
+    private fun buildDependabotListAlertsForOrgQueryPart1(
+        request: Dependabot.DependabotListAlertsForOrgRequest
+    ): Map<String, Any?> =
         mapOf(
-            "classification" to
-    SdkClient.queryValue(request.classification, "form", true),
+            "classification" to SdkClient.queryValue(request.classification, "form", true),
             "state" to SdkClient.queryValue(request.state, "form", true),
-            "severity" to
-    SdkClient.queryValue(request.severity, "form", true),
-            "ecosystem" to
-    SdkClient.queryValue(request.ecosystem, "form", true),
-            "package" to
-    SdkClient.queryValue(request.`package`, "form", true),
-            "epss_percentage" to
-    SdkClient.queryValue(request.epssPercentage, "form", true),
+            "severity" to SdkClient.queryValue(request.severity, "form", true),
+            "ecosystem" to SdkClient.queryValue(request.ecosystem, "form", true),
+            "package" to SdkClient.queryValue(request.`package`, "form", true),
+            "epss_percentage" to SdkClient.queryValue(request.epssPercentage, "form", true),
             "artifact_registry_url" to
-    SdkClient.queryValue(request.artifactRegistryUrl, "form", true),
-            "artifact_registry" to
-    SdkClient.queryValue(request.artifactRegistry, "form", true),
+                SdkClient.queryValue(request.artifactRegistryUrl, "form", true),
+            "artifact_registry" to SdkClient.queryValue(request.artifactRegistry, "form", true),
             "has" to SdkClient.queryValue(request.has, "form", true),
-            "assignee" to
-    SdkClient.queryValue(request.assignee, "form", true),
-            "runtime_risk" to
-    SdkClient.queryValue(request.runtimeRisk, "form", true),
+            "assignee" to SdkClient.queryValue(request.assignee, "form", true),
+            "runtime_risk" to SdkClient.queryValue(request.runtimeRisk, "form", true),
             "scope" to SdkClient.queryValue(request.scope, "form", true),
         )
 
-    private fun buildDependabotListAlertsForOrgQueryPart2(request: Dependabot.DependabotListAlertsForOrgRequest): Map<String, Any?> =
+    private fun buildDependabotListAlertsForOrgQueryPart2(
+        request: Dependabot.DependabotListAlertsForOrgRequest
+    ): Map<String, Any?> =
         mapOf(
-            "relationship" to
-    SdkClient.queryValue(request.relationship, "form", true),
+            "relationship" to SdkClient.queryValue(request.relationship, "form", true),
             "sort" to SdkClient.queryValue(request.sort, "form", true),
-            "direction" to
-    SdkClient.queryValue(request.direction, "form", true),
-            "before" to
-    SdkClient.queryValue(request.before, "form", true),
+            "direction" to SdkClient.queryValue(request.direction, "form", true),
+            "before" to SdkClient.queryValue(request.before, "form", true),
             "after" to SdkClient.queryValue(request.after, "form", true),
-            "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true),
+            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
         )
 }
 
 internal object DependabotListAlertsForRepoOperation {
     /**
-     * OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
+     * OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use
+     * this endpoint. If this endpoint is only used with public repositories, the token can use the
+     * `public_repo` scope instead.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param classification A comma-separated list of vulnerability classifications.
-     *   If specified, only alerts for vulnerabilities with these classifications will
-     *   be returned. Can be: `malware`, `general`
-     * @param state A comma-separated list of states. If specified, only alerts with
-     *   these states will be returned. Can be: `auto_dismissed`, `dismissed`, `fixed`,
-     *   `open`
-     * @param severity A comma-separated list of severities. If specified, only
-     *   alerts with these severities will be returned. Can be: `low`, `medium`,
-     *   `high`, `critical`
-     * @param ecosystem A comma-separated list of ecosystems. If specified, only
-     *   alerts for these ecosystems will be returned. Can be: `composer`, `go`,
-     *   `maven`, `npm`, `nuget`, `pip`, `pub`, `rubygems`, `rust`
-     * @param `package` A comma-separated list of package names. If specified, only
-     *   alerts for these packages will be returned.
-     * @param manifest A comma-separated list of full manifest paths. If specified,
-     *   only alerts for these manifests will be returned.
-     * @param epssPercentage CVE Exploit Prediction Scoring System (EPSS) percentage.
-     *   Can be specified as: - An exact number (`n`) - Comparators such as `>n`, `<n`,
-     *   `>=n`, `<=n` - A range like `n..n`, where `n` is a number from 0.0 to 1.0
-     *   Filters the list of alerts based on EPSS percentages. If specified, only
-     *   alerts with the provided EPSS percentages will be returned.
-     * @param has Filters the list of alerts based on whether the alert has the given
-     *   value. If specified, only alerts meeting this criterion will be returned.
-     *   Multiple `has` filters can be passed to filter for alerts that have all of the
-     *   values. Currently, only `patch` is supported.
-     * @param assignee Filter alerts by assignees. Provide a comma-separated list of
-     *   user handles (e.g., `octocat` or `octocat,hubot`) to return alerts assigned to
-     *   any of the specified users. Use `*` to list alerts with at least one assignee
-     *   or `none` to list alerts with no assignees.
-     * @param scope The scope of the vulnerable dependency. If specified, only alerts
-     *   with this scope will be returned.
-     * @param relationship A comma-separated list of relationships of the vulnerable
-     *   dependency to your project. If specified, only alerts with these relationships
-     *   will be returned. > \[!NOTE\] > We are rolling out support for dependency
-     *   relationship across ecosystems. This value will be "unknown" for all
-     *   dependencies in unsupported ecosystems.
-     * @param sort The property by which to sort the results. `created` means when
-     *   the alert was created. `updated` means when the alert's state last changed.
-     *   `epss_percentage` sorts alerts by the Exploit Prediction Scoring System (EPSS)
-     *   percentage.
+     * @param classification A comma-separated list of vulnerability classifications. If specified,
+     *   only alerts for vulnerabilities with these classifications will be returned. Can be:
+     *   `malware`, `general`
+     * @param state A comma-separated list of states. If specified, only alerts with these states
+     *   will be returned. Can be: `auto_dismissed`, `dismissed`, `fixed`, `open`
+     * @param severity A comma-separated list of severities. If specified, only alerts with these
+     *   severities will be returned. Can be: `low`, `medium`, `high`, `critical`
+     * @param ecosystem A comma-separated list of ecosystems. If specified, only alerts for these
+     *   ecosystems will be returned. Can be: `composer`, `go`, `maven`, `npm`, `nuget`, `pip`,
+     *   `pub`, `rubygems`, `rust`
+     * @param `package` A comma-separated list of package names. If specified, only alerts for these
+     *   packages will be returned.
+     * @param manifest A comma-separated list of full manifest paths. If specified, only alerts for
+     *   these manifests will be returned.
+     * @param epssPercentage CVE Exploit Prediction Scoring System (EPSS) percentage. Can be
+     *   specified as: - An exact number (`n`) - Comparators such as `>n`, `<n`, `>=n`, `<=n` - A
+     *   range like `n..n`, where `n` is a number from 0.0 to 1.0 Filters the list of alerts based
+     *   on EPSS percentages. If specified, only alerts with the provided EPSS percentages will be
+     *   returned.
+     * @param has Filters the list of alerts based on whether the alert has the given value. If
+     *   specified, only alerts meeting this criterion will be returned. Multiple `has` filters can
+     *   be passed to filter for alerts that have all of the values. Currently, only `patch` is
+     *   supported.
+     * @param assignee Filter alerts by assignees. Provide a comma-separated list of user handles
+     *   (e.g., `octocat` or `octocat,hubot`) to return alerts assigned to any of the specified
+     *   users. Use `*` to list alerts with at least one assignee or `none` to list alerts with no
+     *   assignees.
+     * @param scope The scope of the vulnerable dependency. If specified, only alerts with this
+     *   scope will be returned.
+     * @param relationship A comma-separated list of relationships of the vulnerable dependency to
+     *   your project. If specified, only alerts with these relationships will be returned. >
+     *   \[!NOTE\] > We are rolling out support for dependency relationship across ecosystems. This
+     *   value will be "unknown" for all dependencies in unsupported ecosystems.
+     * @param sort The property by which to sort the results. `created` means when the alert was
+     *   created. `updated` means when the alert's state last changed. `epss_percentage` sorts
+     *   alerts by the Exploit Prediction Scoring System (EPSS) percentage.
      * @param direction The direction to sort the results by.
-     * @param before A cursor, as given in the Link header. If specified, the query
-     *   only searches for results before this cursor. For more information, see "Using
+     * @param before A cursor, as given in the Link header. If specified, the query only searches
+     *   for results before this cursor. For more information, see "Using pagination in the REST
+     *   API."
+     * @param after A cursor, as given in the Link header. If specified, the query only searches for
+     *   results after this cursor. For more information, see "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
      *   pagination in the REST API."
-     * @param after A cursor, as given in the Link header. If specified, the query
-     *   only searches for results after this cursor. For more information, see "Using
-     *   pagination in the REST API."
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
      */
-    fun dependabotListAlertsForRepo(clientConfig: ClientConfig, request: Dependabot.DependabotListAlertsForRepoRequest, options: RequestOptions? = null): List<DependabotAlert> {
+    fun dependabotListAlertsForRepo(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotListAlertsForRepoRequest,
+        options: RequestOptions? = null,
+    ): List<DependabotAlert> {
         return dependabotListAlertsForRepoWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [dependabotListAlertsForRepo], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotListAlertsForRepoWithRawResponse(clientConfig: ClientConfig, request: Dependabot.DependabotListAlertsForRepoRequest, options: RequestOptions? = null): SdkResponse<List<DependabotAlert>> {
-        return SdkClient.request<List<DependabotAlert>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/dependabot/alerts", config = clientConfig, query = buildDependabotListAlertsForRepoQuery(request), operationId = "dependabotListAlertsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
+    /**
+     * [dependabotListAlertsForRepo], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun dependabotListAlertsForRepoWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotListAlertsForRepoRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<DependabotAlert>> {
+        return SdkClient.request<List<DependabotAlert>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/dependabot/alerts",
+                config = clientConfig,
+                query = buildDependabotListAlertsForRepoQuery(request),
+                operationId = "dependabotListAlertsForRepo",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "422" to ValidationErrorSimple::class.java,
+                    ),
+            )
+        )
     }
 
+    private fun buildDependabotListAlertsForRepoQuery(
+        request: Dependabot.DependabotListAlertsForRepoRequest
+    ): Map<String, Any?> = buildMap {
+        putAll(buildDependabotListAlertsForRepoQueryPart1(request))
+        putAll(buildDependabotListAlertsForRepoQueryPart2(request))
+    }
 
-
-    private fun buildDependabotListAlertsForRepoQuery(request: Dependabot.DependabotListAlertsForRepoRequest): Map<String, Any?> =
-        buildMap {
-            putAll(buildDependabotListAlertsForRepoQueryPart1(request))
-            putAll(buildDependabotListAlertsForRepoQueryPart2(request))
-        }
-
-    private fun buildDependabotListAlertsForRepoQueryPart1(request: Dependabot.DependabotListAlertsForRepoRequest): Map<String, Any?> =
+    private fun buildDependabotListAlertsForRepoQueryPart1(
+        request: Dependabot.DependabotListAlertsForRepoRequest
+    ): Map<String, Any?> =
         mapOf(
-            "classification" to
-    SdkClient.queryValue(request.classification, "form", true),
+            "classification" to SdkClient.queryValue(request.classification, "form", true),
             "state" to SdkClient.queryValue(request.state, "form", true),
-            "severity" to
-    SdkClient.queryValue(request.severity, "form", true),
-            "ecosystem" to
-    SdkClient.queryValue(request.ecosystem, "form", true),
-            "package" to
-    SdkClient.queryValue(request.`package`, "form", true),
-            "manifest" to
-    SdkClient.queryValue(request.manifest, "form", true),
-            "epss_percentage" to
-    SdkClient.queryValue(request.epssPercentage, "form", true),
+            "severity" to SdkClient.queryValue(request.severity, "form", true),
+            "ecosystem" to SdkClient.queryValue(request.ecosystem, "form", true),
+            "package" to SdkClient.queryValue(request.`package`, "form", true),
+            "manifest" to SdkClient.queryValue(request.manifest, "form", true),
+            "epss_percentage" to SdkClient.queryValue(request.epssPercentage, "form", true),
             "has" to SdkClient.queryValue(request.has, "form", true),
-            "assignee" to
-    SdkClient.queryValue(request.assignee, "form", true),
+            "assignee" to SdkClient.queryValue(request.assignee, "form", true),
             "scope" to SdkClient.queryValue(request.scope, "form", true),
-            "relationship" to
-    SdkClient.queryValue(request.relationship, "form", true),
+            "relationship" to SdkClient.queryValue(request.relationship, "form", true),
             "sort" to SdkClient.queryValue(request.sort, "form", true),
         )
 
-    private fun buildDependabotListAlertsForRepoQueryPart2(request: Dependabot.DependabotListAlertsForRepoRequest): Map<String, Any?> =
+    private fun buildDependabotListAlertsForRepoQueryPart2(
+        request: Dependabot.DependabotListAlertsForRepoRequest
+    ): Map<String, Any?> =
         mapOf(
-            "direction" to
-    SdkClient.queryValue(request.direction, "form", true),
-            "before" to
-    SdkClient.queryValue(request.before, "form", true),
+            "direction" to SdkClient.queryValue(request.direction, "form", true),
+            "before" to SdkClient.queryValue(request.before, "form", true),
             "after" to SdkClient.queryValue(request.after, "form", true),
-            "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true),
+            "per_page" to SdkClient.queryValue(request.perPage, "form", true),
         )
 }
 
 internal object DependabotGetAlertOperation {
     /**
-     * Retrieves a Dependabot alert from a repository by its alert number. Use the `alert_number` value returned by the repository's Dependabot alerts listing, and provide a token with the required scope for the repository's visibility.
+     * Retrieves a Dependabot alert from a repository by its alert number. Use the `alert_number`
+     * value returned by the repository's Dependabot alerts listing, and provide a token with the
+     * required scope for the repository's visibility.
      *
-     * OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
+     * OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use
+     * this endpoint. If this endpoint is only used with public repositories, the token can use the
+     * `public_repo` scope instead.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param alertNumber The number that identifies a Dependabot alert in its
-     *   repository. You can find this at the end of the URL for a Dependabot alert
-     *   within GitHub, or in `number` fields in the response from the `GET
-     *   /repos/{owner}/{repo}/dependabot/alerts` operation.
+     * @param alertNumber The number that identifies a Dependabot alert in its repository. You can
+     *   find this at the end of the URL for a Dependabot alert within GitHub, or in `number` fields
+     *   in the response from the `GET /repos/{owner}/{repo}/dependabot/alerts` operation.
      */
-    fun dependabotGetAlert(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, options: RequestOptions? = null): DependabotAlert {
-        return dependabotGetAlertWithRawResponse(clientConfig, owner, repo, alertNumber, options).data
+    fun dependabotGetAlert(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        alertNumber: AlertNumber,
+        options: RequestOptions? = null,
+    ): DependabotAlert {
+        return dependabotGetAlertWithRawResponse(clientConfig, owner, repo, alertNumber, options)
+            .data
     }
 
-
-    /** [dependabotGetAlert], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotGetAlertWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, alertNumber: AlertNumber, options: RequestOptions? = null): SdkResponse<DependabotAlert> {
-        return SdkClient.request<DependabotAlert>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/alerts/${SdkClient.encodePathSegment(alertNumber)}", config = clientConfig, operationId = "dependabotGetAlert", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "410" to BasicError::class.java)))
+    /**
+     * [dependabotGetAlert], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun dependabotGetAlertWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        alertNumber: AlertNumber,
+        options: RequestOptions? = null,
+    ): SdkResponse<DependabotAlert> {
+        return SdkClient.request<DependabotAlert>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/dependabot/alerts/${SdkClient.encodePathSegment(alertNumber)}",
+                config = clientConfig,
+                operationId = "dependabotGetAlert",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "410" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object DependabotUpdateAlertOperation {
     /**
-     * Updates a Dependabot alert in a repository, changing its state, dismissal details, assignees, or agent assignment. Provide `state` or `assignees` at minimum; when dismissing an alert, include `dismissed_reason`, and use `assignees` to replace or clear the existing assignments. The authenticated user needs access to repository security alerts, and OAuth app tokens or classic personal access tokens need the `security_events` scope, or `public_repo` for public repositories.
+     * Updates a Dependabot alert in a repository, changing its state, dismissal details, assignees,
+     * or agent assignment. Provide `state` or `assignees` at minimum; when dismissing an alert,
+     * include `dismissed_reason`, and use `assignees` to replace or clear the existing assignments.
+     * The authenticated user needs access to repository security alerts, and OAuth app tokens or
+     * classic personal access tokens need the `security_events` scope, or `public_repo` for public
+     * repositories.
      *
-     * The authenticated user must have access to security alerts for the repository to use this endpoint. For more information, see "Granting access to security alerts." OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead.
+     * The authenticated user must have access to security alerts for the repository to use this
+     * endpoint. For more information, see "Granting access to security alerts." OAuth app tokens
+     * and personal access tokens (classic) need the `security_events` scope to use this endpoint.
+     * If this endpoint is only used with public repositories, the token can use the `public_repo`
+     * scope instead.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param alertNumber The number that identifies a Dependabot alert in its
-     *   repository. You can find this at the end of the URL for a Dependabot alert
-     *   within GitHub, or in `number` fields in the response from the `GET
-     *   /repos/{owner}/{repo}/dependabot/alerts` operation.
-     * @param state The state of the Dependabot alert. A `dismissed_reason` must be
-     *   provided when setting the state to `dismissed`.
-     * @param dismissedReason **Required when `state` is `dismissed`.** A reason for
-     *   dismissing the alert.
-     * @param dismissedComment An optional comment associated with dismissing the
+     * @param alertNumber The number that identifies a Dependabot alert in its repository. You can
+     *   find this at the end of the URL for a Dependabot alert within GitHub, or in `number` fields
+     *   in the response from the `GET /repos/{owner}/{repo}/dependabot/alerts` operation.
+     * @param state The state of the Dependabot alert. A `dismissed_reason` must be provided when
+     *   setting the state to `dismissed`.
+     * @param dismissedReason **Required when `state` is `dismissed`.** A reason for dismissing the
      *   alert.
-     * @param assignees Usernames to assign to this Dependabot Alert. Pass one or
-     *   more user logins to _replace_ the set of assignees on this alert. Send an
-     *   empty array (`[]`) to clear all assignees from the alert. To assign an AI
-     *   agent, include the bot login (for example, `copilot-swe-agent[bot]`).
-     * @param agentAssignment Parameters for AI agent assignment. Only used when an
-     *   agent bot login is included in `assignees`. Ignored when no agent is being
-     *   assigned.
+     * @param dismissedComment An optional comment associated with dismissing the alert.
+     * @param assignees Usernames to assign to this Dependabot Alert. Pass one or more user logins
+     *   to _replace_ the set of assignees on this alert. Send an empty array (`[]`) to clear all
+     *   assignees from the alert. To assign an AI agent, include the bot login (for example,
+     *   `copilot-swe-agent[bot]`).
+     * @param agentAssignment Parameters for AI agent assignment. Only used when an agent bot login
+     *   is included in `assignees`. Ignored when no agent is being assigned.
      */
-    fun dependabotUpdateAlert(clientConfig: ClientConfig, request: Dependabot.DependabotUpdateAlertRequest, options: RequestOptions? = null): DependabotAlert {
+    fun dependabotUpdateAlert(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotUpdateAlertRequest,
+        options: RequestOptions? = null,
+    ): DependabotAlert {
         return dependabotUpdateAlertWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [dependabotUpdateAlert], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun dependabotUpdateAlertWithRawResponse(clientConfig: ClientConfig, request: Dependabot.DependabotUpdateAlertRequest, options: RequestOptions? = null): SdkResponse<DependabotAlert> {
+    /**
+     * [dependabotUpdateAlert], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun dependabotUpdateAlertWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Dependabot.DependabotUpdateAlertRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<DependabotAlert> {
         validateDependabotUpdateAlertRequest(request)
 
-        return SdkClient.request<DependabotAlert>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/dependabot/alerts/${SdkClient.encodePathSegment(request.alertNumber)}", config = clientConfig, body = SdkClient.bodyMap("state" to (SdkClient.omitIfNull(request.state)), "dismissed_reason" to
-    (SdkClient.omitIfNull(request.dismissedReason)), "dismissed_comment" to
-    (SdkClient.omitIfNull(request.dismissedComment)), "assignees" to (SdkClient.omitIfNull(request.assignees)), "agent_assignment" to
-    (SdkClient.omitIfNull(request.agentAssignment))), operationId = "dependabotUpdateAlert", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("400" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "409" to BasicError::class.java, "410" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
+        return SdkClient.request<DependabotAlert>(
+            SdkClient.RequestSpec(
+                "PATCH",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/dependabot/alerts/${SdkClient.encodePathSegment(request.alertNumber)}",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "state" to (SdkClient.omitIfNull(request.state)),
+                        "dismissed_reason" to (SdkClient.omitIfNull(request.dismissedReason)),
+                        "dismissed_comment" to (SdkClient.omitIfNull(request.dismissedComment)),
+                        "assignees" to (SdkClient.omitIfNull(request.assignees)),
+                        "agent_assignment" to (SdkClient.omitIfNull(request.agentAssignment)),
+                    ),
+                operationId = "dependabotUpdateAlert",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "400" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "409" to BasicError::class.java,
+                        "410" to BasicError::class.java,
+                        "422" to ValidationErrorSimple::class.java,
+                    ),
+            )
+        )
     }
 
-
-    private fun validateDependabotUpdateAlertRequest(request: Dependabot.DependabotUpdateAlertRequest) {
+    private fun validateDependabotUpdateAlertRequest(
+        request: Dependabot.DependabotUpdateAlertRequest
+    ) {
         if (request.dismissedComment != null) {
-            Validation.validateLength("dismissed_comment", request.dismissedComment, Validation.LengthOpts(max = 280))
-}
+            Validation.validateLength(
+                "dismissed_comment",
+                request.dismissedComment,
+                Validation.LengthOpts(max = 280),
+            )
+        }
     }
 }

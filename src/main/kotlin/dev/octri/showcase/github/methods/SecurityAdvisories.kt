@@ -27,141 +27,93 @@ import dev.octri.showcase.github.SecurityAdvisoryCreditTypes
 import dev.octri.showcase.github.SecurityAdvisoryEcosystems
 
 object SecurityAdvisories {
-/**
- * The name of the package affected by the vulnerability.
- */
-data class RepositoryAdvisoryCreateVulnerabilitiesItemPackage(
-    /**
-     * The package's language or package management ecosystem.
-     */
-    val ecosystem: SecurityAdvisoryEcosystems,
-    /**
-     * The unique package name within its ecosystem.
-     */
-    val name: String? = null
-) : SdkResource()
+    /** The name of the package affected by the vulnerability. */
+    data class RepositoryAdvisoryCreateVulnerabilitiesItemPackage(
+        /** The package's language or package management ecosystem. */
+        val ecosystem: SecurityAdvisoryEcosystems,
+        /** The unique package name within its ecosystem. */
+        val name: String? = null,
+    ) : SdkResource()
 
-/**
- * Required object value serialized in the `vulnerabilities[]` wire field.
- */
-data class RepositoryAdvisoryCreateVulnerabilitiesItem(
-    /**
-     * The name of the package affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("package") val `package`: RepositoryAdvisoryCreateVulnerabilitiesItemPackage,
-    /**
-     * The range of the package versions affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range") val vulnerableVersionRange: String? = null,
-    /**
-     * The package version(s) that resolve the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("patched_versions") val patchedVersions: String? = null,
-    /**
-     * The functions in the package that are affected.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions") val vulnerableFunctions: List<String>? = null
-) : SdkResource()
+    /** Required object value serialized in the `vulnerabilities[]` wire field. */
+    data class RepositoryAdvisoryCreateVulnerabilitiesItem(
+        /** The name of the package affected by the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("package")
+        val `package`: RepositoryAdvisoryCreateVulnerabilitiesItemPackage,
+        /** The range of the package versions affected by the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range")
+        val vulnerableVersionRange: String? = null,
+        /** The package version(s) that resolve the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("patched_versions")
+        val patchedVersions: String? = null,
+        /** The functions in the package that are affected. */
+        @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions")
+        val vulnerableFunctions: List<String>? = null,
+    ) : SdkResource()
 
-/**
- * Required object value serialized in the `credits[]` wire field.
- */
-data class RepositoryAdvisoryCreateCreditsItem(
-    /**
-     * The username of the user credited.
-     */
-    val login: String,
-    /**
-     * The type of credit the user is receiving.
-     */
-    val type: SecurityAdvisoryCreditTypes
-) : SdkResource()
+    /** Required object value serialized in the `credits[]` wire field. */
+    data class RepositoryAdvisoryCreateCreditsItem(
+        /** The username of the user credited. */
+        val login: String,
+        /** The type of credit the user is receiving. */
+        val type: SecurityAdvisoryCreditTypes,
+    ) : SdkResource()
 
-/**
- * The name of the package affected by the vulnerability.
- */
-data class PrivateVulnerabilityReportCreateVulnerabilitiesItemPackage(
-    /**
-     * The package's language or package management ecosystem.
-     */
-    val ecosystem: SecurityAdvisoryEcosystems,
-    /**
-     * The unique package name within its ecosystem.
-     */
-    val name: String? = null
-) : SdkResource()
+    /** The name of the package affected by the vulnerability. */
+    data class PrivateVulnerabilityReportCreateVulnerabilitiesItemPackage(
+        /** The package's language or package management ecosystem. */
+        val ecosystem: SecurityAdvisoryEcosystems,
+        /** The unique package name within its ecosystem. */
+        val name: String? = null,
+    ) : SdkResource()
 
-/**
- * Required object value serialized in the `vulnerabilities[]` wire field.
- */
-data class PrivateVulnerabilityReportCreateVulnerabilitiesItem(
-    /**
-     * The name of the package affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("package") val `package`: PrivateVulnerabilityReportCreateVulnerabilitiesItemPackage,
-    /**
-     * The range of the package versions affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range") val vulnerableVersionRange: String? = null,
-    /**
-     * The package version(s) that resolve the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("patched_versions") val patchedVersions: String? = null,
-    /**
-     * The functions in the package that are affected.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions") val vulnerableFunctions: List<String>? = null
-) : SdkResource()
+    /** Required object value serialized in the `vulnerabilities[]` wire field. */
+    data class PrivateVulnerabilityReportCreateVulnerabilitiesItem(
+        /** The name of the package affected by the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("package")
+        val `package`: PrivateVulnerabilityReportCreateVulnerabilitiesItemPackage,
+        /** The range of the package versions affected by the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range")
+        val vulnerableVersionRange: String? = null,
+        /** The package version(s) that resolve the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("patched_versions")
+        val patchedVersions: String? = null,
+        /** The functions in the package that are affected. */
+        @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions")
+        val vulnerableFunctions: List<String>? = null,
+    ) : SdkResource()
 
-/**
- * The name of the package affected by the vulnerability.
- */
-data class RepositoryAdvisoryUpdateVulnerabilitiesItemPackage(
-    /**
-     * The package's language or package management ecosystem.
-     */
-    val ecosystem: SecurityAdvisoryEcosystems,
-    /**
-     * The unique package name within its ecosystem.
-     */
-    val name: String? = null
-) : SdkResource()
+    /** The name of the package affected by the vulnerability. */
+    data class RepositoryAdvisoryUpdateVulnerabilitiesItemPackage(
+        /** The package's language or package management ecosystem. */
+        val ecosystem: SecurityAdvisoryEcosystems,
+        /** The unique package name within its ecosystem. */
+        val name: String? = null,
+    ) : SdkResource()
 
-/**
- * Required object value serialized in the `vulnerabilities[]` wire field.
- */
-data class RepositoryAdvisoryUpdateVulnerabilitiesItem(
-    /**
-     * The name of the package affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("package") val `package`: RepositoryAdvisoryUpdateVulnerabilitiesItemPackage,
-    /**
-     * The range of the package versions affected by the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range") val vulnerableVersionRange: String? = null,
-    /**
-     * The package version(s) that resolve the vulnerability.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("patched_versions") val patchedVersions: String? = null,
-    /**
-     * The functions in the package that are affected.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions") val vulnerableFunctions: List<String>? = null
-) : SdkResource()
+    /** Required object value serialized in the `vulnerabilities[]` wire field. */
+    data class RepositoryAdvisoryUpdateVulnerabilitiesItem(
+        /** The name of the package affected by the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("package")
+        val `package`: RepositoryAdvisoryUpdateVulnerabilitiesItemPackage,
+        /** The range of the package versions affected by the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_version_range")
+        val vulnerableVersionRange: String? = null,
+        /** The package version(s) that resolve the vulnerability. */
+        @com.fasterxml.jackson.annotation.JsonProperty("patched_versions")
+        val patchedVersions: String? = null,
+        /** The functions in the package that are affected. */
+        @com.fasterxml.jackson.annotation.JsonProperty("vulnerable_functions")
+        val vulnerableFunctions: List<String>? = null,
+    ) : SdkResource()
 
-/**
- * Required object value serialized in the `credits[]` wire field.
- */
-data class RepositoryAdvisoryUpdateCreditsItem(
-    /**
-     * The username of the user credited.
-     */
-    val login: String,
-    /**
-     * The type of credit the user is receiving.
-     */
-    val type: SecurityAdvisoryCreditTypes
-) : SdkResource()
+    /** Required object value serialized in the `credits[]` wire field. */
+    data class RepositoryAdvisoryUpdateCreditsItem(
+        /** The username of the user credited. */
+        val login: String,
+        /** The type of credit the user is receiving. */
+        val type: SecurityAdvisoryCreditTypes,
+    ) : SdkResource()
 
     /** Parameters for [securityAdvisoriesListGlobalAdvisories]. */
     data class SecurityAdvisoriesListGlobalAdvisoriesRequest(
@@ -182,7 +134,7 @@ data class RepositoryAdvisoryUpdateCreditsItem(
         val after: String? = null,
         val direction: SchemaSchemaEnum0df64690? = null,
         val perPage: Long? = null,
-        val sort: SecurityAdvisoriesListGlobalAdvisoriesParameterEnum74b20036? = null
+        val sort: SecurityAdvisoriesListGlobalAdvisoriesParameterEnum74b20036? = null,
     )
 
     /** Parameters for [securityAdvisoriesListOrgRepositoryAdvisories]. */
@@ -193,7 +145,7 @@ data class RepositoryAdvisoryUpdateCreditsItem(
         val before: String? = null,
         val after: String? = null,
         val perPage: Long? = null,
-        val state: SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507? = null
+        val state: SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507? = null,
     )
 
     /** Parameters for [securityAdvisoriesListRepositoryAdvisories]. */
@@ -205,7 +157,7 @@ data class RepositoryAdvisoryUpdateCreditsItem(
         val before: String? = null,
         val after: String? = null,
         val perPage: Long? = null,
-        val state: SecurityAdvisoriesListRepositoryAdvisoriesParameterEnum6dd59c7a? = null
+        val state: SecurityAdvisoriesListRepositoryAdvisoriesParameterEnum6dd59c7a? = null,
     )
 
     /** Parameters for [securityAdvisoriesCreateRepositoryAdvisory]. */
@@ -220,7 +172,7 @@ data class RepositoryAdvisoryUpdateCreditsItem(
         val credits: SdkClient.SdkOptional<List<RepositoryAdvisoryCreateCreditsItem>?>? = null,
         val severity: SdkClient.SdkOptional<RepositoryAdvisoryCreateSeverityEnum?>? = null,
         val cvssVectorString: SdkClient.SdkOptional<String?>? = null,
-        val startPrivateFork: Boolean? = null
+        val startPrivateFork: Boolean? = null,
     )
 
     /** Parameters for [securityAdvisoriesCreatePrivateVulnerabilityReport]. */
@@ -229,11 +181,13 @@ data class RepositoryAdvisoryUpdateCreditsItem(
         val repo: String,
         val summary: String,
         val description: String,
-        val vulnerabilities: SdkClient.SdkOptional<List<PrivateVulnerabilityReportCreateVulnerabilitiesItem>?>? = null,
+        val vulnerabilities:
+            SdkClient.SdkOptional<List<PrivateVulnerabilityReportCreateVulnerabilitiesItem>?>? =
+            null,
         val cweIds: SdkClient.SdkOptional<List<String>?>? = null,
         val severity: SdkClient.SdkOptional<PrivateVulnerabilityReportCreateSeverityEnum?>? = null,
         val cvssVectorString: SdkClient.SdkOptional<String?>? = null,
-        val startPrivateFork: Boolean? = null
+        val startPrivateFork: Boolean? = null,
     )
 
     /** Parameters for [securityAdvisoriesUpdateRepositoryAdvisory]. */
@@ -251,218 +205,414 @@ data class RepositoryAdvisoryUpdateCreditsItem(
         val cvssVectorString: SdkClient.SdkOptional<String?>? = null,
         val state: RepositoryAdvisoryUpdateStateEnum? = null,
         val collaboratingUsers: SdkClient.SdkOptional<List<String>?>? = null,
-        val collaboratingTeams: SdkClient.SdkOptional<List<String>?>? = null
+        val collaboratingTeams: SdkClient.SdkOptional<List<String>?>? = null,
     )
 
     /**
-     * Lists all global security advisories that match the specified parameters. If no other parameters are defined, the request will return only GitHub-reviewed advisories that are not malware. By default, all responses will exclude advisories for malware, because malware are not standard vulnerabilities. To list advisories for malware, you must include the `type` parameter in your request, with the value `malware`. For more information about the different types of security advisories, see "[About the GitHub Advisory database](https://docs.github.com/code-security/security-advisories/global-security-advisories/about-the-github-advisory-database#about-types-of-security-advisories)."
+     * Lists all global security advisories that match the specified parameters. If no other
+     * parameters are defined, the request will return only GitHub-reviewed advisories that are not
+     * malware. By default, all responses will exclude advisories for malware, because malware are
+     * not standard vulnerabilities. To list advisories for malware, you must include the `type`
+     * parameter in your request, with the value `malware`. For more information about the different
+     * types of security advisories, see "[About the GitHub Advisory
+     * database](https://docs.github.com/code-security/security-advisories/global-security-advisories/about-the-github-advisory-database#about-types-of-security-advisories)."
      */
-    fun securityAdvisoriesListGlobalAdvisories(clientConfig: ClientConfig, request: SecurityAdvisoriesListGlobalAdvisoriesRequest, options: RequestOptions? = null): List<GlobalAdvisory> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesListGlobalAdvisoriesOperation.securityAdvisoriesListGlobalAdvisories(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesListGlobalAdvisories(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesListGlobalAdvisoriesRequest,
+        options: RequestOptions? = null,
+    ): List<GlobalAdvisory> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesListGlobalAdvisoriesOperation
+            .securityAdvisoriesListGlobalAdvisories(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists all global security advisories that match the specified parameters. If no other parameters are defined, the request will return only GitHub-reviewed advisories that are not malware. By default, all responses will exclude advisories for malware, because malware are not standard vulnerabilities. To list advisories for malware, you must include the `type` parameter in your request, with the value `malware`. For more information about the different types of security advisories, see "[About the GitHub Advisory database](https://docs.github.com/code-security/security-advisories/global-security-advisories/about-the-github-advisory-database#about-types-of-security-advisories)."
+     * Lists all global security advisories that match the specified parameters. If no other
+     * parameters are defined, the request will return only GitHub-reviewed advisories that are not
+     * malware. By default, all responses will exclude advisories for malware, because malware are
+     * not standard vulnerabilities. To list advisories for malware, you must include the `type`
+     * parameter in your request, with the value `malware`. For more information about the different
+     * types of security advisories, see "[About the GitHub Advisory
+     * database](https://docs.github.com/code-security/security-advisories/global-security-advisories/about-the-github-advisory-database#about-types-of-security-advisories)."
      */
-    fun securityAdvisoriesListGlobalAdvisoriesWithRawResponse(clientConfig: ClientConfig, request: SecurityAdvisoriesListGlobalAdvisoriesRequest, options: RequestOptions? = null): SdkResponse<List<GlobalAdvisory>> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesListGlobalAdvisoriesOperation.securityAdvisoriesListGlobalAdvisoriesWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesListGlobalAdvisoriesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesListGlobalAdvisoriesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<GlobalAdvisory>> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesListGlobalAdvisoriesOperation
+            .securityAdvisoriesListGlobalAdvisoriesWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
+
+    /** Gets a global security advisory using its GitHub Security Advisory (GHSA) identifier. */
+    fun securityAdvisoriesGetGlobalAdvisory(
+        clientConfig: ClientConfig,
+        ghsaId: String,
+        options: RequestOptions? = null,
+    ): GlobalAdvisory =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesGetGlobalAdvisoryOperation
+            .securityAdvisoriesGetGlobalAdvisory(
+                clientConfig,
+                ghsaId,
+                options,
+            )
+
+    /** Gets a global security advisory using its GitHub Security Advisory (GHSA) identifier. */
+    fun securityAdvisoriesGetGlobalAdvisoryWithRawResponse(
+        clientConfig: ClientConfig,
+        ghsaId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<GlobalAdvisory> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesGetGlobalAdvisoryOperation
+            .securityAdvisoriesGetGlobalAdvisoryWithRawResponse(
+                clientConfig,
+                ghsaId,
+                options,
+            )
 
     /**
-     * Gets a global security advisory using its GitHub Security Advisory (GHSA) identifier.
+     * Lists repository security advisories for an organization. The authenticated user must be an
+     * owner or security manager for the organization to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to
+     * use this endpoint.
      */
-    fun securityAdvisoriesGetGlobalAdvisory(clientConfig: ClientConfig, ghsaId: String, options: RequestOptions? = null): GlobalAdvisory =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesGetGlobalAdvisoryOperation.securityAdvisoriesGetGlobalAdvisory(
-            clientConfig,
-            ghsaId,
-            options,
-        )
+    fun securityAdvisoriesListOrgRepositoryAdvisories(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesListOrgRepositoryAdvisoriesRequest,
+        options: RequestOptions? = null,
+    ): List<RepositoryAdvisory> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesListOrgRepositoryAdvisoriesOperation
+            .securityAdvisoriesListOrgRepositoryAdvisories(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Gets a global security advisory using its GitHub Security Advisory (GHSA) identifier.
+     * Lists repository security advisories for an organization. The authenticated user must be an
+     * owner or security manager for the organization to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to
+     * use this endpoint.
      */
-    fun securityAdvisoriesGetGlobalAdvisoryWithRawResponse(clientConfig: ClientConfig, ghsaId: String, options: RequestOptions? = null): SdkResponse<GlobalAdvisory> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesGetGlobalAdvisoryOperation.securityAdvisoriesGetGlobalAdvisoryWithRawResponse(
-            clientConfig,
-            ghsaId,
-            options,
-        )
+    fun securityAdvisoriesListOrgRepositoryAdvisoriesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesListOrgRepositoryAdvisoriesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<RepositoryAdvisory>> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesListOrgRepositoryAdvisoriesOperation
+            .securityAdvisoriesListOrgRepositoryAdvisoriesWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists repository security advisories for an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
+     * Lists security advisories in a repository. The authenticated user can access unpublished
+     * security advisories from a repository if they are a security manager or administrator of that
+     * repository, or if they are a collaborator on any security advisory. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` or `repository_advisories:read` scope to to
+     * get a published security advisory in a private repository, or any unpublished security
+     * advisory that the authenticated user has access to.
      */
-    fun securityAdvisoriesListOrgRepositoryAdvisories(clientConfig: ClientConfig, request: SecurityAdvisoriesListOrgRepositoryAdvisoriesRequest, options: RequestOptions? = null): List<RepositoryAdvisory> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesListOrgRepositoryAdvisoriesOperation.securityAdvisoriesListOrgRepositoryAdvisories(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesListRepositoryAdvisories(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesListRepositoryAdvisoriesRequest,
+        options: RequestOptions? = null,
+    ): List<RepositoryAdvisory> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesListRepositoryAdvisoriesOperation
+            .securityAdvisoriesListRepositoryAdvisories(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists repository security advisories for an organization. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
+     * Lists security advisories in a repository. The authenticated user can access unpublished
+     * security advisories from a repository if they are a security manager or administrator of that
+     * repository, or if they are a collaborator on any security advisory. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` or `repository_advisories:read` scope to to
+     * get a published security advisory in a private repository, or any unpublished security
+     * advisory that the authenticated user has access to.
      */
-    fun securityAdvisoriesListOrgRepositoryAdvisoriesWithRawResponse(clientConfig: ClientConfig, request: SecurityAdvisoriesListOrgRepositoryAdvisoriesRequest, options: RequestOptions? = null): SdkResponse<List<RepositoryAdvisory>> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesListOrgRepositoryAdvisoriesOperation.securityAdvisoriesListOrgRepositoryAdvisoriesWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesListRepositoryAdvisoriesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesListRepositoryAdvisoriesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<RepositoryAdvisory>> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesListRepositoryAdvisoriesOperation
+            .securityAdvisoriesListRepositoryAdvisoriesWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists security advisories in a repository. The authenticated user can access unpublished security advisories from a repository if they are a security manager or administrator of that repository, or if they are a collaborator on any security advisory. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:read` scope to to get a published security advisory in a private repository, or any unpublished security advisory that the authenticated user has access to.
+     * Creates a new repository security advisory. In order to create a draft repository security
+     * advisory, the authenticated user must be a security manager or administrator of that
+     * repository. OAuth app tokens and personal access tokens (classic) need the `repo` or
+     * `repository_advisories:write` scope to use this endpoint.
      */
-    fun securityAdvisoriesListRepositoryAdvisories(clientConfig: ClientConfig, request: SecurityAdvisoriesListRepositoryAdvisoriesRequest, options: RequestOptions? = null): List<RepositoryAdvisory> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesListRepositoryAdvisoriesOperation.securityAdvisoriesListRepositoryAdvisories(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesCreateRepositoryAdvisory(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesCreateRepositoryAdvisoryRequest,
+        options: RequestOptions? = null,
+    ): RepositoryAdvisory =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateRepositoryAdvisoryOperation
+            .securityAdvisoriesCreateRepositoryAdvisory(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Lists security advisories in a repository. The authenticated user can access unpublished security advisories from a repository if they are a security manager or administrator of that repository, or if they are a collaborator on any security advisory. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:read` scope to to get a published security advisory in a private repository, or any unpublished security advisory that the authenticated user has access to.
+     * Creates a new repository security advisory. In order to create a draft repository security
+     * advisory, the authenticated user must be a security manager or administrator of that
+     * repository. OAuth app tokens and personal access tokens (classic) need the `repo` or
+     * `repository_advisories:write` scope to use this endpoint.
      */
-    fun securityAdvisoriesListRepositoryAdvisoriesWithRawResponse(clientConfig: ClientConfig, request: SecurityAdvisoriesListRepositoryAdvisoriesRequest, options: RequestOptions? = null): SdkResponse<List<RepositoryAdvisory>> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesListRepositoryAdvisoriesOperation.securityAdvisoriesListRepositoryAdvisoriesWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesCreateRepositoryAdvisoryWithRawResponse(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesCreateRepositoryAdvisoryRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryAdvisory> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateRepositoryAdvisoryOperation
+            .securityAdvisoriesCreateRepositoryAdvisoryWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a new repository security advisory. In order to create a draft repository security advisory, the authenticated user must be a security manager or administrator of that repository. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
+     * Report a security vulnerability to the maintainers of the repository. See "[Privately
+     * reporting a security
+     * vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)"
+     * for more information about private vulnerability reporting.
      */
-    fun securityAdvisoriesCreateRepositoryAdvisory(clientConfig: ClientConfig, request: SecurityAdvisoriesCreateRepositoryAdvisoryRequest, options: RequestOptions? = null): RepositoryAdvisory =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateRepositoryAdvisoryOperation.securityAdvisoriesCreateRepositoryAdvisory(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesCreatePrivateVulnerabilityReport(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesCreatePrivateVulnerabilityReportRequest,
+        options: RequestOptions? = null,
+    ): RepositoryAdvisory =
+        dev.octri.showcase.github.methods
+            .SecurityAdvisoriesCreatePrivateVulnerabilityReportOperation
+            .securityAdvisoriesCreatePrivateVulnerabilityReport(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates a new repository security advisory. In order to create a draft repository security advisory, the authenticated user must be a security manager or administrator of that repository. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
+     * Report a security vulnerability to the maintainers of the repository. See "[Privately
+     * reporting a security
+     * vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)"
+     * for more information about private vulnerability reporting.
      */
-    fun securityAdvisoriesCreateRepositoryAdvisoryWithRawResponse(clientConfig: ClientConfig, request: SecurityAdvisoriesCreateRepositoryAdvisoryRequest, options: RequestOptions? = null): SdkResponse<RepositoryAdvisory> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateRepositoryAdvisoryOperation.securityAdvisoriesCreateRepositoryAdvisoryWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesCreatePrivateVulnerabilityReportWithRawResponse(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesCreatePrivateVulnerabilityReportRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryAdvisory> =
+        dev.octri.showcase.github.methods
+            .SecurityAdvisoriesCreatePrivateVulnerabilityReportOperation
+            .securityAdvisoriesCreatePrivateVulnerabilityReportWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Report a security vulnerability to the maintainers of the repository. See "[Privately reporting a security vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)" for more information about private vulnerability reporting.
+     * Get a repository security advisory using its GitHub Security Advisory (GHSA) identifier.
+     * Anyone can access any published security advisory on a public repository. The authenticated
+     * user can access an unpublished security advisory from a repository if they are a security
+     * manager or administrator of that repository, or if they are a collaborator on the security
+     * advisory. OAuth app tokens and personal access tokens (classic) need the `repo` or
+     * `repository_advisories:read` scope to to get a published security advisory in a private
+     * repository, or any unpublished security advisory that the authenticated user has access to.
      */
-    fun securityAdvisoriesCreatePrivateVulnerabilityReport(clientConfig: ClientConfig, request: SecurityAdvisoriesCreatePrivateVulnerabilityReportRequest, options: RequestOptions? = null): RepositoryAdvisory =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesCreatePrivateVulnerabilityReportOperation.securityAdvisoriesCreatePrivateVulnerabilityReport(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesGetRepositoryAdvisory(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ghsaId: String,
+        options: RequestOptions? = null,
+    ): RepositoryAdvisory =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesGetRepositoryAdvisoryOperation
+            .securityAdvisoriesGetRepositoryAdvisory(
+                clientConfig,
+                owner,
+                repo,
+                ghsaId,
+                options,
+            )
 
     /**
-     * Report a security vulnerability to the maintainers of the repository. See "[Privately reporting a security vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)" for more information about private vulnerability reporting.
+     * Get a repository security advisory using its GitHub Security Advisory (GHSA) identifier.
+     * Anyone can access any published security advisory on a public repository. The authenticated
+     * user can access an unpublished security advisory from a repository if they are a security
+     * manager or administrator of that repository, or if they are a collaborator on the security
+     * advisory. OAuth app tokens and personal access tokens (classic) need the `repo` or
+     * `repository_advisories:read` scope to to get a published security advisory in a private
+     * repository, or any unpublished security advisory that the authenticated user has access to.
      */
-    fun securityAdvisoriesCreatePrivateVulnerabilityReportWithRawResponse(clientConfig: ClientConfig, request: SecurityAdvisoriesCreatePrivateVulnerabilityReportRequest, options: RequestOptions? = null): SdkResponse<RepositoryAdvisory> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesCreatePrivateVulnerabilityReportOperation.securityAdvisoriesCreatePrivateVulnerabilityReportWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesGetRepositoryAdvisoryWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ghsaId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryAdvisory> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesGetRepositoryAdvisoryOperation
+            .securityAdvisoriesGetRepositoryAdvisoryWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ghsaId,
+                options,
+            )
 
     /**
-     * Get a repository security advisory using its GitHub Security Advisory (GHSA) identifier. Anyone can access any published security advisory on a public repository. The authenticated user can access an unpublished security advisory from a repository if they are a security manager or administrator of that repository, or if they are a collaborator on the security advisory. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:read` scope to to get a published security advisory in a private repository, or any unpublished security advisory that the authenticated user has access to.
+     * Update a repository security advisory using its GitHub Security Advisory (GHSA) identifier.
+     * In order to update any security advisory, the authenticated user must be a security manager
+     * or administrator of that repository, or a collaborator on the repository security advisory.
+     * OAuth app tokens and personal access tokens (classic) need the `repo` or
+     * `repository_advisories:write` scope to use this endpoint.
      */
-    fun securityAdvisoriesGetRepositoryAdvisory(clientConfig: ClientConfig, owner: String, repo: String, ghsaId: String, options: RequestOptions? = null): RepositoryAdvisory =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesGetRepositoryAdvisoryOperation.securityAdvisoriesGetRepositoryAdvisory(
-            clientConfig,
-            owner,
-            repo,
-            ghsaId,
-            options,
-        )
+    fun securityAdvisoriesUpdateRepositoryAdvisory(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesUpdateRepositoryAdvisoryRequest,
+        options: RequestOptions? = null,
+    ): RepositoryAdvisory =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesUpdateRepositoryAdvisoryOperation
+            .securityAdvisoriesUpdateRepositoryAdvisory(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Get a repository security advisory using its GitHub Security Advisory (GHSA) identifier. Anyone can access any published security advisory on a public repository. The authenticated user can access an unpublished security advisory from a repository if they are a security manager or administrator of that repository, or if they are a collaborator on the security advisory. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:read` scope to to get a published security advisory in a private repository, or any unpublished security advisory that the authenticated user has access to.
+     * Update a repository security advisory using its GitHub Security Advisory (GHSA) identifier.
+     * In order to update any security advisory, the authenticated user must be a security manager
+     * or administrator of that repository, or a collaborator on the repository security advisory.
+     * OAuth app tokens and personal access tokens (classic) need the `repo` or
+     * `repository_advisories:write` scope to use this endpoint.
      */
-    fun securityAdvisoriesGetRepositoryAdvisoryWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ghsaId: String, options: RequestOptions? = null): SdkResponse<RepositoryAdvisory> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesGetRepositoryAdvisoryOperation.securityAdvisoriesGetRepositoryAdvisoryWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ghsaId,
-            options,
-        )
+    fun securityAdvisoriesUpdateRepositoryAdvisoryWithRawResponse(
+        clientConfig: ClientConfig,
+        request: SecurityAdvisoriesUpdateRepositoryAdvisoryRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<RepositoryAdvisory> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesUpdateRepositoryAdvisoryOperation
+            .securityAdvisoriesUpdateRepositoryAdvisoryWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Update a repository security advisory using its GitHub Security Advisory (GHSA) identifier. In order to update any security advisory, the authenticated user must be a security manager or administrator of that repository, or a collaborator on the repository security advisory. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
+     * If you want a CVE identification number for the security vulnerability in your project, and
+     * don't already have one, you can request a CVE identification number from GitHub. For more
+     * information see "[Requesting a CVE identification
+     * number](https://docs.github.com/code-security/security-advisories/repository-security-advisories/publishing-a-repository-security-advisory#requesting-a-cve-identification-number-optional)."
+     * You may request a CVE for public repositories, but cannot do so for private repositories. In
+     * order to request a CVE for a repository security advisory, the authenticated user must be a
+     * security manager or administrator of that repository. OAuth app tokens and personal access
+     * tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
      */
-    fun securityAdvisoriesUpdateRepositoryAdvisory(clientConfig: ClientConfig, request: SecurityAdvisoriesUpdateRepositoryAdvisoryRequest, options: RequestOptions? = null): RepositoryAdvisory =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesUpdateRepositoryAdvisoryOperation.securityAdvisoriesUpdateRepositoryAdvisory(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesCreateRepositoryAdvisoryCveRequest(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ghsaId: String,
+        options: RequestOptions? = null,
+    ): Map<String, Any> =
+        dev.octri.showcase.github.methods
+            .SecurityAdvisoriesCreateRepositoryAdvisoryCveRequestOperation
+            .securityAdvisoriesCreateRepositoryAdvisoryCveRequest(
+                clientConfig,
+                owner,
+                repo,
+                ghsaId,
+                options,
+            )
 
     /**
-     * Update a repository security advisory using its GitHub Security Advisory (GHSA) identifier. In order to update any security advisory, the authenticated user must be a security manager or administrator of that repository, or a collaborator on the repository security advisory. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
+     * If you want a CVE identification number for the security vulnerability in your project, and
+     * don't already have one, you can request a CVE identification number from GitHub. For more
+     * information see "[Requesting a CVE identification
+     * number](https://docs.github.com/code-security/security-advisories/repository-security-advisories/publishing-a-repository-security-advisory#requesting-a-cve-identification-number-optional)."
+     * You may request a CVE for public repositories, but cannot do so for private repositories. In
+     * order to request a CVE for a repository security advisory, the authenticated user must be a
+     * security manager or administrator of that repository. OAuth app tokens and personal access
+     * tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
      */
-    fun securityAdvisoriesUpdateRepositoryAdvisoryWithRawResponse(clientConfig: ClientConfig, request: SecurityAdvisoriesUpdateRepositoryAdvisoryRequest, options: RequestOptions? = null): SdkResponse<RepositoryAdvisory> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesUpdateRepositoryAdvisoryOperation.securityAdvisoriesUpdateRepositoryAdvisoryWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun securityAdvisoriesCreateRepositoryAdvisoryCveRequestWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ghsaId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Map<String, Any>> =
+        dev.octri.showcase.github.methods
+            .SecurityAdvisoriesCreateRepositoryAdvisoryCveRequestOperation
+            .securityAdvisoriesCreateRepositoryAdvisoryCveRequestWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ghsaId,
+                options,
+            )
 
     /**
-     * If you want a CVE identification number for the security vulnerability in your project, and don't already have one, you can request a CVE identification number from GitHub. For more information see "[Requesting a CVE identification number](https://docs.github.com/code-security/security-advisories/repository-security-advisories/publishing-a-repository-security-advisory#requesting-a-cve-identification-number-optional)." You may request a CVE for public repositories, but cannot do so for private repositories. In order to request a CVE for a repository security advisory, the authenticated user must be a security manager or administrator of that repository. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
+     * Create a temporary private fork to collaborate on fixing a security vulnerability in a
+     * repository. Repository administrators, organization owners, and security managers can create
+     * a temporary private fork. The original reporter of a privately reported vulnerability can
+     * also create one while they remain a collaborator on the security advisory. > [!NOTE] >
+     * Forking a repository happens asynchronously. You may have to wait up to 5 minutes before you
+     * can access the fork.
      */
-    fun securityAdvisoriesCreateRepositoryAdvisoryCveRequest(clientConfig: ClientConfig, owner: String, repo: String, ghsaId: String, options: RequestOptions? = null): Map<String, Any> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateRepositoryAdvisoryCveRequestOperation.securityAdvisoriesCreateRepositoryAdvisoryCveRequest(
-            clientConfig,
-            owner,
-            repo,
-            ghsaId,
-            options,
-        )
+    fun securityAdvisoriesCreateFork(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ghsaId: String,
+        options: RequestOptions? = null,
+    ): FullRepository =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateForkOperation
+            .securityAdvisoriesCreateFork(
+                clientConfig,
+                owner,
+                repo,
+                ghsaId,
+                options,
+            )
 
     /**
-     * If you want a CVE identification number for the security vulnerability in your project, and don't already have one, you can request a CVE identification number from GitHub. For more information see "[Requesting a CVE identification number](https://docs.github.com/code-security/security-advisories/repository-security-advisories/publishing-a-repository-security-advisory#requesting-a-cve-identification-number-optional)." You may request a CVE for public repositories, but cannot do so for private repositories. In order to request a CVE for a repository security advisory, the authenticated user must be a security manager or administrator of that repository. OAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint.
+     * Create a temporary private fork to collaborate on fixing a security vulnerability in a
+     * repository. Repository administrators, organization owners, and security managers can create
+     * a temporary private fork. The original reporter of a privately reported vulnerability can
+     * also create one while they remain a collaborator on the security advisory. > [!NOTE] >
+     * Forking a repository happens asynchronously. You may have to wait up to 5 minutes before you
+     * can access the fork.
      */
-    fun securityAdvisoriesCreateRepositoryAdvisoryCveRequestWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ghsaId: String, options: RequestOptions? = null): SdkResponse<Map<String, Any>> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateRepositoryAdvisoryCveRequestOperation.securityAdvisoriesCreateRepositoryAdvisoryCveRequestWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ghsaId,
-            options,
-        )
-
-    /**
-     * Create a temporary private fork to collaborate on fixing a security vulnerability in a repository. Repository administrators, organization owners, and security managers can create a temporary private fork. The original reporter of a privately reported vulnerability can also create one while they remain a collaborator on the security advisory. > [!NOTE] > Forking a repository happens asynchronously. You may have to wait up to 5 minutes before you can access the fork.
-     */
-    fun securityAdvisoriesCreateFork(clientConfig: ClientConfig, owner: String, repo: String, ghsaId: String, options: RequestOptions? = null): FullRepository =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateForkOperation.securityAdvisoriesCreateFork(
-            clientConfig,
-            owner,
-            repo,
-            ghsaId,
-            options,
-        )
-
-    /**
-     * Create a temporary private fork to collaborate on fixing a security vulnerability in a repository. Repository administrators, organization owners, and security managers can create a temporary private fork. The original reporter of a privately reported vulnerability can also create one while they remain a collaborator on the security advisory. > [!NOTE] > Forking a repository happens asynchronously. You may have to wait up to 5 minutes before you can access the fork.
-     */
-    fun securityAdvisoriesCreateForkWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ghsaId: String, options: RequestOptions? = null): SdkResponse<FullRepository> =
-        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateForkOperation.securityAdvisoriesCreateForkWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            ghsaId,
-            options,
-        )
+    fun securityAdvisoriesCreateForkWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ghsaId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<FullRepository> =
+        dev.octri.showcase.github.methods.SecurityAdvisoriesCreateForkOperation
+            .securityAdvisoriesCreateForkWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                ghsaId,
+                options,
+            )
 }

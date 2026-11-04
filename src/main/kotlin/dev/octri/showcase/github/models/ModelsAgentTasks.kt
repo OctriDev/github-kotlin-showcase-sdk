@@ -5,104 +5,122 @@ package dev.octri.showcase.github.models
 
 import dev.octri.showcase.github.SdkResource
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class AgentTasksCreateTaskInRepoResponseArtifactsItemDataVariant0(
-    /**
-     * GitHub resource ID
-     */
+    /** GitHub resource ID */
     val id: Long,
-    /**
-     * GraphQL global ID
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("global_id") val globalId: String? = null
+    /** GraphQL global ID */
+    @com.fasterxml.jackson.annotation.JsonProperty("global_id") val globalId: String? = null,
 ) : SdkResource(), AgentTasksCreateTaskInRepoResponseArtifactsItemData
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class AgentTasksCreateTaskInRepoResponseArtifactsItemDataVariant1(
-    /**
-     * Head branch name
-     */
+    /** Head branch name */
     @com.fasterxml.jackson.annotation.JsonProperty("head_ref") val headRef: String,
-    /**
-     * Base branch name
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("base_ref") val baseRef: String
+    /** Base branch name */
+    @com.fasterxml.jackson.annotation.JsonProperty("base_ref") val baseRef: String,
 ) : SdkResource(), AgentTasksCreateTaskInRepoResponseArtifactsItemData
 
-/**
- * Resource data (shape depends on type)
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+/** Resource data (shape depends on type) */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = AgentTasksCreateTaskInRepoResponseArtifactsItemDataVariant0::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = AgentTasksCreateTaskInRepoResponseArtifactsItemDataVariant1::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = AgentTasksCreateTaskInRepoResponseArtifactsItemDataVariant0::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = AgentTasksCreateTaskInRepoResponseArtifactsItemDataVariant1::class
+    ),
 )
 sealed interface AgentTasksCreateTaskInRepoResponseArtifactsItemData
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class AgentTasksListTasksForRepoResponseTasksItemArtifactsItemDataVariant0(
-    /**
-     * GitHub resource ID
-     */
+    /** GitHub resource ID */
     val id: Long,
-    /**
-     * GraphQL global ID
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("global_id") val globalId: String? = null
+    /** GraphQL global ID */
+    @com.fasterxml.jackson.annotation.JsonProperty("global_id") val globalId: String? = null,
 ) : SdkResource(), AgentTasksListTasksForRepoResponseTasksItemArtifactsItemData
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class AgentTasksListTasksForRepoResponseTasksItemArtifactsItemDataVariant1(
-    /**
-     * Head branch name
-     */
+    /** Head branch name */
     @com.fasterxml.jackson.annotation.JsonProperty("head_ref") val headRef: String,
-    /**
-     * Base branch name
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("base_ref") val baseRef: String
+    /** Base branch name */
+    @com.fasterxml.jackson.annotation.JsonProperty("base_ref") val baseRef: String,
 ) : SdkResource(), AgentTasksListTasksForRepoResponseTasksItemArtifactsItemData
 
-/**
- * Resource data (shape depends on type)
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+/** Resource data (shape depends on type) */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = AgentTasksListTasksForRepoResponseTasksItemArtifactsItemDataVariant0::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = AgentTasksListTasksForRepoResponseTasksItemArtifactsItemDataVariant1::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = AgentTasksListTasksForRepoResponseTasksItemArtifactsItemDataVariant0::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = AgentTasksListTasksForRepoResponseTasksItemArtifactsItemDataVariant1::class
+    ),
 )
 sealed interface AgentTasksListTasksForRepoResponseTasksItemArtifactsItemData
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class AgentTasksListTasksResponseTasksItemArtifactsItemDataVariant0(
-    /**
-     * GitHub resource ID
-     */
+    /** GitHub resource ID */
     val id: Long,
-    /**
-     * GraphQL global ID
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("global_id") val globalId: String? = null
+    /** GraphQL global ID */
+    @com.fasterxml.jackson.annotation.JsonProperty("global_id") val globalId: String? = null,
 ) : SdkResource(), AgentTasksListTasksResponseTasksItemArtifactsItemData
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
 data class AgentTasksListTasksResponseTasksItemArtifactsItemDataVariant1(
-    /**
-     * Head branch name
-     */
+    /** Head branch name */
     @com.fasterxml.jackson.annotation.JsonProperty("head_ref") val headRef: String,
-    /**
-     * Base branch name
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("base_ref") val baseRef: String
+    /** Base branch name */
+    @com.fasterxml.jackson.annotation.JsonProperty("base_ref") val baseRef: String,
 ) : SdkResource(), AgentTasksListTasksResponseTasksItemArtifactsItemData
 
-/**
- * Resource data (shape depends on type)
- */
-@com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION)
+/** Resource data (shape depends on type) */
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.DEDUCTION
+)
 @com.fasterxml.jackson.annotation.JsonSubTypes(
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = AgentTasksListTasksResponseTasksItemArtifactsItemDataVariant0::class),
-    com.fasterxml.jackson.annotation.JsonSubTypes.Type(value = AgentTasksListTasksResponseTasksItemArtifactsItemDataVariant1::class)
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = AgentTasksListTasksResponseTasksItemArtifactsItemDataVariant0::class
+    ),
+    com.fasterxml.jackson.annotation.JsonSubTypes.Type(
+        value = AgentTasksListTasksResponseTasksItemArtifactsItemDataVariant1::class
+    ),
 )
 sealed interface AgentTasksListTasksResponseTasksItemArtifactsItemData

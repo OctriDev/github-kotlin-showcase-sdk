@@ -12,74 +12,203 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object PackagesRestorePackageForOrgOperation {
     /**
-     * Restores an entire package in an organization. You can restore a deleted package under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace…
+     * Restores an entire package in an organization. You can restore a deleted package under the
+     * following conditions: - The package was deleted within the last 30 days. - The same package
+     * namespace and version is still available and not reused for a new package. If the same
+     * package namespace is not available, you will not be able to restore your package. In this
+     * scenario, to restore the deleted package, you must delete the new package that uses the
+     * deleted package's namespace…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param org The organization name. The name is not case sensitive.
      * @param token package token
      */
-    fun packagesRestorePackageForOrg(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, org: String, token: String? = null, options: RequestOptions? = null): Unit {
-        return packagesRestorePackageForOrgWithRawResponse(clientConfig, packageType, packageName, org, token, options).data
+    fun packagesRestorePackageForOrg(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        org: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        return packagesRestorePackageForOrgWithRawResponse(
+                clientConfig,
+                packageType,
+                packageName,
+                org,
+                token,
+                options,
+            )
+            .data
     }
 
-
-    /** [packagesRestorePackageForOrg], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun packagesRestorePackageForOrgWithRawResponse(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, org: String, token: String? = null, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore", config = clientConfig, query = mapOf("token" to SdkClient.queryValue(token, "form", true)), operationId = "packagesRestorePackageForOrg", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [packagesRestorePackageForOrg], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun packagesRestorePackageForOrgWithRawResponse(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        org: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/orgs/${SdkClient.encodePathSegment(org)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore",
+                config = clientConfig,
+                query = mapOf("token" to SdkClient.queryValue(token, "form", true)),
+                operationId = "packagesRestorePackageForOrg",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object PackagesRestorePackageForAuthenticatedUserOperation {
     /**
-     * Restores a package owned by the authenticated user. You can restore a deleted package under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's…
+     * Restores a package owned by the authenticated user. You can restore a deleted package under
+     * the following conditions: - The package was deleted within the last 30 days. - The same
+     * package namespace and version is still available and not reused for a new package. If the
+     * same package namespace is not available, you will not be able to restore your package. In
+     * this scenario, to restore the deleted package, you must delete the new package that uses the
+     * deleted package's…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param token package token
      */
-    fun packagesRestorePackageForAuthenticatedUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, token: String? = null, options: RequestOptions? = null): Unit {
-        return packagesRestorePackageForAuthenticatedUserWithRawResponse(clientConfig, packageType, packageName, token, options).data
+    fun packagesRestorePackageForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        return packagesRestorePackageForAuthenticatedUserWithRawResponse(
+                clientConfig,
+                packageType,
+                packageName,
+                token,
+                options,
+            )
+            .data
     }
 
-
-    /** [packagesRestorePackageForAuthenticatedUser], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun packagesRestorePackageForAuthenticatedUserWithRawResponse(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, token: String? = null, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore", config = clientConfig, query = mapOf("token" to SdkClient.queryValue(token, "form", true)), operationId = "packagesRestorePackageForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [packagesRestorePackageForAuthenticatedUser], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun packagesRestorePackageForAuthenticatedUserWithRawResponse(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/user/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore",
+                config = clientConfig,
+                query = mapOf("token" to SdkClient.queryValue(token, "form", true)),
+                operationId = "packagesRestorePackageForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object PackagesRestorePackageForUserOperation {
     /**
-     * Restores an entire package for a user. You can restore a deleted package under the following conditions: - The package was deleted within the last 30 days. - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace first. If…
+     * Restores an entire package for a user. You can restore a deleted package under the following
+     * conditions: - The package was deleted within the last 30 days. - The same package namespace
+     * and version is still available and not reused for a new package. If the same package
+     * namespace is not available, you will not be able to restore your package. In this scenario,
+     * to restore the deleted package, you must delete the new package that uses the deleted
+     * package's namespace first. If…
      *
-     * @param packageType The type of supported package. Packages in GitHub's Gradle
-     *   registry have the type `maven`. Docker images pushed to GitHub's Container
-     *   registry (`ghcr.io`) have the type `container`. You can use the type `docker`
-     *   to find images that were pushed to GitHub's Docker registry
-     *   (`docker.pkg.github.com`), even if these have now been migrated to the
+     * @param packageType The type of supported package. Packages in GitHub's Gradle registry have
+     *   the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the
+     *   type `container`. You can use the type `docker` to find images that were pushed to GitHub's
+     *   Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the
      *   Container registry.
      * @param packageName The name of the package.
      * @param username The handle for the GitHub user account.
      * @param token package token
      */
-    fun packagesRestorePackageForUser(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, username: String, token: String? = null, options: RequestOptions? = null): Unit {
-        return packagesRestorePackageForUserWithRawResponse(clientConfig, packageType, packageName, username, token, options).data
+    fun packagesRestorePackageForUser(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        username: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): Unit {
+        return packagesRestorePackageForUserWithRawResponse(
+                clientConfig,
+                packageType,
+                packageName,
+                username,
+                token,
+                options,
+            )
+            .data
     }
 
-
-    /** [packagesRestorePackageForUser], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun packagesRestorePackageForUserWithRawResponse(clientConfig: ClientConfig, packageType: SchemaSchemaEnum5f6fac39, packageName: String, username: String, token: String? = null, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore", config = clientConfig, query = mapOf("token" to SdkClient.queryValue(token, "form", true)), operationId = "packagesRestorePackageForUser", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [packagesRestorePackageForUser], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun packagesRestorePackageForUserWithRawResponse(
+        clientConfig: ClientConfig,
+        packageType: SchemaSchemaEnum5f6fac39,
+        packageName: String,
+        username: String,
+        token: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/users/${SdkClient.encodePathSegment(username)}/packages/${SdkClient.encodePathSegment(packageType)}/${SdkClient.encodePathSegment(packageName)}/restore",
+                config = clientConfig,
+                query = mapOf("token" to SdkClient.queryValue(token, "form", true)),
+                operationId = "packagesRestorePackageForUser",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }

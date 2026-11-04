@@ -3,13 +3,17 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Optional API value serialized in the `dist` wire field.
- */
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674.Deserializer::class)
+/** Optional API value serialized in the `dist` wire field. */
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using =
+        WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674.Deserializer::class
+)
 sealed interface WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674 {
     /** Chooses the branch this payload is shaped like. */
-    class Deserializer : com.fasterxml.jackson.databind.JsonDeserializer<WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674>() {
+    class Deserializer :
+        com.fasterxml.jackson.databind.JsonDeserializer<
+            WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674
+        >() {
         override fun deserialize(
             parser: com.fasterxml.jackson.core.JsonParser,
             context: com.fasterxml.jackson.databind.DeserializationContext,
@@ -17,17 +21,51 @@ sealed interface WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe
             val mapper = parser.codec as com.fasterxml.jackson.databind.ObjectMapper
             val node: com.fasterxml.jackson.databind.JsonNode = parser.readValueAsTree()
             return when {
-                node.isTextual -> StringWebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<String>() {}))
-                node.isObject -> ObjectMapWebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674(mapper.convertValue(node, object : com.fasterxml.jackson.core.type.TypeReference<Map<String, Any>>() {}))
-                else -> throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
-                    parser, WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674::class.java, "no WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674 branch accepts this payload")
+                node.isTextual ->
+                    StringWebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674(
+                        mapper.convertValue(
+                            node,
+                            object : com.fasterxml.jackson.core.type.TypeReference<String>() {},
+                        )
+                    )
+                node.isObject ->
+                    ObjectMapWebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674(
+                        mapper.convertValue(
+                            node,
+                            object :
+                                com.fasterxml.jackson.core.type.TypeReference<
+                                    Map<String, Any>
+                                >() {},
+                        )
+                    )
+                else ->
+                    throw com.fasterxml.jackson.databind.exc.MismatchedInputException.from(
+                        parser,
+                        WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674::class
+                            .java,
+                        "no WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674 branch accepts this payload",
+                    )
             }
         }
     }
 }
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class StringWebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) : WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class StringWebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: String
+) : WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674
 
-@com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None::class) @com.fasterxml.jackson.annotation.JsonTypeInfo(use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE)
-data class ObjectMapWebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674(@get:com.fasterxml.jackson.annotation.JsonValue val value: Map<String, Any>) : WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674
+@com.fasterxml.jackson.databind.annotation.JsonDeserialize(
+    using = com.fasterxml.jackson.databind.JsonDeserializer.None::class
+)
+@com.fasterxml.jackson.annotation.JsonTypeInfo(
+    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NONE
+)
+data class ObjectMapWebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674(
+    @get:com.fasterxml.jackson.annotation.JsonValue val value: Map<String, Any>
+) : WebhookRegistryPackagePublishedRegistryPackagePackageVersionNXe481105674

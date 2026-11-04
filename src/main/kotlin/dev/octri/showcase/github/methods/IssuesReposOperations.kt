@@ -18,249 +18,512 @@ internal object IssuesListAssigneesOperation {
     /**
      * Lists the available assignees for issues in a repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListAssignees(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<SimpleUser> {
-        return issuesListAssigneesWithRawResponse(clientConfig, owner, repo, perPage, page, options).data
+    fun issuesListAssignees(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<SimpleUser> {
+        return issuesListAssigneesWithRawResponse(clientConfig, owner, repo, perPage, page, options)
+            .data
     }
 
-
-    /** [issuesListAssignees], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesListAssigneesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<SimpleUser>> {
-        return SdkClient.request<List<SimpleUser>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/assignees", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListAssignees", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [issuesListAssignees], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun issuesListAssigneesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<SimpleUser>> {
+        return SdkClient.request<List<SimpleUser>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/assignees",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "issuesListAssignees",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object IssuesCheckUserCanBeAssignedOperation {
     /**
-     * Checks whether a user can be assigned to issues in a repository. Use `owner` and `repo` to identify the repository and `assignee` to identify the user; a 204 response has no body when assignment is allowed.
+     * Checks whether a user can be assigned to issues in a repository. Use `owner` and `repo` to
+     * identify the repository and `assignee` to identify the user; a 204 response has no body when
+     * assignment is allowed.
      *
-     * Checks if a user has permission to be assigned to an issue in this repository. If the `assignee` can be assigned to issues in the repository, a `204` header with no content is returned. Otherwise a `404` status code is returned.
+     * Checks if a user has permission to be assigned to an issue in this repository. If the
+     * `assignee` can be assigned to issues in the repository, a `204` header with no content is
+     * returned. Otherwise a `404` status code is returned.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun issuesCheckUserCanBeAssigned(clientConfig: ClientConfig, owner: String, repo: String, assignee: String, options: RequestOptions? = null): Unit {
-        return issuesCheckUserCanBeAssignedWithRawResponse(clientConfig, owner, repo, assignee, options).data
+    fun issuesCheckUserCanBeAssigned(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        assignee: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return issuesCheckUserCanBeAssignedWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                assignee,
+                options,
+            )
+            .data
     }
 
-
-    /** [issuesCheckUserCanBeAssigned], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesCheckUserCanBeAssignedWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, assignee: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/assignees/${SdkClient.encodePathSegment(assignee)}", config = clientConfig, operationId = "issuesCheckUserCanBeAssigned", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [issuesCheckUserCanBeAssigned], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun issuesCheckUserCanBeAssignedWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        assignee: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/assignees/${SdkClient.encodePathSegment(assignee)}",
+                config = clientConfig,
+                operationId = "issuesCheckUserCanBeAssigned",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object IssuesListLabelsForRepoOperation {
     /**
-     * Lists labels in a repository. Use `owner` and `repo` to identify the repository, and use `page` and `per_page` to paginate the results.
+     * Lists labels in a repository. Use `owner` and `repo` to identify the repository, and use
+     * `page` and `per_page` to paginate the results.
      *
      * Lists all labels for a repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListLabelsForRepo(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Label> {
-        return issuesListLabelsForRepoWithRawResponse(clientConfig, owner, repo, perPage, page, options).data
+    fun issuesListLabelsForRepo(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Label> {
+        return issuesListLabelsForRepoWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
+            .data
     }
 
-
-    /** [issuesListLabelsForRepo], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesListLabelsForRepoWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Label>> {
-        return SdkClient.request<List<Label>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListLabelsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [issuesListLabelsForRepo], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun issuesListLabelsForRepoWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Label>> {
+        return SdkClient.request<List<Label>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "issuesListLabelsForRepo",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object IssuesCreateLabelOperation {
     /**
-     * Creates a label for the specified repository with the given name and color. The name and color parameters are required. The color must be a valid hexadecimal color code.
+     * Creates a label for the specified repository with the given name and color. The name and
+     * color parameters are required. The color must be a valid hexadecimal color code.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param name The name of the label. Emoji can be added to label names, using
-     *   either native emoji or colon-style markup. For example, typing `:strawberry:`
-     *   will render the emoji !:strawberry:. For a full list of available emoji and
-     *   codes, see "Emoji cheat sheet."
-     * @param color The hexadecimal color code for the label, without the leading
-     *   `#`.
-     * @param description A short description of the label. Must be 100 characters or
-     *   fewer.
+     * @param name The name of the label. Emoji can be added to label names, using either native
+     *   emoji or colon-style markup. For example, typing `:strawberry:` will render the emoji
+     *   !:strawberry:. For a full list of available emoji and codes, see "Emoji cheat sheet."
+     * @param color The hexadecimal color code for the label, without the leading `#`.
+     * @param description A short description of the label. Must be 100 characters or fewer.
      */
-    fun issuesCreateLabel(clientConfig: ClientConfig, owner: String, repo: String, name: String, color: String? = null, description: String? = null, options: RequestOptions? = null): Label {
-        return issuesCreateLabelWithRawResponse(clientConfig, owner, repo, name, color, description, options).data
+    fun issuesCreateLabel(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        color: String? = null,
+        description: String? = null,
+        options: RequestOptions? = null,
+    ): Label {
+        return issuesCreateLabelWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                name,
+                color,
+                description,
+                options,
+            )
+            .data
     }
 
-
-    /** [issuesCreateLabel], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesCreateLabelWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, name: String, color: String? = null, description: String? = null, options: RequestOptions? = null): SdkResponse<Label> {
-        return SdkClient.request<Label>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels", config = clientConfig, body = SdkClient.bodyMap("name" to (name), "color" to (SdkClient.omitIfNull(color)), "description" to (SdkClient.omitIfNull(description))), operationId = "issuesCreateLabel", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    /**
+     * [issuesCreateLabel], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun issuesCreateLabelWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        color: String? = null,
+        description: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Label> {
+        return SdkClient.request<Label>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "name" to (name),
+                        "color" to (SdkClient.omitIfNull(color)),
+                        "description" to (SdkClient.omitIfNull(description)),
+                    ),
+                operationId = "issuesCreateLabel",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
 
 internal object IssuesGetLabelOperation {
     /**
-     * Retrieves a label from a repository by its name. Use `owner` and `repo` to identify the repository and `name` to specify the label.
+     * Retrieves a label from a repository by its name. Use `owner` and `repo` to identify the
+     * repository and `name` to specify the label.
      *
      * Gets a label using the given name.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun issuesGetLabel(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): Label {
+    fun issuesGetLabel(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): Label {
         return issuesGetLabelWithRawResponse(clientConfig, owner, repo, name, options).data
     }
 
-
-    /** [issuesGetLabel], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesGetLabelWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): SdkResponse<Label> {
-        return SdkClient.request<Label>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels/${SdkClient.encodePathSegment(name)}", config = clientConfig, operationId = "issuesGetLabel", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [issuesGetLabel], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun issuesGetLabelWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Label> {
+        return SdkClient.request<Label>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels/${SdkClient.encodePathSegment(name)}",
+                config = clientConfig,
+                operationId = "issuesGetLabel",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object IssuesUpdateLabelOperation {
     /**
-     * Updates a label in a repository using its current name. Supply any fields you want to change; all body fields are optional, and `description` can contain at most 100 characters. Set `archived` to archive or unarchive the label.
+     * Updates a label in a repository using its current name. Supply any fields you want to change;
+     * all body fields are optional, and `description` can contain at most 100 characters. Set
+     * `archived` to archive or unarchive the label.
      *
      * Updates a label using the given label name.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param newName The new name of the label. Emoji can be added to label names,
-     *   using either native emoji or colon-style markup. For example, typing
-     *   `:strawberry:` will render the emoji !:strawberry:. For a full list of
-     *   available emoji and codes, see "Emoji cheat sheet."
-     * @param color The hexadecimal color code for the label, without the leading
-     *   `#`.
-     * @param description A short description of the label. Must be 100 characters or
-     *   fewer.
-     * @param archived Whether to archive or unarchive the label. Archived labels
-     *   cannot be added to issues or pull requests. For more information, see
-     *   "Archiving labels."
+     * @param newName The new name of the label. Emoji can be added to label names, using either
+     *   native emoji or colon-style markup. For example, typing `:strawberry:` will render the
+     *   emoji !:strawberry:. For a full list of available emoji and codes, see "Emoji cheat sheet."
+     * @param color The hexadecimal color code for the label, without the leading `#`.
+     * @param description A short description of the label. Must be 100 characters or fewer.
+     * @param archived Whether to archive or unarchive the label. Archived labels cannot be added to
+     *   issues or pull requests. For more information, see "Archiving labels."
      */
-    fun issuesUpdateLabel(clientConfig: ClientConfig, request: Issues.IssuesUpdateLabelRequest, options: RequestOptions? = null): Label {
+    fun issuesUpdateLabel(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesUpdateLabelRequest,
+        options: RequestOptions? = null,
+    ): Label {
         return issuesUpdateLabelWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [issuesUpdateLabel], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesUpdateLabelWithRawResponse(clientConfig: ClientConfig, request: Issues.IssuesUpdateLabelRequest, options: RequestOptions? = null): SdkResponse<Label> {
-        return SdkClient.request<Label>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/labels/${SdkClient.encodePathSegment(request.name)}", config = clientConfig, body = SdkClient.bodyMap("new_name" to (SdkClient.omitIfNull(request.newName)), "color" to (SdkClient.omitIfNull(request.color)), "description" to (SdkClient.omitIfNull(request.description)), "archived" to (SdkClient.omitIfNull(request.archived))), operationId = "issuesUpdateLabel", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [issuesUpdateLabel], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun issuesUpdateLabelWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesUpdateLabelRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Label> {
+        return SdkClient.request<Label>(
+            SdkClient.RequestSpec(
+                "PATCH",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/labels/${SdkClient.encodePathSegment(request.name)}",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "new_name" to (SdkClient.omitIfNull(request.newName)),
+                        "color" to (SdkClient.omitIfNull(request.color)),
+                        "description" to (SdkClient.omitIfNull(request.description)),
+                        "archived" to (SdkClient.omitIfNull(request.archived)),
+                    ),
+                operationId = "issuesUpdateLabel",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object IssuesDeleteLabelOperation {
     /**
-     * Deletes a label from a repository using its name. Identify the repository with `owner` and `repo`, and specify the label to remove with `name`.
+     * Deletes a label from a repository using its name. Identify the repository with `owner` and
+     * `repo`, and specify the label to remove with `name`.
      *
      * Deletes a label using the given label name.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun issuesDeleteLabel(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): Unit {
+    fun issuesDeleteLabel(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): Unit {
         return issuesDeleteLabelWithRawResponse(clientConfig, owner, repo, name, options).data
     }
 
-
-    /** [issuesDeleteLabel], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesDeleteLabelWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels/${SdkClient.encodePathSegment(name)}", config = clientConfig, operationId = "issuesDeleteLabel", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [issuesDeleteLabel], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun issuesDeleteLabelWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/labels/${SdkClient.encodePathSegment(name)}",
+                config = clientConfig,
+                operationId = "issuesDeleteLabel",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object IssuesListMilestonesOperation {
     /**
-     * Lists milestones for a repository. Filter by `state` and control ordering with `sort` and `direction`; use `page` and `per_page` to paginate the results.
+     * Lists milestones for a repository. Filter by `state` and control ordering with `sort` and
+     * `direction`; use `page` and `per_page` to paginate the results.
      *
      * Lists milestones for a repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param state The state of the milestone. Either `open`, `closed`, or `all`.
      * @param sort What to sort results by. Either `due_on` or `completeness`.
      * @param direction The direction of the sort. Either `asc` or `desc`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListMilestones(clientConfig: ClientConfig, request: Issues.IssuesListMilestonesRequest, options: RequestOptions? = null): List<Milestone> {
+    fun issuesListMilestones(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListMilestonesRequest,
+        options: RequestOptions? = null,
+    ): List<Milestone> {
         return issuesListMilestonesWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [issuesListMilestones], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesListMilestonesWithRawResponse(clientConfig: ClientConfig, request: Issues.IssuesListMilestonesRequest, options: RequestOptions? = null): SdkResponse<List<Milestone>> {
-        return SdkClient.request<List<Milestone>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/milestones", config = clientConfig, query = mapOf("state" to SdkClient.queryValue(request.state, "form", true), "sort" to SdkClient.queryValue(request.sort, "form", true), "direction" to
-    SdkClient.queryValue(request.direction, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "issuesListMilestones", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [issuesListMilestones], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun issuesListMilestonesWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesListMilestonesRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Milestone>> {
+        return SdkClient.request<List<Milestone>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/milestones",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "state" to SdkClient.queryValue(request.state, "form", true),
+                        "sort" to SdkClient.queryValue(request.sort, "form", true),
+                        "direction" to SdkClient.queryValue(request.direction, "form", true),
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                    ),
+                operationId = "issuesListMilestones",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object IssuesCreateMilestoneOperation {
     /**
-     * Creates a milestone in a repository. Provide a `title` and optionally set its `state`, `description`, and `due_on` date. A 201 response returns the created milestone with its generated identifier and milestone details.
+     * Creates a milestone in a repository. Provide a `title` and optionally set its `state`,
+     * `description`, and `due_on` date. A 201 response returns the created milestone with its
+     * generated identifier and milestone details.
      *
      * Creates a milestone.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param title The title of the milestone.
      * @param state The state of the milestone. Either `open` or `closed`.
      * @param description A description of the milestone.
      * @param dueOn The milestone due date. This is a timestamp in ISO 8601 format:
      *   `YYYY-MM-DDTHH:MM:SSZ`.
      */
-    fun issuesCreateMilestone(clientConfig: ClientConfig, request: Issues.IssuesCreateMilestoneRequest, options: RequestOptions? = null): Milestone {
+    fun issuesCreateMilestone(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesCreateMilestoneRequest,
+        options: RequestOptions? = null,
+    ): Milestone {
         return issuesCreateMilestoneWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [issuesCreateMilestone], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesCreateMilestoneWithRawResponse(clientConfig: ClientConfig, request: Issues.IssuesCreateMilestoneRequest, options: RequestOptions? = null): SdkResponse<Milestone> {
+    /**
+     * [issuesCreateMilestone], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun issuesCreateMilestoneWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesCreateMilestoneRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Milestone> {
         validateIssuesCreateMilestoneRequest(request)
 
-        return SdkClient.request<Milestone>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/milestones", config = clientConfig, body = SdkClient.bodyMap("title" to (request.title), "state" to (SdkClient.omitIfNull(request.state)), "description" to (SdkClient.omitIfNull(request.description)), "due_on" to (SdkClient.omitIfNull(request.dueOn))), operationId = "issuesCreateMilestone", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+        return SdkClient.request<Milestone>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/milestones",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "title" to (request.title),
+                        "state" to (SdkClient.omitIfNull(request.state)),
+                        "description" to (SdkClient.omitIfNull(request.description)),
+                        "due_on" to (SdkClient.omitIfNull(request.dueOn)),
+                    ),
+                operationId = "issuesCreateMilestone",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
-
 
     private fun validateIssuesCreateMilestoneRequest(request: Issues.IssuesCreateMilestoneRequest) {
         if (request.dueOn != null) {
             Validation.validateDateTime("due_on", request.dueOn)
-}
+        }
     }
 }
 
@@ -268,31 +531,61 @@ internal object IssuesGetMilestoneOperation {
     /**
      * Gets a milestone using the given milestone number.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param milestoneNumber The number that identifies the milestone.
      */
-    fun issuesGetMilestone(clientConfig: ClientConfig, owner: String, repo: String, milestoneNumber: Long, options: RequestOptions? = null): Milestone {
-        return issuesGetMilestoneWithRawResponse(clientConfig, owner, repo, milestoneNumber, options).data
+    fun issuesGetMilestone(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        milestoneNumber: Long,
+        options: RequestOptions? = null,
+    ): Milestone {
+        return issuesGetMilestoneWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                milestoneNumber,
+                options,
+            )
+            .data
     }
 
-
-    /** [issuesGetMilestone], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesGetMilestoneWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, milestoneNumber: Long, options: RequestOptions? = null): SdkResponse<Milestone> {
-        return SdkClient.request<Milestone>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/milestones/${SdkClient.encodePathSegment(milestoneNumber)}", config = clientConfig, operationId = "issuesGetMilestone", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [issuesGetMilestone], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun issuesGetMilestoneWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        milestoneNumber: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Milestone> {
+        return SdkClient.request<Milestone>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/milestones/${SdkClient.encodePathSegment(milestoneNumber)}",
+                config = clientConfig,
+                operationId = "issuesGetMilestone",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object IssuesUpdateMilestoneOperation {
     /**
-     * Updates an existing milestone in a repository. Identify it with `milestone_number` and provide only the milestone properties you want to change; `state` can be `open` or `closed`.
+     * Updates an existing milestone in a repository. Identify it with `milestone_number` and
+     * provide only the milestone properties you want to change; `state` can be `open` or `closed`.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param milestoneNumber The number that identifies the milestone.
      * @param title The title of the milestone.
      * @param state The state of the milestone. Either `open` or `closed`.
@@ -300,25 +593,48 @@ internal object IssuesUpdateMilestoneOperation {
      * @param dueOn The milestone due date. This is a timestamp in ISO 8601 format:
      *   `YYYY-MM-DDTHH:MM:SSZ`.
      */
-    fun issuesUpdateMilestone(clientConfig: ClientConfig, request: Issues.IssuesUpdateMilestoneRequest, options: RequestOptions? = null): Milestone {
+    fun issuesUpdateMilestone(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesUpdateMilestoneRequest,
+        options: RequestOptions? = null,
+    ): Milestone {
         return issuesUpdateMilestoneWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [issuesUpdateMilestone], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesUpdateMilestoneWithRawResponse(clientConfig: ClientConfig, request: Issues.IssuesUpdateMilestoneRequest, options: RequestOptions? = null): SdkResponse<Milestone> {
+    /**
+     * [issuesUpdateMilestone], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun issuesUpdateMilestoneWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Issues.IssuesUpdateMilestoneRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Milestone> {
         validateIssuesUpdateMilestoneRequest(request)
 
-        return SdkClient.request<Milestone>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/milestones/${SdkClient.encodePathSegment(request.milestoneNumber)}", config = clientConfig, body = SdkClient.bodyMap("title" to (SdkClient.omitIfNull(request.title)), "state" to (SdkClient.omitIfNull(request.state)), "description" to (SdkClient.omitIfNull(request.description)), "due_on" to (SdkClient.omitIfNull(request.dueOn))), operationId = "issuesUpdateMilestone", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<Milestone>(
+            SdkClient.RequestSpec(
+                "PATCH",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/milestones/${SdkClient.encodePathSegment(request.milestoneNumber)}",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "title" to (SdkClient.omitIfNull(request.title)),
+                        "state" to (SdkClient.omitIfNull(request.state)),
+                        "description" to (SdkClient.omitIfNull(request.description)),
+                        "due_on" to (SdkClient.omitIfNull(request.dueOn)),
+                    ),
+                operationId = "issuesUpdateMilestone",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
-
 
     private fun validateIssuesUpdateMilestoneRequest(request: Issues.IssuesUpdateMilestoneRequest) {
         if (request.dueOn != null) {
             Validation.validateDateTime("due_on", request.dueOn)
-}
+        }
     }
 }
 
@@ -326,20 +642,50 @@ internal object IssuesDeleteMilestoneOperation {
     /**
      * Deletes a milestone using the given milestone number.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param milestoneNumber The number that identifies the milestone.
      */
-    fun issuesDeleteMilestone(clientConfig: ClientConfig, owner: String, repo: String, milestoneNumber: Long, options: RequestOptions? = null): Unit {
-        return issuesDeleteMilestoneWithRawResponse(clientConfig, owner, repo, milestoneNumber, options).data
+    fun issuesDeleteMilestone(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        milestoneNumber: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return issuesDeleteMilestoneWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                milestoneNumber,
+                options,
+            )
+            .data
     }
 
-
-    /** [issuesDeleteMilestone], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesDeleteMilestoneWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, milestoneNumber: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/milestones/${SdkClient.encodePathSegment(milestoneNumber)}", config = clientConfig, operationId = "issuesDeleteMilestone", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [issuesDeleteMilestone], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun issuesDeleteMilestoneWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        milestoneNumber: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/milestones/${SdkClient.encodePathSegment(milestoneNumber)}",
+                config = clientConfig,
+                operationId = "issuesDeleteMilestone",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
@@ -347,23 +693,63 @@ internal object IssuesListLabelsForMilestoneOperation {
     /**
      * Lists labels for issues in a milestone.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param milestoneNumber The number that identifies the milestone.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun issuesListLabelsForMilestone(clientConfig: ClientConfig, owner: String, repo: String, milestoneNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Label> {
-        return issuesListLabelsForMilestoneWithRawResponse(clientConfig, owner, repo, milestoneNumber, perPage, page, options).data
+    fun issuesListLabelsForMilestone(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        milestoneNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Label> {
+        return issuesListLabelsForMilestoneWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                milestoneNumber,
+                perPage,
+                page,
+                options,
+            )
+            .data
     }
 
-
-    /** [issuesListLabelsForMilestone], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun issuesListLabelsForMilestoneWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, milestoneNumber: Long, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Label>> {
-        return SdkClient.request<List<Label>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/milestones/${SdkClient.encodePathSegment(milestoneNumber)}/labels", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "issuesListLabelsForMilestone", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [issuesListLabelsForMilestone], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun issuesListLabelsForMilestoneWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        milestoneNumber: Long,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Label>> {
+        return SdkClient.request<List<Label>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/milestones/${SdkClient.encodePathSegment(milestoneNumber)}/labels",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "issuesListLabelsForMilestone",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

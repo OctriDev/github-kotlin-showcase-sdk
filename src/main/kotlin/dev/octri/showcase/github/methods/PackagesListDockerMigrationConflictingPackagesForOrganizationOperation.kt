@@ -12,17 +12,44 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object PackagesListDockerMigrationConflictingPackagesForOrganizationOperation {
     /**
-     * Lists all packages that are in a specific organization, are readable by the requesting user, and that encountered a conflict during a Docker migration. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint.
+     * Lists all packages that are in a specific organization, are readable by the requesting user,
+     * and that encountered a conflict during a Docker migration. OAuth app tokens and personal
+     * access tokens (classic) need the `read:packages` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun packagesListDockerMigrationConflictingPackagesForOrganization(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<Package> {
-        return packagesListDockerMigrationConflictingPackagesForOrganizationWithRawResponse(clientConfig, org, options).data
+    fun packagesListDockerMigrationConflictingPackagesForOrganization(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): List<Package> {
+        return packagesListDockerMigrationConflictingPackagesForOrganizationWithRawResponse(
+                clientConfig,
+                org,
+                options,
+            )
+            .data
     }
 
-
-    /** [packagesListDockerMigrationConflictingPackagesForOrganization], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun packagesListDockerMigrationConflictingPackagesForOrganizationWithRawResponse(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SdkResponse<List<Package>> {
-        return SdkClient.request<List<Package>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/docker/conflicts", config = clientConfig, operationId = "packagesListDockerMigrationConflictingPackagesForOrganization", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java)))
+    /**
+     * [packagesListDockerMigrationConflictingPackagesForOrganization], returning the [SdkResponse]
+     * envelope: status code, headers, request ID and latency.
+     */
+    fun packagesListDockerMigrationConflictingPackagesForOrganizationWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Package>> {
+        return SdkClient.request<List<Package>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/docker/conflicts",
+                config = clientConfig,
+                operationId = "packagesListDockerMigrationConflictingPackagesForOrganization",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java),
+            )
+        )
     }
 }

@@ -11,20 +11,56 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object CopilotGetCopilotCloudAgentConfigurationOperation {
     /**
-     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Gets the Copilot cloud agent configuration for a repository, including MCP server configuration, enabled review tools, Actions workflow approval settings, and firewall configuration. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * > \[!NOTE\] > This endpoint is in public preview and is subject to change. Gets the Copilot
+     * > cloud agent configuration for a repository, including MCP server configuration, enabled
+     * > review tools, Actions workflow approval settings, and firewall configuration. OAuth app
+     * > tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun copilotGetCopilotCloudAgentConfiguration(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Copilot.CopilotGetCopilotCloudAgentConfigurationResponse {
-        return copilotGetCopilotCloudAgentConfigurationWithRawResponse(clientConfig, owner, repo, options).data
+    fun copilotGetCopilotCloudAgentConfiguration(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Copilot.CopilotGetCopilotCloudAgentConfigurationResponse {
+        return copilotGetCopilotCloudAgentConfigurationWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
+            .data
     }
 
-
-    /** [copilotGetCopilotCloudAgentConfiguration], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun copilotGetCopilotCloudAgentConfigurationWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Copilot.CopilotGetCopilotCloudAgentConfigurationResponse> {
-        return SdkClient.request<Copilot.CopilotGetCopilotCloudAgentConfigurationResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/copilot/cloud-agent/configuration", config = clientConfig, operationId = "copilotGetCopilotCloudAgentConfiguration", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("401" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java, "500" to BasicError::class.java)))
+    /**
+     * [copilotGetCopilotCloudAgentConfiguration], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun copilotGetCopilotCloudAgentConfigurationWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Copilot.CopilotGetCopilotCloudAgentConfigurationResponse> {
+        return SdkClient.request<Copilot.CopilotGetCopilotCloudAgentConfigurationResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/copilot/cloud-agent/configuration",
+                config = clientConfig,
+                operationId = "copilotGetCopilotCloudAgentConfiguration",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "401" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "500" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }

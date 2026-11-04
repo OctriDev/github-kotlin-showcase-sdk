@@ -20,543 +20,1185 @@ import dev.octri.showcase.github.WorkflowRunUsage
 
 internal object ActionsListWorkflowRunsForRepoOperation {
     /**
-     * Lists all workflow runs for a repository. You can use parameters to narrow the list of results. For more information about using parameters, see Parameters. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository. This endpoint will return up to 1,000 results for each search when using the following parameters: `actor`, `branch`,…
+     * Lists all workflow runs for a repository. You can use parameters to narrow the list of
+     * results. For more information about using parameters, see Parameters. Anyone with read access
+     * to the repository can use this endpoint. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint with a private repository. This endpoint
+     * will return up to 1,000 results for each search when using the following parameters: `actor`,
+     * `branch`,…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param actor Returns someone's workflow runs. Use the login for the user who
-     *   created the `push` associated with the check suite or workflow run.
-     * @param branch Returns workflow runs associated with a branch. Use the name of
-     *   the branch of the `push`.
-     * @param event Returns workflow run triggered by the event you specify. For
-     *   example, `push`, `pull_request` or `issue`. For more information, see "Events
-     *   that trigger workflows."
-     * @param status Returns workflow runs with the check run `status` or
-     *   `conclusion` that you specify. For example, a conclusion can be `success` or a
-     *   status can be `in_progress`. Only GitHub Actions can set a status of
-     *   `waiting`, `pending`, or `requested`.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param created Returns workflow runs created within the given date-time range.
-     *   For more information on the syntax, see "Understanding the search syntax."
-     * @param excludePullRequests If `true` pull requests are omitted from the
-     *   response (empty array).
-     * @param checkSuiteId Returns workflow runs with the `check_suite_id` that you
-     *   specify.
-     * @param headSha Only returns workflow runs that are associated with the
-     *   specified `head_sha`.
+     * @param actor Returns someone's workflow runs. Use the login for the user who created the
+     *   `push` associated with the check suite or workflow run.
+     * @param branch Returns workflow runs associated with a branch. Use the name of the branch of
+     *   the `push`.
+     * @param event Returns workflow run triggered by the event you specify. For example, `push`,
+     *   `pull_request` or `issue`. For more information, see "Events that trigger workflows."
+     * @param status Returns workflow runs with the check run `status` or `conclusion` that you
+     *   specify. For example, a conclusion can be `success` or a status can be `in_progress`. Only
+     *   GitHub Actions can set a status of `waiting`, `pending`, or `requested`.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param created Returns workflow runs created within the given date-time range. For more
+     *   information on the syntax, see "Understanding the search syntax."
+     * @param excludePullRequests If `true` pull requests are omitted from the response (empty
+     *   array).
+     * @param checkSuiteId Returns workflow runs with the `check_suite_id` that you specify.
+     * @param headSha Only returns workflow runs that are associated with the specified `head_sha`.
      */
-    fun actionsListWorkflowRunsForRepo(clientConfig: ClientConfig, request: Actions.ActionsListWorkflowRunsForRepoRequest, options: RequestOptions? = null): Actions.ActionsListWorkflowRunsForRepoResponse {
+    fun actionsListWorkflowRunsForRepo(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListWorkflowRunsForRepoRequest,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListWorkflowRunsForRepoResponse {
         return actionsListWorkflowRunsForRepoWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [actionsListWorkflowRunsForRepo], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsListWorkflowRunsForRepoWithRawResponse(clientConfig: ClientConfig, request: Actions.ActionsListWorkflowRunsForRepoRequest, options: RequestOptions? = null): SdkResponse<Actions.ActionsListWorkflowRunsForRepoResponse> {
+    /**
+     * [actionsListWorkflowRunsForRepo], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsListWorkflowRunsForRepoWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListWorkflowRunsForRepoRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Actions.ActionsListWorkflowRunsForRepoResponse> {
         validateActionsListWorkflowRunsForRepoRequest(request)
 
-        return SdkClient.request<Actions.ActionsListWorkflowRunsForRepoResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs", config = clientConfig, query = mapOf("actor" to SdkClient.queryValue(request.actor, "form", true), "branch" to
-    SdkClient.queryValue(request.branch, "form", true), "event" to SdkClient.queryValue(request.event, "form", true), "status" to
-    SdkClient.queryValue(request.status, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "created" to
-    SdkClient.queryValue(request.created, "form", true, "date-time"), "exclude_pull_requests" to
-    SdkClient.queryValue(request.excludePullRequests, "form", true), "check_suite_id" to
-    SdkClient.queryValue(request.checkSuiteId, "form", true), "head_sha" to
-    SdkClient.queryValue(request.headSha, "form", true)), operationId = "actionsListWorkflowRunsForRepo", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+        return SdkClient.request<Actions.ActionsListWorkflowRunsForRepoResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "actor" to SdkClient.queryValue(request.actor, "form", true),
+                        "branch" to SdkClient.queryValue(request.branch, "form", true),
+                        "event" to SdkClient.queryValue(request.event, "form", true),
+                        "status" to SdkClient.queryValue(request.status, "form", true),
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                        "created" to
+                            SdkClient.queryValue(request.created, "form", true, "date-time"),
+                        "exclude_pull_requests" to
+                            SdkClient.queryValue(request.excludePullRequests, "form", true),
+                        "check_suite_id" to
+                            SdkClient.queryValue(request.checkSuiteId, "form", true),
+                        "head_sha" to SdkClient.queryValue(request.headSha, "form", true),
+                    ),
+                operationId = "actionsListWorkflowRunsForRepo",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 
-
-    private fun validateActionsListWorkflowRunsForRepoRequest(request: Actions.ActionsListWorkflowRunsForRepoRequest) {
+    private fun validateActionsListWorkflowRunsForRepoRequest(
+        request: Actions.ActionsListWorkflowRunsForRepoRequest
+    ) {
         if (request.created != null) {
             Validation.validateDateTime("created", request.created)
-}
+        }
     }
 }
 
 internal object ActionsGetWorkflowRunOperation {
     /**
-     * Gets a specific workflow run. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets a specific workflow run. Anyone with read access to the repository can use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
-     * @param excludePullRequests If `true` pull requests are omitted from the
-     *   response (empty array).
+     * @param excludePullRequests If `true` pull requests are omitted from the response (empty
+     *   array).
      */
-    fun actionsGetWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, excludePullRequests: Boolean? = null, options: RequestOptions? = null): WorkflowRun {
-        return actionsGetWorkflowRunWithRawResponse(clientConfig, owner, repo, runId, excludePullRequests, options).data
+    fun actionsGetWorkflowRun(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        excludePullRequests: Boolean? = null,
+        options: RequestOptions? = null,
+    ): WorkflowRun {
+        return actionsGetWorkflowRunWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                excludePullRequests,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsGetWorkflowRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsGetWorkflowRunWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, excludePullRequests: Boolean? = null, options: RequestOptions? = null): SdkResponse<WorkflowRun> {
-        return SdkClient.request<WorkflowRun>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}", config = clientConfig, query = mapOf("exclude_pull_requests" to
-    SdkClient.queryValue(excludePullRequests, "form", true)), operationId = "actionsGetWorkflowRun", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsGetWorkflowRun], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun actionsGetWorkflowRunWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        excludePullRequests: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<WorkflowRun> {
+        return SdkClient.request<WorkflowRun>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "exclude_pull_requests" to
+                            SdkClient.queryValue(excludePullRequests, "form", true)
+                    ),
+                operationId = "actionsGetWorkflowRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsDeleteWorkflowRunOperation {
     /**
-     * Deletes a specific workflow run. Anyone with write access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a specific workflow run. Anyone with write access to the repository can use this
+     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsDeleteWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): Unit {
-        return actionsDeleteWorkflowRunWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsDeleteWorkflowRun(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return actionsDeleteWorkflowRunWithRawResponse(clientConfig, owner, repo, runId, options)
+            .data
     }
 
-
-    /** [actionsDeleteWorkflowRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsDeleteWorkflowRunWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}", config = clientConfig, operationId = "actionsDeleteWorkflowRun", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [actionsDeleteWorkflowRun], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsDeleteWorkflowRunWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}",
+                config = clientConfig,
+                operationId = "actionsDeleteWorkflowRun",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsGetReviewsForRunOperation {
     /**
-     * Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Anyone with read access to the repository can use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint with a private
+     * repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsGetReviewsForRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): List<EnvironmentApprovals> {
-        return actionsGetReviewsForRunWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsGetReviewsForRun(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): List<EnvironmentApprovals> {
+        return actionsGetReviewsForRunWithRawResponse(clientConfig, owner, repo, runId, options)
+            .data
     }
 
-
-    /** [actionsGetReviewsForRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsGetReviewsForRunWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<List<EnvironmentApprovals>> {
-        return SdkClient.request<List<EnvironmentApprovals>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/approvals", config = clientConfig, operationId = "actionsGetReviewsForRun", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsGetReviewsForRun], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsGetReviewsForRunWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<EnvironmentApprovals>> {
+        return SdkClient.request<List<EnvironmentApprovals>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/approvals",
+                config = clientConfig,
+                operationId = "actionsGetReviewsForRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsApproveWorkflowRunOperation {
     /**
-     * Approves a workflow run for a pull request from a public fork of a first time contributor. For more information, see "Approving workflow runs from public forks." OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Approves a workflow run for a pull request from a public fork of a first time contributor.
+     * For more information, see "Approving workflow runs from public forks." OAuth tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsApproveWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): EmptyObject {
-        return actionsApproveWorkflowRunWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsApproveWorkflowRun(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return actionsApproveWorkflowRunWithRawResponse(clientConfig, owner, repo, runId, options)
+            .data
     }
 
-
-    /** [actionsApproveWorkflowRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsApproveWorkflowRunWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<EmptyObject> {
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/approve", config = clientConfig, operationId = "actionsApproveWorkflowRun", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [actionsApproveWorkflowRun], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsApproveWorkflowRunWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> {
+        return SdkClient.request<EmptyObject>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/approve",
+                config = clientConfig,
+                operationId = "actionsApproveWorkflowRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsListWorkflowRunArtifactsOperation {
     /**
-     * Lists artifacts for a workflow run. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists artifacts for a workflow run. Anyone with read access to the repository can use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
-     * @param name The name field of an artifact. When specified, only artifacts with
-     *   this name will be returned.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
+     * @param name The name field of an artifact. When specified, only artifacts with this name will
+     *   be returned.
      * @param direction The direction to sort the results by.
      */
-    fun actionsListWorkflowRunArtifacts(clientConfig: ClientConfig, request: Actions.ActionsListWorkflowRunArtifactsRequest, options: RequestOptions? = null): Actions.ActionsListWorkflowRunArtifactsResponse {
+    fun actionsListWorkflowRunArtifacts(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListWorkflowRunArtifactsRequest,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListWorkflowRunArtifactsResponse {
         return actionsListWorkflowRunArtifactsWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [actionsListWorkflowRunArtifacts], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsListWorkflowRunArtifactsWithRawResponse(clientConfig: ClientConfig, request: Actions.ActionsListWorkflowRunArtifactsRequest, options: RequestOptions? = null): SdkResponse<Actions.ActionsListWorkflowRunArtifactsResponse> {
-        return SdkClient.request<Actions.ActionsListWorkflowRunArtifactsResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/artifacts", config = clientConfig, query = mapOf("per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true), "name" to SdkClient.queryValue(request.name, "form", true), "direction" to
-    SdkClient.queryValue(request.direction, "form", true)), operationId = "actionsListWorkflowRunArtifacts", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsListWorkflowRunArtifacts], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun actionsListWorkflowRunArtifactsWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListWorkflowRunArtifactsRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Actions.ActionsListWorkflowRunArtifactsResponse> {
+        return SdkClient.request<Actions.ActionsListWorkflowRunArtifactsResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/artifacts",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                        "name" to SdkClient.queryValue(request.name, "form", true),
+                        "direction" to SdkClient.queryValue(request.direction, "form", true),
+                    ),
+                operationId = "actionsListWorkflowRunArtifacts",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsGetWorkflowRunAttemptOperation {
     /**
-     * Gets a specific workflow run attempt. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Gets a specific workflow run attempt. Anyone with read access to the repository can use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      * @param attemptNumber The attempt number of the workflow run.
-     * @param excludePullRequests If `true` pull requests are omitted from the
-     *   response (empty array).
+     * @param excludePullRequests If `true` pull requests are omitted from the response (empty
+     *   array).
      */
-    fun actionsGetWorkflowRunAttempt(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, attemptNumber: Long, excludePullRequests: Boolean? = null, options: RequestOptions? = null): WorkflowRun {
-        return actionsGetWorkflowRunAttemptWithRawResponse(clientConfig, owner, repo, runId, attemptNumber, excludePullRequests, options).data
+    fun actionsGetWorkflowRunAttempt(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        attemptNumber: Long,
+        excludePullRequests: Boolean? = null,
+        options: RequestOptions? = null,
+    ): WorkflowRun {
+        return actionsGetWorkflowRunAttemptWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                attemptNumber,
+                excludePullRequests,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsGetWorkflowRunAttempt], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsGetWorkflowRunAttemptWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, attemptNumber: Long, excludePullRequests: Boolean? = null, options: RequestOptions? = null): SdkResponse<WorkflowRun> {
-        return SdkClient.request<WorkflowRun>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/attempts/${SdkClient.encodePathSegment(attemptNumber)}", config = clientConfig, query = mapOf("exclude_pull_requests" to
-    SdkClient.queryValue(excludePullRequests, "form", true)), operationId = "actionsGetWorkflowRunAttempt", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsGetWorkflowRunAttempt], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsGetWorkflowRunAttemptWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        attemptNumber: Long,
+        excludePullRequests: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<WorkflowRun> {
+        return SdkClient.request<WorkflowRun>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/attempts/${SdkClient.encodePathSegment(attemptNumber)}",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "exclude_pull_requests" to
+                            SdkClient.queryValue(excludePullRequests, "form", true)
+                    ),
+                operationId = "actionsGetWorkflowRunAttempt",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsListJobsForWorkflowRunAttemptOperation {
     /**
-     * Lists jobs for a specific workflow run attempt. You can use parameters to narrow the list of results. For more information about using parameters, see Parameters. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists jobs for a specific workflow run attempt. You can use parameters to narrow the list of
+     * results. For more information about using parameters, see Parameters. Anyone with read access
+     * to the repository can use this endpoint. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      * @param attemptNumber The attempt number of the workflow run.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListJobsForWorkflowRunAttempt(clientConfig: ClientConfig, request: Actions.ActionsListJobsForWorkflowRunAttemptRequest, options: RequestOptions? = null): Actions.ActionsListJobsForWorkflowRunAttemptResponse {
-        return actionsListJobsForWorkflowRunAttemptWithRawResponse(clientConfig, request, options).data
+    fun actionsListJobsForWorkflowRunAttempt(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListJobsForWorkflowRunAttemptRequest,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListJobsForWorkflowRunAttemptResponse {
+        return actionsListJobsForWorkflowRunAttemptWithRawResponse(clientConfig, request, options)
+            .data
     }
 
-
-
-
-    /** [actionsListJobsForWorkflowRunAttempt], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsListJobsForWorkflowRunAttemptWithRawResponse(clientConfig: ClientConfig, request: Actions.ActionsListJobsForWorkflowRunAttemptRequest, options: RequestOptions? = null): SdkResponse<Actions.ActionsListJobsForWorkflowRunAttemptResponse> {
-        return SdkClient.request<Actions.ActionsListJobsForWorkflowRunAttemptResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/attempts/${SdkClient.encodePathSegment(request.attemptNumber)}/jobs", config = clientConfig, query = mapOf("per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "actionsListJobsForWorkflowRunAttempt", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [actionsListJobsForWorkflowRunAttempt], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun actionsListJobsForWorkflowRunAttemptWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListJobsForWorkflowRunAttemptRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Actions.ActionsListJobsForWorkflowRunAttemptResponse> {
+        return SdkClient.request<Actions.ActionsListJobsForWorkflowRunAttemptResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/attempts/${SdkClient.encodePathSegment(request.attemptNumber)}/jobs",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                    ),
+                operationId = "actionsListJobsForWorkflowRunAttempt",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsDownloadWorkflowRunAttemptLogsOperation {
     /**
-     * Gets a redirect URL to download an archive of log files for a specific workflow run attempt. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a redirect URL to download an archive of log files for a specific workflow run attempt.
+     * This link expires after 1 minute. Look for `Location:` in the response header to find the URL
+     * for the download. Anyone with read access to the repository can use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      * @param attemptNumber The attempt number of the workflow run.
      */
-    fun actionsDownloadWorkflowRunAttemptLogs(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, attemptNumber: Long, options: RequestOptions? = null): Any {
-        return actionsDownloadWorkflowRunAttemptLogsWithRawResponse(clientConfig, owner, repo, runId, attemptNumber, options).data
+    fun actionsDownloadWorkflowRunAttemptLogs(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        attemptNumber: Long,
+        options: RequestOptions? = null,
+    ): Any {
+        return actionsDownloadWorkflowRunAttemptLogsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                attemptNumber,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsDownloadWorkflowRunAttemptLogs], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsDownloadWorkflowRunAttemptLogsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, attemptNumber: Long, options: RequestOptions? = null): SdkResponse<Any> {
-        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/attempts/${SdkClient.encodePathSegment(attemptNumber)}/logs", config = clientConfig, operationId = "actionsDownloadWorkflowRunAttemptLogs", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [actionsDownloadWorkflowRunAttemptLogs], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun actionsDownloadWorkflowRunAttemptLogsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        attemptNumber: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Any> {
+        return SdkClient.request<Any>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/attempts/${SdkClient.encodePathSegment(attemptNumber)}/logs",
+                config = clientConfig,
+                operationId = "actionsDownloadWorkflowRunAttemptLogs",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsCancelWorkflowRunOperation {
     /**
-     * Cancels a workflow run using its `id`. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Cancels a workflow run using its `id`. OAuth tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsCancelWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): EmptyObject {
-        return actionsCancelWorkflowRunWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsCancelWorkflowRun(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return actionsCancelWorkflowRunWithRawResponse(clientConfig, owner, repo, runId, options)
+            .data
     }
 
-
-    /** [actionsCancelWorkflowRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsCancelWorkflowRunWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<EmptyObject> {
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/cancel", config = clientConfig, operationId = "actionsCancelWorkflowRun", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java)))
+    /**
+     * [actionsCancelWorkflowRun], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsCancelWorkflowRunWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> {
+        return SdkClient.request<EmptyObject>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/cancel",
+                config = clientConfig,
+                operationId = "actionsCancelWorkflowRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsListConcurrencyGroupsForWorkflowRunOperation {
     /**
-     * Lists all concurrency groups associated with a workflow run or its jobs. The set of groups is derived from the run's configuration, so a group is included even when the run no longer has any items currently holding or waiting in it. In that case the `group_members` array will be empty. `total_count` reflects the number of groups the run participates in by configuration, not the number with active items. This differs from `GET…
+     * Lists all concurrency groups associated with a workflow run or its jobs. The set of groups is
+     * derived from the run's configuration, so a group is included even when the run no longer has
+     * any items currently holding or waiting in it. In that case the `group_members` array will be
+     * empty. `total_count` reflects the number of groups the run participates in by configuration,
+     * not the number with active items. This differs from `GET…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param before A cursor, as given in the Link header. If specified, the query
-     *   only searches for results before this cursor. For more information, see "Using
+     * @param perPage The number of results per page (max 100). For more information, see "Using
      *   pagination in the REST API."
-     * @param after A cursor, as given in the Link header. If specified, the query
-     *   only searches for results after this cursor. For more information, see "Using
-     *   pagination in the REST API."
+     * @param before A cursor, as given in the Link header. If specified, the query only searches
+     *   for results before this cursor. For more information, see "Using pagination in the REST
+     *   API."
+     * @param after A cursor, as given in the Link header. If specified, the query only searches for
+     *   results after this cursor. For more information, see "Using pagination in the REST API."
      */
-    fun actionsListConcurrencyGroupsForWorkflowRun(clientConfig: ClientConfig, request: Actions.ActionsListConcurrencyGroupsForWorkflowRunRequest, options: RequestOptions? = null): ConcurrencyGroupRunList {
-        return actionsListConcurrencyGroupsForWorkflowRunWithRawResponse(clientConfig, request, options).data
+    fun actionsListConcurrencyGroupsForWorkflowRun(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListConcurrencyGroupsForWorkflowRunRequest,
+        options: RequestOptions? = null,
+    ): ConcurrencyGroupRunList {
+        return actionsListConcurrencyGroupsForWorkflowRunWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
+            .data
     }
 
-
-
-
-    /** [actionsListConcurrencyGroupsForWorkflowRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsListConcurrencyGroupsForWorkflowRunWithRawResponse(clientConfig: ClientConfig, request: Actions.ActionsListConcurrencyGroupsForWorkflowRunRequest, options: RequestOptions? = null): SdkResponse<ConcurrencyGroupRunList> {
-        return SdkClient.request<ConcurrencyGroupRunList>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/concurrency_groups", config = clientConfig, query = mapOf("per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "before" to
-    SdkClient.queryValue(request.before, "form", true), "after" to SdkClient.queryValue(request.after, "form", true)), operationId = "actionsListConcurrencyGroupsForWorkflowRun", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    /**
+     * [actionsListConcurrencyGroupsForWorkflowRun], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun actionsListConcurrencyGroupsForWorkflowRunWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListConcurrencyGroupsForWorkflowRunRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<ConcurrencyGroupRunList> {
+        return SdkClient.request<ConcurrencyGroupRunList>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/concurrency_groups",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "before" to SdkClient.queryValue(request.before, "form", true),
+                        "after" to SdkClient.queryValue(request.after, "form", true),
+                    ),
+                operationId = "actionsListConcurrencyGroupsForWorkflowRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsReviewCustomGatesForRunOperation {
     /**
-     * Submits an approval or rejection for a custom deployment protection rule on a workflow run. Use this endpoint when your GitHub App owns the rule; to review a deployment waiting on a person or team, use POST /repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments instead. OAuth app tokens and personal access tokens (classic) need the `repo` scope for private repositories.
+     * Submits an approval or rejection for a custom deployment protection rule on a workflow run.
+     * Use this endpoint when your GitHub App owns the rule; to review a deployment waiting on a
+     * person or team, use POST /repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments
+     * instead. OAuth app tokens and personal access tokens (classic) need the `repo` scope for
+     * private repositories.
      *
-     * Approve or reject custom deployment protection rules provided by a GitHub App for a workflow run. For more information, see "Using environments for deployment." > \[!NOTE\] > GitHub Apps can only review their own custom deployment protection rules. To approve or reject pending deployments that are waiting for review from a specific person or team, see `POST /repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments`. OAuth app tokens and personal access tokens (classic)…
+     * Approve or reject custom deployment protection rules provided by a GitHub App for a workflow
+     * run. For more information, see "Using environments for deployment." > \[!NOTE\] > GitHub Apps
+     * can only review their own custom deployment protection rules. To approve or reject pending
+     * deployments that are waiting for review from a specific person or team, see `POST
+     * /repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments`. OAuth app tokens and
+     * personal access tokens (classic)…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsReviewCustomGatesForRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, body: Any, options: RequestOptions? = null): Unit {
-        return actionsReviewCustomGatesForRunWithRawResponse(clientConfig, owner, repo, runId, body, options).data
+    fun actionsReviewCustomGatesForRun(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        body: Any,
+        options: RequestOptions? = null,
+    ): Unit {
+        return actionsReviewCustomGatesForRunWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                body,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsReviewCustomGatesForRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsReviewCustomGatesForRunWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, body: Any, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/deployment_protection_rule", config = clientConfig, body = body, operationId = "actionsReviewCustomGatesForRun", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [actionsReviewCustomGatesForRun], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsReviewCustomGatesForRunWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        body: Any,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/deployment_protection_rule",
+                config = clientConfig,
+                body = body,
+                operationId = "actionsReviewCustomGatesForRun",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsForceCancelWorkflowRunOperation {
     /**
-     * Cancels a workflow run and bypasses conditions that would otherwise cause a workflow execution to continue, such as an `always()` condition on a job. You should only use this endpoint to cancel a workflow run when the workflow run is not responding to `POST /repos/{owner}/{repo}/actions/runs/{run_id}/cancel`. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Cancels a workflow run and bypasses conditions that would otherwise cause a workflow
+     * execution to continue, such as an `always()` condition on a job. You should only use this
+     * endpoint to cancel a workflow run when the workflow run is not responding to `POST
+     * /repos/{owner}/{repo}/actions/runs/{run_id}/cancel`. OAuth tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsForceCancelWorkflowRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): EmptyObject {
-        return actionsForceCancelWorkflowRunWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsForceCancelWorkflowRun(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return actionsForceCancelWorkflowRunWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsForceCancelWorkflowRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsForceCancelWorkflowRunWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<EmptyObject> {
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/force-cancel", config = clientConfig, operationId = "actionsForceCancelWorkflowRun", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("409" to BasicError::class.java)))
+    /**
+     * [actionsForceCancelWorkflowRun], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsForceCancelWorkflowRunWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> {
+        return SdkClient.request<EmptyObject>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/force-cancel",
+                config = clientConfig,
+                operationId = "actionsForceCancelWorkflowRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("409" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsListJobsForWorkflowRunOperation {
     /**
-     * Lists jobs for a workflow run. You can use parameters to narrow the list of results. For more information about using parameters, see Parameters. Anyone with read access to the repository can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with a private repository.
+     * Lists jobs for a workflow run. You can use parameters to narrow the list of results. For more
+     * information about using parameters, see Parameters. Anyone with read access to the repository
+     * can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint with a private repository.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
-     * @param filter Filters jobs by their `completed_at` timestamp. `latest` returns
-     *   jobs from the most recent execution of the workflow run. `all` returns all
-     *   jobs for a workflow run, including from old executions of the workflow run.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param filter Filters jobs by their `completed_at` timestamp. `latest` returns jobs from the
+     *   most recent execution of the workflow run. `all` returns all jobs for a workflow run,
+     *   including from old executions of the workflow run.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun actionsListJobsForWorkflowRun(clientConfig: ClientConfig, request: Actions.ActionsListJobsForWorkflowRunRequest, options: RequestOptions? = null): Actions.ActionsListJobsForWorkflowRunResponse {
+    fun actionsListJobsForWorkflowRun(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListJobsForWorkflowRunRequest,
+        options: RequestOptions? = null,
+    ): Actions.ActionsListJobsForWorkflowRunResponse {
         return actionsListJobsForWorkflowRunWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [actionsListJobsForWorkflowRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsListJobsForWorkflowRunWithRawResponse(clientConfig: ClientConfig, request: Actions.ActionsListJobsForWorkflowRunRequest, options: RequestOptions? = null): SdkResponse<Actions.ActionsListJobsForWorkflowRunResponse> {
-        return SdkClient.request<Actions.ActionsListJobsForWorkflowRunResponse>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/jobs", config = clientConfig, query = mapOf("filter" to
-    SdkClient.queryValue(request.filter, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "actionsListJobsForWorkflowRun", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsListJobsForWorkflowRun], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsListJobsForWorkflowRunWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsListJobsForWorkflowRunRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Actions.ActionsListJobsForWorkflowRunResponse> {
+        return SdkClient.request<Actions.ActionsListJobsForWorkflowRunResponse>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/jobs",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "filter" to SdkClient.queryValue(request.filter, "form", true),
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                    ),
+                operationId = "actionsListJobsForWorkflowRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsDownloadWorkflowRunLogsOperation {
     /**
-     * Gets a redirect URL to download an archive of log files for a workflow run. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a redirect URL to download an archive of log files for a workflow run. This link expires
+     * after 1 minute. Look for `Location:` in the response header to find the URL for the download.
+     * Anyone with read access to the repository can use this endpoint. If the repository is
+     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsDownloadWorkflowRunLogs(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): Any {
-        return actionsDownloadWorkflowRunLogsWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsDownloadWorkflowRunLogs(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): Any {
+        return actionsDownloadWorkflowRunLogsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsDownloadWorkflowRunLogs], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsDownloadWorkflowRunLogsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<Any> {
-        return SdkClient.request<Any>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/logs", config = clientConfig, operationId = "actionsDownloadWorkflowRunLogs", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [actionsDownloadWorkflowRunLogs], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsDownloadWorkflowRunLogsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Any> {
+        return SdkClient.request<Any>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/logs",
+                config = clientConfig,
+                operationId = "actionsDownloadWorkflowRunLogs",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsDeleteWorkflowRunLogsOperation {
     /**
-     * Deletes all logs for a workflow run. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes all logs for a workflow run. OAuth tokens and personal access tokens (classic) need
+     * the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsDeleteWorkflowRunLogs(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): Unit {
-        return actionsDeleteWorkflowRunLogsWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsDeleteWorkflowRunLogs(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return actionsDeleteWorkflowRunLogsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsDeleteWorkflowRunLogs], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsDeleteWorkflowRunLogsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/logs", config = clientConfig, operationId = "actionsDeleteWorkflowRunLogs", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "500" to BasicError::class.java)))
+    /**
+     * [actionsDeleteWorkflowRunLogs], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsDeleteWorkflowRunLogsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/logs",
+                config = clientConfig,
+                operationId = "actionsDeleteWorkflowRunLogs",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "500" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ActionsGetPendingDeploymentsForRunOperation {
     /**
-     * Get all deployment environments for a workflow run that are waiting for protection rules to pass. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Get all deployment environments for a workflow run that are waiting for protection rules to
+     * pass. Anyone with read access to the repository can use this endpoint. If the repository is
+     * private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this
+     * endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsGetPendingDeploymentsForRun(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): List<PendingDeployment> {
-        return actionsGetPendingDeploymentsForRunWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsGetPendingDeploymentsForRun(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): List<PendingDeployment> {
+        return actionsGetPendingDeploymentsForRunWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsGetPendingDeploymentsForRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsGetPendingDeploymentsForRunWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<List<PendingDeployment>> {
-        return SdkClient.request<List<PendingDeployment>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/pending_deployments", config = clientConfig, operationId = "actionsGetPendingDeploymentsForRun", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsGetPendingDeploymentsForRun], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun actionsGetPendingDeploymentsForRunWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<PendingDeployment>> {
+        return SdkClient.request<List<PendingDeployment>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/pending_deployments",
+                config = clientConfig,
+                operationId = "actionsGetPendingDeploymentsForRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsReviewPendingDeploymentsForRunOperation {
     /**
-     * Approve or reject pending deployments that are waiting on approval by a required reviewer. Required reviewers with read access to the repository contents and deployments can use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Approve or reject pending deployments that are waiting on approval by a required reviewer.
+     * Required reviewers with read access to the repository contents and deployments can use this
+     * endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      * @param environmentIds The list of environment ids to approve or reject
-     * @param state Whether to approve or reject deployment to the specified
-     *   environments.
+     * @param state Whether to approve or reject deployment to the specified environments.
      * @param comment A comment to accompany the deployment review
      */
-    fun actionsReviewPendingDeploymentsForRun(clientConfig: ClientConfig, request: Actions.ActionsReviewPendingDeploymentsForRunRequest, options: RequestOptions? = null): List<Deployment> {
-        return actionsReviewPendingDeploymentsForRunWithRawResponse(clientConfig, request, options).data
+    fun actionsReviewPendingDeploymentsForRun(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsReviewPendingDeploymentsForRunRequest,
+        options: RequestOptions? = null,
+    ): List<Deployment> {
+        return actionsReviewPendingDeploymentsForRunWithRawResponse(clientConfig, request, options)
+            .data
     }
 
-
-
-
-    /** [actionsReviewPendingDeploymentsForRun], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsReviewPendingDeploymentsForRunWithRawResponse(clientConfig: ClientConfig, request: Actions.ActionsReviewPendingDeploymentsForRunRequest, options: RequestOptions? = null): SdkResponse<List<Deployment>> {
-        return SdkClient.request<List<Deployment>>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/pending_deployments", config = clientConfig, body = SdkClient.bodyMap("environment_ids" to (request.environmentIds), "state" to (request.state), "comment" to (request.comment)), operationId = "actionsReviewPendingDeploymentsForRun", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsReviewPendingDeploymentsForRun], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun actionsReviewPendingDeploymentsForRunWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Actions.ActionsReviewPendingDeploymentsForRunRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Deployment>> {
+        return SdkClient.request<List<Deployment>>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/actions/runs/${SdkClient.encodePathSegment(request.runId)}/pending_deployments",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "environment_ids" to (request.environmentIds),
+                        "state" to (request.state),
+                        "comment" to (request.comment),
+                    ),
+                operationId = "actionsReviewPendingDeploymentsForRun",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsReRunWorkflowOperation {
     /**
-     * Re-runs your workflow run using its `id`. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Re-runs your workflow run using its `id`. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      * @param enableDebugLogging Whether to enable debug logging for the re-run.
      */
-    fun actionsReRunWorkflow(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, enableDebugLogging: Boolean? = null, options: RequestOptions? = null): EmptyObject {
-        return actionsReRunWorkflowWithRawResponse(clientConfig, owner, repo, runId, enableDebugLogging, options).data
+    fun actionsReRunWorkflow(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        enableDebugLogging: Boolean? = null,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return actionsReRunWorkflowWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                enableDebugLogging,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsReRunWorkflow], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsReRunWorkflowWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, enableDebugLogging: Boolean? = null, options: RequestOptions? = null): SdkResponse<EmptyObject> {
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/rerun", config = clientConfig, body = SdkClient.bodyMap("enable_debug_logging" to
-    (SdkClient.omitIfNull(enableDebugLogging))), operationId = "actionsReRunWorkflow", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsReRunWorkflow], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun actionsReRunWorkflowWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        enableDebugLogging: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> {
+        return SdkClient.request<EmptyObject>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/rerun",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "enable_debug_logging" to (SdkClient.omitIfNull(enableDebugLogging))
+                    ),
+                operationId = "actionsReRunWorkflow",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsReRunWorkflowFailedJobsOperation {
     /**
-     * Re-run all of the failed jobs and their dependent jobs in a workflow run using the `id` of the workflow run. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Re-run all of the failed jobs and their dependent jobs in a workflow run using the `id` of
+     * the workflow run. OAuth app tokens and personal access tokens (classic) need the `repo` scope
+     * to use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      * @param enableDebugLogging Whether to enable debug logging for the re-run.
      */
-    fun actionsReRunWorkflowFailedJobs(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, enableDebugLogging: Boolean? = null, options: RequestOptions? = null): EmptyObject {
-        return actionsReRunWorkflowFailedJobsWithRawResponse(clientConfig, owner, repo, runId, enableDebugLogging, options).data
+    fun actionsReRunWorkflowFailedJobs(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        enableDebugLogging: Boolean? = null,
+        options: RequestOptions? = null,
+    ): EmptyObject {
+        return actionsReRunWorkflowFailedJobsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                runId,
+                enableDebugLogging,
+                options,
+            )
+            .data
     }
 
-
-    /** [actionsReRunWorkflowFailedJobs], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsReRunWorkflowFailedJobsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, enableDebugLogging: Boolean? = null, options: RequestOptions? = null): SdkResponse<EmptyObject> {
-        return SdkClient.request<EmptyObject>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/rerun-failed-jobs", config = clientConfig, body = SdkClient.bodyMap("enable_debug_logging" to
-    (SdkClient.omitIfNull(enableDebugLogging))), operationId = "actionsReRunWorkflowFailedJobs", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsReRunWorkflowFailedJobs], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsReRunWorkflowFailedJobsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        enableDebugLogging: Boolean? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> {
+        return SdkClient.request<EmptyObject>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/rerun-failed-jobs",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "enable_debug_logging" to (SdkClient.omitIfNull(enableDebugLogging))
+                    ),
+                operationId = "actionsReRunWorkflowFailedJobs",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ActionsGetWorkflowRunUsageOperation {
     /**
-     * > !WARNING] > This endpoint is in the process of closing down. Refer to "\[Actions Get workflow usage and Get workflow run usage endpoints closing down" for more information. Gets the number of billable minutes and total run time for a specific workflow run. Billable minutes only apply to workflows in private repositories that use GitHub-hosted runners. Usage is listed for each GitHub-hosted runner operating system in milliseconds. Any job re-runs are also included in the…
+     * > !WARNING] > This endpoint is in the process of closing down. Refer to "\[Actions Get
+     * > workflow usage and Get workflow run usage endpoints closing down" for more information.
+     * > Gets the number of billable minutes and total run time for a specific workflow run.
+     * > Billable minutes only apply to workflows in private repositories that use GitHub-hosted
+     * > runners. Usage is listed for each GitHub-hosted runner operating system in milliseconds.
+     * > Any job re-runs are also included in the…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param runId The unique identifier of the workflow run.
      */
-    fun actionsGetWorkflowRunUsage(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): WorkflowRunUsage {
-        return actionsGetWorkflowRunUsageWithRawResponse(clientConfig, owner, repo, runId, options).data
+    fun actionsGetWorkflowRunUsage(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): WorkflowRunUsage {
+        return actionsGetWorkflowRunUsageWithRawResponse(clientConfig, owner, repo, runId, options)
+            .data
     }
 
-
-    /** [actionsGetWorkflowRunUsage], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun actionsGetWorkflowRunUsageWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, runId: Long, options: RequestOptions? = null): SdkResponse<WorkflowRunUsage> {
-        return SdkClient.request<WorkflowRunUsage>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/timing", config = clientConfig, operationId = "actionsGetWorkflowRunUsage", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [actionsGetWorkflowRunUsage], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun actionsGetWorkflowRunUsageWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        runId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<WorkflowRunUsage> {
+        return SdkClient.request<WorkflowRunUsage>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/actions/runs/${SdkClient.encodePathSegment(runId)}/timing",
+                config = clientConfig,
+                operationId = "actionsGetWorkflowRunUsage",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

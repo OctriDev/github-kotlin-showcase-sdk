@@ -6,22 +6,26 @@ package dev.octri.showcase.github
 import java.time.LocalDate
 
 class MetaNamespace(private val clientConfig: ClientConfig) {
-    /**
-     * Get Hypermedia links to resources accessible in GitHub's REST API
-     */
+    /** Get Hypermedia links to resources accessible in GitHub's REST API */
     fun root(options: RequestOptions? = null): Root {
         return dev.octri.showcase.github.methods.Meta.metaRoot(clientConfig, options)
     }
 
     /**
-     * Returns meta information about GitHub, including a list of GitHub's IP addresses. For more information, see "About GitHub's IP addresses." The API's response also includes a list of GitHub's domain names, and the public keys used by GitHub to sign commits made through the web UI. The values shown in the documentation's response are example values. You must always query the API directly to get the latest values. > \[!NOTE\] > This endpoint returns both IPv4 and IPv6 addresses.…
+     * Returns meta information about GitHub, including a list of GitHub's IP addresses. For more
+     * information, see "About GitHub's IP addresses." The API's response also includes a list of
+     * GitHub's domain names, and the public keys used by GitHub to sign commits made through the
+     * web UI. The values shown in the documentation's response are example values. You must always
+     * query the API directly to get the latest values. > \[!NOTE\] > This endpoint returns both
+     * IPv4 and IPv6 addresses.…
      */
     fun get(options: RequestOptions? = null): ApiOverview {
         return dev.octri.showcase.github.methods.Meta.metaGet(clientConfig, options)
     }
 
     /**
-     * Returns Octocat as ASCII art. Supply the optional `s` query parameter to set the words in Octocat's speech bubble.
+     * Returns Octocat as ASCII art. Supply the optional `s` query parameter to set the words in
+     * Octocat's speech bubble.
      *
      * Get the octocat as ASCII art
      */
@@ -30,7 +34,8 @@ class MetaNamespace(private val clientConfig: ClientConfig) {
     }
 
     /**
-     * Lists the API versions supported by the service. Use this endpoint to discover the version strings available for API requests; each value is formatted as a date.
+     * Lists the API versions supported by the service. Use this endpoint to discover the version
+     * strings available for API requests; each value is formatted as a date.
      *
      * Get all supported GitHub API versions.
      */
@@ -39,7 +44,8 @@ class MetaNamespace(private val clientConfig: ClientConfig) {
     }
 
     /**
-     * Returns a random sentence from the Zen of GitHub. Use it when you want a brief, randomly selected phrase; the response is plain text.
+     * Returns a random sentence from the Zen of GitHub. Use it when you want a brief, randomly
+     * selected phrase; the response is plain text.
      *
      * Get a random sentence from the Zen of GitHub
      */
@@ -47,51 +53,77 @@ class MetaNamespace(private val clientConfig: ClientConfig) {
         return dev.octri.showcase.github.methods.Meta.metaGetZen(clientConfig, options)
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [MetaNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [MetaNamespace], returning the [SdkResponse] envelope around each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
-        /**
-         * Get Hypermedia links to resources accessible in GitHub's REST API
-         */
+        /** Get Hypermedia links to resources accessible in GitHub's REST API */
         fun root(options: RequestOptions? = null): SdkResponse<Root> {
-            return dev.octri.showcase.github.methods.Meta.metaRootWithRawResponse(clientConfig, options)
+            return dev.octri.showcase.github.methods.Meta.metaRootWithRawResponse(
+                clientConfig,
+                options,
+            )
         }
 
         /**
-         * Returns meta information about GitHub, including a list of GitHub's IP addresses. For more information, see "About GitHub's IP addresses." The API's response also includes a list of GitHub's domain names, and the public keys used by GitHub to sign commits made through the web UI. The values shown in the documentation's response are example values. You must always query the API directly to get the latest values. > \[!NOTE\] > This endpoint returns both IPv4 and IPv6 addresses.…
+         * Returns meta information about GitHub, including a list of GitHub's IP addresses. For
+         * more information, see "About GitHub's IP addresses." The API's response also includes a
+         * list of GitHub's domain names, and the public keys used by GitHub to sign commits made
+         * through the web UI. The values shown in the documentation's response are example values.
+         * You must always query the API directly to get the latest values. > \[!NOTE\] > This
+         * endpoint returns both IPv4 and IPv6 addresses.…
          */
         fun get(options: RequestOptions? = null): SdkResponse<ApiOverview> {
-            return dev.octri.showcase.github.methods.Meta.metaGetWithRawResponse(clientConfig, options)
+            return dev.octri.showcase.github.methods.Meta.metaGetWithRawResponse(
+                clientConfig,
+                options,
+            )
         }
 
         /**
-         * Returns Octocat as ASCII art. Supply the optional `s` query parameter to set the words in Octocat's speech bubble.
+         * Returns Octocat as ASCII art. Supply the optional `s` query parameter to set the words in
+         * Octocat's speech bubble.
          *
          * Get the octocat as ASCII art
          */
         fun getOctocat(s: String? = null, options: RequestOptions? = null): SdkResponse<String> {
-            return dev.octri.showcase.github.methods.Meta.metaGetOctocatWithRawResponse(clientConfig, s, options)
+            return dev.octri.showcase.github.methods.Meta.metaGetOctocatWithRawResponse(
+                clientConfig,
+                s,
+                options,
+            )
         }
 
         /**
-         * Lists the API versions supported by the service. Use this endpoint to discover the version strings available for API requests; each value is formatted as a date.
+         * Lists the API versions supported by the service. Use this endpoint to discover the
+         * version strings available for API requests; each value is formatted as a date.
          *
          * Get all supported GitHub API versions.
          */
         fun getAllVersions(options: RequestOptions? = null): SdkResponse<List<LocalDate>> {
-            return dev.octri.showcase.github.methods.Meta.metaGetAllVersionsWithRawResponse(clientConfig, options)
+            return dev.octri.showcase.github.methods.Meta.metaGetAllVersionsWithRawResponse(
+                clientConfig,
+                options,
+            )
         }
 
         /**
-         * Returns a random sentence from the Zen of GitHub. Use it when you want a brief, randomly selected phrase; the response is plain text.
+         * Returns a random sentence from the Zen of GitHub. Use it when you want a brief, randomly
+         * selected phrase; the response is plain text.
          *
          * Get a random sentence from the Zen of GitHub
          */
         fun getZen(options: RequestOptions? = null): SdkResponse<String> {
-            return dev.octri.showcase.github.methods.Meta.metaGetZenWithRawResponse(clientConfig, options)
+            return dev.octri.showcase.github.methods.Meta.metaGetZenWithRawResponse(
+                clientConfig,
+                options,
+            )
         }
-
     }
 }

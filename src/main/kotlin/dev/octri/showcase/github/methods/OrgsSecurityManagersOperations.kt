@@ -11,59 +11,121 @@ import dev.octri.showcase.github.TeamSimple
 
 internal object OrgsListSecurityManagerTeamsOperation {
     /**
-     * > !WARNING] > **Closing down notice:** This operation is closing down and will be removed starting January 1, 2026. Please use the "\[Organization Roles" endpoints instead.
+     * > !WARNING] > **Closing down notice:** This operation is closing down and will be removed
+     * > starting January 1, 2026. Please use the "\[Organization Roles" endpoints instead.
      *
      * @param org The organization name. The name is not case sensitive.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun orgsListSecurityManagerTeams(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<TeamSimple> {
+    fun orgsListSecurityManagerTeams(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): List<TeamSimple> {
         return orgsListSecurityManagerTeamsWithRawResponse(clientConfig, org, options).data
     }
 
-
-    /** [orgsListSecurityManagerTeams], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun orgsListSecurityManagerTeamsWithRawResponse(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SdkResponse<List<TeamSimple>> {
-        return SdkClient.request<List<TeamSimple>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/security-managers", config = clientConfig, operationId = "orgsListSecurityManagerTeams", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [orgsListSecurityManagerTeams], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun orgsListSecurityManagerTeamsWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<TeamSimple>> {
+        return SdkClient.request<List<TeamSimple>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/security-managers",
+                config = clientConfig,
+                operationId = "orgsListSecurityManagerTeams",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object OrgsAddSecurityManagerTeamOperation {
     /**
-     * > !WARNING] > **Closing down notice:** This operation is closing down and will be removed starting January 1, 2026. Please use the "\[Organization Roles" endpoints instead.
+     * > !WARNING] > **Closing down notice:** This operation is closing down and will be removed
+     * > starting January 1, 2026. Please use the "\[Organization Roles" endpoints instead.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun orgsAddSecurityManagerTeam(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): Unit {
+    fun orgsAddSecurityManagerTeam(
+        clientConfig: ClientConfig,
+        org: String,
+        teamSlug: String,
+        options: RequestOptions? = null,
+    ): Unit {
         return orgsAddSecurityManagerTeamWithRawResponse(clientConfig, org, teamSlug, options).data
     }
 
-
-    /** [orgsAddSecurityManagerTeam], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun orgsAddSecurityManagerTeamWithRawResponse(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(org)}/security-managers/teams/${SdkClient.encodePathSegment(teamSlug)}", config = clientConfig, operationId = "orgsAddSecurityManagerTeam", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [orgsAddSecurityManagerTeam], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun orgsAddSecurityManagerTeamWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        teamSlug: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(org)}/security-managers/teams/${SdkClient.encodePathSegment(teamSlug)}",
+                config = clientConfig,
+                operationId = "orgsAddSecurityManagerTeam",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object OrgsRemoveSecurityManagerTeamOperation {
     /**
-     * > !WARNING] > **Closing down notice:** This operation is closing down and will be removed starting January 1, 2026. Please use the "\[Organization Roles" endpoints instead.
+     * > !WARNING] > **Closing down notice:** This operation is closing down and will be removed
+     * > starting January 1, 2026. Please use the "\[Organization Roles" endpoints instead.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param teamSlug The slug of the team name.
-     * @deprecated This operation is deprecated and may be removed in a future
-     *   release.
+     * @deprecated This operation is deprecated and may be removed in a future release.
      */
-    fun orgsRemoveSecurityManagerTeam(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): Unit {
-        return orgsRemoveSecurityManagerTeamWithRawResponse(clientConfig, org, teamSlug, options).data
+    fun orgsRemoveSecurityManagerTeam(
+        clientConfig: ClientConfig,
+        org: String,
+        teamSlug: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return orgsRemoveSecurityManagerTeamWithRawResponse(clientConfig, org, teamSlug, options)
+            .data
     }
 
-
-    /** [orgsRemoveSecurityManagerTeam], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun orgsRemoveSecurityManagerTeamWithRawResponse(clientConfig: ClientConfig, org: String, teamSlug: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/security-managers/teams/${SdkClient.encodePathSegment(teamSlug)}", config = clientConfig, operationId = "orgsRemoveSecurityManagerTeam", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [orgsRemoveSecurityManagerTeam], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun orgsRemoveSecurityManagerTeamWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        teamSlug: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/security-managers/teams/${SdkClient.encodePathSegment(teamSlug)}",
+                config = clientConfig,
+                operationId = "orgsRemoveSecurityManagerTeam",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

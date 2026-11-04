@@ -11,17 +11,37 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object AppsGetUserInstallationOperation {
     /**
-     * Enables an authenticated GitHub App to find the user’s installation information. You must use a JWT to access this endpoint.
+     * Enables an authenticated GitHub App to find the user’s installation information. You must use
+     * a JWT to access this endpoint.
      *
      * @param username The handle for the GitHub user account.
      */
-    fun appsGetUserInstallation(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): Installation {
+    fun appsGetUserInstallation(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): Installation {
         return appsGetUserInstallationWithRawResponse(clientConfig, username, options).data
     }
 
-
-    /** [appsGetUserInstallation], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsGetUserInstallationWithRawResponse(clientConfig: ClientConfig, username: String, options: RequestOptions? = null): SdkResponse<Installation> {
-        return SdkClient.request<Installation>(SdkClient.RequestSpec("GET", "/users/${SdkClient.encodePathSegment(username)}/installation", config = clientConfig, operationId = "appsGetUserInstallation", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [appsGetUserInstallation], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun appsGetUserInstallationWithRawResponse(
+        clientConfig: ClientConfig,
+        username: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Installation> {
+        return SdkClient.request<Installation>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/users/${SdkClient.encodePathSegment(username)}/installation",
+                config = clientConfig,
+                operationId = "appsGetUserInstallation",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

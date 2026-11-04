@@ -12,20 +12,43 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object ReposListIssueTypesOperation {
     /**
-     * Lists enabled issue types inherited from the repository owner. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. Fine-grained access tokens require the "Metadata" repository permission (read).
+     * Lists enabled issue types inherited from the repository owner. OAuth app tokens and personal
+     * access tokens (classic) need the `repo` scope to use this endpoint. Fine-grained access
+     * tokens require the "Metadata" repository permission (read).
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposListIssueTypes(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<IssueType?> {
+    fun reposListIssueTypes(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<IssueType?> {
         return reposListIssueTypesWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [reposListIssueTypes], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposListIssueTypesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<IssueType?>> {
-        return SdkClient.request<List<IssueType?>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issue-types", config = clientConfig, operationId = "reposListIssueTypes", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [reposListIssueTypes], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun reposListIssueTypesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<IssueType?>> {
+        return SdkClient.request<List<IssueType?>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issue-types",
+                config = clientConfig,
+                operationId = "reposListIssueTypes",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }

@@ -5,16 +5,10 @@ package dev.octri.showcase.github.models
 
 import dev.octri.showcase.github.SdkResource
 
-/**
- * Pull Request Review Request
- */
+/** Pull Request Review Request */
 data class PullRequestReviewRequest(
-    /**
-     * Required array value serialized in the `users` wire field.
-     */
+    /** Required array value serialized in the `users` wire field. */
     val users: List<SimpleUser>,
-    /**
-     * Required array value serialized in the `teams` wire field.
-     */
-    val teams: List<Team>
+    /** Required array value serialized in the `teams` wire field. */
+    val teams: List<Team>,
 ) : SdkResource()

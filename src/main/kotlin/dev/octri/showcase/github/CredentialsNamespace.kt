@@ -3,26 +3,51 @@
 
 package dev.octri.showcase.github
 
-
 class CredentialsNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Submit a list of credentials to be revoked. This endpoint is intended to revoke credentials the caller does not own and may have found exposed on GitHub.com or elsewhere. It can also be used for credentials associated with an old user account that you no longer have access to. Credential owners will be notified of the revocation. This endpoint currently accepts the following credential types: - Personal access tokens (classic) (`ghp_`) - Fine-grained personal access tokens…
+     * Submit a list of credentials to be revoked. This endpoint is intended to revoke credentials
+     * the caller does not own and may have found exposed on GitHub.com or elsewhere. It can also be
+     * used for credentials associated with an old user account that you no longer have access to.
+     * Credential owners will be notified of the revocation. This endpoint currently accepts the
+     * following credential types: - Personal access tokens (classic) (`ghp_`) - Fine-grained
+     * personal access tokens…
      */
     fun revoke(credentials: List<String>, options: RequestOptions? = null): Map<String, Any> {
-        return dev.octri.showcase.github.methods.Credentials.credentialsRevoke(clientConfig, credentials, options)
+        return dev.octri.showcase.github.methods.Credentials.credentialsRevoke(
+            clientConfig,
+            credentials,
+            options,
+        )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [CredentialsNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [CredentialsNamespace], returning the [SdkResponse] envelope around each
+     * result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Submit a list of credentials to be revoked. This endpoint is intended to revoke credentials the caller does not own and may have found exposed on GitHub.com or elsewhere. It can also be used for credentials associated with an old user account that you no longer have access to. Credential owners will be notified of the revocation. This endpoint currently accepts the following credential types: - Personal access tokens (classic) (`ghp_`) - Fine-grained personal access tokens…
+         * Submit a list of credentials to be revoked. This endpoint is intended to revoke
+         * credentials the caller does not own and may have found exposed on GitHub.com or
+         * elsewhere. It can also be used for credentials associated with an old user account that
+         * you no longer have access to. Credential owners will be notified of the revocation. This
+         * endpoint currently accepts the following credential types: - Personal access tokens
+         * (classic) (`ghp_`) - Fine-grained personal access tokens…
          */
-        fun revoke(credentials: List<String>, options: RequestOptions? = null): SdkResponse<Map<String, Any>> {
-            return dev.octri.showcase.github.methods.Credentials.credentialsRevokeWithRawResponse(clientConfig, credentials, options)
+        fun revoke(
+            credentials: List<String>,
+            options: RequestOptions? = null,
+        ): SdkResponse<Map<String, Any>> {
+            return dev.octri.showcase.github.methods.Credentials.credentialsRevokeWithRawResponse(
+                clientConfig,
+                credentials,
+                options,
+            )
         }
-
     }
 }

@@ -5,58 +5,33 @@ package dev.octri.showcase.github.models
 
 import dev.octri.showcase.github.SdkResource
 
-/**
- * Optional object value serialized in the `version_info` wire field.
- */
+/** Optional object value serialized in the `version_info` wire field. */
 data class WebhookRubygemsMetadataVersionInfo(
-    /**
-     * Optional `string` value serialized in the `version` wire field.
-     */
+    /** Optional `string` value serialized in the `version` wire field. */
     val version: String? = null
 ) : SdkResource()
 
-/**
- * Typed representation of the `WebhookRubygemsMetadata` API schema.
- */
+/** Typed representation of the `WebhookRubygemsMetadata` API schema. */
 data class WebhookRubygemsMetadata(
-    /**
-     * Optional `string` value serialized in the `name` wire field.
-     */
+    /** Optional `string` value serialized in the `name` wire field. */
     val name: String? = null,
-    /**
-     * Optional `string` value serialized in the `description` wire field.
-     */
+    /** Optional `string` value serialized in the `description` wire field. */
     val description: String? = null,
-    /**
-     * Optional `string` value serialized in the `readme` wire field.
-     */
+    /** Optional `string` value serialized in the `readme` wire field. */
     val readme: String? = null,
-    /**
-     * Optional `string` value serialized in the `homepage` wire field.
-     */
+    /** Optional `string` value serialized in the `homepage` wire field. */
     val homepage: String? = null,
-    /**
-     * Optional object value serialized in the `version_info` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("version_info") val versionInfo: WebhookRubygemsMetadataVersionInfo? = null,
-    /**
-     * Optional `string` value serialized in the `platform` wire field.
-     */
+    /** Optional object value serialized in the `version_info` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("version_info")
+    val versionInfo: WebhookRubygemsMetadataVersionInfo? = null,
+    /** Optional `string` value serialized in the `platform` wire field. */
     val platform: String? = null,
-    /**
-     * Optional object value serialized in the `metadata` wire field.
-     */
+    /** Optional object value serialized in the `metadata` wire field. */
     val metadata: Map<String, String>? = null,
-    /**
-     * Optional `string` value serialized in the `repo` wire field.
-     */
+    /** Optional `string` value serialized in the `repo` wire field. */
     val repo: String? = null,
-    /**
-     * Optional array value serialized in the `dependencies` wire field.
-     */
+    /** Optional array value serialized in the `dependencies` wire field. */
     val dependencies: List<Map<String, String>>? = null,
-    /**
-     * Optional `string` value serialized in the `commit_oid` wire field.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("commit_oid") val commitOid: String? = null
+    /** Optional `string` value serialized in the `commit_oid` wire field. */
+    @com.fasterxml.jackson.annotation.JsonProperty("commit_oid") val commitOid: String? = null,
 ) : SdkResource()

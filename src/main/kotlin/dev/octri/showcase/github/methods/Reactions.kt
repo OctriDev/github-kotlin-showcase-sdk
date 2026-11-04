@@ -26,22 +26,24 @@ object Reactions {
     /**
      * List the reactions to a commit comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
-     * @param content Returns a single reaction type. Omit this parameter to list all
-     *   reactions to a commit comment.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param content Returns a single reaction type. Omit this parameter to list all reactions to a
+     *   commit comment.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reactionsListForCommitComment(clientConfig: ClientConfig, request: ReactionsListForCommitCommentRequest, options: RequestOptions? = null): List<Reaction> {
+    fun reactionsListForCommitComment(
+        clientConfig: ClientConfig,
+        request: ReactionsListForCommitCommentRequest,
+        options: RequestOptions? = null,
+    ): List<Reaction> {
         return reactionsListForCommitCommentWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [reactionsListForCommitComment]. */
     data class ReactionsListForCommitCommentRequest(
@@ -50,90 +52,167 @@ object Reactions {
         val commentId: Long,
         val content: ReactionsListForCommitCommentParameterEnum? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
-    /** [reactionsListForCommitComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsListForCommitCommentWithRawResponse(clientConfig: ClientConfig, request: ReactionsListForCommitCommentRequest, options: RequestOptions? = null): SdkResponse<List<Reaction>> {
-        return SdkClient.request<List<Reaction>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/comments/${SdkClient.encodePathSegment(request.commentId)}/reactions", config = clientConfig, query = mapOf("content" to
-    SdkClient.queryValue(request.content, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reactionsListForCommitComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [reactionsListForCommitComment], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsListForCommitCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReactionsListForCommitCommentRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Reaction>> {
+        return SdkClient.request<List<Reaction>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/comments/${SdkClient.encodePathSegment(request.commentId)}/reactions",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "content" to SdkClient.queryValue(request.content, "form", true),
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                    ),
+                operationId = "reactionsListForCommitComment",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Create a reaction to a commit comment. A response with an HTTP `200` status means that you already added the reaction type to this commit comment.
+     * Create a reaction to a commit comment. A response with an HTTP `200` status means that you
+     * already added the reaction type to this commit comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param content The reaction type to add to the commit comment.
      */
-    fun reactionsCreateForCommitComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, content: ReactionsCreateForCommitCommentContentEnum, options: RequestOptions? = null): Reaction {
-        return reactionsCreateForCommitCommentWithRawResponse(clientConfig, owner, repo, commentId, content, options).data
+    fun reactionsCreateForCommitComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        content: ReactionsCreateForCommitCommentContentEnum,
+        options: RequestOptions? = null,
+    ): Reaction {
+        return reactionsCreateForCommitCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                content,
+                options,
+            )
+            .data
     }
-
-
-    /** [reactionsCreateForCommitComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsCreateForCommitCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, content: ReactionsCreateForCommitCommentContentEnum, options: RequestOptions? = null): SdkResponse<Reaction> {
-        return SdkClient.request<Reaction>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}/reactions", config = clientConfig, body = SdkClient.bodyMap("content" to (content)), operationId = "reactionsCreateForCommitComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/comments/:comment_id/reactions/:reaction_id`. Delete a reaction to a \[commit comment.
+     * [reactionsCreateForCommitComment], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun reactionsCreateForCommitCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        content: ReactionsCreateForCommitCommentContentEnum,
+        options: RequestOptions? = null,
+    ): SdkResponse<Reaction> {
+        return SdkClient.request<Reaction>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}/reactions",
+                config = clientConfig,
+                body = SdkClient.bodyMap("content" to (content)),
+                operationId = "reactionsCreateForCommitComment",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("422" to ValidationError::class.java),
+            )
+        )
+    }
+
+    /**
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
+     * > /repositories/:repository_id/comments/:comment_id/reactions/:reaction_id`. Delete a
+     * > reaction to a \[commit comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param reactionId The unique identifier of the reaction.
      */
-    fun reactionsDeleteForCommitComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): Unit {
-        return reactionsDeleteForCommitCommentWithRawResponse(clientConfig, owner, repo, commentId, reactionId, options).data
+    fun reactionsDeleteForCommitComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return reactionsDeleteForCommitCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                reactionId,
+                options,
+            )
+            .data
     }
 
-
-    /** [reactionsDeleteForCommitComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsDeleteForCommitCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}/reactions/${SdkClient.encodePathSegment(reactionId)}", config = clientConfig, operationId = "reactionsDeleteForCommitComment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [reactionsDeleteForCommitComment], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun reactionsDeleteForCommitCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/comments/${SdkClient.encodePathSegment(commentId)}/reactions/${SdkClient.encodePathSegment(reactionId)}",
+                config = clientConfig,
+                operationId = "reactionsDeleteForCommitComment",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
 
     /**
      * List the reactions to an issue comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
-     * @param content Returns a single reaction type. Omit this parameter to list all
-     *   reactions to an issue comment.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param content Returns a single reaction type. Omit this parameter to list all reactions to
+     *   an issue comment.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reactionsListForIssueComment(clientConfig: ClientConfig, request: ReactionsListForIssueCommentRequest, options: RequestOptions? = null): List<Reaction> {
+    fun reactionsListForIssueComment(
+        clientConfig: ClientConfig,
+        request: ReactionsListForIssueCommentRequest,
+        options: RequestOptions? = null,
+    ): List<Reaction> {
         return reactionsListForIssueCommentWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [reactionsListForIssueComment]. */
     data class ReactionsListForIssueCommentRequest(
@@ -142,92 +221,171 @@ object Reactions {
         val commentId: Long,
         val content: ReactionsListForIssueCommentParameterEnum? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
-    /** [reactionsListForIssueComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsListForIssueCommentWithRawResponse(clientConfig: ClientConfig, request: ReactionsListForIssueCommentRequest, options: RequestOptions? = null): SdkResponse<List<Reaction>> {
-        return SdkClient.request<List<Reaction>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/comments/${SdkClient.encodePathSegment(request.commentId)}/reactions", config = clientConfig, query = mapOf("content" to
-    SdkClient.queryValue(request.content, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reactionsListForIssueComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [reactionsListForIssueComment], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsListForIssueCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReactionsListForIssueCommentRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Reaction>> {
+        return SdkClient.request<List<Reaction>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/comments/${SdkClient.encodePathSegment(request.commentId)}/reactions",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "content" to SdkClient.queryValue(request.content, "form", true),
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                    ),
+                operationId = "reactionsListForIssueComment",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Create a reaction to an issue comment. A response with an HTTP `200` status means that you already added the reaction type to this issue comment.
+     * Create a reaction to an issue comment. A response with an HTTP `200` status means that you
+     * already added the reaction type to this issue comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param content The reaction type to add to the issue comment.
      */
-    fun reactionsCreateForIssueComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, content: ReactionsCreateForIssueCommentContentEnum, options: RequestOptions? = null): Reaction {
-        return reactionsCreateForIssueCommentWithRawResponse(clientConfig, owner, repo, commentId, content, options).data
+    fun reactionsCreateForIssueComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        content: ReactionsCreateForIssueCommentContentEnum,
+        options: RequestOptions? = null,
+    ): Reaction {
+        return reactionsCreateForIssueCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                content,
+                options,
+            )
+            .data
     }
-
-
-    /** [reactionsCreateForIssueComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsCreateForIssueCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, content: ReactionsCreateForIssueCommentContentEnum, options: RequestOptions? = null): SdkResponse<Reaction> {
-        return SdkClient.request<Reaction>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}/reactions", config = clientConfig, body = SdkClient.bodyMap("content" to (content)), operationId = "reactionsCreateForIssueComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE delete /repositories/:repository_id/issues/comments/:comment_id/reactions/:reaction_id`. Delete a reaction to an \[issue comment.
+     * [reactionsCreateForIssueComment], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsCreateForIssueCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        content: ReactionsCreateForIssueCommentContentEnum,
+        options: RequestOptions? = null,
+    ): SdkResponse<Reaction> {
+        return SdkClient.request<Reaction>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}/reactions",
+                config = clientConfig,
+                body = SdkClient.bodyMap("content" to (content)),
+                operationId = "reactionsCreateForIssueComment",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("422" to ValidationError::class.java),
+            )
+        )
+    }
+
+    /**
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
+     * > delete /repositories/:repository_id/issues/comments/:comment_id/reactions/:reaction_id`.
+     * > Delete a reaction to an \[issue comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param reactionId The unique identifier of the reaction.
      */
-    fun reactionsDeleteForIssueComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): Unit {
-        return reactionsDeleteForIssueCommentWithRawResponse(clientConfig, owner, repo, commentId, reactionId, options).data
+    fun reactionsDeleteForIssueComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return reactionsDeleteForIssueCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                reactionId,
+                options,
+            )
+            .data
     }
-
-
-    /** [reactionsDeleteForIssueComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsDeleteForIssueCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}/reactions/${SdkClient.encodePathSegment(reactionId)}", config = clientConfig, operationId = "reactionsDeleteForIssueComment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
-    }
-
-
-
-
-
 
     /**
-     * Lists reactions to an issue in a repository. Use `content` to filter the results to one reaction type, or omit it to list all reactions; use `page` and `per_page` to paginate the results.
+     * [reactionsDeleteForIssueComment], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsDeleteForIssueCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/comments/${SdkClient.encodePathSegment(commentId)}/reactions/${SdkClient.encodePathSegment(reactionId)}",
+                config = clientConfig,
+                operationId = "reactionsDeleteForIssueComment",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
+    }
+
+    /**
+     * Lists reactions to an issue in a repository. Use `content` to filter the results to one
+     * reaction type, or omit it to list all reactions; use `page` and `per_page` to paginate the
+     * results.
      *
      * List the reactions to an issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
-     * @param content Returns a single reaction type. Omit this parameter to list all
-     *   reactions to an issue.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param content Returns a single reaction type. Omit this parameter to list all reactions to
+     *   an issue.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reactionsListForIssue(clientConfig: ClientConfig, request: ReactionsListForIssueRequest, options: RequestOptions? = null): List<Reaction> {
+    fun reactionsListForIssue(
+        clientConfig: ClientConfig,
+        request: ReactionsListForIssueRequest,
+        options: RequestOptions? = null,
+    ): List<Reaction> {
         return reactionsListForIssueWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [reactionsListForIssue]. */
     data class ReactionsListForIssueRequest(
@@ -236,90 +394,172 @@ object Reactions {
         val issueNumber: Long,
         val content: ReactionsListForIssueParameterEnum? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
-    /** [reactionsListForIssue], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsListForIssueWithRawResponse(clientConfig: ClientConfig, request: ReactionsListForIssueRequest, options: RequestOptions? = null): SdkResponse<List<Reaction>> {
-        return SdkClient.request<List<Reaction>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/reactions", config = clientConfig, query = mapOf("content" to
-    SdkClient.queryValue(request.content, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reactionsListForIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "410" to BasicError::class.java)))
+    /**
+     * [reactionsListForIssue], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun reactionsListForIssueWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReactionsListForIssueRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Reaction>> {
+        return SdkClient.request<List<Reaction>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/issues/${SdkClient.encodePathSegment(request.issueNumber)}/reactions",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "content" to SdkClient.queryValue(request.content, "form", true),
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                    ),
+                operationId = "reactionsListForIssue",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java, "410" to BasicError::class.java),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Create a reaction to an issue. A response with an HTTP `200` status means that you already added the reaction type to this issue.
+     * Create a reaction to an issue. A response with an HTTP `200` status means that you already
+     * added the reaction type to this issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param content The reaction type to add to the issue.
      */
-    fun reactionsCreateForIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, content: ReactionsCreateForIssueContentEnum, options: RequestOptions? = null): Reaction {
-        return reactionsCreateForIssueWithRawResponse(clientConfig, owner, repo, issueNumber, content, options).data
+    fun reactionsCreateForIssue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        content: ReactionsCreateForIssueContentEnum,
+        options: RequestOptions? = null,
+    ): Reaction {
+        return reactionsCreateForIssueWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                issueNumber,
+                content,
+                options,
+            )
+            .data
     }
-
-
-    /** [reactionsCreateForIssue], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsCreateForIssueWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, content: ReactionsCreateForIssueContentEnum, options: RequestOptions? = null): SdkResponse<Reaction> {
-        return SdkClient.request<Reaction>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/reactions", config = clientConfig, body = SdkClient.bodyMap("content" to (content)), operationId = "reactionsCreateForIssue", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/issues/:issue_number/reactions/:reaction_id`. Delete a reaction to an \[issue.
+     * [reactionsCreateForIssue], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsCreateForIssueWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        content: ReactionsCreateForIssueContentEnum,
+        options: RequestOptions? = null,
+    ): SdkResponse<Reaction> {
+        return SdkClient.request<Reaction>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/reactions",
+                config = clientConfig,
+                body = SdkClient.bodyMap("content" to (content)),
+                operationId = "reactionsCreateForIssue",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("422" to ValidationError::class.java),
+            )
+        )
+    }
+
+    /**
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
+     * > /repositories/:repository_id/issues/:issue_number/reactions/:reaction_id`. Delete a
+     * > reaction to an \[issue.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param issueNumber The number that identifies the issue.
      * @param reactionId The unique identifier of the reaction.
      */
-    fun reactionsDeleteForIssue(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, reactionId: Long, options: RequestOptions? = null): Unit {
-        return reactionsDeleteForIssueWithRawResponse(clientConfig, owner, repo, issueNumber, reactionId, options).data
+    fun reactionsDeleteForIssue(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return reactionsDeleteForIssueWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                issueNumber,
+                reactionId,
+                options,
+            )
+            .data
     }
 
-
-    /** [reactionsDeleteForIssue], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsDeleteForIssueWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, issueNumber: Long, reactionId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/reactions/${SdkClient.encodePathSegment(reactionId)}", config = clientConfig, operationId = "reactionsDeleteForIssue", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [reactionsDeleteForIssue], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsDeleteForIssueWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        issueNumber: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/issues/${SdkClient.encodePathSegment(issueNumber)}/reactions/${SdkClient.encodePathSegment(reactionId)}",
+                config = clientConfig,
+                operationId = "reactionsDeleteForIssue",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
 
     /**
      * List the reactions to a pull request review comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
-     * @param content Returns a single reaction type. Omit this parameter to list all
-     *   reactions to a pull request review comment.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param content Returns a single reaction type. Omit this parameter to list all reactions to a
+     *   pull request review comment.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reactionsListForPullRequestReviewComment(clientConfig: ClientConfig, request: ReactionsListForPullRequestReviewCommentRequest, options: RequestOptions? = null): List<Reaction> {
-        return reactionsListForPullRequestReviewCommentWithRawResponse(clientConfig, request, options).data
+    fun reactionsListForPullRequestReviewComment(
+        clientConfig: ClientConfig,
+        request: ReactionsListForPullRequestReviewCommentRequest,
+        options: RequestOptions? = null,
+    ): List<Reaction> {
+        return reactionsListForPullRequestReviewCommentWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
+            .data
     }
-
 
     /** Parameters for [reactionsListForPullRequestReviewComment]. */
     data class ReactionsListForPullRequestReviewCommentRequest(
@@ -328,90 +568,167 @@ object Reactions {
         val commentId: Long,
         val content: ReactionsListForPullRequestReviewCommentParameterEnum? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
-    /** [reactionsListForPullRequestReviewComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsListForPullRequestReviewCommentWithRawResponse(clientConfig: ClientConfig, request: ReactionsListForPullRequestReviewCommentRequest, options: RequestOptions? = null): SdkResponse<List<Reaction>> {
-        return SdkClient.request<List<Reaction>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/comments/${SdkClient.encodePathSegment(request.commentId)}/reactions", config = clientConfig, query = mapOf("content" to
-    SdkClient.queryValue(request.content, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reactionsListForPullRequestReviewComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [reactionsListForPullRequestReviewComment], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun reactionsListForPullRequestReviewCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReactionsListForPullRequestReviewCommentRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Reaction>> {
+        return SdkClient.request<List<Reaction>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/pulls/comments/${SdkClient.encodePathSegment(request.commentId)}/reactions",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "content" to SdkClient.queryValue(request.content, "form", true),
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                    ),
+                operationId = "reactionsListForPullRequestReviewComment",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Create a reaction to a pull request review comment. A response with an HTTP `200` status means that you already added the reaction type to this pull request review comment.
+     * Create a reaction to a pull request review comment. A response with an HTTP `200` status
+     * means that you already added the reaction type to this pull request review comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param content The reaction type to add to the pull request review comment.
      */
-    fun reactionsCreateForPullRequestReviewComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, content: ReactionsCreateForPullRequestReviewCommentContentEnum, options: RequestOptions? = null): Reaction {
-        return reactionsCreateForPullRequestReviewCommentWithRawResponse(clientConfig, owner, repo, commentId, content, options).data
+    fun reactionsCreateForPullRequestReviewComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        content: ReactionsCreateForPullRequestReviewCommentContentEnum,
+        options: RequestOptions? = null,
+    ): Reaction {
+        return reactionsCreateForPullRequestReviewCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                content,
+                options,
+            )
+            .data
     }
-
-
-    /** [reactionsCreateForPullRequestReviewComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsCreateForPullRequestReviewCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, content: ReactionsCreateForPullRequestReviewCommentContentEnum, options: RequestOptions? = null): SdkResponse<Reaction> {
-        return SdkClient.request<Reaction>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}/reactions", config = clientConfig, body = SdkClient.bodyMap("content" to (content)), operationId = "reactionsCreateForPullRequestReviewComment", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/pulls/comments/:comment_id/reactions/:reaction_id.` Delete a reaction to a \[pull request review comment.
+     * [reactionsCreateForPullRequestReviewComment], returning the [SdkResponse] envelope: status
+     * code, headers, request ID and latency.
+     */
+    fun reactionsCreateForPullRequestReviewCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        content: ReactionsCreateForPullRequestReviewCommentContentEnum,
+        options: RequestOptions? = null,
+    ): SdkResponse<Reaction> {
+        return SdkClient.request<Reaction>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}/reactions",
+                config = clientConfig,
+                body = SdkClient.bodyMap("content" to (content)),
+                operationId = "reactionsCreateForPullRequestReviewComment",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("422" to ValidationError::class.java),
+            )
+        )
+    }
+
+    /**
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
+     * > /repositories/:repository_id/pulls/comments/:comment_id/reactions/:reaction_id.` Delete a
+     * > reaction to a \[pull request review comment.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param commentId The unique identifier of the comment.
      * @param reactionId The unique identifier of the reaction.
      */
-    fun reactionsDeleteForPullRequestComment(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): Unit {
-        return reactionsDeleteForPullRequestCommentWithRawResponse(clientConfig, owner, repo, commentId, reactionId, options).data
+    fun reactionsDeleteForPullRequestComment(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return reactionsDeleteForPullRequestCommentWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                commentId,
+                reactionId,
+                options,
+            )
+            .data
     }
 
-
-    /** [reactionsDeleteForPullRequestComment], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsDeleteForPullRequestCommentWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, commentId: Long, reactionId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}/reactions/${SdkClient.encodePathSegment(reactionId)}", config = clientConfig, operationId = "reactionsDeleteForPullRequestComment", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [reactionsDeleteForPullRequestComment], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun reactionsDeleteForPullRequestCommentWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        commentId: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/pulls/comments/${SdkClient.encodePathSegment(commentId)}/reactions/${SdkClient.encodePathSegment(reactionId)}",
+                config = clientConfig,
+                operationId = "reactionsDeleteForPullRequestComment",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
 
     /**
      * List the reactions to a release.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param releaseId The unique identifier of the release.
-     * @param content Returns a single reaction type. Omit this parameter to list all
-     *   reactions to a release.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param content Returns a single reaction type. Omit this parameter to list all reactions to a
+     *   release.
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reactionsListForRelease(clientConfig: ClientConfig, request: ReactionsListForReleaseRequest, options: RequestOptions? = null): List<Reaction> {
+    fun reactionsListForRelease(
+        clientConfig: ClientConfig,
+        request: ReactionsListForReleaseRequest,
+        options: RequestOptions? = null,
+    ): List<Reaction> {
         return reactionsListForReleaseWithRawResponse(clientConfig, request, options).data
     }
-
 
     /** Parameters for [reactionsListForRelease]. */
     data class ReactionsListForReleaseRequest(
@@ -420,70 +737,143 @@ object Reactions {
         val releaseId: Long,
         val content: ReactionsListForReleaseParameterEnum? = null,
         val perPage: Long? = null,
-        val page: Long? = null
+        val page: Long? = null,
     )
 
-    /** [reactionsListForRelease], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsListForReleaseWithRawResponse(clientConfig: ClientConfig, request: ReactionsListForReleaseRequest, options: RequestOptions? = null): SdkResponse<List<Reaction>> {
-        return SdkClient.request<List<Reaction>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/${SdkClient.encodePathSegment(request.releaseId)}/reactions", config = clientConfig, query = mapOf("content" to
-    SdkClient.queryValue(request.content, "form", true), "per_page" to
-    SdkClient.queryValue(request.perPage, "form", true), "page" to SdkClient.queryValue(request.page, "form", true)), operationId = "reactionsListForRelease", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [reactionsListForRelease], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsListForReleaseWithRawResponse(
+        clientConfig: ClientConfig,
+        request: ReactionsListForReleaseRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Reaction>> {
+        return SdkClient.request<List<Reaction>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(request.owner)}/${SdkClient.encodePathSegment(request.repo)}/releases/${SdkClient.encodePathSegment(request.releaseId)}/reactions",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "content" to SdkClient.queryValue(request.content, "form", true),
+                        "per_page" to SdkClient.queryValue(request.perPage, "form", true),
+                        "page" to SdkClient.queryValue(request.page, "form", true),
+                    ),
+                operationId = "reactionsListForRelease",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 
-
-
-
-
-
     /**
-     * Create a reaction to a release. A response with a `Status: 200 OK` means that you already added the reaction type to this release.
+     * Create a reaction to a release. A response with a `Status: 200 OK` means that you already
+     * added the reaction type to this release.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param releaseId The unique identifier of the release.
      * @param content The reaction type to add to the release.
      */
-    fun reactionsCreateForRelease(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, content: ReactionsCreateForReleaseContentEnum, options: RequestOptions? = null): Reaction {
-        return reactionsCreateForReleaseWithRawResponse(clientConfig, owner, repo, releaseId, content, options).data
+    fun reactionsCreateForRelease(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        content: ReactionsCreateForReleaseContentEnum,
+        options: RequestOptions? = null,
+    ): Reaction {
+        return reactionsCreateForReleaseWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                releaseId,
+                content,
+                options,
+            )
+            .data
     }
-
-
-    /** [reactionsCreateForRelease], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsCreateForReleaseWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, content: ReactionsCreateForReleaseContentEnum, options: RequestOptions? = null): SdkResponse<Reaction> {
-        return SdkClient.request<Reaction>(SdkClient.RequestSpec("POST", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}/reactions", config = clientConfig, body = SdkClient.bodyMap("content" to (content)), operationId = "reactionsCreateForRelease", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("422" to ValidationError::class.java)))
-    }
-
-
-
-
-
 
     /**
-     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE delete /repositories/:repository_id/releases/:release_id/reactions/:reaction_id`. Delete a reaction to a \[release.
+     * [reactionsCreateForRelease], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsCreateForReleaseWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        content: ReactionsCreateForReleaseContentEnum,
+        options: RequestOptions? = null,
+    ): SdkResponse<Reaction> {
+        return SdkClient.request<Reaction>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}/reactions",
+                config = clientConfig,
+                body = SdkClient.bodyMap("content" to (content)),
+                operationId = "reactionsCreateForRelease",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("422" to ValidationError::class.java),
+            )
+        )
+    }
+
+    /**
+     * > !NOTE] > You can also specify a repository by `repository_id` using the route `DELETE
+     * > delete /repositories/:repository_id/releases/:release_id/reactions/:reaction_id`. Delete a
+     * > reaction to a \[release.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param releaseId The unique identifier of the release.
      * @param reactionId The unique identifier of the reaction.
      */
-    fun reactionsDeleteForRelease(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, reactionId: Long, options: RequestOptions? = null): Unit {
-        return reactionsDeleteForReleaseWithRawResponse(clientConfig, owner, repo, releaseId, reactionId, options).data
+    fun reactionsDeleteForRelease(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
+        return reactionsDeleteForReleaseWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                releaseId,
+                reactionId,
+                options,
+            )
+            .data
     }
 
-
-    /** [reactionsDeleteForRelease], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reactionsDeleteForReleaseWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, releaseId: Long, reactionId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}/reactions/${SdkClient.encodePathSegment(reactionId)}", config = clientConfig, operationId = "reactionsDeleteForRelease", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [reactionsDeleteForRelease], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reactionsDeleteForReleaseWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        releaseId: Long,
+        reactionId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/releases/${SdkClient.encodePathSegment(releaseId)}/reactions/${SdkClient.encodePathSegment(reactionId)}",
+                config = clientConfig,
+                operationId = "reactionsDeleteForRelease",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
-
-
-
-
-
-
-
 }

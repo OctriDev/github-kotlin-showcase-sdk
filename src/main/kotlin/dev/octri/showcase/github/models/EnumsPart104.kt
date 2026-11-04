@@ -3,262 +3,384 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Provider namespace
- */
-class AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemProviderEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemProviderEnum && value == other.value
+/** Provider namespace */
+class AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemProviderEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemProviderEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val GITHUB = AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemProviderEnum("github")
+        @JvmField
+        val GITHUB = AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemProviderEnum("github")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemProviderEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemProviderEnum(value)
     }
 }
 
-/**
- * Type of artifact. Available Values: `pull`, `branch`.
- */
-class AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum && value == other.value
+/** Type of artifact. Available Values: `pull`, `branch`. */
+class AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val PULL = AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum("pull")
-        @JvmField val BRANCH = AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum("branch")
+        @JvmField
+        val PULL = AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum("pull")
+        @JvmField
+        val BRANCH = AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum("branch")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseVariant0ArtifactsItemTypeEnum(value)
     }
 }
 
-/**
- * Type of the task creator
- */
-class AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum && value == other.value
+/** Type of the task creator */
+class AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val USER = AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum("user")
-        @JvmField val ORGANIZATION = AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum("organization")
+        @JvmField
+        val ORGANIZATION =
+            AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseVariant0CreatorTypeEnum(value)
     }
 }
 
-/**
- * Current state of the task, derived from its most recent session
- */
-class AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum && value == other.value
+/** Current state of the task, derived from its most recent session */
+class AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val QUEUED = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("queued")
-        @JvmField val IN_PROGRESS = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("in_progress")
+        @JvmField
+        val IN_PROGRESS = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("in_progress")
         @JvmField val COMPLETED = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("completed")
         @JvmField val FAILED = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("failed")
         @JvmField val IDLE = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("idle")
-        @JvmField val WAITING_FOR_USER = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("waiting_for_user")
+        @JvmField
+        val WAITING_FOR_USER =
+            AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("waiting_for_user")
         @JvmField val TIMED_OUT = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("timed_out")
         @JvmField val CANCELLED = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum("cancelled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseVariant0StateEnum(value)
     }
 }
 
-/**
- * Current state of a session
- */
-class AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum && value == other.value
+/** Current state of a session */
+class AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val QUEUED = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("queued")
-        @JvmField val IN_PROGRESS = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("in_progress")
-        @JvmField val COMPLETED = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("completed")
-        @JvmField val FAILED = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("failed")
-        @JvmField val IDLE = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("idle")
-        @JvmField val WAITING_FOR_USER = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("waiting_for_user")
-        @JvmField val TIMED_OUT = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("timed_out")
-        @JvmField val CANCELLED = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("cancelled")
+        @JvmField
+        val QUEUED = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("queued")
+        @JvmField
+        val IN_PROGRESS =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("in_progress")
+        @JvmField
+        val COMPLETED =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("completed")
+        @JvmField
+        val FAILED = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("failed")
+        @JvmField
+        val IDLE = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("idle")
+        @JvmField
+        val WAITING_FOR_USER =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("waiting_for_user")
+        @JvmField
+        val TIMED_OUT =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("timed_out")
+        @JvmField
+        val CANCELLED =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum("cancelled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemStateEnum(value)
     }
 }
 
 /**
- * Billing unit used for this session. New sessions since June 1, 2026 use `ai_credits`, but older sessions use `premium_requests`.
+ * Billing unit used for this session. New sessions since June 1, 2026 use `ai_credits`, but older
+ * sessions use `premium_requests`.
  */
-class AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum && value == other.value
+class AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val AI_CREDITS = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum("ai_credits")
-        @JvmField val PREMIUM_REQUESTS = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum("premium_requests")
+        @JvmField
+        val AI_CREDITS =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum("ai_credits")
+        @JvmField
+        val PREMIUM_REQUESTS =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum(
+                "premium_requests"
+            )
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseVariant1SessionsItemUsageTypeEnum(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum && value == other.value
+/** Machine-readable error code */
+class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("missing")
-        @JvmField val MISSING_FIELD = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("missing_field")
+        @JvmField
+        val MISSING_FIELD = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("missing_field")
         @JvmField val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("already_exists")
-        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("unprocessable")
+        @JvmField
+        val ALREADY_EXISTS =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("already_exists")
+        @JvmField
+        val UNPROCESSABLE = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("unprocessable")
         @JvmField val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078 && value == other.value
+/** Machine-readable error code */
+class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("missing")
-        @JvmField val MISSING_FIELD = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("missing_field")
-        @JvmField val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("already_exists")
-        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("unprocessable")
-        @JvmField val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("custom")
+        @JvmField
+        val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("missing")
+        @JvmField
+        val MISSING_FIELD =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("missing_field")
+        @JvmField
+        val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("invalid")
+        @JvmField
+        val ALREADY_EXISTS =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("already_exists")
+        @JvmField
+        val UNPROCESSABLE =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("unprocessable")
+        @JvmField
+        val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum24410078(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270 && value == other.value
+/** Machine-readable error code */
+class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("missing")
-        @JvmField val MISSING_FIELD = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("missing_field")
-        @JvmField val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("already_exists")
-        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("unprocessable")
-        @JvmField val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("custom")
+        @JvmField
+        val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("missing")
+        @JvmField
+        val MISSING_FIELD =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("missing_field")
+        @JvmField
+        val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("invalid")
+        @JvmField
+        val ALREADY_EXISTS =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("already_exists")
+        @JvmField
+        val UNPROCESSABLE =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("unprocessable")
+        @JvmField
+        val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum4a33f270(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840 && value == other.value
+/** Machine-readable error code */
+class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("missing")
-        @JvmField val MISSING_FIELD = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("missing_field")
-        @JvmField val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("already_exists")
-        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("unprocessable")
-        @JvmField val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("custom")
+        @JvmField
+        val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("missing")
+        @JvmField
+        val MISSING_FIELD =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("missing_field")
+        @JvmField
+        val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("invalid")
+        @JvmField
+        val ALREADY_EXISTS =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("already_exists")
+        @JvmField
+        val UNPROCESSABLE =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("unprocessable")
+        @JvmField
+        val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnumf2af2840(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9 && value == other.value
+/** Machine-readable error code */
+class AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("missing")
-        @JvmField val MISSING_FIELD = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("missing_field")
-        @JvmField val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("already_exists")
-        @JvmField val UNPROCESSABLE = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("unprocessable")
-        @JvmField val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("custom")
+        @JvmField
+        val MISSING = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("missing")
+        @JvmField
+        val MISSING_FIELD =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("missing_field")
+        @JvmField
+        val INVALID = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("invalid")
+        @JvmField
+        val ALREADY_EXISTS =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("already_exists")
+        @JvmField
+        val UNPROCESSABLE =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("unprocessable")
+        @JvmField
+        val CUSTOM = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByRepoAndIdResponseErrorsItemCodeEnum6309f1b9(value)
     }
 }
 
-class AgentTasksListTasksParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksParameterEnum && value == other.value
+class AgentTasksListTasksParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -266,16 +388,21 @@ class AgentTasksListTasksParameterEnum private constructor(
         @JvmField val UPDATED_AT = AgentTasksListTasksParameterEnum("updated_at")
         @JvmField val CREATED_AT = AgentTasksListTasksParameterEnum("created_at")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksListTasksParameterEnum(value)
     }
 }
 
-class AgentTasksListTasksParameterEnumdd4142b9 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksParameterEnumdd4142b9 && value == other.value
+class AgentTasksListTasksParameterEnumdd4142b9
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksParameterEnumdd4142b9 && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -283,38 +410,47 @@ class AgentTasksListTasksParameterEnumdd4142b9 private constructor(
         @JvmField val ASC = AgentTasksListTasksParameterEnumdd4142b9("asc")
         @JvmField val DESC = AgentTasksListTasksParameterEnumdd4142b9("desc")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksParameterEnumdd4142b9(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksListTasksParameterEnumdd4142b9(value)
     }
 }
 
-/**
- * Provider namespace
- */
-class AgentTasksListTasksResponseTasksItemArtifactsItemProviderEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksResponseTasksItemArtifactsItemProviderEnum && value == other.value
+/** Provider namespace */
+class AgentTasksListTasksResponseTasksItemArtifactsItemProviderEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksResponseTasksItemArtifactsItemProviderEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val GITHUB = AgentTasksListTasksResponseTasksItemArtifactsItemProviderEnum("github")
+        @JvmField
+        val GITHUB = AgentTasksListTasksResponseTasksItemArtifactsItemProviderEnum("github")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksResponseTasksItemArtifactsItemProviderEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksListTasksResponseTasksItemArtifactsItemProviderEnum(value)
     }
 }
 
-/**
- * Type of artifact. Available Values: `pull`, `branch`.
- */
-class AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum && value == other.value
+/** Type of artifact. Available Values: `pull`, `branch`. */
+class AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -322,39 +458,47 @@ class AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum private construc
         @JvmField val PULL = AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum("pull")
         @JvmField val BRANCH = AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum("branch")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksListTasksResponseTasksItemArtifactsItemTypeEnum(value)
     }
 }
 
-/**
- * Type of the task creator
- */
-class AgentTasksListTasksResponseTasksItemCreatorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksResponseTasksItemCreatorTypeEnum && value == other.value
+/** Type of the task creator */
+class AgentTasksListTasksResponseTasksItemCreatorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksResponseTasksItemCreatorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val USER = AgentTasksListTasksResponseTasksItemCreatorTypeEnum("user")
-        @JvmField val ORGANIZATION = AgentTasksListTasksResponseTasksItemCreatorTypeEnum("organization")
+        @JvmField
+        val ORGANIZATION = AgentTasksListTasksResponseTasksItemCreatorTypeEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksResponseTasksItemCreatorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksListTasksResponseTasksItemCreatorTypeEnum(value)
     }
 }
 
-/**
- * Current state of the task, derived from its most recent session
- */
-class AgentTasksListTasksResponseTasksItemStateEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksResponseTasksItemStateEnum && value == other.value
+/** Current state of the task, derived from its most recent session */
+class AgentTasksListTasksResponseTasksItemStateEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksResponseTasksItemStateEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -364,23 +508,27 @@ class AgentTasksListTasksResponseTasksItemStateEnum private constructor(
         @JvmField val COMPLETED = AgentTasksListTasksResponseTasksItemStateEnum("completed")
         @JvmField val FAILED = AgentTasksListTasksResponseTasksItemStateEnum("failed")
         @JvmField val IDLE = AgentTasksListTasksResponseTasksItemStateEnum("idle")
-        @JvmField val WAITING_FOR_USER = AgentTasksListTasksResponseTasksItemStateEnum("waiting_for_user")
+        @JvmField
+        val WAITING_FOR_USER = AgentTasksListTasksResponseTasksItemStateEnum("waiting_for_user")
         @JvmField val TIMED_OUT = AgentTasksListTasksResponseTasksItemStateEnum("timed_out")
         @JvmField val CANCELLED = AgentTasksListTasksResponseTasksItemStateEnum("cancelled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksResponseTasksItemStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksListTasksResponseTasksItemStateEnum(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksListTasksResponseErrorsItemCodeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksResponseErrorsItemCodeEnum && value == other.value
+/** Machine-readable error code */
+class AgentTasksListTasksResponseErrorsItemCodeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksResponseErrorsItemCodeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -388,114 +536,142 @@ class AgentTasksListTasksResponseErrorsItemCodeEnum private constructor(
         @JvmField val MISSING = AgentTasksListTasksResponseErrorsItemCodeEnum("missing")
         @JvmField val MISSING_FIELD = AgentTasksListTasksResponseErrorsItemCodeEnum("missing_field")
         @JvmField val INVALID = AgentTasksListTasksResponseErrorsItemCodeEnum("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksListTasksResponseErrorsItemCodeEnum("already_exists")
+        @JvmField
+        val ALREADY_EXISTS = AgentTasksListTasksResponseErrorsItemCodeEnum("already_exists")
         @JvmField val UNPROCESSABLE = AgentTasksListTasksResponseErrorsItemCodeEnum("unprocessable")
         @JvmField val CUSTOM = AgentTasksListTasksResponseErrorsItemCodeEnum("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksResponseErrorsItemCodeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksListTasksResponseErrorsItemCodeEnum(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksListTasksResponseErrorsItemCodeEnumf891db39 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksResponseErrorsItemCodeEnumf891db39 && value == other.value
+/** Machine-readable error code */
+class AgentTasksListTasksResponseErrorsItemCodeEnumf891db39
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksResponseErrorsItemCodeEnumf891db39 && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("missing")
-        @JvmField val MISSING_FIELD = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("missing_field")
+        @JvmField
+        val MISSING_FIELD = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("missing_field")
         @JvmField val INVALID = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("already_exists")
-        @JvmField val UNPROCESSABLE = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("unprocessable")
+        @JvmField
+        val ALREADY_EXISTS = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("already_exists")
+        @JvmField
+        val UNPROCESSABLE = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("unprocessable")
         @JvmField val CUSTOM = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksListTasksResponseErrorsItemCodeEnumf891db39(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksListTasksResponseErrorsItemCodeEnum000b1114 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksResponseErrorsItemCodeEnum000b1114 && value == other.value
+/** Machine-readable error code */
+class AgentTasksListTasksResponseErrorsItemCodeEnum000b1114
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksResponseErrorsItemCodeEnum000b1114 && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("missing")
-        @JvmField val MISSING_FIELD = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("missing_field")
+        @JvmField
+        val MISSING_FIELD = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("missing_field")
         @JvmField val INVALID = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("already_exists")
-        @JvmField val UNPROCESSABLE = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("unprocessable")
+        @JvmField
+        val ALREADY_EXISTS = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("already_exists")
+        @JvmField
+        val UNPROCESSABLE = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("unprocessable")
         @JvmField val CUSTOM = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksListTasksResponseErrorsItemCodeEnum000b1114(value)
     }
 }
 
-/**
- * Machine-readable error code
- */
-class AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf && value == other.value
+/** Machine-readable error code */
+class AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val MISSING = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("missing")
-        @JvmField val MISSING_FIELD = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("missing_field")
+        @JvmField
+        val MISSING_FIELD = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("missing_field")
         @JvmField val INVALID = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("invalid")
-        @JvmField val ALREADY_EXISTS = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("already_exists")
-        @JvmField val UNPROCESSABLE = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("unprocessable")
+        @JvmField
+        val ALREADY_EXISTS = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("already_exists")
+        @JvmField
+        val UNPROCESSABLE = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("unprocessable")
         @JvmField val CUSTOM = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksListTasksResponseErrorsItemCodeEnumf1c273bf(value)
     }
 }
 
-/**
- * Provider namespace
- */
-class AgentTasksGetTaskByIdResponseVariant0ArtifactsItemProviderEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseVariant0ArtifactsItemProviderEnum && value == other.value
+/** Provider namespace */
+class AgentTasksGetTaskByIdResponseVariant0ArtifactsItemProviderEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByIdResponseVariant0ArtifactsItemProviderEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val GITHUB = AgentTasksGetTaskByIdResponseVariant0ArtifactsItemProviderEnum("github")
+        @JvmField
+        val GITHUB = AgentTasksGetTaskByIdResponseVariant0ArtifactsItemProviderEnum("github")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseVariant0ArtifactsItemProviderEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByIdResponseVariant0ArtifactsItemProviderEnum(value)
     }
 }
 
-/**
- * Type of artifact. Available Values: `pull`, `branch`.
- */
-class AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum && value == other.value
+/** Type of artifact. Available Values: `pull`, `branch`. */
+class AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -503,39 +679,47 @@ class AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum private constru
         @JvmField val PULL = AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum("pull")
         @JvmField val BRANCH = AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum("branch")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByIdResponseVariant0ArtifactsItemTypeEnum(value)
     }
 }
 
-/**
- * Type of the task creator
- */
-class AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum && value == other.value
+/** Type of the task creator */
+class AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val USER = AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum("user")
-        @JvmField val ORGANIZATION = AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum("organization")
+        @JvmField
+        val ORGANIZATION = AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksGetTaskByIdResponseVariant0CreatorTypeEnum(value)
     }
 }
 
-/**
- * Current state of the task, derived from its most recent session
- */
-class AgentTasksGetTaskByIdResponseVariant0StateEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseVariant0StateEnum && value == other.value
+/** Current state of the task, derived from its most recent session */
+class AgentTasksGetTaskByIdResponseVariant0StateEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByIdResponseVariant0StateEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -545,57 +729,83 @@ class AgentTasksGetTaskByIdResponseVariant0StateEnum private constructor(
         @JvmField val COMPLETED = AgentTasksGetTaskByIdResponseVariant0StateEnum("completed")
         @JvmField val FAILED = AgentTasksGetTaskByIdResponseVariant0StateEnum("failed")
         @JvmField val IDLE = AgentTasksGetTaskByIdResponseVariant0StateEnum("idle")
-        @JvmField val WAITING_FOR_USER = AgentTasksGetTaskByIdResponseVariant0StateEnum("waiting_for_user")
+        @JvmField
+        val WAITING_FOR_USER = AgentTasksGetTaskByIdResponseVariant0StateEnum("waiting_for_user")
         @JvmField val TIMED_OUT = AgentTasksGetTaskByIdResponseVariant0StateEnum("timed_out")
         @JvmField val CANCELLED = AgentTasksGetTaskByIdResponseVariant0StateEnum("cancelled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseVariant0StateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AgentTasksGetTaskByIdResponseVariant0StateEnum(value)
     }
 }
 
-/**
- * Current state of a session
- */
-class AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum && value == other.value
+/** Current state of a session */
+class AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val QUEUED = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("queued")
-        @JvmField val IN_PROGRESS = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("in_progress")
-        @JvmField val COMPLETED = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("completed")
+        @JvmField
+        val IN_PROGRESS = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("in_progress")
+        @JvmField
+        val COMPLETED = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("completed")
         @JvmField val FAILED = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("failed")
         @JvmField val IDLE = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("idle")
-        @JvmField val WAITING_FOR_USER = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("waiting_for_user")
-        @JvmField val TIMED_OUT = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("timed_out")
-        @JvmField val CANCELLED = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("cancelled")
+        @JvmField
+        val WAITING_FOR_USER =
+            AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("waiting_for_user")
+        @JvmField
+        val TIMED_OUT = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("timed_out")
+        @JvmField
+        val CANCELLED = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum("cancelled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByIdResponseVariant1SessionsItemStateEnum(value)
     }
 }
 
 /**
- * Billing unit used for this session. New sessions since June 1, 2026 use `ai_credits`, but older sessions use `premium_requests`.
+ * Billing unit used for this session. New sessions since June 1, 2026 use `ai_credits`, but older
+ * sessions use `premium_requests`.
  */
-class AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum && value == other.value
+class AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val AI_CREDITS = AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum("ai_credits")
-        @JvmField val PREMIUM_REQUESTS = AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum("premium_requests")
+        @JvmField
+        val AI_CREDITS =
+            AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum("ai_credits")
+        @JvmField
+        val PREMIUM_REQUESTS =
+            AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum("premium_requests")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentTasksGetTaskByIdResponseVariant1SessionsItemUsageTypeEnum(value)
     }
 }

@@ -3,96 +3,225 @@
 
 package dev.octri.showcase.github
 
-
 class PrivateRegistriesNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Lists all private registry configurations available at the organization-level without revealing their encrypted values. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Lists all private registry configurations available at the organization-level without
+     * revealing their encrypted values. OAuth app tokens and personal access tokens (classic) need
+     * the `admin:org` scope to use this endpoint.
      */
-    fun listOrgPrivateRegistries(org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesListOrgPrivateRegistriesResponse {
-        return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesListOrgPrivateRegistries(clientConfig, org, perPage, page, options)
+    fun listOrgPrivateRegistries(
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesListOrgPrivateRegistriesResponse {
+        return dev.octri.showcase.github.methods.PrivateRegistries
+            .privateRegistriesListOrgPrivateRegistries(clientConfig, org, perPage, page, options)
     }
 
     /**
-     * Creates a private registry configuration with an encrypted value for an organization. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." For OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp`), the `encrypted_value` and `key_id` fields should be omitted. For anonymous registries (`anonymous`), the `username`, `encrypted_value`, and `key_id` fields must be omitted. OAuth app tokens…
+     * Creates a private registry configuration with an encrypted value for an organization. Encrypt
+     * your secret using LibSodium. For more information, see "Encrypting secrets for the REST API."
+     * For OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or
+     * `oidc_gcp`), the `encrypted_value` and `key_id` fields should be omitted. For anonymous
+     * registries (`anonymous`), the `username`, `encrypted_value`, and `key_id` fields must be
+     * omitted. OAuth app tokens…
      */
-    fun createOrgPrivateRegistry(request: dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesCreateOrgPrivateRegistryRequest, options: RequestOptions? = null): OrgPrivateRegistryConfigurationWithSelectedRepositories {
-        return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesCreateOrgPrivateRegistry(clientConfig, request, options)
+    fun createOrgPrivateRegistry(
+        request:
+            dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesCreateOrgPrivateRegistryRequest,
+        options: RequestOptions? = null,
+    ): OrgPrivateRegistryConfigurationWithSelectedRepositories {
+        return dev.octri.showcase.github.methods.PrivateRegistries
+            .privateRegistriesCreateOrgPrivateRegistry(clientConfig, request, options)
     }
 
     /**
-     * Gets the org public key, which is needed to encrypt private registry secrets. You need to encrypt a secret before you can create or update secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Gets the org public key, which is needed to encrypt private registry secrets. You need to
+     * encrypt a secret before you can create or update secrets. OAuth tokens and personal access
+     * tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun getOrgPublicKey(org: String, options: RequestOptions? = null): dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesGetOrgPublicKeyResponse {
-        return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesGetOrgPublicKey(clientConfig, org, options)
+    fun getOrgPublicKey(
+        org: String,
+        options: RequestOptions? = null,
+    ): dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesGetOrgPublicKeyResponse {
+        return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesGetOrgPublicKey(
+            clientConfig,
+            org,
+            options,
+        )
     }
 
     /**
-     * Get the configuration of a single private registry defined for an organization, omitting its encrypted value. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Get the configuration of a single private registry defined for an organization, omitting its
+     * encrypted value. OAuth app tokens and personal access tokens (classic) need the `admin:org`
+     * scope to use this endpoint.
      */
-    fun getOrgPrivateRegistry(org: String, secretName: String, options: RequestOptions? = null): OrgPrivateRegistryConfiguration {
-        return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesGetOrgPrivateRegistry(clientConfig, org, secretName, options)
+    fun getOrgPrivateRegistry(
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): OrgPrivateRegistryConfiguration {
+        return dev.octri.showcase.github.methods.PrivateRegistries
+            .privateRegistriesGetOrgPrivateRegistry(clientConfig, org, secretName, options)
     }
 
     /**
-     * Updates a private registry configuration with an encrypted value for an organization. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." For OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp`), the `encrypted_value` and `key_id` fields should be omitted. For anonymous registries (`anonymous`), the `username`, `encrypted_value`, and `key_id` fields must be omitted, and `auth_type`…
+     * Updates a private registry configuration with an encrypted value for an organization. Encrypt
+     * your secret using LibSodium. For more information, see "Encrypting secrets for the REST API."
+     * For OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or
+     * `oidc_gcp`), the `encrypted_value` and `key_id` fields should be omitted. For anonymous
+     * registries (`anonymous`), the `username`, `encrypted_value`, and `key_id` fields must be
+     * omitted, and `auth_type`…
      */
-    fun updateOrgPrivateRegistry(request: dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesUpdateOrgPrivateRegistryRequest, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesUpdateOrgPrivateRegistry(clientConfig, request, options)
+    fun updateOrgPrivateRegistry(
+        request:
+            dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesUpdateOrgPrivateRegistryRequest,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.github.methods.PrivateRegistries
+            .privateRegistriesUpdateOrgPrivateRegistry(clientConfig, request, options)
     }
 
     /**
-     * Delete a private registry configuration at the organization-level. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Delete a private registry configuration at the organization-level. OAuth app tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
      */
-    fun deleteOrgPrivateRegistry(org: String, secretName: String, options: RequestOptions? = null): Unit {
-        return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesDeleteOrgPrivateRegistry(clientConfig, org, secretName, options)
+    fun deleteOrgPrivateRegistry(
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return dev.octri.showcase.github.methods.PrivateRegistries
+            .privateRegistriesDeleteOrgPrivateRegistry(clientConfig, org, secretName, options)
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [PrivateRegistriesNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [PrivateRegistriesNamespace], returning the [SdkResponse] envelope around
+     * each result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Lists all private registry configurations available at the organization-level without revealing their encrypted values. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+         * Lists all private registry configurations available at the organization-level without
+         * revealing their encrypted values. OAuth app tokens and personal access tokens (classic)
+         * need the `admin:org` scope to use this endpoint.
          */
-        fun listOrgPrivateRegistries(org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesListOrgPrivateRegistriesResponse> {
-            return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesListOrgPrivateRegistriesWithRawResponse(clientConfig, org, perPage, page, options)
+        fun listOrgPrivateRegistries(
+            org: String,
+            perPage: Long? = null,
+            page: Long? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<
+            dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesListOrgPrivateRegistriesResponse
+        > {
+            return dev.octri.showcase.github.methods.PrivateRegistries
+                .privateRegistriesListOrgPrivateRegistriesWithRawResponse(
+                    clientConfig,
+                    org,
+                    perPage,
+                    page,
+                    options,
+                )
         }
 
         /**
-         * Creates a private registry configuration with an encrypted value for an organization. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." For OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp`), the `encrypted_value` and `key_id` fields should be omitted. For anonymous registries (`anonymous`), the `username`, `encrypted_value`, and `key_id` fields must be omitted. OAuth app tokens…
+         * Creates a private registry configuration with an encrypted value for an organization.
+         * Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for
+         * the REST API." For OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`,
+         * `oidc_cloudsmith`, or `oidc_gcp`), the `encrypted_value` and `key_id` fields should be
+         * omitted. For anonymous registries (`anonymous`), the `username`, `encrypted_value`, and
+         * `key_id` fields must be omitted. OAuth app tokens…
          */
-        fun createOrgPrivateRegistry(request: dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesCreateOrgPrivateRegistryRequest, options: RequestOptions? = null): SdkResponse<OrgPrivateRegistryConfigurationWithSelectedRepositories> {
-            return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesCreateOrgPrivateRegistryWithRawResponse(clientConfig, request, options)
+        fun createOrgPrivateRegistry(
+            request:
+                dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesCreateOrgPrivateRegistryRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<OrgPrivateRegistryConfigurationWithSelectedRepositories> {
+            return dev.octri.showcase.github.methods.PrivateRegistries
+                .privateRegistriesCreateOrgPrivateRegistryWithRawResponse(
+                    clientConfig,
+                    request,
+                    options,
+                )
         }
 
         /**
-         * Gets the org public key, which is needed to encrypt private registry secrets. You need to encrypt a secret before you can create or update secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+         * Gets the org public key, which is needed to encrypt private registry secrets. You need to
+         * encrypt a secret before you can create or update secrets. OAuth tokens and personal
+         * access tokens (classic) need the `admin:org` scope to use this endpoint.
          */
-        fun getOrgPublicKey(org: String, options: RequestOptions? = null): SdkResponse<dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesGetOrgPublicKeyResponse> {
-            return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesGetOrgPublicKeyWithRawResponse(clientConfig, org, options)
+        fun getOrgPublicKey(
+            org: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<
+            dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesGetOrgPublicKeyResponse
+        > {
+            return dev.octri.showcase.github.methods.PrivateRegistries
+                .privateRegistriesGetOrgPublicKeyWithRawResponse(clientConfig, org, options)
         }
 
         /**
-         * Get the configuration of a single private registry defined for an organization, omitting its encrypted value. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+         * Get the configuration of a single private registry defined for an organization, omitting
+         * its encrypted value. OAuth app tokens and personal access tokens (classic) need the
+         * `admin:org` scope to use this endpoint.
          */
-        fun getOrgPrivateRegistry(org: String, secretName: String, options: RequestOptions? = null): SdkResponse<OrgPrivateRegistryConfiguration> {
-            return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesGetOrgPrivateRegistryWithRawResponse(clientConfig, org, secretName, options)
+        fun getOrgPrivateRegistry(
+            org: String,
+            secretName: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<OrgPrivateRegistryConfiguration> {
+            return dev.octri.showcase.github.methods.PrivateRegistries
+                .privateRegistriesGetOrgPrivateRegistryWithRawResponse(
+                    clientConfig,
+                    org,
+                    secretName,
+                    options,
+                )
         }
 
         /**
-         * Updates a private registry configuration with an encrypted value for an organization. Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for the REST API." For OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp`), the `encrypted_value` and `key_id` fields should be omitted. For anonymous registries (`anonymous`), the `username`, `encrypted_value`, and `key_id` fields must be omitted, and `auth_type`…
+         * Updates a private registry configuration with an encrypted value for an organization.
+         * Encrypt your secret using LibSodium. For more information, see "Encrypting secrets for
+         * the REST API." For OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`,
+         * `oidc_cloudsmith`, or `oidc_gcp`), the `encrypted_value` and `key_id` fields should be
+         * omitted. For anonymous registries (`anonymous`), the `username`, `encrypted_value`, and
+         * `key_id` fields must be omitted, and `auth_type`…
          */
-        fun updateOrgPrivateRegistry(request: dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesUpdateOrgPrivateRegistryRequest, options: RequestOptions? = null): SdkResponse<Unit> {
-            return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesUpdateOrgPrivateRegistryWithRawResponse(clientConfig, request, options)
+        fun updateOrgPrivateRegistry(
+            request:
+                dev.octri.showcase.github.methods.PrivateRegistries.PrivateRegistriesUpdateOrgPrivateRegistryRequest,
+            options: RequestOptions? = null,
+        ): SdkResponse<Unit> {
+            return dev.octri.showcase.github.methods.PrivateRegistries
+                .privateRegistriesUpdateOrgPrivateRegistryWithRawResponse(
+                    clientConfig,
+                    request,
+                    options,
+                )
         }
 
         /**
-         * Delete a private registry configuration at the organization-level. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+         * Delete a private registry configuration at the organization-level. OAuth app tokens and
+         * personal access tokens (classic) need the `admin:org` scope to use this endpoint.
          */
-        fun deleteOrgPrivateRegistry(org: String, secretName: String, options: RequestOptions? = null): SdkResponse<Unit> {
-            return dev.octri.showcase.github.methods.PrivateRegistries.privateRegistriesDeleteOrgPrivateRegistryWithRawResponse(clientConfig, org, secretName, options)
+        fun deleteOrgPrivateRegistry(
+            org: String,
+            secretName: String,
+            options: RequestOptions? = null,
+        ): SdkResponse<Unit> {
+            return dev.octri.showcase.github.methods.PrivateRegistries
+                .privateRegistriesDeleteOrgPrivateRegistryWithRawResponse(
+                    clientConfig,
+                    org,
+                    secretName,
+                    options,
+                )
         }
-
     }
 }

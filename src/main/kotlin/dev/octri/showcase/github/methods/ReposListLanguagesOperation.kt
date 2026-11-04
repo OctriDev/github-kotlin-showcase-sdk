@@ -11,20 +11,41 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object ReposListLanguagesOperation {
     /**
-     * Lists languages for the specified repository. The value shown for each language is the number of bytes of code written in that language.
+     * Lists languages for the specified repository. The value shown for each language is the number
+     * of bytes of code written in that language.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposListLanguages(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Language {
+    fun reposListLanguages(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Language {
         return reposListLanguagesWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [reposListLanguages], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposListLanguagesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Language> {
-        return SdkClient.request<Language>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/languages", config = clientConfig, operationId = "reposListLanguages", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [reposListLanguages], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun reposListLanguagesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Language> {
+        return SdkClient.request<Language>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/languages",
+                config = clientConfig,
+                operationId = "reposListLanguages",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

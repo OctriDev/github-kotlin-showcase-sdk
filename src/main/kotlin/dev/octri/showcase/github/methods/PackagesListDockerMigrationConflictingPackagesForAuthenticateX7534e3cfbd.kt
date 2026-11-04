@@ -11,15 +11,38 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object PackagesListDockerMigrationConflictingPackagesForAuthenticateX7534e3cfbd {
     /**
-     * Lists all packages that are owned by the authenticated user within the user's namespace, and that encountered a conflict during a Docker migration. OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint.
+     * Lists all packages that are owned by the authenticated user within the user's namespace, and
+     * that encountered a conflict during a Docker migration. OAuth app tokens and personal access
+     * tokens (classic) need the `read:packages` scope to use this endpoint.
      */
-    fun packagesListDockerMigrationConflictingPackagesForAuthenticatedUser(clientConfig: ClientConfig, options: RequestOptions? = null): List<Package> {
-        return packagesListDockerMigrationConflictingPackagesForAuthenticatedUserWithRawResponse(clientConfig, options).data
+    fun packagesListDockerMigrationConflictingPackagesForAuthenticatedUser(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): List<Package> {
+        return packagesListDockerMigrationConflictingPackagesForAuthenticatedUserWithRawResponse(
+                clientConfig,
+                options,
+            )
+            .data
     }
 
-
-    /** [packagesListDockerMigrationConflictingPackagesForAuthenticatedUser], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun packagesListDockerMigrationConflictingPackagesForAuthenticatedUserWithRawResponse(clientConfig: ClientConfig, options: RequestOptions? = null): SdkResponse<List<Package>> {
-        return SdkClient.request<List<Package>>(SdkClient.RequestSpec("GET", "/user/docker/conflicts", config = clientConfig, operationId = "packagesListDockerMigrationConflictingPackagesForAuthenticatedUser", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [packagesListDockerMigrationConflictingPackagesForAuthenticatedUser], returning the
+     * [SdkResponse] envelope: status code, headers, request ID and latency.
+     */
+    fun packagesListDockerMigrationConflictingPackagesForAuthenticatedUserWithRawResponse(
+        clientConfig: ClientConfig,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Package>> {
+        return SdkClient.request<List<Package>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/user/docker/conflicts",
+                config = clientConfig,
+                operationId = "packagesListDockerMigrationConflictingPackagesForAuthenticatedUser",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

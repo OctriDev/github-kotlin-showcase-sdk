@@ -11,17 +11,37 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object AppsGetOrgInstallationOperation {
     /**
-     * Enables an authenticated GitHub App to find the organization's installation information. You must use a JWT to access this endpoint.
+     * Enables an authenticated GitHub App to find the organization's installation information. You
+     * must use a JWT to access this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun appsGetOrgInstallation(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): Installation {
+    fun appsGetOrgInstallation(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): Installation {
         return appsGetOrgInstallationWithRawResponse(clientConfig, org, options).data
     }
 
-
-    /** [appsGetOrgInstallation], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsGetOrgInstallationWithRawResponse(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SdkResponse<Installation> {
-        return SdkClient.request<Installation>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/installation", config = clientConfig, operationId = "appsGetOrgInstallation", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [appsGetOrgInstallation], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun appsGetOrgInstallationWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Installation> {
+        return SdkClient.request<Installation>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/installation",
+                config = clientConfig,
+                operationId = "appsGetOrgInstallation",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }

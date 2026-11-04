@@ -12,24 +12,68 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object ActivityMethodsActivityListPublicEventsForRepoNetworkOperation {
     /**
-     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of day, event latency can be anywhere from 30s to 6h.
+     * > \[!NOTE\] > This API is not built to serve real-time use cases. Depending on the time of
+     * > day, event latency can be anywhere from 30s to 6h.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun activityListPublicEventsForRepoNetwork(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Event> {
-        return activityListPublicEventsForRepoNetworkWithRawResponse(clientConfig, owner, repo, perPage, page, options).data
+    fun activityListPublicEventsForRepoNetwork(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Event> {
+        return activityListPublicEventsForRepoNetworkWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
+            .data
     }
 
-
-    /** [activityListPublicEventsForRepoNetwork], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun activityListPublicEventsForRepoNetworkWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Event>> {
-        return SdkClient.request<List<Event>>(SdkClient.RequestSpec("GET", "/networks/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/events", config = clientConfig, query = mapOf("per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "activityListPublicEventsForRepoNetwork", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "403" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [activityListPublicEventsForRepoNetwork], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun activityListPublicEventsForRepoNetworkWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Event>> {
+        return SdkClient.request<List<Event>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/networks/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/events",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "activityListPublicEventsForRepoNetwork",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "301" to BasicError::class.java,
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                    ),
+            )
+        )
     }
 }

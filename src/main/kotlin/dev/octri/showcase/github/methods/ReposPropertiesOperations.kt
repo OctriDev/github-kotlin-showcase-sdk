@@ -13,42 +13,109 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposCustomPropertiesForReposGetRepositoryValuesOperation {
     /**
-     * Gets all custom property values that are set for a repository. Users with read access to the repository can use this endpoint.
+     * Gets all custom property values that are set for a repository. Users with read access to the
+     * repository can use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposCustomPropertiesForReposGetRepositoryValues(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): List<CustomPropertyValue> {
-        return reposCustomPropertiesForReposGetRepositoryValuesWithRawResponse(clientConfig, owner, repo, options).data
+    fun reposCustomPropertiesForReposGetRepositoryValues(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): List<CustomPropertyValue> {
+        return reposCustomPropertiesForReposGetRepositoryValuesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
+            .data
     }
 
-
-    /** [reposCustomPropertiesForReposGetRepositoryValues], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposCustomPropertiesForReposGetRepositoryValuesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<List<CustomPropertyValue>> {
-        return SdkClient.request<List<CustomPropertyValue>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/properties/values", config = clientConfig, operationId = "reposCustomPropertiesForReposGetRepositoryValues", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [reposCustomPropertiesForReposGetRepositoryValues], returning the [SdkResponse] envelope:
+     * status code, headers, request ID and latency.
+     */
+    fun reposCustomPropertiesForReposGetRepositoryValuesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<CustomPropertyValue>> {
+        return SdkClient.request<List<CustomPropertyValue>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/properties/values",
+                config = clientConfig,
+                operationId = "reposCustomPropertiesForReposGetRepositoryValues",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposCustomPropertiesForReposCreateOrUpdateRepositoryValuesOperation {
     /**
-     * Create new or update existing custom property values for a repository. Using a value of `null` for a custom property will remove or 'unset' the property value from the repository. Repository admins and other users with the repository-level "edit custom property values" fine-grained permission can use this endpoint.
+     * Create new or update existing custom property values for a repository. Using a value of
+     * `null` for a custom property will remove or 'unset' the property value from the repository.
+     * Repository admins and other users with the repository-level "edit custom property values"
+     * fine-grained permission can use this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param properties A list of custom property names and associated values to
-     *   apply to the repositories.
+     * @param properties A list of custom property names and associated values to apply to the
+     *   repositories.
      */
-    fun reposCustomPropertiesForReposCreateOrUpdateRepositoryValues(clientConfig: ClientConfig, owner: String, repo: String, properties: List<CustomPropertyValue>, options: RequestOptions? = null): Unit {
-        return reposCustomPropertiesForReposCreateOrUpdateRepositoryValuesWithRawResponse(clientConfig, owner, repo, properties, options).data
+    fun reposCustomPropertiesForReposCreateOrUpdateRepositoryValues(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        properties: List<CustomPropertyValue>,
+        options: RequestOptions? = null,
+    ): Unit {
+        return reposCustomPropertiesForReposCreateOrUpdateRepositoryValuesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                properties,
+                options,
+            )
+            .data
     }
 
-
-    /** [reposCustomPropertiesForReposCreateOrUpdateRepositoryValues], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposCustomPropertiesForReposCreateOrUpdateRepositoryValuesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, properties: List<CustomPropertyValue>, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("PATCH", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/properties/values", config = clientConfig, body = SdkClient.bodyMap("properties" to (properties)), operationId = "reposCustomPropertiesForReposCreateOrUpdateRepositoryValues", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    /**
+     * [reposCustomPropertiesForReposCreateOrUpdateRepositoryValues], returning the [SdkResponse]
+     * envelope: status code, headers, request ID and latency.
+     */
+    fun reposCustomPropertiesForReposCreateOrUpdateRepositoryValuesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        properties: List<CustomPropertyValue>,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PATCH",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/properties/values",
+                config = clientConfig,
+                body = SdkClient.bodyMap("properties" to (properties)),
+                operationId = "reposCustomPropertiesForReposCreateOrUpdateRepositoryValues",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "403" to BasicError::class.java,
+                        "404" to BasicError::class.java,
+                        "422" to ValidationError::class.java,
+                    ),
+            )
+        )
     }
 }

@@ -3,35 +3,46 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * The policy that controls when fork PR workflows require approval from a maintainer.
- */
-class ActionsForkPrContributorApprovalApprovalPolicyEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActionsForkPrContributorApprovalApprovalPolicyEnum && value == other.value
+/** The policy that controls when fork PR workflows require approval from a maintainer. */
+class ActionsForkPrContributorApprovalApprovalPolicyEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActionsForkPrContributorApprovalApprovalPolicyEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val FIRST_TIME_CONTRIBUTORS_NEW_TO_GITHUB = ActionsForkPrContributorApprovalApprovalPolicyEnum("first_time_contributors_new_to_github")
-        @JvmField val FIRST_TIME_CONTRIBUTORS = ActionsForkPrContributorApprovalApprovalPolicyEnum("first_time_contributors")
-        @JvmField val ALL_EXTERNAL_CONTRIBUTORS = ActionsForkPrContributorApprovalApprovalPolicyEnum("all_external_contributors")
+        @JvmField
+        val FIRST_TIME_CONTRIBUTORS_NEW_TO_GITHUB =
+            ActionsForkPrContributorApprovalApprovalPolicyEnum(
+                "first_time_contributors_new_to_github"
+            )
+        @JvmField
+        val FIRST_TIME_CONTRIBUTORS =
+            ActionsForkPrContributorApprovalApprovalPolicyEnum("first_time_contributors")
+        @JvmField
+        val ALL_EXTERNAL_CONTRIBUTORS =
+            ActionsForkPrContributorApprovalApprovalPolicyEnum("all_external_contributors")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActionsForkPrContributorApprovalApprovalPolicyEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ActionsForkPrContributorApprovalApprovalPolicyEnum(value)
     }
 }
 
-/**
- * The status of the runner.
- */
-class ActionsHostedRunnerStatusEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActionsHostedRunnerStatusEnum && value == other.value
+/** The status of the runner. */
+class ActionsHostedRunnerStatusEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActionsHostedRunnerStatusEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -42,19 +53,22 @@ class ActionsHostedRunnerStatusEnum private constructor(
         @JvmField val DELETING = ActionsHostedRunnerStatusEnum("Deleting")
         @JvmField val STUCK = ActionsHostedRunnerStatusEnum("Stuck")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActionsHostedRunnerStatusEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ActionsHostedRunnerStatusEnum(value)
     }
 }
 
-/**
- * The image provider.
- */
-class ActionsHostedRunnerCuratedImageSourceEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActionsHostedRunnerCuratedImageSourceEnum && value == other.value
+/** The image provider. */
+class ActionsHostedRunnerCuratedImageSourceEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActionsHostedRunnerCuratedImageSourceEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -63,19 +77,22 @@ class ActionsHostedRunnerCuratedImageSourceEnum private constructor(
         @JvmField val PARTNER = ActionsHostedRunnerCuratedImageSourceEnum("partner")
         @JvmField val CUSTOM = ActionsHostedRunnerCuratedImageSourceEnum("custom")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActionsHostedRunnerCuratedImageSourceEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ActionsHostedRunnerCuratedImageSourceEnum(value)
     }
 }
 
-/**
- * The type of the source of the policy
- */
-class ActionsPolicySourceTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActionsPolicySourceTypeEnum && value == other.value
+/** The type of the source of the policy */
+class ActionsPolicySourceTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActionsPolicySourceTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -84,38 +101,44 @@ class ActionsPolicySourceTypeEnum private constructor(
         @JvmField val ORGANIZATION = ActionsPolicySourceTypeEnum("Organization")
         @JvmField val ENTERPRISE = ActionsPolicySourceTypeEnum("Enterprise")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActionsPolicySourceTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ActionsPolicySourceTypeEnum(value)
     }
 }
 
-/**
- * The target of the policy
- */
-class ActionsPolicyTargetEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActionsPolicyTargetEnum && value == other.value
+/** The target of the policy */
+class ActionsPolicyTargetEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActionsPolicyTargetEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val ACTIONS = ActionsPolicyTargetEnum("actions")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActionsPolicyTargetEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ActionsPolicyTargetEnum(value)
     }
 }
 
-/**
- * The type of the actor
- */
-class ActionsRuleParamsActorTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActionsRuleParamsActorTypeEnum && value == other.value
+/** The type of the actor */
+class ActionsRuleParamsActorTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActionsRuleParamsActorTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -125,73 +148,139 @@ class ActionsRuleParamsActorTypeEnum private constructor(
         @JvmField val TEAM = ActionsRuleParamsActorTypeEnum("Team")
         @JvmField val BUSINESSTEAM = ActionsRuleParamsActorTypeEnum("BusinessTeam")
         @JvmField val ENTERPRISETEAM = ActionsRuleParamsActorTypeEnum("EnterpriseTeam")
-        @JvmField val INTEGRATIONINSTALLATION = ActionsRuleParamsActorTypeEnum("IntegrationInstallation")
+        @JvmField
+        val INTEGRATIONINSTALLATION = ActionsRuleParamsActorTypeEnum("IntegrationInstallation")
         @JvmField val APP = ActionsRuleParamsActorTypeEnum("App")
         @JvmField val REPOSITORYROLE = ActionsRuleParamsActorTypeEnum("RepositoryRole")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActionsRuleParamsActorTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ActionsRuleParamsActorTypeEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `allowed_events[]` wire field.
- */
-class ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum && value == other.value
+/** Required enumerated value serialized in the `allowed_events[]` wire field. */
+class ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val BRANCH_PROTECTION_RULE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("branch_protection_rule")
-        @JvmField val CHECK_RUN = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("check_run")
-        @JvmField val CHECK_SUITE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("check_suite")
-        @JvmField val CREATE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("create")
-        @JvmField val DELETE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("delete")
-        @JvmField val DEPLOYMENT = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("deployment")
-        @JvmField val DEPLOYMENT_STATUS = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("deployment_status")
-        @JvmField val DISCUSSION = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("discussion")
-        @JvmField val DISCUSSION_COMMENT = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("discussion_comment")
+        @JvmField
+        val BRANCH_PROTECTION_RULE =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("branch_protection_rule")
+        @JvmField
+        val CHECK_RUN = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("check_run")
+        @JvmField
+        val CHECK_SUITE =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("check_suite")
+        @JvmField
+        val CREATE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("create")
+        @JvmField
+        val DELETE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("delete")
+        @JvmField
+        val DEPLOYMENT =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("deployment")
+        @JvmField
+        val DEPLOYMENT_STATUS =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("deployment_status")
+        @JvmField
+        val DISCUSSION =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("discussion")
+        @JvmField
+        val DISCUSSION_COMMENT =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("discussion_comment")
         @JvmField val FORK = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("fork")
-        @JvmField val GOLLUM = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("gollum")
-        @JvmField val IMAGE_VERSION = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("image_version")
-        @JvmField val ISSUE_COMMENT = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("issue_comment")
-        @JvmField val ISSUES = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("issues")
-        @JvmField val LABEL = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("label")
-        @JvmField val MERGE_GROUP = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("merge_group")
-        @JvmField val MILESTONE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("milestone")
-        @JvmField val PAGE_BUILD = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("page_build")
-        @JvmField val PROJECT = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("project")
-        @JvmField val PROJECT_CARD = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("project_card")
-        @JvmField val PROJECT_COLUMN = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("project_column")
-        @JvmField val PUBLIC = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("public")
-        @JvmField val PULL_REQUEST = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("pull_request")
-        @JvmField val PULL_REQUEST_REVIEW = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("pull_request_review")
-        @JvmField val PULL_REQUEST_REVIEW_COMMENT = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("pull_request_review_comment")
-        @JvmField val PULL_REQUEST_TARGET = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("pull_request_target")
+        @JvmField
+        val GOLLUM = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("gollum")
+        @JvmField
+        val IMAGE_VERSION =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("image_version")
+        @JvmField
+        val ISSUE_COMMENT =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("issue_comment")
+        @JvmField
+        val ISSUES = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("issues")
+        @JvmField
+        val LABEL = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("label")
+        @JvmField
+        val MERGE_GROUP =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("merge_group")
+        @JvmField
+        val MILESTONE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("milestone")
+        @JvmField
+        val PAGE_BUILD =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("page_build")
+        @JvmField
+        val PROJECT = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("project")
+        @JvmField
+        val PROJECT_CARD =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("project_card")
+        @JvmField
+        val PROJECT_COLUMN =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("project_column")
+        @JvmField
+        val PUBLIC = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("public")
+        @JvmField
+        val PULL_REQUEST =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("pull_request")
+        @JvmField
+        val PULL_REQUEST_REVIEW =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("pull_request_review")
+        @JvmField
+        val PULL_REQUEST_REVIEW_COMMENT =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum(
+                "pull_request_review_comment"
+            )
+        @JvmField
+        val PULL_REQUEST_TARGET =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("pull_request_target")
         @JvmField val PUSH = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("push")
-        @JvmField val REGISTRY_PACKAGE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("registry_package")
-        @JvmField val RELEASE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("release")
-        @JvmField val REPOSITORY_DISPATCH = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("repository_dispatch")
-        @JvmField val SCHEDULE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("schedule")
-        @JvmField val STATUS = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("status")
-        @JvmField val WATCH = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("watch")
-        @JvmField val WORKFLOW_CALL = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("workflow_call")
-        @JvmField val WORKFLOW_DISPATCH = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("workflow_dispatch")
-        @JvmField val WORKFLOW_RUN = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("workflow_run")
+        @JvmField
+        val REGISTRY_PACKAGE =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("registry_package")
+        @JvmField
+        val RELEASE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("release")
+        @JvmField
+        val REPOSITORY_DISPATCH =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("repository_dispatch")
+        @JvmField
+        val SCHEDULE = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("schedule")
+        @JvmField
+        val STATUS = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("status")
+        @JvmField
+        val WATCH = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("watch")
+        @JvmField
+        val WORKFLOW_CALL =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("workflow_call")
+        @JvmField
+        val WORKFLOW_DISPATCH =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("workflow_dispatch")
+        @JvmField
+        val WORKFLOW_RUN =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum("workflow_run")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            ActionsRuleRestrictActionEventsParametersAllowedEventsItemEnum(value)
     }
 }
 
-/**
- * Required enumerated value serialized in the `type` wire field.
- */
-enum class ActionsRuleRestrictActionEventsTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required enumerated value serialized in the `type` wire field. */
+enum class ActionsRuleRestrictActionEventsTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     RESTRICT_ACTION_EVENTS("restrict_action_events");
 
     override fun toString() = value
@@ -199,15 +288,16 @@ enum class ActionsRuleRestrictActionEventsTypeEnum(@com.fasterxml.jackson.annota
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-/**
- * Required enumerated value serialized in the `type` wire field.
- */
-enum class ActionsRuleRestrictActionsActorsTypeEnum(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+/** Required enumerated value serialized in the `type` wire field. */
+enum class ActionsRuleRestrictActionsActorsTypeEnum(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     RESTRICT_ACTIONS_ACTORS("restrict_actions_actors");
 
     override fun toString() = value
@@ -215,40 +305,50 @@ enum class ActionsRuleRestrictActionsActorsTypeEnum(@com.fasterxml.jackson.annot
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
 /**
- * Defines the level of access that workflows outside of the repository have to actions and reusable workflows within the repository. `none` means the access is only possible from workflows in this repository. `user` level access allows sharing across user owned private repositories only. `organization` level access allows sharing across the organization.
+ * Defines the level of access that workflows outside of the repository have to actions and reusable
+ * workflows within the repository. `none` means the access is only possible from workflows in this
+ * repository. `user` level access allows sharing across user owned private repositories only.
+ * `organization` level access allows sharing across the organization.
  */
-class ActionsWorkflowAccessToRepositoryAccessLevelEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActionsWorkflowAccessToRepositoryAccessLevelEnum && value == other.value
+class ActionsWorkflowAccessToRepositoryAccessLevelEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActionsWorkflowAccessToRepositoryAccessLevelEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val NONE = ActionsWorkflowAccessToRepositoryAccessLevelEnum("none")
         @JvmField val USER = ActionsWorkflowAccessToRepositoryAccessLevelEnum("user")
-        @JvmField val ORGANIZATION = ActionsWorkflowAccessToRepositoryAccessLevelEnum("organization")
+        @JvmField
+        val ORGANIZATION = ActionsWorkflowAccessToRepositoryAccessLevelEnum("organization")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActionsWorkflowAccessToRepositoryAccessLevelEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ActionsWorkflowAccessToRepositoryAccessLevelEnum(value)
     }
 }
 
-/**
- * The type of the activity that was performed.
- */
-class ActivityActivityTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ActivityActivityTypeEnum && value == other.value
+/** The type of the activity that was performed. */
+class ActivityActivityTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ActivityActivityTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -260,12 +360,17 @@ class ActivityActivityTypeEnum private constructor(
         @JvmField val PR_MERGE = ActivityActivityTypeEnum("pr_merge")
         @JvmField val MERGE_QUEUE_MERGE = ActivityActivityTypeEnum("merge_queue_merge")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ActivityActivityTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ActivityActivityTypeEnum(value)
     }
 }
 
-enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiX0f59340776(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiX0f59340776(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     STRING("string");
 
     override fun toString() = value
@@ -273,28 +378,40 @@ enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiX0f59340
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-class AgentAutomationsListAvailableAutomationTriggersResponseItemFiX1100e4cba3 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AgentAutomationsListAvailableAutomationTriggersResponseItemFiX1100e4cba3 && value == other.value
+class AgentAutomationsListAvailableAutomationTriggersResponseItemFiX1100e4cba3
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AgentAutomationsListAvailableAutomationTriggersResponseItemFiX1100e4cba3 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val STRING = AgentAutomationsListAvailableAutomationTriggersResponseItemFiX1100e4cba3("string")
+        @JvmField
+        val STRING =
+            AgentAutomationsListAvailableAutomationTriggersResponseItemFiX1100e4cba3("string")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AgentAutomationsListAvailableAutomationTriggersResponseItemFiX1100e4cba3(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            AgentAutomationsListAvailableAutomationTriggersResponseItemFiX1100e4cba3(value)
     }
 }
 
-enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiX4f1ab9f964(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiX4f1ab9f964(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     ARRAY("array");
 
     override fun toString() = value
@@ -302,12 +419,15 @@ enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiX4f1ab9f
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
-enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiXa71aa44217(@com.fasterxml.jackson.annotation.JsonValue val value: String) {
+enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiXa71aa44217(
+    @com.fasterxml.jackson.annotation.JsonValue val value: String
+) {
     INTEGER("integer");
 
     override fun toString() = value
@@ -315,19 +435,21 @@ enum class AgentAutomationsListAvailableAutomationTriggersResponseItemFiXa71aa44
     companion object {
         @com.fasterxml.jackson.annotation.JsonCreator
         @JvmStatic
-        fun fromValue(v: String) = values().find { it.value == v }
-            ?: throw IllegalArgumentException("Unknown enum value: $v")
+        fun fromValue(v: String) =
+            values().find { it.value == v }
+                ?: throw IllegalArgumentException("Unknown enum value: $v")
     }
 }
 
 /**
  * The permissions policy that controls the actions and reusable workflows that are allowed to run.
  */
-class AllowedActions private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
+class AllowedActions
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
     override fun equals(other: Any?): Boolean = other is AllowedActions && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -336,19 +458,25 @@ class AllowedActions private constructor(
         @JvmField val LOCAL_ONLY = AllowedActions("local_only")
         @JvmField val SELECTED = AllowedActions("selected")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AllowedActions(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AllowedActions(value)
     }
 }
 
 /**
- * The level of permission to grant the access token for GitHub Actions workflows, workflow runs, and artifacts.
+ * The level of permission to grant the access token for GitHub Actions workflows, workflow runs,
+ * and artifacts.
  */
-class AppPermissionsActionsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsActionsEnum && value == other.value
+class AppPermissionsActionsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsActionsEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -356,19 +484,25 @@ class AppPermissionsActionsEnum private constructor(
         @JvmField val READ = AppPermissionsActionsEnum("read")
         @JvmField val WRITE = AppPermissionsActionsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsActionsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsActionsEnum(value)
     }
 }
 
 /**
- * The level of permission to grant the access token for repository creation, deletion, settings, teams, and collaborators creation.
+ * The level of permission to grant the access token for repository creation, deletion, settings,
+ * teams, and collaborators creation.
  */
-class AppPermissionsAdministrationEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsAdministrationEnum && value == other.value
+class AppPermissionsAdministrationEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsAdministrationEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -376,19 +510,25 @@ class AppPermissionsAdministrationEnum private constructor(
         @JvmField val READ = AppPermissionsAdministrationEnum("read")
         @JvmField val WRITE = AppPermissionsAdministrationEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsAdministrationEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsAdministrationEnum(value)
     }
 }
 
 /**
- * The level of permission to grant the access token to create and retrieve build artifact metadata records.
+ * The level of permission to grant the access token to create and retrieve build artifact metadata
+ * records.
  */
-class AppPermissionsArtifactMetadataEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsArtifactMetadataEnum && value == other.value
+class AppPermissionsArtifactMetadataEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsArtifactMetadataEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -396,19 +536,22 @@ class AppPermissionsArtifactMetadataEnum private constructor(
         @JvmField val READ = AppPermissionsArtifactMetadataEnum("read")
         @JvmField val WRITE = AppPermissionsArtifactMetadataEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsArtifactMetadataEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsArtifactMetadataEnum(value)
     }
 }
 
-/**
- * The level of permission to create and retrieve the access token for repository attestations.
- */
-class AppPermissionsAttestationsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsAttestationsEnum && value == other.value
+/** The level of permission to create and retrieve the access token for repository attestations. */
+class AppPermissionsAttestationsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsAttestationsEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -416,19 +559,22 @@ class AppPermissionsAttestationsEnum private constructor(
         @JvmField val READ = AppPermissionsAttestationsEnum("read")
         @JvmField val WRITE = AppPermissionsAttestationsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsAttestationsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsAttestationsEnum(value)
     }
 }
 
-/**
- * The level of permission to grant the access token for checks on code.
- */
-class AppPermissionsChecksEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsChecksEnum && value == other.value
+/** The level of permission to grant the access token for checks on code. */
+class AppPermissionsChecksEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsChecksEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -436,19 +582,22 @@ class AppPermissionsChecksEnum private constructor(
         @JvmField val READ = AppPermissionsChecksEnum("read")
         @JvmField val WRITE = AppPermissionsChecksEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsChecksEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsChecksEnum(value)
     }
 }
 
-/**
- * The level of permission to grant the access token to view and manage code quality data.
- */
-class AppPermissionsCodeQualityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsCodeQualityEnum && value == other.value
+/** The level of permission to grant the access token to view and manage code quality data. */
+class AppPermissionsCodeQualityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsCodeQualityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -456,19 +605,24 @@ class AppPermissionsCodeQualityEnum private constructor(
         @JvmField val READ = AppPermissionsCodeQualityEnum("read")
         @JvmField val WRITE = AppPermissionsCodeQualityEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsCodeQualityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsCodeQualityEnum(value)
     }
 }
 
 /**
  * The level of permission to grant the access token to create, edit, delete, and list Codespaces.
  */
-class AppPermissionsCodespacesEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsCodespacesEnum && value == other.value
+class AppPermissionsCodespacesEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsCodespacesEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -476,19 +630,25 @@ class AppPermissionsCodespacesEnum private constructor(
         @JvmField val READ = AppPermissionsCodespacesEnum("read")
         @JvmField val WRITE = AppPermissionsCodespacesEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsCodespacesEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsCodespacesEnum(value)
     }
 }
 
 /**
- * The level of permission to grant the access token for repository contents, commits, branches, downloads, releases, and merges.
+ * The level of permission to grant the access token for repository contents, commits, branches,
+ * downloads, releases, and merges.
  */
-class AppPermissionsContentsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsContentsEnum && value == other.value
+class AppPermissionsContentsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsContentsEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -496,19 +656,25 @@ class AppPermissionsContentsEnum private constructor(
         @JvmField val READ = AppPermissionsContentsEnum("read")
         @JvmField val WRITE = AppPermissionsContentsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsContentsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsContentsEnum(value)
     }
 }
 
 /**
- * The level of permission to grant the access token to view and edit custom properties for an organization, when allowed by the property.
+ * The level of permission to grant the access token to view and edit custom properties for an
+ * organization, when allowed by the property.
  */
-class AppPermissionsCustomPropertiesForOrganizationsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsCustomPropertiesForOrganizationsEnum && value == other.value
+class AppPermissionsCustomPropertiesForOrganizationsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsCustomPropertiesForOrganizationsEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -516,19 +682,22 @@ class AppPermissionsCustomPropertiesForOrganizationsEnum private constructor(
         @JvmField val READ = AppPermissionsCustomPropertiesForOrganizationsEnum("read")
         @JvmField val WRITE = AppPermissionsCustomPropertiesForOrganizationsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsCustomPropertiesForOrganizationsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsCustomPropertiesForOrganizationsEnum(value)
     }
 }
 
-/**
- * The level of permission to grant the access token to manage Dependabot secrets.
- */
-class AppPermissionsDependabotSecretsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsDependabotSecretsEnum && value == other.value
+/** The level of permission to grant the access token to manage Dependabot secrets. */
+class AppPermissionsDependabotSecretsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsDependabotSecretsEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -536,19 +705,22 @@ class AppPermissionsDependabotSecretsEnum private constructor(
         @JvmField val READ = AppPermissionsDependabotSecretsEnum("read")
         @JvmField val WRITE = AppPermissionsDependabotSecretsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsDependabotSecretsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsDependabotSecretsEnum(value)
     }
 }
 
-/**
- * The level of permission to grant the access token for deployments and deployment statuses.
- */
-class AppPermissionsDeploymentsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsDeploymentsEnum && value == other.value
+/** The level of permission to grant the access token for deployments and deployment statuses. */
+class AppPermissionsDeploymentsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsDeploymentsEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -556,19 +728,25 @@ class AppPermissionsDeploymentsEnum private constructor(
         @JvmField val READ = AppPermissionsDeploymentsEnum("read")
         @JvmField val WRITE = AppPermissionsDeploymentsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsDeploymentsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsDeploymentsEnum(value)
     }
 }
 
 /**
- * The level of permission to grant the access token for discussions and related comments and labels.
+ * The level of permission to grant the access token for discussions and related comments and
+ * labels.
  */
-class AppPermissionsDiscussionsEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsDiscussionsEnum && value == other.value
+class AppPermissionsDiscussionsEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsDiscussionsEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -576,19 +754,25 @@ class AppPermissionsDiscussionsEnum private constructor(
         @JvmField val READ = AppPermissionsDiscussionsEnum("read")
         @JvmField val WRITE = AppPermissionsDiscussionsEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsDiscussionsEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsDiscussionsEnum(value)
     }
 }
 
 /**
- * The level of permission to grant the access token to manage the email addresses belonging to a user.
+ * The level of permission to grant the access token to manage the email addresses belonging to a
+ * user.
  */
-class AppPermissionsEmailAddressesEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is AppPermissionsEmailAddressesEnum && value == other.value
+class AppPermissionsEmailAddressesEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is AppPermissionsEmailAddressesEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -596,7 +780,10 @@ class AppPermissionsEmailAddressesEnum private constructor(
         @JvmField val READ = AppPermissionsEmailAddressesEnum("read")
         @JvmField val WRITE = AppPermissionsEmailAddressesEnum("write")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = AppPermissionsEmailAddressesEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = AppPermissionsEmailAddressesEnum(value)
     }
 }

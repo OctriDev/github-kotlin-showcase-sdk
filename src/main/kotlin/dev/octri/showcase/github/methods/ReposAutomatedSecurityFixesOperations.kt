@@ -11,60 +11,129 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object ReposCheckAutomatedSecurityFixesOperation {
     /**
-     * Shows whether Dependabot security updates are enabled, disabled or paused for a repository. The authenticated user must have admin read access to the repository. For more information, see "Configuring Dependabot security updates".
+     * Shows whether Dependabot security updates are enabled, disabled or paused for a repository.
+     * The authenticated user must have admin read access to the repository. For more information,
+     * see "Configuring Dependabot security updates".
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposCheckAutomatedSecurityFixes(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): CheckAutomatedSecurityFixes {
-        return reposCheckAutomatedSecurityFixesWithRawResponse(clientConfig, owner, repo, options).data
+    fun reposCheckAutomatedSecurityFixes(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): CheckAutomatedSecurityFixes {
+        return reposCheckAutomatedSecurityFixesWithRawResponse(clientConfig, owner, repo, options)
+            .data
     }
 
-
-    /** [reposCheckAutomatedSecurityFixes], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposCheckAutomatedSecurityFixesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<CheckAutomatedSecurityFixes> {
-        return SdkClient.request<CheckAutomatedSecurityFixes>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automated-security-fixes", config = clientConfig, operationId = "reposCheckAutomatedSecurityFixes", decoder = SdkClient.ResponseDecoder.JSON, options = options))
+    /**
+     * [reposCheckAutomatedSecurityFixes], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun reposCheckAutomatedSecurityFixesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<CheckAutomatedSecurityFixes> {
+        return SdkClient.request<CheckAutomatedSecurityFixes>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automated-security-fixes",
+                config = clientConfig,
+                operationId = "reposCheckAutomatedSecurityFixes",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposEnableAutomatedSecurityFixesOperation {
     /**
-     * Enables Dependabot security updates for a repository. The authenticated user must have admin access to the repository. For more information, see "Configuring Dependabot security updates".
+     * Enables Dependabot security updates for a repository. The authenticated user must have admin
+     * access to the repository. For more information, see "Configuring Dependabot security
+     * updates".
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposEnableAutomatedSecurityFixes(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        return reposEnableAutomatedSecurityFixesWithRawResponse(clientConfig, owner, repo, options).data
+    fun reposEnableAutomatedSecurityFixes(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return reposEnableAutomatedSecurityFixesWithRawResponse(clientConfig, owner, repo, options)
+            .data
     }
 
-
-    /** [reposEnableAutomatedSecurityFixes], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposEnableAutomatedSecurityFixesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("PUT", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automated-security-fixes", config = clientConfig, operationId = "reposEnableAutomatedSecurityFixes", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [reposEnableAutomatedSecurityFixes], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun reposEnableAutomatedSecurityFixesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automated-security-fixes",
+                config = clientConfig,
+                operationId = "reposEnableAutomatedSecurityFixes",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }
 
 internal object ReposDisableAutomatedSecurityFixesOperation {
     /**
-     * Disables Dependabot security updates for a repository. The authenticated user must have admin access to the repository. For more information, see "Configuring Dependabot security updates".
+     * Disables Dependabot security updates for a repository. The authenticated user must have admin
+     * access to the repository. For more information, see "Configuring Dependabot security
+     * updates".
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun reposDisableAutomatedSecurityFixes(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Unit {
-        return reposDisableAutomatedSecurityFixesWithRawResponse(clientConfig, owner, repo, options).data
+    fun reposDisableAutomatedSecurityFixes(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Unit {
+        return reposDisableAutomatedSecurityFixesWithRawResponse(clientConfig, owner, repo, options)
+            .data
     }
 
-
-    /** [reposDisableAutomatedSecurityFixes], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposDisableAutomatedSecurityFixesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automated-security-fixes", config = clientConfig, operationId = "reposDisableAutomatedSecurityFixes", decoder = SdkClient.ResponseDecoder.EMPTY, options = options))
+    /**
+     * [reposDisableAutomatedSecurityFixes], returning the [SdkResponse] envelope: status code,
+     * headers, request ID and latency.
+     */
+    fun reposDisableAutomatedSecurityFixesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/automated-security-fixes",
+                config = clientConfig,
+                operationId = "reposDisableAutomatedSecurityFixes",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+            )
+        )
     }
 }

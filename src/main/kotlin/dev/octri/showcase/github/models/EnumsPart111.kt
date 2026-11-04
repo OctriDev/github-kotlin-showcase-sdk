@@ -3,92 +3,142 @@
 
 package dev.octri.showcase.github.models
 
-/**
- * Action to apply to the fine-grained personal access token.
- */
-class OrgsUpdatePatAccessActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is OrgsUpdatePatAccessActionEnum && value == other.value
+/** Action to apply to the fine-grained personal access token. */
+class OrgsUpdatePatAccessActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is OrgsUpdatePatAccessActionEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val REVOKE = OrgsUpdatePatAccessActionEnum("revoke")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = OrgsUpdatePatAccessActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = OrgsUpdatePatAccessActionEnum(value)
     }
 }
 
 /**
- * The authentication type for the private registry. Defaults to `token` if not specified. Use `oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp` for OIDC authentication. Use `anonymous` for registries that do not require authentication; `username`, `encrypted_value`, and `key_id` must be omitted.
+ * The authentication type for the private registry. Defaults to `token` if not specified. Use
+ * `oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp` for OIDC authentication.
+ * Use `anonymous` for registries that do not require authentication; `username`, `encrypted_value`,
+ * and `key_id` must be omitted.
  */
-class PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum && value == other.value
+class PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val TOKEN = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("token")
-        @JvmField val USERNAME_PASSWORD = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("username_password")
-        @JvmField val OIDC_AZURE = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("oidc_azure")
+        @JvmField
+        val USERNAME_PASSWORD =
+            PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("username_password")
+        @JvmField
+        val OIDC_AZURE = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("oidc_azure")
         @JvmField val OIDC_AWS = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("oidc_aws")
-        @JvmField val OIDC_JFROG = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("oidc_jfrog")
-        @JvmField val OIDC_CLOUDSMITH = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("oidc_cloudsmith")
+        @JvmField
+        val OIDC_JFROG = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("oidc_jfrog")
+        @JvmField
+        val OIDC_CLOUDSMITH =
+            PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("oidc_cloudsmith")
         @JvmField val OIDC_GCP = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("oidc_gcp")
         @JvmField val ANONYMOUS = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum("anonymous")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = PrivateRegistriesCreateOrgPrivateRegistryAuthTypeEnum(value)
     }
 }
 
-/**
- * The registry type.
- */
-class PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum && value == other.value
+/** The registry type. */
+class PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MAVEN_REPOSITORY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("maven_repository")
-        @JvmField val NUGET_FEED = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("nuget_feed")
-        @JvmField val GOPROXY_SERVER = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("goproxy_server")
-        @JvmField val NPM_REGISTRY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("npm_registry")
-        @JvmField val RUBYGEMS_SERVER = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("rubygems_server")
-        @JvmField val CARGO_REGISTRY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("cargo_registry")
-        @JvmField val COMPOSER_REPOSITORY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("composer_repository")
-        @JvmField val DOCKER_REGISTRY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("docker_registry")
-        @JvmField val GIT_SOURCE = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("git_source")
-        @JvmField val HELM_REGISTRY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("helm_registry")
-        @JvmField val HEX_ORGANIZATION = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("hex_organization")
-        @JvmField val HEX_REPOSITORY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("hex_repository")
-        @JvmField val PUB_REPOSITORY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("pub_repository")
-        @JvmField val PYTHON_INDEX = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("python_index")
-        @JvmField val TERRAFORM_REGISTRY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("terraform_registry")
+        @JvmField
+        val MAVEN_REPOSITORY =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("maven_repository")
+        @JvmField
+        val NUGET_FEED = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("nuget_feed")
+        @JvmField
+        val GOPROXY_SERVER =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("goproxy_server")
+        @JvmField
+        val NPM_REGISTRY = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("npm_registry")
+        @JvmField
+        val RUBYGEMS_SERVER =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("rubygems_server")
+        @JvmField
+        val CARGO_REGISTRY =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("cargo_registry")
+        @JvmField
+        val COMPOSER_REPOSITORY =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("composer_repository")
+        @JvmField
+        val DOCKER_REGISTRY =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("docker_registry")
+        @JvmField
+        val GIT_SOURCE = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("git_source")
+        @JvmField
+        val HELM_REGISTRY =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("helm_registry")
+        @JvmField
+        val HEX_ORGANIZATION =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("hex_organization")
+        @JvmField
+        val HEX_REPOSITORY =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("hex_repository")
+        @JvmField
+        val PUB_REPOSITORY =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("pub_repository")
+        @JvmField
+        val PYTHON_INDEX = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("python_index")
+        @JvmField
+        val TERRAFORM_REGISTRY =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum("terraform_registry")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            PrivateRegistriesCreateOrgPrivateRegistryRegistryTypeEnum(value)
     }
 }
 
 /**
- * Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry.
+ * Which type of organization repositories have access to the private registry. `selected` means
+ * only the repositories specified by `selected_repository_ids` can access the private registry.
  */
-class PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum && value == other.value
+class PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -97,78 +147,128 @@ class PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum private constructo
         @JvmField val PRIVATE = PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum("private")
         @JvmField val SELECTED = PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum("selected")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            PrivateRegistriesCreateOrgPrivateRegistryVisibilityEnum(value)
     }
 }
 
 /**
- * The authentication type for the private registry. This field cannot be changed after creation. If provided, it must match the existing `auth_type` of the configuration. To change the authentication type, delete and recreate the configuration.
+ * The authentication type for the private registry. This field cannot be changed after creation. If
+ * provided, it must match the existing `auth_type` of the configuration. To change the
+ * authentication type, delete and recreate the configuration.
  */
-class PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum && value == other.value
+class PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val TOKEN = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("token")
-        @JvmField val USERNAME_PASSWORD = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("username_password")
-        @JvmField val OIDC_AZURE = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("oidc_azure")
+        @JvmField
+        val USERNAME_PASSWORD =
+            PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("username_password")
+        @JvmField
+        val OIDC_AZURE = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("oidc_azure")
         @JvmField val OIDC_AWS = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("oidc_aws")
-        @JvmField val OIDC_JFROG = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("oidc_jfrog")
-        @JvmField val OIDC_CLOUDSMITH = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("oidc_cloudsmith")
+        @JvmField
+        val OIDC_JFROG = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("oidc_jfrog")
+        @JvmField
+        val OIDC_CLOUDSMITH =
+            PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("oidc_cloudsmith")
         @JvmField val OIDC_GCP = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("oidc_gcp")
         @JvmField val ANONYMOUS = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum("anonymous")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = PrivateRegistriesUpdateOrgPrivateRegistryAuthTypeEnum(value)
     }
 }
 
-/**
- * The registry type.
- */
-class PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum && value == other.value
+/** The registry type. */
+class PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val MAVEN_REPOSITORY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("maven_repository")
-        @JvmField val NUGET_FEED = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("nuget_feed")
-        @JvmField val GOPROXY_SERVER = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("goproxy_server")
-        @JvmField val NPM_REGISTRY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("npm_registry")
-        @JvmField val RUBYGEMS_SERVER = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("rubygems_server")
-        @JvmField val CARGO_REGISTRY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("cargo_registry")
-        @JvmField val COMPOSER_REPOSITORY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("composer_repository")
-        @JvmField val DOCKER_REGISTRY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("docker_registry")
-        @JvmField val GIT_SOURCE = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("git_source")
-        @JvmField val HELM_REGISTRY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("helm_registry")
-        @JvmField val HEX_ORGANIZATION = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("hex_organization")
-        @JvmField val HEX_REPOSITORY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("hex_repository")
-        @JvmField val PUB_REPOSITORY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("pub_repository")
-        @JvmField val PYTHON_INDEX = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("python_index")
-        @JvmField val TERRAFORM_REGISTRY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("terraform_registry")
+        @JvmField
+        val MAVEN_REPOSITORY =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("maven_repository")
+        @JvmField
+        val NUGET_FEED = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("nuget_feed")
+        @JvmField
+        val GOPROXY_SERVER =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("goproxy_server")
+        @JvmField
+        val NPM_REGISTRY = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("npm_registry")
+        @JvmField
+        val RUBYGEMS_SERVER =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("rubygems_server")
+        @JvmField
+        val CARGO_REGISTRY =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("cargo_registry")
+        @JvmField
+        val COMPOSER_REPOSITORY =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("composer_repository")
+        @JvmField
+        val DOCKER_REGISTRY =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("docker_registry")
+        @JvmField
+        val GIT_SOURCE = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("git_source")
+        @JvmField
+        val HELM_REGISTRY =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("helm_registry")
+        @JvmField
+        val HEX_ORGANIZATION =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("hex_organization")
+        @JvmField
+        val HEX_REPOSITORY =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("hex_repository")
+        @JvmField
+        val PUB_REPOSITORY =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("pub_repository")
+        @JvmField
+        val PYTHON_INDEX = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("python_index")
+        @JvmField
+        val TERRAFORM_REGISTRY =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum("terraform_registry")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            PrivateRegistriesUpdateOrgPrivateRegistryRegistryTypeEnum(value)
     }
 }
 
 /**
- * Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry.
+ * Which type of organization repositories have access to the private registry. `selected` means
+ * only the repositories specified by `selected_repository_ids` can access the private registry.
  */
-class PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum && value == other.value
+class PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -177,19 +277,23 @@ class PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum private constructo
         @JvmField val PRIVATE = PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum("private")
         @JvmField val SELECTED = PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum("selected")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            PrivateRegistriesUpdateOrgPrivateRegistryVisibilityEnum(value)
     }
 }
 
-/**
- * The field's data type.
- */
-class ProjectsAddFieldForOrgVariant1DataTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsAddFieldForOrgVariant1DataTypeEnum && value == other.value
+/** The field's data type. */
+class ProjectsAddFieldForOrgVariant1DataTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsAddFieldForOrgVariant1DataTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -198,57 +302,66 @@ class ProjectsAddFieldForOrgVariant1DataTypeEnum private constructor(
         @JvmField val NUMBER = ProjectsAddFieldForOrgVariant1DataTypeEnum("number")
         @JvmField val DATE = ProjectsAddFieldForOrgVariant1DataTypeEnum("date")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsAddFieldForOrgVariant1DataTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsAddFieldForOrgVariant1DataTypeEnum(value)
     }
 }
 
-/**
- * The field's data type.
- */
-class ProjectsAddFieldForOrgVariant2DataTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsAddFieldForOrgVariant2DataTypeEnum && value == other.value
+/** The field's data type. */
+class ProjectsAddFieldForOrgVariant2DataTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsAddFieldForOrgVariant2DataTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val SINGLE_SELECT = ProjectsAddFieldForOrgVariant2DataTypeEnum("single_select")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsAddFieldForOrgVariant2DataTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsAddFieldForOrgVariant2DataTypeEnum(value)
     }
 }
 
-/**
- * The field's data type.
- */
-class ProjectsAddFieldForOrgVariant3DataTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsAddFieldForOrgVariant3DataTypeEnum && value == other.value
+/** The field's data type. */
+class ProjectsAddFieldForOrgVariant3DataTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsAddFieldForOrgVariant3DataTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val ITERATION = ProjectsAddFieldForOrgVariant3DataTypeEnum("iteration")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsAddFieldForOrgVariant3DataTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsAddFieldForOrgVariant3DataTypeEnum(value)
     }
 }
 
-/**
- * The type of item to add to the project. Must be either Issue or PullRequest.
- */
-class ProjectsAddItemForOrgTypeEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsAddItemForOrgTypeEnum && value == other.value
+/** The type of item to add to the project. Must be either Issue or PullRequest. */
+class ProjectsAddItemForOrgTypeEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsAddItemForOrgTypeEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -256,19 +369,22 @@ class ProjectsAddItemForOrgTypeEnum private constructor(
         @JvmField val ISSUE = ProjectsAddItemForOrgTypeEnum("Issue")
         @JvmField val PULLREQUEST = ProjectsAddItemForOrgTypeEnum("PullRequest")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsAddItemForOrgTypeEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsAddItemForOrgTypeEnum(value)
     }
 }
 
-/**
- * The layout of the view.
- */
-class ProjectsCreateViewForOrgLayoutEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ProjectsCreateViewForOrgLayoutEnum && value == other.value
+/** The layout of the view. */
+class ProjectsCreateViewForOrgLayoutEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ProjectsCreateViewForOrgLayoutEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -277,16 +393,21 @@ class ProjectsCreateViewForOrgLayoutEnum private constructor(
         @JvmField val BOARD = ProjectsCreateViewForOrgLayoutEnum("board")
         @JvmField val ROADMAP = ProjectsCreateViewForOrgLayoutEnum("roadmap")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ProjectsCreateViewForOrgLayoutEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ProjectsCreateViewForOrgLayoutEnum(value)
     }
 }
 
-class ReposListForOrgParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposListForOrgParameterEnum && value == other.value
+class ReposListForOrgParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposListForOrgParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -298,16 +419,21 @@ class ReposListForOrgParameterEnum private constructor(
         @JvmField val SOURCES = ReposListForOrgParameterEnum("sources")
         @JvmField val MEMBER = ReposListForOrgParameterEnum("member")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposListForOrgParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposListForOrgParameterEnum(value)
     }
 }
 
-class ReposListForOrgParameterEnumb4d9e95c private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposListForOrgParameterEnumb4d9e95c && value == other.value
+class ReposListForOrgParameterEnumb4d9e95c
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposListForOrgParameterEnumb4d9e95c && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -317,16 +443,21 @@ class ReposListForOrgParameterEnumb4d9e95c private constructor(
         @JvmField val PUSHED = ReposListForOrgParameterEnumb4d9e95c("pushed")
         @JvmField val FULL_NAME = ReposListForOrgParameterEnumb4d9e95c("full_name")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposListForOrgParameterEnumb4d9e95c(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposListForOrgParameterEnumb4d9e95c(value)
     }
 }
 
-class ReposListForOrgParameterEnum8b436ee9 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposListForOrgParameterEnum8b436ee9 && value == other.value
+class ReposListForOrgParameterEnum8b436ee9
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposListForOrgParameterEnum8b436ee9 && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -334,19 +465,26 @@ class ReposListForOrgParameterEnum8b436ee9 private constructor(
         @JvmField val ASC = ReposListForOrgParameterEnum8b436ee9("asc")
         @JvmField val DESC = ReposListForOrgParameterEnum8b436ee9("desc")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposListForOrgParameterEnum8b436ee9(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposListForOrgParameterEnum8b436ee9(value)
     }
 }
 
 /**
- * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message.
+ * The default value for a merge commit message. - `PR_TITLE` - default to the pull request's
+ * title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit
+ * message.
  */
-class ReposCreateInOrgMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateInOrgMergeCommitMessageEnum && value == other.value
+class ReposCreateInOrgMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateInOrgMergeCommitMessageEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -355,19 +493,26 @@ class ReposCreateInOrgMergeCommitMessageEnum private constructor(
         @JvmField val PR_TITLE = ReposCreateInOrgMergeCommitMessageEnum("PR_TITLE")
         @JvmField val BLANK = ReposCreateInOrgMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateInOrgMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposCreateInOrgMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * Required when using `merge_commit_message`. The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).
+ * Required when using `merge_commit_message`. The default value for a merge commit title. -
+ * `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic
+ * title for a merge message (e.g., Merge pull request #123 from branch-name).
  */
-class ReposCreateInOrgMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateInOrgMergeCommitTitleEnum && value == other.value
+class ReposCreateInOrgMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateInOrgMergeCommitTitleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -375,60 +520,79 @@ class ReposCreateInOrgMergeCommitTitleEnum private constructor(
         @JvmField val PR_TITLE = ReposCreateInOrgMergeCommitTitleEnum("PR_TITLE")
         @JvmField val MERGE_MESSAGE = ReposCreateInOrgMergeCommitTitleEnum("MERGE_MESSAGE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateInOrgMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposCreateInOrgMergeCommitTitleEnum(value)
     }
 }
 
 /**
- * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message.
+ * The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's
+ * body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a
+ * blank commit message.
  */
-class ReposCreateInOrgSquashMergeCommitMessageEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateInOrgSquashMergeCommitMessageEnum && value == other.value
+class ReposCreateInOrgSquashMergeCommitMessageEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateInOrgSquashMergeCommitMessageEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PR_BODY = ReposCreateInOrgSquashMergeCommitMessageEnum("PR_BODY")
-        @JvmField val COMMIT_MESSAGES = ReposCreateInOrgSquashMergeCommitMessageEnum("COMMIT_MESSAGES")
+        @JvmField
+        val COMMIT_MESSAGES = ReposCreateInOrgSquashMergeCommitMessageEnum("COMMIT_MESSAGES")
         @JvmField val BLANK = ReposCreateInOrgSquashMergeCommitMessageEnum("BLANK")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateInOrgSquashMergeCommitMessageEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposCreateInOrgSquashMergeCommitMessageEnum(value)
     }
 }
 
 /**
- * Required when using `squash_merge_commit_message`. The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).
+ * Required when using `squash_merge_commit_message`. The default value for a squash merge commit
+ * title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to
+ * the commit's title (if only one commit) or the pull request's title (when more than one commit).
  */
-class ReposCreateInOrgSquashMergeCommitTitleEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateInOrgSquashMergeCommitTitleEnum && value == other.value
+class ReposCreateInOrgSquashMergeCommitTitleEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateInOrgSquashMergeCommitTitleEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
         @JvmField val PR_TITLE = ReposCreateInOrgSquashMergeCommitTitleEnum("PR_TITLE")
-        @JvmField val COMMIT_OR_PR_TITLE = ReposCreateInOrgSquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
+        @JvmField
+        val COMMIT_OR_PR_TITLE = ReposCreateInOrgSquashMergeCommitTitleEnum("COMMIT_OR_PR_TITLE")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateInOrgSquashMergeCommitTitleEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposCreateInOrgSquashMergeCommitTitleEnum(value)
     }
 }
 
-/**
- * The visibility of the repository.
- */
-class ReposCreateInOrgVisibilityEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateInOrgVisibilityEnum && value == other.value
+/** The visibility of the repository. */
+class ReposCreateInOrgVisibilityEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateInOrgVisibilityEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -436,19 +600,22 @@ class ReposCreateInOrgVisibilityEnum private constructor(
         @JvmField val PUBLIC = ReposCreateInOrgVisibilityEnum("public")
         @JvmField val PRIVATE = ReposCreateInOrgVisibilityEnum("private")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateInOrgVisibilityEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposCreateInOrgVisibilityEnum(value)
     }
 }
 
-/**
- * The target of the ruleset
- */
-class ReposCreateOrgRulesetTargetEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposCreateOrgRulesetTargetEnum && value == other.value
+/** The target of the ruleset */
+class ReposCreateOrgRulesetTargetEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposCreateOrgRulesetTargetEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -458,19 +625,22 @@ class ReposCreateOrgRulesetTargetEnum private constructor(
         @JvmField val PUSH = ReposCreateOrgRulesetTargetEnum("push")
         @JvmField val REPOSITORY = ReposCreateOrgRulesetTargetEnum("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposCreateOrgRulesetTargetEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposCreateOrgRulesetTargetEnum(value)
     }
 }
 
-/**
- * The target of the ruleset
- */
-class ReposUpdateOrgRulesetTargetEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is ReposUpdateOrgRulesetTargetEnum && value == other.value
+/** The target of the ruleset */
+class ReposUpdateOrgRulesetTargetEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is ReposUpdateOrgRulesetTargetEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
@@ -480,105 +650,162 @@ class ReposUpdateOrgRulesetTargetEnum private constructor(
         @JvmField val PUSH = ReposUpdateOrgRulesetTargetEnum("push")
         @JvmField val REPOSITORY = ReposUpdateOrgRulesetTargetEnum("repository")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = ReposUpdateOrgRulesetTargetEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) = ReposUpdateOrgRulesetTargetEnum(value)
     }
 }
 
 /**
- * What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified.
+ * What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes
+ * the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to
+ * `delete_alerts` when not specified.
  */
-class SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum && value == other.value
+class SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val DELETE_ALERTS = SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum("delete_alerts")
-        @JvmField val RESOLVE_ALERTS = SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum("resolve_alerts")
+        @JvmField
+        val DELETE_ALERTS =
+            SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum("delete_alerts")
+        @JvmField
+        val RESOLVE_ALERTS =
+            SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum("resolve_alerts")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            SecretScanningBulkDeleteOrgCustomPatternsPostDeleteActionEnum(value)
     }
 }
 
-/**
- * Push protection setting to set for the pattern.
- */
-class SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6 && value == other.value
+/** Push protection setting to set for the pattern. */
+class SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val DISABLED = SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6("disabled")
-        @JvmField val ENABLED = SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6("enabled")
+        @JvmField
+        val DISABLED =
+            SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6("disabled")
+        @JvmField
+        val ENABLED =
+            SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6("enabled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            SecretScanningUpdateOrgPatternConfigsCustomPatternSettingsIteX7d615c39e6(value)
     }
 }
 
-/**
- * Push protection setting to set for the pattern.
- */
-class SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80 && value == other.value
+/** Push protection setting to set for the pattern. */
+class SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val NOT_SET = SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80("not-set")
-        @JvmField val DISABLED = SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80("disabled")
-        @JvmField val ENABLED = SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80("enabled")
+        @JvmField
+        val NOT_SET =
+            SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80("not-set")
+        @JvmField
+        val DISABLED =
+            SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80("disabled")
+        @JvmField
+        val ENABLED =
+            SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80("enabled")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            SecretScanningUpdateOrgPatternConfigsProviderPatternSettingsIX6b88cbcc80(value)
     }
 }
 
-class SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum && value == other.value
+class SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum && value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val CREATED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum("created")
-        @JvmField val UPDATED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum("updated")
-        @JvmField val PUBLISHED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum("published")
+        @JvmField
+        val CREATED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum("created")
+        @JvmField
+        val UPDATED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum("updated")
+        @JvmField
+        val PUBLISHED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum("published")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnum(value)
     }
 }
 
-class SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507 private constructor(
-    @get:com.fasterxml.jackson.annotation.JsonValue val value: String,
-) {
-    override fun equals(other: Any?): Boolean = other is SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507 && value == other.value
+class SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507
+private constructor(@get:com.fasterxml.jackson.annotation.JsonValue val value: String) {
+    override fun equals(other: Any?): Boolean =
+        other is SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507 &&
+            value == other.value
+
     override fun hashCode(): Int = value.hashCode()
+
     override fun toString(): String = value
 
     companion object {
 
-        @JvmField val TRIAGE = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507("triage")
-        @JvmField val DRAFT = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507("draft")
-        @JvmField val PUBLISHED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507("published")
-        @JvmField val CLOSED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507("closed")
+        @JvmField
+        val TRIAGE = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507("triage")
+        @JvmField
+        val DRAFT = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507("draft")
+        @JvmField
+        val PUBLISHED =
+            SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507("published")
+        @JvmField
+        val CLOSED = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507("closed")
 
-        @com.fasterxml.jackson.annotation.JsonCreator(mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING)
-        @JvmStatic fun fromValue(value: String) = SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507(value)
+        @com.fasterxml.jackson.annotation.JsonCreator(
+            mode = com.fasterxml.jackson.annotation.JsonCreator.Mode.DELEGATING
+        )
+        @JvmStatic
+        fun fromValue(value: String) =
+            SecurityAdvisoriesListOrgRepositoryAdvisoriesParameterEnumaa450507(value)
     }
 }

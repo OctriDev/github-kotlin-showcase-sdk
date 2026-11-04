@@ -6,16 +6,11 @@ package dev.octri.showcase.github.models
 import dev.octri.showcase.github.SdkResource
 import java.time.OffsetDateTime
 
-/**
- * Stargazer
- */
+/** Stargazer */
 data class Stargazer(
-    /**
-     * Required `date-time`-formatted value serialized in the `starred_at` wire field.
-     */
+    /** Required `date-time`-formatted value serialized in the `starred_at` wire field. */
     @com.fasterxml.jackson.annotation.JsonProperty("starred_at") val starredAt: OffsetDateTime,
-    /**
-     * A GitHub user.
-     */
-    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true) val user: NullableSimpleUser?
+    /** A GitHub user. */
+    @com.fasterxml.jackson.annotation.JsonProperty("user", required = true)
+    val user: NullableSimpleUser?,
 ) : SdkResource()

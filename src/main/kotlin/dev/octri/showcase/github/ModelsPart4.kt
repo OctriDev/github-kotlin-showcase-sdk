@@ -5,67 +5,93 @@ package dev.octri.showcase.github
 
 typealias CodeQualitySetup = dev.octri.showcase.github.models.CodeQualitySetup
 
-typealias CodeQualitySetupAiFindingsOptionEnum = dev.octri.showcase.github.models.CodeQualitySetupAiFindingsOptionEnum
+typealias CodeQualitySetupAiFindingsOptionEnum =
+    dev.octri.showcase.github.models.CodeQualitySetupAiFindingsOptionEnum
 
-typealias CodeQualitySetupLanguagesItemEnum = dev.octri.showcase.github.models.CodeQualitySetupLanguagesItemEnum
+typealias CodeQualitySetupLanguagesItemEnum =
+    dev.octri.showcase.github.models.CodeQualitySetupLanguagesItemEnum
 
-typealias CodeQualitySetupRunnerTypeEnum = dev.octri.showcase.github.models.CodeQualitySetupRunnerTypeEnum
+typealias CodeQualitySetupRunnerTypeEnum =
+    dev.octri.showcase.github.models.CodeQualitySetupRunnerTypeEnum
 
-typealias CodeQualitySetupScheduleEnum = dev.octri.showcase.github.models.CodeQualitySetupScheduleEnum
+typealias CodeQualitySetupScheduleEnum =
+    dev.octri.showcase.github.models.CodeQualitySetupScheduleEnum
 
 typealias CodeQualitySetupStateEnum = dev.octri.showcase.github.models.CodeQualitySetupStateEnum
 
 typealias CodeQualitySetupUpdate = dev.octri.showcase.github.models.CodeQualitySetupUpdate
 
-typealias CodeQualitySetupUpdateAiFindingsOptionEnum = dev.octri.showcase.github.models.CodeQualitySetupUpdateAiFindingsOptionEnum
+typealias CodeQualitySetupUpdateAiFindingsOptionEnum =
+    dev.octri.showcase.github.models.CodeQualitySetupUpdateAiFindingsOptionEnum
 
-typealias CodeQualitySetupUpdateLanguagesItemEnum = dev.octri.showcase.github.models.CodeQualitySetupUpdateLanguagesItemEnum
+typealias CodeQualitySetupUpdateLanguagesItemEnum =
+    dev.octri.showcase.github.models.CodeQualitySetupUpdateLanguagesItemEnum
 
-typealias CodeQualitySetupUpdateResponse = dev.octri.showcase.github.models.CodeQualitySetupUpdateResponse
+typealias CodeQualitySetupUpdateResponse =
+    dev.octri.showcase.github.models.CodeQualitySetupUpdateResponse
 
-typealias CodeQualitySetupUpdateRunnerTypeEnum = dev.octri.showcase.github.models.CodeQualitySetupUpdateRunnerTypeEnum
+typealias CodeQualitySetupUpdateRunnerTypeEnum =
+    dev.octri.showcase.github.models.CodeQualitySetupUpdateRunnerTypeEnum
 
-typealias CodeQualitySetupUpdateStateEnum = dev.octri.showcase.github.models.CodeQualitySetupUpdateStateEnum
+typealias CodeQualitySetupUpdateStateEnum =
+    dev.octri.showcase.github.models.CodeQualitySetupUpdateStateEnum
 
-typealias CodeScanningAiScanEnablement = dev.octri.showcase.github.models.CodeScanningAiScanEnablement
+typealias CodeScanningAiScanEnablement =
+    dev.octri.showcase.github.models.CodeScanningAiScanEnablement
 
-typealias CodeScanningAiScanEnablementPrScanEnum = dev.octri.showcase.github.models.CodeScanningAiScanEnablementPrScanEnum
+typealias CodeScanningAiScanEnablementPrScanEnum =
+    dev.octri.showcase.github.models.CodeScanningAiScanEnablementPrScanEnum
 
-typealias CodeScanningAiScanEnablementUpdate = dev.octri.showcase.github.models.CodeScanningAiScanEnablementUpdate
+typealias CodeScanningAiScanEnablementUpdate =
+    dev.octri.showcase.github.models.CodeScanningAiScanEnablementUpdate
 
-typealias CodeScanningAiScanEnablementUpdatePrScanEnum = dev.octri.showcase.github.models.CodeScanningAiScanEnablementUpdatePrScanEnum
+typealias CodeScanningAiScanEnablementUpdatePrScanEnum =
+    dev.octri.showcase.github.models.CodeScanningAiScanEnablementUpdatePrScanEnum
 
-typealias CodeScanningAiScanOrgEnablementUpdate = dev.octri.showcase.github.models.CodeScanningAiScanOrgEnablementUpdate
+typealias CodeScanningAiScanOrgEnablementUpdate =
+    dev.octri.showcase.github.models.CodeScanningAiScanOrgEnablementUpdate
 
-typealias CodeScanningAiScanOrgEnablementUpdatePrScanEnum = dev.octri.showcase.github.models.CodeScanningAiScanOrgEnablementUpdatePrScanEnum
+typealias CodeScanningAiScanOrgEnablementUpdatePrScanEnum =
+    dev.octri.showcase.github.models.CodeScanningAiScanOrgEnablementUpdatePrScanEnum
 
-typealias CodeScanningAiScanOrgSettings = dev.octri.showcase.github.models.CodeScanningAiScanOrgSettings
+typealias CodeScanningAiScanOrgSettings =
+    dev.octri.showcase.github.models.CodeScanningAiScanOrgSettings
 
-typealias CodeScanningAiScanOrgSettingsPrScanEnum = dev.octri.showcase.github.models.CodeScanningAiScanOrgSettingsPrScanEnum
+typealias CodeScanningAiScanOrgSettingsPrScanEnum =
+    dev.octri.showcase.github.models.CodeScanningAiScanOrgSettingsPrScanEnum
 
 typealias CodeScanningAlert = dev.octri.showcase.github.models.CodeScanningAlert
 
 typealias CodeScanningAlertAssignees = dev.octri.showcase.github.models.CodeScanningAlertAssignees
 
-typealias CodeScanningAlertClassification = dev.octri.showcase.github.models.CodeScanningAlertClassification
+typealias CodeScanningAlertClassification =
+    dev.octri.showcase.github.models.CodeScanningAlertClassification
 
-typealias CodeScanningAlertCreateRequest = dev.octri.showcase.github.models.CodeScanningAlertCreateRequest
+typealias CodeScanningAlertCreateRequest =
+    dev.octri.showcase.github.models.CodeScanningAlertCreateRequest
 
-typealias CodeScanningAlertDismissedComment = dev.octri.showcase.github.models.CodeScanningAlertDismissedComment
+typealias CodeScanningAlertDismissedComment =
+    dev.octri.showcase.github.models.CodeScanningAlertDismissedComment
 
-typealias CodeScanningAlertDismissedReason = dev.octri.showcase.github.models.CodeScanningAlertDismissedReason
+typealias CodeScanningAlertDismissedReason =
+    dev.octri.showcase.github.models.CodeScanningAlertDismissedReason
 
-typealias CodeScanningAlertEnvironment = dev.octri.showcase.github.models.CodeScanningAlertEnvironment
+typealias CodeScanningAlertEnvironment =
+    dev.octri.showcase.github.models.CodeScanningAlertEnvironment
 
 typealias CodeScanningAlertInstance = dev.octri.showcase.github.models.CodeScanningAlertInstance
 
-typealias CodeScanningAlertInstanceList = dev.octri.showcase.github.models.CodeScanningAlertInstanceList
+typealias CodeScanningAlertInstanceList =
+    dev.octri.showcase.github.models.CodeScanningAlertInstanceList
 
-typealias CodeScanningAlertInstanceListMessage = dev.octri.showcase.github.models.CodeScanningAlertInstanceListMessage
+typealias CodeScanningAlertInstanceListMessage =
+    dev.octri.showcase.github.models.CodeScanningAlertInstanceListMessage
 
-typealias CodeScanningAlertInstanceMessage = dev.octri.showcase.github.models.CodeScanningAlertInstanceMessage
+typealias CodeScanningAlertInstanceMessage =
+    dev.octri.showcase.github.models.CodeScanningAlertInstanceMessage
 
-typealias CodeScanningAlertInstanceState = dev.octri.showcase.github.models.CodeScanningAlertInstanceState
+typealias CodeScanningAlertInstanceState =
+    dev.octri.showcase.github.models.CodeScanningAlertInstanceState
 
 typealias CodeScanningAlertItems = dev.octri.showcase.github.models.CodeScanningAlertItems
 
@@ -73,15 +99,20 @@ typealias CodeScanningAlertLocation = dev.octri.showcase.github.models.CodeScann
 
 typealias CodeScanningAlertRule = dev.octri.showcase.github.models.CodeScanningAlertRule
 
-typealias CodeScanningAlertRuleSecuritySeverityLevelEnum = dev.octri.showcase.github.models.CodeScanningAlertRuleSecuritySeverityLevelEnum
+typealias CodeScanningAlertRuleSecuritySeverityLevelEnum =
+    dev.octri.showcase.github.models.CodeScanningAlertRuleSecuritySeverityLevelEnum
 
-typealias CodeScanningAlertRuleSeverityEnum = dev.octri.showcase.github.models.CodeScanningAlertRuleSeverityEnum
+typealias CodeScanningAlertRuleSeverityEnum =
+    dev.octri.showcase.github.models.CodeScanningAlertRuleSeverityEnum
 
-typealias CodeScanningAlertRuleSummary = dev.octri.showcase.github.models.CodeScanningAlertRuleSummary
+typealias CodeScanningAlertRuleSummary =
+    dev.octri.showcase.github.models.CodeScanningAlertRuleSummary
 
-typealias CodeScanningAlertRuleSummarySecuritySeverityLevelEnum = dev.octri.showcase.github.models.CodeScanningAlertRuleSummarySecuritySeverityLevelEnum
+typealias CodeScanningAlertRuleSummarySecuritySeverityLevelEnum =
+    dev.octri.showcase.github.models.CodeScanningAlertRuleSummarySecuritySeverityLevelEnum
 
-typealias CodeScanningAlertRuleSummarySeverityEnum = dev.octri.showcase.github.models.CodeScanningAlertRuleSummarySeverityEnum
+typealias CodeScanningAlertRuleSummarySeverityEnum =
+    dev.octri.showcase.github.models.CodeScanningAlertRuleSummarySeverityEnum
 
 typealias CodeScanningAlertSetState = dev.octri.showcase.github.models.CodeScanningAlertSetState
 
@@ -93,29 +124,39 @@ typealias CodeScanningAlertStateQuery = dev.octri.showcase.github.models.CodeSca
 
 typealias CodeScanningAnalysis = dev.octri.showcase.github.models.CodeScanningAnalysis
 
-typealias CodeScanningAnalysisAnalysisKey = dev.octri.showcase.github.models.CodeScanningAnalysisAnalysisKey
+typealias CodeScanningAnalysisAnalysisKey =
+    dev.octri.showcase.github.models.CodeScanningAnalysisAnalysisKey
 
-typealias CodeScanningAnalysisCategory = dev.octri.showcase.github.models.CodeScanningAnalysisCategory
+typealias CodeScanningAnalysisCategory =
+    dev.octri.showcase.github.models.CodeScanningAnalysisCategory
 
-typealias CodeScanningAnalysisCommitSha = dev.octri.showcase.github.models.CodeScanningAnalysisCommitSha
+typealias CodeScanningAnalysisCommitSha =
+    dev.octri.showcase.github.models.CodeScanningAnalysisCommitSha
 
-typealias CodeScanningAnalysisCreatedAt = dev.octri.showcase.github.models.CodeScanningAnalysisCreatedAt
+typealias CodeScanningAnalysisCreatedAt =
+    dev.octri.showcase.github.models.CodeScanningAnalysisCreatedAt
 
-typealias CodeScanningAnalysisDeletion = dev.octri.showcase.github.models.CodeScanningAnalysisDeletion
+typealias CodeScanningAnalysisDeletion =
+    dev.octri.showcase.github.models.CodeScanningAnalysisDeletion
 
-typealias CodeScanningAnalysisEnvironment = dev.octri.showcase.github.models.CodeScanningAnalysisEnvironment
+typealias CodeScanningAnalysisEnvironment =
+    dev.octri.showcase.github.models.CodeScanningAnalysisEnvironment
 
-typealias CodeScanningAnalysisSarifFile = dev.octri.showcase.github.models.CodeScanningAnalysisSarifFile
+typealias CodeScanningAnalysisSarifFile =
+    dev.octri.showcase.github.models.CodeScanningAnalysisSarifFile
 
 typealias CodeScanningAnalysisSarifId = dev.octri.showcase.github.models.CodeScanningAnalysisSarifId
 
 typealias CodeScanningAnalysisTool = dev.octri.showcase.github.models.CodeScanningAnalysisTool
 
-typealias CodeScanningAnalysisToolGuid = dev.octri.showcase.github.models.CodeScanningAnalysisToolGuid
+typealias CodeScanningAnalysisToolGuid =
+    dev.octri.showcase.github.models.CodeScanningAnalysisToolGuid
 
-typealias CodeScanningAnalysisToolName = dev.octri.showcase.github.models.CodeScanningAnalysisToolName
+typealias CodeScanningAnalysisToolName =
+    dev.octri.showcase.github.models.CodeScanningAnalysisToolName
 
-typealias CodeScanningAnalysisToolVersion = dev.octri.showcase.github.models.CodeScanningAnalysisToolVersion
+typealias CodeScanningAnalysisToolVersion =
+    dev.octri.showcase.github.models.CodeScanningAnalysisToolVersion
 
 typealias CodeScanningAnalysisUrl = dev.octri.showcase.github.models.CodeScanningAnalysisUrl
 
@@ -123,11 +164,14 @@ typealias CodeScanningAutofix = dev.octri.showcase.github.models.CodeScanningAut
 
 typealias CodeScanningAutofixCommits = dev.octri.showcase.github.models.CodeScanningAutofixCommits
 
-typealias CodeScanningAutofixCommitsResponse = dev.octri.showcase.github.models.CodeScanningAutofixCommitsResponse
+typealias CodeScanningAutofixCommitsResponse =
+    dev.octri.showcase.github.models.CodeScanningAutofixCommitsResponse
 
-typealias CodeScanningAutofixDescription = dev.octri.showcase.github.models.CodeScanningAutofixDescription
+typealias CodeScanningAutofixDescription =
+    dev.octri.showcase.github.models.CodeScanningAutofixDescription
 
-typealias CodeScanningAutofixStartedAt = dev.octri.showcase.github.models.CodeScanningAutofixStartedAt
+typealias CodeScanningAutofixStartedAt =
+    dev.octri.showcase.github.models.CodeScanningAutofixStartedAt
 
 typealias CodeScanningAutofixStatus = dev.octri.showcase.github.models.CodeScanningAutofixStatus
 
@@ -135,45 +179,64 @@ typealias CodeScanningCodeqlDatabase = dev.octri.showcase.github.models.CodeScan
 
 typealias CodeScanningDefaultSetup = dev.octri.showcase.github.models.CodeScanningDefaultSetup
 
-typealias CodeScanningDefaultSetupLanguagesItemEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupLanguagesItemEnum
+typealias CodeScanningDefaultSetupLanguagesItemEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupLanguagesItemEnum
 
-typealias CodeScanningDefaultSetupOptions = dev.octri.showcase.github.models.CodeScanningDefaultSetupOptions
+typealias CodeScanningDefaultSetupOptions =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupOptions
 
-typealias CodeScanningDefaultSetupOptionsRunnerTypeEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupOptionsRunnerTypeEnum
+typealias CodeScanningDefaultSetupOptionsRunnerTypeEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupOptionsRunnerTypeEnum
 
-typealias CodeScanningDefaultSetupQuerySuiteEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupQuerySuiteEnum
+typealias CodeScanningDefaultSetupQuerySuiteEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupQuerySuiteEnum
 
-typealias CodeScanningDefaultSetupRunnerTypeEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupRunnerTypeEnum
+typealias CodeScanningDefaultSetupRunnerTypeEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupRunnerTypeEnum
 
-typealias CodeScanningDefaultSetupScheduleEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupScheduleEnum
+typealias CodeScanningDefaultSetupScheduleEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupScheduleEnum
 
-typealias CodeScanningDefaultSetupStateEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupStateEnum
+typealias CodeScanningDefaultSetupStateEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupStateEnum
 
-typealias CodeScanningDefaultSetupThreatModelEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupThreatModelEnum
+typealias CodeScanningDefaultSetupThreatModelEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupThreatModelEnum
 
-typealias CodeScanningDefaultSetupUpdate = dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdate
+typealias CodeScanningDefaultSetupUpdate =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdate
 
-typealias CodeScanningDefaultSetupUpdateLanguagesItemEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateLanguagesItemEnum
+typealias CodeScanningDefaultSetupUpdateLanguagesItemEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateLanguagesItemEnum
 
-typealias CodeScanningDefaultSetupUpdateQuerySuiteEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateQuerySuiteEnum
+typealias CodeScanningDefaultSetupUpdateQuerySuiteEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateQuerySuiteEnum
 
-typealias CodeScanningDefaultSetupUpdateResponse = dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateResponse
+typealias CodeScanningDefaultSetupUpdateResponse =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateResponse
 
-typealias CodeScanningDefaultSetupUpdateRunnerTypeEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateRunnerTypeEnum
+typealias CodeScanningDefaultSetupUpdateRunnerTypeEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateRunnerTypeEnum
 
-typealias CodeScanningDefaultSetupUpdateStateEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateStateEnum
+typealias CodeScanningDefaultSetupUpdateStateEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateStateEnum
 
-typealias CodeScanningDefaultSetupUpdateThreatModelEnum = dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateThreatModelEnum
+typealias CodeScanningDefaultSetupUpdateThreatModelEnum =
+    dev.octri.showcase.github.models.CodeScanningDefaultSetupUpdateThreatModelEnum
 
-typealias CodeScanningListAlertsForOrgParameterEnum = dev.octri.showcase.github.models.CodeScanningListAlertsForOrgParameterEnum
+typealias CodeScanningListAlertsForOrgParameterEnum =
+    dev.octri.showcase.github.models.CodeScanningListAlertsForOrgParameterEnum
 
-typealias CodeScanningListAlertsForRepoParameterEnum = dev.octri.showcase.github.models.CodeScanningListAlertsForRepoParameterEnum
+typealias CodeScanningListAlertsForRepoParameterEnum =
+    dev.octri.showcase.github.models.CodeScanningListAlertsForRepoParameterEnum
 
-typealias CodeScanningListRecentAnalysesParameterEnum = dev.octri.showcase.github.models.CodeScanningListRecentAnalysesParameterEnum
+typealias CodeScanningListRecentAnalysesParameterEnum =
+    dev.octri.showcase.github.models.CodeScanningListRecentAnalysesParameterEnum
 
 typealias CodeScanningOptions = dev.octri.showcase.github.models.CodeScanningOptions
 
-typealias CodeScanningOrganizationAlertItems = dev.octri.showcase.github.models.CodeScanningOrganizationAlertItems
+typealias CodeScanningOrganizationAlertItems =
+    dev.octri.showcase.github.models.CodeScanningOrganizationAlertItems
 
 typealias CodeScanningRef = dev.octri.showcase.github.models.CodeScanningRef
 
@@ -183,256 +246,380 @@ typealias CodeScanningSarifsReceipt = dev.octri.showcase.github.models.CodeScann
 
 typealias CodeScanningSarifsStatus = dev.octri.showcase.github.models.CodeScanningSarifsStatus
 
-typealias CodeScanningSarifsStatusProcessingStatusEnum = dev.octri.showcase.github.models.CodeScanningSarifsStatusProcessingStatusEnum
+typealias CodeScanningSarifsStatusProcessingStatusEnum =
+    dev.octri.showcase.github.models.CodeScanningSarifsStatusProcessingStatusEnum
 
 typealias CodeScanningVariantAnalysis = dev.octri.showcase.github.models.CodeScanningVariantAnalysis
 
-typealias CodeScanningVariantAnalysisFailureReasonEnum = dev.octri.showcase.github.models.CodeScanningVariantAnalysisFailureReasonEnum
+typealias CodeScanningVariantAnalysisFailureReasonEnum =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisFailureReasonEnum
 
-typealias CodeScanningVariantAnalysisLanguage = dev.octri.showcase.github.models.CodeScanningVariantAnalysisLanguage
+typealias CodeScanningVariantAnalysisLanguage =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisLanguage
 
-typealias CodeScanningVariantAnalysisRepository = dev.octri.showcase.github.models.CodeScanningVariantAnalysisRepository
+typealias CodeScanningVariantAnalysisRepository =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisRepository
 
-typealias CodeScanningVariantAnalysisRepoTask = dev.octri.showcase.github.models.CodeScanningVariantAnalysisRepoTask
+typealias CodeScanningVariantAnalysisRepoTask =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisRepoTask
 
-typealias CodeScanningVariantAnalysisScannedRepositoriesItem = dev.octri.showcase.github.models.CodeScanningVariantAnalysisScannedRepositoriesItem
+typealias CodeScanningVariantAnalysisScannedRepositoriesItem =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisScannedRepositoriesItem
 
-typealias CodeScanningVariantAnalysisSkippedRepoGroup = dev.octri.showcase.github.models.CodeScanningVariantAnalysisSkippedRepoGroup
+typealias CodeScanningVariantAnalysisSkippedRepoGroup =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisSkippedRepoGroup
 
-typealias CodeScanningVariantAnalysisSkippedRepositories = dev.octri.showcase.github.models.CodeScanningVariantAnalysisSkippedRepositories
+typealias CodeScanningVariantAnalysisSkippedRepositories =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisSkippedRepositories
 
-typealias CodeScanningVariantAnalysisSkippedRepositoriesNotFoundRepos = dev.octri.showcase.github.models.CodeScanningVariantAnalysisSkippedRepositoriesNotFoundRepos
+typealias CodeScanningVariantAnalysisSkippedRepositoriesNotFoundRepos =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisSkippedRepositoriesNotFoundRepos
 
-typealias CodeScanningVariantAnalysisStatus = dev.octri.showcase.github.models.CodeScanningVariantAnalysisStatus
+typealias CodeScanningVariantAnalysisStatus =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisStatus
 
-typealias CodeScanningVariantAnalysisStatusEnum = dev.octri.showcase.github.models.CodeScanningVariantAnalysisStatusEnum
+typealias CodeScanningVariantAnalysisStatusEnum =
+    dev.octri.showcase.github.models.CodeScanningVariantAnalysisStatusEnum
 
 typealias CodeSearchResultItem = dev.octri.showcase.github.models.CodeSearchResultItem
 
-typealias CodeSecurityAttachConfigurationScopeEnum = dev.octri.showcase.github.models.CodeSecurityAttachConfigurationScopeEnum
+typealias CodeSecurityAttachConfigurationScopeEnum =
+    dev.octri.showcase.github.models.CodeSecurityAttachConfigurationScopeEnum
 
-typealias CodeSecurityAttachEnterpriseConfigurationScopeEnum = dev.octri.showcase.github.models.CodeSecurityAttachEnterpriseConfigurationScopeEnum
+typealias CodeSecurityAttachEnterpriseConfigurationScopeEnum =
+    dev.octri.showcase.github.models.CodeSecurityAttachEnterpriseConfigurationScopeEnum
 
 typealias CodeSecurityConfiguration = dev.octri.showcase.github.models.CodeSecurityConfiguration
 
-typealias CodeSecurityConfigurationAdvancedSecurityEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationAdvancedSecurityEnum
+typealias CodeSecurityConfigurationAdvancedSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationAdvancedSecurityEnum
 
-typealias CodeSecurityConfigurationCodeScanningDefaultSetupEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningDefaultSetupEnum
+typealias CodeSecurityConfigurationCodeScanningDefaultSetupEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningDefaultSetupEnum
 
-typealias CodeSecurityConfigurationCodeScanningDefaultSetupOptions = dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningDefaultSetupOptions
+typealias CodeSecurityConfigurationCodeScanningDefaultSetupOptions =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningDefaultSetupOptions
 
-typealias CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum
+typealias CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningDefaultSetupOptionsRunnerTypeEnum
 
-typealias CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum
+typealias CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningDelegatedAlertDismissalEnum
 
-typealias CodeSecurityConfigurationCodeScanningOptions = dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningOptions
+typealias CodeSecurityConfigurationCodeScanningOptions =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationCodeScanningOptions
 
-typealias CodeSecurityConfigurationDependabotAlertsEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationDependabotAlertsEnum
+typealias CodeSecurityConfigurationDependabotAlertsEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationDependabotAlertsEnum
 
-typealias CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum
+typealias CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationDependabotDelegatedAlertDismissalEnum
 
-typealias CodeSecurityConfigurationDependabotSecurityUpdatesEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationDependabotSecurityUpdatesEnum
+typealias CodeSecurityConfigurationDependabotSecurityUpdatesEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationDependabotSecurityUpdatesEnum
 
-typealias CodeSecurityConfigurationDependencyGraphAutosubmitActionEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationDependencyGraphAutosubmitActionEnum
+typealias CodeSecurityConfigurationDependencyGraphAutosubmitActionEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationDependencyGraphAutosubmitActionEnum
 
-typealias CodeSecurityConfigurationDependencyGraphAutosubmitActionOptions = dev.octri.showcase.github.models.CodeSecurityConfigurationDependencyGraphAutosubmitActionOptions
+typealias CodeSecurityConfigurationDependencyGraphAutosubmitActionOptions =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationDependencyGraphAutosubmitActionOptions
 
-typealias CodeSecurityConfigurationDependencyGraphEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationDependencyGraphEnum
+typealias CodeSecurityConfigurationDependencyGraphEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationDependencyGraphEnum
 
-typealias CodeSecurityConfigurationEnforcementEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationEnforcementEnum
+typealias CodeSecurityConfigurationEnforcementEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationEnforcementEnum
 
-typealias CodeSecurityConfigurationForRepository = dev.octri.showcase.github.models.CodeSecurityConfigurationForRepository
+typealias CodeSecurityConfigurationForRepository =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationForRepository
 
-typealias CodeSecurityConfigurationForRepositoryStatusEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationForRepositoryStatusEnum
+typealias CodeSecurityConfigurationForRepositoryStatusEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationForRepositoryStatusEnum
 
-typealias CodeSecurityConfigurationPrivateVulnerabilityReportingEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationPrivateVulnerabilityReportingEnum
+typealias CodeSecurityConfigurationPrivateVulnerabilityReportingEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationPrivateVulnerabilityReportingEnum
 
-typealias CodeSecurityConfigurationRepositories = dev.octri.showcase.github.models.CodeSecurityConfigurationRepositories
+typealias CodeSecurityConfigurationRepositories =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationRepositories
 
-typealias CodeSecurityConfigurationRepositoriesStatusEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationRepositoriesStatusEnum
+typealias CodeSecurityConfigurationRepositoriesStatusEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationRepositoriesStatusEnum
 
-typealias CodeSecurityConfigurationSecretScanningDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedAlertDismissalEnum
+typealias CodeSecurityConfigurationSecretScanningDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedAlertDismissalEnum
 
-typealias CodeSecurityConfigurationSecretScanningDelegatedBypassEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassEnum
+typealias CodeSecurityConfigurationSecretScanningDelegatedBypassEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassEnum
 
-typealias CodeSecurityConfigurationSecretScanningDelegatedBypassOptions = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassOptions
+typealias CodeSecurityConfigurationSecretScanningDelegatedBypassOptions =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassOptions
 
-typealias CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsX1ae08755b0 = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsX1ae08755b0
+typealias CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsX1ae08755b0 =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsX1ae08755b0
 
-typealias CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsX30443c4ec8 = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsX30443c4ec8
+typealias CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsX30443c4ec8 =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsX30443c4ec8
 
-typealias CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsXb46b82d007 = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsXb46b82d007
+typealias CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsXb46b82d007 =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningDelegatedBypassOptionsXb46b82d007
 
-typealias CodeSecurityConfigurationSecretScanningEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningEnum
+typealias CodeSecurityConfigurationSecretScanningEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningEnum
 
-typealias CodeSecurityConfigurationSecretScanningExtendedMetadataEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningExtendedMetadataEnum
+typealias CodeSecurityConfigurationSecretScanningExtendedMetadataEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningExtendedMetadataEnum
 
-typealias CodeSecurityConfigurationSecretScanningGenericSecretsEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningGenericSecretsEnum
+typealias CodeSecurityConfigurationSecretScanningGenericSecretsEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningGenericSecretsEnum
 
-typealias CodeSecurityConfigurationSecretScanningNonProviderPatternsEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningNonProviderPatternsEnum
+typealias CodeSecurityConfigurationSecretScanningNonProviderPatternsEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningNonProviderPatternsEnum
 
-typealias CodeSecurityConfigurationSecretScanningPushProtectionEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningPushProtectionEnum
+typealias CodeSecurityConfigurationSecretScanningPushProtectionEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningPushProtectionEnum
 
-typealias CodeSecurityConfigurationSecretScanningValidityChecksEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningValidityChecksEnum
+typealias CodeSecurityConfigurationSecretScanningValidityChecksEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationSecretScanningValidityChecksEnum
 
-typealias CodeSecurityConfigurationTargetTypeEnum = dev.octri.showcase.github.models.CodeSecurityConfigurationTargetTypeEnum
+typealias CodeSecurityConfigurationTargetTypeEnum =
+    dev.octri.showcase.github.models.CodeSecurityConfigurationTargetTypeEnum
 
-typealias CodeSecurityCreateConfigurationAdvancedSecurityEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationAdvancedSecurityEnum
+typealias CodeSecurityCreateConfigurationAdvancedSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationAdvancedSecurityEnum
 
-typealias CodeSecurityCreateConfigurationCodeScanningDefaultSetupEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationCodeScanningDefaultSetupEnum
+typealias CodeSecurityCreateConfigurationCodeScanningDefaultSetupEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationCodeScanningDefaultSetupEnum
 
-typealias CodeSecurityCreateConfigurationCodeScanningDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationCodeScanningDelegatedAlertDismissalEnum
+typealias CodeSecurityCreateConfigurationCodeScanningDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationCodeScanningDelegatedAlertDismissalEnum
 
-typealias CodeSecurityCreateConfigurationCodeSecurityEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationCodeSecurityEnum
+typealias CodeSecurityCreateConfigurationCodeSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationCodeSecurityEnum
 
-typealias CodeSecurityCreateConfigurationDependabotAlertsEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependabotAlertsEnum
+typealias CodeSecurityCreateConfigurationDependabotAlertsEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependabotAlertsEnum
 
-typealias CodeSecurityCreateConfigurationDependabotDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependabotDelegatedAlertDismissalEnum
+typealias CodeSecurityCreateConfigurationDependabotDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependabotDelegatedAlertDismissalEnum
 
-typealias CodeSecurityCreateConfigurationDependabotSecurityUpdatesEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependabotSecurityUpdatesEnum
+typealias CodeSecurityCreateConfigurationDependabotSecurityUpdatesEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependabotSecurityUpdatesEnum
 
-typealias CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionEnum
+typealias CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependencyGraphAutosubmitActionEnum
 
-typealias CodeSecurityCreateConfigurationDependencyGraphEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependencyGraphEnum
+typealias CodeSecurityCreateConfigurationDependencyGraphEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationDependencyGraphEnum
 
-typealias CodeSecurityCreateConfigurationEnforcementEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationEnforcementEnum
+typealias CodeSecurityCreateConfigurationEnforcementEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationEnforcementEnum
 
-typealias CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum
+typealias CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseAdvancedSecurityEnum
 
-typealias CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum
+typealias CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseCodeScanningDefaultSetupEnum
 
-typealias CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d
+typealias CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseCodeScanningDelegX07bbd2233d
 
-typealias CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum
+typealias CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseCodeSecurityEnum
 
-typealias CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum
+typealias CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseDependabotAlertsEnum
 
-typealias CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee
+typealias CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseDependabotSecuritX133b5234ee
 
-typealias CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01 = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01
+typealias CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01 =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseDependencyGraphAuX7c23ddfe01
 
-typealias CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum
+typealias CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseDependencyGraphEnum
 
-typealias CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum
+typealias CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseEnforcementEnum
 
-typealias CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45 = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45
+typealias CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45 =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterprisePrivateVulnerabilX83fb9d5a45
 
-typealias CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum
+typealias CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretProtectionEnum
 
-typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab
+typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningDelXaf92789aab
 
-typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum
+typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningEnum
 
-typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063 = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063
+typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063 =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningExtX6e16317063
 
-typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041 = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041
+typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041 =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningGenX683152e041
 
-typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732 = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732
+typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732 =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningNonX4b3abbc732
 
-typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b
+typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningPusXbc2b80db0b
 
-typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa
+typealias CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationForEnterpriseSecretScanningValX45549491aa
 
-typealias CodeSecurityCreateConfigurationPrivateVulnerabilityReportingEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationPrivateVulnerabilityReportingEnum
+typealias CodeSecurityCreateConfigurationPrivateVulnerabilityReportingEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationPrivateVulnerabilityReportingEnum
 
-typealias CodeSecurityCreateConfigurationSecretProtectionEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretProtectionEnum
+typealias CodeSecurityCreateConfigurationSecretProtectionEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretProtectionEnum
 
-typealias CodeSecurityCreateConfigurationSecretScanningDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningDelegatedAlertDismissalEnum
+typealias CodeSecurityCreateConfigurationSecretScanningDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningDelegatedAlertDismissalEnum
 
-typealias CodeSecurityCreateConfigurationSecretScanningDelegatedBypassEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningDelegatedBypassEnum
+typealias CodeSecurityCreateConfigurationSecretScanningDelegatedBypassEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningDelegatedBypassEnum
 
-typealias CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX23ec1501c5 = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX23ec1501c5
+typealias CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX23ec1501c5 =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOX23ec1501c5
 
-typealias CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOXa350f9ebc3 = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOXa350f9ebc3
+typealias CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOXa350f9ebc3 =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningDelegatedBypassOXa350f9ebc3
 
-typealias CodeSecurityCreateConfigurationSecretScanningEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningEnum
+typealias CodeSecurityCreateConfigurationSecretScanningEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningEnum
 
-typealias CodeSecurityCreateConfigurationSecretScanningExtendedMetadataEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningExtendedMetadataEnum
+typealias CodeSecurityCreateConfigurationSecretScanningExtendedMetadataEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningExtendedMetadataEnum
 
-typealias CodeSecurityCreateConfigurationSecretScanningGenericSecretsEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningGenericSecretsEnum
+typealias CodeSecurityCreateConfigurationSecretScanningGenericSecretsEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningGenericSecretsEnum
 
-typealias CodeSecurityCreateConfigurationSecretScanningNonProviderPatternsEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningNonProviderPatternsEnum
+typealias CodeSecurityCreateConfigurationSecretScanningNonProviderPatternsEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningNonProviderPatternsEnum
 
-typealias CodeSecurityCreateConfigurationSecretScanningPushProtectionEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningPushProtectionEnum
+typealias CodeSecurityCreateConfigurationSecretScanningPushProtectionEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningPushProtectionEnum
 
-typealias CodeSecurityCreateConfigurationSecretScanningValidityChecksEnum = dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningValidityChecksEnum
+typealias CodeSecurityCreateConfigurationSecretScanningValidityChecksEnum =
+    dev.octri.showcase.github.models.CodeSecurityCreateConfigurationSecretScanningValidityChecksEnum
 
-typealias CodeSecurityDefaultConfigurations = dev.octri.showcase.github.models.CodeSecurityDefaultConfigurations
+typealias CodeSecurityDefaultConfigurations =
+    dev.octri.showcase.github.models.CodeSecurityDefaultConfigurations
 
-typealias CodeSecurityDefaultConfigurationsItem = dev.octri.showcase.github.models.CodeSecurityDefaultConfigurationsItem
+typealias CodeSecurityDefaultConfigurationsItem =
+    dev.octri.showcase.github.models.CodeSecurityDefaultConfigurationsItem
 
-typealias CodeSecurityDefaultConfigurationsItemDefaultForNewReposEnum = dev.octri.showcase.github.models.CodeSecurityDefaultConfigurationsItemDefaultForNewReposEnum
+typealias CodeSecurityDefaultConfigurationsItemDefaultForNewReposEnum =
+    dev.octri.showcase.github.models.CodeSecurityDefaultConfigurationsItemDefaultForNewReposEnum
 
-typealias CodeSecurityGetConfigurationsForOrgParameterEnum = dev.octri.showcase.github.models.CodeSecurityGetConfigurationsForOrgParameterEnum
+typealias CodeSecurityGetConfigurationsForOrgParameterEnum =
+    dev.octri.showcase.github.models.CodeSecurityGetConfigurationsForOrgParameterEnum
 
-typealias CodeSecuritySetConfigurationAsDefaultDefaultForNewReposEnum = dev.octri.showcase.github.models.CodeSecuritySetConfigurationAsDefaultDefaultForNewReposEnum
+typealias CodeSecuritySetConfigurationAsDefaultDefaultForNewReposEnum =
+    dev.octri.showcase.github.models.CodeSecuritySetConfigurationAsDefaultDefaultForNewReposEnum
 
-typealias CodeSecuritySetConfigurationAsDefaultForEnterpriseDefaultForNewReposEnum = dev.octri.showcase.github.models.CodeSecuritySetConfigurationAsDefaultForEnterpriseDefaultForNewReposEnum
+typealias CodeSecuritySetConfigurationAsDefaultForEnterpriseDefaultForNewReposEnum =
+    dev.octri.showcase.github.models.CodeSecuritySetConfigurationAsDefaultForEnterpriseDefaultForNewReposEnum
 
-typealias CodeSecuritySetConfigurationAsDefaultForEnterpriseResponseDefXfd8fa01630 = dev.octri.showcase.github.models.CodeSecuritySetConfigurationAsDefaultForEnterpriseResponseDefXfd8fa01630
+typealias CodeSecuritySetConfigurationAsDefaultForEnterpriseResponseDefXfd8fa01630 =
+    dev.octri.showcase.github.models.CodeSecuritySetConfigurationAsDefaultForEnterpriseResponseDefXfd8fa01630
 
-typealias CodeSecuritySetConfigurationAsDefaultResponseDefaultForNewReposEnum = dev.octri.showcase.github.models.CodeSecuritySetConfigurationAsDefaultResponseDefaultForNewReposEnum
+typealias CodeSecuritySetConfigurationAsDefaultResponseDefaultForNewReposEnum =
+    dev.octri.showcase.github.models.CodeSecuritySetConfigurationAsDefaultResponseDefaultForNewReposEnum
 
-typealias CodeSecurityUpdateConfigurationAdvancedSecurityEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationAdvancedSecurityEnum
+typealias CodeSecurityUpdateConfigurationAdvancedSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationAdvancedSecurityEnum
 
-typealias CodeSecurityUpdateConfigurationCodeScanningDefaultSetupEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationCodeScanningDefaultSetupEnum
+typealias CodeSecurityUpdateConfigurationCodeScanningDefaultSetupEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationCodeScanningDefaultSetupEnum
 
-typealias CodeSecurityUpdateConfigurationCodeScanningDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationCodeScanningDelegatedAlertDismissalEnum
+typealias CodeSecurityUpdateConfigurationCodeScanningDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationCodeScanningDelegatedAlertDismissalEnum
 
-typealias CodeSecurityUpdateConfigurationCodeSecurityEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationCodeSecurityEnum
+typealias CodeSecurityUpdateConfigurationCodeSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationCodeSecurityEnum
 
-typealias CodeSecurityUpdateConfigurationDependabotAlertsEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependabotAlertsEnum
+typealias CodeSecurityUpdateConfigurationDependabotAlertsEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependabotAlertsEnum
 
-typealias CodeSecurityUpdateConfigurationDependabotDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependabotDelegatedAlertDismissalEnum
+typealias CodeSecurityUpdateConfigurationDependabotDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependabotDelegatedAlertDismissalEnum
 
-typealias CodeSecurityUpdateConfigurationDependabotSecurityUpdatesEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependabotSecurityUpdatesEnum
+typealias CodeSecurityUpdateConfigurationDependabotSecurityUpdatesEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependabotSecurityUpdatesEnum
 
-typealias CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionEnum
+typealias CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependencyGraphAutosubmitActionEnum
 
-typealias CodeSecurityUpdateConfigurationDependencyGraphEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependencyGraphEnum
+typealias CodeSecurityUpdateConfigurationDependencyGraphEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationDependencyGraphEnum
 
-typealias CodeSecurityUpdateConfigurationEnforcementEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationEnforcementEnum
+typealias CodeSecurityUpdateConfigurationEnforcementEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationEnforcementEnum
 
-typealias CodeSecurityUpdateConfigurationPrivateVulnerabilityReportingEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationPrivateVulnerabilityReportingEnum
+typealias CodeSecurityUpdateConfigurationPrivateVulnerabilityReportingEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationPrivateVulnerabilityReportingEnum
 
-typealias CodeSecurityUpdateConfigurationSecretProtectionEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretProtectionEnum
+typealias CodeSecurityUpdateConfigurationSecretProtectionEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretProtectionEnum
 
-typealias CodeSecurityUpdateConfigurationSecretScanningDelegatedAlertDismissalEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningDelegatedAlertDismissalEnum
+typealias CodeSecurityUpdateConfigurationSecretScanningDelegatedAlertDismissalEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningDelegatedAlertDismissalEnum
 
-typealias CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassEnum
+typealias CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassEnum
 
-typealias CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX215f382eed = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX215f382eed
+typealias CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX215f382eed =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOX215f382eed
 
-typealias CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOXfc67d398b9 = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOXfc67d398b9
+typealias CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOXfc67d398b9 =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningDelegatedBypassOXfc67d398b9
 
-typealias CodeSecurityUpdateConfigurationSecretScanningEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningEnum
+typealias CodeSecurityUpdateConfigurationSecretScanningEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningEnum
 
-typealias CodeSecurityUpdateConfigurationSecretScanningExtendedMetadataEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningExtendedMetadataEnum
+typealias CodeSecurityUpdateConfigurationSecretScanningExtendedMetadataEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningExtendedMetadataEnum
 
-typealias CodeSecurityUpdateConfigurationSecretScanningGenericSecretsEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningGenericSecretsEnum
+typealias CodeSecurityUpdateConfigurationSecretScanningGenericSecretsEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningGenericSecretsEnum
 
-typealias CodeSecurityUpdateConfigurationSecretScanningNonProviderPatternsEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningNonProviderPatternsEnum
+typealias CodeSecurityUpdateConfigurationSecretScanningNonProviderPatternsEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningNonProviderPatternsEnum
 
-typealias CodeSecurityUpdateConfigurationSecretScanningPushProtectionEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningPushProtectionEnum
+typealias CodeSecurityUpdateConfigurationSecretScanningPushProtectionEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningPushProtectionEnum
 
-typealias CodeSecurityUpdateConfigurationSecretScanningValidityChecksEnum = dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningValidityChecksEnum
+typealias CodeSecurityUpdateConfigurationSecretScanningValidityChecksEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateConfigurationSecretScanningValidityChecksEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationAdvancedSecurityEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationCodeScanningDefaultSetupEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca
+typealias CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationCodeScanningDelegateX99eabc73ca
 
-typealias CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationCodeSecurityEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationDependabotAlertsEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationDependabotAlertsEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationDependabotAlertsEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationDependabotAlertsEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationDependabotSecurityUpdatesEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationDependabotSecurityUpdatesEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationDependabotSecurityUpdatesEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationDependabotSecurityUpdatesEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX15b59547c4 = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX15b59547c4
+typealias CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX15b59547c4 =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationDependencyGraphAutosX15b59547c4
 
-typealias CodeSecurityUpdateEnterpriseConfigurationDependencyGraphEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationDependencyGraphEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationDependencyGraphEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationDependencyGraphEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationEnforcementEnum = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationEnforcementEnum
+typealias CodeSecurityUpdateEnterpriseConfigurationEnforcementEnum =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationEnforcementEnum
 
-typealias CodeSecurityUpdateEnterpriseConfigurationPrivateVulnerabilityXb5e07c9c62 = dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationPrivateVulnerabilityXb5e07c9c62
+typealias CodeSecurityUpdateEnterpriseConfigurationPrivateVulnerabilityXb5e07c9c62 =
+    dev.octri.showcase.github.models.CodeSecurityUpdateEnterpriseConfigurationPrivateVulnerabilityXb5e07c9c62

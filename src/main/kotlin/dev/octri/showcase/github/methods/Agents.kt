@@ -6,8 +6,8 @@ package dev.octri.showcase.github.methods
 import dev.octri.showcase.github.ActionsPublicKey
 import dev.octri.showcase.github.ActionsSecret
 import dev.octri.showcase.github.ActionsVariable
-import dev.octri.showcase.github.AgentsCreateOrgVariableVisibilityEnum
 import dev.octri.showcase.github.AgentsCreateOrUpdateOrgSecretVisibilityEnum
+import dev.octri.showcase.github.AgentsCreateOrgVariableVisibilityEnum
 import dev.octri.showcase.github.AgentsUpdateOrgVariableVisibilityEnum
 import dev.octri.showcase.github.ClientConfig
 import dev.octri.showcase.github.EmptyObject
@@ -19,45 +19,45 @@ import dev.octri.showcase.github.SdkResource
 import dev.octri.showcase.github.SdkResponse
 
 object Agents {
-data class AgentsListOrgSecretsResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val secrets: List<OrganizationActionsSecret>
-) : SdkResource()
+    data class AgentsListOrgSecretsResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val secrets: List<OrganizationActionsSecret>,
+    ) : SdkResource()
 
-data class AgentsListSelectedReposForOrgSecretResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val repositories: List<MinimalRepository>
-) : SdkResource()
+    data class AgentsListSelectedReposForOrgSecretResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val repositories: List<MinimalRepository>,
+    ) : SdkResource()
 
-data class AgentsListOrgVariablesResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val variables: List<OrganizationActionsVariable>
-) : SdkResource()
+    data class AgentsListOrgVariablesResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val variables: List<OrganizationActionsVariable>,
+    ) : SdkResource()
 
-data class AgentsListSelectedReposForOrgVariableResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val repositories: List<MinimalRepository>
-) : SdkResource()
+    data class AgentsListSelectedReposForOrgVariableResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val repositories: List<MinimalRepository>,
+    ) : SdkResource()
 
-data class AgentsListRepoOrganizationSecretsResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val secrets: List<ActionsSecret>
-) : SdkResource()
+    data class AgentsListRepoOrganizationSecretsResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val secrets: List<ActionsSecret>,
+    ) : SdkResource()
 
-data class AgentsListRepoOrganizationVariablesResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val variables: List<ActionsVariable>
-) : SdkResource()
+    data class AgentsListRepoOrganizationVariablesResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val variables: List<ActionsVariable>,
+    ) : SdkResource()
 
-data class AgentsListRepoSecretsResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val secrets: List<ActionsSecret>
-) : SdkResource()
+    data class AgentsListRepoSecretsResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val secrets: List<ActionsSecret>,
+    ) : SdkResource()
 
-data class AgentsListRepoVariablesResponse(
-    @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
-    val variables: List<ActionsVariable>
-) : SdkResource()
+    data class AgentsListRepoVariablesResponse(
+        @com.fasterxml.jackson.annotation.JsonProperty("total_count") val totalCount: Long,
+        val variables: List<ActionsVariable>,
+    ) : SdkResource()
 
     /** Parameters for [agentsCreateOrUpdateOrgSecret]. */
     data class AgentsCreateOrUpdateOrgSecretRequest(
@@ -66,7 +66,7 @@ data class AgentsListRepoVariablesResponse(
         val encryptedValue: String,
         val keyId: String,
         val visibility: AgentsCreateOrUpdateOrgSecretVisibilityEnum,
-        val selectedRepositoryIds: List<Long>? = null
+        val selectedRepositoryIds: List<Long>? = null,
     )
 
     /** Parameters for [agentsUpdateOrgVariable]. */
@@ -76,13 +76,22 @@ data class AgentsListRepoVariablesResponse(
         val name2: String? = null,
         val value: String? = null,
         val visibility: AgentsUpdateOrgVariableVisibilityEnum? = null,
-        val selectedRepositoryIds: List<Long>? = null
+        val selectedRepositoryIds: List<Long>? = null,
     )
 
     /**
-     * Lists all secrets available in an organization without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all secrets available in an organization without revealing their encrypted values.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun agentsListOrgSecrets(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AgentsListOrgSecretsResponse =
+    fun agentsListOrgSecrets(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): AgentsListOrgSecretsResponse =
         dev.octri.showcase.github.methods.AgentsListOrgSecretsOperation.agentsListOrgSecrets(
             clientConfig,
             org,
@@ -92,21 +101,39 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Lists all secrets available in an organization without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all secrets available in an organization without revealing their encrypted values.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun agentsListOrgSecretsWithRawResponse(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<AgentsListOrgSecretsResponse> =
-        dev.octri.showcase.github.methods.AgentsListOrgSecretsOperation.agentsListOrgSecretsWithRawResponse(
-            clientConfig,
-            org,
-            perPage,
-            page,
-            options,
-        )
+    fun agentsListOrgSecretsWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<AgentsListOrgSecretsResponse> =
+        dev.octri.showcase.github.methods.AgentsListOrgSecretsOperation
+            .agentsListOrgSecretsWithRawResponse(
+                clientConfig,
+                org,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. Authenticated users must have collaborator access to a
+     * repository to create, update, or read secrets. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      */
-    fun agentsGetOrgPublicKey(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): ActionsPublicKey =
+    fun agentsGetOrgPublicKey(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): ActionsPublicKey =
         dev.octri.showcase.github.methods.AgentsGetOrgPublicKeyOperation.agentsGetOrgPublicKey(
             clientConfig,
             org,
@@ -114,19 +141,37 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. Authenticated users must have collaborator access to a
+     * repository to create, update, or read secrets. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      */
-    fun agentsGetOrgPublicKeyWithRawResponse(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SdkResponse<ActionsPublicKey> =
-        dev.octri.showcase.github.methods.AgentsGetOrgPublicKeyOperation.agentsGetOrgPublicKeyWithRawResponse(
-            clientConfig,
-            org,
-            options,
-        )
+    fun agentsGetOrgPublicKeyWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ActionsPublicKey> =
+        dev.octri.showcase.github.methods.AgentsGetOrgPublicKeyOperation
+            .agentsGetOrgPublicKeyWithRawResponse(
+                clientConfig,
+                org,
+                options,
+            )
 
     /**
-     * Gets a single organization secret without revealing its encrypted value. The authenticated user must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single organization secret without revealing its encrypted value. The authenticated
+     * user must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      */
-    fun agentsGetOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): OrganizationActionsSecret =
+    fun agentsGetOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): OrganizationActionsSecret =
         dev.octri.showcase.github.methods.AgentsGetOrgSecretOperation.agentsGetOrgSecret(
             clientConfig,
             org,
@@ -135,40 +180,83 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Gets a single organization secret without revealing its encrypted value. The authenticated user must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single organization secret without revealing its encrypted value. The authenticated
+     * user must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      */
-    fun agentsGetOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): SdkResponse<OrganizationActionsSecret> =
-        dev.octri.showcase.github.methods.AgentsGetOrgSecretOperation.agentsGetOrgSecretWithRawResponse(
-            clientConfig,
-            org,
-            secretName,
-            options,
-        )
+    fun agentsGetOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<OrganizationActionsSecret> =
+        dev.octri.showcase.github.methods.AgentsGetOrgSecretOperation
+            .agentsGetOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                options,
+            )
 
     /**
-     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using
+     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
+     * information, see "[Encrypting secrets for the REST
+     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated
+     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      */
-    fun agentsCreateOrUpdateOrgSecret(clientConfig: ClientConfig, request: AgentsCreateOrUpdateOrgSecretRequest, options: RequestOptions? = null): EmptyObject =
-        dev.octri.showcase.github.methods.AgentsCreateOrUpdateOrgSecretOperation.agentsCreateOrUpdateOrgSecret(
-            clientConfig,
-            request,
-            options,
-        )
+    fun agentsCreateOrUpdateOrgSecret(
+        clientConfig: ClientConfig,
+        request: AgentsCreateOrUpdateOrgSecretRequest,
+        options: RequestOptions? = null,
+    ): EmptyObject =
+        dev.octri.showcase.github.methods.AgentsCreateOrUpdateOrgSecretOperation
+            .agentsCreateOrUpdateOrgSecret(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates an organization secret with an encrypted value. Encrypt your secret using
+     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
+     * information, see "[Encrypting secrets for the REST
+     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated
+     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * If the repository is private, OAuth tokens and personal access tokens (classic) need the
+     * `repo` scope to use this endpoint.
      */
-    fun agentsCreateOrUpdateOrgSecretWithRawResponse(clientConfig: ClientConfig, request: AgentsCreateOrUpdateOrgSecretRequest, options: RequestOptions? = null): SdkResponse<EmptyObject> =
-        dev.octri.showcase.github.methods.AgentsCreateOrUpdateOrgSecretOperation.agentsCreateOrUpdateOrgSecretWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun agentsCreateOrUpdateOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        request: AgentsCreateOrUpdateOrgSecretRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> =
+        dev.octri.showcase.github.methods.AgentsCreateOrUpdateOrgSecretOperation
+            .agentsCreateOrUpdateOrgSecretWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes a secret in an organization using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in an organization using the secret name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun agentsDeleteOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): Unit =
+    fun agentsDeleteOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.AgentsDeleteOrgSecretOperation.agentsDeleteOrgSecret(
             clientConfig,
             org,
@@ -177,118 +265,227 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Deletes a secret in an organization using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in an organization using the secret name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun agentsDeleteOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsDeleteOrgSecretOperation.agentsDeleteOrgSecretWithRawResponse(
-            clientConfig,
-            org,
-            secretName,
-            options,
-        )
+    fun agentsDeleteOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsDeleteOrgSecretOperation
+            .agentsDeleteOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                options,
+            )
 
     /**
-     * Lists all repositories that have been selected when the `visibility` for repository access to a secret is set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all repositories that have been selected when the `visibility` for repository access to
+     * a secret is set to `selected`. Authenticated users must have collaborator access to a
+     * repository to create, update, or read secrets. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      */
-    fun agentsListSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): AgentsListSelectedReposForOrgSecretResponse =
-        dev.octri.showcase.github.methods.AgentsListSelectedReposForOrgSecretOperation.agentsListSelectedReposForOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            page,
-            perPage,
-            options,
-        )
+    fun agentsListSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): AgentsListSelectedReposForOrgSecretResponse =
+        dev.octri.showcase.github.methods.AgentsListSelectedReposForOrgSecretOperation
+            .agentsListSelectedReposForOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Lists all repositories that have been selected when the `visibility` for repository access to a secret is set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all repositories that have been selected when the `visibility` for repository access to
+     * a secret is set to `selected`. Authenticated users must have collaborator access to a
+     * repository to create, update, or read secrets. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      */
-    fun agentsListSelectedReposForOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): SdkResponse<AgentsListSelectedReposForOrgSecretResponse> =
-        dev.octri.showcase.github.methods.AgentsListSelectedReposForOrgSecretOperation.agentsListSelectedReposForOrgSecretWithRawResponse(
-            clientConfig,
-            org,
-            secretName,
-            page,
-            perPage,
-            options,
-        )
+    fun agentsListSelectedReposForOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<AgentsListSelectedReposForOrgSecretResponse> =
+        dev.octri.showcase.github.methods.AgentsListSelectedReposForOrgSecretOperation
+            .agentsListSelectedReposForOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Replaces all repositories for an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you [Create or update an organization secret](https://docs.github.com/rest/agents/secrets#create-or-update-an-organization-secret). Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Replaces all repositories for an organization secret when the `visibility` for repository
+     * access is set to `selected`. The visibility is set when you
+     * [Create or update an organization secret](https://docs.github.com/rest/agents/secrets#create-or-update-an-organization-secret).
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun agentsSetSelectedReposForOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.AgentsSetSelectedReposForOrgSecretOperation.agentsSetSelectedReposForOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            selectedRepositoryIds,
-            options,
-        )
+    fun agentsSetSelectedReposForOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.AgentsSetSelectedReposForOrgSecretOperation
+            .agentsSetSelectedReposForOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * Replaces all repositories for an organization secret when the `visibility` for repository access is set to `selected`. The visibility is set when you [Create or update an organization secret](https://docs.github.com/rest/agents/secrets#create-or-update-an-organization-secret). Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Replaces all repositories for an organization secret when the `visibility` for repository
+     * access is set to `selected`. The visibility is set when you
+     * [Create or update an organization secret](https://docs.github.com/rest/agents/secrets#create-or-update-an-organization-secret).
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun agentsSetSelectedReposForOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsSetSelectedReposForOrgSecretOperation.agentsSetSelectedReposForOrgSecretWithRawResponse(
-            clientConfig,
-            org,
-            secretName,
-            selectedRepositoryIds,
-            options,
-        )
+    fun agentsSetSelectedReposForOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsSetSelectedReposForOrgSecretOperation
+            .agentsSetSelectedReposForOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * Adds a repository to an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth tokens and personal access tokens (classic) require the `admin:org` scope, and private repositories also require the `repo` scope.
+     * Adds a repository to an organization secret's selected repository list. Use this operation
+     * when the secret's `visibility` is set to `selected`; the authenticated user must have
+     * collaborator access to the repository. OAuth tokens and personal access tokens (classic)
+     * require the `admin:org` scope, and private repositories also require the `repo` scope.
      */
-    fun agentsAddSelectedRepoToOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.AgentsAddSelectedRepoToOrgSecretOperation.agentsAddSelectedRepoToOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            repositoryId,
-            options,
-        )
+    fun agentsAddSelectedRepoToOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.AgentsAddSelectedRepoToOrgSecretOperation
+            .agentsAddSelectedRepoToOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Adds a repository to an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth tokens and personal access tokens (classic) require the `admin:org` scope, and private repositories also require the `repo` scope.
+     * Adds a repository to an organization secret's selected repository list. Use this operation
+     * when the secret's `visibility` is set to `selected`; the authenticated user must have
+     * collaborator access to the repository. OAuth tokens and personal access tokens (classic)
+     * require the `admin:org` scope, and private repositories also require the `repo` scope.
      */
-    fun agentsAddSelectedRepoToOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsAddSelectedRepoToOrgSecretOperation.agentsAddSelectedRepoToOrgSecretWithRawResponse(
-            clientConfig,
-            org,
-            secretName,
-            repositoryId,
-            options,
-        )
+    fun agentsAddSelectedRepoToOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsAddSelectedRepoToOrgSecretOperation
+            .agentsAddSelectedRepoToOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Removes a repository from an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth app tokens and personal access tokens (classic) require the `admin:org` scope, and private repositories also require the `repo` scope.
+     * Removes a repository from an organization secret's selected repository list. Use this
+     * operation when the secret's `visibility` is set to `selected`; the authenticated user must
+     * have collaborator access to the repository. OAuth app tokens and personal access tokens
+     * (classic) require the `admin:org` scope, and private repositories also require the `repo`
+     * scope.
      */
-    fun agentsRemoveSelectedRepoFromOrgSecret(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.AgentsRemoveSelectedRepoFromOrgSecretOperation.agentsRemoveSelectedRepoFromOrgSecret(
-            clientConfig,
-            org,
-            secretName,
-            repositoryId,
-            options,
-        )
+    fun agentsRemoveSelectedRepoFromOrgSecret(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.AgentsRemoveSelectedRepoFromOrgSecretOperation
+            .agentsRemoveSelectedRepoFromOrgSecret(
+                clientConfig,
+                org,
+                secretName,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Removes a repository from an organization secret's selected repository list. Use this operation when the secret's `visibility` is set to `selected`; the authenticated user must have collaborator access to the repository. OAuth app tokens and personal access tokens (classic) require the `admin:org` scope, and private repositories also require the `repo` scope.
+     * Removes a repository from an organization secret's selected repository list. Use this
+     * operation when the secret's `visibility` is set to `selected`; the authenticated user must
+     * have collaborator access to the repository. OAuth app tokens and personal access tokens
+     * (classic) require the `admin:org` scope, and private repositories also require the `repo`
+     * scope.
      */
-    fun agentsRemoveSelectedRepoFromOrgSecretWithRawResponse(clientConfig: ClientConfig, org: String, secretName: String, repositoryId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsRemoveSelectedRepoFromOrgSecretOperation.agentsRemoveSelectedRepoFromOrgSecretWithRawResponse(
-            clientConfig,
-            org,
-            secretName,
-            repositoryId,
-            options,
-        )
+    fun agentsRemoveSelectedRepoFromOrgSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        secretName: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsRemoveSelectedRepoFromOrgSecretOperation
+            .agentsRemoveSelectedRepoFromOrgSecretWithRawResponse(
+                clientConfig,
+                org,
+                secretName,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Lists all agent variables available in an organization. Returned variables include their values. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all agent variables available in an organization. Returned variables include their
+     * values. Authenticated users must have collaborator access to a repository to create, update,
+     * or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org`
+     * scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun agentsListOrgVariables(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AgentsListOrgVariablesResponse =
+    fun agentsListOrgVariables(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): AgentsListOrgVariablesResponse =
         dev.octri.showcase.github.methods.AgentsListOrgVariablesOperation.agentsListOrgVariables(
             clientConfig,
             org,
@@ -298,21 +495,43 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Lists all agent variables available in an organization. Returned variables include their values. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all agent variables available in an organization. Returned variables include their
+     * values. Authenticated users must have collaborator access to a repository to create, update,
+     * or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org`
+     * scope to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun agentsListOrgVariablesWithRawResponse(clientConfig: ClientConfig, org: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<AgentsListOrgVariablesResponse> =
-        dev.octri.showcase.github.methods.AgentsListOrgVariablesOperation.agentsListOrgVariablesWithRawResponse(
-            clientConfig,
-            org,
-            perPage,
-            page,
-            options,
-        )
+    fun agentsListOrgVariablesWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<AgentsListOrgVariablesResponse> =
+        dev.octri.showcase.github.methods.AgentsListOrgVariablesOperation
+            .agentsListOrgVariablesWithRawResponse(
+                clientConfig,
+                org,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Creates an organization agent variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates an organization agent variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, OAuth tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsCreateOrgVariable(clientConfig: ClientConfig, org: String, name: String, value: String, visibility: AgentsCreateOrgVariableVisibilityEnum, selectedRepositoryIds: List<Long>? = null, options: RequestOptions? = null): EmptyObject =
+    fun agentsCreateOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        value: String,
+        visibility: AgentsCreateOrgVariableVisibilityEnum,
+        selectedRepositoryIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): EmptyObject =
         dev.octri.showcase.github.methods.AgentsCreateOrgVariableOperation.agentsCreateOrgVariable(
             clientConfig,
             org,
@@ -324,23 +543,45 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Creates an organization agent variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates an organization agent variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to
+     * use this endpoint. If the repository is private, OAuth tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsCreateOrgVariableWithRawResponse(clientConfig: ClientConfig, org: String, name: String, value: String, visibility: AgentsCreateOrgVariableVisibilityEnum, selectedRepositoryIds: List<Long>? = null, options: RequestOptions? = null): SdkResponse<EmptyObject> =
-        dev.octri.showcase.github.methods.AgentsCreateOrgVariableOperation.agentsCreateOrgVariableWithRawResponse(
-            clientConfig,
-            org,
-            name,
-            value,
-            visibility,
-            selectedRepositoryIds,
-            options,
-        )
+    fun agentsCreateOrgVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        value: String,
+        visibility: AgentsCreateOrgVariableVisibilityEnum,
+        selectedRepositoryIds: List<Long>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> =
+        dev.octri.showcase.github.methods.AgentsCreateOrgVariableOperation
+            .agentsCreateOrgVariableWithRawResponse(
+                clientConfig,
+                org,
+                name,
+                value,
+                visibility,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * Gets a specific agent variable in an organization. The authenticated user must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific agent variable in an organization. The authenticated user must have
+     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun agentsGetOrgVariable(clientConfig: ClientConfig, org: String, name: String, options: RequestOptions? = null): OrganizationActionsVariable =
+    fun agentsGetOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): OrganizationActionsVariable =
         dev.octri.showcase.github.methods.AgentsGetOrgVariableOperation.agentsGetOrgVariable(
             clientConfig,
             org,
@@ -349,20 +590,37 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Gets a specific agent variable in an organization. The authenticated user must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific agent variable in an organization. The authenticated user must have
+     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun agentsGetOrgVariableWithRawResponse(clientConfig: ClientConfig, org: String, name: String, options: RequestOptions? = null): SdkResponse<OrganizationActionsVariable> =
-        dev.octri.showcase.github.methods.AgentsGetOrgVariableOperation.agentsGetOrgVariableWithRawResponse(
-            clientConfig,
-            org,
-            name,
-            options,
-        )
+    fun agentsGetOrgVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<OrganizationActionsVariable> =
+        dev.octri.showcase.github.methods.AgentsGetOrgVariableOperation
+            .agentsGetOrgVariableWithRawResponse(
+                clientConfig,
+                org,
+                name,
+                options,
+            )
 
     /**
-     * Updates an organization agent variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Updates an organization agent variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
+     * to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun agentsUpdateOrgVariable(clientConfig: ClientConfig, request: AgentsUpdateOrgVariableRequest, options: RequestOptions? = null): Unit =
+    fun agentsUpdateOrgVariable(
+        clientConfig: ClientConfig,
+        request: AgentsUpdateOrgVariableRequest,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.AgentsUpdateOrgVariableOperation.agentsUpdateOrgVariable(
             clientConfig,
             request,
@@ -370,19 +628,36 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Updates an organization agent variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Updates an organization agent variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
+     * to use this endpoint. If the repository is private, the `repo` scope is also required.
      */
-    fun agentsUpdateOrgVariableWithRawResponse(clientConfig: ClientConfig, request: AgentsUpdateOrgVariableRequest, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsUpdateOrgVariableOperation.agentsUpdateOrgVariableWithRawResponse(
-            clientConfig,
-            request,
-            options,
-        )
+    fun agentsUpdateOrgVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        request: AgentsUpdateOrgVariableRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsUpdateOrgVariableOperation
+            .agentsUpdateOrgVariableWithRawResponse(
+                clientConfig,
+                request,
+                options,
+            )
 
     /**
-     * Deletes an organization agent variable using the variable name. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes an organization agent variable using the variable name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun agentsDeleteOrgVariable(clientConfig: ClientConfig, org: String, name: String, options: RequestOptions? = null): Unit =
+    fun agentsDeleteOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.AgentsDeleteOrgVariableOperation.agentsDeleteOrgVariable(
             clientConfig,
             org,
@@ -391,170 +666,322 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Deletes an organization agent variable using the variable name. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes an organization agent variable using the variable name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
+     * personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the
+     * repository is private, OAuth tokens and personal access tokens (classic) need the `repo`
+     * scope to use this endpoint.
      */
-    fun agentsDeleteOrgVariableWithRawResponse(clientConfig: ClientConfig, org: String, name: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsDeleteOrgVariableOperation.agentsDeleteOrgVariableWithRawResponse(
-            clientConfig,
-            org,
-            name,
-            options,
-        )
+    fun agentsDeleteOrgVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsDeleteOrgVariableOperation
+            .agentsDeleteOrgVariableWithRawResponse(
+                clientConfig,
+                org,
+                name,
+                options,
+            )
 
     /**
-     * Lists all repositories that can access an organization agent variable that is available to selected repositories. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all repositories that can access an organization agent variable that is available to
+     * selected repositories. Authenticated users must have collaborator access to a repository to
+     * create, update, or read variables. OAuth app tokens and personal access tokens (classic) need
+     * the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
+     * also required.
      */
-    fun agentsListSelectedReposForOrgVariable(clientConfig: ClientConfig, org: String, name: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): AgentsListSelectedReposForOrgVariableResponse =
-        dev.octri.showcase.github.methods.AgentsListSelectedReposForOrgVariableOperation.agentsListSelectedReposForOrgVariable(
-            clientConfig,
-            org,
-            name,
-            page,
-            perPage,
-            options,
-        )
+    fun agentsListSelectedReposForOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): AgentsListSelectedReposForOrgVariableResponse =
+        dev.octri.showcase.github.methods.AgentsListSelectedReposForOrgVariableOperation
+            .agentsListSelectedReposForOrgVariable(
+                clientConfig,
+                org,
+                name,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Lists all repositories that can access an organization agent variable that is available to selected repositories. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Lists all repositories that can access an organization agent variable that is available to
+     * selected repositories. Authenticated users must have collaborator access to a repository to
+     * create, update, or read variables. OAuth app tokens and personal access tokens (classic) need
+     * the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is
+     * also required.
      */
-    fun agentsListSelectedReposForOrgVariableWithRawResponse(clientConfig: ClientConfig, org: String, name: String, page: Long? = null, perPage: Long? = null, options: RequestOptions? = null): SdkResponse<AgentsListSelectedReposForOrgVariableResponse> =
-        dev.octri.showcase.github.methods.AgentsListSelectedReposForOrgVariableOperation.agentsListSelectedReposForOrgVariableWithRawResponse(
-            clientConfig,
-            org,
-            name,
-            page,
-            perPage,
-            options,
-        )
+    fun agentsListSelectedReposForOrgVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        page: Long? = null,
+        perPage: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<AgentsListSelectedReposForOrgVariableResponse> =
+        dev.octri.showcase.github.methods.AgentsListSelectedReposForOrgVariableOperation
+            .agentsListSelectedReposForOrgVariableWithRawResponse(
+                clientConfig,
+                org,
+                name,
+                page,
+                perPage,
+                options,
+            )
 
     /**
-     * Replaces all repositories for an organization agent variable that is available to selected repositories. Organization variables that are available to selected repositories have their `visibility` field set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Replaces all repositories for an organization agent variable that is available to selected
+     * repositories. Organization variables that are available to selected repositories have their
+     * `visibility` field set to `selected`. Authenticated users must have collaborator access to a
+     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      */
-    fun agentsSetSelectedReposForOrgVariable(clientConfig: ClientConfig, org: String, name: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.AgentsSetSelectedReposForOrgVariableOperation.agentsSetSelectedReposForOrgVariable(
-            clientConfig,
-            org,
-            name,
-            selectedRepositoryIds,
-            options,
-        )
+    fun agentsSetSelectedReposForOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.AgentsSetSelectedReposForOrgVariableOperation
+            .agentsSetSelectedReposForOrgVariable(
+                clientConfig,
+                org,
+                name,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * Replaces all repositories for an organization agent variable that is available to selected repositories. Organization variables that are available to selected repositories have their `visibility` field set to `selected`. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required.
+     * Replaces all repositories for an organization agent variable that is available to selected
+     * repositories. Organization variables that are available to selected repositories have their
+     * `visibility` field set to `selected`. Authenticated users must have collaborator access to a
+     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
+     * (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the
+     * `repo` scope is also required.
      */
-    fun agentsSetSelectedReposForOrgVariableWithRawResponse(clientConfig: ClientConfig, org: String, name: String, selectedRepositoryIds: List<Long>, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsSetSelectedReposForOrgVariableOperation.agentsSetSelectedReposForOrgVariableWithRawResponse(
-            clientConfig,
-            org,
-            name,
-            selectedRepositoryIds,
-            options,
-        )
+    fun agentsSetSelectedReposForOrgVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        selectedRepositoryIds: List<Long>,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsSetSelectedReposForOrgVariableOperation
+            .agentsSetSelectedReposForOrgVariableWithRawResponse(
+                clientConfig,
+                org,
+                name,
+                selectedRepositoryIds,
+                options,
+            )
 
     /**
-     * Adds a repository to an organization agent variable's selected repository access list. Use this operation when the variable's `visibility` is set to `selected`. The authenticated user needs collaborator access to the repository, and OAuth tokens and personal access tokens (classic) need the `admin:org` scope; private repositories also require the `repo` scope.
+     * Adds a repository to an organization agent variable's selected repository access list. Use
+     * this operation when the variable's `visibility` is set to `selected`. The authenticated user
+     * needs collaborator access to the repository, and OAuth tokens and personal access tokens
+     * (classic) need the `admin:org` scope; private repositories also require the `repo` scope.
      */
-    fun agentsAddSelectedRepoToOrgVariable(clientConfig: ClientConfig, org: String, name: String, repositoryId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.AgentsAddSelectedRepoToOrgVariableOperation.agentsAddSelectedRepoToOrgVariable(
-            clientConfig,
-            org,
-            name,
-            repositoryId,
-            options,
-        )
+    fun agentsAddSelectedRepoToOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.AgentsAddSelectedRepoToOrgVariableOperation
+            .agentsAddSelectedRepoToOrgVariable(
+                clientConfig,
+                org,
+                name,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Adds a repository to an organization agent variable's selected repository access list. Use this operation when the variable's `visibility` is set to `selected`. The authenticated user needs collaborator access to the repository, and OAuth tokens and personal access tokens (classic) need the `admin:org` scope; private repositories also require the `repo` scope.
+     * Adds a repository to an organization agent variable's selected repository access list. Use
+     * this operation when the variable's `visibility` is set to `selected`. The authenticated user
+     * needs collaborator access to the repository, and OAuth tokens and personal access tokens
+     * (classic) need the `admin:org` scope; private repositories also require the `repo` scope.
      */
-    fun agentsAddSelectedRepoToOrgVariableWithRawResponse(clientConfig: ClientConfig, org: String, name: String, repositoryId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsAddSelectedRepoToOrgVariableOperation.agentsAddSelectedRepoToOrgVariableWithRawResponse(
-            clientConfig,
-            org,
-            name,
-            repositoryId,
-            options,
-        )
+    fun agentsAddSelectedRepoToOrgVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsAddSelectedRepoToOrgVariableOperation
+            .agentsAddSelectedRepoToOrgVariableWithRawResponse(
+                clientConfig,
+                org,
+                name,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Removes a repository from an organization agent variable's selected repository access list. Use this operation when the variable's `visibility` is set to `selected`. The authenticated user needs collaborator access to the repository, and OAuth app tokens and personal access tokens (classic) need the `admin:org` scope; private repositories also require the `repo` scope.
+     * Removes a repository from an organization agent variable's selected repository access list.
+     * Use this operation when the variable's `visibility` is set to `selected`. The authenticated
+     * user needs collaborator access to the repository, and OAuth app tokens and personal access
+     * tokens (classic) need the `admin:org` scope; private repositories also require the `repo`
+     * scope.
      */
-    fun agentsRemoveSelectedRepoFromOrgVariable(clientConfig: ClientConfig, org: String, name: String, repositoryId: Long, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.AgentsRemoveSelectedRepoFromOrgVariableOperation.agentsRemoveSelectedRepoFromOrgVariable(
-            clientConfig,
-            org,
-            name,
-            repositoryId,
-            options,
-        )
+    fun agentsRemoveSelectedRepoFromOrgVariable(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.AgentsRemoveSelectedRepoFromOrgVariableOperation
+            .agentsRemoveSelectedRepoFromOrgVariable(
+                clientConfig,
+                org,
+                name,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Removes a repository from an organization agent variable's selected repository access list. Use this operation when the variable's `visibility` is set to `selected`. The authenticated user needs collaborator access to the repository, and OAuth app tokens and personal access tokens (classic) need the `admin:org` scope; private repositories also require the `repo` scope.
+     * Removes a repository from an organization agent variable's selected repository access list.
+     * Use this operation when the variable's `visibility` is set to `selected`. The authenticated
+     * user needs collaborator access to the repository, and OAuth app tokens and personal access
+     * tokens (classic) need the `admin:org` scope; private repositories also require the `repo`
+     * scope.
      */
-    fun agentsRemoveSelectedRepoFromOrgVariableWithRawResponse(clientConfig: ClientConfig, org: String, name: String, repositoryId: Long, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsRemoveSelectedRepoFromOrgVariableOperation.agentsRemoveSelectedRepoFromOrgVariableWithRawResponse(
-            clientConfig,
-            org,
-            name,
-            repositoryId,
-            options,
-        )
+    fun agentsRemoveSelectedRepoFromOrgVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        repositoryId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsRemoveSelectedRepoFromOrgVariableOperation
+            .agentsRemoveSelectedRepoFromOrgVariableWithRawResponse(
+                clientConfig,
+                org,
+                name,
+                repositoryId,
+                options,
+            )
 
     /**
-     * Lists all organization secrets shared with a repository without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all organization secrets shared with a repository without revealing their encrypted
+     * values. Authenticated users must have collaborator access to a repository to create, update,
+     * or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope
+     * to use this endpoint.
      */
-    fun agentsListRepoOrganizationSecrets(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AgentsListRepoOrganizationSecretsResponse =
-        dev.octri.showcase.github.methods.AgentsListRepoOrganizationSecretsOperation.agentsListRepoOrganizationSecrets(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun agentsListRepoOrganizationSecrets(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): AgentsListRepoOrganizationSecretsResponse =
+        dev.octri.showcase.github.methods.AgentsListRepoOrganizationSecretsOperation
+            .agentsListRepoOrganizationSecrets(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists all organization secrets shared with a repository without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all organization secrets shared with a repository without revealing their encrypted
+     * values. Authenticated users must have collaborator access to a repository to create, update,
+     * or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope
+     * to use this endpoint.
      */
-    fun agentsListRepoOrganizationSecretsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<AgentsListRepoOrganizationSecretsResponse> =
-        dev.octri.showcase.github.methods.AgentsListRepoOrganizationSecretsOperation.agentsListRepoOrganizationSecretsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun agentsListRepoOrganizationSecretsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<AgentsListRepoOrganizationSecretsResponse> =
+        dev.octri.showcase.github.methods.AgentsListRepoOrganizationSecretsOperation
+            .agentsListRepoOrganizationSecretsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists all organization variables shared with a repository. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all organization variables shared with a repository. Authenticated users must have
+     * collaborator access to a repository to create, update, or read variables. OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsListRepoOrganizationVariables(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AgentsListRepoOrganizationVariablesResponse =
-        dev.octri.showcase.github.methods.AgentsListRepoOrganizationVariablesOperation.agentsListRepoOrganizationVariables(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun agentsListRepoOrganizationVariables(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): AgentsListRepoOrganizationVariablesResponse =
+        dev.octri.showcase.github.methods.AgentsListRepoOrganizationVariablesOperation
+            .agentsListRepoOrganizationVariables(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists all organization variables shared with a repository. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all organization variables shared with a repository. Authenticated users must have
+     * collaborator access to a repository to create, update, or read variables. OAuth app tokens
+     * and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsListRepoOrganizationVariablesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<AgentsListRepoOrganizationVariablesResponse> =
-        dev.octri.showcase.github.methods.AgentsListRepoOrganizationVariablesOperation.agentsListRepoOrganizationVariablesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun agentsListRepoOrganizationVariablesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<AgentsListRepoOrganizationVariablesResponse> =
+        dev.octri.showcase.github.methods.AgentsListRepoOrganizationVariablesOperation
+            .agentsListRepoOrganizationVariablesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Lists all secrets available in a repository without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all secrets available in a repository without revealing their encrypted values.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      */
-    fun agentsListRepoSecrets(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AgentsListRepoSecretsResponse =
+    fun agentsListRepoSecrets(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): AgentsListRepoSecretsResponse =
         dev.octri.showcase.github.methods.AgentsListRepoSecretsOperation.agentsListRepoSecrets(
             clientConfig,
             owner,
@@ -565,22 +992,41 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Lists all secrets available in a repository without revealing their encrypted values. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all secrets available in a repository without revealing their encrypted values.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * secrets. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      */
-    fun agentsListRepoSecretsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<AgentsListRepoSecretsResponse> =
-        dev.octri.showcase.github.methods.AgentsListRepoSecretsOperation.agentsListRepoSecretsWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun agentsListRepoSecretsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<AgentsListRepoSecretsResponse> =
+        dev.octri.showcase.github.methods.AgentsListRepoSecretsOperation
+            .agentsListRepoSecretsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. Anyone with read access to the repository can use this
+     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint.
      */
-    fun agentsGetRepoPublicKey(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): ActionsPublicKey =
+    fun agentsGetRepoPublicKey(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): ActionsPublicKey =
         dev.octri.showcase.github.methods.AgentsGetRepoPublicKeyOperation.agentsGetRepoPublicKey(
             clientConfig,
             owner,
@@ -589,20 +1035,37 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before you can create or update secrets. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets your public key, which you need to encrypt secrets. You need to encrypt a secret before
+     * you can create or update secrets. Anyone with read access to the repository can use this
+     * endpoint. If the repository is private, OAuth tokens and personal access tokens (classic)
+     * need the `repo` scope to use this endpoint.
      */
-    fun agentsGetRepoPublicKeyWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<ActionsPublicKey> =
-        dev.octri.showcase.github.methods.AgentsGetRepoPublicKeyOperation.agentsGetRepoPublicKeyWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            options,
-        )
+    fun agentsGetRepoPublicKeyWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ActionsPublicKey> =
+        dev.octri.showcase.github.methods.AgentsGetRepoPublicKeyOperation
+            .agentsGetRepoPublicKeyWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                options,
+            )
 
     /**
-     * Gets a single repository secret without revealing its encrypted value. The authenticated user must have collaborator access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single repository secret without revealing its encrypted value. The authenticated user
+     * must have collaborator access to the repository to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsGetRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): ActionsSecret =
+    fun agentsGetRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): ActionsSecret =
         dev.octri.showcase.github.methods.AgentsGetRepoSecretOperation.agentsGetRepoSecret(
             clientConfig,
             owner,
@@ -612,49 +1075,94 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Gets a single repository secret without revealing its encrypted value. The authenticated user must have collaborator access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a single repository secret without revealing its encrypted value. The authenticated user
+     * must have collaborator access to the repository to use this endpoint. OAuth app tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsGetRepoSecretWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): SdkResponse<ActionsSecret> =
-        dev.octri.showcase.github.methods.AgentsGetRepoSecretOperation.agentsGetRepoSecretWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            secretName,
-            options,
-        )
+    fun agentsGetRepoSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ActionsSecret> =
+        dev.octri.showcase.github.methods.AgentsGetRepoSecretOperation
+            .agentsGetRepoSecretWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                options,
+            )
 
     /**
-     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using
+     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
+     * information, see "[Encrypting secrets for the REST
+     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated
+     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsCreateOrUpdateRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, encryptedValue: String, keyId: String, options: RequestOptions? = null): EmptyObject =
-        dev.octri.showcase.github.methods.AgentsCreateOrUpdateRepoSecretOperation.agentsCreateOrUpdateRepoSecret(
-            clientConfig,
-            owner,
-            repo,
-            secretName,
-            encryptedValue,
-            keyId,
-            options,
-        )
+    fun agentsCreateOrUpdateRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        encryptedValue: String,
+        keyId: String,
+        options: RequestOptions? = null,
+    ): EmptyObject =
+        dev.octri.showcase.github.methods.AgentsCreateOrUpdateRepoSecretOperation
+            .agentsCreateOrUpdateRepoSecret(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                encryptedValue,
+                keyId,
+                options,
+            )
 
     /**
-     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see "[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates or updates a repository secret with an encrypted value. Encrypt your secret using
+     * [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more
+     * information, see "[Encrypting secrets for the REST
+     * API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api)." Authenticated
+     * users must have collaborator access to a repository to create, update, or read secrets. OAuth
+     * tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsCreateOrUpdateRepoSecretWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, encryptedValue: String, keyId: String, options: RequestOptions? = null): SdkResponse<EmptyObject> =
-        dev.octri.showcase.github.methods.AgentsCreateOrUpdateRepoSecretOperation.agentsCreateOrUpdateRepoSecretWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            secretName,
-            encryptedValue,
-            keyId,
-            options,
-        )
+    fun agentsCreateOrUpdateRepoSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        encryptedValue: String,
+        keyId: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> =
+        dev.octri.showcase.github.methods.AgentsCreateOrUpdateRepoSecretOperation
+            .agentsCreateOrUpdateRepoSecretWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                encryptedValue,
+                keyId,
+                options,
+            )
 
     /**
-     * Deletes a secret in a repository using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in a repository using the secret name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsDeleteRepoSecret(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): Unit =
+    fun agentsDeleteRepoSecret(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): Unit =
         dev.octri.showcase.github.methods.AgentsDeleteRepoSecretOperation.agentsDeleteRepoSecret(
             clientConfig,
             owner,
@@ -664,21 +1172,39 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Deletes a secret in a repository using the secret name. Authenticated users must have collaborator access to a repository to create, update, or read secrets. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a secret in a repository using the secret name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read secrets. OAuth tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsDeleteRepoSecretWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, secretName: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsDeleteRepoSecretOperation.agentsDeleteRepoSecretWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            secretName,
-            options,
-        )
+    fun agentsDeleteRepoSecretWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        secretName: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsDeleteRepoSecretOperation
+            .agentsDeleteRepoSecretWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                secretName,
+                options,
+            )
 
     /**
-     * Lists all repository variables. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all repository variables. Authenticated users must have collaborator access to a
+     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsListRepoVariables(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): AgentsListRepoVariablesResponse =
+    fun agentsListRepoVariables(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): AgentsListRepoVariablesResponse =
         dev.octri.showcase.github.methods.AgentsListRepoVariablesOperation.agentsListRepoVariables(
             clientConfig,
             owner,
@@ -689,48 +1215,88 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Lists all repository variables. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Lists all repository variables. Authenticated users must have collaborator access to a
+     * repository to create, update, or read variables. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsListRepoVariablesWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<AgentsListRepoVariablesResponse> =
-        dev.octri.showcase.github.methods.AgentsListRepoVariablesOperation.agentsListRepoVariablesWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            perPage,
-            page,
-            options,
-        )
+    fun agentsListRepoVariablesWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<AgentsListRepoVariablesResponse> =
+        dev.octri.showcase.github.methods.AgentsListRepoVariablesOperation
+            .agentsListRepoVariablesWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                perPage,
+                page,
+                options,
+            )
 
     /**
-     * Creates a repository variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates a repository variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      */
-    fun agentsCreateRepoVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, value: String, options: RequestOptions? = null): EmptyObject =
-        dev.octri.showcase.github.methods.AgentsCreateRepoVariableOperation.agentsCreateRepoVariable(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            value,
-            options,
-        )
+    fun agentsCreateRepoVariable(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        value: String,
+        options: RequestOptions? = null,
+    ): EmptyObject =
+        dev.octri.showcase.github.methods.AgentsCreateRepoVariableOperation
+            .agentsCreateRepoVariable(
+                clientConfig,
+                owner,
+                repo,
+                name,
+                value,
+                options,
+            )
 
     /**
-     * Creates a repository variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Creates a repository variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      */
-    fun agentsCreateRepoVariableWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, name: String, value: String, options: RequestOptions? = null): SdkResponse<EmptyObject> =
-        dev.octri.showcase.github.methods.AgentsCreateRepoVariableOperation.agentsCreateRepoVariableWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            value,
-            options,
-        )
+    fun agentsCreateRepoVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        value: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<EmptyObject> =
+        dev.octri.showcase.github.methods.AgentsCreateRepoVariableOperation
+            .agentsCreateRepoVariableWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                name,
+                value,
+                options,
+            )
 
     /**
-     * Gets a specific variable in a repository. The authenticated user must have collaborator access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific variable in a repository. The authenticated user must have collaborator
+     * access to the repository to use this endpoint. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsGetRepoVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): ActionsVariable =
+    fun agentsGetRepoVariable(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): ActionsVariable =
         dev.octri.showcase.github.methods.AgentsGetRepoVariableOperation.agentsGetRepoVariable(
             clientConfig,
             owner,
@@ -740,66 +1306,117 @@ data class AgentsListRepoVariablesResponse(
         )
 
     /**
-     * Gets a specific variable in a repository. The authenticated user must have collaborator access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Gets a specific variable in a repository. The authenticated user must have collaborator
+     * access to the repository to use this endpoint. OAuth app tokens and personal access tokens
+     * (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsGetRepoVariableWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): SdkResponse<ActionsVariable> =
-        dev.octri.showcase.github.methods.AgentsGetRepoVariableOperation.agentsGetRepoVariableWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            options,
-        )
+    fun agentsGetRepoVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<ActionsVariable> =
+        dev.octri.showcase.github.methods.AgentsGetRepoVariableOperation
+            .agentsGetRepoVariableWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                name,
+                options,
+            )
 
     /**
-     * Updates a repository variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Updates a repository variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      */
-    fun agentsUpdateRepoVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, name2: String? = null, value: String? = null, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.AgentsUpdateRepoVariableOperation.agentsUpdateRepoVariable(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            name2,
-            value,
-            options,
-        )
+    fun agentsUpdateRepoVariable(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        name2: String? = null,
+        value: String? = null,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.AgentsUpdateRepoVariableOperation
+            .agentsUpdateRepoVariable(
+                clientConfig,
+                owner,
+                repo,
+                name,
+                name2,
+                value,
+                options,
+            )
 
     /**
-     * Updates a repository variable that you can reference in a GitHub Actions workflow. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Updates a repository variable that you can reference in a GitHub Actions workflow.
+     * Authenticated users must have collaborator access to a repository to create, update, or read
+     * variables. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use
+     * this endpoint.
      */
-    fun agentsUpdateRepoVariableWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, name: String, name2: String? = null, value: String? = null, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsUpdateRepoVariableOperation.agentsUpdateRepoVariableWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            name2,
-            value,
-            options,
-        )
+    fun agentsUpdateRepoVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        name2: String? = null,
+        value: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsUpdateRepoVariableOperation
+            .agentsUpdateRepoVariableWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                name,
+                name2,
+                value,
+                options,
+            )
 
     /**
-     * Deletes a repository variable using the variable name. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a repository variable using the variable name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsDeleteRepoVariable(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): Unit =
-        dev.octri.showcase.github.methods.AgentsDeleteRepoVariableOperation.agentsDeleteRepoVariable(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            options,
-        )
+    fun agentsDeleteRepoVariable(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): Unit =
+        dev.octri.showcase.github.methods.AgentsDeleteRepoVariableOperation
+            .agentsDeleteRepoVariable(
+                clientConfig,
+                owner,
+                repo,
+                name,
+                options,
+            )
 
     /**
-     * Deletes a repository variable using the variable name. Authenticated users must have collaborator access to a repository to create, update, or read variables. OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.
+     * Deletes a repository variable using the variable name. Authenticated users must have
+     * collaborator access to a repository to create, update, or read variables. OAuth tokens and
+     * personal access tokens (classic) need the `repo` scope to use this endpoint.
      */
-    fun agentsDeleteRepoVariableWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, name: String, options: RequestOptions? = null): SdkResponse<Unit> =
-        dev.octri.showcase.github.methods.AgentsDeleteRepoVariableOperation.agentsDeleteRepoVariableWithRawResponse(
-            clientConfig,
-            owner,
-            repo,
-            name,
-            options,
-        )
+    fun agentsDeleteRepoVariableWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        name: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> =
+        dev.octri.showcase.github.methods.AgentsDeleteRepoVariableOperation
+            .agentsDeleteRepoVariableWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                name,
+                options,
+            )
 }

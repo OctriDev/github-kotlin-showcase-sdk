@@ -14,84 +14,213 @@ import dev.octri.showcase.github.ValidationErrorSimple
 
 internal object OrgsListIssueTypesOperation {
     /**
-     * Lists all issue types for an organization. OAuth app tokens and personal access tokens (classic) need the read:org scope to use this endpoint.
+     * Lists all issue types for an organization. OAuth app tokens and personal access tokens
+     * (classic) need the read:org scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      */
-    fun orgsListIssueTypes(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): List<IssueType?> {
+    fun orgsListIssueTypes(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): List<IssueType?> {
         return orgsListIssueTypesWithRawResponse(clientConfig, org, options).data
     }
 
-
-    /** [orgsListIssueTypes], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun orgsListIssueTypesWithRawResponse(clientConfig: ClientConfig, org: String, options: RequestOptions? = null): SdkResponse<List<IssueType?>> {
-        return SdkClient.request<List<IssueType?>>(SdkClient.RequestSpec("GET", "/orgs/${SdkClient.encodePathSegment(org)}/issue-types", config = clientConfig, operationId = "orgsListIssueTypes", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java)))
+    /**
+     * [orgsListIssueTypes], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun orgsListIssueTypesWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<IssueType?>> {
+        return SdkClient.request<List<IssueType?>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/orgs/${SdkClient.encodePathSegment(org)}/issue-types",
+                config = clientConfig,
+                operationId = "orgsListIssueTypes",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("404" to BasicError::class.java),
+            )
+        )
     }
 }
 
 internal object OrgsCreateIssueTypeOperation {
     /**
-     * Create a new issue type for an organization. You can find out more about issue types in Managing issue types in an organization. To use this endpoint, the authenticated user must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Create a new issue type for an organization. You can find out more about issue types in
+     * Managing issue types in an organization. To use this endpoint, the authenticated user must be
+     * an administrator for the organization. OAuth app tokens and personal access tokens (classic)
+     * need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param name Name of the issue type.
-     * @param isEnabled Whether or not the issue type is enabled at the organization
-     *   level.
+     * @param isEnabled Whether or not the issue type is enabled at the organization level.
      * @param description Description of the issue type.
      * @param color Color for the issue type.
      */
-    fun orgsCreateIssueType(clientConfig: ClientConfig, org: String, name: String, isEnabled: Boolean, description: SdkClient.SdkOptional<String?>? = null, color: SdkClient.SdkOptional<OrganizationCreateIssueTypeColorEnum?>? = null, options: RequestOptions? = null): IssueType {
-        return orgsCreateIssueTypeWithRawResponse(clientConfig, org, name, isEnabled, description, color, options).data
+    fun orgsCreateIssueType(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        isEnabled: Boolean,
+        description: SdkClient.SdkOptional<String?>? = null,
+        color: SdkClient.SdkOptional<OrganizationCreateIssueTypeColorEnum?>? = null,
+        options: RequestOptions? = null,
+    ): IssueType {
+        return orgsCreateIssueTypeWithRawResponse(
+                clientConfig,
+                org,
+                name,
+                isEnabled,
+                description,
+                color,
+                options,
+            )
+            .data
     }
 
-
-    /** [orgsCreateIssueType], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun orgsCreateIssueTypeWithRawResponse(clientConfig: ClientConfig, org: String, name: String, isEnabled: Boolean, description: SdkClient.SdkOptional<String?>? = null, color: SdkClient.SdkOptional<OrganizationCreateIssueTypeColorEnum?>? = null, options: RequestOptions? = null): SdkResponse<IssueType> {
-        return SdkClient.request<IssueType>(SdkClient.RequestSpec("POST", "/orgs/${SdkClient.encodePathSegment(org)}/issue-types", config = clientConfig, body = SdkClient.bodyMap("name" to (name), "is_enabled" to (isEnabled), "description" to
-    (description ?: SdkClient.SdkOptional.Omitted), "color" to (color ?: SdkClient.SdkOptional.Omitted)), operationId = "orgsCreateIssueType", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
+    /**
+     * [orgsCreateIssueType], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun orgsCreateIssueTypeWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        name: String,
+        isEnabled: Boolean,
+        description: SdkClient.SdkOptional<String?>? = null,
+        color: SdkClient.SdkOptional<OrganizationCreateIssueTypeColorEnum?>? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<IssueType> {
+        return SdkClient.request<IssueType>(
+            SdkClient.RequestSpec(
+                "POST",
+                "/orgs/${SdkClient.encodePathSegment(org)}/issue-types",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "name" to (name),
+                        "is_enabled" to (isEnabled),
+                        "description" to (description ?: SdkClient.SdkOptional.Omitted),
+                        "color" to (color ?: SdkClient.SdkOptional.Omitted),
+                    ),
+                operationId = "orgsCreateIssueType",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "404" to BasicError::class.java,
+                        "422" to ValidationErrorSimple::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object OrgsUpdateIssueTypeOperation {
     /**
-     * Updates an issue type for an organization. You can find out more about issue types in Managing issue types in an organization. To use this endpoint, the authenticated user must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Updates an issue type for an organization. You can find out more about issue types in
+     * Managing issue types in an organization. To use this endpoint, the authenticated user must be
+     * an administrator for the organization. OAuth app tokens and personal access tokens (classic)
+     * need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param issueTypeId The unique identifier of the issue type.
      * @param name Name of the issue type.
-     * @param isEnabled Whether or not the issue type is enabled at the organization
-     *   level.
+     * @param isEnabled Whether or not the issue type is enabled at the organization level.
      * @param description Description of the issue type.
      * @param color Color for the issue type.
      */
-    fun orgsUpdateIssueType(clientConfig: ClientConfig, request: Orgs.OrgsUpdateIssueTypeRequest, options: RequestOptions? = null): IssueType {
+    fun orgsUpdateIssueType(
+        clientConfig: ClientConfig,
+        request: Orgs.OrgsUpdateIssueTypeRequest,
+        options: RequestOptions? = null,
+    ): IssueType {
         return orgsUpdateIssueTypeWithRawResponse(clientConfig, request, options).data
     }
 
-
-
-
-    /** [orgsUpdateIssueType], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun orgsUpdateIssueTypeWithRawResponse(clientConfig: ClientConfig, request: Orgs.OrgsUpdateIssueTypeRequest, options: RequestOptions? = null): SdkResponse<IssueType> {
-        return SdkClient.request<IssueType>(SdkClient.RequestSpec("PUT", "/orgs/${SdkClient.encodePathSegment(request.org)}/issue-types/${SdkClient.encodePathSegment(request.issueTypeId)}", config = clientConfig, body = SdkClient.bodyMap("name" to (request.name), "is_enabled" to (request.isEnabled), "description" to
-    (request.description ?: SdkClient.SdkOptional.Omitted), "color" to (request.color ?: SdkClient.SdkOptional.Omitted)), operationId = "orgsUpdateIssueType", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
+    /**
+     * [orgsUpdateIssueType], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun orgsUpdateIssueTypeWithRawResponse(
+        clientConfig: ClientConfig,
+        request: Orgs.OrgsUpdateIssueTypeRequest,
+        options: RequestOptions? = null,
+    ): SdkResponse<IssueType> {
+        return SdkClient.request<IssueType>(
+            SdkClient.RequestSpec(
+                "PUT",
+                "/orgs/${SdkClient.encodePathSegment(request.org)}/issue-types/${SdkClient.encodePathSegment(request.issueTypeId)}",
+                config = clientConfig,
+                body =
+                    SdkClient.bodyMap(
+                        "name" to (request.name),
+                        "is_enabled" to (request.isEnabled),
+                        "description" to (request.description ?: SdkClient.SdkOptional.Omitted),
+                        "color" to (request.color ?: SdkClient.SdkOptional.Omitted),
+                    ),
+                operationId = "orgsUpdateIssueType",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf(
+                        "404" to BasicError::class.java,
+                        "422" to ValidationErrorSimple::class.java,
+                    ),
+            )
+        )
     }
 }
 
 internal object OrgsDeleteIssueTypeOperation {
     /**
-     * Deletes an issue type for an organization. You can find out more about issue types in Managing issue types in an organization. To use this endpoint, the authenticated user must be an administrator for the organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint.
+     * Deletes an issue type for an organization. You can find out more about issue types in
+     * Managing issue types in an organization. To use this endpoint, the authenticated user must be
+     * an administrator for the organization. OAuth app tokens and personal access tokens (classic)
+     * need the `admin:org` scope to use this endpoint.
      *
      * @param org The organization name. The name is not case sensitive.
      * @param issueTypeId The unique identifier of the issue type.
      */
-    fun orgsDeleteIssueType(clientConfig: ClientConfig, org: String, issueTypeId: Long, options: RequestOptions? = null): Unit {
+    fun orgsDeleteIssueType(
+        clientConfig: ClientConfig,
+        org: String,
+        issueTypeId: Long,
+        options: RequestOptions? = null,
+    ): Unit {
         return orgsDeleteIssueTypeWithRawResponse(clientConfig, org, issueTypeId, options).data
     }
 
-
-    /** [orgsDeleteIssueType], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun orgsDeleteIssueTypeWithRawResponse(clientConfig: ClientConfig, org: String, issueTypeId: Long, options: RequestOptions? = null): SdkResponse<Unit> {
-        return SdkClient.request<Unit>(SdkClient.RequestSpec("DELETE", "/orgs/${SdkClient.encodePathSegment(org)}/issue-types/${SdkClient.encodePathSegment(issueTypeId)}", config = clientConfig, operationId = "orgsDeleteIssueType", decoder = SdkClient.ResponseDecoder.EMPTY, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationErrorSimple::class.java)))
+    /**
+     * [orgsDeleteIssueType], returning the [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
+    fun orgsDeleteIssueTypeWithRawResponse(
+        clientConfig: ClientConfig,
+        org: String,
+        issueTypeId: Long,
+        options: RequestOptions? = null,
+    ): SdkResponse<Unit> {
+        return SdkClient.request<Unit>(
+            SdkClient.RequestSpec(
+                "DELETE",
+                "/orgs/${SdkClient.encodePathSegment(org)}/issue-types/${SdkClient.encodePathSegment(issueTypeId)}",
+                config = clientConfig,
+                operationId = "orgsDeleteIssueType",
+                decoder = SdkClient.ResponseDecoder.EMPTY,
+                options = options,
+                errors =
+                    mapOf(
+                        "404" to BasicError::class.java,
+                        "422" to ValidationErrorSimple::class.java,
+                    ),
+            )
+        )
     }
 }

@@ -12,25 +12,72 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object ReposListContributorsOperation {
     /**
-     * Lists contributors to the specified repository and sorts them by the number of commits per contributor in descending order. This endpoint may return information that is a few hours old because the GitHub REST API caches contributor data to improve performance. GitHub identifies contributors by author email address. This endpoint groups contribution counts by GitHub user, which includes all associated email addresses. To improve performance, only the first 500 author email…
+     * Lists contributors to the specified repository and sorts them by the number of commits per
+     * contributor in descending order. This endpoint may return information that is a few hours old
+     * because the GitHub REST API caches contributor data to improve performance. GitHub identifies
+     * contributors by author email address. This endpoint groups contribution counts by GitHub
+     * user, which includes all associated email addresses. To improve performance, only the first
+     * 500 author email…
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param anon Set to `1` or `true` to include anonymous contributors in results.
-     * @param perPage The number of results per page (max 100). For more information,
-     *   see "Using pagination in the REST API."
-     * @param page The page number of the results to fetch. For more information, see
-     *   "Using pagination in the REST API."
+     * @param perPage The number of results per page (max 100). For more information, see "Using
+     *   pagination in the REST API."
+     * @param page The page number of the results to fetch. For more information, see "Using
+     *   pagination in the REST API."
      */
-    fun reposListContributors(clientConfig: ClientConfig, owner: String, repo: String, anon: String? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): List<Contributor> {
-        return reposListContributorsWithRawResponse(clientConfig, owner, repo, anon, perPage, page, options).data
+    fun reposListContributors(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        anon: String? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): List<Contributor> {
+        return reposListContributorsWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                anon,
+                perPage,
+                page,
+                options,
+            )
+            .data
     }
 
-
-    /** [reposListContributors], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposListContributorsWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, anon: String? = null, perPage: Long? = null, page: Long? = null, options: RequestOptions? = null): SdkResponse<List<Contributor>> {
-        return SdkClient.request<List<Contributor>>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/contributors", config = clientConfig, query = mapOf("anon" to SdkClient.queryValue(anon, "form", true), "per_page" to SdkClient.queryValue(perPage, "form", true), "page" to SdkClient.queryValue(page, "form", true)), operationId = "reposListContributors", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [reposListContributors], returning the [SdkResponse] envelope: status code, headers, request
+     * ID and latency.
+     */
+    fun reposListContributorsWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        anon: String? = null,
+        perPage: Long? = null,
+        page: Long? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<List<Contributor>> {
+        return SdkClient.request<List<Contributor>>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/contributors",
+                config = clientConfig,
+                query =
+                    mapOf(
+                        "anon" to SdkClient.queryValue(anon, "form", true),
+                        "per_page" to SdkClient.queryValue(perPage, "form", true),
+                        "page" to SdkClient.queryValue(page, "form", true),
+                    ),
+                operationId = "reposListContributors",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("403" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }

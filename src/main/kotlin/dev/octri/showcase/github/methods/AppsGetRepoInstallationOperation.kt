@@ -12,20 +12,43 @@ import dev.octri.showcase.github.SdkResponse
 
 internal object AppsGetRepoInstallationOperation {
     /**
-     * Enables an authenticated GitHub App to find the repository's installation information. The installation's account type will be either an organization or a user account, depending which account the repository belongs to. You must use a JWT to access this endpoint.
+     * Enables an authenticated GitHub App to find the repository's installation information. The
+     * installation's account type will be either an organization or a user account, depending which
+     * account the repository belongs to. You must use a JWT to access this endpoint.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      */
-    fun appsGetRepoInstallation(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): Installation {
+    fun appsGetRepoInstallation(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): Installation {
         return appsGetRepoInstallationWithRawResponse(clientConfig, owner, repo, options).data
     }
 
-
-    /** [appsGetRepoInstallation], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun appsGetRepoInstallationWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, options: RequestOptions? = null): SdkResponse<Installation> {
-        return SdkClient.request<Installation>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/installation", config = clientConfig, operationId = "appsGetRepoInstallation", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java)))
+    /**
+     * [appsGetRepoInstallation], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun appsGetRepoInstallationWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        options: RequestOptions? = null,
+    ): SdkResponse<Installation> {
+        return SdkClient.request<Installation>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/installation",
+                config = clientConfig,
+                operationId = "appsGetRepoInstallation",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors = mapOf("301" to BasicError::class.java, "404" to BasicError::class.java),
+            )
+        )
     }
 }

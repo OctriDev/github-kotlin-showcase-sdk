@@ -3,44 +3,100 @@
 
 package dev.octri.showcase.github
 
-
 class MarkdownNamespace(private val clientConfig: ClientConfig) {
     /**
-     * Depending on what is rendered in the Markdown, you may need to provide additional token scopes for labels, such as `issues:read` or `pull_requests:read`.
+     * Depending on what is rendered in the Markdown, you may need to provide additional token
+     * scopes for labels, such as `issues:read` or `pull_requests:read`.
      */
-    fun render(text: String, mode: MarkdownRenderModeEnum? = null, context: String? = null, options: RequestOptions? = null): String {
-        return dev.octri.showcase.github.methods.Markdown.markdownRender(clientConfig, text, mode, context, options)
+    fun render(
+        text: String,
+        mode: MarkdownRenderModeEnum? = null,
+        context: String? = null,
+        options: RequestOptions? = null,
+    ): String {
+        return dev.octri.showcase.github.methods.Markdown.markdownRender(
+            clientConfig,
+            text,
+            mode,
+            context,
+            options,
+        )
     }
 
     /**
-     * Renders Markdown submitted as plain text into HTML. Send the Markdown in the request body with a `Content-Type` of `text/plain` or `text/x-markdown`; raw mode does not support GitHub Flavored Markdown, and the content must be 400 KB or less.
+     * Renders Markdown submitted as plain text into HTML. Send the Markdown in the request body
+     * with a `Content-Type` of `text/plain` or `text/x-markdown`; raw mode does not support GitHub
+     * Flavored Markdown, and the content must be 400 KB or less.
      *
-     * You must send Markdown as plain text (using a `Content-Type` header of `text/plain` or `text/x-markdown`) to this endpoint, rather than using JSON format. In raw mode, GitHub Flavored Markdown is not supported and Markdown will be rendered in plain format like a README.md file. Markdown content must be 400 KB or less.
+     * You must send Markdown as plain text (using a `Content-Type` header of `text/plain` or
+     * `text/x-markdown`) to this endpoint, rather than using JSON format. In raw mode, GitHub
+     * Flavored Markdown is not supported and Markdown will be rendered in plain format like a
+     * README.md file. Markdown content must be 400 KB or less.
      */
-    fun renderRaw(body: String? = null, contentType: String? = null, options: RequestOptions? = null): String {
-        return dev.octri.showcase.github.methods.Markdown.markdownRenderRaw(clientConfig, body, contentType, options)
+    fun renderRaw(
+        body: String? = null,
+        contentType: String? = null,
+        options: RequestOptions? = null,
+    ): String {
+        return dev.octri.showcase.github.methods.Markdown.markdownRenderRaw(
+            clientConfig,
+            body,
+            contentType,
+            options,
+        )
     }
 
-    /** These operations, each returning its [SdkResponse] envelope: status code, headers, request ID and latency. */
+    /**
+     * These operations, each returning its [SdkResponse] envelope: status code, headers, request ID
+     * and latency.
+     */
     fun withRawResponse(): WithRawResponse = WithRawResponse(clientConfig)
 
-    /** The operations of [MarkdownNamespace], returning the [SdkResponse] envelope around each result. */
+    /**
+     * The operations of [MarkdownNamespace], returning the [SdkResponse] envelope around each
+     * result.
+     */
     class WithRawResponse internal constructor(private val clientConfig: ClientConfig) {
         /**
-         * Depending on what is rendered in the Markdown, you may need to provide additional token scopes for labels, such as `issues:read` or `pull_requests:read`.
+         * Depending on what is rendered in the Markdown, you may need to provide additional token
+         * scopes for labels, such as `issues:read` or `pull_requests:read`.
          */
-        fun render(text: String, mode: MarkdownRenderModeEnum? = null, context: String? = null, options: RequestOptions? = null): SdkResponse<String> {
-            return dev.octri.showcase.github.methods.Markdown.markdownRenderWithRawResponse(clientConfig, text, mode, context, options)
+        fun render(
+            text: String,
+            mode: MarkdownRenderModeEnum? = null,
+            context: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<String> {
+            return dev.octri.showcase.github.methods.Markdown.markdownRenderWithRawResponse(
+                clientConfig,
+                text,
+                mode,
+                context,
+                options,
+            )
         }
 
         /**
-         * Renders Markdown submitted as plain text into HTML. Send the Markdown in the request body with a `Content-Type` of `text/plain` or `text/x-markdown`; raw mode does not support GitHub Flavored Markdown, and the content must be 400 KB or less.
+         * Renders Markdown submitted as plain text into HTML. Send the Markdown in the request body
+         * with a `Content-Type` of `text/plain` or `text/x-markdown`; raw mode does not support
+         * GitHub Flavored Markdown, and the content must be 400 KB or less.
          *
-         * You must send Markdown as plain text (using a `Content-Type` header of `text/plain` or `text/x-markdown`) to this endpoint, rather than using JSON format. In raw mode, GitHub Flavored Markdown is not supported and Markdown will be rendered in plain format like a README.md file. Markdown content must be 400 KB or less.
+         * You must send Markdown as plain text (using a `Content-Type` header of `text/plain` or
+         * `text/x-markdown`) to this endpoint, rather than using JSON format. In raw mode, GitHub
+         * Flavored Markdown is not supported and Markdown will be rendered in plain format like a
+         * README.md file. Markdown content must be 400 KB or less.
          */
-        fun renderRaw(body: String? = null, contentType: String? = null, options: RequestOptions? = null): SdkResponse<String> {
-            return dev.octri.showcase.github.methods.Markdown.markdownRenderRawWithRawResponse(clientConfig, body, contentType, options)
+        fun renderRaw(
+            body: String? = null,
+            contentType: String? = null,
+            options: RequestOptions? = null,
+        ): SdkResponse<String> {
+            return dev.octri.showcase.github.methods.Markdown.markdownRenderRawWithRawResponse(
+                clientConfig,
+                body,
+                contentType,
+                options,
+            )
         }
-
     }
 }

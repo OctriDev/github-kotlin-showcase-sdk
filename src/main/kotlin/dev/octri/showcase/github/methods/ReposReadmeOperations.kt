@@ -13,45 +13,111 @@ import dev.octri.showcase.github.ValidationError
 
 internal object ReposGetReadmeOperation {
     /**
-     * Gets the preferred README for a repository. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README in HTML. Markup languages are rendered to HTML using GitHub's open-source Markup library.
+     * Gets the preferred README for a repository. This endpoint supports the following custom media
+     * types. For more information, see "Media types." - **`application/vnd.github.raw+json`**:
+     * Returns the raw file contents. This is the default if you do not specify a media type. -
+     * **`application/vnd.github.html+json`**: Returns the README in HTML. Markup languages are
+     * rendered to HTML using GitHub's open-source Markup library.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
-     * @param ref The name of the commit/branch/tag. Default: the repository’s
-     *   default branch.
+     * @param ref The name of the commit/branch/tag. Default: the repository’s default branch.
      */
-    fun reposGetReadme(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): ContentFile {
+    fun reposGetReadme(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): ContentFile {
         return reposGetReadmeWithRawResponse(clientConfig, owner, repo, ref, options).data
     }
 
-
-    /** [reposGetReadme], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposGetReadmeWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, ref: String? = null, options: RequestOptions? = null): SdkResponse<ContentFile> {
-        return SdkClient.request<ContentFile>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/readme", config = clientConfig, query = mapOf("ref" to SdkClient.queryValue(ref, "form", true)), operationId = "reposGetReadme", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    /**
+     * [reposGetReadme], returning the [SdkResponse] envelope: status code, headers, request ID and
+     * latency.
+     */
+    fun reposGetReadmeWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ContentFile> {
+        return SdkClient.request<ContentFile>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/readme",
+                config = clientConfig,
+                query = mapOf("ref" to SdkClient.queryValue(ref, "form", true)),
+                operationId = "reposGetReadme",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
 
 internal object ReposGetReadmeInDirectoryOperation {
     /**
-     * Gets the README from a repository directory. This endpoint supports the following custom media types. For more information, see "Media types." - **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README in HTML. Markup languages are rendered to HTML using GitHub's open-source Markup library.
+     * Gets the README from a repository directory. This endpoint supports the following custom
+     * media types. For more information, see "Media types." -
+     * **`application/vnd.github.raw+json`**: Returns the raw file contents. This is the default if
+     * you do not specify a media type. - **`application/vnd.github.html+json`**: Returns the README
+     * in HTML. Markup languages are rendered to HTML using GitHub's open-source Markup library.
      *
-     * @param owner The account owner of the repository. The name is not case
+     * @param owner The account owner of the repository. The name is not case sensitive.
+     * @param repo The name of the repository without the `.git` extension. The name is not case
      *   sensitive.
-     * @param repo The name of the repository without the `.git` extension. The name
-     *   is not case sensitive.
      * @param dir The alternate path to look for a README file
-     * @param ref The name of the commit/branch/tag. Default: the repository’s
-     *   default branch.
+     * @param ref The name of the commit/branch/tag. Default: the repository’s default branch.
      */
-    fun reposGetReadmeInDirectory(clientConfig: ClientConfig, owner: String, repo: String, dir: String, ref: String? = null, options: RequestOptions? = null): ContentFile {
-        return reposGetReadmeInDirectoryWithRawResponse(clientConfig, owner, repo, dir, ref, options).data
+    fun reposGetReadmeInDirectory(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        dir: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): ContentFile {
+        return reposGetReadmeInDirectoryWithRawResponse(
+                clientConfig,
+                owner,
+                repo,
+                dir,
+                ref,
+                options,
+            )
+            .data
     }
 
-
-    /** [reposGetReadmeInDirectory], returning the [SdkResponse] envelope: status code, headers, request ID and latency. */
-    fun reposGetReadmeInDirectoryWithRawResponse(clientConfig: ClientConfig, owner: String, repo: String, dir: String, ref: String? = null, options: RequestOptions? = null): SdkResponse<ContentFile> {
-        return SdkClient.request<ContentFile>(SdkClient.RequestSpec("GET", "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/readme/${SdkClient.encodePathSegment(dir)}", config = clientConfig, query = mapOf("ref" to SdkClient.queryValue(ref, "form", true)), operationId = "reposGetReadmeInDirectory", decoder = SdkClient.ResponseDecoder.JSON, options = options, errors = mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java)))
+    /**
+     * [reposGetReadmeInDirectory], returning the [SdkResponse] envelope: status code, headers,
+     * request ID and latency.
+     */
+    fun reposGetReadmeInDirectoryWithRawResponse(
+        clientConfig: ClientConfig,
+        owner: String,
+        repo: String,
+        dir: String,
+        ref: String? = null,
+        options: RequestOptions? = null,
+    ): SdkResponse<ContentFile> {
+        return SdkClient.request<ContentFile>(
+            SdkClient.RequestSpec(
+                "GET",
+                "/repos/${SdkClient.encodePathSegment(owner)}/${SdkClient.encodePathSegment(repo)}/readme/${SdkClient.encodePathSegment(dir)}",
+                config = clientConfig,
+                query = mapOf("ref" to SdkClient.queryValue(ref, "form", true)),
+                operationId = "reposGetReadmeInDirectory",
+                decoder = SdkClient.ResponseDecoder.JSON,
+                options = options,
+                errors =
+                    mapOf("404" to BasicError::class.java, "422" to ValidationError::class.java),
+            )
+        )
     }
 }
